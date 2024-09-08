@@ -1131,7 +1131,7 @@ def get_zlib_book_dicts(session, key, values):
         zlib_book_dict['stripped_description'] = strip_description(zlib_book_dict['description'])
         zlib_book_dict['language_codes'] = get_bcp47_lang_codes(zlib_book_dict['language'] or '')
         zlib_book_dict['cover_url_guess'] = zlib_cover_url_guess(zlib_book_dict['md5_reported'])
-        zlib_book_dict['added_date_unified'] = { "zlib_source": zlib_book_dict['date_added'].split('T', 1)[0] }
+        zlib_book_dict['added_date_unified'] = { "date_zlib_source": zlib_book_dict['date_added'].split('T', 1)[0] }
         zlib_add_edition_varia_normalized(zlib_book_dict)
 
         allthethings.utils.init_identifiers_and_classification_unified(zlib_book_dict)
@@ -1235,7 +1235,7 @@ def get_aac_zlib3_book_dicts(session, key, values):
         aac_zlib3_book_dict['stripped_description'] = strip_description(aac_zlib3_book_dict['description'])
         aac_zlib3_book_dict['language_codes'] = get_bcp47_lang_codes(aac_zlib3_book_dict['language'] or '')
         aac_zlib3_book_dict['cover_url_guess'] = zlib_cover_url_guess(aac_zlib3_book_dict['md5_reported'])
-        aac_zlib3_book_dict['added_date_unified'] = { "zlib_source": aac_zlib3_book_dict['date_added'].split('T', 1)[0] }
+        aac_zlib3_book_dict['added_date_unified'] = { "date_zlib_source": aac_zlib3_book_dict['date_added'].split('T', 1)[0] }
         zlib_add_edition_varia_normalized(aac_zlib3_book_dict)
 
         allthethings.utils.init_identifiers_and_classification_unified(aac_zlib3_book_dict)
@@ -1396,7 +1396,7 @@ def get_ia_record_dicts(session, key, values):
             if ia_file_dict is not None:
                 ia_record_dict['aa_ia_file'] = ia_file_dict
                 ia_record_dict['aa_ia_file']['extension'] = 'pdf'
-                added_date_unified_file = { "ia_file_scrape": "2023-06-28" }
+                added_date_unified_file = { "date_ia_file_scrape": "2023-06-28" }
             elif ia2_acsmpdf_file_dict is not None:
                 ia_record_dict['aa_ia_file'] = {
                     'md5': ia2_acsmpdf_file_dict['metadata']['md5'].lower(),
@@ -1407,7 +1407,7 @@ def get_ia_record_dicts(session, key, values):
                     'aacid': ia2_acsmpdf_file_dict['aacid'],
                     'data_folder': ia2_acsmpdf_file_dict['data_folder'],
                 }
-                added_date_unified_file = { "ia_file_scrape": datetime.datetime.strptime(ia2_acsmpdf_file_dict['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] }
+                added_date_unified_file = { "date_ia_file_scrape": datetime.datetime.strptime(ia2_acsmpdf_file_dict['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] }
 
         # TODO: It might be nice to filter this earlier?
         if key == 'md5':
@@ -1442,7 +1442,7 @@ def get_ia_record_dicts(session, key, values):
             if publicdate[0].encode('ascii', 'ignore').decode() != publicdate[0]:
                 print(f"Warning: {publicdate[0]=} is not ASCII; skipping!")
             else:
-                ia_record_dict['aa_ia_derived']['added_date_unified'] = { **added_date_unified_file, "ia_source": datetime.datetime.strptime(publicdate[0], "%Y-%m-%d %H:%M:%S").isoformat().split('T', 1)[0] }
+                ia_record_dict['aa_ia_derived']['added_date_unified'] = { **added_date_unified_file, "date_ia_source": datetime.datetime.strptime(publicdate[0], "%Y-%m-%d %H:%M:%S").isoformat().split('T', 1)[0] }
 
         ia_record_dict['aa_ia_derived']['content_type'] = 'book_unknown'
         if ia_record_dict['ia_id'].split('_', 1)[0] in ['sim', 'per'] or extract_list_from_ia_json_field(ia_record_dict, 'pub_type') in ["Government Documents", "Historical Journals", "Law Journals", "Magazine", "Magazines", "Newspaper", "Scholarly Journals", "Trade Journals"]:
@@ -1815,9 +1815,9 @@ def get_ol_book_dicts(session, key, values):
             ol_book_dict['added_date_unified'] = {}
             if len(created_normalized) > 0:
                 if '.' in created_normalized:
-                    ol_book_dict['added_date_unified'] = { 'ol_source': datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S.%f').isoformat().split('T', 1)[0] }
+                    ol_book_dict['added_date_unified'] = { 'date_ol_source': datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S.%f').isoformat().split('T', 1)[0] }
                 else:
-                    ol_book_dict['added_date_unified'] = { 'ol_source': datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S').isoformat().split('T', 1)[0] }
+                    ol_book_dict['added_date_unified'] = { 'date_ol_source': datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S').isoformat().split('T', 1)[0] }
 
             # {% for source_record in ol_book_dict.json.source_records %}
             #   <div class="flex odd:bg-black/5 hover:bg-black/64">
@@ -1941,7 +1941,7 @@ def get_lgrsnf_book_dicts(session, key, values):
         if lgrs_book_dict['timeadded'] != '0000-00-00 00:00:00':
             if not isinstance(lgrs_book_dict['timeadded'], datetime.datetime):
                 raise Exception(f"Unexpected {lgrs_book_dict['timeadded']=} for {lgrs_book_dict=}")
-            lgrs_book_dict['added_date_unified'] = { 'lgrsnf_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
+            lgrs_book_dict['added_date_unified'] = { 'date_lgrsnf_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
 
         edition_varia_normalized = []
         if len((lgrs_book_dict.get('series') or '').strip()) > 0:
@@ -2013,7 +2013,7 @@ def get_lgrsfic_book_dicts(session, key, values):
         if lgrs_book_dict['timeadded'] != '0000-00-00 00:00:00':
             if not isinstance(lgrs_book_dict['timeadded'], datetime.datetime):
                 raise Exception(f"Unexpected {lgrs_book_dict['timeadded']=} for {lgrs_book_dict=}")
-            lgrs_book_dict['added_date_unified'] = { 'lgrsfic_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
+            lgrs_book_dict['added_date_unified'] = { 'date_lgrsfic_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
 
         edition_varia_normalized = []
         if len((lgrs_book_dict.get('series') or '').strip()) > 0:
@@ -2352,7 +2352,7 @@ def get_lgli_file_dicts(session, key, values):
         if lgli_file_dict['time_added'] != '0000-00-00 00:00:00':
             if not isinstance(lgli_file_dict['time_added'], datetime.datetime):
                 raise Exception(f"Unexpected {lgli_file_dict['time_added']=} for {lgli_file_dict=}")
-            lgli_file_dict['added_date_unified'] = { 'lgli_source': lgli_file_dict['time_added'].isoformat().split('T', 1)[0] }
+            lgli_file_dict['added_date_unified'] = { 'date_lgli_source': lgli_file_dict['time_added'].isoformat().split('T', 1)[0] }
 
         lgli_file_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
@@ -2406,7 +2406,7 @@ def get_isbndb_dicts(session, canonical_isbn13s):
         isbn_dict = {
             "ean13": isbnlib.ean13(canonical_isbn13),
             "isbn10": isbnlib.to_isbn10(canonical_isbn13),
-            "added_date_unified": { "isbndb_scrape": "2022-09-01" },
+            "added_date_unified": { "date_isbndb_scrape": "2022-09-01" },
         }
 
         isbndb_books = {}
@@ -2442,7 +2442,7 @@ def get_isbndb_dicts(session, canonical_isbn13s):
                 isbndb_dict['year_normalized'] = potential_year[0]
             # There is often also isbndb_dict['json']['image'], but sometimes images get added later, so we can make a guess ourselves.
             isbndb_dict['cover_url_guess'] = f"https://images.isbndb.com/covers/{isbndb_dict['isbn13'][-4:-2]}/{isbndb_dict['isbn13'][-2:]}/{isbndb_dict['isbn13']}.jpg"
-            isbndb_dict['added_date_unified'] = { "isbndb_scrape": "2022-09-01" }
+            isbndb_dict['added_date_unified'] = { "date_isbndb_scrape": "2022-09-01" }
 
             allthethings.utils.init_identifiers_and_classification_unified(isbndb_dict)
             allthethings.utils.add_isbns_unified(isbndb_dict, [canonical_isbn13])
@@ -2749,7 +2749,7 @@ def get_oclc_dicts(session, key, values):
         for aac_record in aac_records:
             allthethings.utils.add_identifier_unified(oclc_dict['aa_oclc_derived'], 'aacid', aac_record['aacid'])
 
-        oclc_dict['aa_oclc_derived']["added_date_unified"] = { "oclc_scrape": "2023-10-01" }
+        oclc_dict['aa_oclc_derived']["added_date_unified"] = { "date_oclc_scrape": "2023-10-01" }
 
         # TODO:
         # * cover_url
@@ -2987,7 +2987,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
 
         for aac_record in aac_records.values():
             duxiu_dict['aa_duxiu_derived']['aacid_multiple'].append(aac_record['aacid'])
-            duxiu_dict['aa_duxiu_derived']['added_date_unified']['duxiu_meta_scrape'] = max(duxiu_dict['aa_duxiu_derived']['added_date_unified'].get('duxiu_meta_scrape') or '', datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0])
+            duxiu_dict['aa_duxiu_derived']['added_date_unified']['date_duxiu_meta_scrape'] = max(duxiu_dict['aa_duxiu_derived']['added_date_unified'].get('date_duxiu_meta_scrape') or '', datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0])
 
             if aac_record['metadata']['type'] == 'dx_20240122__books':
                 # 512w_final_csv has a bunch of incorrect records from dx_20240122__books deleted, so skip these entirely.
@@ -3171,7 +3171,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                     duxiu_dict['aa_duxiu_derived']['filesize_multiple'] = [int(aac_record['generated_file_metadata']['filesize'])] + duxiu_dict['aa_duxiu_derived']['filesize_multiple']
                     duxiu_dict['aa_duxiu_derived']['filepath_multiple'] = [aac_record['metadata']['record']['filename_decoded']] + duxiu_dict['aa_duxiu_derived']['filepath_multiple']
 
-                    duxiu_dict['aa_duxiu_derived']['added_date_unified']['duxiu_filegen'] = datetime.datetime.strptime(aac_record['generated_file_aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
+                    duxiu_dict['aa_duxiu_derived']['added_date_unified']['date_duxiu_filegen'] = datetime.datetime.strptime(aac_record['generated_file_aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
 
                     # Only check for problems when we have generated_file_aacid, since that indicates this is the main file record.
                     if len(aac_record['metadata']['record']['pdg_broken_files']) > 3:
@@ -3561,7 +3561,7 @@ def get_aac_upload_book_dicts(session, key, values):
                     allthethings.utils.add_identifier_unified(aac_upload_book_dict['aa_upload_derived'], 'duxiu_ssid', duxiu_ssid_filename)
 
             upload_record_date = datetime.datetime.strptime(record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
-            aac_upload_book_dict['aa_upload_derived']['added_date_unified']['upload_record_date'] = min(upload_record_date, aac_upload_book_dict['aa_upload_derived']['added_date_unified'].get('upload_record_date') or upload_record_date)
+            aac_upload_book_dict['aa_upload_derived']['added_date_unified']['date_upload_record'] = min(upload_record_date, aac_upload_book_dict['aa_upload_derived']['added_date_unified'].get('date_upload_record') or upload_record_date)
 
             file_created_date = None
             create_date_field = (record['metadata'].get('exiftool_output') or {}).get('CreateDate') or ''
@@ -3574,7 +3574,7 @@ def get_aac_upload_book_dicts(session, key, values):
                     except Exception:
                         pass
             if file_created_date is not None:
-                aac_upload_book_dict['aa_upload_derived']['added_date_unified']['file_created_date'] = min(file_created_date, aac_upload_book_dict['aa_upload_derived']['added_date_unified'].get('file_created_date') or file_created_date)
+                aac_upload_book_dict['aa_upload_derived']['added_date_unified']['date_file_created'] = min(file_created_date, aac_upload_book_dict['aa_upload_derived']['added_date_unified'].get('date_file_created') or file_created_date)
 
         if any([('duxiu' in subcollection) or ('chinese' in subcollection) for subcollection in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']]):
             aac_upload_book_dict['aa_upload_derived']['filename_multiple'] = [allthethings.utils.attempt_fix_chinese_filepath(text) for text in aac_upload_book_dict['aa_upload_derived']['filename_multiple']]
@@ -3712,7 +3712,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
                 "stripped_description": '',
                 "combined_comments": [],
                 "language_codes": [],
-                "added_date_unified": { "magzdb_meta_scrape": datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] },
+                "added_date_unified": { "date_magzdb_meta_scrape": datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] },
             },
             "aac_record": aac_record,
             "publication_aac_record": publication_aac_record,
@@ -3879,7 +3879,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
                 "content_type": "",
                 "cid_only_links": [],
                 "added_date_unified": { 
-                    "nexusstc_source_update_date": datetime.datetime.fromtimestamp(aac_record['metadata']['record']['updated_at'][0]).isoformat().split('T', 1)[0],
+                    "date_nexusstc_source_update": datetime.datetime.fromtimestamp(aac_record['metadata']['record']['updated_at'][0]).isoformat().split('T', 1)[0],
                 },
             },
             "aac_record": aac_record,
@@ -3926,7 +3926,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
                 pass
             if issued_at is not None:
                 if allthethings.utils.validate_year(issued_at.year):
-                    aac_nexusstc_book_dict["aa_nexusstc_derived"]["added_date_unified"]["nexusstc_source_issued_at_date"] = issued_at.isoformat().split('T', 1)[0]
+                    aac_nexusstc_book_dict["aa_nexusstc_derived"]["added_date_unified"]["date_nexusstc_source_issued_at"] = issued_at.isoformat().split('T', 1)[0]
                     aac_nexusstc_book_dict["aa_nexusstc_derived"]["year"] = str(issued_at.year)
         if len(((metadata.get('event') or {}).get('start') or {}).get('date-parts') or []) > 0:
             potential_year = str(metadata['event']['start']['date-parts'][0])
@@ -5162,42 +5162,42 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['file_unified_data']['added_date_best'] = ''
         if aarecord_id_split[0] == 'md5':
             potential_dates = list(filter(len, [
-                (aarecord['file_unified_data']['added_date_unified'].get('duxiu_filegen') or ''),
-                (aarecord['file_unified_data']['added_date_unified'].get('ia_file_scrape') or ''),
-                (aarecord['file_unified_data']['added_date_unified'].get('lgli_source') or ''),
-                (aarecord['file_unified_data']['added_date_unified'].get('lgrsfic_source') or ''),
-                (aarecord['file_unified_data']['added_date_unified'].get('lgrsnf_source') or ''),
-                (aarecord['file_unified_data']['added_date_unified'].get('upload_record_date') or ''),
-                (aarecord['file_unified_data']['added_date_unified'].get('zlib_source') or ''),
+                (aarecord['file_unified_data']['added_date_unified'].get('date_duxiu_filegen') or ''),
+                (aarecord['file_unified_data']['added_date_unified'].get('date_ia_file_scrape') or ''),
+                (aarecord['file_unified_data']['added_date_unified'].get('date_lgli_source') or ''),
+                (aarecord['file_unified_data']['added_date_unified'].get('date_lgrsfic_source') or ''),
+                (aarecord['file_unified_data']['added_date_unified'].get('date_lgrsnf_source') or ''),
+                (aarecord['file_unified_data']['added_date_unified'].get('date_upload_record') or ''),
+                (aarecord['file_unified_data']['added_date_unified'].get('date_zlib_source') or ''),
             ]))
             if len(potential_dates) > 0:
                 aarecord['file_unified_data']['added_date_best'] = min(potential_dates)
         elif aarecord_id_split[0] == 'ia':
             if 'ia_source' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['ia_source']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ia_source']
         elif aarecord_id_split[0] == 'isbn':
             if 'isbndb_scrape' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['isbndb_scrape']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_isbndb_scrape']
         elif aarecord_id_split[0] == 'ol':
             if 'ol_source' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['ol_source']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ol_source']
         elif aarecord_id_split[0] == 'doi':
             pass # We don't have the information of when this was added to scihub sadly.
         elif aarecord_id_split[0] == 'oclc':
             if 'oclc_scrape' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['oclc_scrape']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_oclc_scrape']
         elif aarecord_id_split[0] == 'duxiu_ssid':
             if 'duxiu_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['duxiu_meta_scrape']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_duxiu_meta_scrape']
         elif aarecord_id_split[0] == 'cadal_ssno':
             if 'duxiu_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['duxiu_meta_scrape']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_duxiu_meta_scrape']
         elif aarecord_id_split[0] == 'magzdb':
             if 'magzdb_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['magzdb_meta_scrape']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_magzdb_meta_scrape']
         elif aarecord_id_split[0] in ['nexusstc', 'nexusstc_download']:
             if 'nexusstc_source_update_date' in aarecord['file_unified_data']['added_date_unified']:
-                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['nexusstc_source_update_date']
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_nexusstc_source_update']
         else:
             raise Exception(f"Unknown {aarecord_id_split[0]=}")
 
