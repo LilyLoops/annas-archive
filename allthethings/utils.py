@@ -1027,6 +1027,7 @@ UNIFIED_CLASSIFICATIONS = {
     # TODO: Remove on index refresh.
     "ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
     "date_ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
+    "date_ia_record_scrape": { "label": "IA Record Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the record from the Internet Archive." },
     # TODO: Remove on index refresh.
     "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
     "date_ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },

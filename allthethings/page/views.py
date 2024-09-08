@@ -1458,6 +1458,11 @@ def get_ia_record_dicts(session, key, values):
             ia_record_dict['aa_ia_derived']['longest_date_field']
         ])
 
+        if ia_record_dict.get('aacid') is not None:
+            added_date_unified_file["date_ia_record_scrape"] = datetime.datetime.strptime(ia_record_dict['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
+        else:
+            added_date_unified_file["date_ia_record_scrape"] = '2023-06-28'
+
         allthethings.utils.init_identifiers_and_classification_unified(ia_record_dict['aa_ia_derived'])
         allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'ocaid', ia_record_dict['ia_id'])
         if ia_record_dict.get('aacid') is not None:
@@ -5173,30 +5178,32 @@ def get_aarecords_mysql(session, aarecord_ids):
             if len(potential_dates) > 0:
                 aarecord['file_unified_data']['added_date_best'] = min(potential_dates)
         elif aarecord_id_split[0] == 'ia':
-            if 'ia_source' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_ia_source' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ia_source']
+            elif 'date_ia_record_scrape' in aarecord['file_unified_data']['added_date_unified']:
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ia_record_scrape']
         elif aarecord_id_split[0] == 'isbn':
-            if 'isbndb_scrape' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_isbndb_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_isbndb_scrape']
         elif aarecord_id_split[0] == 'ol':
-            if 'ol_source' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_ol_source' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ol_source']
         elif aarecord_id_split[0] == 'doi':
             pass # We don't have the information of when this was added to scihub sadly.
         elif aarecord_id_split[0] == 'oclc':
-            if 'oclc_scrape' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_oclc_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_oclc_scrape']
         elif aarecord_id_split[0] == 'duxiu_ssid':
-            if 'duxiu_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_duxiu_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_duxiu_meta_scrape']
         elif aarecord_id_split[0] == 'cadal_ssno':
-            if 'duxiu_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_duxiu_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_duxiu_meta_scrape']
         elif aarecord_id_split[0] == 'magzdb':
-            if 'magzdb_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_magzdb_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_magzdb_meta_scrape']
         elif aarecord_id_split[0] in ['nexusstc', 'nexusstc_download']:
-            if 'nexusstc_source_update_date' in aarecord['file_unified_data']['added_date_unified']:
+            if 'date_nexusstc_source_update' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_nexusstc_source_update']
         else:
             raise Exception(f"Unknown {aarecord_id_split[0]=}")
