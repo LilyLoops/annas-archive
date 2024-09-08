@@ -185,11 +185,14 @@ def extensions(app):
     @functools.cache
     def last_data_refresh_date():
         with engine.connect() as conn:
-            libgenrs_statement = select(LibgenrsUpdated.TimeLastModified).order_by(LibgenrsUpdated.ID.desc()).limit(1)
-            libgenli_statement = select(LibgenliFiles.time_last_modified).order_by(LibgenliFiles.f_id.desc()).limit(1)
             try:
-                libgenrs_time = conn.execute(libgenrs_statement).scalars().first()
-                libgenli_time = conn.execute(libgenli_statement).scalars().first()
+                cursor = allthethings.utils.get_cursor_ping_conn(conn)
+
+                cursor.execute('SELECT TimeLastModified FROM libgenrs_updated ORDER BY ID DESC LIMIT 1')
+                libgenrs_time = allthethings.utils.fetch_one_field(cursor)
+#
+                cursor.execute('SELECT time_last_modified FROM libgenli_files ORDER BY f_id DESC LIMIT 1')
+                libgenli_time = allthethings.utils.fetch_one_field(cursor)
             except Exception:
                 return ''
             latest_time = max([libgenrs_time, libgenli_time])
