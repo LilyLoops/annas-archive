@@ -1269,7 +1269,8 @@ def get_ia_record_dicts(session, key, values):
             cursor.execute(base_query + f'WHERE m.`{key}` IN %(values)s', { 'values': values })
             ia_entries = allthethings.utils.split_columns(list(cursor.fetchall()), column_count_query1)
 
-            cursor.execute(base_query2 + f'WHERE ia2r.{key} %(values)s', { 'values': values })
+            ia2r_key_column = key.replace('ia_id', 'primary_id')
+            cursor.execute(base_query2 + f'WHERE ia2r.`{ia2r_key_column}` IN %(values)s', { 'values': values })
             ia_entries2 = allthethings.utils.split_columns(list(cursor.fetchall()), column_count_query2)
     except Exception as err:
         print(f"Error in get_ia_record_dicts when querying {key}; {values}")
