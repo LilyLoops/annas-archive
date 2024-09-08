@@ -168,7 +168,7 @@ def scidb_info(aarecord, additional=None):
     else:
         return None
 
-    return { "priority": priority, "doi": valid_dois[0], "path_info": path_info, "scihub_link": scihub_link, "ipfs_url": ipfs_url, "nexusstc_id": "nexusstc_id" }
+    return { "priority": priority, "doi": valid_dois[0], "path_info": path_info, "scihub_link": scihub_link, "ipfs_url": ipfs_url, "nexusstc_id": nexusstc_id }
 
 JWT_PREFIX = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.'
 
