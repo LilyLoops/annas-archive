@@ -532,7 +532,11 @@ def get_account_fast_download_info(mariapersist_session, account_id):
     downloads_per_day += bonus_downloads
 
     downloads_left = downloads_per_day
-    recently_downloaded_md5s = [md5.hex() for md5 in mariapersist_session.connection().execute(select(MariapersistFastDownloadAccess.md5).where((MariapersistFastDownloadAccess.timestamp >= datetime.datetime.now(tz=datetime.timezone.utc) - datetime.timedelta(hours=18)) & (MariapersistFastDownloadAccess.account_id == account_id)).limit(50000)).scalars()]
+    cursor.execute("SELECT md5 FROM mariapersist_fast_download_access "
+                   "WHERE timestamp >= %(timestamp)s AND account_id = %(account_id)s "
+                   "LIMIT 50000",
+                   { 'timestamp': datetime.datetime.now(tz=datetime.timezone.utc) - datetime.timedelta(hours=18), 'account_id': account_id })
+    recently_downloaded_md5s = [md5.hex() for md5 in fetch_scalars(cursor)]
     downloads_left -= len(recently_downloaded_md5s)
 
     max_tier = str(max([int(membership['membership_tier']) for membership in memberships]))
@@ -678,6 +682,21 @@ def fetch_one_field(cursor):
     if row is None:
         return None
     return row[next(iter(row))]
+
+
+def fetch_scalars(cursor) -> list | tuple:
+    """
+    Fetches value of the first column from all the rows using the cursor
+    :return: If no rows were returned: an empty tuple, otherwise a list of values of the first column.
+    """
+    rows = cursor.fetchall()
+    if rows is None or len(rows) <= 0:
+        # SQLAlchemy would return an empty tuple, keeping for compatibility with existing code
+        return ()
+    scalars = []
+    for row in rows:
+        scalars.append(row[next(iter(row))])
+    return scalars
 
 
 def split_columns_row(row: dict | None, column_count: list[int]) -> tuple | None:
