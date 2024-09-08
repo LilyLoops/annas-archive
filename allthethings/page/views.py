@@ -1068,8 +1068,6 @@ def get_zlib_book_dicts(session, key, values):
             for isbn in zlib_isbns:
                 if isbn['zlibrary_id'] == book['zlibrary_id']:
                     book['isbns'].append(isbn)
-
-        print(zlib_books)
     except Exception as err:
         print(f"Error in get_zlib_book_dicts when querying {key}; {values}")
         print(repr(err))
@@ -1078,9 +1076,7 @@ def get_zlib_book_dicts(session, key, values):
 
     zlib_book_dicts = []
     for zlib_book in zlib_books:
-        # zlib_book_dict = zlib_book.to_dict()
         zlib_book_dict = zlib_book
-        print(zlib_book_dict)
         zlib_book_dict['stripped_description'] = strip_description(zlib_book_dict['description'])
         zlib_book_dict['language_codes'] = get_bcp47_lang_codes(zlib_book_dict['language'] or '')
         zlib_book_dict['cover_url_guess'] = zlib_cover_url_guess(zlib_book_dict['md5_reported'])
