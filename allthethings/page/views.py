@@ -5132,6 +5132,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['lgrsnf_book'] or {}).get('classifications_unified') or {}),
             ((aarecord['lgrsfic_book'] or {}).get('classifications_unified') or {}),
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('classifications_unified') or {}),
+            ((aarecord['lgli_file'] or {}).get('classifications_unified') or {}),
             *[(edition['classifications_unified'] or {}) for edition in lgli_all_editions],
             (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('classifications_unified') or {}),
             *[ia_record['aa_ia_derived']['classifications_unified'] for ia_record in aarecord['ia_records_meta_only']],
