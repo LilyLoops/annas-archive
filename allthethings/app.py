@@ -17,7 +17,6 @@ from werkzeug.security import safe_join
 from werkzeug.debug import DebuggedApplication
 from werkzeug.middleware.proxy_fix import ProxyFix
 from flask_babel import get_locale, get_translations, force_locale, gettext
-from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from allthethings.account.views import account
@@ -25,7 +24,7 @@ from allthethings.blog.views import blog
 from allthethings.page.views import page, all_search_aggs
 from allthethings.dyn.views import dyn
 from allthethings.cli.views import cli
-from allthethings.extensions import engine, mariapersist_engine, babel, debug_toolbar, flask_static_digest, Reflected, ReflectedMariapersist, mail, LibgenrsUpdated, LibgenliFiles
+from allthethings.extensions import engine, mariapersist_engine, babel, debug_toolbar, flask_static_digest, Reflected, ReflectedMariapersist, mail
 from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, X_AA_SECRET
 
 import allthethings.utils

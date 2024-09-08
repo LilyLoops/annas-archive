@@ -1,5 +1,3 @@
-from typing import List
-
 import jwt
 import re
 import ipaddress
@@ -27,9 +25,7 @@ import time
 
 from flask_babel import gettext, get_babel, force_locale
 
-from sqlalchemy import select
-
-from allthethings.extensions import es, es_aux, engine, MariapersistFastDownloadAccess
+from allthethings.extensions import es, es_aux, engine
 from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, MEMBERS_TELEGRAM_URL, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, FAST_PARTNER_SERVER1, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY, AACID_SMALL_DATA_IMPORTS
 
 FEATURE_FLAGS = {}
