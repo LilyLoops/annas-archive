@@ -1,10 +1,10 @@
 {% extends "layouts/index.html" %}
 {% import 'macros/shared_links.j2' as a %}
 
-{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.libgen_rs.title') }}{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.libgen_rs.title') }} [lgrs]{% endblock %}
 
 {% block body %}
-  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.libgen_rs.title') }}</div>
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.libgen_rs.title') }} [lgrs]</div>
 
   <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
     {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
@@ -22,7 +22,7 @@
       <tr class="even:bg-[#f2f2f2]">
         <td class="p-2 align-top">
           <a class="custom-a underline hover:opacity-60" href="/datasets/lgrs">
-            {{ gettext('common.record_sources_mapping.lgrs') }}
+            {{ gettext('common.record_sources_mapping.lgrs') }} [lgrs]
           </a>
         </td>
         <td class="p-2 align-top">
