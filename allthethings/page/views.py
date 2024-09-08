@@ -799,9 +799,14 @@ def datasets_lgli_page():
 @page.get("/datasets/openlib")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_openlib_page():
+    return redirect(f"/datasets/ol", code=302)
+
+@page.get("/datasets/ol")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_ol_page():
     try:
         stats_data = get_stats_data()
-        return render_template("page/datasets_openlib.html", header_active="home/datasets", stats_data=stats_data)
+        return render_template("page/datasets_ol.html", header_active="home/datasets", stats_data=stats_data)
     except Exception as e:
         if 'timed out' in str(e):
             return "Error with datasets page, please try again.", 503

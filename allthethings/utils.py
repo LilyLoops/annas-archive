@@ -1025,7 +1025,7 @@ UNIFIED_CLASSIFICATIONS = {
     "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
     "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
     "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
-    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/openlib", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
     "upload_record_date": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
     "zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
     "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
