@@ -724,6 +724,11 @@ def datasets_upload_page():
             return "Error with datasets page, please try again.", 503
         raise
 
+@page.get("/datasets/zlibzh")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_zlibzh_page():
+    return redirect(f"/datasets/zlib", code=302)
+
 @page.get("/datasets/zlib")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_zlib_page():
@@ -760,9 +765,14 @@ def datasets_scihub_page():
 @page.get("/datasets/libgen_rs")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_libgen_rs_page():
+    return redirect(f"/datasets/lgrs", code=302)
+
+@page.get("/datasets/lgrs")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_lgrs_page():
     try:
         stats_data = get_stats_data()
-        return render_template("page/datasets_libgen_rs.html", header_active="home/datasets", stats_data=stats_data)
+        return render_template("page/datasets_lgrs.html", header_active="home/datasets", stats_data=stats_data)
     except Exception as e:
         if 'timed out' in str(e):
             return "Error with datasets page, please try again.", 503
@@ -771,13 +781,20 @@ def datasets_libgen_rs_page():
 @page.get("/datasets/libgen_li")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_libgen_li_page():
+    return redirect(f"/datasets/lgli", code=302)
+
+@page.get("/datasets/lgli")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_lgli_page():
     try:
         stats_data = get_stats_data()
-        return render_template("page/datasets_libgen_li.html", header_active="home/datasets", stats_data=stats_data)
+        return render_template("page/datasets_lgli.html", header_active="home/datasets", stats_data=stats_data)
     except Exception as e:
         if 'timed out' in str(e):
             return "Error with datasets page, please try again.", 503
         raise
+
+    return redirect(f"/datasets/ol", code=302)
 
 @page.get("/datasets/openlib")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -793,9 +810,14 @@ def datasets_openlib_page():
 @page.get("/datasets/worldcat")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_worldcat_page():
+    return redirect(f"/datasets/oclc", code=302)
+
+@page.get("/datasets/oclc")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_oclc_page():
     try:
         stats_data = get_stats_data()
-        return render_template("page/datasets_worldcat.html", header_active="home/datasets", stats_data=stats_data)
+        return render_template("page/datasets_oclc.html", header_active="home/datasets", stats_data=stats_data)
     except Exception as e:
         if 'timed out' in str(e):
             return "Error with datasets page, please try again.", 503
@@ -1935,7 +1957,7 @@ def get_lgrsnf_book_dicts(session, key, values):
         lgrs_book_dict['edition_varia_normalized'] = ', '.join(edition_varia_normalized)
 
         allthethings.utils.init_identifiers_and_classification_unified(lgrs_book_dict)
-        allthethings.utils.add_classification_unified(lgrs_book_dict, 'collection', 'libgen_rs')
+        allthethings.utils.add_classification_unified(lgrs_book_dict, 'collection', 'lgrs')
         allthethings.utils.add_identifier_unified(lgrs_book_dict, 'lgrsnf', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
         allthethings.utils.add_identifier_unified(lgrs_book_dict, 'md5', lgrs_book_dict['md5'].lower())
@@ -1952,7 +1974,7 @@ def get_lgrsnf_book_dicts(session, key, values):
         lgrs_book_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
             "id": ("before", ["This is a Libgen.rs Non-Fiction record, augmented by Anna's Archive.",
-                              "More details at https://annas-archive.se/datasets/libgen_rs",
+                              "More details at https://annas-archive.se/datasets/lgrs",
                               "Most of these fields are explained at https://wiki.mhut.org/content:bibliographic_data",
                               allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
         }
@@ -2004,7 +2026,7 @@ def get_lgrsfic_book_dicts(session, key, values):
         lgrs_book_dict['edition_varia_normalized'] = ', '.join(edition_varia_normalized)
 
         allthethings.utils.init_identifiers_and_classification_unified(lgrs_book_dict)
-        allthethings.utils.add_classification_unified(lgrs_book_dict, 'collection', 'libgen_rs')
+        allthethings.utils.add_classification_unified(lgrs_book_dict, 'collection', 'lgrs')
         allthethings.utils.add_identifier_unified(lgrs_book_dict, 'lgrsfic', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
         allthethings.utils.add_identifier_unified(lgrs_book_dict, 'md5', lgrs_book_dict['md5'].lower())
@@ -2021,7 +2043,7 @@ def get_lgrsfic_book_dicts(session, key, values):
         lgrs_book_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
             "id": ("before", ["This is a Libgen.rs Fiction record, augmented by Anna's Archive.",
-                              "More details at https://annas-archive.se/datasets/libgen_rs",
+                              "More details at https://annas-archive.se/datasets/lgrs",
                               "Most of these fields are explained at https://wiki.mhut.org/content:bibliographic_data",
                               allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
         }
@@ -2231,7 +2253,7 @@ def get_lgli_file_dicts(session, key, values):
             edition_dict['languageoriginal_codes'] = combine_bcp47_lang_codes(languageoriginal_codes)
 
             allthethings.utils.init_identifiers_and_classification_unified(edition_dict)
-            allthethings.utils.add_classification_unified(edition_dict, 'collection', 'libgen_li')
+            allthethings.utils.add_classification_unified(edition_dict, 'collection', 'lgli')
             allthethings.utils.add_identifier_unified(edition_dict, 'doi', edition_dict['doi'])
             for key, values in edition_dict['descriptions_mapped'].items():
                 if key in allthethings.utils.LGLI_IDENTIFIERS:
@@ -2303,7 +2325,7 @@ def get_lgli_file_dicts(session, key, values):
                 lgli_file_dict['scimag_url_guess'] = 'https://doi.org/' + lgli_file_dict['scimag_url_guess']
 
         allthethings.utils.init_identifiers_and_classification_unified(lgli_file_dict)
-        allthethings.utils.add_classification_unified(lgli_file_dict, 'collection', 'libgen_li')
+        allthethings.utils.add_classification_unified(lgli_file_dict, 'collection', 'lgli')
         allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli', lgli_file_dict['f_id'])
         allthethings.utils.add_identifier_unified(lgli_file_dict, 'md5', lgli_file_dict['md5'].lower())
         allthethings.utils.add_isbns_unified(lgli_file_dict, allthethings.utils.get_isbnlike(lgli_file_dict['locator']))
@@ -2339,7 +2361,7 @@ def get_lgli_file_dicts(session, key, values):
         lgli_file_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
             "f_id": ("before", ["This is a Libgen.li file record, augmented by Anna's Archive.",
-                     "More details at https://annas-archive.se/datasets/libgen_li",
+                     "More details at https://annas-archive.se/datasets/lgli",
                      "Most of these fields are explained at https://libgen.li/community/app.php/article/new-database-structure-published-o%CF%80y6%D0%BB%D0%B8%C4%B8o%D0%B2a%D0%BDa-%D0%BDo%D0%B2a%D1%8F-c%D1%82py%C4%B8%D1%82ypa-6a%D0%B7%C6%85i-%D0%B4a%D0%BD%D0%BD%C6%85ix",
                      "The source URL is https://libgen.li/file.php?id=<f_id>",
                      allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
@@ -2724,7 +2746,7 @@ def get_oclc_dicts(session, key, values):
         oclc_dict['aa_oclc_derived']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(language) for language in oclc_dict['aa_oclc_derived']['languages_multiple']])
 
         allthethings.utils.init_identifiers_and_classification_unified(oclc_dict['aa_oclc_derived'])
-        allthethings.utils.add_classification_unified(oclc_dict['aa_oclc_derived'], 'collection', 'worldcat')
+        allthethings.utils.add_classification_unified(oclc_dict['aa_oclc_derived'], 'collection', 'oclc')
         allthethings.utils.add_identifier_unified(oclc_dict['aa_oclc_derived'], 'oclc', oclc_id)
         allthethings.utils.add_isbns_unified(oclc_dict['aa_oclc_derived'], oclc_dict['aa_oclc_derived']['isbn_multiple'])
         for issn in oclc_dict['aa_oclc_derived']['issn_multiple']:
