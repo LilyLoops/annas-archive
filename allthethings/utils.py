@@ -1215,10 +1215,10 @@ for identifier in ol_editions['identifiers']:
     else:
         OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name] = unified_name
         if unified_name not in UNIFIED_IDENTIFIERS:
-            # If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.
+            assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
             label = OPENLIB_LABELS[unified_name]
-            description = ''
-            if identifier.get('description', '') != label:
+            description = identifier.get('description', '')
+            if description != label:
                 description = identifier.get('description', '')
             UNIFIED_IDENTIFIERS[unified_name] = { **identifier, 'label': label, 'description': description }
 
@@ -1231,10 +1231,10 @@ for classification in ol_editions['classifications']:
     else:
         OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name] = unified_name
         if unified_name not in UNIFIED_CLASSIFICATIONS:
-            # If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.
+            assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
             label = OPENLIB_LABELS[unified_name]
-            description = ''
-            if classification.get('description', '') != label:
+            description = classification.get('description', '')
+            if description != label:
                 description = classification.get('description', '')
             UNIFIED_CLASSIFICATIONS[unified_name] = { **classification, 'label': label, 'description': description }
 
