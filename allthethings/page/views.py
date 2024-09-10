@@ -1381,11 +1381,6 @@ def get_ia_record_dicts(session, key, values):
     # Prioritize ia_entries2 first, because their records are newer. This order matters
     # futher below.
     for ia_record_dict, ia_file_dict, ia2_acsmpdf_file_dict in ia_entries2 + ia_entries:
-        # SQLAlchemy would not include the table prefix ('f.')
-        if 'f.ia_id' in ia_file_dict:
-            ia_file_dict['ia_id'] = ia_file_dict['f.ia_id']
-            del ia_file_dict['f.ia_id']
-
         # There are some rare cases where ia_file AND ia2_acsmpdf_file are set, so make
         # sure we create an entry for each.
         # TODO: We get extra records this way, because we might include files from both AaIa202306Files and

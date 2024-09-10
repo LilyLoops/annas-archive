@@ -711,7 +711,12 @@ def split_columns_row(row: dict | None, column_count: list[int]) -> tuple | None
     column_index = 0
     tuple_values: list[dict | None] = [dict() for _ in column_count]
     for column in iter(row):
-        tuple_values[column_count_index][column] = row[column]
+        # Remove any table name prefixes
+        # These appear if two columns with the same name appear in a single SQL query (e.g. table1.id and table2.id)
+        # Columns with the same name cannot appear in a single table so it's safe to just trim out the prefix here
+        dict_column_name = column[(column.find('.') + 1):]
+
+        tuple_values[column_count_index][dict_column_name] = row[column]
         column_index += 1
 
         if column_count[column_count_index] <= column_index:
