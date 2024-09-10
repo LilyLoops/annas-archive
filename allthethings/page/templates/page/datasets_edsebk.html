@@ -39,7 +39,7 @@
   </div>
 
   <p class="mb-4">
-    Scrape of EBSCOhost’s eBook Index (edsebk; "eds" = "EBSCOhost Discovery Service", "ebk" = "eBook"). This is a fairly small ebook metadata index, but still contains some unique files. If you have access to the other EBSCOhost databases, please let us know, since we’d like to index more of them.
+    Scrape of EBSCOhost’s eBook Index (edsebk; "eds" = "EBSCOhost Discovery Service", "ebk" = "eBook"). Code made by our volunteer <a href="https://software.annas-archive.se/AnnaArchivist/ebscohost-scrape">here</a>. This is a fairly small ebook metadata index, but still contains some unique files. If you have access to the other EBSCOhost databases, please let us know, since we’d like to index more of them.
   </p>
 
   <p class="mb-4">
@@ -53,6 +53,7 @@
     <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.edsebk.aa_count | numberformat), percent=((stats_data.stats_by_group.edsebk.aa_count/(stats_data.stats_by_group.edsebk.count+1)*100.0) | decimalformat)) }}</li>
     <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.edsebk_date) }}</li>
     <li class="list-disc"><a href="/torrents#other_metadata">Metadata torrents by Anna’s Archive</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/ebscohost-scrape">Scraper code by volunteer “teamcoltra”.</a></li>
     <li class="list-disc"><a href="/db/aac_edsebk/1509715.json">Example record on Anna’s Archive (AAC format)</a></li>
     <li class="list-disc"><a href="/edsebk/1509715">Example record on Anna’s Archive (full page)</a></li>
     <li class="list-disc"><a href="https://edsebk.org/">Main EBSCOhost website</a></li>
