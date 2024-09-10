@@ -1,13 +1,55 @@
 {% extends "layouts/index.html" %}
 {% import 'macros/shared_links.j2' as a %}
 
-{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.ia.title') }}{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.ia.title') }} [ia]{% endblock %}
 
 {% block body %}
-  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.ia.title') }}</div>
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.ia.title') }} [ia]</div>
 
   <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
     {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/ia">
+            {{ gettext('common.record_sources_mapping.iacdl') }} [ia]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.metadata1', icon='✅',
+                openlib=(dict(href="https://openlibrary.org/developers/dumps") | xmlattr),
+            ) }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.metadata2', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.metadata3', icon='👩‍💻',
+                ia=(dict(href="/torrents#ia") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">{{ gettext('page.datasets.sources.ia.files1', icon='❌') }}</div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.files2', icon='👩‍💻',
+                ia=(dict(href="/torrents#ia") | xmlattr),
+            ) }}
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 
   <p class="mb-4">
@@ -31,7 +73,7 @@
   <ul class="list-inside mb-4 ml-1">
     <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.ia.count | numberformat)) }}</li>
     <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.ia.filesize | filesizeformat)) }}</li>
-    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.ia.aa_count | numberformat), percent=((stats_data.stats_by_group.ia.aa_count/stats_data.stats_by_group.ia.count*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.ia.aa_count | numberformat), percent=((stats_data.stats_by_group.ia.aa_count/(stats_data.stats_by_group.ia.count+1)*100.0) | decimalformat)) }}</li>
     <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.ia_date) }}</li>
     <li class="list-disc"><a href="/torrents#ia">{{ gettext('page.datasets.common.aa_torrents') }}</a></li>
     <li class="list-disc"><a href="/db/ia/100insightslesso0000maie.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>

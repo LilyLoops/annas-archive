@@ -9,6 +9,17 @@
     {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
   </div>
 
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+    </table>
+  </div>
+
   <p class="mb-4">
     {{ gettext('page.datasets.isbn_ranges.text1', a_isbnlib=(' href="https://pypi.org/project/isbnlib/"' | safe)) }}
   </p>

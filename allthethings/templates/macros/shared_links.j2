@@ -1,6 +1,6 @@
 {% macro html_a(text) %}<a{{ kwargs | xmlattr }}>{{ text }}</a>{% endmacro %}
 
-{% set datasets_openlib = dict(href='/datasets/openlib') %}
+{% set datasets_openlib = dict(href='/datasets/ol') %}
 {% set donate = dict(href='/donate') %}
 {% set metadata = dict(href='/metadata') %}
 {% set torrents = dict(href='/torrents') %}
@@ -37,3 +37,5 @@
 {% set contact_page_link = html_a(gettext('page.contact.title'), **contact) %}
 {% set xmr_address_text = '8C1Tdvfhj6wHHPtvMHyAmn3jgt9vF9qSdKCYFy8U9ioB2Z16tEhjLSaB8qMSfzsnQeSrbohpYAiMgcW1acmmvCHQ4YGmZip' %}
 {% set xmr_address %}<span class="text-xs break-all">{{ xmr_address_text }}</span>{% endset %}
+
+{% set external_link = dict(rel="noopener noreferrer nofollow", target="_blank") %}

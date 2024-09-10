@@ -1,58 +1,103 @@
 {% extends "layouts/index.html" %}
 {% import 'macros/shared_links.j2' as a %}
 
-{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.duxiu.title') }}{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.duxiu.title') }} [duxiu]{% endblock %}
 
 {% block body %}
-    <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.duxiu.title') }}</div>
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.duxiu.title') }} [duxiu]</div>
 
-    <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
-      {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
-    </div>
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
 
-    <p class="mb-4 italic">
-      {{ gettext('page.datasets.duxiu.see_blog_post', a_href=(dict(href="https://annas-archive.se/blog/duxiu-exclusive.html") | xmlattr)) }}
-    </p>
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
 
-    <p class="mb-4">
-      {{ gettext(
-        'page.datasets.duxiu.description',
-        duxiu_link=(dict(href="https://www.duxiu.com/bottom/about.html") | xmlattr),
-        superstar_link=(dict(href="https://www.chaoxing.com/") | xmlattr),
-        princeton_link=(dict(href="https://library.princeton.edu/eastasian/duxiu") | xmlattr),
-        uw_link=(dict(href="https://guides.lib.uw.edu/c.php?g=341344&p=2303522") | xmlattr),
-        article_link=(dict(href="/scidb/10.1016/j.acalib.2009.03.012?scidb_verified=1") | xmlattr),
-      ) }}
-    </p>
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/duxiu">
+            {{ gettext('common.record_sources_mapping.duxiu') }} [duxiu]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.duxiu.metadata1', icon='✅') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.duxiu.metadata2', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.duxiu.metadata3', icon='👩‍💻',
+                duxiu=(dict(href="/torrents#duxiu") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.duxiu.files1', icon='✅') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.duxiu.files2', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.duxiu.files3', icon='👩‍💻',
+                duxiu=(dict(href="/torrents#duxiu") | xmlattr),
+            ) }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-    <p class="mb-4">
-      {{ gettext(
-        'page.datasets.duxiu.description2', 
-        link1=(dict(href="https://github.com/duty-machine/duty-machine/issues/2010") | xmlattr),
-        link2=(dict(href="https://github.com/821/821.github.io/blob/7bbcdc8dd2ec4bb637480e054fe760821b4ad7b8/_Notes/IT/DX-CX.md") | xmlattr),
-      ) }}
-    </p>
+  <p class="mb-4 italic">
+    {{ gettext('page.datasets.duxiu.see_blog_post', a_href=(dict(href="https://annas-archive.se/blog/duxiu-exclusive.html") | xmlattr)) }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.datasets.duxiu.description3') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.duxiu.description',
+      duxiu_link=(dict(href="https://www.duxiu.com/bottom/about.html") | xmlattr),
+      superstar_link=(dict(href="https://www.chaoxing.com/") | xmlattr),
+      princeton_link=(dict(href="https://library.princeton.edu/eastasian/duxiu") | xmlattr),
+      uw_link=(dict(href="https://guides.lib.uw.edu/c.php?g=341344&p=2303522") | xmlattr),
+      article_link=(dict(href="/scidb/10.1016/j.acalib.2009.03.012?scidb_verified=1") | xmlattr),
+    ) }}
+  </p>
 
-    <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.duxiu.count | numberformat)) }}</li>
-      <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.duxiu.filesize | filesizeformat)) }}</li>
-      <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.duxiu.aa_count | numberformat), percent=((stats_data.stats_by_group.duxiu.aa_count/stats_data.stats_by_group.duxiu.count*100.0) | decimalformat)) }}</li>
-      <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.duxiu_date) }}</li>
-      <li class="list-disc"><a href="/torrents#duxiu">{{ gettext('page.datasets.common.aa_torrents') }}</a></li>
-      <li class="list-disc"><a href="/db/duxiu_md5/79cb6eb3f10a9e0ce886d85a592b5462.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
-      <li class="list-disc"><a href="https://annas-archive.se/blog/duxiu-exclusive.html">{{ gettext('page.datasets.duxiu.blog_post') }}</a></li>
-      <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
-      <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
-    </ul>
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.duxiu.description2', 
+      link1=(dict(href="https://github.com/duty-machine/duty-machine/issues/2010") | xmlattr),
+      link2=(dict(href="https://github.com/821/821.github.io/blob/7bbcdc8dd2ec4bb637480e054fe760821b4ad7b8/_Notes/IT/DX-CX.md") | xmlattr),
+    ) }}
+  </p>
 
-    <p class="font-bold">{{ gettext('page.datasets.duxiu.raw_notes.title') }}</p>
+  <p class="mb-4">
+    {{ gettext('page.datasets.duxiu.description3') }}
+  </p>
 
-    <div class="whitespace-pre-wrap font-mono text-sm">
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.duxiu.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.duxiu.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.duxiu.aa_count | numberformat), percent=((stats_data.stats_by_group.duxiu.aa_count/(stats_data.stats_by_group.duxiu.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.duxiu_date) }}</li>
+    <li class="list-disc"><a href="/torrents#duxiu">{{ gettext('page.datasets.common.aa_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/duxiu_md5/79cb6eb3f10a9e0ce886d85a592b5462.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/duxiu-exclusive.html">{{ gettext('page.datasets.duxiu.blog_post') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+
+  <p class="font-bold">{{ gettext('page.datasets.duxiu.raw_notes.title') }}</p>
+
+  <div class="whitespace-pre-wrap font-mono text-sm">
 # Anonymous volunteer "bpb9v" shared the following information with us. They have been doing their own smaller scale rescue operation of Duxiu data, and compared their intel with our directory dumps.
 * As far as I know, Chaoxing（超星） scans books for libraries (both public and university libraries). All books are on their server, and readers of a specific library can access to specific sets of books. So there are many small subsets of Duxiu library. As far as I know, there are seven versions of Duxiu, named from 1.0 to 7.0 (not released now). It is said that after Duxiu 5.0, Chaoxing stopped to release a whole library (I do not know particular details), so for Duxiu 6.0 and Duxiu 7.0 there is no a complete library on the Internet.
 * I do not know how books from Chaoxing are leaked. Book sellers sells the entire Duxiu library, and almost every files are compressed. Chaoxing converts all .pdf file into pictures, including .png and .jpg, and then renames them into .pdg. These compressed files contains those .pdg files. We use some tools to convert them into the original .pdf files.

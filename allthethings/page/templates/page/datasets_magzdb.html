@@ -1,0 +1,81 @@
+{% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
+
+{% block title %}{{ gettext('page.datasets.title') }} ▶ MagzDB [magzdb]{% endblock %}
+
+{% block body %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ MagzDB [magzdb]</div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/magzdb">
+            MagzDB [magzdb]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            ❌ Appears defunct since July 2023.
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            ❌ No easily accessible metadata dumps available for their entire collection.
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            👩‍💻 Anna’s Archive manages a collection of <a href="/torrents#magzdb">MagzDB metadata</a>.
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            ✅ Since MagzDB was a fork from Libgen.li magazines, a large part is covered by <a href="/torrents#libgen_li_magazines">those torrents</a>.
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            ❌ No official torrents from MagzDB for their unique files.
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            👩‍💻 Anna’s Archive manages a collection of magzdb files as part of our <a href="/datasets/upload">upload collection</a> (the ones with “magzdb” in the filename).
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    Scrape of <a rel="noopener noreferrer nofollow" target="_blank" href="https://magzdb.org/">magzdb.org</a>, an ally of Library Genesis (it’s linked on the libgen.rs homepage) but who didn’t want to provide their files directly. Seems to be defunct, with the <a href="http://magzdb.org/j/new">last new files uploaded</a> in July 2023 (at the time of writing in September 2024).
+  </p>
+
+  <p class="mb-4">
+    According to this <a href="https://forum.mhut.org/viewtopic.php?p=200772#p200772">forum post</a>, MagzDB started in 2012 as a fork of the magazines section of <a href="/datasets/lgli">Libgen.li</a> (then “http://free-books.dontexist.com”), and then grew its own collection on top of that. In the same forum thread it is <a href="https://forum.mhut.org/viewtopic.php?p=200945#p200945">mentioned</a> that <a href="https://booktracker.org/viewforum.php?f=1186">this</a> is the original forum for MagzDB.
+  </p>
+
+  <p class="mb-4">
+    The content files were obtained by volunteer “p” in late 2023, and has been released as part of the <a href="/datasets/upload">upload collection</a> (the ones with “magzdb” in the filename). Metadata was <a href="https://software.annas-archive.se/AnnaArchivist/magzdb_scrape">scraped</a> by volunteer “ptfall” in July 2024 (for <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/issues/190">this bounty</a>), and has been released on the <a href="/torrents/magzdb">magzdb torrents page</a>, in the <a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers format</a>.
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.magzdb.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.magzdb.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.magzdb.aa_count | numberformat), percent=((stats_data.stats_by_group.magzdb.aa_count/(stats_data.stats_by_group.magzdb.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.magzdb_date) }}</li>
+    <li class="list-disc"><a href="/torrents#magzdb">Metadata torrents by Anna’s Archive</a></li>
+    <li class="list-disc"><a href="/torrents#upload">Content torrents by Anna’s Archive (the ones with “magzdb” in the filename)</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/magzdb_scrape">Scraper code by volunteer “ptfall”</a></li>
+    <li class="list-disc"><a href="/db/aac_magzdb/3810648.json">Example record on Anna’s Archive (AAC format)</a></li>
+    <li class="list-disc"><a href="/magzdb/3810648">Example record on Anna’s Archive (full page)</a></li>
+    <li class="list-disc"><a href="http://magzdb.org/">Main MagzDB website</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+{% endblock %}

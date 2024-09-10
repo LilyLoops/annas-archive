@@ -87,12 +87,15 @@ def validate_magzdb_ids(magzdb_ids):
 def validate_nexusstc_ids(nexusstc_ids):
     return all([bool(re.match(r"^[a-z\d]+$", nexusstc_id)) for nexusstc_id in nexusstc_ids])
 
+def validate_edsebk_ids(edsebk_ids):
+    return all([str(edsebk_id).isdigit() for edsebk_id in edsebk_ids])
+
 def validate_aarecord_ids(aarecord_ids):
     try:
         split_ids = split_aarecord_ids(aarecord_ids)
     except Exception:
         return False
-    return validate_canonical_md5s(split_ids['md5']) and validate_ol_editions(split_ids['ol']) and validate_oclc_ids(split_ids['oclc']) and validate_duxiu_ssids(split_ids['duxiu_ssid']) and validate_magzdb_ids(split_ids['magzdb']) and validate_nexusstc_ids(split_ids['nexusstc']) and validate_nexusstc_ids(split_ids['nexusstc_download'])
+    return validate_canonical_md5s(split_ids['md5']) and validate_ol_editions(split_ids['ol']) and validate_oclc_ids(split_ids['oclc']) and validate_duxiu_ssids(split_ids['duxiu_ssid']) and validate_magzdb_ids(split_ids['magzdb']) and validate_nexusstc_ids(split_ids['nexusstc']) and validate_nexusstc_ids(split_ids['nexusstc_download']) and validate_edsebk_ids(split_ids['edsebk'])
 
 def split_aarecord_ids(aarecord_ids):
     ret = {
@@ -107,6 +110,7 @@ def split_aarecord_ids(aarecord_ids):
         'magzdb': [],
         'nexusstc': [],
         'nexusstc_download': [],
+        'edsebk': [],
     }
     for aarecord_id in aarecord_ids:
         split_aarecord_id = aarecord_id.split(':', 1)
@@ -166,7 +170,7 @@ def scidb_info(aarecord, additional=None):
     else:
         return None
 
-    return { "priority": priority, "doi": valid_dois[0], "path_info": path_info, "scihub_link": scihub_link, "ipfs_url": ipfs_url, "nexusstc_id": "nexusstc_id" }
+    return { "priority": priority, "doi": valid_dois[0], "path_info": path_info, "scihub_link": scihub_link, "ipfs_url": ipfs_url, "nexusstc_id": nexusstc_id }
 
 JWT_PREFIX = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.'
 
@@ -1041,65 +1045,101 @@ LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
 }
 
 UNIFIED_IDENTIFIERS = {
-    "md5": { "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
+    "md5": { "shortenvalue": True, "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
     "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },
-    "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.rs/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_rs" },
-    "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.rs/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_rs" },
-    "lgli": { "label": "Libgen.li File", "url": "https://libgen.li/file.php?id=%s", "description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.", "website": "/datasets/libgen_li" },
+    "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.rs/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
+    "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.rs/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
+    "lgli": { "label": "Libgen.li File", "url": "https://libgen.li/file.php?id=%s", "description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.", "website": "/datasets/lgli" },
     "zlib": { "label": "Z-Library", "url": "https://z-lib.gs/", "description": "ID in Z-Library.", "website": "/datasets/zlib" },
     "csbn": { "label": "CSBN", "url": "", "description": "China Standard Book Number, predecessor of ISBN in China", "website": "https://zh.wikipedia.org/zh-cn/%E7%BB%9F%E4%B8%80%E4%B9%A6%E5%8F%B7" },
     "ean13": { "label": "EAN-13", "url": "", "description": "", "website": "https://en.wikipedia.org/wiki/International_Article_Number" },
     "duxiu_ssid": { "label": "DuXiu SSID", "url": "", "description": "", "website": "/datasets/duxiu" },
     "duxiu_dxid": { "label": "DuXiu DXID", "url": "", "description": "", "website": "/datasets/duxiu" },
     "cadal_ssno": { "label": "CADAL SSNO", "url": "", "description": "", "website": "/datasets/duxiu" },
-    "lgli_libgen_id": { "label": "Libgen.li libgen_id", "description": "Repository ID for the 'libgen' repository in Libgen.li. Directly taken from the 'libgen_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_fiction_id": { "label": "Libgen.li fiction_id", "description": "Repository ID for the 'fiction' repository in Libgen.li. Directly taken from the 'fiction_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_fiction_rus_id": { "label": "Libgen.li fiction_rus_id", "description": "Repository ID for the 'fiction_rus' repository in Libgen.li. Directly taken from the 'fiction_rus_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_comics_id": { "label": "Libgen.li comics_id", "description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_scimag_id": { "label": "Libgen.li scimag_id", "description": "Repository ID for the 'scimag' repository in Libgen.li. Directly taken from the 'scimag_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_standarts_id": { "label": "Libgen.li standarts_id", "description": "Repository ID for the 'standarts' repository in Libgen.li. Directly taken from the 'standarts_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_magz_id": { "label": "Libgen.li magz_id", "description": "Repository ID for the 'magz' repository in Libgen.li. Directly taken from the 'magz_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
+    "lgli_libgen_id": { "label": "Libgen.li libgen_id", "description": "Repository ID for the 'libgen' repository in Libgen.li. Directly taken from the 'libgen_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_fiction_id": { "label": "Libgen.li fiction_id", "description": "Repository ID for the 'fiction' repository in Libgen.li. Directly taken from the 'fiction_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_fiction_rus_id": { "label": "Libgen.li fiction_rus_id", "description": "Repository ID for the 'fiction_rus' repository in Libgen.li. Directly taken from the 'fiction_rus_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_comics_id": { "label": "Libgen.li comics_id", "description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_scimag_id": { "label": "Libgen.li scimag_id", "description": "Repository ID for the 'scimag' repository in Libgen.li. Directly taken from the 'scimag_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_standarts_id": { "label": "Libgen.li standarts_id", "description": "Repository ID for the 'standarts' repository in Libgen.li. Directly taken from the 'standarts_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_magz_id": { "label": "Libgen.li magz_id", "description": "Repository ID for the 'magz' repository in Libgen.li. Directly taken from the 'magz_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
     "filepath": { "label": "Filepath", "description": "Original filepath in source library." },
     "server_path": { "label": "Server Path", "description": "Path on Anna’s Archive partner servers." },
-    "aacid": { "label": "AacId", "website": "/blog/annas-archive-containers.html", "description": "Anna’s Archive Container identifier." },
+    "aacid": { "shortenvalue": True, "label": "AacId", "website": "/blog/annas-archive-containers.html", "description": "Anna’s Archive Container identifier." },
     "magzdb": { "label": "MagzDB Edition ID", "url": "http://magzdb.org/num/%s", "description": "ID of an individual edition of a magazine in MagzDB.", "website": "/datasets/magzdb" },
-    "nexusstc": { "label": "Nexus/STC ID", "url": "https://libstc.cc/#/stc/nid:%s", "description": "ID of an individual edition of a file in Nexus/STC.", "website": "/datasets/nexusstc" },
-    "ipfs_cid": { "label": "IPFS CID", "url": "ipfs://%s", "description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).", "website": "https://ipfs.tech/" },
+    "nexusstc": { "shortenvalue": True, "label": "Nexus/STC", "url": "https://libstc.cc/#/stc/nid:%s", "description": "ID of an individual edition of a file in Nexus/STC.", "website": "/datasets/nexusstc" },
+    "ipfs_cid": { "shortenvalue": True, "label": "IPFS CID", "url": "ipfs://%s", "description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).", "website": "https://ipfs.tech/" },
     "manualslib": { "label": "ManualsLib", "url": "https://www.manualslib.com/manual/%s/manual.html", "description": "File ID in ManualsLib", "website": "https://www.manualslib.com/" },
     "iso": { "label": "ISO", "url": "https://iso.org/standard/%s.html", "description": "ISO standard number.", "website": "https://iso.org/" },
     "british_standard": { "label": "British Standard", "url": "", "description": "British Standards (BS) are the standards produced by the BSI Group.", "website": "https://en.wikipedia.org/wiki/British_Standards" },
+    "edsebk": { "label": "EBSCOhost eBook Index Accession Number", "url": "https://library.macewan.ca/full-record/edsebk/%s", "description": "ID in the EBSCOhost eBook Index (edsebk).", "website": "/datasets/edsebk" },
     **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
     # Plus more added below!
 }
 UNIFIED_CLASSIFICATIONS = {
-    "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/libgen_rs" },
+    "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/lgrs" },
     "torrent": { "label": "Torrent", "url": "/dyn/small_file/torrents/%s", "description": "Bulk torrent for long-term preservation.", "website": "/torrents" },
     "collection": { "label": "Collection", "url": "/datasets/%s", "description": "The collection on Anna’s Archive that provided data for this record.", "website": "/datasets" },
     "ia_collection": { "label": "IA Collection", "url": "https://archive.org/details/%s", "description": "Internet Archive collection which this file is part of.", "website": "https://help.archive.org/help/collections-a-basic-guide/" },
     "lang": { "label": "Language", "website": "https://en.wikipedia.org/wiki/IETF_language_tag", "description": "IETF language tag." },
     "year": { "label": "Year", "description": "Publication year." },
+    # TODO: Remove on index refresh.
     "duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
-    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/libgen_li", "description": "Date we scraped the DuXiu collection." },
-    "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/libgen_li", "description": "Date of creation from the file’s own metadata." },
+    "date_duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
+    # TODO: Remove on index refresh.
+    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
+    "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
+    # TODO: Remove on index refresh.
+    "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
+    "date_file_created": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
+    # TODO: Remove on index refresh.
     "ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
-    "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/libgen_li", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
-    "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/libgen_li", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
-    "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/libgen_li", "description": "Date Libgen.li published this file." },
-    "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/libgen_rs", "description": "Date Libgen.rs Fiction published this file." },
-    "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/libgen_rs", "description": "Date Libgen.rs Non_Fiction published this file." },
-    "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/libgen_li", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
-    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/libgen_li", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+    "date_ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
+    "date_ia_record_scrape": { "label": "IA Record Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the record from the Internet Archive." },
+    # TODO: Remove on index refresh.
+    "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
+    "date_ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
+    # TODO: Remove on index refresh.
+    "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
+    "date_isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
+    # TODO: Remove on index refresh.
+    "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
+    "date_lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
+    # TODO: Remove on index refresh.
+    "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
+    "date_lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
+    # TODO: Remove on index refresh.
+    "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
+    "date_lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
+    # TODO: Remove on index refresh.
+    "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
+    "date_oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
+    # TODO: Remove on index refresh.
+    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+    "date_ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+    # TODO: Remove on index refresh.
     "upload_record_date": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
+    "date_upload_record": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
+    # TODO: Remove on index refresh.
     "zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
+    "date_zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
     "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
+    # TODO: Remove on index refresh.
     "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
+    "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
     "magzdb_keyword": { "label": "MagzDB Keyword", "url": "", "description": "Publication keyword in MagzDB (in Russian).", "website": "/datasets/magzdb" },
+    # TODO: Remove on index refresh.
     "nexusstc_source_issued_at_date": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
+    "date_nexusstc_source_issued_at": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
+    # TODO: Remove on index refresh.
     "nexusstc_source_update_date": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
+    "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "nexusstc_tag": { "label": "Nexus/STC tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
     "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },
+    "date_edsebk_meta_scrape": { "label": "EBSCOhost eBook Index Source Scrape Date", "website": "/datasets/edsebk", "description": "Date we scraped the EBSCOhost metadata." },
+    "edsebk_subject": { "label": "EBSCOhost eBook Index subject", "url": "", "description": "Tag in EBSCOhost eBook Index.", "website": "/datasets/edsebk" },
     **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
     # Plus more added below!
 }
@@ -1382,7 +1422,7 @@ SEARCH_INDEX_SHORT_LONG_MAPPING = {
     'meta': 'aarecords_metadata',
 }
 def get_aarecord_id_prefix_is_metadata(id_prefix):
-    return (id_prefix in ['isbn', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc'])
+    return (id_prefix in ['isbn', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc', 'edsebk'])
 def get_aarecord_search_indexes_for_id_prefix(id_prefix):
     if get_aarecord_id_prefix_is_metadata(id_prefix):
         return ['aarecords_metadata']

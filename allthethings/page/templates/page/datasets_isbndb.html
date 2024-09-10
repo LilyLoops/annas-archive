@@ -1,13 +1,43 @@
 {% extends "layouts/index.html" %}
 {% import 'macros/shared_links.j2' as a %}
 
-{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.isbndb.title') }}{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.isbndb.title') }} [isbndb]{% endblock %}
 
 {% block body %}
-  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.isbndb.title') }}</div>
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.isbndb.title') }} [isbndb]</div>
 
   <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
     {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.last_updated.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/isbndb">
+            {{ gettext('common.record_sources_mapping.isbndb') }} [isbndb]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.isbndb.metadata1', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.isbndb.metadata2', icon='👩‍💻',
+                isbndb=(dict(href="/torrents#isbndb") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">{{ stats_data.isbndb_date }}</td>
+      </tr>
+    </table>
   </div>
 
   <p class="mb-4">

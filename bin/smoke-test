@@ -49,16 +49,19 @@ pages=(
     "/donate?tier=2&method=payment3b"
     # the data set pages
     "/datasets"
-    "/datasets/libgen_rs"
-    "/datasets/scihub"
-    "/datasets/libgen_li"
-    "/datasets/zlib"
-    "/datasets/ia"
     "/datasets/duxiu"
-    "/datasets/upload"
-    "/datasets/openlib"
+    "/datasets/ia"
     "/datasets/isbndb"
-    "/datasets/worldcat"
+    "/datasets/lgli"
+    "/datasets/lgrs"
+    "/datasets/magzdb"
+    "/datasets/edsebk"
+    "/datasets/nexusstc"
+    "/datasets/oclc"
+    "/datasets/ol"
+    "/datasets/scihub"
+    "/datasets/upload"
+    "/datasets/zlib"
     # codes
     "/codes?prefix_b64="
     "/codes?prefix_b64=YWFjaWQ6"
@@ -79,6 +82,10 @@ echo "testing ${#pages[@]} pages"
 # take the translations from the command line arguments
 declare -a translations=("${@:-}")
 
+if [[ "${#translations[@]}" -eq 1 && "${translations[0]}" == "" ]]; then
+    translations=()
+fi
+
 # if no translations were provided, get them from the server
 if [ ${#translations[@]} -eq 0 ]; then
     echo "no translations provided, getting them from the server"
@@ -89,7 +96,7 @@ fi
 echo "testing ${#translations[@]} translations: ${translations[*]}"
 
 for translation in "${translations[@]}"; do
-    echo "testing translation $translation"
+    echo "testing translation '$translation'"
 
     for page in "${pages[@]}"; do
         url="http://$translation.localtest.me:8000$page"

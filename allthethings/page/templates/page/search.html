@@ -291,9 +291,10 @@
               </p>
 
               <p class="mb-4 text-sm">
-                {{ gettext('page.faq.metadata.inspiration1', a_openlib=(' href="https://en.wikipedia.org/wiki/Open_Library" ' | safe)) }}
-                {{ gettext('page.faq.metadata.inspiration2') }}
-                {{ gettext('page.faq.metadata.inspiration3', a_blog=(' href="https://annas-archive.se/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html" ' | safe)) }}
+                {{ gettext('page.faq.metadata.inspiration',
+                    a_openlib=(dict(href="https://en.wikipedia.org/wiki/Open_Library") | xmlattr),
+                    a_blog=(dict(href="https://annas-archive.se/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html") | xmlattr),
+                ) }}
               </p>
 
               <p class="text-sm">

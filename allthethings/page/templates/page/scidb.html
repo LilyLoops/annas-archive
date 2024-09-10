@@ -8,13 +8,13 @@
 
 {% block main %}
   <div class="flex flex-row h-full">
-    <div id="left-side-menu" class="hidden p-1 md:block md:p-4 bg-black/5 break-words space-y-4 w-[10%] md:w-[40%] min-w-[120px] max-w-[300px] overflow-hidden overflow-y-auto">
-      <div class="flex justify-between md:items-center">
-        <div class="flex flex-col md:flex-row md:items-center">
-          <a href="/" class="custom-a text-black hover:text-[#444]"><h1 class="text-md sm:text-lg leading-none font-black">{{ gettext('layout.index.header.title') }}</h1></a>
-          <a href="/scidb" class="custom-a text-sm text-black hover:text-[#444] md:ml-2">🧬&nbsp;{{ gettext('page.scidb.header') }}</a>
+    <div id="left-side-menu" class="hidden absolute md:static w-full h-full p-4 bg-white md:block md:bg-black/5 break-words space-y-4 md:w-[40%] md:min-w-[120px] md:max-w-[300px] overflow-hidden overflow-y-auto">
+      <div class="flex flex-wrap justify-between items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <a href="/" class="custom-a text-black hover:text-[#666]"><h1 class="text-lg leading-none font-black">{{ gettext('layout.index.header.title') }}</h1></a>
+          <a href="/scidb" class="custom-a text-sm text-black hover:text-[#666]">🧬&nbsp;{{ gettext('page.scidb.header') }}</a>
         </div>
-        <button class="custom-a text-sm text-black hover:text-[#444] ml-2" onclick="toggleMenu(true)">✕</button>
+        <button class="icon-[material-symbols--close] custom-a text-lg text-black hover:text-[#666]" onclick="toggleMenu(true)"></button>
       </div>
 
       <div class="text-sm sm:text-md">{{ gettext('page.scidb.doi', doi=doi_input) }} <a class="custom-a text-[10px] align-[1px] opacity-80 hover:opacity-100" href='/search?q="doi:{{ doi_input | urlencode }}"'>🔍</a></div>
@@ -47,10 +47,10 @@
       <div class="text-xs text-gray-500">{{ gettext('page.scidb.refresh', a_refresh=(' href="javascript:window.location.reload()" ' | safe)) }}</div>
     </div>
 
-    <div id="toggled-menu" class="invisible md:visible hidden absolute flex flex-col md:flex-row md:items-center bg-white bg-blend-normal left-1 bottom-1 p-2 rounded">
-      <a href="/" class="custom-a text-black hover:text-[#444]"><h1 class="text-md sm:text-lg leading-none font-black">{{ gettext('layout.index.header.title') }}</h1></a>
-      <a href="/scidb" class="custom-a text-sm text-black hover:text-[#444] md:ml-2">🧬&nbsp;{{ gettext('page.scidb.header') }}</a>
-      <button class="icon-[material-symbols--open-in-full] text-lg md:ml-2 cursor-pointer hover:text-[#444]" onclick="toggleMenu(false)"></button>
+    <div id="toggled-menu" class="md:hidden absolute flex flex-row gap-2 justify-center flex-wrap items-center bg-white bg-blend-normal left-1 bottom-1 p-2 rounded">
+      <a href="/" class="custom-a text-black hover:text-[#666]"><h1 class="text-md sm:text-lg leading-none font-black text-center">{{ gettext('layout.index.header.title') }}</h1></a>
+      <a href="/scidb" class="custom-a text-sm text-black hover:text-[#666]">🧬&nbsp;{{ gettext('page.scidb.header') }}</a>
+      <button class="icon-[material-symbols--open-in-full] text-sm cursor-pointer hover:text-[#666]" onclick="toggleMenu(false)"></button>
     </div>
     <script>
       function toggleMenu(hideLeftSide) {
@@ -58,11 +58,12 @@
         const toggleMenu = document.querySelector('#toggled-menu');
         if (hideLeftSide) {
           leftSide.classList.replace('md:block', 'md:hidden');
-          toggleMenu.classList.remove('hidden');
-        }
-        else {
+          leftSide.classList.add('hidden');
+          toggleMenu.classList.remove('md:hidden', 'hidden');
+        } else {
           leftSide.classList.replace('md:hidden', 'md:block');
-          toggleMenu.classList.add('hidden');
+          leftSide.classList.remove('hidden');
+          toggleMenu.classList.add('md:hidden', 'hidden');
         }
       }
     </script>

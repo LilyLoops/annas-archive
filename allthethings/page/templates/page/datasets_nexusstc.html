@@ -1,0 +1,95 @@
+{% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
+
+{% block title %}{{ gettext('page.datasets.title') }} ▶ Nexus/STC [nexusstc]{% endblock %}
+
+{% block body %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ Nexus/STC [nexusstc]</div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/nexusstc">
+            Nexus/STC [nexusstc]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            ✅ Summa database available through IPFS, though can be slow to download or directly interact with.
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            👩‍💻 Anna’s Archive manages a collection of <a href="/torrents#nexusstc">Nexus/STC metadata</a>, through <a href="https://software.annas-archive.se/AnnaArchivist/stc-dump">this code</a>.
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            ✅ Data can be <a href="https://libstc.cc/#/help/replication">replicated through Iroh</a>.
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            ❌ No mirroring by Anna’s Archive or partner servers yet.
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    <a href="https://libstc.cc/">Nexus/STC</a> is a sort of continuation of <a href="/datasets/scihub">Sci-Hub</a>, started in 2021. It focuses primarily on academic papers, and is built on distributed web technologies such as <a href="https://ipfs.tech/">IPFS</a>, <a href="https://www.iroh.computer/">Iroh</a>, and <a href="https://github.com/izihawa/summa">Summa</a>. It also has a particular focus on AI, machine learning, and large language models (LLMs).
+  </p>
+
+  <p class="mb-4">
+    <strong>“Nexus”</strong> is the name for the community, and seems to encompass various tools, of which STC is one. <strong>“STC”</strong> (Standard Template Construct) is the actual library and search engine for academic papers.
+  </p>
+
+  <p class="mb-4">
+    They often refer to the combination <strong>“Nexus/STC”</strong>, which we will do as well. This is particularly helpful becaue “nexus” is a common word, “Science Nexus” (the name of their subreddit) is also the name of a concept in the videogame Stellaris, and “STC” or “Standard Template Construct” refers to a concept in the board game Warhammer 40,000 (“a computer database said to have contained the sum total of human scientific and technological knowledge”).
+  </p>
+
+  <p class="mb-4">
+    Nexus/STC seems to be mainly run by one individual, who goes by the name of “Ultranymous”, “ultra_nymous”, “superpirate”, or “the_superpirate”.
+  </p>
+
+  <p class="mb-4">
+    At this point we have only integrated their metadata. For this we pull their Summa database (using <a href="https://software.annas-archive.se/AnnaArchivist/stc-dump">this code</a>), and repackage it in our <a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers format</a>. The resulting file can be downloaded on our <a href="/torrents#nexusstc">Nexus/STC torrents page</a>. To mirror the Nexus/STC content files, see their <a href="https://libstc.cc/#/help/replication">replication page</a>.
+  </p>
+
+  <p class="mb-4">
+    As far as we can tell, all Nexus/STC records have either an MD5 hash, a CID (IPFS download hash), both, or neither. To accomodate for all these combinations, we index <em>all</em> Nexus/STC records in the <a href="/search?index=meta">Metadata section</a> of our search page, through <code>/nexusstc/&lt;nexus_id&gt;</code> URLs. Files with an MD5 are represented in the regular <a href="/search">Download</a> and <a href="/search?index=journals">Journal articles</a> sections, through our standard <code>/md5/&lt;md5&gt;</code> URLs. Files without an MD5 but with CID are also represented in those sections, but through <code>/nexusstc_download/&lt;nexus_id&gt;</code> URLs.
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.nexusstc.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.nexusstc.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.nexusstc.aa_count | numberformat), percent=((stats_data.stats_by_group.nexusstc.aa_count/(stats_data.stats_by_group.nexusstc.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.nexusstc_date) }}</li>
+    <li class="list-disc"><a href="/torrents#nexusstc">Metadata torrents by Anna’s Archive</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/stc-dump">Our code for exporting from Summa to the AAC format.</a></li>
+    <li class="list-disc"><a href="/db/aac_nexusstc/1aq6gcl3bo1yxavod8lpw1t7h.json">Example record on Anna’s Archive (AAC format)</a></li>
+    <li class="list-disc"><a href="/nexusstc/1aq6gcl3bo1yxavod8lpw1t7h">Example metadata record on Anna’s Archive (full page)</a></li>
+    <li class="list-disc"><a href="/nexusstc_download/1040wjyuo9pwa31p5uquwt0wx">Example content record on Anna’s Archive (when MD5 is not available)</a></li>
+    <li class="list-disc"><a href="https://libstc.cc/">Main “Library STC” website</a></li>
+    <li class="list-disc"><a href="https://www.reddit.com/r/science_nexus/">Nexus/STC Reddit</a></li>
+    <li class="list-disc"><a href="https://t.me/+cE8vcTtApLwzYTYy">Nexus/STC Telegram</a></li>
+    <li class="list-disc"><a href="https://github.com/nexus-stc">Nexus/STC GitHub</a></li>
+    <li class="list-disc"><a href="https://github.com/ultranymous">Ultranymous GitHub</a></li>
+    <li class="list-disc"><a href="https://www.reddit.com/user/ultra_nymous/">ultra_nymous Reddit</a></li>
+    <li class="list-disc"><a href="https://x.com/the_superpirate">Ultranymous/
+    the_superpirate X/Twitter</a></li>
+    <li class="list-disc"><a href="https://x.com/ultranymous">ultranymous X/Twitter</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+{% endblock %}

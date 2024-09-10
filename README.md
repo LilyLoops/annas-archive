@@ -20,7 +20,7 @@ To get Anna's Archive running locally:
   ```bash
   mkdir annas-archive-outer # Several data directories will get created in here.
   cd annas-archive-outer
-  git clone https://software.annas-archive.se/AnnaArchivist/annas-archive.git
+  git clone https://software.annas-archive.se/AnnaArchivist/annas-archive.git --depth=1
   cd annas-archive
   cp .env.dev .env
   cp data-imports/.env-data-imports.dev data-imports/.env-data-imports
