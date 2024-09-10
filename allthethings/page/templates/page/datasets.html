@@ -576,6 +576,24 @@
       <td class="p-2 align-top">{{ stats_data.oclc_date }}</td>
     </tr>
 
+    <tr class="even:bg-[#f2f2f2]">
+      <td class="p-2 align-top">
+        <a class="custom-a underline hover:opacity-60" href="/datasets/edsebk">
+          <!-- TODO:TRANSLATE -->
+          EBSCOhost eBook Index [edsebk]
+        </a>
+      </td>
+      <td class="p-2 align-top">
+        <div class="my-2 first:mt-0 last:mb-0">
+          {{ gettext('page.datasets.sources.isbndb.metadata1', icon='❌') }}
+        </div>
+        <div class="my-2 first:mt-0 last:mb-0">
+          👩‍💻 Anna’s Archive manages a collection of <a href="/datasets/edsebk">EBSCOhost eBook metadata</a>
+        </div>
+      </td>
+      <td class="p-2 align-top">{{ stats_data.edsebk_date }}</td>
+    </tr>
+
     <!-- <tr class="even:bg-[#f2f2f2]">
       <td class="p-2 align-top"><a class="custom-a underline hover:opacity-60" href="/datasets/isbn_ranges">ISBN country information</a></td>
       <td class="p-2 align-top">

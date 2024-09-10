@@ -398,6 +398,15 @@ def get_stats_data():
         except:
             pass
 
+        edsebk_date = 'Unknown'
+        try:
+            cursor.execute('SELECT aacid FROM annas_archive_meta__aacid__ebscohost_records ORDER BY aacid DESC LIMIT 1')
+            edsebk_aacid = cursor.fetchone()['aacid']
+            edsebk_date_raw = edsebk_aacid.split('__')[2][0:8]
+            edsebk_date = f"{edsebk_date_raw[0:4]}-{edsebk_date_raw[4:6]}-{edsebk_date_raw[6:8]}"
+        except:
+            pass
+
         stats_data_es = dict(es.msearch(
             request_timeout=30,
             max_concurrent_searches=10,
@@ -492,6 +501,7 @@ def get_stats_data():
             'upload': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
             'magzdb': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
             'nexusstc': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
+            'edsebk': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
         }
         for bucket in stats_data_es['responses'][2]['aggregations']['search_record_sources']['buckets']:
             stats_by_group[bucket['key']] = {
@@ -535,6 +545,7 @@ def get_stats_data():
         'oclc_date': '2023-10-01',
         'magzdb_date': '2024-07-29',
         'nexusstc_date': nexusstc_date,
+        'edsebk_date': edsebk_date,
     }
 
 def torrent_group_data_from_file_path(file_path):
@@ -559,6 +570,8 @@ def torrent_group_data_from_file_path(file_path):
         group = 'magzdb'
     if 'nexusstc' in file_path:
         group = 'nexusstc'
+    if 'ebscohost_records' in file_path:
+        group = 'other_metadata'
 
     return { 'group': group, 'aac_meta_group': aac_meta_group }
 
@@ -845,6 +858,17 @@ def datasets_nexusstc_page():
     try:
         stats_data = get_stats_data()
         return render_template("page/datasets_nexusstc.html", header_active="home/datasets", stats_data=stats_data)
+    except Exception as e:
+        if 'timed out' in str(e):
+            return "Error with datasets page, please try again.", 503
+        raise
+
+@page.get("/datasets/edsebk")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_edsebk_page():
+    try:
+        stats_data = get_stats_data()
+        return render_template("page/datasets_edsebk.html", header_active="home/datasets", stats_data=stats_data)
     except Exception as e:
         if 'timed out' in str(e):
             return "Error with datasets page, please try again.", 503
@@ -2768,7 +2792,8 @@ def get_oclc_dicts(session, key, values):
         oclc_dicts.append(oclc_dict)
     return oclc_dicts
 
-def get_oclc_id_by_isbn13(session, isbn13s):
+# SIMILAR to get_edsebk_dicts_by_isbn13
+def get_oclc_dicts_by_isbn13(session, isbn13s):
     if len(isbn13s) == 0:
         return {}
     with engine.connect() as connection:
@@ -2778,24 +2803,15 @@ def get_oclc_id_by_isbn13(session, isbn13s):
         rows = list(cursor.fetchall())
         if len(rows) == 0:
             return {}
-        oclc_ids_by_isbn13 = collections.defaultdict(list)
+        isbn13s_by_oclc_id = collections.defaultdict(list)
         for row in rows:
-            oclc_ids_by_isbn13[row['isbn13']].append(str(row['oclc_id']))
-        return dict(oclc_ids_by_isbn13)
-
-def get_oclc_dicts_by_isbn13(session, isbn13s):
-    if len(isbn13s) == 0:
-        return {}
-    isbn13s_by_oclc_id = collections.defaultdict(list)
-    for isbn13, oclc_ids in get_oclc_id_by_isbn13(session, isbn13s).items():
-        for oclc_id in oclc_ids:
-            isbn13s_by_oclc_id[oclc_id].append(isbn13)
-    oclc_dicts = get_oclc_dicts(session, 'oclc', list(isbn13s_by_oclc_id.keys()))
-    retval = collections.defaultdict(list)
-    for oclc_dict in oclc_dicts:
-        for isbn13 in isbn13s_by_oclc_id[oclc_dict['oclc_id']]:
-            retval[isbn13].append(oclc_dict)
-    return dict(retval)
+            isbn13s_by_oclc_id[row['oclc_id']].append(str(row['isbn13']))
+        oclc_dicts = get_oclc_dicts(session, 'oclc', list(isbn13s_by_oclc_id.keys()))
+        retval = collections.defaultdict(list)
+        for oclc_dict in oclc_dicts:
+            for isbn13 in isbn13s_by_oclc_id[oclc_dict['oclc_id']]:
+                retval[isbn13].append(oclc_dict)
+        return dict(retval)
 
 @page.get("/db/oclc/<path:oclc>.json")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -4184,6 +4200,143 @@ def aac_nexusstc_md5_book_json(md5):
             return "{}", 404
         return allthethings.utils.nice_json(aac_nexusstc_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
+def get_aac_edsebk_book_dicts(session, key, values):
+    if len(values) == 0:
+        return []
+
+    try:
+        session.connection().connection.ping(reconnect=True)
+        cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
+        if key == 'edsebk_id':
+            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__ebscohost_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+        else:
+            raise Exception(f"Unexpected 'key' in get_aac_edsebk_book_dicts: '{key}'")
+    except Exception as err:
+        print(f"Error in get_aac_edsebk_book_dicts when querying {key}; {values}")
+        print(repr(err))
+        traceback.print_tb(err.__traceback__)
+        return []
+
+    record_offsets_and_lengths = []
+    primary_ids = []
+    for row_index, row in enumerate(list(cursor.fetchall())):
+        record_offsets_and_lengths.append((row['byte_offset'], row['byte_length']))
+        primary_ids.append(row['primary_id'])
+
+    if len(record_offsets_and_lengths) == 0:
+        return []
+
+    aac_records_by_primary_id = {}
+    for index, line_bytes in enumerate(allthethings.utils.get_lines_from_aac_file(cursor, 'ebscohost_records', record_offsets_and_lengths)):
+        aac_record = orjson.loads(line_bytes)
+        aac_records_by_primary_id[primary_ids[index]] = aac_record
+
+    aac_edsebk_book_dicts = []
+    for primary_id, aac_record in aac_records_by_primary_id.items():
+        aac_edsebk_book_dict = {
+            "edsebk_id": primary_id,
+            "aa_edsebk_derived": {
+                "title_best": '',
+                "title_multiple": [],
+                "author_best": '',
+                "publisher_best": '',
+                "edition_varia_normalized": '',
+                "year": '',
+                "stripped_description": '',
+                "combined_comments": [],
+                "language_codes": [],
+                "added_date_unified": { "date_edsebk_meta_scrape": datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] },
+            },
+            "aac_record": aac_record,
+        }
+
+        allthethings.utils.init_identifiers_and_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'])
+        allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'aacid', aac_record['aacid'])
+        allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'edsebk', primary_id)
+
+        title_stripped = aac_record['metadata']['header']['artinfo']['title'].strip()
+        if title_stripped != '':
+            aac_edsebk_book_dict['aa_edsebk_derived']['title_best'] = title_stripped
+
+        subtitle_stripped = (aac_record['metadata']['header']['artinfo'].get('subtitle') or '').strip()
+        if subtitle_stripped != '':
+            aac_edsebk_book_dict['aa_edsebk_derived']['title_multiple'] = [subtitle_stripped]
+
+        aac_edsebk_book_dict['aa_edsebk_derived']['author_best'] = '; '.join([author.strip() for author in (aac_record['metadata']['header']['artinfo'].get('authors') or [])])
+
+        publisher_stripped = (aac_record['metadata']['header']['pubinfo'].get('publisher') or '').strip()
+        if publisher_stripped != '':
+            aac_edsebk_book_dict['aa_edsebk_derived']['publisher_best'] = publisher_stripped
+
+        edition_varia_normalized = []
+        if len((aac_record['metadata']['header']['pubinfo'].get('publisher_contract') or '').strip()) > 0:
+            edition_varia_normalized.append(aac_record['metadata']['header']['pubinfo']['publisher_contract'].strip())
+        if len((aac_record['metadata']['header']['pubinfo'].get('place') or '').strip()) > 0:
+            edition_varia_normalized.append(aac_record['metadata']['header']['pubinfo']['place'].strip())
+        edition_varia_normalized.append(aac_record['metadata']['header']['pubinfo']['date']['year'].strip())
+        aac_edsebk_book_dict['aa_edsebk_derived']['edition_varia_normalized'] = ', '.join(edition_varia_normalized)
+
+        aac_edsebk_book_dict['aa_edsebk_derived']['year'] = aac_record['metadata']['header']['pubinfo']['date']['year'].strip()
+
+        abstract_stripped = strip_description(aac_record['metadata']['header']['artinfo']['abstract'])
+        if abstract_stripped != '':
+            aac_edsebk_book_dict['aa_edsebk_derived']['stripped_description'] = abstract_stripped
+
+        allthethings.utils.add_isbns_unified(aac_edsebk_book_dict['aa_edsebk_derived'], aac_record['metadata']['header']['bkinfo']['print_isbns'] + aac_record['metadata']['header']['bkinfo']['electronic_isbns'])
+
+        oclc_stripped = (aac_record['metadata']['header']['artinfo']['uis'].get('oclc') or '').strip()
+        if oclc_stripped != '':
+            allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'oclc', oclc_stripped)
+
+        dewey_stripped = (aac_record['metadata']['header']['pubinfo']['pre_pub_group']['dewey'].get('class') or '').strip()
+        if dewey_stripped != '':
+            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'ddc', dewey_stripped)
+
+        lcc_stripped = (aac_record['metadata']['header']['pubinfo']['pre_pub_group']['lc'].get('class') or '').strip()
+        if lcc_stripped != '':
+            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'lcc', lcc_stripped)
+
+        language_code_stripped = (aac_record['metadata']['header']['language'].get('code') or '').strip()
+        if language_code_stripped != '':
+            aac_edsebk_book_dict['aa_edsebk_derived']['language_codes'] = get_bcp47_lang_codes(language_code_stripped)
+
+        for subject in (aac_record['metadata']['header']['artinfo'].get('subject_groups') or []):
+            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'edsebk_subject', f"{subject['Type']}/{subject['Subject']}")
+
+        aac_edsebk_book_dicts.append(aac_edsebk_book_dict)
+    return aac_edsebk_book_dicts
+
+# SIMILAR to get_oclc_dicts_by_isbn13
+def get_edsebk_dicts_by_isbn13(session, isbn13s):
+    if len(isbn13s) == 0:
+        return {}
+    with engine.connect() as connection:
+        connection.connection.ping(reconnect=True)
+        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
+        cursor.execute('SELECT isbn13, edsebk_id FROM isbn13_edsebk WHERE isbn13 IN %(isbn13s)s', { "isbn13s": isbn13s })
+        rows = list(cursor.fetchall())
+        if len(rows) == 0:
+            return {}
+        isbn13s_by_edsebk_id = collections.defaultdict(list)
+        for row in rows:
+            isbn13s_by_edsebk_id[row['edsebk_id']].append(str(row['isbn13']))
+        edsebk_dicts = get_aac_edsebk_book_dicts(session, 'edsebk', list(isbn13s_by_edsebk_id.keys()))
+        retval = collections.defaultdict(list)
+        for edsebk_dict in edsebk_dicts:
+            for isbn13 in isbn13s_by_edsebk_id[edsebk_dict['edsebk_id']]:
+                retval[isbn13].append(edsebk_dict)
+        return dict(retval)
+
+@page.get("/db/aac_edsebk/<string:edsebk_id>.json")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def aac_edsebk_book_json(edsebk_id):
+    with Session(engine) as session:
+        aac_edsebk_book_dicts = get_aac_edsebk_book_dicts(session, "edsebk_id", [edsebk_id])
+        if len(aac_edsebk_book_dicts) == 0:
+            return "{}", 404
+        return allthethings.utils.nice_json(aac_edsebk_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
+
+
 # def get_embeddings_for_aarecords(session, aarecords):
 #     filtered_aarecord_ids = [aarecord['id'] for aarecord in aarecords if aarecord['id'].startswith('md5:')]
 #     if len(filtered_aarecord_ids) == 0:
@@ -4428,6 +4581,7 @@ def aarecord_sources(aarecord):
     return list(dict.fromkeys([
         # Should match /datasets/<aarecord_source>!!
         *(['duxiu']     if aarecord['duxiu'] is not None else []),
+        *(['edsebk']    if aarecord.get('aac_edsebk') is not None else []),
         *(['ia']        if aarecord['ia_record'] is not None else []),
         *(['isbndb']    if (aarecord_id_split[0] == 'isbn' and len(aarecord['isbndb'] or []) > 0) else []),
         *(['lgli']      if aarecord['lgli_file'] is not None else []),
@@ -4478,6 +4632,7 @@ def get_aarecords_mysql(session, aarecord_ids):
     aac_nexusstc_book_dicts2 = {('nexusstc:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'nexusstc_id', split_ids['nexusstc'])}
     aac_nexusstc_book_dicts3 = {('nexusstc_download:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'nexusstc_download', split_ids['nexusstc_download'])}
     ol_book_dicts_primary_linked = {('md5:' + md5): item for md5, item in get_ol_book_dicts_by_annas_archive_md5(session, split_ids['md5']).items()}
+    aac_edsebk_book_dicts = {('edsebk:' + item['edsebk_id']): item for item in get_aac_edsebk_book_dicts(session, 'edsebk_id', split_ids['edsebk'])}
 
     # First pass, so we can fetch more dependencies.
     aarecords = []
@@ -4511,6 +4666,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['aac_nexusstc'] = aac_nexusstc_book_dicts.get(aarecord_id) or aac_nexusstc_book_dicts2.get(aarecord_id) or aac_nexusstc_book_dicts3.get(aarecord_id)
         aarecord['ol_book_dicts_primary_linked'] = list(ol_book_dicts_primary_linked.get(aarecord_id) or [])
         aarecord['duxius_nontransitive_meta_only'] = []
+        aarecord['aac_edsebk'] = aac_edsebk_book_dicts.get(aarecord_id)
         
         lgli_all_editions = aarecord['lgli_file']['editions'] if aarecord.get('lgli_file') else []
 
@@ -4536,6 +4692,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('identifiers_unified') or {}),
             *[duxiu_record['aa_duxiu_derived']['identifiers_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('identifiers_unified') or {}),
         ])
         # TODO: This `if` is not necessary if we make sure that the fields of the primary records get priority.
         if not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]):
@@ -4570,6 +4727,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         oclc_dicts2_for_isbn13 = get_oclc_dicts_by_isbn13(session, list(dict.fromkeys(canonical_isbn13s)))
         duxiu_dicts4 = {item['duxiu_ssid']: item for item in get_duxiu_dicts(session, 'duxiu_ssid', list(dict.fromkeys(duxiu_ssids)), include_deep_transitive_md5s_size_path=False)}
         duxiu_dicts5 = {item['cadal_ssno']: item for item in get_duxiu_dicts(session, 'cadal_ssno', list(dict.fromkeys(cadal_ssnos)), include_deep_transitive_md5s_size_path=False)}
+        edsebk_dicts2_for_isbn13 = get_edsebk_dicts_by_isbn13(session, list(dict.fromkeys(canonical_isbn13s)))
 
     # Second pass
     for aarecord in aarecords:
@@ -4681,6 +4839,14 @@ def get_aarecords_mysql(session, aarecord_ids):
                     # No need to add to existing_cadal_ssnos here.
             duxiu_all = duxiu_all[0:5]
             aarecord['duxius_nontransitive_meta_only'] = (aarecord['duxius_nontransitive_meta_only'] + duxiu_all)
+
+            if aarecord['aac_edsebk'] is None:
+                edsebk_all = []
+                for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
+                    for edsebk_dict in (edsebk_dicts2_for_isbn13.get(canonical_isbn13) or []):
+                        edsebk_all += edsebk_dict
+                if len(edsebk_all) > 0:
+                    aarecord['aac_edsebk'] = edsebk_all[0]
 
         aarecord['ipfs_infos'] = []
         if aarecord['lgrsnf_book'] and ((aarecord['lgrsnf_book'].get('ipfs_cid') or '') != ''):
@@ -4820,6 +4986,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('title_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('title_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('title_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('title_best') or '').strip(),
         ]
         title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['title_best'] == '':
@@ -4833,6 +5000,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         title_multiple += (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('title_multiple') or [])
         title_multiple += (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('title_multiple') or [])
         title_multiple += (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('title_multiple') or [])
+        title_multiple += (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('title_multiple') or [])
         for oclc in aarecord['oclc']:
             title_multiple += oclc['aa_oclc_derived']['title_multiple']
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
@@ -4856,6 +5024,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('author_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('author_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('author_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('author_best') or '').strip(),
         ]
         author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['author_best'] == '':
@@ -4889,6 +5058,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('publisher_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('publisher_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('publisher_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('publisher_best') or '').strip(),
         ]
         publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['publisher_best'] == '':
@@ -4922,6 +5092,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('edition_varia_normalized') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('edition_varia_normalized') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('edition_varia_normalized') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('edition_varia_normalized') or '').strip(),
         ]
         edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['edition_varia_best'] == '':
@@ -4955,6 +5126,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('year_best') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('year') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('year') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('year') or '').strip(),
         ]
         # Filter out years in for which we surely don't have books (famous last words..)
         # WARNING duplicated above
@@ -4999,6 +5171,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *(((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('combined_comments') or []),
             *(((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('combined_comments') or []),
             *(((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('combined_comments') or []),
+            *(((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('combined_comments') or []),
         ]
         comments_multiple += [(edition.get('comments_normalized') or '').strip() for edition in lgli_all_editions]
         for edition in lgli_all_editions:
@@ -5031,6 +5204,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('stripped_description') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('stripped_description') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('description_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('description_best') or '').strip(),
         ]
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['stripped_description_best'] == '':
@@ -5064,6 +5238,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('language_codes') or []),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('language_codes') or []),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('language_codes') or []),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('language_codes') or []),
         ])
         if len(aarecord['file_unified_data']['most_likely_language_codes']) == 0:
             aarecord['file_unified_data']['most_likely_language_codes'] = aarecord['file_unified_data']['language_codes']
@@ -5122,6 +5297,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('added_date_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('added_date_unified') or {}),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('added_date_unified') or {}),
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('added_date_unified') or {}),
         ]))
         for prefix, date in aarecord['file_unified_data']['added_date_unified'].items():
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], prefix, date)
@@ -5146,6 +5322,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('identifiers_unified') or {}),
             *[duxiu_record['aa_duxiu_derived']['identifiers_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('identifiers_unified') or {}),
         ])
         aarecord['file_unified_data']['classifications_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['classifications_unified'],
@@ -5164,6 +5341,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('classifications_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('classifications_unified') or {}),
             *[duxiu_record['aa_duxiu_derived']['classifications_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
+            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('classifications_unified') or {}),
         ])
 
         aarecord['file_unified_data']['added_date_best'] = ''
@@ -5204,6 +5382,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         elif aarecord_id_split[0] == 'magzdb':
             if 'date_magzdb_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_magzdb_meta_scrape']
+        elif aarecord_id_split[0] == 'edsebk':
+            if 'date_edsebk_meta_scrape' in aarecord['file_unified_data']['added_date_unified']:
+                aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_edsebk_meta_scrape']
         elif aarecord_id_split[0] in ['nexusstc', 'nexusstc_download']:
             if 'date_nexusstc_source_update' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_nexusstc_source_update']
@@ -5425,6 +5606,10 @@ def get_aarecords_mysql(session, aarecord_ids):
                     'cid_only_links': aarecord['aac_nexusstc']['aa_nexusstc_derived']['cid_only_links'],
                 },
             }
+        if aarecord.get('aac_edsebk') is not None:
+            aarecord['aac_edsebk'] = {
+                'edsebk_id': aarecord['aac_edsebk']['edsebk_id'],
+            }
 
         search_content_type = aarecord['file_unified_data']['content_type']
         # Once we have the content type.
@@ -5581,6 +5766,7 @@ def get_record_sources_mapping(display_lang):
             "upload": gettext("common.record_sources_mapping.uploads"),
             "magzdb": gettext("common.record_sources_mapping.magzdb"),
             "nexusstc": gettext("common.record_soruces_mapping.nexusstc"),
+            "edsebk": "EBSCOhost", # TODO:TRANSLATE
         }
 
 def get_specific_search_fields_mapping(display_lang):
@@ -5964,6 +6150,10 @@ def get_additional_for_aarecord(aarecord):
     
     if aarecord.get('aac_nexusstc') is not None:
         additional['download_urls'].append((gettext('page.md5.box.download.nexusstc'), f"https://libstc.cc/#/stc/nid:{aarecord['aac_nexusstc']['id']}", ""))
+
+    if aarecord.get('aac_edsebk') is not None:
+        # TODO:TRANSLATE
+        additional['download_urls'].append(("EBSCOhost", f"https://library.macewan.ca/full-record/edsebk/{aarecord['aac_edsebk']['edsebk_id']}", ""))
     
     if aarecord.get('ia_record') is not None:
         ia_id = aarecord['ia_record']['ia_id']
@@ -6102,6 +6292,11 @@ def nexusstc_page(nexusstc_id):
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def nexusstc_download_page(nexusstc_id):
     return render_aarecord(f"nexusstc_download:{nexusstc_id}")
+
+@page.get("/edsebk/<string:edsebk_id>")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def edsebk_page(edsebk_id):
+    return render_aarecord(f"edsebk:{edsebk_id}")
 
 def render_aarecord(record_id):
     if allthethings.utils.DOWN_FOR_MAINTENANCE:
@@ -6259,6 +6454,7 @@ def md5_json(aarecord_id):
         "aac_upload": ("before", ["Source data at: https://annas-archive.se/db/aac_upload/<md5>.json"]),
         "aac_magzdb": ("before", ["Source data at: https://annas-archive.se/db/aac_magzdb/<requested_value>.json or https://annas-archive.se/db/aac_magzdb_md5/<requested_value>.json"]),
         "aac_nexusstc": ("before", ["Source data at: https://annas-archive.se/db/aac_nexusstc/<requested_value>.json or https://annas-archive.se/db/aac_nexusstc_download/<requested_value>.json or https://annas-archive.se/db/aac_nexusstc_md5/<requested_value>.json"]),
+        "aac_edsebk": ("before", ["Source data at: https://annas-archive.se/db/aac_edsebk/<edsebk_id>.json"]),
         "file_unified_data": ("before", ["Combined data by Anna's Archive from the various source collections, attempting to get pick the best field where possible."]),
         "ipfs_infos": ("before", ["Data about the IPFS files."]),
         "search_only_fields": ("before", ["Data that is used during searching."]),

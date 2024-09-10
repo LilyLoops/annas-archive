@@ -89,12 +89,15 @@ def validate_magzdb_ids(magzdb_ids):
 def validate_nexusstc_ids(nexusstc_ids):
     return all([bool(re.match(r"^[a-z\d]+$", nexusstc_id)) for nexusstc_id in nexusstc_ids])
 
+def validate_edsebk_ids(edsebk_ids):
+    return all([str(edsebk_id).isdigit() for edsebk_id in edsebk_ids])
+
 def validate_aarecord_ids(aarecord_ids):
     try:
         split_ids = split_aarecord_ids(aarecord_ids)
     except Exception:
         return False
-    return validate_canonical_md5s(split_ids['md5']) and validate_ol_editions(split_ids['ol']) and validate_oclc_ids(split_ids['oclc']) and validate_duxiu_ssids(split_ids['duxiu_ssid']) and validate_magzdb_ids(split_ids['magzdb']) and validate_nexusstc_ids(split_ids['nexusstc']) and validate_nexusstc_ids(split_ids['nexusstc_download'])
+    return validate_canonical_md5s(split_ids['md5']) and validate_ol_editions(split_ids['ol']) and validate_oclc_ids(split_ids['oclc']) and validate_duxiu_ssids(split_ids['duxiu_ssid']) and validate_magzdb_ids(split_ids['magzdb']) and validate_nexusstc_ids(split_ids['nexusstc']) and validate_nexusstc_ids(split_ids['nexusstc_download']) and validate_edsebk_ids(split_ids['edsebk'])
 
 def split_aarecord_ids(aarecord_ids):
     ret = {
@@ -109,6 +112,7 @@ def split_aarecord_ids(aarecord_ids):
         'magzdb': [],
         'nexusstc': [],
         'nexusstc_download': [],
+        'edsebk': [],
     }
     for aarecord_id in aarecord_ids:
         split_aarecord_id = aarecord_id.split(':', 1)
@@ -1005,6 +1009,7 @@ UNIFIED_IDENTIFIERS = {
     "manualslib": { "label": "ManualsLib", "url": "https://www.manualslib.com/manual/%s/manual.html", "description": "File ID in ManualsLib", "website": "https://www.manualslib.com/" },
     "iso": { "label": "ISO", "url": "https://iso.org/standard/%s.html", "description": "ISO standard number.", "website": "https://iso.org/" },
     "british_standard": { "label": "British Standard", "url": "", "description": "British Standards (BS) are the standards produced by the BSI Group.", "website": "https://en.wikipedia.org/wiki/British_Standards" },
+    "edsebk": { "label": "EBSCOhost eBook Index Accession Number", "url": "https://library.macewan.ca/full-record/edsebk/%s", "description": "ID in the EBSCOhost eBook Index (edsebk).", "website": "/datasets/edsebk" },
     **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
     # Plus more added below!
 }
@@ -1068,6 +1073,8 @@ UNIFIED_CLASSIFICATIONS = {
     "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "nexusstc_tag": { "label": "Nexus/STC tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
     "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },
+    "date_edsebk_meta_scrape": { "label": "EBSCOhost eBook Index Source Scrape Date", "website": "/datasets/edsebk", "description": "Date we scraped the EBSCOhost metadata." },
+    "edsebk_subject": { "label": "EBSCOhost eBook Index subject", "url": "", "description": "Tag in EBSCOhost eBook Index.", "website": "/datasets/edsebk" },
     **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
     # Plus more added below!
 }
@@ -1350,7 +1357,7 @@ SEARCH_INDEX_SHORT_LONG_MAPPING = {
     'meta': 'aarecords_metadata',
 }
 def get_aarecord_id_prefix_is_metadata(id_prefix):
-    return (id_prefix in ['isbn', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc'])
+    return (id_prefix in ['isbn', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc', 'edsebk'])
 def get_aarecord_search_indexes_for_id_prefix(id_prefix):
     if get_aarecord_id_prefix_is_metadata(id_prefix):
         return ['aarecords_metadata']
