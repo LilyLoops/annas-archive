@@ -1341,6 +1341,8 @@ def get_ia_record_dicts(session, key, values):
         if key == 'md5':
             # TODO: we should also consider matching on libgen_md5, but we used to do that before and it had bad SQL performance,
             # when combined in a single query, so we'd have to split it up.
+            # TODO: We get extra records this way, because we might include files from both AaIa202306Files and
+            # Ia2AcsmpdfFiles if they both exist. It might be better to split this up here so we don't have to filter later.
 
             cursor.execute(base_query + 'WHERE f.md5 IN %(values)s', { 'values': values })
             ia_entries = list(cursor.fetchall())
