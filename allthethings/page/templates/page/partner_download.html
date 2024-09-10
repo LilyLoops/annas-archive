@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-  <h2 class="mt-4 mb-4 text-3xl font-bold">{{ gettext('page.partner_download.header') }}</h2>
+  <h2 class="mt-4 mb-8 text-3xl font-bold">{{ gettext('page.partner_download.header') }}</h2>
 
   {% if only_official %}
     <p class="mb-4 font-bold underline">
@@ -26,21 +26,46 @@
   </p>
 
   {% if wait_seconds %}
-    <p>
-      ⏰ {{ gettext('page.partner_download.text1', wait_seconds=wait_seconds) }}
+    <div class="font-bold text-xl mt-8 mb-8">
+      {{ gettext('page.partner_download.wait_banner', wait_seconds=wait_seconds) }}
+    </div>
+  {% endif %}
+
+  {% if url %}
+    <p class="mb-4 text-xl font-bold">
+      {{ gettext('page.partner_download.url', a_download=((' href="' + url + '"') | safe)) }}
     </p>
-    <ul class="mb-4">
-      <li>- {{ gettext('page.partner_download.li1') }}</li>
-      <li>- {{ gettext('page.partner_download.li2') }}</li>
-      <li>- {{ gettext('page.partner_download.li3') }}</li>
-      <li>- {{ gettext('page.partner_download.li4') }}</li>
-      <li>
-        <label class="cursor-pointer">
-          <input class="js-partner-reload mr-1" type="checkbox" maxlength="200">
-          {{ gettext('page.partner_download.automatic_refreshing') }}
-        </label>
-      </li>
-    </ul>
+  {% endif %}
+
+  <p>
+    {{ gettext('page.partner_download.thanks') }}
+  </p>
+
+  <p class="mt-8 mb-2">
+    {{ gettext('page.partner_download.faster_downloads', a_membership=(' href="/donate"' | safe)) }}
+  </p>
+  <p class="mb-8">
+    {{ gettext('page.partner_download.bulk_mirroring', a_datasets=(' href="/datasets"' | safe), a_torrents=(' href="/torrents"' | safe)) }}
+  </p>
+
+  {% if wait_seconds %}
+    <div class="mb-4 p-6 overflow-hidden bg-black/5 break-words rounded">
+      <ul class="mb-4">
+        <p>ℹ️</p>
+        <div class="pl-4">
+          <li class="list-disc">{{ gettext('page.partner_download.text1') }}</li>
+          <li class="list-disc">{{ gettext('page.partner_download.li1') }}</li>
+          <li class="list-disc">{{ gettext('page.partner_download.li2') }}</li>
+          <li class="list-disc">{{ gettext('page.partner_download.li3') }}</li>
+        </div>
+        <li>
+          <label class="cursor-pointer">
+            <input class="js-partner-reload mr-1" type="checkbox" maxlength="200">
+            {{ gettext('page.partner_download.automatic_refreshing') }}
+          </label>
+        </li>
+      </ul>
+    </div>
     <script>
       (function() {
         let partnerReload = false;
@@ -73,12 +98,6 @@
     </script>
   {% endif %}
 
-  {% if url %}
-    <p class="mb-4">
-      {{ gettext('page.partner_download.url', url=(('<a href="' + url + '" class="font-bold">' + gettext('page.partner_download.download_now') + '</a>') | safe), a_download=((' href="' + url + '" class="font-bold"') | safe)) }}
-    </p>
-  {% endif %}
-
   {% if warning %}
     <p class="mb-4 font-bold">
       ⛔️ {{ gettext('page.partner_download.warning_many_downloads') }}
@@ -86,14 +105,6 @@
       {{ gettext('page.partner_download.warning_many_downloads2') }}
     </p>
   {% endif %}
-
-  <p class="mb-4">
-    {{ gettext('page.partner_download.faster_downloads', a_membership=(' href="/donate"' | safe)) }}
-  </p>
-
-  <p class="mb-4">
-    {{ gettext('page.partner_download.bulk_mirroring', a_datasets=(' href="/datasets"' | safe), a_torrents=(' href="/torrents"' | safe)) }}
-  </p>
 
   <!-- daily_download_count_from_ip: {{ daily_download_count_from_ip }} -->
 {% endblock %}
