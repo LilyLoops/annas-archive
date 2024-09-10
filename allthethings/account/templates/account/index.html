@@ -25,7 +25,7 @@
       <div class="mb-4">{{ gettext('page.account.logged_in.membership_none', a_become=(' href="/donate"' | safe)) }}</div>
     {% else %}
       {% for membership in memberships %}
-        <div class="">{{ gettext('page.account.logged_in.membership_has_some', a_extend=((' href="/donate?tier=' + membership.membership_tier + '" class="text-sm"') | safe), tier_name=membership.membership_name, until_date=(membership.membership_expiration | dateformat(format='long'))) }}</div>
+        <div class="{% if not membership.active %}line-through text-xs{% endif %}">{{ gettext('page.account.logged_in.membership_has_some', a_extend=((' href="/donate?tier=' + membership.membership_tier + '" class="text-sm hidden"') | safe), tier_name=membership.membership_name, until_date=(membership.membership_expiration | dateformat(format='long'))) }}</div>
       {% endfor %}
       <div class="">{{ gettext('page.account.logged_in.membership_fast_downloads_used', used=(account_fast_download_info.downloads_per_day-account_fast_download_info.downloads_left), total=account_fast_download_info.downloads_per_day ) | replace('24', '18') }} <a class="text-sm" href="/account/downloaded">{{ gettext('page.account.logged_in.which_downloads') }}</a></div>
       {% if account_fast_download_info.telegram_url %}

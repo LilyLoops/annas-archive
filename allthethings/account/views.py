@@ -45,7 +45,7 @@ def account_index_page():
         if account is None:
             raise Exception("Valid account_id was not found in db!")
 
-        cursor.execute('SELECT membership_tier, membership_expiration, bonus_downloads FROM mariapersist_memberships WHERE account_id = %(account_id)s AND mariapersist_memberships.membership_expiration >= CURDATE()', { 'account_id': account_id })
+        cursor.execute('SELECT membership_tier, membership_expiration, bonus_downloads, mariapersist_memberships.membership_expiration >= CURDATE() AS active FROM mariapersist_memberships WHERE account_id = %(account_id)s', { 'account_id': account_id })
         memberships = cursor.fetchall()
 
         membership_tier_names=allthethings.utils.membership_tier_names(get_locale())
