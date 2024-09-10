@@ -19,10 +19,10 @@ with open(json_output_path, "w") as f:
 
 # next, turn each .name key into a gettext identifier
 classification_prefix = "org.openlibrary.edition.classification."
-classification_regex = re.compile(r"'name': '(org\.openlibrary\.edition\.classification\.[^']+)'")
+classification_regex = re.compile(r"('description'): '(org\.openlibrary\.edition\.classification\.[^']+)'")
 
 identifier_prefix = "org.openlibrary.edition.identifier."
-identifier_regex = re.compile(r"'name': '(org\.openlibrary\.edition\.identifier\.[^']+)'")
+identifier_regex = re.compile(r"('description'): '(org\.openlibrary\.edition\.identifier\.[^']+)'")
 
 # do a little pre-processing of the JSON, and add the prefixes to the .name keys
 for identifier in ol_edition_json['identifiers']:
@@ -34,7 +34,7 @@ for identifier in ol_edition_json['identifiers']:
     
     if name := identifier.get('name'):
         assert "'" not in name, "the .name key cannot contain single quotes, as the regexes use them to locate the edges of the identifier"
-        identifier['name'] = f"{identifier_prefix}{name}"
+        identifier['description'] = f"{identifier_prefix}{name}"
 
 for classification in ol_edition_json['classifications']:
     if 'website' in classification:
@@ -46,7 +46,7 @@ for classification in ol_edition_json['classifications']:
     
     if name := classification.get('name'):
         assert "'" not in name, "the .name key cannot contain single quotes, as the regexes use them to locate the edges of the identifier"
-        classification['name'] = f"{classification_prefix}{name}"
+        classification['description'] = f"{classification_prefix}{name}"
 
 # now write the updated data to a python file, and replace the .name keys with
 # actual gettext calls via regex replacements
@@ -64,8 +64,8 @@ with open(python_output_path, "w") as f:
     python_output = pprint.pformat(ol_edition_json, underscore_numbers=True, indent=4, width=120, sort_dicts=True)
     
     # replace classification and identifier names with gettext calls
-    python_output = classification_regex.sub(r"'name': gettext('\1')", python_output)
-    python_output = identifier_regex.sub(r"'name': gettext('\1')", python_output)
+    python_output = classification_regex.sub(r"\1: gettext('\2')", python_output)
+    python_output = identifier_regex.sub(r"\1: gettext('\2')", python_output)
 
     # add trailing commas to each json object
     python_output = re.sub(r'''([')])},''', r'\1,},', python_output)
