@@ -53,6 +53,7 @@ docker exec -it aa-data-import--web /scripts/download_aac_upload_records.sh # CA
 docker exec -it aa-data-import--web /scripts/download_aac_worldcat.sh # CANNOT BE SKIPPED
 docker exec -it aa-data-import--web /scripts/download_aac_zlib3_files.sh # CANNOT BE SKIPPED
 docker exec -it aa-data-import--web /scripts/download_aac_zlib3_records.sh # CANNOT BE SKIPPED
+docker exec -it aa-data-import--web /scripts/download_aac_other_metadata.sh # CANNOT BE SKIPPED
 
 # Load the data.
 docker exec -it aa-data-import--web /scripts/load_libgenli.sh # Can be skipped when using aa_derived_mirror_metadata.
@@ -72,6 +73,7 @@ docker exec -it aa-data-import--web /scripts/load_aac_upload_records.sh # CANNOT
 docker exec -it aa-data-import--web /scripts/load_aac_worldcat.sh # CANNOT BE SKIPPED
 docker exec -it aa-data-import--web /scripts/load_aac_zlib3_files.sh # CANNOT BE SKIPPED
 docker exec -it aa-data-import--web /scripts/load_aac_zlib3_records.sh # CANNOT BE SKIPPED
+docker exec -it aa-data-import--web /scripts/load_aac_other_metadata.sh # CANNOT BE SKIPPED
 
 # Index AAC files.
 docker exec -it aa-data-import--web /scripts/decompress_aac_files.sh # OPTIONAL: only run this if you have enough disk space and want to speed up calculating derived data. The decompressed files are not recommended to keep for use in production (waste of space).
