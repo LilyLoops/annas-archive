@@ -29,6 +29,7 @@ from sqlalchemy import select
 
 from allthethings.extensions import es, es_aux, engine, MariapersistFastDownloadAccess
 from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, MEMBERS_TELEGRAM_URL, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, FAST_PARTNER_SERVER1, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY, AACID_SMALL_DATA_IMPORTS
+from allthethings.page.openlibrary.edition import editions as ol_editions
 
 FEATURE_FLAGS = {}
 
@@ -865,6 +866,7 @@ LGLI_EDITION_TYPE_MAPPING = {
     "ant":"Anthology",
     "c":"Comics issue",
 }
+
 LGLI_ISSUE_OTHER_FIELDS = [
     "issue_number_in_year",
     "issue_year_number",
@@ -879,6 +881,7 @@ LGLI_ISSUE_OTHER_FIELDS = [
     "issue_day_end",
     "issue_closed",
 ]
+
 LGLI_STANDARD_INFO_FIELDS = [
     "standardtype",
     "standardtype_standartnumber",
@@ -887,6 +890,7 @@ LGLI_STANDARD_INFO_FIELDS = [
     "standartstatus",
     "standartstatus_additionalstandartstatus",
 ]
+
 LGLI_DATE_INFO_FIELDS = [
     "datepublication",
     "dateintroduction",
@@ -896,6 +900,7 @@ LGLI_DATE_INFO_FIELDS = [
     "dateexpiration",
     "datelastedition",
 ]
+
 # Hardcoded from the `libgenli_elem_descr` table.
 LGLI_IDENTIFIERS = {
     "asin": { "label": "ASIN", "url": "https://www.amazon.com/dp/%s", "description": "Amazon Standard Identification Number"},
@@ -941,6 +946,7 @@ LGLI_IDENTIFIERS = {
     "sfbg": { "label": "SFBG", "url": "http://www.sfbg.us/book/%s", "description": "Catalog of books published in Bulgaria"},
     "sfleihbuch": { "label": "SF-Leihbuch", "url": "http://www.sf-leihbuch.de/index.cfm?bid=%s", "description": "Science Fiction-Leihbuch-Datenbank"},
 }
+
 # Hardcoded from the `libgenli_elem_descr` table.
 LGLI_CLASSIFICATIONS = {
     "classification": { "label": "Classification", "url": "", "description": "" },
@@ -952,11 +958,13 @@ LGLI_CLASSIFICATIONS = {
     "ddc": { "label": "DDC", "url": "https://libgen.li/biblioservice.php?value=%s&type=ddc", "description": "Dewey Decimal", "website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes" },
     "lbc": { "label": "LBC", "url": "https://libgen.li/biblioservice.php?value=%s&type=bbc", "description": "Library-Bibliographical Classification", "website": "https://www.isko.org/cyclo/lbc" },
 }
+
 LGLI_IDENTIFIERS_MAPPING = {
     "oclcworldcat": "oclc",
     "openlibrary": "ol",
     "googlebookid": "gbook",
 }
+
 LGLI_CLASSIFICATIONS_MAPPING = {
     "classification": "class",
     "classificationokp": "okp",
@@ -972,6 +980,7 @@ LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING = {
     'doi': 'doi',
     'issn': 'issn',
 }
+
 LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = { 
     'udc': 'udc',
     'ddc': 'ddc',
@@ -1013,6 +1022,7 @@ UNIFIED_IDENTIFIERS = {
     **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
     # Plus more added below!
 }
+
 UNIFIED_CLASSIFICATIONS = {
     "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/lgrs" },
     "torrent": { "label": "Torrent", "url": "/dyn/small_file/torrents/%s", "description": "Bulk torrent for long-term preservation.", "website": "/torrents" },
@@ -1108,6 +1118,7 @@ OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING = {
     **{key: key for key in UNIFIED_IDENTIFIERS.keys()},
     # Plus more added below!
 }
+
 OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
     'dewey_decimal_class': 'ddc',
     'dewey_number': 'ddc',
@@ -1119,6 +1130,7 @@ OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
     **{key: key for key in UNIFIED_CLASSIFICATIONS.keys()},
     # Plus more added below!
 }
+
 # Hardcoded labels for OL. The "label" fields in ol_edition.json become "description" instead.
 OPENLIB_LABELS = {
     "abaa": "ABAA",
@@ -1200,11 +1212,8 @@ OPENLIB_LABELS = {
     "yakaboo": "Yakaboo",
     "zdb-id": "ZDB-ID",
 }
-# Retrieved from https://openlibrary.org/config/edition.json on 2023-07-02
-ol_edition_json = orjson.loads(open(os.path.dirname(os.path.realpath(__file__)) + '/page/ol_edition.json').read())
-for identifier in ol_edition_json['identifiers']:
-    if 'url' in identifier:
-        identifier['url'] = identifier['url'].replace('@@@', '%s')
+
+for identifier in ol_editions['identifiers']:
     unified_name = identifier['name']
     if unified_name in OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
         unified_name = OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name]
@@ -1213,15 +1222,14 @@ for identifier in ol_edition_json['identifiers']:
     else:
         OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name] = unified_name
         if unified_name not in UNIFIED_IDENTIFIERS:
-            # If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.
+            assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
             label = OPENLIB_LABELS[unified_name]
-            description = ''
-            if identifier.get('description', '') != label:
+            description = identifier.get('description', '')
+            if description != label:
                 description = identifier.get('description', '')
             UNIFIED_IDENTIFIERS[unified_name] = { **identifier, 'label': label, 'description': description }
-for classification in ol_edition_json['classifications']:
-    if 'website' in classification:
-        classification['website'] = classification['website'].split(' ')[0] # Sometimes there's a suffix in text..
+
+for classification in ol_editions['classifications']:
     unified_name = classification['name']
     if unified_name in OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
         unified_name = OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name]
@@ -1230,10 +1238,10 @@ for classification in ol_edition_json['classifications']:
     else:
         OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name] = unified_name
         if unified_name not in UNIFIED_CLASSIFICATIONS:
-            # If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.
+            assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
             label = OPENLIB_LABELS[unified_name]
-            description = ''
-            if classification.get('description', '') != label:
+            description = classification.get('description', '')
+            if description != label:
                 description = classification.get('description', '')
             UNIFIED_CLASSIFICATIONS[unified_name] = { **classification, 'label': label, 'description': description }
 

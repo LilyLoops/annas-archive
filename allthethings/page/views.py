@@ -2291,6 +2291,7 @@ def get_lgli_file_dicts(session, key, values):
                         allthethings.utils.add_classification_unified(edition_dict, allthethings.utils.LGLI_CLASSIFICATIONS_MAPPING.get(key, key), value)
             allthethings.utils.add_isbns_unified(edition_dict, edition_dict['descriptions_mapped'].get('isbn') or [])
             allthethings.utils.add_isbns_unified(edition_dict, allthethings.utils.get_isbnlike('\n'.join(edition_dict['descriptions_mapped'].get('description') or [])))
+            
             if len((edition_dict['issue_series_issn'] or '').strip()) > 0:
                 allthethings.utils.add_issn_unified(edition_dict, edition_dict['issue_series_issn'].strip())
 
