@@ -3626,6 +3626,8 @@ def get_aac_upload_book_dicts(session, key, values):
             aac_upload_book_dict['aa_upload_derived']['content_type'] = 'magazine'
         elif 'longquan_archives' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
             aac_upload_book_dict['aa_upload_derived']['content_type'] = 'book_nonfiction'
+        elif any('misc/music_books' in filename for filename in aac_upload_book_dict['aa_upload_derived']['filename_multiple']):
+            aac_upload_book_dict['aa_upload_derived']['content_type'] = 'musical_score'
 
         aac_upload_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
