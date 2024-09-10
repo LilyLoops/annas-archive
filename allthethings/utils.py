@@ -861,6 +861,7 @@ LGLI_EDITION_TYPE_MAPPING = {
     "ant":"Anthology",
     "c":"Comics issue",
 }
+
 LGLI_ISSUE_OTHER_FIELDS = [
     "issue_number_in_year",
     "issue_year_number",
@@ -875,6 +876,7 @@ LGLI_ISSUE_OTHER_FIELDS = [
     "issue_day_end",
     "issue_closed",
 ]
+
 LGLI_STANDARD_INFO_FIELDS = [
     "standardtype",
     "standardtype_standartnumber",
@@ -883,6 +885,7 @@ LGLI_STANDARD_INFO_FIELDS = [
     "standartstatus",
     "standartstatus_additionalstandartstatus",
 ]
+
 LGLI_DATE_INFO_FIELDS = [
     "datepublication",
     "dateintroduction",
@@ -892,6 +895,7 @@ LGLI_DATE_INFO_FIELDS = [
     "dateexpiration",
     "datelastedition",
 ]
+
 # Hardcoded from the `libgenli_elem_descr` table.
 LGLI_IDENTIFIERS = {
     "asin": { "label": "ASIN", "url": "https://www.amazon.com/dp/%s", "description": "Amazon Standard Identification Number"},
@@ -937,6 +941,7 @@ LGLI_IDENTIFIERS = {
     "sfbg": { "label": "SFBG", "url": "http://www.sfbg.us/book/%s", "description": "Catalog of books published in Bulgaria"},
     "sfleihbuch": { "label": "SF-Leihbuch", "url": "http://www.sf-leihbuch.de/index.cfm?bid=%s", "description": "Science Fiction-Leihbuch-Datenbank"},
 }
+
 # Hardcoded from the `libgenli_elem_descr` table.
 LGLI_CLASSIFICATIONS = {
     "classification": { "label": "Classification", "url": "", "description": "" },
@@ -948,11 +953,13 @@ LGLI_CLASSIFICATIONS = {
     "ddc": { "label": "DDC", "url": "https://libgen.li/biblioservice.php?value=%s&type=ddc", "description": "Dewey Decimal", "website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes" },
     "lbc": { "label": "LBC", "url": "https://libgen.li/biblioservice.php?value=%s&type=bbc", "description": "Library-Bibliographical Classification", "website": "https://www.isko.org/cyclo/lbc" },
 }
+
 LGLI_IDENTIFIERS_MAPPING = {
     "oclcworldcat": "oclc",
     "openlibrary": "ol",
     "googlebookid": "gbook",
 }
+
 LGLI_CLASSIFICATIONS_MAPPING = {
     "classification": "class",
     "classificationokp": "okp",
@@ -968,6 +975,7 @@ LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING = {
     'doi': 'doi',
     'issn': 'issn',
 }
+
 LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = { 
     'udc': 'udc',
     'ddc': 'ddc',
@@ -1008,6 +1016,7 @@ UNIFIED_IDENTIFIERS = {
     **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
     # Plus more added below!
 }
+
 UNIFIED_CLASSIFICATIONS = {
     "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/lgrs" },
     "torrent": { "label": "Torrent", "url": "/dyn/small_file/torrents/%s", "description": "Bulk torrent for long-term preservation.", "website": "/torrents" },
@@ -1101,6 +1110,7 @@ OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING = {
     **{key: key for key in UNIFIED_IDENTIFIERS.keys()},
     # Plus more added below!
 }
+
 OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
     'dewey_decimal_class': 'ddc',
     'dewey_number': 'ddc',
@@ -1112,6 +1122,7 @@ OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
     **{key: key for key in UNIFIED_CLASSIFICATIONS.keys()},
     # Plus more added below!
 }
+
 # Hardcoded labels for OL. The "label" fields in ol_edition.json become "description" instead.
 OPENLIB_LABELS = {
     "abaa": "ABAA",
@@ -1193,6 +1204,7 @@ OPENLIB_LABELS = {
     "yakaboo": "Yakaboo",
     "zdb-id": "ZDB-ID",
 }
+
 # Retrieved from https://openlibrary.org/config/edition.json on 2023-07-02
 ol_edition_json = orjson.loads(open(os.path.dirname(os.path.realpath(__file__)) + '/page/ol_edition.json').read())
 for identifier in ol_edition_json['identifiers']:
