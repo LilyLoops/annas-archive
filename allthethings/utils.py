@@ -29,6 +29,7 @@ from sqlalchemy import select
 
 from allthethings.extensions import es, es_aux, engine, MariapersistFastDownloadAccess
 from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, MEMBERS_TELEGRAM_URL, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, FAST_PARTNER_SERVER1, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY, AACID_SMALL_DATA_IMPORTS
+from allthethings.page.openlibrary.edition import editions as ol_editions
 
 FEATURE_FLAGS = {}
 
@@ -1205,11 +1206,7 @@ OPENLIB_LABELS = {
     "zdb-id": "ZDB-ID",
 }
 
-# Retrieved from https://openlibrary.org/config/edition.json on 2023-07-02
-ol_edition_json = orjson.loads(open(os.path.dirname(os.path.realpath(__file__)) + '/page/ol_edition.json').read())
-for identifier in ol_edition_json['identifiers']:
-    if 'url' in identifier:
-        identifier['url'] = identifier['url'].replace('@@@', '%s')
+for identifier in ol_editions['identifiers']:
     unified_name = identifier['name']
     if unified_name in OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
         unified_name = OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name]
@@ -1224,9 +1221,8 @@ for identifier in ol_edition_json['identifiers']:
             if identifier.get('description', '') != label:
                 description = identifier.get('description', '')
             UNIFIED_IDENTIFIERS[unified_name] = { **identifier, 'label': label, 'description': description }
-for classification in ol_edition_json['classifications']:
-    if 'website' in classification:
-        classification['website'] = classification['website'].split(' ')[0] # Sometimes there's a suffix in text..
+
+for classification in ol_editions['classifications']:
     unified_name = classification['name']
     if unified_name in OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
         unified_name = OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name]
