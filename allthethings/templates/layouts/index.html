@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <title>{% if self.title() %}{% block title %}{% endblock %} - {% endif %}{{ gettext('layout.index.title') }}</title>
-    <script src="{{ url_for('static', filename='js/darkreader.js') }}"></script>
+    <script type="text/javascript">{{ g.darkreader_code | safe }}</script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
     {% if g.domain_lang_code in ['ar', 'fa', 'he', 'ur'] %}
       <!-- <style>body { direction: rtl; } </style> -->
@@ -367,7 +367,7 @@
               <button
                 id="light-button"
                 type="button"
-                class="bg-white text-md w-[24px] h-[24px] flex text-center rounded items-center justify-center text-gray-500"
+                class="hidden bg-white text-md w-[24px] h-[24px] flex text-center rounded items-center justify-center text-gray-500"
                 onclick="window.handleThemeSwitch('light')"
               ><span class="icon-[ph--sun-bold]"></button>
               

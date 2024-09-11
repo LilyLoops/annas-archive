@@ -21,7 +21,7 @@ const darkReaderOptions = {
 const updateThemeButtons = () => {
   const lightButton = document.getElementById("light-button");
   if(!lightButton) {
-    setTimeout(()=>updateThemeButtons(),500);
+    setTimeout(()=>updateThemeButtons(),10);
     return;
   }
   const darkButton = document.getElementById("dark-button");
