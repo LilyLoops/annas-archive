@@ -995,8 +995,8 @@ def generate_mappings(locale = None):
 
         UNIFIED_IDENTIFIERS = {
             "md5": { "shortenvalue": True, "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
-            "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
-            "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
+            # "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
+            # "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
             "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },
             "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.rs/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
             "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.rs/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
@@ -1219,18 +1219,19 @@ def generate_mappings(locale = None):
             unified_name = identifier['name']
             if unified_name in OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
                 unified_name = OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name]
-                if unified_name not in UNIFIED_IDENTIFIERS:
-                    raise Exception(f"unified_name '{unified_name}' should be in UNIFIED_IDENTIFIERS")
+                # if unified_name not in UNIFIED_IDENTIFIERS:
+                #     raise Exception(f"unified_name '{unified_name}' should be in UNIFIED_IDENTIFIERS")
             else:
                 OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name] = unified_name
-                if unified_name not in UNIFIED_IDENTIFIERS:
-                    # assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
-                    # label = OPENLIB_LABELS[unified_name]
-                    description = identifier.get('description', '')
-                    # if description != label:
-                    #     description = identifier.get('description', '')
-                    label = description
-                    UNIFIED_IDENTIFIERS[unified_name] = { **identifier, 'label': label, 'description': description }
+
+            if unified_name not in UNIFIED_IDENTIFIERS:
+                # assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
+                # label = OPENLIB_LABELS[unified_name]
+                description = identifier.get('description', '')
+                # if description != label:
+                #     description = identifier.get('description', '')
+                label = description
+                UNIFIED_IDENTIFIERS[unified_name] = { **identifier, 'label': label, 'description': description }
 
         for classification in get_editions(locale)['classifications']:
             unified_name = classification['name']
