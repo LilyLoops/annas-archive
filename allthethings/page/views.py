@@ -4320,7 +4320,7 @@ def get_edsebk_dicts_by_isbn13(session, isbn13s):
         isbn13s_by_edsebk_id = collections.defaultdict(list)
         for row in rows:
             isbn13s_by_edsebk_id[row['edsebk_id']].append(str(row['isbn13']))
-        edsebk_dicts = get_aac_edsebk_book_dicts(session, 'edsebk', list(isbn13s_by_edsebk_id.keys()))
+        edsebk_dicts = get_aac_edsebk_book_dicts(session, 'edsebk_id', list(isbn13s_by_edsebk_id.keys()))
         retval = collections.defaultdict(list)
         for edsebk_dict in edsebk_dicts:
             for isbn13 in isbn13s_by_edsebk_id[edsebk_dict['edsebk_id']]:
