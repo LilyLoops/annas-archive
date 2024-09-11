@@ -711,7 +711,7 @@ def datasets_duxiu_page():
 @page.get("/datasets/uploads")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_uploads_page():
-    return redirect(f"/datasets/upload", code=302)
+    return redirect("/datasets/upload", code=302)
 
 @page.get("/datasets/upload")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -727,7 +727,7 @@ def datasets_upload_page():
 @page.get("/datasets/zlibzh")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_zlibzh_page():
-    return redirect(f"/datasets/zlib", code=302)
+    return redirect("/datasets/zlib", code=302)
 
 @page.get("/datasets/zlib")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -765,7 +765,7 @@ def datasets_scihub_page():
 @page.get("/datasets/libgen_rs")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_libgen_rs_page():
-    return redirect(f"/datasets/lgrs", code=302)
+    return redirect("/datasets/lgrs", code=302)
 
 @page.get("/datasets/lgrs")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -781,7 +781,7 @@ def datasets_lgrs_page():
 @page.get("/datasets/libgen_li")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_libgen_li_page():
-    return redirect(f"/datasets/lgli", code=302)
+    return redirect("/datasets/lgli", code=302)
 
 @page.get("/datasets/lgli")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -794,12 +794,12 @@ def datasets_lgli_page():
             return "Error with datasets page, please try again.", 503
         raise
 
-    return redirect(f"/datasets/ol", code=302)
+    return redirect("/datasets/ol", code=302)
 
 @page.get("/datasets/openlib")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_openlib_page():
-    return redirect(f"/datasets/ol", code=302)
+    return redirect("/datasets/ol", code=302)
 
 @page.get("/datasets/ol")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -815,7 +815,7 @@ def datasets_ol_page():
 @page.get("/datasets/worldcat")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_worldcat_page():
-    return redirect(f"/datasets/oclc", code=302)
+    return redirect("/datasets/oclc", code=302)
 
 @page.get("/datasets/oclc")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -1076,26 +1076,6 @@ def codes_page():
             code_item=code_item,
         )
 
-zlib_book_dict_comments = {
-    **allthethings.utils.COMMON_DICT_COMMENTS,
-    "zlibrary_id": ("before", ["This is a file from the Z-Library collection of Anna's Archive.",
-                      "More details at https://annas-archive.se/datasets/zlib",
-                      "The source URL is http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/md5/<md5_reported>",
-                      allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
-    "edition_varia_normalized": ("after", ["Anna's Archive version of the 'series', 'volume', 'edition', and 'year' fields; combining them into a single field for display and search."]),
-    "in_libgen": ("after", ["Whether at the time of indexing, the book was also available in Libgen."]),
-    "pilimi_torrent": ("after", ["Which torrent by Anna's Archive (formerly the Pirate Library Mirror or 'pilimi') the file belongs to."]),
-    "filesize_reported": ("after", ["The file size as reported by the Z-Library metadata. Is sometimes different from the actually observed file size of the file, as determined by Anna's Archive."]),
-    "md5_reported": ("after", ["The md5 as reported by the Z-Library metadata. Is sometimes different from the actually observed md5 of the file, as determined by Anna's Archive."]),
-    "unavailable": ("after", ["Set when Anna's Archive was unable to download the book."]),
-    "filesize": ("after", ["The actual filesize as determined by Anna's Archive. Missing for AAC zlib3 records"]),
-    "category_id": ("after", ["Z-Library's own categorization system; currently only present for AAC zlib3 records (and not actually used yet)"]),
-    "file_data_folder": ("after", ["The AAC data folder / torrent that contains this file"]),
-    "record_aacid": ("after", ["The AACID of the corresponding metadata entry in the zlib3_records collection"]),
-    "file_aacid": ("after", ["The AACID of the corresponding metadata entry in the zlib3_files collection (corresponding to the data filename)"]),
-    "cover_url_guess": ("after", ["Anna's Archive best guess of the cover URL, based on the MD5."]),
-    "removed": ("after", ["Whether the file has been removed from Z-Library. We typically don't know the precise reason."]),
-}
 def zlib_add_edition_varia_normalized(zlib_book_dict):
     edition_varia_normalized = []
     if len((zlib_book_dict.get('series') or '').strip()) > 0:
@@ -1124,6 +1104,8 @@ def get_zlib_book_dicts(session, key, values):
         print(repr(err))
         traceback.print_tb(err.__traceback__)
         return []
+    
+    maps = allthethings.utils.generate_mappings()
 
     zlib_book_dicts = []
     for zlib_book in zlib_books:
@@ -1143,7 +1125,7 @@ def get_zlib_book_dicts(session, key, values):
         allthethings.utils.add_isbns_unified(zlib_book_dict, [record.isbn for record in zlib_book.isbns])
         allthethings.utils.add_isbns_unified(zlib_book_dict, allthethings.utils.get_isbnlike(zlib_book_dict['description']))
 
-        zlib_book_dicts.append(add_comments_to_dict(zlib_book_dict, zlib_book_dict_comments))
+        zlib_book_dicts.append(add_comments_to_dict(zlib_book_dict, maps['ZLIB_BOOK_DICT_COMMENTS']))
     return zlib_book_dicts
 
 def get_aac_zlib3_book_dicts(session, key, values):
@@ -1157,7 +1139,10 @@ def get_aac_zlib3_book_dicts(session, key, values):
         aac_key = 'annas_archive_meta__aacid__zlib3_records.md5'
     else:
         raise Exception(f"Unexpected 'key' in get_aac_zlib3_book_dicts: '{key}'")
+    
+    maps = allthethings.utils.generate_mappings()
     aac_zlib3_books = []
+
     try:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
@@ -1252,7 +1237,7 @@ def get_aac_zlib3_book_dicts(session, key, values):
 
         aac_zlib3_book_dict['raw_aac'] = raw_aac_zlib3_books_by_primary_id[str(aac_zlib3_book_dict['zlibrary_id'])]
 
-        aac_zlib3_book_dicts.append(add_comments_to_dict(aac_zlib3_book_dict, zlib_book_dict_comments))
+        aac_zlib3_book_dicts.append(add_comments_to_dict(aac_zlib3_book_dict, maps['ZLIB_BOOK_DICT_COMMENTS']))
     return aac_zlib3_book_dicts
 
 @page.get("/db/zlib/<int:zlib_id>.json")
@@ -1360,6 +1345,8 @@ def get_ia_record_dicts(session, key, values):
 
     # print(f"{ia_entries_combined=}")
     # print(orjson.dumps(ia_entries_combined, option=orjson.OPT_INDENT_2 | orjson.OPT_NON_STR_KEYS, default=str).decode('utf-8'))
+
+    maps = allthethings.utils.generate_mappings()
 
     ia_record_dicts = []
     for ia_record_dict, ia_file_dict, ia2_acsmpdf_file_dict in ia_entries_combined:
@@ -1505,11 +1492,11 @@ def get_ia_record_dicts(session, key, values):
         # TODO: add "reviews" array info as comments.
 
         aa_ia_derived_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "ia_id": ("before", ["This is an IA record, augmented by Anna's Archive.",
                               "More details at https://annas-archive.se/datasets/ia",
                               "A lot of these fields are explained at https://archive.org/developers/metadata-schema/index.html",
-                              allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                              maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "cover_url": ("before", "Constructed directly from ia_id."),
             "author": ("after", "From `metadata.creator` and `metadata.associated-names`."),
             "combined_comments": ("after", "From `metadata.notes`, `metadata.comment`, and `metadata.curation`."),
@@ -1525,11 +1512,11 @@ def get_ia_record_dicts(session, key, values):
 
 
         ia_record_dict_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "ia_id": ("before", ["This is an IA record, augmented by Anna's Archive.",
                               "More details at https://annas-archive.se/datasets/ia",
                               "A lot of these fields are explained at https://archive.org/developers/metadata-schema/index.html",
-                              allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                              maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "libgen_md5": ("after", "If the metadata refers to a Libgen MD5 from which IA imported, it will be filled in here."),
             # "has_thumb": ("after", "Whether Anna's Archive has stored a thumbnail (scraped from __ia_thumb.jpg)."),
             "json": ("before", "The original metadata JSON, scraped from https://archive.org/metadata/<ia_id>.",
@@ -1934,6 +1921,8 @@ def get_lgrsnf_book_dicts(session, key, values):
         print(repr(err))
         traceback.print_tb(err.__traceback__)
         return []
+    
+    maps = allthethings.utils.generate_mappings()
 
     lgrs_book_dicts = []
     for lgrsnf_book in lgrsnf_books:
@@ -1968,19 +1957,19 @@ def get_lgrsnf_book_dicts(session, key, values):
         allthethings.utils.add_isbns_unified(lgrs_book_dict, lgrsnf_book.Identifier.split(",") + lgrsnf_book.IdentifierWODash.split(","))
         allthethings.utils.add_isbns_unified(lgrs_book_dict, allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or '', lgrs_book_dict.get('toc') or ''])))
         allthethings.utils.add_classification_unified(lgrs_book_dict, 'lgrsnf_topic', lgrs_book_dict.get('topic_descr') or '')
-        for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING.items():
+        for name, unified_name in maps['LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING'].items():
             if name in lgrs_book_dict:
                 allthethings.utils.add_identifier_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
-        for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING.items():
+        for name, unified_name in maps['LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING'].items():
             if name in lgrs_book_dict:
                 allthethings.utils.add_classification_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
 
         lgrs_book_dict_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "id": ("before", ["This is a Libgen.rs Non-Fiction record, augmented by Anna's Archive.",
                               "More details at https://annas-archive.se/datasets/lgrs",
                               "Most of these fields are explained at https://wiki.mhut.org/content:bibliographic_data",
-                              allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                              maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
         }
         lgrs_book_dicts.append(add_comments_to_dict(lgrs_book_dict, lgrs_book_dict_comments))
 
@@ -2006,6 +1995,7 @@ def get_lgrsfic_book_dicts(session, key, values):
         traceback.print_tb(err.__traceback__)
         return []
 
+    maps = allthethings.utils.generate_mappings()
     lgrs_book_dicts = []
 
     for lgrsfic_book in lgrsfic_books:
@@ -2035,20 +2025,20 @@ def get_lgrsfic_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(lgrs_book_dict, 'md5', lgrs_book_dict['md5'].lower())
         allthethings.utils.add_isbns_unified(lgrs_book_dict, lgrsfic_book.Identifier.split(","))
         allthethings.utils.add_isbns_unified(lgrs_book_dict, allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or ''])))
-        for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING.items():
+        for name, unified_name in maps['LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING'].items():
             if name in lgrs_book_dict:
                 allthethings.utils.add_identifier_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
-        for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING.items():
+        for name, unified_name in maps['LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING'].items():
             if name in lgrs_book_dict:
                 allthethings.utils.add_classification_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
 
 
         lgrs_book_dict_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "id": ("before", ["This is a Libgen.rs Fiction record, augmented by Anna's Archive.",
                               "More details at https://annas-archive.se/datasets/lgrs",
                               "Most of these fields are explained at https://wiki.mhut.org/content:bibliographic_data",
-                              allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                              maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
         }
         lgrs_book_dicts.append(add_comments_to_dict(lgrs_book_dict, lgrs_book_dict_comments))
 
@@ -2157,7 +2147,9 @@ def get_lgli_file_dicts(session, key, values):
             )
     ).all()
 
+    maps = allthethings.utils.generate_mappings()
     lgli_file_dicts = []
+
     for lgli_file in lgli_files:
         lgli_file_dict = lgli_file.to_dict()
         lgli_file_descriptions_dict = [{**descr.to_dict(), 'meta': description_metadata[descr.key]} for descr in lgli_file.add_descrs]
@@ -2278,7 +2270,7 @@ def get_lgli_file_dicts(session, key, values):
             edition_dict['edition_type_full'] = allthethings.utils.LGLI_EDITION_TYPE_MAPPING.get(edition_dict['type'], '')
 
             edition_dict_comments = {
-                **allthethings.utils.COMMON_DICT_COMMENTS,
+                **maps['COMMON_DICT_COMMENTS'],
                 "editions": ("before", ["Files can be associated with zero or more editions."
                                         "Sometimes it corresponds to a particular physical version of a book (similar to ISBN records, or 'editions' in Open Library), but it may also represent a chapter in a periodical (more specific than a single book), or a collection of multiple books (more general than a single book). However, in practice, in most cases files only have a single edition.",
                                         "Note that while usually there is only one 'edition' associated with a file, it is common to have multiple files associated with an edition. For example, different people might have scanned a book."]),
@@ -2361,12 +2353,12 @@ def get_lgli_file_dicts(session, key, values):
             lgli_file_dict['added_date_unified'] = { 'date_lgli_source': lgli_file_dict['time_added'].isoformat().split('T', 1)[0] }
 
         lgli_file_dict_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "f_id": ("before", ["This is a Libgen.li file record, augmented by Anna's Archive.",
                      "More details at https://annas-archive.se/datasets/lgli",
                      "Most of these fields are explained at https://libgen.li/community/app.php/article/new-database-structure-published-o%CF%80y6%D0%BB%D0%B8%C4%B8o%D0%B2a%D0%BDa-%D0%BDo%D0%B2a%D1%8F-c%D1%82py%C4%B8%D1%82ypa-6a%D0%B7%C6%85i-%D0%B4a%D0%BD%D0%BD%C6%85ix",
                      "The source URL is https://libgen.li/file.php?id=<f_id>",
-                     allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                     maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "cover_url_guess": ("after", ["Anna's Archive best guess at the full URL to the cover image on libgen.li, for this specific file (not taking into account editions)."]),
             "cover_url_guess_normalized": ("after", ["Anna's Archive best guess at the full URL to the cover image on libgen.li, using the guess from the first edition that has a non-empty guess, if the file-specific guess is empty."]),
             "scimag_url_guess": ("after", ["Anna's Archive best guess at the canonical URL for journal articles."]),
@@ -2407,6 +2399,7 @@ def get_isbndb_dicts(session, canonical_isbn13s):
             if row['isbn13'][0:3] == '978':
                 isbndb10_grouped[row['isbn10']].append(row)
 
+    maps = allthethings.utils.generate_mappings()
     isbn_dicts = []
     for canonical_isbn13 in canonical_isbn13s:
         isbn_dict = {
@@ -2467,7 +2460,7 @@ def get_isbndb_dicts(session, canonical_isbn13s):
         isbndb_wrapper_comments = {
             "ean13": ("before", ["Metadata from our ISBNdb collection, augmented by Anna's Archive.",
                                "More details at https://annas-archive.se/datasets",
-                               allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                               maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "isbndb": ("before", ["All matching records from the ISBNdb database."]),
         }
         isbn_dicts.append(add_comments_to_dict(isbn_dict, isbndb_wrapper_comments))
@@ -2502,17 +2495,18 @@ def get_scihub_doi_dicts(session, key, values):
         traceback.print_tb(err.__traceback__)
         return []
 
+    maps = allthethings.utils.generate_mappings()
     scihub_doi_dicts = []
     for scihub_doi in scihub_dois:
         scihub_doi_dict = { "doi": scihub_doi["doi"] }
         allthethings.utils.init_identifiers_and_classification_unified(scihub_doi_dict)
         allthethings.utils.add_identifier_unified(scihub_doi_dict, "doi", scihub_doi_dict["doi"])
         scihub_doi_dict_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "doi": ("before", ["This is a file from Sci-Hub's dois-2022-02-12.7z dataset.",
                               "More details at https://annas-archive.se/datasets/scihub",
                               "The source URL is https://sci-hub.ru/datasets/dois-2022-02-12.7z",
-                              allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                              maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
         }
         scihub_doi_dicts.append(add_comments_to_dict(scihub_doi_dict, scihub_doi_dict_comments))
     return scihub_doi_dicts
@@ -2831,6 +2825,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
         traceback.print_tb(err.__traceback__)
         return []
 
+    maps = allthethings.utils.generate_mappings()
     top_level_records = []
     duxiu_records_indexes = []
     duxiu_records_offsets_and_lengths = []
@@ -3309,7 +3304,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
 
 
         duxiu_dict_derived_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "source_multiple": ("before", ["Sources of the metadata."]),
             "md5_multiple": ("before", ["Includes both our generated MD5, and the original file MD5."]),
             "filesize_multiple": ("before", ["Includes both our generated file’s size, and the original filesize.",
@@ -3326,16 +3321,16 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
         duxiu_dict['aa_duxiu_derived'] = add_comments_to_dict(duxiu_dict['aa_duxiu_derived'], duxiu_dict_derived_comments)
 
         duxiu_dict_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "duxiu_ssid": ("before", ["This is a DuXiu metadata record.",
                                 "More details at https://annas-archive.se/datasets/duxiu",
-                                allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                                maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "cadal_ssno": ("before", ["This is a CADAL metadata record.",
                                 "More details at https://annas-archive.se/datasets/duxiu",
-                                allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                                maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "md5": ("before", ["This is a DuXiu/related metadata record.",
                                 "More details at https://annas-archive.se/datasets/duxiu",
-                                allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                                maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "duxiu_file": ("before", ["Information on the actual file in our collection (see torrents)."]),
             "aa_duxiu_derived": ("before", "Derived metadata."),
             "aac_records": ("before", "Metadata records from the 'duxiu_records' file, which is a compilation of metadata from various sources."),
@@ -3453,6 +3448,7 @@ def get_aac_upload_book_dicts(session, key, values):
         traceback.print_tb(err.__traceback__)
         return []
 
+    maps = allthethings.utils.generate_mappings()
     aac_upload_book_dicts = []
     for aac_upload_book_dict_raw in aac_upload_book_dicts_raw:
         aac_upload_book_dict = {
@@ -3629,10 +3625,10 @@ def get_aac_upload_book_dicts(session, key, values):
             aac_upload_book_dict['aa_upload_derived']['content_type'] = 'book_nonfiction'
 
         aac_upload_dict_comments = {
-            **allthethings.utils.COMMON_DICT_COMMENTS,
+            **maps['COMMON_DICT_COMMENTS'],
             "md5": ("before", ["This is a record of a file uploaded directly to Anna's Archive",
                                 "More details at https://annas-archive.se/datasets/upload",
-                                allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                                maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
             "records": ("before", ["Metadata from inspecting the file."]),
             "files": ("before", ["Short metadata on the file in our torrents."]),
             "aa_upload_derived": ("before", "Derived metadata."),
@@ -3659,9 +3655,9 @@ def get_aac_magzdb_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'magzdb_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, SUBSTRING(primary_id, 8) AS requested_value FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"record_{value}" for value in values] })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, SUBSTRING(primary_id, 8) AS requested_value FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"record_{value}" for value in values] })
         elif key == 'md5':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__magzdb_records JOIN annas_archive_meta__aacid__magzdb_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 IN %(values)s', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__magzdb_records JOIN annas_archive_meta__aacid__magzdb_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 IN %(values)s', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_magzdb_book_dicts: '{key}'")
     except Exception as err:
@@ -3690,7 +3686,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
     if len(publication_ids) > 0:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(f'SELECT byte_offset, byte_length FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"publication_{pubid}" for pubid in publication_ids] })
+        cursor.execute('SELECT byte_offset, byte_length FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"publication_{pubid}" for pubid in publication_ids] })
         for row in cursor.fetchall():
             publication_offsets_and_lengths.append((row['byte_offset'], row['byte_length']))
     publication_aac_records_by_id = {}
@@ -3835,9 +3831,9 @@ def get_aac_nexusstc_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key in ['nexusstc_id', 'nexusstc_download']:
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, primary_id AS requested_value FROM annas_archive_meta__aacid__nexusstc_records WHERE primary_id IN %(values)s', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, primary_id AS requested_value FROM annas_archive_meta__aacid__nexusstc_records WHERE primary_id IN %(values)s', { "values": values })
         elif key == 'md5':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__nexusstc_records JOIN annas_archive_meta__aacid__nexusstc_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 IN %(values)s', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__nexusstc_records JOIN annas_archive_meta__aacid__nexusstc_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 IN %(values)s', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_nexusstc_book_dicts: '{key}'")
     except Exception as err:
@@ -6240,10 +6236,11 @@ def md5_json(aarecord_id):
     if len(aarecords) == 0:
         return "{}", 404
     
+    maps = allthethings.utils.generate_mappings()
     aarecord_comments = {
         "id": ("before", ["File from the combined collections of Anna's Archive.",
                            "More details at https://annas-archive.se/datasets",
-                           allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
+                           maps['DICT_COMMENTS_NO_API_DISCLAIMER']]),
         "lgrsnf_book": ("before", ["Source data at: https://annas-archive.se/db/lgrsnf/<id>.json"]),
         "lgrsfic_book": ("before", ["Source data at: https://annas-archive.se/db/lgrsfic/<id>.json"]),
         "lgli_file": ("before", ["Source data at: https://annas-archive.se/db/lgli/<f_id>.json"]),

@@ -23,13 +23,13 @@ import threading
 import traceback
 import time
 
-from flask_babel import gettext, get_babel, force_locale
+from flask_babel import gettext, get_babel, force_locale, get_locale
 
 from sqlalchemy import select
 
 from allthethings.extensions import es, es_aux, engine, MariapersistFastDownloadAccess
 from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, MEMBERS_TELEGRAM_URL, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, FAST_PARTNER_SERVER1, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY, AACID_SMALL_DATA_IMPORTS
-from allthethings.page.openlibrary.edition import editions as ol_editions
+from allthethings.page.openlibrary.edition import get_editions
 
 FEATURE_FLAGS = {}
 
@@ -796,447 +796,497 @@ def make_anon_download_uri(limit_multiple, speed_kbps, path, filename, domain):
     secure_str = f"{domain}/{limit_multiple_field}/{expiry}/{speed_kbps}/{path},{DOWNLOADS_SECRET_KEY}"
     md5 = base64.urlsafe_b64encode(hashlib.md5(secure_str.encode('utf-8')).digest()).decode('utf-8').rstrip('=')
     return f"d3/{limit_multiple_field}/{expiry}/{speed_kbps}/{urllib.parse.quote(path)}~/{md5}/{filename}"
+
+
+@functools.cache
+def generate_mappings(locale = None):
+    if locale is None:
+        locale = get_locale()
     
-DICT_COMMENTS_NO_API_DISCLAIMER = "This page is *not* intended as an API. If you need programmatic access to this JSON, please set up your own instance. For more information, see: https://annas-archive.se/datasets and https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports"
+    with force_locale(locale):
+        print(f'Generating mappings for {locale}')
+        
+        DICT_COMMENTS_NO_API_DISCLAIMER = gettext("not-an-api")
 
-COMMON_DICT_COMMENTS = {
-    "identifier": ("after", ["Typically ISBN-10 or ISBN-13."]),
-    "identifierwodash": ("after", ["Same as 'identifier' but without dashes."]),
-    "locator": ("after", ["Original filename or path on the Library Genesis servers."]),
-    "stripped_description": ("before", ["Anna's Archive version of the 'descr' or 'description' field, with HTML tags removed or replaced with regular whitespace."]),
-    "language_codes": ("before", ["Anna's Archive version of the 'language' field, where we attempted to parse it into BCP 47 tags."]),
-    "cover_url_normalized": ("after", ["Anna's Archive version of the 'coverurl' field, where we attempted to turn it into a full URL."]),
-    "edition_varia_normalized": ("after", ["Anna's Archive version of the 'series', 'volume', 'edition', 'periodical', and 'year' fields; combining them into a single field for display and search."]),
-    "topic_descr": ("after", ["A description of the 'topic' field using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on.",
-                    "https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal."]),
-    "topic": ("after", ["See 'topic_descr' below."]),
-    "searchable": ("after", ["This seems to indicate that the book has been OCR'ed."]),
-    "generic": ("after", ["If this is set to a different md5, then that version is preferred over this one, and should be shown in search results instead."]),
-    "visible": ("after", ["If this is set, the book is in fact *not* visible in Libgen, and this string describes the reason."]),
-    "commentary": ("after", ["Comments left by the uploader, an admin, or an automated process."]),
-    "toc": ("before", ["Table of contents. May contain HTML."]),
-    "ddc": ("after", ["See also https://libgen.li/biblioservice.php?type=ddc"]),
-    "udc": ("after", ["See also https://libgen.li/biblioservice.php?type=udc"]),
-    "lbc": ("after", ["See also https://libgen.li/biblioservice.php?type=bbc and https://www.isko.org/cyclo/lbc"]),
-    "descriptions_mapped": ("before", ["Normalized fields by Anna's Archive, taken from the various `*_add_descr` Libgen.li tables, with comments taken from the `elem_descr` table which contain metadata about these fields, as well as sometimes our own metadata.",
-                                       "The names themselves are taken from `name_en` in the corresponding `elem_descr` entry (lowercased, whitespace removed), with `name_add{1,2,3}_en` to create the compound keys, such as `isbn_isbnnotes`."]),
-    "identifiers_unified": ("before", ["Anna's Archive version of various identity-related fields."]),
-    "classifications_unified": ("before", ["Anna's Archive version of various classification-related fields."]),
-    "added_date_unified": ("before", ["Anna's Archive notion of when records were added to the source library, or when they were scraped."]),
-}
+        COMMON_DICT_COMMENTS = {
+            "identifier": ("after", ["Typically ISBN-10 or ISBN-13."]),
+            "identifierwodash": ("after", ["Same as 'identifier' but without dashes."]),
+            "locator": ("after", ["Original filename or path on the Library Genesis servers."]),
+            "stripped_description": ("before", ["Anna's Archive version of the 'descr' or 'description' field, with HTML tags removed or replaced with regular whitespace."]),
+            "language_codes": ("before", ["Anna's Archive version of the 'language' field, where we attempted to parse it into BCP 47 tags."]),
+            "cover_url_normalized": ("after", ["Anna's Archive version of the 'coverurl' field, where we attempted to turn it into a full URL."]),
+            "edition_varia_normalized": ("after", ["Anna's Archive version of the 'series', 'volume', 'edition', 'periodical', and 'year' fields; combining them into a single field for display and search."]),
+            "topic_descr": ("after", ["A description of the 'topic' field using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on.",
+                            "https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal."]),
+            "topic": ("after", ["See 'topic_descr' below."]),
+            "searchable": ("after", ["This seems to indicate that the book has been OCR'ed."]),
+            "generic": ("after", ["If this is set to a different md5, then that version is preferred over this one, and should be shown in search results instead."]),
+            "visible": ("after", ["If this is set, the book is in fact *not* visible in Libgen, and this string describes the reason."]),
+            "commentary": ("after", ["Comments left by the uploader, an admin, or an automated process."]),
+            "toc": ("before", ["Table of contents. May contain HTML."]),
+            "ddc": ("after", ["See also https://libgen.li/biblioservice.php?type=ddc"]),
+            "udc": ("after", ["See also https://libgen.li/biblioservice.php?type=udc"]),
+            "lbc": ("after", ["See also https://libgen.li/biblioservice.php?type=bbc and https://www.isko.org/cyclo/lbc"]),
+            "descriptions_mapped": ("before", ["Normalized fields by Anna's Archive, taken from the various `*_add_descr` Libgen.li tables, with comments taken from the `elem_descr` table which contain metadata about these fields, as well as sometimes our own metadata.",
+                                            "The names themselves are taken from `name_en` in the corresponding `elem_descr` entry (lowercased, whitespace removed), with `name_add{1,2,3}_en` to create the compound keys, such as `isbn_isbnnotes`."]),
+            "identifiers_unified": ("before", ["Anna's Archive version of various identity-related fields."]),
+            "classifications_unified": ("before", ["Anna's Archive version of various classification-related fields."]),
+            "added_date_unified": ("before", ["Anna's Archive notion of when records were added to the source library, or when they were scraped."]),
+        }
 
-# Hardcoded from the `descr_elems` table.
-LGLI_EDITION_TYPE_MAPPING = {
-    "b":"book",
-    "ch":"book-chapter",
-    "bpart":"book-part",
-    "bsect":"book-section",
-    "bs":"book-series",
-    "bset":"book-set",
-    "btrack":"book-track",
-    "component":"component",
-    "dataset":"dataset",
-    "diss":"dissertation",
-    "j":"journal",
-    "a":"journal-article",
-    "ji":"journal-issue",
-    "jv":"journal-volume",
-    "mon":"monograph",
-    "oth":"other",
-    "peer-review":"peer-review",
-    "posted-content":"posted-content",
-    "proc":"proceedings",
-    "proca":"proceedings-article",
-    "ref":"reference-book",
-    "refent":"reference-entry",
-    "rep":"report",
-    "repser":"report-series",
-    "s":"standard",
-    "fnz":"Fanzine",
-    "m":"Magazine issue",
-    "col":"Collection",
-    "chb":"Chapbook",
-    "nonfict":"Nonfiction",
-    "omni":"Omnibus",
-    "nov":"Novel",
-    "ant":"Anthology",
-    "c":"Comics issue",
-}
+        # Hardcoded from the `descr_elems` table.
+        LGLI_EDITION_TYPE_MAPPING = {
+            "b":"book",
+            "ch":"book-chapter",
+            "bpart":"book-part",
+            "bsect":"book-section",
+            "bs":"book-series",
+            "bset":"book-set",
+            "btrack":"book-track",
+            "component":"component",
+            "dataset":"dataset",
+            "diss":"dissertation",
+            "j":"journal",
+            "a":"journal-article",
+            "ji":"journal-issue",
+            "jv":"journal-volume",
+            "mon":"monograph",
+            "oth":"other",
+            "peer-review":"peer-review",
+            "posted-content":"posted-content",
+            "proc":"proceedings",
+            "proca":"proceedings-article",
+            "ref":"reference-book",
+            "refent":"reference-entry",
+            "rep":"report",
+            "repser":"report-series",
+            "s":"standard",
+            "fnz":"Fanzine",
+            "m":"Magazine issue",
+            "col":"Collection",
+            "chb":"Chapbook",
+            "nonfict":"Nonfiction",
+            "omni":"Omnibus",
+            "nov":"Novel",
+            "ant":"Anthology",
+            "c":"Comics issue",
+        }
 
-LGLI_ISSUE_OTHER_FIELDS = [
-    "issue_number_in_year",
-    "issue_year_number",
-    "issue_number",
-    "issue_volume",
-    "issue_split",
-    "issue_total_number",
-    "issue_first_page",
-    "issue_last_page",
-    "issue_year_end",
-    "issue_month_end",
-    "issue_day_end",
-    "issue_closed",
-]
+        LGLI_ISSUE_OTHER_FIELDS = [
+            "issue_number_in_year",
+            "issue_year_number",
+            "issue_number",
+            "issue_volume",
+            "issue_split",
+            "issue_total_number",
+            "issue_first_page",
+            "issue_last_page",
+            "issue_year_end",
+            "issue_month_end",
+            "issue_day_end",
+            "issue_closed",
+        ]
 
-LGLI_STANDARD_INFO_FIELDS = [
-    "standardtype",
-    "standardtype_standartnumber",
-    "standardtype_standartdate",
-    "standartnumber",
-    "standartstatus",
-    "standartstatus_additionalstandartstatus",
-]
+        LGLI_STANDARD_INFO_FIELDS = [
+            "standardtype",
+            "standardtype_standartnumber",
+            "standardtype_standartdate",
+            "standartnumber",
+            "standartstatus",
+            "standartstatus_additionalstandartstatus",
+        ]
 
-LGLI_DATE_INFO_FIELDS = [
-    "datepublication",
-    "dateintroduction",
-    "dateactualizationtext",
-    "dateregistration",
-    "dateactualizationdescr",
-    "dateexpiration",
-    "datelastedition",
-]
+        LGLI_DATE_INFO_FIELDS = [
+            "datepublication",
+            "dateintroduction",
+            "dateactualizationtext",
+            "dateregistration",
+            "dateactualizationdescr",
+            "dateexpiration",
+            "datelastedition",
+        ]
 
-# Hardcoded from the `libgenli_elem_descr` table.
-LGLI_IDENTIFIERS = {
-    "asin": { "label": "ASIN", "url": "https://www.amazon.com/dp/%s", "description": "Amazon Standard Identification Number"},
-    "audibleasin": { "label": "Audible-ASIN", "url": "https://www.audible.com/pd/%s", "description": "Audible ASIN"},
-    "bl": { "label": "BL", "url": "http://explore.bl.uk/primo_library/libweb/action/dlDisplay.do?vid=BLVU1&amp;docId=BLL01%s", "description": "The British Library"},
-    "bleilerearlyyears": { "label": "Bleiler Early Years", "url": "", "description": "Richard Bleiler, Everett F. Bleiler. Science-Fiction: The Early Years. Kent State University Press, 1991, xxiii+998 p."},
-    "bleilergernsback": { "label": "Bleiler Gernsback", "url": "", "description": "Everett F. Bleiler, Richard Bleiler. Science-Fiction: The Gernsback Years. Kent State University Press, 1998, xxxii+730pp"},
-    "bleilersupernatural": { "label": "Bleiler Supernatural", "url": "", "description": "Everett F. Bleiler. The Guide to Supernatural Fiction. Kent State University Press, 1983, xii+723 p."},
-    "bn": { "label": "BN", "url": "http://www.barnesandnoble.com/s/%s", "description": "Barnes and Noble"},
-    "bnb": { "label": "BNB", "url": "http://search.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=%s", "description": "The British National Bibliography"},
-    "bnf": { "label": "BNF", "url": "http://catalogue.bnf.fr/ark:/12148/%s", "description": "Bibliotheque nationale de France"},
-    "coollibbookid": { "label": "Coollib", "url": "https://coollib.ru/b/%s", "description":""},
-    "copac": { "label": "COPAC", "url": "http://copac.jisc.ac.uk/id/%s?style=html", "description": "UK/Irish union catalog"},
-    "crossrefbookid": { "label": "Crossref", "url": "https://data.crossref.org/depositorreport?pubid=%s", "description":""},
-    "dnb": { "label": "DNB", "url": "http://d-nb.info/%s", "description": "Deutsche Nationalbibliothek"},
-    "fantlabeditionid": { "label": "FantLab Edition ID", "url": "https://fantlab.ru/edition%s", "description": "Лаболатория фантастики"},
-    "flibustabookid": { "label": "Flibusta", "url": "https://flibusta.is/b/%s", "description":""},
-    "goodreads": { "label": "Goodreads", "url": "http://www.goodreads.com/book/show/%s", "description": "Goodreads social cataloging site"},
-    "googlebookid": { "label": "Google Books", "url": "https://books.google.com/books?id=%s", "description": ""},
-    "isfdbpubideditions": { "label": "ISFDB (editions)", "url": "http://www.isfdb.org/cgi-bin/pl.cgi?%s", "description": ""},
-    "issn": { "label": "ISSN", "url": "https://urn.issn.org/urn:issn:%s", "description": "International Standard Serial Number"},
-    "jnbjpno": { "label": "JNB/JPNO", "url": "https://iss.ndl.go.jp/api/openurl?ndl_jpno=%s&amp;locale=en", "description": "The Japanese National Bibliography"},
-    "jstorstableid": { "label": "JSTOR Stable", "url": "https://www.jstor.org/stable/%s", "description": ""},
-    "kbr": { "label": "KBR", "url": "https://opac.kbr.be/Library/doc/SYRACUSE/%s/", "description": "De Belgische Bibliografie/La Bibliographie de Belgique"},
-    "lccn": { "label": "LCCN", "url": "http://lccn.loc.gov/%s", "description": "Library of Congress Control Number"},
-    "librusecbookid": { "label": "Librusec", "url": "https://lib.rus.ec/b/%s", "description":""},
-    "litmirbookid": { "label": "Litmir", "url": "https://www.litmir.me/bd/?b=%s", "description":""},
-    "ltf": { "label": "LTF", "url": "http://www.tercerafundacion.net/biblioteca/ver/libro/%s", "description": "La Tercera Fundaci&#243;n"},
-    "maximabookid": { "label": "Maxima", "url": "http://maxima-library.org/mob/b/%s", "description":""},
-    "ndl": { "label": "NDL", "url": "http://id.ndl.go.jp/bib/%s/eng", "description": "National Diet Library"},
-    "nilf": { "label": "NILF", "url": "http://nilf.it/%s/", "description": "Numero Identificativo della Letteratura Fantastica / Fantascienza"},
-    "nla": { "label": "NLA", "url": "https://nla.gov.au/nla.cat-vn%s", "description": "National Library of Australia"},
-    "noosfere": { "label": "NooSFere", "url": "https://www.noosfere.org/livres/niourf.asp?numlivre=%s", "description": "NooSFere"},
-    "oclcworldcat": { "label": "OCLC/WorldCat", "url": "https://www.worldcat.org/oclc/%s", "description": "Online Computer Library Center"},
-    "openlibrary": { "label": "Open Library", "url": "https://openlibrary.org/books/%s", "description": ""},
-    "pii": { "label": "PII", "url": "", "description": "Publisher Item Identifier", "website": "https://en.wikipedia.org/wiki/Publisher_Item_Identifier"},
-    "pmcid": { "label": "PMC ID", "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/%s/", "description": "PubMed Central ID"},
-    "pmid": { "label": "PMID", "url": "https://pubmed.ncbi.nlm.nih.gov/%s/", "description": "PubMed ID"},
-    "porbase": { "label": "PORBASE", "url": "http://id.bnportugal.gov.pt/bib/porbase/%s", "description": "Biblioteca Nacional de Portugal"},
-    "ppn": { "label": "PPN", "url": "http://picarta.pica.nl/xslt/DB=3.9/XMLPRS=Y/PPN?PPN=%s", "description": "De Nederlandse Bibliografie Pica Productie Nummer"},
-    "reginald1": { "label": "Reginald-1", "url": "", "description": "R. Reginald. Science Fiction and Fantasy Literature: A Checklist, 1700-1974, with Contemporary Science Fiction Authors II. Gale Research Co., 1979, 1141p."},
-    "reginald3": { "label": "Reginald-3", "url": "", "description": "Robert Reginald. Science Fiction and Fantasy Literature, 1975-1991: A Bibliography of Science Fiction, Fantasy, and Horror Fiction Books and Nonfiction Monographs. Gale Research Inc., 1992, 1512 p."},
-    "sfbg": { "label": "SFBG", "url": "http://www.sfbg.us/book/%s", "description": "Catalog of books published in Bulgaria"},
-    "sfleihbuch": { "label": "SF-Leihbuch", "url": "http://www.sf-leihbuch.de/index.cfm?bid=%s", "description": "Science Fiction-Leihbuch-Datenbank"},
-}
+        # Hardcoded from the `libgenli_elem_descr` table.
+        LGLI_IDENTIFIERS = {
+            "asin": { "label": "ASIN", "url": "https://www.amazon.com/dp/%s", "description": "Amazon Standard Identification Number"},
+            "audibleasin": { "label": "Audible-ASIN", "url": "https://www.audible.com/pd/%s", "description": "Audible ASIN"},
+            "bl": { "label": "BL", "url": "http://explore.bl.uk/primo_library/libweb/action/dlDisplay.do?vid=BLVU1&amp;docId=BLL01%s", "description": "The British Library"},
+            "bleilerearlyyears": { "label": "Bleiler Early Years", "url": "", "description": "Richard Bleiler, Everett F. Bleiler. Science-Fiction: The Early Years. Kent State University Press, 1991, xxiii+998 p."},
+            "bleilergernsback": { "label": "Bleiler Gernsback", "url": "", "description": "Everett F. Bleiler, Richard Bleiler. Science-Fiction: The Gernsback Years. Kent State University Press, 1998, xxxii+730pp"},
+            "bleilersupernatural": { "label": "Bleiler Supernatural", "url": "", "description": "Everett F. Bleiler. The Guide to Supernatural Fiction. Kent State University Press, 1983, xii+723 p."},
+            "bn": { "label": "BN", "url": "http://www.barnesandnoble.com/s/%s", "description": "Barnes and Noble"},
+            "bnb": { "label": "BNB", "url": "http://search.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=%s", "description": "The British National Bibliography"},
+            "bnf": { "label": "BNF", "url": "http://catalogue.bnf.fr/ark:/12148/%s", "description": "Bibliotheque nationale de France"},
+            "coollibbookid": { "label": "Coollib", "url": "https://coollib.ru/b/%s", "description":""},
+            "copac": { "label": "COPAC", "url": "http://copac.jisc.ac.uk/id/%s?style=html", "description": "UK/Irish union catalog"},
+            "crossrefbookid": { "label": "Crossref", "url": "https://data.crossref.org/depositorreport?pubid=%s", "description":""},
+            "dnb": { "label": "DNB", "url": "http://d-nb.info/%s", "description": "Deutsche Nationalbibliothek"},
+            "fantlabeditionid": { "label": "FantLab Edition ID", "url": "https://fantlab.ru/edition%s", "description": "Лаболатория фантастики"},
+            "flibustabookid": { "label": "Flibusta", "url": "https://flibusta.is/b/%s", "description":""},
+            "goodreads": { "label": "Goodreads", "url": "http://www.goodreads.com/book/show/%s", "description": "Goodreads social cataloging site"},
+            "googlebookid": { "label": "Google Books", "url": "https://books.google.com/books?id=%s", "description": ""},
+            "isfdbpubideditions": { "label": "ISFDB (editions)", "url": "http://www.isfdb.org/cgi-bin/pl.cgi?%s", "description": ""},
+            "issn": { "label": "ISSN", "url": "https://urn.issn.org/urn:issn:%s", "description": "International Standard Serial Number"},
+            "jnbjpno": { "label": "JNB/JPNO", "url": "https://iss.ndl.go.jp/api/openurl?ndl_jpno=%s&amp;locale=en", "description": "The Japanese National Bibliography"},
+            "jstorstableid": { "label": "JSTOR Stable", "url": "https://www.jstor.org/stable/%s", "description": ""},
+            "kbr": { "label": "KBR", "url": "https://opac.kbr.be/Library/doc/SYRACUSE/%s/", "description": "De Belgische Bibliografie/La Bibliographie de Belgique"},
+            "lccn": { "label": "LCCN", "url": "http://lccn.loc.gov/%s", "description": "Library of Congress Control Number"},
+            "librusecbookid": { "label": "Librusec", "url": "https://lib.rus.ec/b/%s", "description":""},
+            "litmirbookid": { "label": "Litmir", "url": "https://www.litmir.me/bd/?b=%s", "description":""},
+            "ltf": { "label": "LTF", "url": "http://www.tercerafundacion.net/biblioteca/ver/libro/%s", "description": "La Tercera Fundaci&#243;n"},
+            "maximabookid": { "label": "Maxima", "url": "http://maxima-library.org/mob/b/%s", "description":""},
+            "ndl": { "label": "NDL", "url": "http://id.ndl.go.jp/bib/%s/eng", "description": "National Diet Library"},
+            "nilf": { "label": "NILF", "url": "http://nilf.it/%s/", "description": "Numero Identificativo della Letteratura Fantastica / Fantascienza"},
+            "nla": { "label": "NLA", "url": "https://nla.gov.au/nla.cat-vn%s", "description": "National Library of Australia"},
+            "noosfere": { "label": "NooSFere", "url": "https://www.noosfere.org/livres/niourf.asp?numlivre=%s", "description": "NooSFere"},
+            "oclcworldcat": { "label": "OCLC/WorldCat", "url": "https://www.worldcat.org/oclc/%s", "description": "Online Computer Library Center"},
+            "openlibrary": { "label": "Open Library", "url": "https://openlibrary.org/books/%s", "description": ""},
+            "pii": { "label": "PII", "url": "", "description": "Publisher Item Identifier", "website": "https://en.wikipedia.org/wiki/Publisher_Item_Identifier"},
+            "pmcid": { "label": "PMC ID", "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/%s/", "description": "PubMed Central ID"},
+            "pmid": { "label": "PMID", "url": "https://pubmed.ncbi.nlm.nih.gov/%s/", "description": "PubMed ID"},
+            "porbase": { "label": "PORBASE", "url": "http://id.bnportugal.gov.pt/bib/porbase/%s", "description": "Biblioteca Nacional de Portugal"},
+            "ppn": { "label": "PPN", "url": "http://picarta.pica.nl/xslt/DB=3.9/XMLPRS=Y/PPN?PPN=%s", "description": "De Nederlandse Bibliografie Pica Productie Nummer"},
+            "reginald1": { "label": "Reginald-1", "url": "", "description": "R. Reginald. Science Fiction and Fantasy Literature: A Checklist, 1700-1974, with Contemporary Science Fiction Authors II. Gale Research Co., 1979, 1141p."},
+            "reginald3": { "label": "Reginald-3", "url": "", "description": "Robert Reginald. Science Fiction and Fantasy Literature, 1975-1991: A Bibliography of Science Fiction, Fantasy, and Horror Fiction Books and Nonfiction Monographs. Gale Research Inc., 1992, 1512 p."},
+            "sfbg": { "label": "SFBG", "url": "http://www.sfbg.us/book/%s", "description": "Catalog of books published in Bulgaria"},
+            "sfleihbuch": { "label": "SF-Leihbuch", "url": "http://www.sf-leihbuch.de/index.cfm?bid=%s", "description": "Science Fiction-Leihbuch-Datenbank"},
+        }
 
-# Hardcoded from the `libgenli_elem_descr` table.
-LGLI_CLASSIFICATIONS = {
-    "classification": { "label": "Classification", "url": "", "description": "" },
-    "classificationokp": { "label": "OKP", "url": "https://classifikators.ru/okp/%s", "description": "" },
-    "classificationgostgroup": { "label": "GOST group", "url": "", "description": "", "website": "https://en.wikipedia.org/wiki/GOST" },
-    "classificationoks": { "label": "OKS", "url": "", "description": "" },
-    "libraryofcongressclassification": { "label": "LCC", "url": "https://catalog.loc.gov/vwebv/search?searchCode=CALL%2B&searchArg=%s&searchType=1&limitTo=none&fromYear=&toYear=&limitTo=LOCA%3Dall&limitTo=PLAC%3Dall&limitTo=TYPE%3Dall&limitTo=LANG%3Dall&recCount=25", "description": "Library of Congress Classification", "website": "https://en.wikipedia.org/wiki/Library_of_Congress_Classification" },
-    "udc": { "label": "UDC", "url": "https://libgen.li/biblioservice.php?value=%s&type=udc", "description": "Universal Decimal Classification", "website": "https://en.wikipedia.org/wiki/Universal_Decimal_Classification" },
-    "ddc": { "label": "DDC", "url": "https://libgen.li/biblioservice.php?value=%s&type=ddc", "description": "Dewey Decimal", "website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes" },
-    "lbc": { "label": "LBC", "url": "https://libgen.li/biblioservice.php?value=%s&type=bbc", "description": "Library-Bibliographical Classification", "website": "https://www.isko.org/cyclo/lbc" },
-}
+        # Hardcoded from the `libgenli_elem_descr` table.
+        LGLI_CLASSIFICATIONS = {
+            "classification": { "label": "Classification", "url": "", "description": "" },
+            "classificationokp": { "label": "OKP", "url": "https://classifikators.ru/okp/%s", "description": "" },
+            "classificationgostgroup": { "label": "GOST group", "url": "", "description": "", "website": "https://en.wikipedia.org/wiki/GOST" },
+            "classificationoks": { "label": "OKS", "url": "", "description": "" },
+            "libraryofcongressclassification": { "label": "LCC", "url": "https://catalog.loc.gov/vwebv/search?searchCode=CALL%2B&searchArg=%s&searchType=1&limitTo=none&fromYear=&toYear=&limitTo=LOCA%3Dall&limitTo=PLAC%3Dall&limitTo=TYPE%3Dall&limitTo=LANG%3Dall&recCount=25", "description": "Library of Congress Classification", "website": "https://en.wikipedia.org/wiki/Library_of_Congress_Classification" },
+            "udc": { "label": "UDC", "url": "https://libgen.li/biblioservice.php?value=%s&type=udc", "description": "Universal Decimal Classification", "website": "https://en.wikipedia.org/wiki/Universal_Decimal_Classification" },
+            "ddc": { "label": "DDC", "url": "https://libgen.li/biblioservice.php?value=%s&type=ddc", "description": "Dewey Decimal", "website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes" },
+            "lbc": { "label": "LBC", "url": "https://libgen.li/biblioservice.php?value=%s&type=bbc", "description": "Library-Bibliographical Classification", "website": "https://www.isko.org/cyclo/lbc" },
+        }
 
-LGLI_IDENTIFIERS_MAPPING = {
-    "oclcworldcat": "oclc",
-    "openlibrary": "ol",
-    "googlebookid": "gbook",
-}
+        LGLI_IDENTIFIERS_MAPPING = {
+            "oclcworldcat": "oclc",
+            "openlibrary": "ol",
+            "googlebookid": "gbook",
+        }
 
-LGLI_CLASSIFICATIONS_MAPPING = {
-    "classification": "class",
-    "classificationokp": "okp",
-    "classificationgostgroup": "gost",
-    "classificationoks": "oks",
-    "libraryofcongressclassification": "lcc",
-}
+        LGLI_CLASSIFICATIONS_MAPPING = {
+            "classification": "class",
+            "classificationokp": "okp",
+            "classificationgostgroup": "gost",
+            "classificationoks": "oks",
+            "libraryofcongressclassification": "lcc",
+        }
 
-LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING = { 
-    'asin': 'asin', 
-    'googlebookid': 'gbook', 
-    'openlibraryid': 'ol',
-    'doi': 'doi',
-    'issn': 'issn',
-}
+        LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING = { 
+            'asin': 'asin', 
+            'googlebookid': 'gbook', 
+            'openlibraryid': 'ol',
+            'doi': 'doi',
+            'issn': 'issn',
+        }
 
-LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = { 
-    'udc': 'udc',
-    'ddc': 'ddc',
-    'lbc': 'lbc',
-    'lcc': 'lcc', 
-}
+        LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = { 
+            'udc': 'udc',
+            'ddc': 'ddc',
+            'lbc': 'lbc',
+            'lcc': 'lcc', 
+        }
 
-UNIFIED_IDENTIFIERS = {
-    "md5": { "shortenvalue": True, "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
-    "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
-    "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
-    "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },
-    "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.rs/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
-    "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.rs/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
-    "lgli": { "label": "Libgen.li File", "url": "https://libgen.li/file.php?id=%s", "description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.", "website": "/datasets/lgli" },
-    "zlib": { "label": "Z-Library", "url": "https://z-lib.gs/", "description": "ID in Z-Library.", "website": "/datasets/zlib" },
-    "csbn": { "label": "CSBN", "url": "", "description": "China Standard Book Number, predecessor of ISBN in China", "website": "https://zh.wikipedia.org/zh-cn/%E7%BB%9F%E4%B8%80%E4%B9%A6%E5%8F%B7" },
-    "ean13": { "label": "EAN-13", "url": "", "description": "", "website": "https://en.wikipedia.org/wiki/International_Article_Number" },
-    "duxiu_ssid": { "label": "DuXiu SSID", "url": "", "description": "", "website": "/datasets/duxiu" },
-    "duxiu_dxid": { "label": "DuXiu DXID", "url": "", "description": "", "website": "/datasets/duxiu" },
-    "cadal_ssno": { "label": "CADAL SSNO", "url": "", "description": "", "website": "/datasets/duxiu" },
-    "lgli_libgen_id": { "label": "Libgen.li libgen_id", "description": "Repository ID for the 'libgen' repository in Libgen.li. Directly taken from the 'libgen_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
-    "lgli_fiction_id": { "label": "Libgen.li fiction_id", "description": "Repository ID for the 'fiction' repository in Libgen.li. Directly taken from the 'fiction_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
-    "lgli_fiction_rus_id": { "label": "Libgen.li fiction_rus_id", "description": "Repository ID for the 'fiction_rus' repository in Libgen.li. Directly taken from the 'fiction_rus_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
-    "lgli_comics_id": { "label": "Libgen.li comics_id", "description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
-    "lgli_scimag_id": { "label": "Libgen.li scimag_id", "description": "Repository ID for the 'scimag' repository in Libgen.li. Directly taken from the 'scimag_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
-    "lgli_standarts_id": { "label": "Libgen.li standarts_id", "description": "Repository ID for the 'standarts' repository in Libgen.li. Directly taken from the 'standarts_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
-    "lgli_magz_id": { "label": "Libgen.li magz_id", "description": "Repository ID for the 'magz' repository in Libgen.li. Directly taken from the 'magz_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
-    "filepath": { "label": "Filepath", "description": "Original filepath in source library." },
-    "server_path": { "label": "Server Path", "description": "Path on Anna’s Archive partner servers." },
-    "aacid": { "shortenvalue": True, "label": "AacId", "website": "/blog/annas-archive-containers.html", "description": "Anna’s Archive Container identifier." },
-    "magzdb": { "label": "MagzDB Edition ID", "url": "http://magzdb.org/num/%s", "description": "ID of an individual edition of a magazine in MagzDB.", "website": "/datasets/magzdb" },
-    "nexusstc": { "shortenvalue": True, "label": "Nexus/STC", "url": "https://libstc.cc/#/stc/nid:%s", "description": "ID of an individual edition of a file in Nexus/STC.", "website": "/datasets/nexusstc" },
-    "ipfs_cid": { "shortenvalue": True, "label": "IPFS CID", "url": "ipfs://%s", "description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).", "website": "https://ipfs.tech/" },
-    "manualslib": { "label": "ManualsLib", "url": "https://www.manualslib.com/manual/%s/manual.html", "description": "File ID in ManualsLib", "website": "https://www.manualslib.com/" },
-    "iso": { "label": "ISO", "url": "https://iso.org/standard/%s.html", "description": "ISO standard number.", "website": "https://iso.org/" },
-    "british_standard": { "label": "British Standard", "url": "", "description": "British Standards (BS) are the standards produced by the BSI Group.", "website": "https://en.wikipedia.org/wiki/British_Standards" },
-    **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
-    # Plus more added below!
-}
+        UNIFIED_IDENTIFIERS = {
+            "md5": { "shortenvalue": True, "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
+            "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
+            "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
+            "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },
+            "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.rs/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
+            "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.rs/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
+            "lgli": { "label": "Libgen.li File", "url": "https://libgen.li/file.php?id=%s", "description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.", "website": "/datasets/lgli" },
+            "zlib": { "label": "Z-Library", "url": "https://z-lib.gs/", "description": "ID in Z-Library.", "website": "/datasets/zlib" },
+            "csbn": { "label": "CSBN", "url": "", "description": "China Standard Book Number, predecessor of ISBN in China", "website": "https://zh.wikipedia.org/zh-cn/%E7%BB%9F%E4%B8%80%E4%B9%A6%E5%8F%B7" },
+            "ean13": { "label": "EAN-13", "url": "", "description": "", "website": "https://en.wikipedia.org/wiki/International_Article_Number" },
+            "duxiu_ssid": { "label": "DuXiu SSID", "url": "", "description": "", "website": "/datasets/duxiu" },
+            "duxiu_dxid": { "label": "DuXiu DXID", "url": "", "description": "", "website": "/datasets/duxiu" },
+            "cadal_ssno": { "label": "CADAL SSNO", "url": "", "description": "", "website": "/datasets/duxiu" },
+            "lgli_libgen_id": { "label": "Libgen.li libgen_id", "description": "Repository ID for the 'libgen' repository in Libgen.li. Directly taken from the 'libgen_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+            "lgli_fiction_id": { "label": "Libgen.li fiction_id", "description": "Repository ID for the 'fiction' repository in Libgen.li. Directly taken from the 'fiction_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+            "lgli_fiction_rus_id": { "label": "Libgen.li fiction_rus_id", "description": "Repository ID for the 'fiction_rus' repository in Libgen.li. Directly taken from the 'fiction_rus_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+            "lgli_comics_id": { "label": "Libgen.li comics_id", "description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+            "lgli_scimag_id": { "label": "Libgen.li scimag_id", "description": "Repository ID for the 'scimag' repository in Libgen.li. Directly taken from the 'scimag_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+            "lgli_standarts_id": { "label": "Libgen.li standarts_id", "description": "Repository ID for the 'standarts' repository in Libgen.li. Directly taken from the 'standarts_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+            "lgli_magz_id": { "label": "Libgen.li magz_id", "description": "Repository ID for the 'magz' repository in Libgen.li. Directly taken from the 'magz_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+            "filepath": { "label": "Filepath", "description": "Original filepath in source library." },
+            "server_path": { "label": "Server Path", "description": "Path on Anna’s Archive partner servers." },
+            "aacid": { "shortenvalue": True, "label": "AacId", "website": "/blog/annas-archive-containers.html", "description": "Anna’s Archive Container identifier." },
+            "magzdb": { "label": "MagzDB Edition ID", "url": "http://magzdb.org/num/%s", "description": "ID of an individual edition of a magazine in MagzDB.", "website": "/datasets/magzdb" },
+            "nexusstc": { "shortenvalue": True, "label": "Nexus/STC", "url": "https://libstc.cc/#/stc/nid:%s", "description": "ID of an individual edition of a file in Nexus/STC.", "website": "/datasets/nexusstc" },
+            "ipfs_cid": { "shortenvalue": True, "label": "IPFS CID", "url": "ipfs://%s", "description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).", "website": "https://ipfs.tech/" },
+            "manualslib": { "label": "ManualsLib", "url": "https://www.manualslib.com/manual/%s/manual.html", "description": "File ID in ManualsLib", "website": "https://www.manualslib.com/" },
+            "iso": { "label": "ISO", "url": "https://iso.org/standard/%s.html", "description": "ISO standard number.", "website": "https://iso.org/" },
+            "british_standard": { "label": "British Standard", "url": "", "description": "British Standards (BS) are the standards produced by the BSI Group.", "website": "https://en.wikipedia.org/wiki/British_Standards" },
+            **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
+            # Plus more added below!
+        }
 
-UNIFIED_CLASSIFICATIONS = {
-    "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/lgrs" },
-    "torrent": { "label": "Torrent", "url": "/dyn/small_file/torrents/%s", "description": "Bulk torrent for long-term preservation.", "website": "/torrents" },
-    "collection": { "label": "Collection", "url": "/datasets/%s", "description": "The collection on Anna’s Archive that provided data for this record.", "website": "/datasets" },
-    "ia_collection": { "label": "IA Collection", "url": "https://archive.org/details/%s", "description": "Internet Archive collection which this file is part of.", "website": "https://help.archive.org/help/collections-a-basic-guide/" },
-    "lang": { "label": "Language", "website": "https://en.wikipedia.org/wiki/IETF_language_tag", "description": "IETF language tag." },
-    "year": { "label": "Year", "description": "Publication year." },
-    # TODO: Remove on index refresh.
-    "duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
-    "date_duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
-    # TODO: Remove on index refresh.
-    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
-    "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
-    # TODO: Remove on index refresh.
-    "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
-    "date_file_created": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
-    # TODO: Remove on index refresh.
-    "ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
-    "date_ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
-    "date_ia_record_scrape": { "label": "IA Record Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the record from the Internet Archive." },
-    # TODO: Remove on index refresh.
-    "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
-    "date_ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
-    # TODO: Remove on index refresh.
-    "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
-    "date_isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
-    # TODO: Remove on index refresh.
-    "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
-    "date_lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
-    # TODO: Remove on index refresh.
-    "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
-    "date_lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
-    # TODO: Remove on index refresh.
-    "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
-    "date_lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
-    # TODO: Remove on index refresh.
-    "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
-    "date_oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
-    # TODO: Remove on index refresh.
-    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
-    "date_ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
-    # TODO: Remove on index refresh.
-    "upload_record_date": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
-    "date_upload_record": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
-    # TODO: Remove on index refresh.
-    "zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
-    "date_zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
-    "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
-    # TODO: Remove on index refresh.
-    "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
-    "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
-    "magzdb_keyword": { "label": "MagzDB Keyword", "url": "", "description": "Publication keyword in MagzDB (in Russian).", "website": "/datasets/magzdb" },
-    # TODO: Remove on index refresh.
-    "nexusstc_source_issued_at_date": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
-    "date_nexusstc_source_issued_at": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
-    # TODO: Remove on index refresh.
-    "nexusstc_source_update_date": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
-    "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
-    "nexusstc_tag": { "label": "Nexus/STC tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
-    "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },
-    **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
-    # Plus more added below!
-}
+        UNIFIED_CLASSIFICATIONS = {
+            "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/lgrs" },
+            "torrent": { "label": "Torrent", "url": "/dyn/small_file/torrents/%s", "description": "Bulk torrent for long-term preservation.", "website": "/torrents" },
+            "collection": { "label": "Collection", "url": "/datasets/%s", "description": "The collection on Anna’s Archive that provided data for this record.", "website": "/datasets" },
+            "ia_collection": { "label": "IA Collection", "url": "https://archive.org/details/%s", "description": "Internet Archive collection which this file is part of.", "website": "https://help.archive.org/help/collections-a-basic-guide/" },
+            "lang": { "label": "Language", "website": "https://en.wikipedia.org/wiki/IETF_language_tag", "description": "IETF language tag." },
+            "year": { "label": "Year", "description": "Publication year." },
+            # TODO: Remove on index refresh.
+            "duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
+            "date_duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
+            # TODO: Remove on index refresh.
+            "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
+            "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
+            # TODO: Remove on index refresh.
+            "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
+            "date_file_created": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
+            # TODO: Remove on index refresh.
+            "ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
+            "date_ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
+            "date_ia_record_scrape": { "label": "IA Record Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the record from the Internet Archive." },
+            # TODO: Remove on index refresh.
+            "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
+            "date_ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
+            # TODO: Remove on index refresh.
+            "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
+            "date_isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
+            # TODO: Remove on index refresh.
+            "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
+            "date_lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
+            # TODO: Remove on index refresh.
+            "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
+            "date_lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
+            # TODO: Remove on index refresh.
+            "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
+            "date_lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
+            # TODO: Remove on index refresh.
+            "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
+            "date_oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
+            # TODO: Remove on index refresh.
+            "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+            "date_ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+            # TODO: Remove on index refresh.
+            "upload_record_date": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
+            "date_upload_record": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
+            # TODO: Remove on index refresh.
+            "zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
+            "date_zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
+            "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
+            # TODO: Remove on index refresh.
+            "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
+            "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
+            "magzdb_keyword": { "label": "MagzDB Keyword", "url": "", "description": "Publication keyword in MagzDB (in Russian).", "website": "/datasets/magzdb" },
+            # TODO: Remove on index refresh.
+            "nexusstc_source_issued_at_date": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
+            "date_nexusstc_source_issued_at": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
+            # TODO: Remove on index refresh.
+            "nexusstc_source_update_date": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
+            "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
+            "nexusstc_tag": { "label": "Nexus/STC tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
+            "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },
+            **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
+            # Plus more added below!
+        }
 
-OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING = {
-    'abebooks,de': 'abebooks.de',
-    'amazon': 'asin',
-    'amazon.ca_asin': 'asin',
-    'amazon.co.jp_asin': 'asin',
-    'amazon.co.uk_asin': 'asin',
-    'amazon.de_asin': 'asin',
-    'amazon.it_asin': 'asin',
-    'annas_archive': 'md5', # TODO: Do reverse lookup based on this.
-    'bibliothèque_nationale_de_france_(bnf)': 'bibliothèque_nationale_de_france',
-    'british_library': 'bl',
-    'british_national_bibliography': 'bnb',
-    'depósito_legal_n.a.': 'depósito_legal',
-    'doi': 'doi', # TODO: Do reverse lookup based on this.
-    'gallica_(bnf)': 'bibliothèque_nationale_de_france',
-    'google': 'gbook',
-    'harvard_university_library': 'harvard',
-    'isbn_10': 'isbn10',
-    'isbn_13': 'isbn13',
-    'isfdb': 'isfdbpubideditions',
-    'lccn_permalink': 'lccn',
-    'library_of_congress': 'lccn',
-    'library_of_congress_catalog_no.': 'lccn',
-    'library_of_congress_catalogue_number': 'lccn',
-    'national_diet_library,_japan': 'ndl',
-    'oclc_numbers': 'oclc',
-    **{key: key for key in UNIFIED_IDENTIFIERS.keys()},
-    # Plus more added below!
-}
+        OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING = {
+            'abebooks,de': 'abebooks.de',
+            'amazon': 'asin',
+            'amazon.ca_asin': 'asin',
+            'amazon.co.jp_asin': 'asin',
+            'amazon.co.uk_asin': 'asin',
+            'amazon.de_asin': 'asin',
+            'amazon.it_asin': 'asin',
+            'annas_archive': 'md5', # TODO: Do reverse lookup based on this.
+            'bibliothèque_nationale_de_france_(bnf)': 'bibliothèque_nationale_de_france',
+            'british_library': 'bl',
+            'british_national_bibliography': 'bnb',
+            'depósito_legal_n.a.': 'depósito_legal',
+            'doi': 'doi', # TODO: Do reverse lookup based on this.
+            'gallica_(bnf)': 'bibliothèque_nationale_de_france',
+            'google': 'gbook',
+            'harvard_university_library': 'harvard',
+            'isbn_10': 'isbn10',
+            'isbn_13': 'isbn13',
+            'isfdb': 'isfdbpubideditions',
+            'lccn_permalink': 'lccn',
+            'library_of_congress': 'lccn',
+            'library_of_congress_catalog_no.': 'lccn',
+            'library_of_congress_catalogue_number': 'lccn',
+            'national_diet_library,_japan': 'ndl',
+            'oclc_numbers': 'oclc',
+            **{key: key for key in UNIFIED_IDENTIFIERS.keys()},
+            # Plus more added below!
+        }
 
-OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
-    'dewey_decimal_class': 'ddc',
-    'dewey_number': 'ddc',
-    'lc_classifications': 'lcc',
-    'library_bibliographical_classification': 'lbc',
-    'udc': 'udc',
-    'library_of_congress_classification_(lcc)': 'lcc',
-    'dewey_decimal_classification_(ddc)': 'ddc',
-    **{key: key for key in UNIFIED_CLASSIFICATIONS.keys()},
-    # Plus more added below!
-}
+        OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
+            'dewey_decimal_class': 'ddc',
+            'dewey_number': 'ddc',
+            'lc_classifications': 'lcc',
+            'library_bibliographical_classification': 'lbc',
+            'udc': 'udc',
+            'library_of_congress_classification_(lcc)': 'lcc',
+            'dewey_decimal_classification_(ddc)': 'ddc',
+            **{key: key for key in UNIFIED_CLASSIFICATIONS.keys()},
+            # Plus more added below!
+        }
 
-# Hardcoded labels for OL. The "label" fields in ol_edition.json become "description" instead.
-OPENLIB_LABELS = {
-    "abaa": "ABAA",
-    "abebooks.de": "Abebooks",
-    "abwa_bibliographic_number": "ABWA",
-    "alibris_id": "Alibris",
-    "bayerische_staatsbibliothek": "BSB-ID",
-    "bcid": "BCID",
-    "better_world_books": "BWB",
-    "bhl": "BHL",
-    "bibliothèque_nationale_de_france": "BnF",
-    "bibsys": "Bibsys",
-    "bodleian,_oxford_university": "Bodleian",
-    "bookbrainz": "BookBrainz",
-    "booklocker.com": "BookLocker",
-    "bookmooch": "Book Mooch",
-    "booksforyou": "Books For You",
-    "bookwire": "BookWire",
-    "boston_public_library": "BPL",
-    "canadian_national_library_archive": "CNLA",
-    "choosebooks": "Choosebooks",
-    "cornell_university_library": "Cornell",
-    "cornell_university_online_library": "Cornell",
-    "dc_books": "DC",
-    "depósito_legal": "Depósito Legal",
-    "digital_library_pomerania": "Pomerania",
-    "discovereads": "Discovereads",
-    "dnb": "DNB",
-    "dominican_institute_for_oriental_studies_library": "Al Kindi",
-    "etsc": "ETSC",
-    "fennica": "Fennica",
-    "finnish_public_libraries_classification_system": "FPL",
-    "folio": "Folio",
-    "freebase": "Freebase",
-    "goethe_university_library,_frankfurt": "Goethe",
-    "goodreads": "Goodreads",
-    "grand_comics_database": "Grand Comics DB",
-    "harvard": "Harvard",
-    "hathi_trust": "Hathi",
-    "identificativo_sbn": "SBN",
-    "ilmiolibro": "Ilmiolibro",
-    "inducks": "INDUCKS",
-    "infosoup": "Infosoup",
-    "issn": "ISSN",
-    "istc": "ISTC",
-    "lccn": "LCCN",
-    "learnawesome": "LearnAwesome",
-    "library_and_archives_canada_cataloguing_in_publication": "CIP",
-    "librarything": "Library Thing",
-    "libris": "Libris",
-    "librivox": "LibriVox",
-    "lulu": "Lulu",
-    "magcloud": "Magcloud",
-    "musicbrainz": "MusicBrainz",
-    "nbuv": "NBUV",
-    "nla": "NLA",
-    "nur": "NUR",
-    "ocaid": "IA",
-    "open_alex": "OpenAlex",
-    "open_textbook_library": "OTL",
-    "openstax": "OpenStax",
-    "overdrive": "OverDrive",
-    "paperback_swap": "Paperback Swap",
-    "project_gutenberg": "Gutenberg",
-    "publishamerica": "PublishAmerica",
-    "rvk": "RVK",
-    "sab": "SAB",
-    "scribd": "Scribd",
-    "shelfari": "Shelfari",
-    "siso": "SISO",
-    "smashwords_book_download": "Smashwords",
-    "standard_ebooks": "Standard Ebooks",
-    "storygraph": "Storygraph",
-    "ulrls": "ULRLS",
-    "ulrls_classmark": "ULRLS Classmark",
-    "w._w._norton": "W.W.Norton",
-    "wikidata": "Wikidata",
-    "wikisource": "Wikisource",
-    "yakaboo": "Yakaboo",
-    "zdb-id": "ZDB-ID",
-}
+        # Hardcoded labels for OL. The "label" fields in ol_edition.json become "description" instead.
+        OPENLIB_LABELS = {
+            "abaa": "ABAA",
+            "abebooks.de": "Abebooks",
+            "abwa_bibliographic_number": "ABWA",
+            "alibris_id": "Alibris",
+            "bayerische_staatsbibliothek": "BSB-ID",
+            "bcid": "BCID",
+            "better_world_books": "BWB",
+            "bhl": "BHL",
+            "bibliothèque_nationale_de_france": "BnF",
+            "bibsys": "Bibsys",
+            "bodleian,_oxford_university": "Bodleian",
+            "bookbrainz": "BookBrainz",
+            "booklocker.com": "BookLocker",
+            "bookmooch": "Book Mooch",
+            "booksforyou": "Books For You",
+            "bookwire": "BookWire",
+            "boston_public_library": "BPL",
+            "canadian_national_library_archive": "CNLA",
+            "choosebooks": "Choosebooks",
+            "cornell_university_library": "Cornell",
+            "cornell_university_online_library": "Cornell",
+            "dc_books": "DC",
+            "depósito_legal": "Depósito Legal",
+            "digital_library_pomerania": "Pomerania",
+            "discovereads": "Discovereads",
+            "dnb": "DNB",
+            "dominican_institute_for_oriental_studies_library": "Al Kindi",
+            "etsc": "ETSC",
+            "fennica": "Fennica",
+            "finnish_public_libraries_classification_system": "FPL",
+            "folio": "Folio",
+            "freebase": "Freebase",
+            "goethe_university_library,_frankfurt": "Goethe",
+            "goodreads": "Goodreads",
+            "grand_comics_database": "Grand Comics DB",
+            "harvard": "Harvard",
+            "hathi_trust": "Hathi",
+            "identificativo_sbn": "SBN",
+            "ilmiolibro": "Ilmiolibro",
+            "inducks": "INDUCKS",
+            "infosoup": "Infosoup",
+            "issn": "ISSN",
+            "istc": "ISTC",
+            "lccn": "LCCN",
+            "learnawesome": "LearnAwesome",
+            "library_and_archives_canada_cataloguing_in_publication": "CIP",
+            "librarything": "Library Thing",
+            "libris": "Libris",
+            "librivox": "LibriVox",
+            "lulu": "Lulu",
+            "magcloud": "Magcloud",
+            "musicbrainz": "MusicBrainz",
+            "nbuv": "NBUV",
+            "nla": "NLA",
+            "nur": "NUR",
+            "ocaid": "IA",
+            "open_alex": "OpenAlex",
+            "open_textbook_library": "OTL",
+            "openstax": "OpenStax",
+            "overdrive": "OverDrive",
+            "paperback_swap": "Paperback Swap",
+            "project_gutenberg": "Gutenberg",
+            "publishamerica": "PublishAmerica",
+            "rvk": "RVK",
+            "sab": "SAB",
+            "scribd": "Scribd",
+            "shelfari": "Shelfari",
+            "siso": "SISO",
+            "smashwords_book_download": "Smashwords",
+            "standard_ebooks": "Standard Ebooks",
+            "storygraph": "Storygraph",
+            "ulrls": "ULRLS",
+            "ulrls_classmark": "ULRLS Classmark",
+            "w._w._norton": "W.W.Norton",
+            "wikidata": "Wikidata",
+            "wikisource": "Wikisource",
+            "yakaboo": "Yakaboo",
+            "zdb-id": "ZDB-ID",
+        }
 
-for identifier in ol_editions['identifiers']:
-    unified_name = identifier['name']
-    if unified_name in OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
-        unified_name = OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name]
-        if unified_name not in UNIFIED_IDENTIFIERS:
-            raise Exception(f"unified_name '{unified_name}' should be in UNIFIED_IDENTIFIERS")
-    else:
-        OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name] = unified_name
-        if unified_name not in UNIFIED_IDENTIFIERS:
-            assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
-            label = OPENLIB_LABELS[unified_name]
-            description = identifier.get('description', '')
-            if description != label:
-                description = identifier.get('description', '')
-            UNIFIED_IDENTIFIERS[unified_name] = { **identifier, 'label': label, 'description': description }
+        for identifier in get_editions(locale)['identifiers']:
+            unified_name = identifier['name']
+            if unified_name in OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
+                unified_name = OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name]
+                if unified_name not in UNIFIED_IDENTIFIERS:
+                    raise Exception(f"unified_name '{unified_name}' should be in UNIFIED_IDENTIFIERS")
+            else:
+                OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[unified_name] = unified_name
+                if unified_name not in UNIFIED_IDENTIFIERS:
+                    # assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
+                    # label = OPENLIB_LABELS[unified_name]
+                    description = identifier.get('description', '')
+                    # if description != label:
+                    #     description = identifier.get('description', '')
+                    label = description
+                    UNIFIED_IDENTIFIERS[unified_name] = { **identifier, 'label': label, 'description': description }
 
-for classification in ol_editions['classifications']:
-    unified_name = classification['name']
-    if unified_name in OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
-        unified_name = OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name]
-        if unified_name not in UNIFIED_CLASSIFICATIONS:
-            raise Exception(f"unified_name '{unified_name}' should be in UNIFIED_CLASSIFICATIONS")
-    else:
-        OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name] = unified_name
-        if unified_name not in UNIFIED_CLASSIFICATIONS:
-            assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
-            label = OPENLIB_LABELS[unified_name]
-            description = classification.get('description', '')
-            if description != label:
-                description = classification.get('description', '')
-            UNIFIED_CLASSIFICATIONS[unified_name] = { **classification, 'label': label, 'description': description }
+        for classification in get_editions(locale)['classifications']:
+            unified_name = classification['name']
+            if unified_name in OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
+                unified_name = OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name]
+                if unified_name not in UNIFIED_CLASSIFICATIONS:
+                    raise Exception(f"unified_name '{unified_name}' should be in UNIFIED_CLASSIFICATIONS")
+            else:
+                OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[unified_name] = unified_name
+                if unified_name not in UNIFIED_CLASSIFICATIONS:
+                    # assert unified_name in OPENLIB_LABELS, 'If unified name is not in OPENLIB_TO_UNIFIED_*_MAPPING, then it *has* to be in OPENLIB_LABELS.'
+                    # label = OPENLIB_LABELS[unified_name]
+                    description = classification.get('description', '')
+                    # if description != label:
+                    #     description = classification.get('description', '')
+                    label = description
+                    UNIFIED_CLASSIFICATIONS[unified_name] = { **classification, 'label': label, 'description': description }
+
+        ZLIB_BOOK_DICT_COMMENTS = {
+            **COMMON_DICT_COMMENTS,
+            "zlibrary_id": ("before", ["This is a file from the Z-Library collection of Anna's Archive.",
+                            "More details at https://annas-archive.se/datasets/zlib",
+                            "The source URL is http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/md5/<md5_reported>",
+                            DICT_COMMENTS_NO_API_DISCLAIMER]),
+            "edition_varia_normalized": ("after", ["Anna's Archive version of the 'series', 'volume', 'edition', and 'year' fields; combining them into a single field for display and search."]),
+            "in_libgen": ("after", ["Whether at the time of indexing, the book was also available in Libgen."]),
+            "pilimi_torrent": ("after", ["Which torrent by Anna's Archive (formerly the Pirate Library Mirror or 'pilimi') the file belongs to."]),
+            "filesize_reported": ("after", ["The file size as reported by the Z-Library metadata. Is sometimes different from the actually observed file size of the file, as determined by Anna's Archive."]),
+            "md5_reported": ("after", ["The md5 as reported by the Z-Library metadata. Is sometimes different from the actually observed md5 of the file, as determined by Anna's Archive."]),
+            "unavailable": ("after", ["Set when Anna's Archive was unable to download the book."]),
+            "filesize": ("after", ["The actual filesize as determined by Anna's Archive. Missing for AAC zlib3 records"]),
+            "category_id": ("after", ["Z-Library's own categorization system; currently only present for AAC zlib3 records (and not actually used yet)"]),
+            "file_data_folder": ("after", ["The AAC data folder / torrent that contains this file"]),
+            "record_aacid": ("after", ["The AACID of the corresponding metadata entry in the zlib3_records collection"]),
+            "file_aacid": ("after", ["The AACID of the corresponding metadata entry in the zlib3_files collection (corresponding to the data filename)"]),
+            "cover_url_guess": ("after", ["Anna's Archive best guess of the cover URL, based on the MD5."]),
+            "removed": ("after", ["Whether the file has been removed from Z-Library. We typically don't know the precise reason."]),
+        }
+
+    return {
+        'COMMON_DICT_COMMENTS': COMMON_DICT_COMMENTS,
+        'DICT_COMMENTS_NO_API_DISCLAIMER': DICT_COMMENTS_NO_API_DISCLAIMER,
+        'LGLI_CLASSIFICATIONS_MAPPING': LGLI_CLASSIFICATIONS_MAPPING,
+        'LGLI_DATE_INFO_FIELDS': LGLI_DATE_INFO_FIELDS,
+        'LGLI_EDITION_TYPE_MAPPING': LGLI_EDITION_TYPE_MAPPING,
+        'LGLI_IDENTIFIERS_MAPPING': LGLI_IDENTIFIERS_MAPPING,
+        'LGLI_ISSUE_OTHER_FIELDS': LGLI_ISSUE_OTHER_FIELDS,
+        'LGLI_STANDARD_INFO_FIELDS': LGLI_STANDARD_INFO_FIELDS,
+        'LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING': LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING,
+        'LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING': LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING,
+        'OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING': OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING,
+        'OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING': OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING,
+        'UNIFIED_CLASSIFICATIONS': UNIFIED_CLASSIFICATIONS,
+        'UNIFIED_IDENTIFIERS': UNIFIED_IDENTIFIERS,
+        'ZLIB_BOOK_DICT_COMMENTS': ZLIB_BOOK_DICT_COMMENTS,
+    }
 
 def init_identifiers_and_classification_unified(output_dict):
     if 'identifiers_unified' not in output_dict:
@@ -1255,8 +1305,9 @@ def add_identifier_unified(output_dict, name, value):
         value = value.split('/')[0]
     if len(value) == 0:
         return
-    unified_name = OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING.get(name, name)
-    if unified_name in UNIFIED_IDENTIFIERS:
+    maps = generate_mappings()
+    unified_name = maps['OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING'].get(name, name)
+    if unified_name in maps['UNIFIED_IDENTIFIERS']:
         if unified_name not in output_dict['identifiers_unified']:
             output_dict['identifiers_unified'][unified_name] = []
         if value not in output_dict['identifiers_unified'][unified_name]:
@@ -1272,8 +1323,9 @@ def add_classification_unified(output_dict, name, value):
     value = str(value).strip()
     if len(value) == 0:
         return
-    unified_name = OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING.get(name, name)
-    if unified_name in UNIFIED_CLASSIFICATIONS:
+    maps = generate_mappings()
+    unified_name = maps['OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING'].get(name, name)
+    if unified_name in maps['UNIFIED_CLASSIFICATIONS']:
         if unified_name not in output_dict['classifications_unified']:
             output_dict['classifications_unified'][unified_name] = []
         if value not in output_dict['classifications_unified'][unified_name]:
@@ -1330,11 +1382,12 @@ def merge_unified_fields(list_of_fields_unified):
     return { unified_name: list(merged_set) for unified_name, merged_set in merged_sets.items() }
 
 def make_code_for_display(key, value):
+    maps = generate_mappings()
     return {
         'key': key,
         'value': value,
         'masked_isbn': isbnlib.mask(value) if (key in ['isbn10', 'isbn13']) and (isbnlib.is_isbn10(value) or isbnlib.is_isbn13(value)) else '',
-        'info': UNIFIED_IDENTIFIERS.get(key) or UNIFIED_CLASSIFICATIONS.get(key) or {},
+        'info': maps['UNIFIED_IDENTIFIERS'].get(key) or maps['UNIFIED_CLASSIFICATIONS'].get(key) or {},
     }
 
 def get_isbnlike(text):
