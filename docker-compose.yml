@@ -17,6 +17,7 @@ x-app: &default-app
   volumes:
     - "${DOCKER_WEB_VOLUME:-./public:/app/public}"
     - "../allthethings-file-data:/file-data/"
+    - "./test/data-dumps:/data-dumps/"
   logging:
     driver: "local"
     options:

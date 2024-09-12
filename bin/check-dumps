@@ -1,0 +1,146 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+# Run this script by running: ./run cmd bin/check-dumps
+# Feel free to comment out steps in order to retry failed parts of this script, when necessary.
+# Dump scripts are idempotent, and can be rerun without losing too much work.
+
+sort-json() {
+    python - "$@" <<eot
+import orjsonl
+import json
+import pathlib
+import argparse
+
+def comp(ele):
+    try:
+        return 0, int(ele), str(type(ele)), id(ele)
+    except BaseException:
+        return 1, str(ele), str(type(ele)), id(ele)
+
+
+def deep_sorted(obj):
+    """Sort nested dicts and lists"""
+    if isinstance(obj, dict):
+        return {k: deep_sorted(v) for k, v in sorted(obj.items(), key=comp)}
+    elif isinstance(obj, (list, tuple)):
+        return obj.__class__(sorted((deep_sorted(e) for e in obj), key=comp))
+    else:
+        return obj
+
+
+args = argparse.ArgumentParser()
+args.add_argument('files', nargs='+', type=pathlib.Path)
+args = args.parse_args()
+
+for file in args.files:
+    with file.open(encoding='utf-8') as f:
+        records = orjsonl.load(f)
+
+    for record in records:
+        if isinstance(record, dict):
+            if '_source' in record and 'search_only_fields' in record['_source']:
+                # search_text, in the aarecords__N.json files, is a field that includes some random data
+                del record['_source']['search_only_fields']['search_text']
+
+    with file.open('w', encoding='utf-8') as f:
+        json.dump(deep_sorted(records), f, sort_keys=True, indent='\t')
+        f.write('\n')
+
+print(f"Sorted {len(args.files)} files")
+
+eot
+}
+
+check-elasticsearch() {
+    rm -rf /data-dumps/elasticsearch
+    mkdir /data-dumps/elasticsearch
+    cd /data-dumps/elasticsearch || exit 1
+
+    # https://github.com/elasticsearch-dump/elasticsearch-dump/issues/651#issuecomment-564545317
+    export NODE_OPTIONS="--max-old-space-size=16384"
+
+    # Very verbose without --quiet
+    # Don't set parallel= too high, might run out of memory.
+    multielasticdump \
+        --quiet \
+        --input=http://elasticsearch:9200 \
+        --output=/data-dumps/elasticsearch \
+        --match='aarecords.*' \
+        --parallel=20 \
+        --limit=3000 \
+        --includeType=data,mapping
+
+    sort-json /data-dumps/elasticsearch/*.json
+}
+
+check-elasticsearchaux() {
+    rm -rf /data-dumps/elasticsearchaux
+    mkdir /data-dumps/elasticsearchaux
+    cd /data-dumps/elasticsearchaux || exit 1
+
+    # https://github.com/elasticsearch-dump/elasticsearch-dump/issues/651#issuecomment-564545317
+    export NODE_OPTIONS="--max-old-space-size=16384"
+
+    # Very verbose without --quiet
+    # Don't set parallel= too high, might run out of memory.
+    multielasticdump \
+        --quiet \
+        --input=http://elasticsearchaux:9201 \
+        --output=/data-dumps/elasticsearchaux \
+        --match='aarecords.*' \
+        --parallel=20 \
+        --limit=3000 \
+        --includeType=data,mapping
+
+    sort-json /data-dumps/elasticsearchaux/*.json
+}
+
+check-mariadb() {
+    rm -rf /data-dumps/mariadb
+    mkdir /data-dumps/mariadb
+    cd /data-dumps/mariadb || exit 1
+
+    mydumper \
+        --threads 32 \
+        --omit-from-file /app/data-imports/scripts/dump_mariadb_omit_tables.txt \
+        --exit-if-broken-table-found \
+        --tz-utc \
+        --host mariadb \
+        --user allthethings \
+        --password password \
+        --database allthethings \
+        --verbose 3 \
+        --long-query-guard 999999 \
+        --no-locks \
+        --outputdir /data-dumps/mariadb
+}
+
+confirm() {
+    read -rp "$1 ([y]es or [N]o): "
+    case $(echo "$REPLY" | tr '[:upper:]' '[:lower:]') in
+        y|yes) echo "yes" ;;
+        *)     echo "no" ;;
+    esac
+}
+
+confirm "Are you sure you want to erase your database and verify the data dumps?"
+flask cli dbreset
+
+echo "elasticsearch: start"
+time check-elasticsearch
+echo "elasticsearch: done"
+
+echo "elasticsearchaux: start"
+time check-elasticsearchaux
+echo "elasticsearchaux: done"
+
+echo "mariadb: start"
+time check-mariadb
+echo "mariadb: done"
+
+echo "all: done"
+
+# shellcheck disable=SC2016
+echo '`git diff` will now show you any changes made to the data dumps.'
