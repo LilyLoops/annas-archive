@@ -1986,8 +1986,8 @@ def get_lgrsnf_book_dicts(session, key, values):
                        "FROM libgenrs_updated lu "
                        "LEFT JOIN libgenrs_description ld ON lu.MD5 = ld.md5 "
                        "LEFT JOIN libgenrs_hashes lh ON lu.MD5 = lh.md5 "
-                       "LEFT JOIN libgenrs_topics lt ON lu.Topic = lt.topic_id "
-                       f"WHERE lt.lang = 'en' AND lu.`{key}` IN %(ids)s", { 'ids': values })
+                       "LEFT JOIN libgenrs_topics lt ON lu.Topic = lt.topic_id AND lt.lang = 'en'"
+                       f"WHERE lu.`{key}` IN %(ids)s", { 'ids': values })
         lgrsnf_books = cursor.fetchall()
     except Exception as err:
         print(f"Error in get_lgrsnf_book_dicts when querying {key}; {values}")
