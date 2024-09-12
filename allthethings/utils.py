@@ -1,3 +1,4 @@
+import collections
 import jwt
 import re
 import ipaddress
@@ -745,6 +746,17 @@ def split_columns(rows: list[dict], column_count: list[int]) -> list[tuple]:
     for row in rows:
         tuples.append(split_columns_row(row, column_count))
     return tuples
+
+
+def execute_if_not_empty(cursor, query: str, params: dict) -> bool:
+    """
+    Execute the SQL query only if all the params are not None and all sized collections have items
+    """
+    for param_key in iter(params):
+        if params[param_key] is None or (isinstance(params[param_key], collections.abc.Sized), len(params[param_key]) <= 0):
+            return False
+    cursor.execute(query, params)
+    return True
 
 
 def get_account_by_id(cursor, account_id: str) -> dict | tuple | None:
