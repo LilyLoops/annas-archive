@@ -1,0 +1,32 @@
+/*!40101 SET NAMES binary*/;
+/*!40014 SET FOREIGN_KEY_CHECKS=0*/;
+/*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
+/*!40103 SET TIME_ZONE='+00:00' */;
+INSERT INTO `scihub_dois` VALUES("10.0000/aaai.org/library/aaai/1987/aaai87-067")
+,("10.0000/aaai.org/ocs/aaai::aaai12/4818")
+,("10.0000/aaai.org/ocs/aaai::aaai12/5095")
+,("10.0000/aaai.org/ocs/aaai::aaai15/9740")
+,("10.0000/aaai.org/ocs/aaai::aaai16/12216")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14172")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14350")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14379")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14388")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14494")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14567")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14589")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14603")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14618")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14654")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14676")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14730")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14758")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14773")
+,("10.0000/aaai.org/ocs/aaai::aaai17/14806")
+,("10.1002/(sici)(1997)5:1<1::aid-nt1>3.0.co;2-8")
+,("10.1007/0-306-47595-2")
+,("10.1007/b102786")
+,("10.1036/0071438289")
+,("10.1036/0071446508")
+,("10.1385/1592591930")
+,("10.5822/978-1-61091-843-5_15")
+;
