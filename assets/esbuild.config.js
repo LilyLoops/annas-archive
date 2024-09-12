@@ -27,3 +27,13 @@ esbuild.build({
   watch: watch,
   plugins: [copyStaticFiles()],
 })
+
+esbuild.build({
+  entryPoints: ['./js/darkreader.js'],
+  outfile: '../public/js/darkreader.js',
+  bundle: true,
+  minify: minify,
+  sourcemap: sourcemap,
+  watch: watch,
+  plugins: [copyStaticFiles()],
+})

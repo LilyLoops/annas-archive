@@ -2,6 +2,7 @@
   <head>
     <meta charset="utf-8">
     <title>{% if self.title() %}{% block title %}{% endblock %} - {% endif %}{{ gettext('layout.index.title') }}</title>
+    <script type="text/javascript">{{ g.darkreader_code | safe }}</script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
     {% if g.domain_lang_code in ['ar', 'fa', 'he', 'ur'] %}
       <!-- <style>body { direction: rtl; } </style> -->
@@ -355,12 +356,28 @@
         <div class="header-inner">
           <div class="header-inner-top">
             <a href="/" class="custom-a text-black hover:text-[#444]"><h1 class="text-2xl sm:text-4xl">{{ gettext('layout.index.header.title') }}</h1></a>
-            <select class="text-lg bg-center icon-[twemoji--globe-with-meridians] py-1 rounded text-gray-500 max-w-[50px] mt-1 ml-2 appearance-none" style="width: 1.8em; height: 1.6em; background-color: white; background-size: 1em;" onchange="handleChangeLang(event)">
-              <option></option>
-              {% for lang_code, lang_name, lang_name_current_locale in g.languages %}
-                <option value="{{ lang_code }}">{{ lang_code }} - {{ lang_name }}{% if lang_name_current_locale %} - {{ lang_name_current_locale }}{% endif %}{% if lang_code == g.domain_lang_code %} ☑️{% endif %}</option>
-              {% endfor %}
-            </select>
+            
+            <div class="flex gap-1 items-center">
+              <button
+                id="dark-button"
+                type="button"
+                class="bg-white text-md w-[24px] h-[24px] flex text-center rounded items-center justify-center text-gray-500"
+                onclick="window.handleThemeSwitch('dark')"
+              ><span class="icon-[ph--moon-bold]"></button>
+              <button
+                id="light-button"
+                type="button"
+                class="hidden bg-white text-md w-[24px] h-[24px] flex text-center rounded items-center justify-center text-gray-500"
+                onclick="window.handleThemeSwitch('light')"
+              ><span class="icon-[ph--sun-bold]"></button>
+              
+              <select class="text-md bg-center icon-[twemoji--globe-with-meridians] py-1 rounded text-gray-500 max-w-[50px] h-[24px] w-[24px] appearance-none bg-white" style="background-size: 1em;" onchange="handleChangeLang(event)">
+                <option></option>
+                {% for lang_code, lang_name, lang_name_current_locale in g.languages %}
+                  <option value="{{ lang_code }}">{{ lang_code }} - {{ lang_name }}{% if lang_name_current_locale %} - {{ lang_name_current_locale }}{% endif %}{% if lang_code == g.domain_lang_code %} ☑️{% endif %}</option>
+                {% endfor %}
+              </select>
+            </div>
           </div>
 
           <div class="mb-1.5">

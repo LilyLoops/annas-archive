@@ -88,6 +88,13 @@ def create_app(settings_override=None):
 
     return app
 
+@functools.cache
+def get_static_file_contents(filepath):
+    if os.path.isfile(filepath):
+        with open(filepath, 'r') as static_file:
+            return static_file.read()
+    return ''
+
 def extensions(app):
     """
     Register 0 or more extensions (mutates the app passed in).
@@ -302,6 +309,7 @@ def extensions(app):
         monthrange = calendar.monthrange(currentYear, currentMonth)[1]
         g.fraction_of_the_month = today / monthrange
 
+        g.darkreader_code = get_static_file_contents(safe_join(app.static_folder, 'js/darkreader.js'))
 
     return None
 

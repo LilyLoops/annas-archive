@@ -1202,50 +1202,30 @@ def gc_notify():
 
         message_body = "\n\n".join([item.get_payload(decode=True).decode() for item in message.get_payload() if item is not None])
 
+        def exec_err(error_txt):
+            donation_json['gc_notify_debug'].append({ "error": error_txt, "message_body": message_body, "email_data": request_data.decode() })
+            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
+            cursor.execute('COMMIT')
+            print(error_txt)
+            return "", 404
+
         auth_results = "\n\n".join(message.get_all('Authentication-Results'))
         if "dkim=pass" not in auth_results:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with wrong auth_results: {auth_results}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong auth_results: {auth_results}")
 
         if re.search(r'<gc-orders@gc\.email\.amazon\.com>$', message['From'].strip()) is None:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with wrong From: {message['From']}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong From: {message['From']}")
 
         if not (message['Subject'].strip().endswith('sent you an Amazon Gift Card!') or message['Subject'].strip().endswith('is waiting')):
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with wrong Subject: {message['Subject']}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong Subject: {message['Subject']}")
 
-        # Keep in sync!
         potential_money = re.findall(r"\n\$([0123456789]+\.[0123456789]{2})", message_body)
         if len(potential_money) == 0:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for potential_money"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for potential_money")
 
-        # Keep in sync!
         links = [str(link) for link in re.findall(r'(https://www.amazon.com/gp/r.html?[^\n)>"]+)', message_body)]
         if len(links) == 0:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for links"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for links")
 
         # Keep in sync!
         main_link = None
@@ -1264,45 +1244,13 @@ def gc_notify():
         money = float(potential_money[-1])
         # Allow for 5% margin
         if money * 105 < int(donation['cost_cents_usd']):
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with too small amount gift card {money*110} < {donation['cost_cents_usd']}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with too small amount gift card {money*110} < {donation['cost_cents_usd']}")
 
         sig = request.headers['X-GC-NOTIFY-SIG']
         if sig != GC_NOTIFY_SIG:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' has incorrect signature: '{sig}'"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' has incorrect signature: '{sig}'")
 
         data_value = { "links": links, "money": money }
         if not allthethings.utils.confirm_membership(cursor, donation_id, 'amazon_gc_done', data_value):
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' confirm_membership failed"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' confirm_membership failed")
     return ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
