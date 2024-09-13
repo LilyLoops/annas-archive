@@ -377,13 +377,13 @@
             </div>
           {% endif %}
 
-          <div class="mb-4">
+          <div class="flex flex-col gap-2 mb-4">
             {% from 'macros/aarecord_list.html' import aarecord_list %}
             {{ aarecord_list(search_dict.search_aarecords) }}
 
             {% if (search_dict.additional_search_aarecords | length) > 0 %}
               <div class="mt-8">
-                <div class="bg-gray-100 mx-[-10px] px-[10px] overflow-hidden">
+                <div class="flex flex-col gap-2 bg-gray-100 mx-[-10px] px-[10px] overflow-hidden">
                   <div class="italic mt-2">{% if search_dict.max_additional_search_aarecords_reached %}{{ gettext('page.search.results.partial_more', num=(search_dict.additional_search_aarecords | length)) }}{% else %}{{ gettext('page.search.results.partial', num=(search_dict.additional_search_aarecords | length)) }}{% endif %}</div>
 
                   {{ aarecord_list(search_dict.additional_search_aarecords, max_show_immediately=0) }}
