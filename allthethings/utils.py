@@ -748,17 +748,6 @@ def split_columns(rows: list[dict], column_count: list[int]) -> list[tuple]:
     return tuples
 
 
-def execute_if_not_empty(cursor, query: str, params: dict) -> bool:
-    """
-    Execute the SQL query only if all the params are not None and all sized collections have items
-    """
-    for param_key in iter(params):
-        if params[param_key] is None or (isinstance(params[param_key], collections.abc.Sized), len(params[param_key]) <= 0):
-            return False
-    cursor.execute(query, params)
-    return True
-
-
 def get_account_by_id(cursor, account_id: str) -> dict | tuple | None:
     cursor.execute('SELECT * FROM mariapersist_accounts WHERE account_id = %(account_id)s LIMIT 1', {'account_id': account_id})
     return cursor.fetchone()

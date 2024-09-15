@@ -1152,9 +1152,12 @@ def get_zlib_book_dicts(session, key, values):
 
         # only fetch isbns if there are any books
         ids = [str(book['zlibrary_id']) for book in zlib_books]
-        zlib_isbns = cursor.fetchall() if allthethings.utils.execute_if_not_empty(cursor,
-                                                                                  'SELECT * FROM zlib_isbn WHERE zlibrary_id IN %(ids)s',
-                                                                                  {'ids': ids}) else []
+
+        if len(ids) > 0:
+            cursor.execute('SELECT * FROM zlib_isbn WHERE zlibrary_id IN %(ids)s', { 'ids': ids })
+            zlib_isbns = cursor.fetchall()
+        else:
+            zlib_isbns = []
 
         for book in zlib_books:
             if 'isbns' not in book or book['isbns'] is None:
