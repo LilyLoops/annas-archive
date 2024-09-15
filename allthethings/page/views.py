@@ -2286,8 +2286,6 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
                     else:
                         edition_row_copy['series'] = None
 
-                    print(edition_row_copy)
-
                     # looping through the original edition_row instance allows deleting keys from the copy during iteration
                     for key in edition_row.keys():
                         if key.startswith('ls__'):
