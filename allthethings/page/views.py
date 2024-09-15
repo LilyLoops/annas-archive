@@ -2206,7 +2206,8 @@ def lgli_map_descriptions(descriptions):
 
 
 def get_lgli_file_dicts_fetch_data(session, key, values):
-    """ Fetches all the needed data from the DB and emulates the SQLAlchemy normalized format
+    """
+    Fetches all the needed data from the DB and emulates the SQLAlchemy normalized format
     """
 
     cursor = allthethings.utils.get_cursor_ping(session)
