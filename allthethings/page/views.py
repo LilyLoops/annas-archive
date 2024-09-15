@@ -361,16 +361,16 @@ def get_stats_data():
 
         cursor.execute('SELECT TimeLastModified FROM libgenrs_updated ORDER BY ID DESC LIMIT 1')
         libgenrs_time = allthethings.utils.fetch_one_field(cursor)
-        libgenrs_date = str(libgenrs_time.date()) if libgenrs_time is not None else ''
+        libgenrs_date = str(libgenrs_time.date()) if libgenrs_time is not None else 'Unknown'
 
         cursor.execute('SELECT time_last_modified FROM libgenli_files ORDER BY f_id DESC LIMIT 1')
         libgenli_time = allthethings.utils.fetch_one_field(cursor)
-        libgenli_date = str(libgenli_time.date()) if libgenli_time is not None else ''
+        libgenli_date = str(libgenli_time.date()) if libgenli_time is not None else 'Unknown'
 
         # OpenLibrary author keys seem randomly distributed, so some random prefix is good enough.
         cursor.execute("SELECT last_modified FROM ol_base WHERE ol_key LIKE '/authors/OL111%' ORDER BY last_modified DESC LIMIT 1")
         openlib_time = allthethings.utils.fetch_one_field(cursor)
-        openlib_date = str(openlib_time.date()) if openlib_time is not None else ''
+        openlib_date = str(openlib_time.date()) if openlib_time is not None else 'Unknown'
 
         cursor.execute('SELECT aacid FROM annas_archive_meta__aacid__ia2_acsmpdf_files ORDER BY aacid DESC LIMIT 1')
         ia_aacid = allthethings.utils.fetch_one_field(cursor)
