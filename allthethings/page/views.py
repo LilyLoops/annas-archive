@@ -2292,27 +2292,60 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
             file_row['editions'] = []
             editions_for_this_file = file_id_to_editions.get(file_row['f_id']) or []
             for edition_row in editions_for_this_file:
-                edition_row_copy = edition_row.copy()
+                edition_row_copy = {
+                    'issue_s_id': edition_row['issue_s_id'],
+                    'e_id': edition_row['e_id'],
+                    'libgen_topic': edition_row['libgen_topic'],
+                    'type': edition_row['type'],
+                    'series_name': edition_row['series_name'],
+                    'title': edition_row['title'],
+                    'title_add': edition_row['title_add'],
+                    'author': edition_row['author'],
+                    'publisher': edition_row['publisher'],
+                    'city': edition_row['city'],
+                    'edition': edition_row['edition'],
+                    'year': edition_row['year'],
+                    'month': edition_row['month'],
+                    'day': edition_row['day'],
+                    'pages': edition_row['pages'],
+                    'editions_add_info': edition_row['editions_add_info'],
+                    'cover_url': edition_row['cover_url'],
+                    'cover_exists': edition_row['cover_exists'],
+                    'issue_number_in_year': edition_row['issue_number_in_year'],
+                    'issue_year_number': edition_row['issue_year_number'],
+                    'issue_number': edition_row['issue_number'],
+                    'issue_volume': edition_row['issue_volume'],
+                    'issue_split': edition_row['issue_split'],
+                    'issue_total_number': edition_row['issue_total_number'],
+                    'issue_first_page': edition_row['issue_first_page'],
+                    'issue_last_page': edition_row['issue_last_page'],
+                    'issue_year_end': edition_row['issue_year_end'],
+                    'issue_month_end': edition_row['issue_month_end'],
+                    'issue_day_end': edition_row['issue_day_end'],
+                    'issue_closed': edition_row['issue_closed'],
+                    'doi': edition_row['doi'],
+                    'full_text': edition_row['full_text'],
+                    'time_added': edition_row['time_added'],
+                    'time_last_modified': edition_row['time_last_modified'],
+                    'visible': edition_row['visible'],
+                    'editable': edition_row['editable'],
+                    'uid': edition_row['uid'],
+                    'commentary': edition_row['commentary'],
+                    'add_descrs': edition_row['add_descrs']
+                }
 
-                # make series into dict (assume one) if exists
-                construct_series = False
-                if edition_row_copy['ls__title'] is not None:
-                    edition_row_copy['series'] = {}
-                    construct_series = True
+                if edition_row['ls__title'] is not None:
+                    edition_row_copy['series'] = {
+                        'title': edition_row['ls__title'],
+                        'publisher': edition_row['ls__publisher'],
+                        'volume': edition_row['ls__volume'],
+                        'volume_name': edition_row['ls__volume_name'],
+                        'issn_add_descrs': [
+                            { 'value': edition_row['lsad__value'] }
+                        ]
+                    }
                 else:
                     edition_row_copy['series'] = None
-
-                # looping through the original edition_row instance allows deleting keys from the copy during iteration
-                for key in edition_row.keys():
-                    if key.startswith('ls__'):
-                        if construct_series:
-                            if key == 'lsad__value':
-                                edition_row_copy['series']['issn_add_descrs'] = [
-                                    {'value': edition_row_copy[key]}
-                                ]
-                            else:
-                                edition_row_copy['series'][key.replace('ls__', '')] = edition_row_copy[key]
-                        del edition_row_copy[key]
 
                 file_row['editions'].append(edition_row_copy)
     return lgli_files_c
@@ -2349,16 +2382,10 @@ def get_lgli_file_dicts(session, key, values):
                 'issue_series_issn': edition['series']['issn_add_descrs'][0]['value'] if edition['series'] and edition['series']['issn_add_descrs'] else '',
             }
 
-            # for some reason issue_s_id was the first key when using SQLAlchemy
-            # this makes the 'issue_s_id' the first key - then the result can be tested simply by diffing two .json files/responses
-            edition_dict = { 'issue_s_id': edition_dict.pop('issue_s_id'), **edition_dict }
-
             # These would not be included in the SQLAlchemy to_dict()
             # these fields were used to build the normalized (nested) dicts
             del edition_dict['add_descrs']
             del edition_dict['series']
-            del edition_dict['editions_to_file_id']
-            del edition_dict['lsad__value']
 
             edition_dict['descriptions_mapped'] = lgli_map_descriptions({
                 **descr,
