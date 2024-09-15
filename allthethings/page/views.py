@@ -2232,7 +2232,7 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
         # libgenli_editions 'selectin' join
         # series.issn_add_descrs: (LibgenliSeries.s_id == LibgenliSeriesAddDescr.s_id) & (LibgenliSeriesAddDescr.key == 501)
         cursor.execute(
-            'SELECT le.*, ls.title AS ls__title, ls.publisher AS ls__publisher, ls.volume AS ls__volume, ls.volume_name AS ls__volume_name, lsad.value AS lsad_value, lef.f_id AS editions_to_file_id '
+            'SELECT le.*, ls.title AS ls__title, ls.publisher AS ls__publisher, ls.volume AS ls__volume, ls.volume_name AS ls__volume_name, lsad.value AS lsad__value, lef.f_id AS editions_to_file_id '
             'FROM libgenli_editions le '
             'INNER JOIN libgenli_editions_to_files lef ON le.e_id = lef.e_id '
             'LEFT JOIN libgenli_series ls ON ls.s_id = le.issue_s_id '
@@ -2306,12 +2306,12 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
                 for key in edition_row.keys():
                     if key.startswith('ls__'):
                         if construct_series:
-                            edition_row_copy['series'][key.replace('ls__', '')] = edition_row_copy[key]
-                        del edition_row_copy[key]
-                    elif key == 'lsad_value' and construct_series:
-                        edition_row_copy['series']['issn_add_descrs'] = [
-                            { 'value': edition_row_copy[key] }
-                        ]
+                            if key == 'lsad__value':
+                                edition_row_copy['series']['issn_add_descrs'] = [
+                                    {'value': edition_row_copy[key]}
+                                ]
+                            else:
+                                edition_row_copy['series'][key.replace('ls__', '')] = edition_row_copy[key]
                         del edition_row_copy[key]
 
                 file_row['editions'].append(edition_row_copy)
@@ -2358,7 +2358,7 @@ def get_lgli_file_dicts(session, key, values):
             del edition_dict['add_descrs']
             del edition_dict['series']
             del edition_dict['editions_to_file_id']
-            del edition_dict['lsad_value']
+            del edition_dict['lsad__value']
 
             edition_dict['descriptions_mapped'] = lgli_map_descriptions({
                 **descr,
