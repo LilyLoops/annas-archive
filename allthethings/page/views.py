@@ -2235,8 +2235,8 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
             'FROM libgenli_editions le '
             'INNER JOIN libgenli_editions_to_files lef ON le.e_id = lef.e_id '
             'LEFT JOIN libgenli_series ls ON ls.s_id = le.issue_s_id '
-            'LEFT JOIN libgenli_series_add_descr lsad ON ls.s_id = lsad.s_id '
-            'WHERE lef.f_id IN %(file_ids)s AND (lsad.`key` IS NULL OR lsad.`key` = 501)',
+            'LEFT JOIN libgenli_series_add_descr lsad ON ls.s_id = lsad.s_id AND key = 501 '
+            'WHERE lef.f_id IN %(file_ids)s',
             { 'file_ids': file_ids })
         editions_rows = cursor.fetchall()
         editions_ids = [edition['e_id'] for edition in editions_rows]
