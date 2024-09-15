@@ -723,7 +723,7 @@ def lists_update(resource):
 
         cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
         cursor.execute('SELECT l.list_id, le.list_entry_id FROM mariapersist_lists l '
-                       'LEFT JOIN mariapersist_list_entries le USING(list_id)'
+                       'LEFT JOIN mariapersist_list_entries le ON l.list_id = le.list_id AND l.account_id = le.account_id '
                        'WHERE l.account_id = %(account_id)s AND (le.resource = %(resource)s OR le.resource IS NULL) '
                        'ORDER BY l.updated DESC '
                        'LIMIT 10000',
@@ -782,7 +782,7 @@ def lists(resource):
         account_id = allthethings.utils.get_account_id(request.cookies)
         if account_id is not None:
             cursor.execute('SELECT l.list_id, l.name, le.list_entry_id FROM mariapersist_lists l '
-                           'LEFT JOIN mariapersist_list_entries le USING(list_id) '
+                           'LEFT JOIN mariapersist_list_entries le ON l.list_id = le.list_id AND l.account_id = le.account_id '
                            'WHERE l.account_id = %(account_id)s AND (le.resource = %(resource)s OR le.resource IS NULL)' 
                            'ORDER BY l.updated DESC '
                            'LIMIT 10000',
