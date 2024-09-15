@@ -1160,8 +1160,7 @@ def get_zlib_book_dicts(session, key, values):
             zlib_isbns = []
 
         for book in zlib_books:
-            if 'isbns' not in book or book['isbns'] is None:
-                book['isbns'] = []
+            book['isbns'] = book.get('isbns') or []
 
             for isbn in zlib_isbns:
                 if isbn['zlibrary_id'] == book['zlibrary_id']:
