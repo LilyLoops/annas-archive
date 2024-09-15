@@ -2241,9 +2241,16 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
         editions_rows = cursor.fetchall()
         editions_ids = [edition['e_id'] for edition in editions_rows]
 
+        file_id_to_editions = {}
+        for edition in editions_rows:
+            f_id = edition['editions_to_file_id']
+            if f_id not in file_id_to_editions:
+                file_id_to_editions[f_id] = []
+            file_id_to_editions[f_id].append(edition)
+
         # no need to fetch editions' add_descr if no 'editions' were found
         if len(editions_rows) <= 0:
-            editions_add_descr_rows = []
+            edition_id_to_add_descr = {}
         else:
             # ligenli_editions_add_descr 'selectin' join
             # relationship.primaryjoin: (remote(LibgenliEditionsAddDescr.value) == foreign(LibgenliPublishers.p_id)) & (LibgenliEditionsAddDescr.key == 308)
@@ -2254,18 +2261,26 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
                 'WHERE e_id IN %(editions_ids)s AND `lead`.key = 308',
                 { 'editions_ids': editions_ids })
             editions_add_descr_rows = cursor.fetchall()
+
+            edition_id_to_add_descr = {}
+            for edition_add_descr in editions_add_descr_rows:
+                e_id = edition_add_descr['e_id']
+                if e_id not in edition_id_to_add_descr:
+                    edition_id_to_add_descr[e_id] = []
+                edition_id_to_add_descr[e_id].append(edition_add_descr)
+
         for edition in editions_rows:
             edition['add_descrs'] = []
-            for e_add_descr in editions_add_descr_rows:
-                if edition['e_id'] == e_add_descr['e_id']:
-                    if len(e_add_descr['publisher_title']) > 0:
-                        e_add_descr['publisher'] = [
-                            {
-                                'title': e_add_descr['publisher_title']
-                            }
-                        ]
-                        del e_add_descr['publisher_title']
-                    edition['add_descrs'].append(e_add_descr)
+            add_descrs = edition_id_to_add_descr.get(edition['e_id']) or []
+            for e_add_descr in add_descrs:
+                if len(e_add_descr['publisher_title']) > 0:
+                    e_add_descr['publisher'] = [
+                        {
+                            'title': e_add_descr['publisher_title']
+                        }
+                    ]
+                    del e_add_descr['publisher_title']
+                edition['add_descrs'].append(e_add_descr)
 
         # normalize all rows into dicts
         for file_row in lgli_files_c:
@@ -2274,31 +2289,31 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
                 add_descr.pop('f_id')
 
             file_row['editions'] = []
-            for edition_row in editions_rows:
-                if edition_row['editions_to_file_id'] == file_row['f_id']:
-                    edition_row_copy = edition_row.copy()
+            editions_for_this_file = file_id_to_editions.get(file_row['f_id']) or []
+            for edition_row in editions_for_this_file:
+                edition_row_copy = edition_row.copy()
 
-                    # make series into dict (assume one) if exists
-                    construct_series = False
-                    if edition_row_copy['ls__title'] is not None:
-                        edition_row_copy['series'] = {}
-                        construct_series = True
-                    else:
-                        edition_row_copy['series'] = None
+                # make series into dict (assume one) if exists
+                construct_series = False
+                if edition_row_copy['ls__title'] is not None:
+                    edition_row_copy['series'] = {}
+                    construct_series = True
+                else:
+                    edition_row_copy['series'] = None
 
-                    # looping through the original edition_row instance allows deleting keys from the copy during iteration
-                    for key in edition_row.keys():
-                        if key.startswith('ls__'):
-                            if construct_series:
-                                edition_row_copy['series'][key.replace('ls__', '')] = edition_row_copy[key]
-                            del edition_row_copy[key]
-                        elif key == 'lsad_value' and construct_series:
-                            edition_row_copy['series']['issn_add_descrs'] = [
-                                { 'value': edition_row_copy[key] }
-                            ]
-                            del edition_row_copy[key]
+                # looping through the original edition_row instance allows deleting keys from the copy during iteration
+                for key in edition_row.keys():
+                    if key.startswith('ls__'):
+                        if construct_series:
+                            edition_row_copy['series'][key.replace('ls__', '')] = edition_row_copy[key]
+                        del edition_row_copy[key]
+                    elif key == 'lsad_value' and construct_series:
+                        edition_row_copy['series']['issn_add_descrs'] = [
+                            { 'value': edition_row_copy[key] }
+                        ]
+                        del edition_row_copy[key]
 
-                    file_row['editions'].append(edition_row_copy)
+                file_row['editions'].append(edition_row_copy)
     return lgli_files_c
 
 
