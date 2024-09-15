@@ -2280,7 +2280,6 @@ def get_lgli_file_dicts_fetch_data(session, key, values):
                             'title': e_add_descr['publisher_title']
                         }
                     ]
-                    del e_add_descr['publisher_title']
                 edition['add_descrs'].append(e_add_descr)
 
         # normalize all rows into dicts
