@@ -55,19 +55,19 @@
   </script>
 
   {% for aarecord in aarecords %}
-    <article class="{% if loop.index0 > max_show_immediately %}js-scroll-hidden{% endif %}">
-      {% if loop.index0 > max_show_immediately %} {% endif %}
-      <a href="{{ aarecord.additional.path }}" class="js-vim-focus custom-a flex gap-4 items-center relative left-[-10px] w-[calc(100%+20px)] px-2.5 py-2 outline-offset-[-2px] outline-2 rounded-[3px] hover:bg-black/6.7 focus:outline {% if (aarecord.file_unified_data.problems | length) > 0 %}opacity-40{% endif %}">
-        <div>
-          <figure class="relative overflow-hidden w-[72px] h-[108px] flex flex-col justify-center">
-            <div class="absolute w-full h-full" style="background-color: hsl({{ aarecord.additional.top_box.cover_missing_hue_deg }}deg 43% 73%)"></div>
-            <img class="w-full h-full object-cover z-10" src="{{ aarecord.additional.top_box.cover_url }}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.removeChild(this)" loading="lazy" decoding="async"/>
+    <div class="h-[125px] flex flex-col justify-center {% if loop.index0 > max_show_immediately %}js-scroll-hidden{% endif %}">
+      {% if loop.index0 > max_show_immediately %}<!--{% endif %}
+      <a href="{{ aarecord.additional.path }}" class="js-vim-focus custom-a flex items-center relative left-[-10px] w-[calc(100%+20px)] px-2.5 outline-offset-[-2px] outline-2 rounded-[3px] hover:bg-black/6.7 focus:outline {% if (aarecord.file_unified_data.problems | length) > 0 %}opacity-40{% endif %}">
+        <div class="flex-none">
+          <div class="relative overflow-hidden w-[72px] h-[108px] flex flex-col justify-center">
+            <div class="absolute w-full h-[90px]" style="background-color: hsl({{ aarecord.additional.top_box.cover_missing_hue_deg }}deg 43% 73%)"></div>
+            <img class="relative inline-block" src="{{ aarecord.additional.top_box.cover_url }}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.removeChild(this)" loading="lazy" decoding="async"/>
             {% if aarecord.extra_download_timestamp %}
               <div class="absolute bottom-0 p-1 text-[10px] bg-[rgba(200,200,200,0.9)] leading-none"><span title="{{ gettext('page.search.results.download_time') }}">{{ aarecord.extra_download_timestamp }}</span>{% if aarecord.extra_was_fast_download %}<span title="{{ gettext('page.search.results.fast_download') }}"> ⭐️</span>{% endif %}</div>
             {% endif %}
-          </figure>
+          </div>
         </div>
-        <div class="relative grow overflow-hidden">
+        <div class="relative top-[-1] pl-4 grow overflow-hidden">
           <div class="line-clamp-[2] leading-[1.2] text-[10px] lg:text-xs text-gray-500">{{ aarecord.additional.top_box.top_row }}</div>
           <h3 class="max-lg:line-clamp-[2] lg:truncate leading-[1.2] lg:leading-[1.35] text-md lg:text-xl font-bold">{{aarecord.additional.top_box.title}}</h3>
           <div class="truncate leading-[1.2] lg:leading-[1.35] max-lg:text-xs">{{aarecord.additional.top_box.publisher_and_edition}}</div>
@@ -76,7 +76,7 @@
           <div class="hidden">base score: {{ aarecord.search_only_fields.search_score_base_rank }}, final score: {{ aarecord._score }}</div>
         </div>
       </a>
-      {% if loop.index0 > max_show_immediately %} {% endif %}
-    </article>
+      {% if loop.index0 > max_show_immediately %}-->{% endif %}
+    </div>
   {% endfor %}
 {%- endmacro %}
