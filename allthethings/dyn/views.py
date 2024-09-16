@@ -927,7 +927,7 @@ def account_buy_membership():
                 pay_currency = 'pyusd'
             elif method in ['payment2cc', 'payment2cashapp', 'payment2revolut']:
                 pay_currency = 'btc'
-            if pay_currency not in ['btc','eth','bch','ltc','xmr','ada','bnbbsc','busdbsc','dai','doge','dot','matic','near','pax','pyusd','sol','ton','trx','tusd','usdc','usdtbsc','usdterc20','usdttrc20','usdtsol']: # No XRP, needs a "tag"
+            if pay_currency not in ['btc','eth','ethbase','bch','ltc','xmr','ada','bnbbsc','busdbsc','dai','doge','dot','matic','near','pax','pyusd','sol','ton','trx','tusd','usdc','usdtbsc','usdterc20','usdttrc20','usdtsol']: # No XRP, needs a "tag"
                 raise Exception(f"Invalid pay_currency: {pay_currency}")
 
             price_currency = 'usd'
