@@ -117,15 +117,6 @@ check-mariadb() {
         --outputdir /data-dumps/mariadb
 }
 
-confirm() {
-    read -rp "$1 ([y]es or [N]o): "
-    case $(echo "$REPLY" | tr '[:upper:]' '[:lower:]') in
-        y|yes) echo "yes" ;;
-        *)     echo "no" ;;
-    esac
-}
-
-confirm "Are you sure you want to erase your database and verify the data dumps?"
 flask cli dbreset
 
 echo "elasticsearch: start"
