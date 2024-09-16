@@ -1689,13 +1689,14 @@ def get_ol_book_dicts(session, key, values):
             author_redirect_mapping = {}
             for unredirected_ol_author in list(unredirected_ol_authors.values()):
                 if unredirected_ol_author['type'] == '/type/redirect':
-                    json = orjson.loads(unredirected_ol_author.json)
+                    json = orjson.loads(unredirected_ol_author['json'])
                     if 'location' not in json:
                         continue
                     author_redirect_mapping[unredirected_ol_author['ol_key']] = json['location']
             redirected_ol_authors = []
-            if len(author_redirect_mapping) > 0:
-                cursor.execute('SELECT * FROM ol_base WHERE ol_key IN %(ol_key)s', { 'ol_key': [ol_key for ol_key in author_redirect_mapping.values() if ol_key not in author_keys] })
+            redirected_ol_author_keys = [ol_key for ol_key in author_redirect_mapping.values() if ol_key not in author_keys]
+            if len(redirected_ol_author_keys) > 0:
+                cursor.execute('SELECT * FROM ol_base WHERE ol_key IN %(ol_key)s', { 'ol_key': redirected_ol_author_keys })
                 redirected_ol_authors = {ol_author['ol_key']: ol_author for ol_author in cursor.fetchall()}
             for ol_book_dict in ol_book_dicts:
                 ol_authors = []
