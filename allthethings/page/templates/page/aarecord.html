@@ -75,33 +75,27 @@
     <div class="text-md">{{aarecord.additional.top_box.publisher_and_edition}}</div>
     <div class="italic">{{aarecord.additional.top_box.author}}{% if aarecord.additional.top_box.author %}<span class="select-none"> <a class="custom-a text-xs align-[2px] opacity-80 hover:opacity-100" href="/search?q={{ aarecord.additional.top_box.author | urlencode }}">🔍</a></span>{% endif %}</div>
     <div class="mt-4 line-clamp-[8] js-md5-top-box-description">{% for field in aarecord.additional.top_box.freeform_fields %}<div class="text-xs text-gray-500 uppercase">{{ field[0] }}</div><div class="mb-1">{{ field[1] | escape | replace('\n', '<br>' | safe)}}</div>{% endfor %}</div>
-    <a href="#" class="mt-4 js-md5-top-box-description-link text-sm hidden" onclick="document.querySelector('.js-md5-top-box-description').classList.remove('line-clamp-[8]'); this.parentNode.removeChild(this); event.preventDefault(); return false;">{{ gettext('page.md5.box.descr_read_more') }}</a>
-    <script>
-      (function() {
-        const descriptionEl = document.querySelector('.js-md5-top-box-description');
-        if (descriptionEl.offsetHeight < descriptionEl.scrollHeight) {
-          document.querySelector('.js-md5-top-box-description-link').classList.remove('hidden');
-        }
-      })();
-    </script>
 
-    <div class="mt-4 text-xs flex flex-wrap js-md5-codes-tabs" role="tablist" aria-label="code tabs" aria-multiselectable="true">
-      {% for code_item in aarecord.additional.codes %}
-        <a class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#aaa] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab max-w-[calc(50%-8px)]" href="#" aria-selected="false" id="md5-codes-tab-{{ loop.index }}" aria-controls="md5-codes-panel-{{ loop.index }}" tabindex="0"><span class="py-0.5 bg-[#aaa] mr-1 px-1 truncate max-w-[60px] sm:max-w-[120px] flex-shrink-0">{{ code_item.info.label or code_item.key }}</span><span class="py-0.5 truncate max-w-[100px] sm:max-w-[300px] {% if code_item.info.shortenvalue %}w-[35px]{% endif %}">{{ code_item.masked_isbn or code_item.value }}</span></a>
-      {% endfor %}
-    </div>
-    <div>
-      {% for code_item in aarecord.additional.codes %}
-        <div id="md5-codes-panel-{{ loop.index }}" role="tabpanel" aria-labelledby="md5-codes-tab-{{ loop.index }}" hidden class="text-sm mt-2">
-          <div><strong>{{ code_item.info.label or code_item.key }}:</strong>
-          {% if code_item.masked_isbn %}{{ code_item.masked_isbn }} {{ copy_button(code_item.masked_isbn) }} / {% endif %}{{ code_item.value }} {{ copy_button(code_item.value) }}</div>
-          {% if code_item.info.description %}<div class="">{{ code_item.info.description }}</div>{% endif %}
-          {% if code_item.info.url %}<div class="">{{ gettext('page.md5.codes.url') }} <a href="{{ code_item.info.url | replace('%s', code_item.value) }}" rel="noopener noreferrer nofollow">{{ code_item.info.url | replace('%s', code_item.value) }}</a></div>{% endif %}
-          {% if code_item.info.website %}<div class="">{{ gettext('page.md5.codes.website') }} <a href="{{ code_item.info.website }}" rel="noopener noreferrer nofollow">{{ code_item.info.website }}</a></div>{% endif %}
-          <div>{{ gettext('page.md5.codes.aa_abbr') }} <a href='/search?q="{{ code_item.key | urlencode }}:{{ code_item.value | urlencode }}"'>{{ gettext('page.md5.codes.aa_search', name=(code_item.key + ':' + code_item.value)) }}</a></div>
-          <div>{{ gettext('page.md5.codes.code_explorer') }} <a href="/member_codes?prefix={{(code_item.key + ':' + code_item.value)}}">{{ gettext('page.md5.codes.code_search', name=(code_item.key + ':' + code_item.value)) }}</a></div>
-        </div>
-      {% endfor %}
+    <div class="js-md5-codes-container hidden">
+      <div class="mt-4 text-xs flex flex-wrap js-md5-codes-tabs" role="tablist" aria-label="code tabs" aria-multiselectable="true">
+        {% for code_item in aarecord.additional.codes %}
+          {% if (not code_item.highlight) and (loop.index0 > 0) and (aarecord.additional.codes[loop.index0 - 1].highlight)%}<div style="width: 100%"></div>{% endif %}
+          <a class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#aaa] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab max-w-[calc(50%-8px)]" href="#" aria-selected="false" id="md5-codes-tab-{{ loop.index }}" aria-controls="md5-codes-panel-{{ loop.index }}" tabindex="0"><span class="py-0.5 bg-[#aaa] mr-1 px-1 truncate max-w-[60px] sm:max-w-[120px] flex-shrink-0">{{ code_item.info.label or code_item.key }}</span><span class="py-0.5 truncate max-w-[100px] sm:max-w-[300px] {% if code_item.info.shortenvalue %}w-[35px]{% endif %}">{{ code_item.masked_isbn or code_item.value }}</span></a>
+        {% endfor %}
+      </div>
+      <div>
+        {% for code_item in aarecord.additional.codes %}
+          <div id="md5-codes-panel-{{ loop.index }}" role="tabpanel" aria-labelledby="md5-codes-tab-{{ loop.index }}" hidden class="text-sm mt-2">
+            <div><strong>{{ code_item.info.label or code_item.key }}:</strong>
+            {% if code_item.masked_isbn %}{{ code_item.masked_isbn }} {{ copy_button(code_item.masked_isbn) }} / {% endif %}{{ code_item.value }} {{ copy_button(code_item.value) }}</div>
+            {% if code_item.info.description %}<div class="">{{ code_item.info.description }}</div>{% endif %}
+            {% if code_item.info.url %}<div class="">{{ gettext('page.md5.codes.url') }} <a href="{{ code_item.info.url | replace('%s', code_item.value) }}" rel="noopener noreferrer nofollow">{{ code_item.info.url | replace('%s', code_item.value) }}</a></div>{% endif %}
+            {% if code_item.info.website %}<div class="">{{ gettext('page.md5.codes.website') }} <a href="{{ code_item.info.website }}" rel="noopener noreferrer nofollow">{{ code_item.info.website }}</a></div>{% endif %}
+            <div>{{ gettext('page.md5.codes.aa_abbr') }} <a href='/search?q="{{ code_item.key | urlencode }}:{{ code_item.value | urlencode }}"'>{{ gettext('page.md5.codes.aa_search', name=(code_item.key + ':' + code_item.value)) }}</a></div>
+            <div>{{ gettext('page.md5.codes.code_explorer') }} <a href="/member_codes?prefix={{(code_item.key + ':' + code_item.value)}}">{{ gettext('page.md5.codes.code_search', name=(code_item.key + ':' + code_item.value)) }}</a></div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
     <script>
       (function() {
@@ -117,6 +111,7 @@
         }
       })();
     </script>
+    <a href="#" class="mt-4 js-md5-top-box-description-link text-sm" onclick="document.querySelector('.js-md5-top-box-description').classList.remove('line-clamp-[8]'); document.querySelector('.js-md5-codes-container').classList.remove('hidden'); this.parentNode.removeChild(this); event.preventDefault(); return false;">{{ gettext('page.md5.box.descr_read_more') }}</a>
   </div>
 
   {% if (range(0, 100) | random) == 0 %}

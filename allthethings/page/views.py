@@ -6041,9 +6041,7 @@ def get_additional_for_aarecord(aarecord):
     for key, values in aarecord['file_unified_data'].get('classifications_unified', {}).items():
         for value in values:
             additional['codes'].append(allthethings.utils.make_code_for_display(key, value))
-    # CODES_PRIORITY = ['isbn13', 'isbn10', 'csbn', 'doi', 'issn', 'udc', 'oclc', 'ol', 'ocaid', 'asin', 'duxiu_ssid', 'cadal_ssno', 'lang', 'year', 'md5']
-    # additional['codes'].sort(key=lambda item: (CODES_PRIORITY.index(item['key']) if item['key'] in CODES_PRIORITY else 100, item['key']))
-    additional['codes'].sort(key=lambda item: item['key'])
+    additional['codes'].sort(key=lambda item: (0 if item['highlight'] else 1, item['key']))
 
     md5_content_type_mapping = get_md5_content_type_mapping(allthethings.utils.get_base_lang_code(get_locale()))
 
@@ -6094,14 +6092,14 @@ def get_additional_for_aarecord(aarecord):
         'author': aarecord['file_unified_data'].get('author_best') or '',
         'freeform_fields': [item for item in [
             (gettext('page.md5.box.descr_title'), strip_description(aarecord['file_unified_data'].get('stripped_description_best') or '')),
-            *[(gettext('page.md5.box.metadata_comments_title'), strip_description(comment)) for comment in (aarecord['file_unified_data'].get('comments_multiple') or [])],
+            *[(gettext('page.md5.box.alternative_filename'), row) for row in (aarecord['file_unified_data'].get('original_filename_additional') or '')],
             *[(gettext('page.md5.box.alternative_title'), row) for row in (aarecord['file_unified_data'].get('title_additional') or '')],
             *[(gettext('page.md5.box.alternative_author'), row) for row in (aarecord['file_unified_data'].get('author_additional') or '')],
             *[(gettext('page.md5.box.alternative_publisher'), row) for row in (aarecord['file_unified_data'].get('publisher_additional') or '')],
             *[(gettext('page.md5.box.alternative_edition'), row) for row in (aarecord['file_unified_data'].get('edition_varia_additional') or '')],
-            *[(gettext('page.md5.box.alternative_description'), row) for row in (aarecord['file_unified_data'].get('stripped_description_additional') or '')],
-            *[(gettext('page.md5.box.alternative_filename'), row) for row in (aarecord['file_unified_data'].get('original_filename_additional') or '')],
             *[(gettext('page.md5.box.alternative_extension'), row) for row in (aarecord['file_unified_data'].get('extension_additional') or '')],
+            *[(gettext('page.md5.box.metadata_comments_title'), strip_description(comment)) for comment in (aarecord['file_unified_data'].get('comments_multiple') or [])],
+            *[(gettext('page.md5.box.alternative_description'), row) for row in (aarecord['file_unified_data'].get('stripped_description_additional') or '')],
             (gettext('page.md5.box.date_open_sourced_title'), aarecord['file_unified_data'].get('added_date_best') or ''),
         ] if item[1] != ''],
     }
@@ -6118,7 +6116,7 @@ def get_additional_for_aarecord(aarecord):
     filename_extension = aarecord['file_unified_data'].get('extension_best', None) or ''    
     filename_code = ''
     for code in additional['codes']:
-        if code['key'] in ['isbn13', 'isbn10', 'doi', 'issn', 'duxiu_ssid', 'cadal_ssno']:
+        if code['key'] in allthethings.utils.CODES_HIGHLIGHT:
             filename_code = f" -- {code['value']}"
             break
     filename_base = f"{filename_slug}{filename_code} -- {aarecord['id'].split(':', 1)[1]}".replace('.', '_')
@@ -6285,6 +6283,11 @@ def get_additional_for_aarecord(aarecord):
 
         additional['download_urls'].append((gettext('page.md5.box.download.lgli'), f"http://libgen.li/ads.php?md5={aarecord['lgli_file']['md5'].lower()}", (gettext('page.md5.box.download.extra_also_click_get') if shown_click_get else gettext('page.md5.box.download.extra_click_get')) + ' <div style="margin-left: 24px" class="text-sm text-gray-500">' + gettext('page.md5.box.download.libgen_ads') + '</div>'))
         shown_click_get = True
+
+    if aarecord.get('aac_nexusstc') is not None:
+        # TODO:TRANSLATE
+        additional['download_urls'].append((gettext('page.md5.box.download.nexusstc'), f"https://libstc.cc/#/stc/nid:{aarecord['aac_nexusstc']['id']}", "(Nexus/STC files can be unreliable to download)"))
+
     if (len(aarecord.get('ipfs_infos') or []) > 0) and (aarecord_id_split[0] in ['md5', 'nexusstc_download']):
         # additional['download_urls'].append((gettext('page.md5.box.download.ipfs_gateway', num=1), f"https://ipfs.eth.aragon.network/ipfs/{aarecord['ipfs_infos'][0]['ipfs_cid'].lower()}?filename={additional['filename_without_annas_archive']}", gettext('page.md5.box.download.ipfs_gateway_extra')))
 
@@ -6339,9 +6342,6 @@ def get_additional_for_aarecord(aarecord):
     
     if aarecord.get('aac_magzdb') is not None:
         additional['download_urls'].append((gettext('page.md5.box.download.magzdb'), f"http://magzdb.org/num/{aarecord['aac_magzdb']['id']}", ""))
-    
-    if aarecord.get('aac_nexusstc') is not None:
-        additional['download_urls'].append((gettext('page.md5.box.download.nexusstc'), f"https://libstc.cc/#/stc/nid:{aarecord['aac_nexusstc']['id']}", ""))
 
     if aarecord.get('aac_edsebk') is not None:
         # TODO:TRANSLATE
