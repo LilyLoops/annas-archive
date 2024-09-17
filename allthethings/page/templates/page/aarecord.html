@@ -74,7 +74,7 @@
     <div class="text-3xl font-bold">{{aarecord.additional.top_box.title}}{% if aarecord.additional.top_box.title %}<span class="select-none"> <a class="custom-a text-xs align-[2px] opacity-80 hover:opacity-100" href="/search?q={{ aarecord.additional.top_box.title | urlencode }}">🔍</a></span>{% endif %}</div>
     <div class="text-md">{{aarecord.additional.top_box.publisher_and_edition}}</div>
     <div class="italic">{{aarecord.additional.top_box.author}}{% if aarecord.additional.top_box.author %}<span class="select-none"> <a class="custom-a text-xs align-[2px] opacity-80 hover:opacity-100" href="/search?q={{ aarecord.additional.top_box.author | urlencode }}">🔍</a></span>{% endif %}</div>
-    <div class="mt-4 line-clamp-[8] js-md5-top-box-description">{% for field in aarecord.additional.top_box.freeform_fields %}<div class="text-xs text-gray-500 uppercase">{{ field[0] }}</div><div class="mb-1">{{ field[1] | escape | replace('\n', '<br>' | safe)}}</div>{% endfor %}</div>
+    <div class="mt-4 line-clamp-[10] js-md5-top-box-description">{% for field in aarecord.additional.top_box.freeform_fields %}<div class="text-xs text-gray-500 uppercase">{{ field[0] }}</div><div class="mb-1">{{ field[1] | escape | replace('\n', '<br>' | safe)}}</div>{% endfor %}</div>
 
     <div class="js-md5-codes-container hidden">
       <div class="mt-4 text-xs flex flex-wrap js-md5-codes-tabs" role="tablist" aria-label="code tabs" aria-multiselectable="true">
@@ -111,7 +111,7 @@
         }
       })();
     </script>
-    <a href="#" class="mt-4 js-md5-top-box-description-link text-sm" onclick="document.querySelector('.js-md5-top-box-description').classList.remove('line-clamp-[8]'); document.querySelector('.js-md5-codes-container').classList.remove('hidden'); this.parentNode.removeChild(this); event.preventDefault(); return false;">{{ gettext('page.md5.box.descr_read_more') }}</a>
+    <a href="#" class="mt-4 js-md5-top-box-description-link text-sm" onclick="document.querySelector('.js-md5-top-box-description').classList.remove('line-clamp-[10]'); document.querySelector('.js-md5-codes-container').classList.remove('hidden'); this.parentNode.removeChild(this); event.preventDefault(); return false;">{{ gettext('page.md5.box.descr_read_more') }}</a>
   </div>
 
   {% if (range(0, 100) | random) == 0 %}
