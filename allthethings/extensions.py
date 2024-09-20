@@ -9,43 +9,15 @@ from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy.ext.declarative import DeferredReflection
 from elasticsearch import Elasticsearch
 from flask_mail import Mail
-from config.settings import ELASTICSEARCH_HOST, ELASTICSEARCHAUX_HOST, ELASTICSEARCH_HOST_PREFERRED, ELASTICSEARCHAUX_HOST_PREFERRED
+from config.settings import ELASTICSEARCH_HOST, ELASTICSEARCHAUX_HOST
 
 debug_toolbar = DebugToolbarExtension()
 flask_static_digest = FlaskStaticDigest()
 Base = declarative_base()
 babel = Babel()
 mail = Mail()
-
-# This only gets called if we have more than one node_configs, so we can't actually
-# log here if falling back is happening, since at a higher level the failing node_config
-# will be removed from the node_configs list.
-class FallbackNodeSelector: # Selects only the first live node
-    def __init__(self, node_configs):
-        self.node_configs = node_configs
-    def select(self, nodes):
-        node_configs = list(self.node_configs)
-        reverse = (random.randint(0, 10000) < 5)
-        if reverse:
-            node_configs.reverse() # Occasionally pick the fallback to check it.
-        for node_config in node_configs:
-            for node in nodes:
-                if node.config == node_config:
-                    if node_config != self.node_configs[0]:
-                        print(f"FallbackNodeSelector warning: using fallback node! {reverse=} {node_config=}")
-                    return node
-        raise Exception("No node_config found!")
-
-# It's important that retry_on_timeout=True is set, otherwise we won't retry and mark the node as dead in case of actual
-# server downtime.
-if len(ELASTICSEARCH_HOST_PREFERRED) > 0:
-    es = Elasticsearch(hosts=[ELASTICSEARCH_HOST_PREFERRED,ELASTICSEARCH_HOST], node_selector_class=FallbackNodeSelector, max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
-else:
-    es = Elasticsearch(hosts=[ELASTICSEARCH_HOST], max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
-if len(ELASTICSEARCHAUX_HOST_PREFERRED) > 0:
-    es_aux = Elasticsearch(hosts=[ELASTICSEARCHAUX_HOST_PREFERRED,ELASTICSEARCHAUX_HOST], node_selector_class=FallbackNodeSelector, max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
-else:
-    es_aux = Elasticsearch(hosts=[ELASTICSEARCHAUX_HOST], max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
+es = Elasticsearch(hosts=[ELASTICSEARCH_HOST])
+es_aux = Elasticsearch(hosts=[ELASTICSEARCHAUX_HOST])
 
 mariadb_user = "allthethings"
 mariadb_password = "password"

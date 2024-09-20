@@ -34,9 +34,6 @@ AA_EMAIL = os.getenv("AA_EMAIL", "")
 
 ELASTICSEARCH_HOST = os.getenv("ELASTICSEARCH_HOST", "http://elasticsearch:9200")
 ELASTICSEARCHAUX_HOST = os.getenv("ELASTICSEARCHAUX_HOST", "http://elasticsearchaux:9201")
-ELASTICSEARCH_HOST_PREFERRED = os.getenv("ELASTICSEARCH_HOST_PREFERRED", "")
-ELASTICSEARCHAUX_HOST_PREFERRED = os.getenv("ELASTICSEARCHAUX_HOST_PREFERRED", "")
-
 
 MAIL_USERNAME = 'anna@annas-archive.se'
 MAIL_DEFAULT_SENDER = ('Anna’s Archive', 'anna@annas-archive.se')
