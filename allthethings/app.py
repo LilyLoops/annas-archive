@@ -106,14 +106,6 @@ def extensions(app):
     flask_static_digest.init_app(app)
     with app.app_context():
         try:
-            with Session(engine) as session:
-                session.execute('SELECT 1')
-        except Exception:
-            print("mariadb not yet online, restarting")
-            time.sleep(3)
-            sys.exit(1)
-
-        try:
             with Session(mariapersist_engine) as mariapersist_session:
                 mariapersist_session.execute('SELECT 1')
         except Exception:
@@ -172,19 +164,19 @@ def extensions(app):
 
     @functools.cache
     def last_data_refresh_date():
-        with engine.connect() as conn:
-            try:
+        try:
+            with engine.connect() as conn:
                 cursor = allthethings.utils.get_cursor_ping_conn(conn)
 
                 cursor.execute('SELECT TimeLastModified FROM libgenrs_updated ORDER BY ID DESC LIMIT 1')
                 libgenrs_time = allthethings.utils.fetch_one_field(cursor)
-#
+
                 cursor.execute('SELECT time_last_modified FROM libgenli_files ORDER BY f_id DESC LIMIT 1')
                 libgenli_time = allthethings.utils.fetch_one_field(cursor)
-            except Exception:
-                return ''
             latest_time = max([libgenrs_time, libgenli_time])
             return latest_time.date()
+        except Exception:
+            return ''
 
     translations_with_english_fallback = set()
     @app.before_request

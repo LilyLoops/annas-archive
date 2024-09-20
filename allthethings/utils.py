@@ -1934,6 +1934,12 @@ def aa_currently_seeding(metadata):
 
 @functools.cache
 def get_torrents_json_aa_currently_seeding_by_torrent_path():
+    try:
+        with engine.connect() as connection:
+            cursor.execute('SELECT 1')
+    except:
+        return {}
+
     with engine.connect() as connection:
         connection.connection.ping(reconnect=True)
         cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
