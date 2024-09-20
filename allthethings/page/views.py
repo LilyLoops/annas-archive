@@ -578,6 +578,22 @@ def torrent_group_data_from_file_path(file_path):
         group = 'nexusstc'
     if 'ebscohost_records' in file_path:
         group = 'other_metadata'
+    if 'gbook_records' in file_path:
+        group = 'other_metadata'
+    if 'rgb_records' in file_path:
+        group = 'other_metadata'
+    if 'trantor_records' in file_path:
+        group = 'other_metadata'
+    if 'libby_records' in file_path:
+        group = 'other_metadata'
+    if 'isbngrp_records' in file_path:
+        group = 'other_metadata'
+    if 'goodreads_records' in file_path:
+        group = 'other_metadata'
+    if 'cerlalc_records' in file_path:
+        group = 'other_metadata'
+    if 'czech_oo42hcks_records' in file_path:
+        group = 'other_metadata'
 
     return { 'group': group, 'aac_meta_group': aac_meta_group }
 
