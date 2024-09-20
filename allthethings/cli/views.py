@@ -21,7 +21,7 @@ import zstandard
 import allthethings.utils
 
 from flask import Blueprint
-from allthethings.extensions import engine, mariadb_url_no_timeout, Reflected, mail, mariapersist_url
+from allthethings.extensions import engine, mariadb_url_no_timeout, mail, mariapersist_url
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from pymysql.constants import CLIENT
@@ -85,7 +85,6 @@ def nonpersistent_dbreset_internal():
     mysql_build_computed_all_md5s_internal()
 
     time.sleep(1)
-    Reflected.prepare(engine_multi)
     elastic_reset_aarecords_internal()
     elastic_build_aarecords_all_internal()
     mysql_build_aarecords_codes_numbers_internal()

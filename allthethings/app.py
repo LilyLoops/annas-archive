@@ -24,7 +24,7 @@ from allthethings.blog.views import blog
 from allthethings.page.views import page, all_search_aggs
 from allthethings.dyn.views import dyn
 from allthethings.cli.views import cli
-from allthethings.extensions import engine, mariapersist_engine, babel, debug_toolbar, flask_static_digest, Reflected, ReflectedMariapersist, mail
+from allthethings.extensions import engine, mariapersist_engine, babel, debug_toolbar, flask_static_digest, mail
 from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, X_AA_SECRET
 
 import allthethings.utils
@@ -123,24 +123,6 @@ def extensions(app):
                 print("mariapersist not yet online, restarting")
                 time.sleep(3)
                 sys.exit(1)
-
-        try:
-            Reflected.prepare(engine)
-        except Exception:
-            if os.getenv("DATA_IMPORTS_MODE", "") == "1":
-                print("Ignoring mariadb problems because DATA_IMPORTS_MODE=1")
-            else:
-                print("Error in loading mariadb tables; reset using './run flask cli dbreset'")
-                raise
-
-        try:
-            ReflectedMariapersist.prepare(mariapersist_engine)
-        except Exception:
-            if os.getenv("DATA_IMPORTS_MODE", "") == "1":
-                print("Ignoring mariapersist problems because DATA_IMPORTS_MODE=1")
-            else:
-                print("Error in loading mariapersist tables")
-                raise
     mail.init_app(app)
 
     def localeselector():

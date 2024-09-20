@@ -324,15 +324,14 @@ def faq_page():
         "md5:6963187473f4f037a28e2fe1153ca793", # How music got free
         "md5:6ed2d768ec1668c73e4fa742e3df78d6", # Physics
     ]
-    with Session(engine):
-        aarecords = (get_aarecords_elasticsearch(popular_ids) or [])
-        aarecords.sort(key=lambda aarecord: popular_ids.index(aarecord['id']))
+    aarecords = (get_aarecords_elasticsearch(popular_ids) or [])
+    aarecords.sort(key=lambda aarecord: popular_ids.index(aarecord['id']))
 
-        return render_template(
-            "page/faq.html",
-            header_active="home/faq",
-            aarecords=aarecords,
-        )
+    return render_template(
+        "page/faq.html",
+        header_active="home/faq",
+        aarecords=aarecords,
+    )
 
 @page.get("/security")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
