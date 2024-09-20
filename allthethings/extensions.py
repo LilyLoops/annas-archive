@@ -41,11 +41,11 @@ class FallbackNodeSelector: # Selects only the first live node
 if len(ELASTICSEARCH_HOST_PREFERRED) > 0:
     es = Elasticsearch(hosts=[ELASTICSEARCH_HOST_PREFERRED,ELASTICSEARCH_HOST], node_selector_class=FallbackNodeSelector, max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
 else:
-    es = Elasticsearch(hosts=[ELASTICSEARCH_HOST], max_retries=1, retry_on_timeout=True, http_compress=False, randomize_hosts=False)
+    es = Elasticsearch(hosts=[ELASTICSEARCH_HOST], max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
 if len(ELASTICSEARCHAUX_HOST_PREFERRED) > 0:
     es_aux = Elasticsearch(hosts=[ELASTICSEARCHAUX_HOST_PREFERRED,ELASTICSEARCHAUX_HOST], node_selector_class=FallbackNodeSelector, max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
 else:
-    es_aux = Elasticsearch(hosts=[ELASTICSEARCHAUX_HOST], max_retries=1, retry_on_timeout=True, http_compress=False, randomize_hosts=False)
+    es_aux = Elasticsearch(hosts=[ELASTICSEARCHAUX_HOST], max_retries=1, retry_on_timeout=True, http_compress=True, randomize_hosts=False)
 
 mariadb_user = "allthethings"
 mariadb_password = "password"
