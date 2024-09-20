@@ -91,15 +91,18 @@ Anna’s Archive is built on a scalable architecture designed to support a large
 
 - **Web Servers:** One or more servers handling web requests, with heavy caching (e.g., Cloudflare) to optimize performance.
 - **Database Servers:**
-  - Critical for basic operation:
-    - 2 ElasticSearch servers "elasticsearch" (main) and "elasticsearchaux" (journal papers, digital lending, and metadata). Split out into two so the full index of "elasticsearch" can be easily forced into memory with `vmtouch` for performance.
-  - Currently required for basic operation, but in the future only necessary for generating the search index:
-    - MariaDB for read-only data with MyISAM tables ("mariadb")
-    - Static read-only files in AAC (Anna’s Archive Container) format, with accompanying index tables (with byte offsets) in MariaDB.
-  - Currently required for basic operation, but in the future only necessary for user accounts and other persistence:
-    - A separate MariaDB instance for read/write operations ("mariapersist").
+  - Required for minimal operation. If you just run these two servers then some pages won't work, but the main search will work.
+    - ElasticSearch server "elasticsearch" (main search index "Downloads")
+    - MariaDB instance for read/write persistent data like user accounts, logs, comments ("mariapersist").
+  - Full mirror:
+    - ElasticSearch server "elasticsearchaux" (journal papers, digital lending, and metadata).
+    - Mostly used for database generation, but some pages won't work without it (at time of writing: /datasets, /codes, and the /db debug pages):
+      - MariaDB for read-only data with MyISAM tables ("mariadb")
+      - Static read-only files in AAC (Anna’s Archive Container) format (the "allthethings-file-data/" folder), with accompanying index tables (with byte offsets) in MariaDB.
+  - Optional:
     - A persistent data replica ("mariapersistreplica") for backups and redundancy.
-- **Caching and Proxy Servers:** Recommended setup includes proxy servers (e.g., nginx) in front of the web servers for added control and security (DMCA notices).
+    - "mariabackup" instance for regular backups.
+- **Caching and Proxy Servers:** Recommended setup includes proxy servers (e.g., nginx) in front of the web servers for added control and security (DMCA notices). [Blog post](https://annas-archive.org/blog/how-to-run-a-shadow-library.html).
 
 In our setup, the web and database servers are duplicated multiple times on different servers, with the exception of "mariapersist" which is shared between all servers. The ElasticSearch main server (or both servers) can also be run separately on optimized hardware, since search speed is usually a bottleneck.
 
