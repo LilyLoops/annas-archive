@@ -4565,17 +4565,13 @@ msgstr "❌ Slow downloads are not available through Cloudflare VPNs or otherwis
 
 #: allthethings/page/templates/page/partner_download.html:30
 msgid "page.partner_download.wait_banner"
-msgstr "Please wait %(wait_seconds)s seconds to download this file."
+msgstr "Please wait <span class=\"js-partner-countdown\">%(wait_seconds)s</span> seconds to download this file."
 
 #: allthethings/page/templates/page/partner_download.html:36
 msgid "page.partner_download.url"
 msgstr "<a %(a_download)s>📚 Download now</a>"
 
-#: allthethings/page/templates/page/partner_download.html:41
-msgid "page.partner_download.thanks"
-msgstr "Thanks for waiting, this keeps the website accessible for free for everyone! 😊"
-
-#: allthethings/page/templates/page/partner_download.html:56
+#: allthethings/page/templates/page/partner_download.html:54
 msgid "page.partner_download.text1"
 msgstr "In order to give everyone an opportunity to download files for free, you need to wait before you can download this file."
 
@@ -4591,9 +4587,9 @@ msgstr "Feel free to wait for multiple download pages to load at the same time (
 msgid "page.partner_download.li3"
 msgstr "Once you get a download link it is valid for several hours."
 
-#: allthethings/page/templates/page/partner_download.html:40
-msgid "page.partner_download.automatic_refreshing"
-msgstr "Automatically refresh page. If you miss the download window, the timer will restart, so automatic refreshing is recommended."
+#: allthethings/page/templates/page/partner_download.html:36
+msgid "page.partner_download.li4"
+msgstr "Thanks for waiting, this keeps the website accessible for free for everyone! 😊"
 
 #: allthethings/page/templates/page/partner_download.html:84
 msgid "page.partner_download.warning_many_downloads"
@@ -5578,45 +5574,9 @@ msgstr "Next"
 #~ msgid "page.md5.box.download.header_generic"
 #~ msgstr "Downloads"
 
-#~ msgid "page.partner_download.header"
-#~ msgstr "Download from partner website"
-
-#~ msgid "page.partner_download.slow_downloads_official"
-#~ msgstr "❌ Slow downloads are only available through the official website. Visit %(websites)s."
-
-#~ msgid "page.partner_download.slow_downloads_cloudflare"
-#~ msgstr "❌ Slow downloads are not available through Cloudflare VPNs or otherwise from Cloudflare IP addresses."
-
-#~ msgid "page.partner_download.wait_banner"
-#~ msgstr "⏰ Please wait %(wait_seconds)s seconds to download this file."
-
-#~ msgid "page.partner_download.url"
-#~ msgstr "<a %(a_download)s>📚 Download now</a>"
-
-#~ msgid "page.partner_download.thanks"
-#~ msgstr "Thanks for waiting, this keeps the website accessible for free for everyone! 😊"
-
-#~ msgid "page.partner_download.text1"
-#~ msgstr "In order to give everyone an opportunity to download files for free, you need to wait before you can download this file."
-
-#~ msgid "page.partner_download.li1"
-#~ msgstr "Feel free to continue browsing Anna’s Archive in a different tab while waiting (if your browser supports refreshing background tabs)."
-
-#~ msgid "page.partner_download.li2"
-#~ msgstr "Feel free to wait for multiple download pages to load at the same time (but please only download one file at the same time per server)."
-
-#~ msgid "page.partner_download.li3"
-#~ msgstr "Once you get a download link it is valid for several hours."
+#~ msgid "page.partner_download.download_now"
+#~ msgstr "Download now"
 
 #~ msgid "page.partner_download.automatic_refreshing"
 #~ msgstr "Automatically refresh page. If you miss the download window, the timer will restart, so automatic refreshing is recommended."
-
-#~ msgid "page.partner_download.warning_many_downloads"
-#~ msgstr "Warning: there have been lots of downloads from your IP address in the last 24 hours. Downloads might be slower than usual."
-
-#~ msgid "page.partner_download.downloads_last_24_hours"
-#~ msgstr "Downloads from your IP address in the last 24 hours: %(count)s."
-
-#~ msgid "page.partner_download.warning_many_downloads2"
-#~ msgstr "If you’re using a VPN, shared internet connection, or your ISP shares IPs, this warning this might be due to that."
 
