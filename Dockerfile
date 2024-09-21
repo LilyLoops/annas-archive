@@ -97,7 +97,7 @@ RUN mkdir /public/pdfjs
 RUN unzip /public/pdfjs-4.5.136-dist.zip -d /public/pdfjs
 
 # Remove lines
-RUN sed -i -e '/if (fileOrigin !== viewerOrigin) {/,+3d' /public/pdfjs/web/viewer.mjs
+RUN sed -i -e '/if (fileOrigin !== viewerOrigin) {/,+2d' /public/pdfjs/web/viewer.mjs
 
 COPY . .
 

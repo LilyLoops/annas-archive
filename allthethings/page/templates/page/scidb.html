@@ -46,8 +46,6 @@
     </div>
     {% if pdf_url %}
       <iframe src="/pdfjs/web/viewer.html?file={{ pdf_url | urlencode }}" title="webviewer" frameborder="0" class="w-full"></iframe>
-      <script>
-      </script>
     {% elif scihub_link %}
       <iframe class="w-full" src="{{ scihub_link }}">
     {% else %}
