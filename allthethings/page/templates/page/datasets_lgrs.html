@@ -1,0 +1,125 @@
+{% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
+
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.libgen_rs.title') }} [lgrs]{% endblock %}
+
+{% block body %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.libgen_rs.title') }} [lgrs]</div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/lgrs">
+            {{ gettext('common.record_sources_mapping.lgrs') }} [lgrs]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_rs.metadata1', icon='✅',
+                dbdumps=(dict(href="https://data.library.bz/dbdumps/") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_rs.files1', icon='✅',
+                nonfiction=(dict(href="https://libgen.rs/repository_torrent/") | xmlattr),
+                fiction=(dict(href="https://libgen.rs/fiction/repository_torrent/") | xmlattr),
+            ) }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_rs.files2', icon='👩‍💻',
+                covers=(dict(href="/torrents#libgenrs_covers") | xmlattr),
+            ) }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_rs.story') }}
+  </p>
+
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.libgen_rs.story.dot_fun') }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.libgen_rs.story.dot_rs') }}
+    <!-- TODO:TRANSLATE -->
+    Originally at “http://gen.lib.rus.ec”.
+    </li>
+    <li class="list-disc">{{ gettext('page.datasets.libgen_rs.story.dot_li', a_li=(dict(href="/datasets/lgli") | xmlattr), a_scihub=(dict(href="/datasets/scihub") | xmlattr)) }}
+    <!-- TODO:TRANSLATE -->
+    According to this <a href="https://forum.mhut.org/viewtopic.php?p=200772#p200772">forum post</a>, Libgen.li was originally hosted at “http://free-books.dontexist.com”.
+    </li>
+    <li class="list-disc">{{ gettext('page.datasets.libgen_rs.story.zlib', a_zlib=(dict(href="/datasets/zlib") | xmlattr)) }}</li>
+  </ul>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_rs.description.about') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_rs.description.metadata', a_metadata=(dict(href="https://wiki.mhut.org/content:bibliographic_data") | xmlattr)) }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_rs.description.new_torrents', a_href=(dict(href="https://forum.mhut.org/viewtopic.php?f=17&t=6395&p=217286") | xmlattr)) }}
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.lgrs.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.lgrs.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.lgrs.aa_count | numberformat), percent=((stats_data.stats_by_group.lgrs.aa_count/(stats_data.stats_by_group.lgrs.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.libgenrs_date) }}</li>
+    
+    <li class="list-disc"><a href="/torrents#libgen_rs_non_fic">{{ gettext('page.datasets.libgen_rs.nonfiction_torrents') }}</a></li>
+    <li class="list-disc"><a href="/torrents#libgen_rs_fic">{{ gettext('page.datasets.libgen_rs.fiction_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/lgrsfic/617509.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.rs/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.libgen_rs.title')) }}</a></li>
+
+    <li class="list-disc"><a href="https://libgen.rs/dbdumps/">{{ gettext('page.datasets.libgen_rs.link_metadata') }}</a></li>
+    <li class="list-disc"><a href="https://wiki.mhut.org/content:bibliographic_data">{{ gettext('page.datasets.libgen_rs.link_metadata_fields') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.rs/repository_torrent/">{{ gettext('page.datasets.libgen_rs.link_nonfiction') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.rs/fiction/repository_torrent/">{{ gettext('page.datasets.libgen_rs.link_fiction') }}</a></li>
+    <li class="list-disc"><a href="https://forum.mhut.org/">{{ gettext('page.datasets.libgen_rs.link_forum') }}</a></li>
+    <li class="list-disc"><a href="/torrents#libgenrs_covers">{{ gettext('page.datasets.libgen_rs.aa_covers') }}</a></li>
+
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-update-open-source-elasticsearch-covers.html">{{ gettext('page.datasets.libgen_rs.covers_announcement') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+
+  <h2 class="mt-4 mb-1 text-3xl font-bold">{{ gettext('page.datasets.libgen_rs.title') }}</h2>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_rs.about') }}
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.libgen_rs.release1.title', date="2022-12-09") }}</p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_rs.release1.intro', blog_post=(dict(href="https://annas-archive.se/blog/annas-update-open-source-elasticsearch-covers.html") | xmlattr)) }}
+  </p>
+
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.libgen_rs.release1.nonfiction', example=("<code>https://libgen.rs/covers/110000/8336332bf5877e3adbfb60ac70720cd5-d.jpg</code>" | safe)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.libgen_rs.release1.fiction', example=("<code>https://libgen.rs/fictioncovers/2208000/3f84cf4b822ec4bb5f0fb63af8348b1d-g.jpg</code>" | safe)) }}</li>
+  </ul>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_rs.release1.outro', a_ratarmount=(dict(href="https://github.com/mxmlnkn/ratarmount") | xmlattr)) }}
+  </p>
+{% endblock %}

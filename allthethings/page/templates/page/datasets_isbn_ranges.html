@@ -1,23 +1,34 @@
 {% extends "layouts/index.html" %}
 
-{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets/isbn_ranges.title') }}{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.isbn_ranges.title') }}{% endblock %}
 
 {% block body %}
-  <h2 class="mt-4 mb-4 text-3xl font-bold"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets/isbn_ranges.title') }}</h2>
+  <h2 class="mt-4 mb-4 text-3xl font-bold"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.isbn_ranges.title') }}</h2>
 
   <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
-    {{ gettext('page.datasets/isbn_ranges.intro', a_archival=(' href="/faq#what"' | safe), a_llm=(' href="/llm"' | safe)) }}
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+    </table>
   </div>
 
   <p class="mb-4">
-    {{ gettext('page.datasets/isbn_ranges.text1', a_isbnlib=(' href="https://pypi.org/project/isbnlib/"' | safe)) }}
+    {{ gettext('page.datasets.isbn_ranges.text1', a_isbnlib=(' href="https://pypi.org/project/isbnlib/"' | safe)) }}
   </p>
 
-  <p><strong>{{ gettext('page.datasets/isbn_ranges.resources') }}</strong></p>
+  <p><strong>{{ gettext('page.datasets.isbn_ranges.resources') }}</strong></p>
   <ul class="list-inside mb-4 ml-1">
-    <li class="list-disc">{{ gettext('page.datasets/isbn_ranges.last_updated', isbn_country_date=stats_data.isbn_country_date, link=('git <a href="https://github.com/xlcnd/isbnlib/commit/8d944ee456cb7b465aff67e2f8d200e8d7de7d0b">isbnlib#8d944ee</a>' | safe)) }}</li>
-    <li class="list-disc"><a href="https://www.isbn-international.org/range_file_generation">{{ gettext('page.datasets/isbn_ranges.isbn_website') }}</a></li>
-    <li class="list-disc"><a href="https://www.isbn-international.org/export_rangemessage.xml">{{ gettext('page.datasets/isbn_ranges.isbn_metadata') }}</a></li>
+    <li class="list-disc">{{ gettext('page.datasets.isbn_ranges.last_updated', isbn_country_date=stats_data.isbn_country_date, link=('git <a href="https://github.com/xlcnd/isbnlib/commit/8d944ee456cb7b465aff67e2f8d200e8d7de7d0b">isbnlib#8d944ee</a>' | safe)) }}</li>
+    <li class="list-disc"><a href="https://www.isbn-international.org/range_file_generation">{{ gettext('page.datasets.isbn_ranges.isbn_website') }}</a></li>
+    <li class="list-disc"><a href="https://www.isbn-international.org/export_rangemessage.xml">{{ gettext('page.datasets.isbn_ranges.isbn_metadata') }}</a></li>
     <li class="list-disc"><a href="https://pypi.org/project/isbnlib/3.10.10/">isbnlib 3.10.10</a></li>
   </ul>
 {% endblock %}

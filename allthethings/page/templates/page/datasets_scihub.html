@@ -1,50 +1,107 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
-{% block title %}Datasets{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.scihub.title') }} [scihub]{% endblock %}
 
 {% block body %}
-  {% if gettext('common.english_only') != 'Text below continues in English.' %}
-    <p class="mb-4 font-bold">{{ gettext('common.english_only') }}</p>
-  {% endif %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.scihub.title') }} [scihub]</div>
 
-  <div lang="en">
-    <div class="mb-4"><a href="/datasets">Datasets</a> ▶ Sci-Hub</div>
-
-    <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
-      If you are interested in mirroring this dataset for <a href="/faq#what">archival</a> or <a href="/llm">LLM training</a> purposes, please contact us.
-    </div>
-
-    <p class="mb-4">
-      For a background on Sci-Hub, please refer to its <a href="https://sci-hub.ru/">official website</a>, <a href="https://en.wikipedia.org/wiki/Sci-Hub">Wikipedia page</a>, and this <a href="https://radiolab.org/podcast/library-alexandra">podcast interview</a>.
-    </p>
-
-    <p class="mb-4">
-      Note that Sci-Hub has been <a href="https://www.reddit.com/r/scihub/comments/lofj0r/announcement_scihub_has_been_paused_no_new/">frozen since 2021</a>. It was frozen before, but in 2021 a few million papers were added. Still, some limited number of papers get added to the Libgen “scimag” collections, though not enough to warrant new bulk torrents.
-    </p>
-
-    <p class="mb-4">
-      We use the Sci-Hub metadata as provided by <a href="/datasets/libgen_li">Libgen.li</a> in its “scimag” collection. We also use the <a href="https://sci-hub.ru/datasets/dois-2022-02-12.7z">dois-2022-02-12.7z</a> dataset.
-    </p>
-
-    <p class="mb-4">
-      Note that the “smarch” torrents are <a href="https://www.reddit.com/r/libgen/comments/15qa5i0/what_are_smarch_files/">deprecated</a> and therefore not included in our torrents list.
-    </p>
-
-    <p><strong>Resources</strong></p>
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc">Total files: {{ stats_data.stats_by_group.journals.count | numberformat }}</li>
-      <li class="list-disc">Total filesize: {{ stats_data.stats_by_group.journals.filesize | filesizeformat }}</li>
-      <li class="list-disc">Files mirrored by Anna’s Archive: {{ stats_data.stats_by_group.journals.aa_count | numberformat }} ({{ (stats_data.stats_by_group.journals.aa_count/stats_data.stats_by_group.journals.count*100.0) | decimalformat }}%)</li>
-      <li class="list-disc"><a href="/torrents#scihub">Torrents on Anna’s Archive</a></li>
-      <li class="list-disc"><a href="/db/scihub_doi/10.5822/978-1-61091-843-5_15.json">Example record on Anna’s Archive</a></li>
-      <li class="list-disc"><a href="https://sci-hub.ru/">Website</a></li>
-      <li class="list-disc"><a href="https://sci-hub.ru/database">Metadata and torrents</a></li>
-      <li class="list-disc"><a href="https://libgen.rs/scimag/repository_torrent/">Torrents on Libgen.rs</a></li>
-      <li class="list-disc"><a href="https://libgen.li/torrents/scimag/">Torrents on Libgen.li</a></li>
-      <li class="list-disc"><a href="https://www.reddit.com/r/scihub/comments/lofj0r/announcement_scihub_has_been_paused_no_new/">Updates on Reddit</a></li>
-      <li class="list-disc"><a href="https://en.wikipedia.org/wiki/Sci-Hub">Wikipedia page</a></li>
-      <li class="list-disc"><a href="https://radiolab.org/podcast/library-alexandra">Podcast interview</a></li>
-      <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">Scripts for importing metadata</a></li>
-    </ul>
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
   </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/scihub">
+            {{ gettext('common.record_sources_mapping.scihub_scimag') }} [scihub]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.scihub.metadata1', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.scihub.metadata2', icon='✅',
+                scihub1=(dict(href="https://sci-hub.ru/database") | xmlattr),
+                scihub2=(dict(href="https://data.library.bz/dbdumps/") | xmlattr),
+                libgenli=(dict(href="https://libgen.li/dirlist.php?dir=dbdumps") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.scihub.files1', icon='✅',
+                scihub1=(dict(href="https://sci-hub.ru/database") | xmlattr),
+                scihub2=(dict(href="https://libgen.rs/scimag/repository_torrent/") | xmlattr),
+                libgenli=(dict(href="https://libgen.li/torrents/scimag/") | xmlattr),
+            ) }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.scihub.files2', icon='❌',
+                libgenrs=(dict(href="https://libgen.rs/scimag/recent") | xmlattr),
+                libgenli=(dict(href="https://libgen.li/index.php?req=fmode:last&topics%5B%5D=a") | xmlattr),
+            ) }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.scihub.description1',
+      a_scihub=(dict(href="https://sci-hub.ru/") | xmlattr),
+      a_wikipedia=(dict(href="https://en.wikipedia.org/wiki/Sci-Hub") | xmlattr),
+      a_radiolab=(dict(href="https://radiolab.org/podcast/library-alexandra") | xmlattr),
+    ) }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.scihub.description2',
+      a_reddit=(dict(href="https://www.reddit.com/r/scihub/comments/lofj0r/announcement_scihub_has_been_paused_no_new/") | xmlattr),
+    ) }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.scihub.description3',
+      a_libgen_li=(dict(href="/datasets/lgli") | xmlattr),
+      a_dois=(dict(href="https://sci-hub.ru/datasets/dois-2022-02-12.7z") | xmlattr),
+    ) }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.scihub.description4',
+      a_smarch=(dict(href="https://www.reddit.com/r/libgen/comments/15qa5i0/what_are_smarch_files/") | xmlattr),
+    ) }}
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.journals.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.journals.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.journals.aa_count | numberformat), percent=((stats_data.stats_by_group.journals.aa_count/(stats_data.stats_by_group.journals.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc"><a href="/torrents#scihub">{{ gettext('page.datasets.scihub.aa_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/scihub_doi/10.5822/978-1-61091-843-5_15.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://sci-hub.ru/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.scihub.title')) }}</a></li>
+    <li class="list-disc"><a href="https://sci-hub.ru/database">{{ gettext('page.datasets.scihub.link_metadata') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.rs/scimag/repository_torrent/">{{ gettext('page.datasets.scihub.link_libgen_rs_torrents') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.li/torrents/scimag/">{{ gettext('page.datasets.scihub.link_libgen_li_torrents') }}</a></li>
+    <li class="list-disc"><a href="https://www.reddit.com/r/scihub/comments/lofj0r/announcement_scihub_has_been_paused_no_new/">{{ gettext('page.datasets.scihub.link_paused') }}</a></li>
+    <li class="list-disc"><a href="https://en.wikipedia.org/wiki/Sci-Hub">{{ gettext('page.datasets.scihub.link_wikipedia') }}</a></li>
+    <li class="list-disc"><a href="https://radiolab.org/podcast/library-alexandra">{{ gettext('page.datasets.scihub.link_podcast') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
 {% endblock %}

@@ -1,0 +1,95 @@
+[
+	{
+		"aarecords__8": {
+			"mappings": {
+				"dynamic": "false",
+				"properties": {
+					"search_only_fields": {
+						"properties": {
+							"search_access_types": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							},
+							"search_added_date": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							},
+							"search_author": {
+								"analyzer": "custom_icu_analyzer",
+								"index_phrases": true,
+								"type": "text"
+							},
+							"search_bulk_torrents": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							},
+							"search_content_type": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							},
+							"search_description_comments": {
+								"analyzer": "custom_icu_analyzer",
+								"index_phrases": true,
+								"type": "text"
+							},
+							"search_doi": {
+								"type": "keyword"
+							},
+							"search_edition_varia": {
+								"analyzer": "custom_icu_analyzer",
+								"index_phrases": true,
+								"type": "text"
+							},
+							"search_extension": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							},
+							"search_filesize": {
+								"index": false,
+								"type": "long"
+							},
+							"search_isbn13": {
+								"type": "keyword"
+							},
+							"search_most_likely_language_code": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							},
+							"search_original_filename": {
+								"analyzer": "custom_icu_analyzer",
+								"index_phrases": true,
+								"type": "text"
+							},
+							"search_publisher": {
+								"analyzer": "custom_icu_analyzer",
+								"index_phrases": true,
+								"type": "text"
+							},
+							"search_record_sources": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							},
+							"search_score_base_rank": {
+								"type": "rank_feature"
+							},
+							"search_text": {
+								"analyzer": "custom_icu_analyzer",
+								"index_phrases": true,
+								"type": "text"
+							},
+							"search_title": {
+								"analyzer": "custom_icu_analyzer",
+								"index_phrases": true,
+								"type": "text"
+							},
+							"search_year": {
+								"eager_global_ordinals": true,
+								"type": "keyword"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+]

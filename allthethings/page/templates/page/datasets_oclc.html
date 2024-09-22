@@ -1,0 +1,69 @@
+{% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
+
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.worldcat.title') }} [oclc]{% endblock %}
+
+{% block body %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.worldcat.title') }} [oclc]</div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.last_updated.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/oclc">
+            {{ gettext('common.record_sources_mapping.oclc') }} [oclc]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.worldcat.metadata1', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.worldcat.metadata2', icon='👩‍💻',
+                worldcat=(dict(href="/torrents#worldcat") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">{{ stats_data.oclc_date }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.worldcat.description',
+      a_worldcat=(dict(href="https://en.wikipedia.org/wiki/WorldCat") | xmlattr),
+      a_oclc=(dict(href="https://en.wikipedia.org/wiki/OCLC") | xmlattr)
+    ) }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext(
+        'page.datasets.worldcat.description2',
+        a_scrape=(dict(href="https://annas-archive.se/blog/worldcat-scrape.html") | xmlattr),
+        a_aac=(dict(href="https://annas-archive.se/blog/annas-archive-containers.html") | xmlattr)
+    ) }}
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.oclc_date) }}</li>
+    <li class="list-disc"><a href="/torrents#worldcat">{{ gettext('page.datasets.worldcat.torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/oclc/1.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://worldcat.org/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.worldcat.title')) }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/worldcat-scrape.html">{{ gettext('page.datasets.worldcat.blog_announcement') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+{% endblock %}

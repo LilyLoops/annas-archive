@@ -1,0 +1,63 @@
+{% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
+
+{% block title %}{{ gettext('page.datasets.title') }} ▶ EBSCOhost eBook Index [edsebk]{% endblock %}
+
+{% block body %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ EBSCOhost eBook Index [edsebk]</div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.last_updated.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/edsebk">
+            EBSCOhost eBook Index [edsebk]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.isbndb.metadata1', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            👩‍💻 Anna’s Archive manages a collection of <a href="/datasets/edsebk">EBSCOhost eBook metadata</a>
+          </div>
+        </td>
+        <td class="p-2 align-top">{{ stats_data.edsebk_date }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    Scrape of EBSCOhost’s eBook Index (edsebk; "eds" = "EBSCOhost Discovery Service", "ebk" = "eBook"). Code made by our volunteer <a href="https://software.annas-archive.se/AnnaArchivist/ebscohost-scrape">here</a>. This is a fairly small ebook metadata index, but still contains some unique files. If you have access to the other EBSCOhost databases, please let us know, since we’d like to index more of them.
+  </p>
+
+  <p class="mb-4">
+    The filename of the latest release (annas_archive_meta__aacid__ebscohost_records__20240823T161729Z--Wk44RExtNXgJ3346eBgRk9.jsonl) is incorrect (the timestamp should be a range, and there should not be a uid). We’ll correct this in the next release.
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.edsebk.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.edsebk.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.edsebk.aa_count | numberformat), percent=((stats_data.stats_by_group.edsebk.aa_count/(stats_data.stats_by_group.edsebk.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.edsebk_date) }}</li>
+    <li class="list-disc"><a href="/torrents#other_metadata">Metadata torrents by Anna’s Archive</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/ebscohost-scrape">Scraper code by volunteer “teamcoltra”.</a></li>
+    <li class="list-disc"><a href="/db/aac_edsebk/1509715.json">Example record on Anna’s Archive (AAC format)</a></li>
+    <li class="list-disc"><a href="/edsebk/1509715">Example record on Anna’s Archive (full page)</a></li>
+    <li class="list-disc"><a href="https://edsebk.org/">Main EBSCOhost website</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+{% endblock %}

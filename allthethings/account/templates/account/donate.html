@@ -1,4 +1,5 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
 {% block title %}{{ gettext('page.donate.title') }}{% endblock %}
 
@@ -33,73 +34,70 @@
     </div> -->
   {% endif %}
 
+  {% macro fast_downloads(downloads, multiplier) %}
+    {{ gettext('page.donate.perks.fast_downloads', number=((
+      '<span class="line-through mr-1">{}</span><strong class="text-[#ff005b]">{}</strong>'.format(downloads, downloads*2)
+      if g.is_membership_double
+      else '<strong>{}</strong>'.format(downloads | string)) | safe
+    )) }}
+    {% if g.is_membership_double %}
+      <div class="inline-block text-xs bg-[#ff005b] text-white px-1 rounded">{{ gettext('page.donate.perks.if_you_donate_this_month') }}</div>
+    {% endif %}
+  {% endmacro %}
+
+  {% set checkmark_icon %}
+    <span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span>
+  {% endset %}
+
+  {% macro membership_tier(level, size_classes) %}
+    <div class="{{ size_classes }} w-[calc(50%-6px)] px-2 py-4 bg-white border border-gray-200 aria-selected:border-[#09008e] rounded-lg shadow mb-3 js-membership-tier js-membership-tier-{{ level }}" aria-selected="false">
+      <div class="whitespace-nowrap text-center mb-2">{{ membership_tier_names[level] | replace(' ', '<br>') | safe }}</div>
+      <div class="text-center font-bold text-xl mb-2">{{ gettext('page.donate.membership_per_month', cost=('%0.2f'| format(MEMBERSHIP_TIER_COSTS[level] * (1-(MEMBERSHIP_DURATION_DISCOUNTS['96']+10)/100)) | string | replace('.00', '')) + "-$" + (MEMBERSHIP_TIER_COSTS[level] | string)) }}</div>
+      <button onclick="window.membershipTierToggle('{{level}}')" class="text-center mb-1 block bg-[#0195ff] hover:bg-blue-600 [[aria-selected=true]_&]:bg-[#09008e] px-2 py-1 rounded-md text-white w-full">
+        <span class="[[aria-selected=true]_&]:hidden">{{ gettext('page.donate.buttons.join') }}</span>
+        <span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> {{ gettext('page.donate.buttons.selected') }}</span>
+      </button>
+      <!-- <div class="text-xs text-gray-500 text-center">{{ gettext('page.donate.buttons.up_to_discounts', percentage=MEMBERSHIP_DURATION_DISCOUNTS['96']+10) }}</div> -->
+      <ul class="mt-4 pl-5">
+        {{ caller() }}
+      </ul>
+    </div>
+  {% endmacro %}
+
   <div class="js-membership-section-tier">
     <div class="flex flex-wrap justify-between md:overflow-hidden">
-      <div class="md:min-w-[170px] w-[calc(50%-6px)] md:w-[21%] px-2 py-4 bg-white border border-gray-200 aria-selected:border-[#09008e] rounded-lg shadow mb-3 js-membership-tier js-membership-tier-2" aria-selected="false">
-        <div class="js-membership-name-tier whitespace-nowrap text-center mb-2"></div>
-        <div class="js-membership-cost-tier text-center font-bold text-xl mb-2"></div>
-        <button onclick="window.membershipTierToggle('2')" class="text-center mb-1 block bg-[#0195ff] hover:bg-blue-600 [[aria-selected=true]_&]:bg-[#09008e] px-2 py-1 rounded-md text-white w-full">
-          <span class="[[aria-selected=true]_&]:hidden">{{ gettext('page.donate.buttons.join') }}</span>
-          <span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> {{ gettext('page.donate.buttons.selected') }}</span>
-        </button>
-        <div class="text-xs text-gray-500 text-center mb-4">{{ gettext('page.donate.buttons.up_to_discounts', percentage=MEMBERSHIP_DURATION_DISCOUNTS['96']+10) }}</div>
-        <ul class="pl-5">
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 🚀 {{ gettext('page.donate.perks.fast_downloads', number=(((('<span class="line-through mr-1">' + (MEMBERSHIP_DOWNLOADS_PER_DAY['2'] | string) + '</span><strong class="text-[#ff005b]">' + ((MEMBERSHIP_DOWNLOADS_PER_DAY['2']*2) | string) + '</strong>') if g.is_membership_double else ('<strong>' + (MEMBERSHIP_DOWNLOADS_PER_DAY['2'] | string) + '</strong>'))) | safe)) }}{% if g.is_membership_double %} <div class="inline-block text-xs bg-[#ff005b] text-white px-1 rounded">{{ gettext('page.donate.perks.if_you_donate_this_month') }}</div>{% endif %}</li>
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 🧬&nbsp;{{ gettext('page.donate.perks.scidb') }}</li>
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 👩‍💻 {{ gettext('page.donate.perks.jsonapi', a_api=(' href="/faq#api"' | safe)) }}</li>
-          <!-- <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 💁‍♀️ {{ gettext('page.donate.perks.refer', percentage=50, a_refer=(' href="/refer"' | safe)) }}</li> -->
-          <!-- <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> {{ gettext('page.donate.perks.credits') }}</li> -->
-        </ul>
-      </div>
-      <div class="md:min-w-[180px] w-[calc(50%-6px)] md:w-[21%] px-2 py-4 bg-white border border-gray-200 aria-selected:border-[#09008e] rounded-lg shadow mb-3 js-membership-tier js-membership-tier-3" aria-selected="false">
-        <div class="js-membership-name-tier whitespace-nowrap text-center mb-2"></div>
-        <div class="js-membership-cost-tier text-center font-bold text-xl mb-2"></div>
-        <button onclick="window.membershipTierToggle('3')" class="text-center mb-1 block bg-[#0195ff] hover:bg-blue-600 [[aria-selected=true]_&]:bg-[#09008e] px-2 py-1 rounded-md text-white w-full">
-          <span class="[[aria-selected=true]_&]:hidden">{{ gettext('page.donate.buttons.join') }}</span>
-          <span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> {{ gettext('page.donate.buttons.selected') }}</span>
-        </button>
-        <div class="text-xs text-gray-500 text-center mb-4">{{ gettext('page.donate.buttons.up_to_discounts', percentage=MEMBERSHIP_DURATION_DISCOUNTS['96']+10) }}</div>
-        <ul class="pl-5">
-          <li class="text-sm relative mb-1">{{ gettext('page.donate.perks.previous_plus') }}</li>
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 🚀 {{ gettext('page.donate.perks.fast_downloads', number=(((('<span class="line-through mr-1">' + (MEMBERSHIP_DOWNLOADS_PER_DAY['3'] | string) + '</span><strong class="text-[#ff005b]">' + ((MEMBERSHIP_DOWNLOADS_PER_DAY['3']*2) | string) + '</strong>') if g.is_membership_double else ('<strong>' + (MEMBERSHIP_DOWNLOADS_PER_DAY['3'] | string) + '</strong>'))) | safe)) }}{% if g.is_membership_double %} <div class="inline-block text-xs bg-[#ff005b] text-white px-1 rounded">{{ gettext('page.donate.perks.if_you_donate_this_month') }}</div>{% endif %}</li>
-          <!-- <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> {{ gettext('page.donate.perks.early_access') }}</li> -->
-        </ul>
-      </div>
-      <div class="md:min-w-[180px] w-[calc(50%-6px)] md:w-[23%] px-2 py-4 bg-white border border-gray-200 aria-selected:border-[#09008e] rounded-lg shadow mb-3 js-membership-tier js-membership-tier-4" aria-selected="false">
-        <div class="js-membership-name-tier whitespace-nowrap text-center mb-2"></div>
-        <div class="js-membership-cost-tier text-center font-bold text-xl mb-2"></div>
-        <button onclick="window.membershipTierToggle('4')" class="text-center mb-1 block bg-[#0195ff] hover:bg-blue-600 [[aria-selected=true]_&]:bg-[#09008e] px-2 py-1 rounded-md text-white w-full">
-          <span class="[[aria-selected=true]_&]:hidden">{{ gettext('page.donate.buttons.join') }}</span>
-          <span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> {{ gettext('page.donate.buttons.selected') }}</span>
-        </button>
-        <div class="text-xs text-gray-500 text-center mb-4">{{ gettext('page.donate.buttons.up_to_discounts', percentage=MEMBERSHIP_DURATION_DISCOUNTS['96']+10) }}</div>
-        <ul class="pl-5">
-          <li class="text-sm relative mb-1">{{ gettext('page.donate.perks.previous_plus') }}</li>
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 🚀 {{ gettext('page.donate.perks.fast_downloads', number=(((('<span class="line-through mr-1">' + (MEMBERSHIP_DOWNLOADS_PER_DAY['4'] | string) + '</span><strong class="text-[#ff005b]">' + ((MEMBERSHIP_DOWNLOADS_PER_DAY['4']*2) | string) + '</strong>') if g.is_membership_double else ('<strong>' + (MEMBERSHIP_DOWNLOADS_PER_DAY['4'] | string) + '</strong>'))) | safe)) }}{% if g.is_membership_double %} <div class="inline-block text-xs bg-[#ff005b] text-white px-1 rounded">{{ gettext('page.donate.perks.if_you_donate_this_month') }}</div>{% endif %}</li>
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 😼 {{ gettext('page.donate.perks.exclusive_telegram') }}</li>
-        </ul>
-      </div>
-      <div class="md:min-w-[240px] w-[calc(50%-6px)] md:w-[29%] px-2 py-4 bg-white border border-gray-200 aria-selected:border-[#09008e] rounded-lg shadow mb-3 js-membership-tier js-membership-tier-5" aria-selected="false">
-        <div class="js-membership-name-tier whitespace-nowrap text-center mb-2"></div>
-        <div class="js-membership-cost-tier text-center font-bold text-xl mb-2"></div>
-        <button onclick="window.membershipTierToggle('5')" class="text-center mb-1 block bg-[#0195ff] hover:bg-blue-600 [[aria-selected=true]_&]:bg-[#09008e] px-2 py-1 rounded-md text-white w-full">
-          <span class="[[aria-selected=true]_&]:hidden">{{ gettext('page.donate.buttons.join') }}</span>
-          <span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> {{ gettext('page.donate.buttons.selected') }}</span>
-        </button>
-        <div class="text-xs text-gray-500 text-center mb-4">{{ gettext('page.donate.buttons.up_to_discounts', percentage=MEMBERSHIP_DURATION_DISCOUNTS['96']+10) }}</div>
-        <ul class="pl-5">
-          <li class="text-sm relative mb-1">{{ gettext('page.donate.perks.previous_plus') }}</li>
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 🚀 {{ gettext('page.donate.perks.fast_downloads', number=(((('<span class="line-through mr-1">' + (MEMBERSHIP_DOWNLOADS_PER_DAY['5'] | string) + '</span><strong class="text-[#ff005b]">' + ((MEMBERSHIP_DOWNLOADS_PER_DAY['5']*2) | string) + '</strong>') if g.is_membership_double else ('<strong>' + (MEMBERSHIP_DOWNLOADS_PER_DAY['5'] | string) + '</strong>'))) | safe)) }}{% if g.is_membership_double %} <div class="inline-block text-xs bg-[#ff005b] text-white px-1 rounded">{{ gettext('page.donate.perks.if_you_donate_this_month') }}</div>{% endif %}</li>
-          <!-- <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 🤗 {{ gettext('page.donate.perks.adopt', div_months=(' class="text-gray-500 text-sm" ' | safe)) }}</li> -->
-          <li class="relative mb-1"><span class="icon-[ion--checkmark-outline] absolute top-1 -left-5"></span> 🤯 {{ gettext('page.donate.perks.legendary') }}</li>
-        </ul>
-      </div>
+      {% call membership_tier('2', 'md:min-w-[170px] md:w-[21%]') %}
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 🚀 {{ fast_downloads(MEMBERSHIP_DOWNLOADS_PER_DAY['2'], 2.0) | safe }}</li>
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 🧬&nbsp;{{ gettext('page.donate.perks.scidb') }}</li>
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 👩‍💻 {{ gettext('page.donate.perks.jsonapi', a_api=(a.faqs_api | xmlattr)) }}</li>
+        <!-- <li class="relative mb-1">{{ checkmark_icon | safe }} 💁‍♀️ {{ gettext('page.donate.perks.refer', percentage=50, a_refer=(a.refer | xmlattr)) }}</li> -->
+        <!-- <li class="relative mb-1">{{ checkmark_icon | safe }} {{ gettext('page.donate.perks.credits') }}</li> -->
+      {% endcall %}
+
+      {% call membership_tier('3', 'md:min-w-[180px] md:w-[21%]') %}
+        <li class="text-sm relative mb-1">{{ gettext('page.donate.perks.previous_plus') }}</li>
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 🚀 {{ fast_downloads(MEMBERSHIP_DOWNLOADS_PER_DAY['3'], 2.0) | safe }}</li>
+        <!-- <li class="relative mb-1">{{ checkmark_icon | safe }} {{ gettext('page.donate.perks.early_access') }}</li> -->
+      {% endcall %}
+
+      {% call membership_tier('4', 'md:min-w-[180px] md:w-[23%]') %}
+        <li class="text-sm relative mb-1">{{ gettext('page.donate.perks.previous_plus') }}</li>
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 🚀 {{ fast_downloads(MEMBERSHIP_DOWNLOADS_PER_DAY['4'], 2.0) | safe }}</li>
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 😼 {{ gettext('page.donate.perks.exclusive_telegram') }}</li>
+      {% endcall %}
+
+      {% call membership_tier('5', 'md:min-w-[240px] md:w-[29%]') %}
+        <li class="text-sm relative mb-1">{{ gettext('page.donate.perks.previous_plus') }}</li>
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 🚀 {{ fast_downloads(MEMBERSHIP_DOWNLOADS_PER_DAY['5'], 2.0) | safe }}</li>
+        <!-- <li class="relative mb-1">{{ checkmark_icon | safe }} 🤗 {{ gettext('page.donate.perks.adopt', div_months=(' class="text-gray-500 text-sm" ' | safe)) }}</li> -->
+        <li class="relative mb-1">{{ checkmark_icon | safe }} 🤯 {{ gettext('page.donate.perks.legendary') }}</li>
+      {% endcall %}
     </div>
 
     <div class="px-2 py-3 bg-white border border-gray-200 aria-selected:border-[#09008e] rounded-lg shadow mb-3 flex items-center justify-between flex-col md:flex-row">
       <div class="px-4 mb-2 md:mb-0">
         <div class="whitespace-nowrap text-center font-bold text-xl">{{ gettext('page.donate.expert.title') }}</div>
-        <div class="text-sm text-gray-500 text-center"><a class="" href="/contact">{{ gettext('page.donate.expert.contact_us') }}</a></div>
+        <div class="text-sm text-gray-500 text-center"><a href="/contact">{{ gettext('page.donate.expert.contact_us') }}</a></div>
         <div class="text-xs text-gray-500 text-center max-w-[300px] whitespace-normal">{{ gettext('page.donate.small_team') }}</div>
       </div>
       <ul class="pl-5 md:pl-9 md:pr-3 w-full md:w-auto whitespace-nowrap">
@@ -113,50 +111,58 @@
 
     <p class="mb-4 text-sm text-gray-500 text-center">
       {{ gettext('page.donate.header.large_donations_wealthy') }}
-      {{ gettext('page.donate.header.large_donations', email=(('<a href="/contact">' | safe + gettext('page.contact.title') + '</a>' | safe) | safe)) }}
-      {{ gettext('page.donate.without_membership', address=('<span class="text-xs break-all"> 8C1Tdvfhj6wHHPtvMHyAmn3jgt9vF9qSdKCYFy8U9ioB2Z16tEhjLSaB8qMSfzsnQeSrbohpYAiMgcW1acmmvCHQ4YGmZip</span>' | safe)) }}
+      {{ gettext('page.donate.header.large_donations', email=(a.contact_page_link | safe)) }}
+      {{ gettext('page.donate.without_membership', address=(a.xmr_address | safe)) }}
     </p>
   </div>
 
   <div class="hidden js-membership-section-method">
-    <p class="mt-8 mb-4">
-      <!-- {{ gettext('page.donate.payment.intro', bitcoin_icon=('<span class="hidden icon-[mdi--bitcoin] text-xl align-text-bottom text-gray-500"></span>' | safe)) }} -->
-      <!-- {{ gettext('page.donate.payment.intro2', bitcoin_icon=('<span class="hidden icon-[mdi--bitcoin] text-xl align-text-bottom text-gray-500"></span>' | safe)) }} -->
-      <!-- Select a payment option. We mostly have crypto-based payments <span class="icon-[mdi--bitcoin] text-xl align-text-bottom text-gray-500"></span>, since traditional payment processors don't like to work with us. -->
-      {{ gettext('page.donate.payment.select_method') }}
-    </p>
+    <p class="mt-8 mb-4">{{ gettext('page.donate.payment.select_method') }}</p>
 
-    <div class="mb-4 flex flex-wrap items-end">
-      <button class="js-membership-method js-membership-method-amazon self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('amazon')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.amazon') }} <span class="tracking-tighter text-sm hidden">(recommended)</span></button>
-      <button class="js-membership-method js-membership-method-payment2 self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment2')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.crypto', bitcoin_icon=('<span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span>' | safe)) }}<span class="absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button>
-      <!-- <button class="js-membership-method js-membership-method-cc self-center     relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('cc')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>Credit/debit card <span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span><span class="hidden absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button> -->
-      <!-- <button class="js-membership-method js-membership-method-paypal self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('paypal')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.paypal', bitcoin_icon=('<span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span>' | safe)) }}<span class="hidden absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button> -->
-      <!-- <button class="js-membership-method js-membership-method-paypalreg self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('paypalreg')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>PayPal (regular)</button> -->
-      <!-- <button class="js-membership-method js-membership-method-givebutter self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('givebutter')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>Card / PayPal / Venmo</button> -->
+    {% macro donate_button(method, label, discount_percent=0, large=False) %}
+      <button class="js-membership-method js-membership-method-{{ method }} {% if not large %}text-xs{% endif %} self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('{{ method }}')" data-membership-method="{{ method }}">
+        <span class="[[aria-selected=false]_&]:hidden">
+          <span class="icon-[ion--checkmark-circle-sharp] {% if large %}text-lg{% else %}text-sm{% endif %} align-text-bottom"></span>
+        </span>
+        {{ label }}
+        {% if discount_percent > 0 %}
+          <span class="absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=discount_percent) }}</span>
+        {% endif %}
+      </button>
+    {% endmacro %}
 
+    <div class="flex flex-wrap items-end">
+      {{ donate_button('amazon', gettext('page.donate.payment.buttons.amazon'), discount_percent=0, large=True) }}
+      {{ donate_button('payment2', gettext('page.donate.payment.buttons.crypto', bitcoin_icon=''), discount_percent=10, large=True) }}
 
-      <!-- <button class="js-membership-method js-membership-method-bmc self-center    relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1"           aria-selected="false" onclick="window.membershipMethodToggle('bmc')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>Credit/debit/Apple/Google (BMC <span class="icon-[ph--coffee-fill] text-lg align-text-bottom"></span>)</button> -->
-      <!-- <button class="js-membership-method js-membership-method-alipay self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1"           aria-selected="false" onclick="window.membershipMethodToggle('alipay')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay') }}</button> -->
-      <!-- <button class="js-membership-method js-membership-method-pix self-center    relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1"           aria-selected="false" onclick="window.membershipMethodToggle('pix')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.pix') }}</button> -->
-      <!-- <button class="js-membership-method js-membership-method-crypto self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('crypto')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.crypto', bitcoin_icon=('<span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span>' | safe)) }}<span class="hidden absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button> -->
-      <!-- <button class="js-membership-method js-membership-method-paypal self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('paypal')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>PayPal <span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span><span class="hidden absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button> -->
+      <!-- {{ donate_button('cc', gettext('page.donate.payment.buttons.credit_debit', bitcoin_icon=''), discount_percent=10) }} -->
+      <!-- {{ donate_button('paypal', gettext('page.donate.payment.buttons.paypal', bitcoin_icon=''), discount_percent=10) }} -->
+      <!-- {{ donate_button('paypalreg', gettext('page.donate.payment.buttons.paypalreg', bitcoin_icon=''), discount_percent=10) }} -->
+      <!-- {{ donate_button('givebutter', gettext('page.donate.payment.buttons.givebutter'), discount_percent=10) }} -->
 
+      <!-- {{ donate_button('bmc', gettext('page.donate.payment.buttons.bmc', bitcoin_icon=''), discount_percent=0) }} -->
+      <!-- {{ donate_button('alipay', gettext('page.donate.payment.buttons.alipay', bitcoin_icon=''), discount_percent=0) }} -->
+      <!-- {{ donate_button('pix', gettext('page.donate.payment.buttons.pix', bitcoin_icon=''), discount_percent=0) }} -->
+      <!-- {{ donate_button('crypto', gettext('page.donate.payment.buttons.crypto', bitcoin_icon=''), discount_percent=10) }} -->
+      <!-- {{ donate_button('pix', gettext('page.donate.payment.buttons.crypto', bitcoin_icon=''), discount_percent=10) }} -->
 
-      <button class="js-membership-method js-membership-method-payment2cashapp self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment2cashapp')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.cashapp') }} <span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span><span class="absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button>
-      <!-- <button class="js-membership-method js-membership-method-payment2paypal self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment2paypal')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.paypal_plain') }} <span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span><span class="hidden absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button> -->
-      <button class="js-membership-method js-membership-method-ccexp self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('ccexp')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.credit_debit') }}</button>
-      <!-- <button class="js-membership-method js-membership-method-hoodpay self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('hoodpay')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.credit_debit_backup') }}</button> -->
-      <!-- <button class="js-membership-method js-membership-method-payment2cc self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment2cc')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.credit_debit2') }} <span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span><span class="hidden absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button> -->
+      {{ donate_button('payment2cashapp', gettext('page.donate.payment.buttons.cashapp', bitcoin_icon=''), discount_percent=10) }}
+      {{ donate_button('payment2revolut', gettext('page.donate.payment.buttons.revolut', bitcoin_icon=''), discount_percent=10) }}
+      <!-- {{ donate_button('payment2paypal', gettext('page.donate.payment.buttons.paypal_plain', bitcoin_icon=''), discount_percent=10) }} -->
+      {{ donate_button('ccexp', gettext('page.donate.payment.buttons.credit_debit', bitcoin_icon=''), discount_percent=0) }}
+      <!-- {{ donate_button('hoodpay', gettext('page.donate.payment.buttons.credit_debit_backup', bitcoin_icon=''), discount_percent=0) }} -->
+      <!-- {{ donate_button('payment2cc', gettext('page.donate.payment.buttons.credit_debit2', bitcoin_icon=''), discount_percent=0) }} -->
 
-      
-      <!-- <button class="js-membership-method js-membership-method-binance self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('binance')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>Credit/debit card or bank <span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span><span class="hidden absolute left-1/2 -top-3.5 -translate-x-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=10) }}</span></button> -->
+      <!-- {{ donate_button('binance', gettext('page.donate.payment.buttons.binance', bitcoin_icon=''), discount_percent=0) }} -->
+    </div>
 
-      <div class="flex flex-wrap w-full">
-        <button class="js-membership-method js-membership-method-payment3a self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment3a')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code != 'zh' %}{{ gettext('page.donate.payment.buttons.alipay') }}{% endif %} 支付宝</button>
-        <button class="js-membership-method js-membership-method-payment1b self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment1b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay_wechat') }} <span class="whitespace-nowrap text-xs">(变体R)</span></button>
-        <button class="js-membership-method js-membership-method-payment3b self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment3b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.wechat') }}</button>
-      </div>
+    <div class="flex flex-wrap w-full">
+      {{ donate_button('payment3a', "{} 支付宝".format(gettext('page.donate.payment.buttons.alipay') if g.domain_lang_code != 'zh' else ''), discount_percent=0, large=True) }}
+      {{ donate_button('payment1b', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体R)</span>' | safe, discount_percent=0) }}
+      {{ donate_button('payment3b', gettext('page.donate.payment.buttons.wechat'), discount_percent=0) }}
+    </div>
 
+    <div class="flex flex-wrap w-full">
       <!-- Payment 1b always at end -->
       <!-- <div class="flex flex-wrap w-full {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}">
         <button class="js-membership-method js-membership-method-payment1_alipay self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment1_alipay')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code != 'zh' %}{{ gettext('page.donate.payment.buttons.alipay') }}{% endif %} 支付宝</button>
@@ -176,33 +182,45 @@
         <button class="js-membership-method js-membership-method-payment1b self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code == 'zh' %}<span class="whitespace-nowrap">支付宝</span> / <span class="whitespace-nowrap">微信支付</span> / <span class="whitespace-nowrap">QQ钱包</span> / <span class="whitespace-nowrap">云闪付</span>{% else %}<span class="whitespace-nowrap">Alipay 支付宝</span> / <span class="whitespace-nowrap">WeChat 微信支付</span> / <span class="whitespace-nowrap">QQ 钱包</span> / <span class="whitespace-nowrap">UnionPay 云闪付</span>{% endif %} <span class="whitespace-nowrap text-xs">(变体S)</span></button>
       {% endif %} -->
 
-
       <!-- Only payment1, no variants -->
       <!-- <button class="js-membership-method js-membership-method-payment1 self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay_wechat') }}</button> -->
 
       <!-- Only payment1b, no variants -->
       <!-- <button class="js-membership-method js-membership-method-payment1b self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code == 'zh' %}<span class="whitespace-nowrap">支付宝</span> / <span class="whitespace-nowrap">微信支付</span> / <span class="whitespace-nowrap">QQ钱包</span> / <span class="whitespace-nowrap">云闪付</span>{% else %}<span class="whitespace-nowrap">Alipay 支付宝</span> / <span class="whitespace-nowrap">WeChat 微信支付</span> / <span class="whitespace-nowrap">QQ 钱包</span> / <span class="whitespace-nowrap">UnionPay 云闪付</span>{% endif %} <span class="whitespace-nowrap text-xs">(变体S)</span></button> -->
 
-
-
       <!-- <button class="text-gray-500 relative mb-1 bg-gray-300 px-2 py-1 rounded-md mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay_wechat') }} {{ gettext('page.donate.payment.buttons.temporarily_unavailable') }}</button> -->
     </div>
   </div>
 
+  {# spacer #}
+  <div class="mb-4"></div>
+
+  {% macro definition_item(term) -%}
+    <dt class="col-start-1 border-t border-zinc-950/5 pt-3 text-zinc-800 first:border-none sm:border-t sm:border-zinc-950/5 sm:py-3 font-semibold">
+      {{ term }}
+    </dt>
+    <dd class="pb-3 pt-1 text-zinc-950 sm:border-t sm:border-zinc-950/5 sm:py-3 sm:[&:nth-child(2)]:border-none">
+      {{ caller() | safe }}
+    </dd>
+  {%- endmacro %}
+
   <div class="hidden js-membership-section-duration">
     <div class="js-membership-descr js-membership-descr-crypto">
-      <p class="mb-4">
-        {{ gettext('page.donate.payment.desc.crypto') }}
-      </p>
+      <p class="mb-4">{{ gettext('page.donate.payment.desc.crypto') }}</p>
     </div>
 
     <div class="js-membership-descr js-membership-descr-payment2">
-      <p class="mb-4">
-        {{ gettext('page.donate.payment.desc.crypto2') }}
-      </p>
+      <p class="mb-4">{{ gettext('page.donate.payment.desc.crypto2') }}</p>
 
       <p class="mb-4">
-        {{ gettext('page.donate.payment.desc.crypto_suggestion', option1=('<a href="https://www.binance.com/en" rel="noopener noreferrer nofollow" target="_blank">Binance</a>' | safe), option2=('<a href="https://www.coinbase.com" rel="noopener noreferrer nofollow" target="_blank">Coinbase</a>' | safe), option3=('<a href="https://www.kraken.com" rel="noopener noreferrer nofollow" target="_blank">Kraken</a>' | safe)) }}
+        {{ gettext(
+          'page.donate.payment.desc.crypto_suggestion_dynamic',
+          options=(format_list([
+            (a.html_a(gettext('page.donate.payment.processor.binance'), **a.binance) | safe),
+            (a.html_a(gettext('page.donate.payment.processor.coinbase'), **a.coinbase) | safe),
+            (a.html_a(gettext('page.donate.payment.processor.kraken'), **a.kraken) | safe),
+          ], style='or') | safe),
+        ) }}
       </p>
     </div>
 
@@ -215,7 +233,18 @@
 
     <div class="js-membership-descr js-membership-descr-paypal js-membership-descr-payment2cashapp">
       <p class="mb-4">
-        {{ gettext('page.donate.payment.desc.cashapp') }} {{ gettext('page.donate.payment.desc.cashapp_easy') }}
+        {{ gettext('page.donate.payment.desc.cashapp') }}
+        {{ gettext('page.donate.payment.desc.cashapp_easy') }}
+      </p>
+      <!-- <p class="mb-4">
+        {{ gettext('page.donate.payment.desc.cashapp_fee', amount='$25', fee='$2-4') }}
+      </p> -->
+    </div>
+
+    <div class="js-membership-descr js-membership-descr-paypal js-membership-descr-payment2revolut">
+      <p class="mb-4">
+        {{ gettext('page.donate.payment.desc.revolut') }}
+        {{ gettext('page.donate.payment.desc.revolut_easy') }}
       </p>
       <!-- <p class="mb-4">
         {{ gettext('page.donate.payment.desc.cashapp_fee', amount='$25', fee='$2-4') }}
@@ -235,7 +264,7 @@
       <p class="mb-4">
         {{ gettext('page.donate.payment.desc.binance_p1') }}
       </p>
-      
+
       <p class="mb-4">
         {{ gettext('page.donate.payment.desc.binance_p2') }}
       </p>
@@ -243,7 +272,7 @@
 
     <div class="js-membership-descr js-membership-descr-paypalreg">
       <p class="mb-4">
-        Donate using your regular PayPal account.
+        {{ gettext('page.donate.payment.desc.paypalreg') }}
       </p>
     </div>
 
@@ -285,18 +314,31 @@
 
     <div class="js-membership-descr js-membership-descr-ccexp">
       <p class="mb-4">
-        {{ gettext('page.donate.payment.desc.credit_debit_p1') }}
+        {{ gettext('page.donate.payment.desc.credit_debit_explained') }}
       </p>
 
-      <p class="mb-4">
-        {{ gettext('page.donate.payment.desc.credit_debit_p2') }}
-      </p>
-
-      <ol class="list-decimal list-inside mb-4">
-        <li><strong>{{ gettext('page.donate.payment.buttons.amazon') }}</strong>: {{ gettext('page.donate.ccexp.amazon_com') }}</li>
-        <li><strong>{{ gettext('page.donate.payment.buttons.wechat') }}</strong>: {{ gettext('page.donate.ccexp.wechat') }}</li>
-        <li><strong>{{ gettext('page.donate.payment.buttons.crypto', bitcoin_icon=('<span class="hidden icon-[mdi--bitcoin] text-lg align-text-bottom"></span>' | safe)) }}</strong>: {{ gettext('page.donate.ccexp.crypto') }} {{ gettext('page.donate.payment.desc.crypto_suggestion', option1=('<a href="https://www.binance.com/en" rel="noopener noreferrer nofollow" target="_blank">Binance</a>' | safe), option2=('<a href="https://www.coinbase.com" rel="noopener noreferrer nofollow" target="_blank">Coinbase</a>' | safe), option3=('<a href="https://www.kraken.com" rel="noopener noreferrer nofollow" target="_blank">Kraken</a>' | safe)) }}</li>
-      </ol>
+      <dl class="grid grid-cols-1 text-base/6 sm:grid-cols-[min(50%,theme(spacing.80))_auto] sm:text-sm/6">
+        {% call definition_item(gettext('page.donate.payment.buttons.amazon')) %}
+          {{ gettext('page.donate.ccexp.amazon_com') }}
+        {% endcall %}
+        {% call definition_item(gettext('page.donate.payment.buttons.alipay')) %}
+          {{ gettext('page.donate.ccexp.alipay', a_alipay=(a.alipay_pdf | xmlattr)) }}
+        {% endcall %}
+        {% call definition_item(gettext('page.donate.payment.buttons.wechat')) %}
+          {{ gettext('page.donate.ccexp.wechat') }}
+        {% endcall %}
+        {% call definition_item(gettext('page.donate.payment.buttons.crypto', bitcoin_icon='')) %}
+          {{ gettext('page.donate.ccexp.crypto') }}
+          {{ gettext(
+            'page.donate.payment.desc.crypto_suggestion_dynamic',
+            options=(format_list([
+              (a.html_a(gettext('page.donate.payment.processor.binance'), **a.binance) | safe),
+              (a.html_a(gettext('page.donate.payment.processor.coinbase'), **a.coinbase) | safe),
+              (a.html_a(gettext('page.donate.payment.processor.kraken'), **a.kraken) | safe),
+            ], style='or') | safe),
+          ) | safe }}
+        {% endcall %}
+      </dl>
     </div>
 
     <!-- <div class="js-membership-descr js-membership-descr-bmc">
@@ -313,13 +355,25 @@
 
     <div class="flex">
       <div class="flex flex-col whitespace-nowrap">
-        <button class="js-membership-duration js-membership-duration-1 relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('1')"><span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.duration.1_mo') }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span></button>
-        <button class="js-membership-duration js-membership-duration-3 relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('3')"><span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.duration.3_mo') }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span> <span class="absolute right-4 top-1/2 translate-x-full -translate-y-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=MEMBERSHIP_DURATION_DISCOUNTS['3']) }}</span></button>
-        <button class="js-membership-duration js-membership-duration-6 relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('6')"><span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.duration.6_mo') }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span> <span class="absolute right-4 top-1/2 translate-x-full -translate-y-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=MEMBERSHIP_DURATION_DISCOUNTS['6']) }}</span></button>
-        <button class="js-membership-duration js-membership-duration-12 relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('12')"><span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.duration.12_mo') }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span> <span class="absolute right-4 top-1/2 translate-x-full -translate-y-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=MEMBERSHIP_DURATION_DISCOUNTS['12']) }}</span></button>
-        <button class="js-membership-duration js-membership-duration-24 relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('24')"><span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.duration.24_mo') }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span> <span class="absolute right-4 top-1/2 translate-x-full -translate-y-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=MEMBERSHIP_DURATION_DISCOUNTS['24']) }}</span></button>
-        <button class="js-membership-duration js-membership-duration-48 relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('48')"><span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.duration.48_mo') }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span> <span class="absolute right-4 top-1/2 translate-x-full -translate-y-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=MEMBERSHIP_DURATION_DISCOUNTS['48']) }}</span></button>
-        <button class="js-membership-duration js-membership-duration-96 relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('96')"><span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.duration.96_mo') }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span> <span class="absolute right-4 top-1/2 translate-x-full -translate-y-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">{{ gettext('page.donate.discount', percentage=MEMBERSHIP_DURATION_DISCOUNTS['96']) }}</span></button>
+        {% macro membership_duration_button(duration, label, discounted=False) %}
+          <button class="js-membership-duration js-membership-duration-{{ duration }} relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-[0.5px] rounded-md text-white pl-3 mr-8" aria-selected="false" onclick="window.membershipDurationToggle('{{ duration }}')">
+            <span class="[[aria-selected=false]_&]:invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span>
+            {{ label }}<span class="invisible"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span></span>
+            {% if discounted %}
+              <span class="absolute right-4 top-1/2 translate-x-full -translate-y-1/2 bg-[#0195ff] text-white text-xs font-medium px-1 py-0.5 rounded">
+                {{ gettext('page.donate.discount', percentage=MEMBERSHIP_DURATION_DISCOUNTS[duration]) }}
+              </span>
+            {% endif %}
+          </button>
+        {% endmacro %}
+
+        {{ membership_duration_button('1', gettext('page.donate.duration.1_mo')) }}
+        {{ membership_duration_button('3', gettext('page.donate.duration.3_mo'), discounted=True) }}
+        {{ membership_duration_button('6', gettext('page.donate.duration.6_mo'), discounted=True) }}
+        {{ membership_duration_button('12', gettext('page.donate.duration.12_mo'), discounted=True) }}
+        {{ membership_duration_button('24', gettext('page.donate.duration.24_mo'), discounted=True) }}
+        {{ membership_duration_button('48', gettext('page.donate.duration.48_mo'), discounted=True) }}
+        {{ membership_duration_button('96', gettext('page.donate.duration.96_mo'), discounted=True) }}
       </div>
       <div class="flex flex-col justify-center w-full max-w-[350px] text-center">
         {{ gettext('page.donate.duration.summary', div_monthly_cost=(' class="text-2xl font-bold js-membership-monthly-cost"' | safe), div_after=(' class="text-sm text-gray-500 font-light mb-4"' | safe), span_discount=(' class="font-extrabold js-membership-discount-percentage"' | safe), div_total=(' class="text-2xl font-bold js-membership-total-cost"' | safe), div_duration=(' class="text-sm text-gray-500 font-light js-membership-total-duration"' | safe)) }}
@@ -355,6 +409,7 @@
                 <option value="xmr">XMR / Monero {{ gettext('page.donate.currency_lowest_minimum') }}</option>
                 <option value="btc">BTC / Bitcoin</option>
                 <option value="eth">ETH / Ethereum</option>
+                <option value="ethbase">ETH-BASE / Ethereum-Base (use when sending Ethereum from Coinbase) <!--TODO:TRANSLATE --></option>
                 <option value="bch">BCH / Bitcoin Cash</option>
                 <option value="ltc">LTC / Litecoin</option>
                 <option value="ada">ADA / Cardano</option>
@@ -377,7 +432,7 @@
                 <option value="usdttrc20">USDT-TRC20 / Tether-Tron</option>
                 <option value="usdtsol">USDT-SOL / Tether-Solana</option>
                 <!-- No XRP, needs a "tag" -->
-                <!-- <option value="xrp">XRP / Ripple</option> --> 
+                <!-- <option value="xrp">XRP / Ripple</option> -->
               </select>
             </div>
 
@@ -407,7 +462,6 @@
 
   <script>
     (function() {
-      const membershipTierNames = {{ membership_tier_names | tojson }};
       const MEMBERSHIP_TIER_COSTS = {{ MEMBERSHIP_TIER_COSTS | tojson }};
       const MEMBERSHIP_METHOD_DISCOUNTS = {{ MEMBERSHIP_METHOD_DISCOUNTS | tojson }};
       const MEMBERSHIP_DURATION_DISCOUNTS = {{ MEMBERSHIP_DURATION_DISCOUNTS | tojson }};
@@ -450,11 +504,6 @@
           document.querySelector(`.js-membership-duration-${membershipParams.duration}`).setAttribute('aria-selected', 'true');
         } else {
           document.querySelector('.js-membership-duration-1').setAttribute('aria-selected', 'true');
-        }
-
-        for (const tier of Object.keys(MEMBERSHIP_TIER_COSTS)) {
-          document.querySelector(`.js-membership-tier-${tier} .js-membership-name-tier`).innerHTML = membershipTierNames[tier].replace(' ', '<br>');
-          document.querySelector(`.js-membership-tier-${tier} .js-membership-cost-tier`).innerText = `\$${MEMBERSHIP_TIER_COSTS[tier]} / month`;
         }
 
         const membershipParamsStr = [membershipParams.tier, membershipParams.method, membershipParams.duration || "1"].join(',');

@@ -1,68 +1,51 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
-{% block title %}Copyright claim form{% endblock %}
+{% block title %}{{ gettext('page.copyright.title') }}{% endblock %}
 
 {% block body %}
-  {% if gettext('common.english_only') != 'Text below continues in English.' %}
-    <p class="mb-4 font-bold">{{ gettext('common.english_only') }}</p>
-  {% endif %}
+  <h2 class="mt-4 mb-4 text-3xl font-bold">{{ gettext('page.copyright.title') }}</h2>
 
-  <div lang="en">
-    <h2 class="mt-4 mb-4 text-3xl font-bold">DMCA / Copyright claim form</h2>
+  <p class="mb-4 bg-black/6.7 p-4 rounded">{{ gettext('page.copyright.intro', email=(a.email_dmca_link | safe)) }}</p>
 
-    <p class="mb-4 bg-black/6.7 p-4 rounded">
-      If you have a DCMA or other copyright claim, please fill out this form as precisely as possible. If you run into any issues, please contact us at our dedicated DMCA address: <a class="break-all" href="mailto:AnnaDMCA@proton.me">AnnaDMCA@proton.me</a>. Note that claims emailed to this address will not be processed, it is only for questions. Please use the form below to submit your claims.
-    </p>
+  <form autocomplete="on" onsubmit="window.submitForm(event, '/dyn/copyright/')" class="mb-4">
+    <fieldset class="mb-4">
+      <p class="mb-1">{{ gettext('page.copyright.form.aa_urls') }} <strong>{{ gettext('page.copyright.form.aa_urls.note') }}</strong></p>
+      <textarea required name="aa_urls" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
 
-    <form autocomplete="on" onsubmit="window.submitForm(event, '/dyn/copyright/')" class="mb-4">
-      <fieldset class="mb-4">
-        <p class="mb-1">
-          URLs on Anna’s Archive (required). One per line. Please only include URLs that describe the exact same edition of a book. If you want to make a claim for multiple books or multiple editions, please submit this form multiple times. <strong>Claims that bundle multiple books or editions together will be rejected.</strong>
-        </p>
-        <textarea required name="aa_urls" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
-        <p class="mb-1">
-          Your name (required)
-        </p>
-        <input required type="text" name="name" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
-        <p class="mb-1">
-          Address (required)
-        </p>
-        <input required type="text" name="address" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
-        <p class="mb-1">
-          Phone number (required)
-        </p>
-        <input required type="text" name="phone" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
-        <p class="mb-1">
-          E-mail (required)
-        </p>
-        <input required type="email" name="email" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
-        <p class="mb-1">
-          Clear description of the source material (required)
-        </p>
-        <textarea required name="description" class="w-full h-[70px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
-        <p class="mb-1">
-          ISBNs of source material (if applicable). One per line. Please only include those that exactly match the edition for which you are reporting a copyright claim.
-        </p>
-        <textarea name="isbns" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
-        <p class="mb-1">
-          <a href="https://openlibrary.org/">Open Library</a> URLs of source material, one per line. Please take a moment to search Open Library for your source material. This will help us verify your claim.
-        </p>
-        <textarea name="openlib" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
-        <p class="mb-1">
-          URLs to source material, one per line (required). Please include as many as possible, to help us verify your claim (e.g. Amazon, WorldCat, Google Books, DOI).
-        </p>
-        <textarea required name="external_urls" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
-        <p class="mb-1">
-          Statement and signature (required)
-        </p>
-        <textarea required name="statement" class="w-full h-[100px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
-        <div class="">
-          <button type="submit" class="mr-2 bg-[#777] hover:bg-[#999] text-white font-bold py-1 px-3 rounded shadow">Submit claim</button>
-          <span class="js-spinner invisible mb-[-3px] text-xl text-[#555] inline-block icon-[svg-spinners--ring-resize]"></span>
-        </div>
-      </fieldset>
-      <div class="hidden js-success">✅ Thank you for submitting your copyright claim. We will review it as soon as possible. Please reload the page to file another one.</div>
-      <div class="hidden js-failure">❌ Something went wrong. Please reload the page and try again.</div>
-    </form>
-  </div>
+      <p class="mb-1">{{ gettext('page.copyright.form.name') }}</p>
+      <input required type="text" name="name" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.address') }}</p>
+      <input required type="text" name="address" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.phone') }}</p>
+      <input required type="text" name="phone" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.email') }}</p>
+      <input required type="email" name="email" class="grow bg-black/6.7 px-2 py-1 mb-4 rounded w-full"/>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.description') }}</p>
+      <textarea required name="description" class="w-full h-[70px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.isbns') }}</p>
+      <textarea name="isbns" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.openlib_urls', a_openlib=(a.open_library | xmlattr)) }}</p>
+      <textarea name="openlib" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.external_urls') }}</p>
+      <textarea required name="external_urls" class="w-full h-[150px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
+
+      <p class="mb-1">{{ gettext('page.copyright.form.statement') }}</p>
+      <textarea required name="statement" class="w-full h-[100px] bg-black/6.7 text-black p-2 mb-4 rounded"></textarea>
+
+      <div>
+        <button type="submit" class="mr-2 bg-[#777] hover:bg-[#999] text-white font-bold py-1 px-3 rounded shadow">{{ gettext('page.copyright.form.submit_claim') }}</button>
+        <span class="js-spinner invisible mb-[-3px] text-xl text-[#555] inline-block icon-[svg-spinners--ring-resize]"></span>
+      </div>
+    </fieldset>
+    <div class="hidden js-success">{{ gettext('page.copyright.form.on_success') }}</div>
+    <div class="hidden js-failure">{{ gettext('page.copyright.form.on_failure') }}</div>
+  </form>
 {% endblock %}

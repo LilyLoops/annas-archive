@@ -1,0 +1,108 @@
+{% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
+
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.libgen_li.title') }} [lgli]{% endblock %}
+
+{% set dbdumps_https = (dict(href="https://libgen.li/dirlist.php?dir=dbdumps") | xmlattr) %}
+{% set dbdumps_ftp = (dict(href="ftp://ftp.libgen.lc/upload/db") | xmlattr) %}
+{% set libgen_new_db_structure = (dict(href="https://libgen.li/community/app.php/article/new-database-structure-published-oπy6лиĸoвaнa-нoвaя-cтpyĸтypa-6aзƅi-дaннƅix") | xmlattr) %}
+
+{% block body %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.libgen_li.title') }} [lgli]</div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
+  </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/lgli">
+            {{ gettext('common.record_sources_mapping.lgli') }} [lgli]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_li.metadata1', icon='✅',
+                dbdumps=(dict(href="https://libgen.li/dirlist.php?dir=dbdumps") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_li.files1', icon='✅',
+                libgenli=(dict(href="https://libgen.li/torrents/libgen/") | xmlattr),
+            ) }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_li.files2', icon='🙃',
+                libgenli=(dict(href="https://libgen.li/torrents/fiction/") | xmlattr),
+            ) }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_li.files3', icon='👩‍💻',
+                comics=(dict(href="/torrents#libgen_li_comics") | xmlattr),
+                magazines=(dict(href="/torrents#libgen_li_magazines") | xmlattr),
+            ) }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.libgen_li.files4', icon='❌') }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_li.description1', a_libgen_rs=(dict(href="/datasets/lgrs") | xmlattr)) }}
+  </p>
+  
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_li.description2', a_scihub=(dict(href="/datasets/scihub") | xmlattr)) }}
+  </p>
+  
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_li.description3', a_libgen_li=dbdumps_https, a_ftp=dbdumps_ftp) }}
+  </p>
+    
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_li.description4', fiction_starting_point=("<code>f_2201000.torrent</code>" | safe)) }}
+  </p>
+  
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_li.description5', a_libgen=(dict(href="/datasets/lgrs") | xmlattr)) }}
+  </p>
+  
+  <p class="mb-4">
+    {{ gettext('page.datasets.libgen_li.description6', a_href=libgen_new_db_structure) }}
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.lgli.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.lgli.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.lgli.aa_count | numberformat), percent=((stats_data.stats_by_group.lgli.aa_count/(stats_data.stats_by_group.lgli.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.libgenli_date) }}</li>
+    <li class="list-disc"><a href="/torrents#libgen_li_fic">{{ gettext('page.datasets.libgen_li.fiction_torrents') }}</a></li>
+    <li class="list-disc"><a href="/torrents#libgen_li_comics">{{ gettext('page.datasets.libgen_li.comics_torrents') }}</a></li>
+    <li class="list-disc"><a href="/torrents#libgen_li_magazines">{{ gettext('page.datasets.libgen_li.magazines_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/lgli/4663167.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.li/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.libgen_li.title')) }}</a></li>
+    <li class="list-disc"><a {{ dbdumps_https }}>{{ gettext('page.datasets.libgen_li.link_metadata') }}</a></li>
+    <li class="list-disc"><a {{ dbdumps_ftp }}>{{ gettext('page.datasets.libgen_li.link_metadata_ftp') }}</a></li>
+    <li class="list-disc"><a {{ libgen_new_db_structure }}>{{ gettext('page.datasets.libgen_li.metadata_structure') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.li/torrents/">{{ gettext('page.datasets.libgen_li.mirrors') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.li/community/">{{ gettext('page.datasets.libgen_li.forum') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/backed-up-the-worlds-largest-comics-shadow-lib.html">{{ gettext('page.datasets.libgen_li.comics_announcement') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+{% endblock %}

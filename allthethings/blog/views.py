@@ -1,6 +1,6 @@
 import datetime
-from rfeed import *
-from flask import Blueprint, request, render_template, make_response
+from rfeed import Item, Feed
+from flask import Blueprint, render_template, make_response
 
 import allthethings.utils
 

@@ -59,7 +59,7 @@ RUN cd t2sz/build && cmake .. -DCMAKE_BUILD_TYPE="Release" && make && make insta
 # Env for t2sz finding latest libzstd
 ENV LD_LIBRARY_PATH=/usr/local/lib
 
-RUN npm install elasticdump@6.110.0 -g
+RUN npm install elasticdump@6.112.0 -g
 
 RUN wget https://github.com/mydumper/mydumper/releases/download/v0.16.3-3/mydumper_0.16.3-3.bullseye_amd64.deb
 RUN dpkg -i mydumper_*.deb

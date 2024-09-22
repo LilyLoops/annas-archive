@@ -1,27 +1,20 @@
-import time
-import ipaddress
-import json
-import flask_mail
 import datetime
 import jwt
 import shortuuid
 import orjson
 import babel
 import hashlib
-import base64
 import re
 import functools
 import urllib
 import pymysql
-import httpx
 
 from flask import Blueprint, request, g, render_template, make_response, redirect
-from flask_cors import cross_origin
-from sqlalchemy import select, func, text, inspect
+from sqlalchemy import text
 from sqlalchemy.orm import Session
-from flask_babel import gettext, ngettext, force_locale, get_locale
+from flask_babel import gettext, force_locale, get_locale
 
-from allthethings.extensions import es, es_aux, engine, mariapersist_engine, MariapersistAccounts, mail, MariapersistDownloads, MariapersistLists, MariapersistListEntries, MariapersistDonations, MariapersistFastDownloadAccess
+from allthethings.extensions import mariapersist_engine
 from allthethings.page.views import get_aarecords_elasticsearch
 from config.settings import SECRET_KEY, PAYMENT1_ID, PAYMENT1_KEY, PAYMENT1B_ID, PAYMENT1B_KEY
 
@@ -36,7 +29,7 @@ account = Blueprint("account", __name__, template_folder="templates")
 @allthethings.utils.no_cache()
 def account_index_page():
     if (request.args.get('key', '') != '') and (not bool(re.match(r"^[a-zA-Z\d]+$", request.args.get('key')))):
-        return redirect(f"/account/", code=302)
+        return redirect("/account/", code=302)
 
     account_id = allthethings.utils.get_account_id(request.cookies)
     if account_id is None:
@@ -47,13 +40,17 @@ def account_index_page():
         )
 
     with Session(mariapersist_engine) as mariapersist_session:
-        account = mariapersist_session.connection().execute(select(MariapersistAccounts).where(MariapersistAccounts.account_id == account_id).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+        account = allthethings.utils.get_account_by_id(cursor, account_id)
         if account is None:
-            raise Exception("Valid account_id was not found in db!")
+            print(f"ERROR: Valid account_id was not found in db! {account_id=}")
+            return render_template(
+                "account/index.html",
+                header_active="account",
+                membership_tier_names=allthethings.utils.membership_tier_names(get_locale()),
+            )
 
-        mariapersist_session.connection().connection.ping(reconnect=True)
-        cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT membership_tier, membership_expiration, bonus_downloads FROM mariapersist_memberships WHERE account_id = %(account_id)s AND mariapersist_memberships.membership_expiration >= CURDATE()', { 'account_id': account_id })
+        cursor.execute('SELECT membership_tier, membership_expiration, bonus_downloads, mariapersist_memberships.membership_expiration >= CURDATE() AS active FROM mariapersist_memberships WHERE account_id = %(account_id)s', { 'account_id': account_id })
         memberships = cursor.fetchall()
 
         membership_tier_names=allthethings.utils.membership_tier_names(get_locale())
@@ -86,7 +83,8 @@ def account_secret_key_page():
         return ''
 
     with Session(mariapersist_engine) as mariapersist_session:
-        account = mariapersist_session.connection().execute(select(MariapersistAccounts).where(MariapersistAccounts.account_id == account_id).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+        account = allthethings.utils.get_account_by_id(cursor, account_id)
         if account is None:
             raise Exception("Valid account_id was not found in db!")
 
@@ -97,15 +95,20 @@ def account_secret_key_page():
 def account_downloaded_page():
     account_id = allthethings.utils.get_account_id(request.cookies)
     if account_id is None:
-        return redirect(f"/account/", code=302)
+        return redirect("/account/", code=302)
 
     with Session(mariapersist_engine) as mariapersist_session:
-        downloads = mariapersist_session.connection().execute(select(MariapersistDownloads).where(MariapersistDownloads.account_id == account_id).order_by(MariapersistDownloads.timestamp.desc()).limit(1000)).all()
-        fast_downloads = mariapersist_session.connection().execute(select(MariapersistFastDownloadAccess).where(MariapersistFastDownloadAccess.account_id == account_id).order_by(MariapersistFastDownloadAccess.timestamp.desc()).limit(1000)).all()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+        cursor.execute('SELECT * FROM mariapersist_downloads WHERE account_id = %(account_id)s ORDER BY timestamp DESC LIMIT 1000', { 'account_id': account_id })
+        downloads = list(cursor.fetchall())
+
+        cursor.execute('SELECT * FROM mariapersist_fast_download_access WHERE account_id = %(account_id)s ORDER BY timestamp DESC LIMIT 1000',{'account_id': account_id})
+        fast_downloads = list(cursor.fetchall())
 
         # TODO: This merging is not great, because the lists will get out of sync, so you get a gap toward the end.
-        fast_downloads_ids_only = set([(download.timestamp, f"md5:{download.md5.hex()}") for download in fast_downloads])
-        merged_downloads = sorted(set([(download.timestamp, f"md5:{download.md5.hex()}") for download in (downloads+fast_downloads)]), reverse=True)
+        fast_downloads_ids_only = set([(download['timestamp'], f"md5:{download['md5'].hex()}") for download in fast_downloads])
+        merged_downloads = sorted(set([(download['timestamp'], f"md5:{download['md5'].hex()}") for download in (downloads+fast_downloads)]), reverse=True)
         aarecords_downloaded_by_id = {}
         if len(downloads) > 0:
             aarecords_downloaded_by_id = {record['id']: record for record in get_aarecords_elasticsearch(list(set([row[1] for row in merged_downloads])))}
@@ -130,7 +133,8 @@ def account_index_post_page():
         )
 
     with Session(mariapersist_engine) as mariapersist_session:
-        account = mariapersist_session.connection().execute(select(MariapersistAccounts).where(MariapersistAccounts.account_id == account_id).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+        account = allthethings.utils.get_account_by_id(cursor, account_id)
         if account is None:
             return render_template(
                 "account/index.html",
@@ -139,8 +143,8 @@ def account_index_post_page():
                 membership_tier_names=allthethings.utils.membership_tier_names(get_locale()),
             )
 
-        mariapersist_session.connection().execute(text('INSERT IGNORE INTO mariapersist_account_logins (account_id, ip) VALUES (:account_id, :ip)')
-            .bindparams(account_id=account_id, ip=allthethings.utils.canonical_ip_bytes(request.remote_addr)))
+        cursor.execute('INSERT IGNORE INTO mariapersist_account_logins (account_id, ip) VALUES (%(account_id)s, %(ip)s)',
+                       { 'account_id': account_id, 'ip': allthethings.utils.canonical_ip_bytes(request.remote_addr) })
         mariapersist_session.commit()
 
         account_token = jwt.encode(
@@ -148,7 +152,7 @@ def account_index_post_page():
             key=SECRET_KEY,
             algorithm="HS256"
         )
-        resp = make_response(redirect(f"/account/", code=302))
+        resp = make_response(redirect("/account/", code=302))
         resp.set_cookie(
             key=allthethings.utils.ACCOUNT_COOKIE_NAME,
             value=allthethings.utils.strip_jwt_prefix(account_token),
@@ -184,13 +188,13 @@ def account_register_page():
 @account.get("/account/request")
 @allthethings.utils.no_cache()
 def request_page():
-    return redirect(f"/faq#request", code=301)
+    return redirect("/faq#request", code=301)
 
 
 @account.get("/account/upload")
 @allthethings.utils.no_cache()
 def upload_page():
-    return redirect(f"/faq#upload", code=301)
+    return redirect("/faq#upload", code=301)
 
 @account.get("/list/<string:list_id>")
 @allthethings.utils.no_cache()
@@ -198,22 +202,27 @@ def list_page(list_id):
     current_account_id = allthethings.utils.get_account_id(request.cookies)
 
     with Session(mariapersist_engine) as mariapersist_session:
-        list_record = mariapersist_session.connection().execute(select(MariapersistLists).where(MariapersistLists.list_id == list_id).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+        cursor.execute('SELECT * FROM mariapersist_lists WHERE list_id = %(list_id)s LIMIT 1', { 'list_id': list_id })
+        list_record = cursor.fetchone()
         if list_record is None:
             return "List not found", 404
-        account = mariapersist_session.connection().execute(select(MariapersistAccounts).where(MariapersistAccounts.account_id == list_record.account_id).limit(1)).first()
-        list_entries = mariapersist_session.connection().execute(select(MariapersistListEntries).where(MariapersistListEntries.list_id == list_id).order_by(MariapersistListEntries.updated.desc()).limit(10000)).all()
+        account = allthethings.utils.get_account_by_id(cursor, list_record['account_id'])
+
+        cursor.execute('SELECT * FROM mariapersist_list_entries WHERE list_id = %(list_id)s ORDER BY updated DESC LIMIT 10000', { 'list_id': list_id })
+        list_entries = cursor.fetchall()
 
         aarecords = []
         if len(list_entries) > 0:
-            aarecords = get_aarecords_elasticsearch([entry.resource for entry in list_entries if entry.resource.startswith("md5:")])
+            aarecords = get_aarecords_elasticsearch([entry['resource'] for entry in list_entries if entry['resource'].startswith("md5:")])
 
         return render_template(
             "account/list.html", 
             header_active="account",
             list_record_dict={ 
                 **list_record,
-                'created_delta': list_record.created - datetime.datetime.now(),
+                'created_delta': list_record['created'] - datetime.datetime.now(),
             },
             aarecords=aarecords,
             account_dict=dict(account),
@@ -227,18 +236,21 @@ def profile_page(account_id):
     current_account_id = allthethings.utils.get_account_id(request.cookies)
 
     with Session(mariapersist_engine) as mariapersist_session:
-        account = mariapersist_session.connection().execute(select(MariapersistAccounts).where(MariapersistAccounts.account_id == account_id).limit(1)).first()
-        lists = mariapersist_session.connection().execute(select(MariapersistLists).where(MariapersistLists.account_id == account_id).order_by(MariapersistLists.updated.desc()).limit(10000)).all()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+        account = allthethings.utils.get_account_by_id(cursor, account_id)
+
+        cursor.execute('SELECT * FROM mariapersist_lists WHERE account_id = %(account_id)s ORDER BY updated DESC LIMIT 10000', { 'account_id': account_id })
+        lists = cursor.fetchall()
 
         if account is None:
             return render_template("account/profile.html", header_active="account"), 404
 
         return render_template(
             "account/profile.html", 
-            header_active="account/profile" if account.account_id == current_account_id else "account",
+            header_active="account/profile" if account['account_id'] == current_account_id else "account",
             account_dict={ 
                 **account,
-                'created_delta': account.created - datetime.datetime.now(),
+                'created_delta': account['created'] - datetime.datetime.now(),
             },
             list_dicts=list(map(dict, lists)),
             current_account_id=current_account_id,
@@ -262,8 +274,14 @@ def donate_page():
         has_made_donations = False
         existing_unpaid_donation_id = None
         if account_id is not None:
-            existing_unpaid_donation_id = mariapersist_session.connection().execute(select(MariapersistDonations.donation_id).where((MariapersistDonations.account_id == account_id) & ((MariapersistDonations.processing_status == 0) | (MariapersistDonations.processing_status == 4))).limit(1)).scalar()
-            previous_donation_id = mariapersist_session.connection().execute(select(MariapersistDonations.donation_id).where((MariapersistDonations.account_id == account_id)).limit(1)).scalar()
+            cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+            cursor.execute('SELECT donation_id FROM mariapersist_donations WHERE account_id = %(account_id)s AND (processing_status = 0 OR processing_status = 4) LIMIT 1', { 'account_id': account_id })
+            existing_unpaid_donation_id = allthethings.utils.fetch_one_field(cursor)
+
+            cursor.execute('SELECT donation_id FROM mariapersist_donations WHERE account_id = %(account_id)s LIMIT 1', { 'account_id': account_id })
+            previous_donation_id = allthethings.utils.fetch_one_field(cursor)
+
             if (existing_unpaid_donation_id is not None) or (previous_donation_id is not None):
                 has_made_donations = True
 
@@ -294,7 +312,7 @@ def donate_page():
 @account.get("/donation_faq")
 @allthethings.utils.no_cache()
 def donation_faq_page():
-    return redirect(f"/faq#donate", code=301)
+    return redirect("/faq#donate", code=301)
 
 @functools.cache
 def get_order_processing_status_labels(locale):
@@ -314,10 +332,10 @@ def make_donation_dict(donation):
     return {
         **donation,
         'json': donation_json,
-        'total_amount_usd': babel.numbers.format_currency(donation.cost_cents_usd / 100.0, 'USD', locale=get_locale()),
+        'total_amount_usd': babel.numbers.format_currency(donation['cost_cents_usd'] / 100.0, 'USD', locale=get_locale()),
         'monthly_amount_usd': babel.numbers.format_currency(donation_json['monthly_cents'] / 100.0, 'USD', locale=get_locale()),
-        'receipt_id': allthethings.utils.donation_id_to_receipt_id(donation.donation_id),
-        'formatted_native_currency': allthethings.utils.membership_format_native_currency(get_locale(), donation.native_currency_code, donation.cost_cents_native_currency, donation.cost_cents_usd),
+        'receipt_id': allthethings.utils.donation_id_to_receipt_id(donation['donation_id']),
+        'formatted_native_currency': allthethings.utils.membership_format_native_currency(get_locale(), donation['native_currency_code'], donation['cost_cents_native_currency'], donation['cost_cents_usd']),
     }
 
 
@@ -335,19 +353,24 @@ def donation_page(donation_id):
     donation_pay_amount = ""
 
     with Session(mariapersist_engine) as mariapersist_session:
-        donation = mariapersist_session.connection().execute(select(MariapersistDonations).where((MariapersistDonations.account_id == account_id) & (MariapersistDonations.donation_id == donation_id)).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+        cursor.execute('SELECT * FROM mariapersist_donations WHERE account_id = %(account_id)s AND donation_id = %(donation_id)s LIMIT 1', { 'account_id': account_id, 'donation_id': donation_id })
+        donation = cursor.fetchone()
+
+        #donation = mariapersist_session.connection().execute(select(MariapersistDonations).where((MariapersistDonations.account_id == account_id) & (MariapersistDonations.donation_id == donation_id)).limit(1)).first()
         if donation is None:
             return "", 403
 
         donation_json = orjson.loads(donation['json'])
 
-        if donation_json['method'] == 'payment1' and donation.processing_status == 0:
+        if donation_json['method'] == 'payment1' and donation['processing_status'] == 0:
             data = {
                 # Note that these are sorted by key.
-                "money": str(int(float(donation.cost_cents_usd) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
+                "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
                 "notify_url": "https://annas-archive.se/dyn/payment1_notify/",
-                "out_trade_no": str(donation.donation_id),
+                "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1_ID,
                 "return_url": "https://annas-archive.se/account/",
                 "sitename": "Anna’s Archive",
@@ -355,13 +378,13 @@ def donation_page(donation_id):
             sign_str = '&'.join([f'{k}={v}' for k, v in data.items()]) + PAYMENT1_KEY
             sign = hashlib.md5((sign_str).encode()).hexdigest()
             return redirect(f'https://integrate.payments-gateway.org/submit.php?{urllib.parse.urlencode(data)}&sign={sign}&sign_type=MD5', code=302)
-        if donation_json['method'] == 'payment1_alipay' and donation.processing_status == 0:
+        if donation_json['method'] == 'payment1_alipay' and donation['processing_status'] == 0:
             data = {
                 # Note that these are sorted by key.
-                "money": str(int(float(donation.cost_cents_usd) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
+                "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
                 "notify_url": "https://annas-archive.se/dyn/payment1_notify/",
-                "out_trade_no": str(donation.donation_id),
+                "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1_ID,
                 "return_url": "https://annas-archive.se/account/",
                 "sitename": "Anna’s Archive",
@@ -370,13 +393,13 @@ def donation_page(donation_id):
             sign_str = '&'.join([f'{k}={v}' for k, v in data.items()]) + PAYMENT1_KEY
             sign = hashlib.md5((sign_str).encode()).hexdigest()
             return redirect(f'https://integrate.payments-gateway.org/submit.php?{urllib.parse.urlencode(data)}&sign={sign}&sign_type=MD5', code=302)
-        if donation_json['method'] == 'payment1_wechat' and donation.processing_status == 0:
+        if donation_json['method'] == 'payment1_wechat' and donation['processing_status'] == 0:
             data = {
                 # Note that these are sorted by key.
-                "money": str(int(float(donation.cost_cents_usd) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
+                "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
                 "notify_url": "https://annas-archive.se/dyn/payment1_notify/",
-                "out_trade_no": str(donation.donation_id),
+                "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1_ID,
                 "return_url": "https://annas-archive.se/account/",
                 "sitename": "Anna’s Archive",
@@ -386,13 +409,13 @@ def donation_page(donation_id):
             sign = hashlib.md5((sign_str).encode()).hexdigest()
             return redirect(f'https://integrate.payments-gateway.org/submit.php?{urllib.parse.urlencode(data)}&sign={sign}&sign_type=MD5', code=302)
 
-        if donation_json['method'] in ['payment1b', 'payment1bb'] and donation.processing_status == 0:
+        if donation_json['method'] in ['payment1b', 'payment1bb'] and donation['processing_status'] == 0:
             data = {
                 # Note that these are sorted by key.
-                "money": str(int(float(donation.cost_cents_usd) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
+                "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
                 "notify_url": "https://annas-archive.se/dyn/payment1b_notify/",
-                "out_trade_no": str(donation.donation_id),
+                "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1B_ID,
                 "return_url": "https://annas-archive.se/account/",
                 "sitename": "Anna’s Archive",
@@ -401,8 +424,8 @@ def donation_page(donation_id):
             sign = hashlib.md5((sign_str).encode()).hexdigest()
             return redirect(f'https://anna.zpay.se/submit.php?{urllib.parse.urlencode(data)}&sign={sign}&sign_type=MD5', code=302)
 
-        if donation_json['method'] in ['payment2', 'payment2paypal', 'payment2cashapp', 'payment2cc'] and donation.processing_status == 0:
-            donation_time_left = donation.created - datetime.datetime.now() + datetime.timedelta(days=1)
+        if donation_json['method'] in ['payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc'] and donation['processing_status'] == 0:
+            donation_time_left = donation['created'] - datetime.datetime.now() + datetime.timedelta(days=1)
             if donation_time_left < datetime.timedelta(hours=2):
                 donation_time_left_not_much = True
             if donation_time_left < datetime.timedelta():
@@ -422,9 +445,9 @@ def donation_page(donation_id):
                 donation_confirming = True
 
 
-        if donation_json['method'] in ['payment3a', 'payment3b'] and donation.processing_status == 0:
+        if donation_json['method'] in ['payment3a', 'payment3b'] and donation['processing_status'] == 0:
             # return redirect(donation_json['payment3_request']['data']['url'], code=302)
-            donation_time_left = donation.created - datetime.datetime.now() + datetime.timedelta(hours=2)
+            donation_time_left = donation['created'] - datetime.datetime.now() + datetime.timedelta(hours=2)
             if donation_time_left < datetime.timedelta(minutes=30):
                 donation_time_left_not_much = True
             if donation_time_left < datetime.timedelta():
@@ -432,14 +455,14 @@ def donation_page(donation_id):
 
             mariapersist_session.connection().connection.ping(reconnect=True)
             cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
-            payment3_status, payment3_request_success = allthethings.utils.payment3_check(cursor, donation.donation_id)
+            payment3_status, payment3_request_success = allthethings.utils.payment3_check(cursor, donation['donation_id'])
             if not payment3_request_success:
                 raise Exception("Not payment3_request_success in donation_page")
             if str(payment3_status['data']['status']) == '-2':
                 donation_time_expired = True
 
-        if donation_json['method'] in ['hoodpay'] and donation.processing_status == 0:
-            donation_time_left = donation.created - datetime.datetime.now() + datetime.timedelta(minutes=30)
+        if donation_json['method'] in ['hoodpay'] and donation['processing_status'] == 0:
+            donation_time_left = donation['created'] - datetime.datetime.now() + datetime.timedelta(minutes=30)
             if donation_time_left < datetime.timedelta(minutes=10):
                 donation_time_left_not_much = True
             if donation_time_left < datetime.timedelta():
@@ -448,7 +471,7 @@ def donation_page(donation_id):
             mariapersist_session.connection().connection.ping(reconnect=True)
             cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
 
-            hoodpay_status, hoodpay_request_success = allthethings.utils.hoodpay_check(cursor, donation_json['hoodpay_request']['data']['id'], str(donation.donation_id))
+            hoodpay_status, hoodpay_request_success = allthethings.utils.hoodpay_check(cursor, donation_json['hoodpay_request']['data']['id'], str(donation['donation_id']))
             if not hoodpay_request_success:
                 raise Exception("Not hoodpay_request_success in donation_page")
             if hoodpay_status['status'] in ['PENDING', 'PROCESSING']:
@@ -492,7 +515,9 @@ def donations_page():
         return "", 403
 
     with Session(mariapersist_engine) as mariapersist_session:
-        donations = mariapersist_session.connection().execute(select(MariapersistDonations).where(MariapersistDonations.account_id == account_id).order_by(MariapersistDonations.created.desc()).limit(10000)).all()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+        cursor.execute('SELECT * FROM mariapersist_donations WHERE account_id = %(account_id)s ORDER BY created DESC LIMIT 10000', { 'account_id': account_id })
+        donations = cursor.fetchall()
 
         return render_template(
             "account/donations.html",

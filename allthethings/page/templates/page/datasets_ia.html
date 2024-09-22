@@ -1,49 +1,86 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
-{% block title %}Datasets{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.ia.title') }} [ia]{% endblock %}
 
 {% block body %}
-  {% if gettext('common.english_only') != 'Text below continues in English.' %}
-    <p class="mb-4 font-bold">{{ gettext('common.english_only') }}</p>
-  {% endif %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.ia.title') }} [ia]</div>
 
-  <div lang="en">
-    <div class="mb-4"><a href="/datasets">Datasets</a> ▶ IA Controlled Digital Lending</div>
-
-    <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
-      If you are interested in mirroring this dataset for <a href="/faq#what">archival</a> or <a href="/llm">LLM training</a> purposes, please contact us.
-    </div>
-
-    <p class="mb-4">
-      This dataset is closely related to the <a href="/datasets/openlib">Open Library dataset</a>. It contains a scrape of all metadata and a large portion of files from the IA’s Controlled Digital Lending Library. Updates get released in the <a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers format</a>.
-    </p>
-
-    <p class="mb-4">
-      These records are being referred to directly from the Open Library dataset, but also contains records that are not in Open Library. We also have a number of data files scraped by community members over the years.
-    </p>
-
-    <p class="">
-      The collection consists of two parts. You need both parts to get all data (except superseded torrents, which are crossed out on the torrents page).
-    </p>
-
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc"><strong>ia:</strong> our first release, before we standardized on the <a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers (AAC) format</a>. Contains metadata (as json and xml), pdfs (from acsm and lcpdf digital lending systems), and cover thumbnails.</li>
-      <li class="list-disc"><strong>ia2:</strong> incremental new releases, using AAC. Only contains metadata with timestamps after 2023-01-01, since the rest is covered already by “ia”. Also all pdf files, this time from the acsm and “bookreader” (IA’s web reader) lending systems. Despite the name not being exactly right, we still populate bookreader files into the ia2_acsmpdf_files collection, since they are mutually exclusive.</li>
-    </ul>
-
-    <p><strong>Resources</strong></p>
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc">Total files: {{ stats_data.stats_by_group.ia.count | numberformat }}</li>
-      <li class="list-disc">Total filesize: {{ stats_data.stats_by_group.ia.filesize | filesizeformat }}</li>
-      <li class="list-disc">Files mirrored by Anna’s Archive: {{ stats_data.stats_by_group.ia.aa_count | numberformat }} ({{ (stats_data.stats_by_group.ia.aa_count/stats_data.stats_by_group.ia.count*100.0) | decimalformat }}%)</li>
-      <li class="list-disc">Last updated: {{ stats_data.ia_date }}</li>
-      <li class="list-disc"><a href="/torrents#ia">Torrents by Anna’s Archive</a></li>
-      <li class="list-disc"><a href="/db/ia/100insightslesso0000maie.json">Example record on Anna’s Archive</a></li>
-      <li class="list-disc"><a href="https://archive.org/">Main website</a></li>
-      <li class="list-disc"><a href="https://archive.org/details/inlibrary">Digital Lending Library</a></li>
-      <li class="list-disc"><a href="https://archive.org/developers/metadata-schema/index.html">Metadata documentation (most fields)</a></li>
-      <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">Scripts for importing metadata</a></li>
-      <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers format</a></li>
-    </ul>
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
   </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/ia">
+            {{ gettext('common.record_sources_mapping.iacdl') }} [ia]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.metadata1', icon='✅',
+                openlib=(dict(href="https://openlibrary.org/developers/dumps") | xmlattr),
+            ) }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.metadata2', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.metadata3', icon='👩‍💻',
+                ia=(dict(href="/torrents#ia") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">{{ gettext('page.datasets.sources.ia.files1', icon='❌') }}</div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.ia.files2', icon='👩‍💻',
+                ia=(dict(href="/torrents#ia") | xmlattr),
+            ) }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.ia.description', a_datasets_openlib=(a.datasets_openlib | xmlattr), a_aac=(a.blog_aac | xmlattr)) }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.ia.description2') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.ia.description3') }}
+  </p>
+
+  <ul class="list-outside mb-4 ml-5">
+    <li class="list-disc"><strong>ia:</strong> {{ gettext('page.datasets.ia.part1', a_aac=(a.blog_aac | xmlattr)) }}</li>
+    <li class="list-disc"><strong>ia2:</strong> {{ gettext('page.datasets.ia.part2') }}</li>
+  </ul>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.ia.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.ia.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.ia.aa_count | numberformat), percent=((stats_data.stats_by_group.ia.aa_count/(stats_data.stats_by_group.ia.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.ia_date) }}</li>
+    <li class="list-disc"><a href="/torrents#ia">{{ gettext('page.datasets.common.aa_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/ia/100insightslesso0000maie.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://archive.org/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.ia.title')) }}</a></li>
+    <li class="list-disc"><a href="https://archive.org/details/inlibrary">{{ gettext('page.datasets.ia.ia_lending') }}</a></li>
+    <li class="list-disc"><a href="https://archive.org/developers/metadata-schema/index.html">{{ gettext('page.datasets.common.metadata_docs') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
 {% endblock %}

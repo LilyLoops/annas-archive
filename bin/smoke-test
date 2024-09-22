@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+# echo "starting the server"
+# docker compose up -d
+
+echo "waiting for the server to start"
+declare -i count
+count=0
+
+while true; do
+  if curl --fail-with-body -s http://localtest.me:8000/dyn/up/databases/; then
+    break
+  fi
+  sleep 1
+  count+=1
+done
+
+echo "server started in $count seconds"
+
+echo "running the smoke test"
+
+pages=(
+    # homepage
+    "/"
+    # search tabs
+    "/search"
+    "/search?index=journals"
+    "/search?index=digital_lending"
+    "/search?index=meta"
+    # single pages
+    "/scidb"
+    "/faq"
+    "/metadata"
+    "/volunteering"
+    "/torrents"
+    "/llm"
+    "/contact"
+    "/copyright"
+    # the donation pages
+    "/donate"
+    "/donate?tier=2&method=amazon"
+    "/donate?tier=2&method=payment2"
+    "/donate?tier=2&method=payment2cashapp"
+    "/donate?tier=2&method=payment2revolut"
+    "/donate?tier=2&method=ccexp"
+    "/donate?tier=2&method=payment3a"
+    "/donate?tier=2&method=payment1b"
+    "/donate?tier=2&method=payment3b"
+    # the data set pages
+    "/datasets"
+    "/datasets/duxiu"
+    "/datasets/ia"
+    "/datasets/isbndb"
+    "/datasets/lgli"
+    "/datasets/lgrs"
+    "/datasets/magzdb"
+    "/datasets/edsebk"
+    "/datasets/nexusstc"
+    "/datasets/oclc"
+    "/datasets/ol"
+    "/datasets/scihub"
+    "/datasets/upload"
+    "/datasets/zlib"
+    # codes
+    "/codes?prefix_b64="
+    "/codes?prefix_b64=YWFjaWQ6"
+    # the blog
+    "/blog"
+    "/blog/critical-window.html"
+    # the api
+    # "/dyn/api/fast_download.json" # TODO
+    "/dyn/torrents.json"
+    # "/db/aarecord/md5:8336332bf5877e3adbfb60ac70720cd5.json" # TODO
+    # account pages
+    "/account"
+)
+
+# tell the user how many pages we are testing
+echo "testing ${#pages[@]} pages"
+
+# take the translations from the command line arguments
+declare -a translations=("${@:-}")
+
+if [[ "${#translations[@]}" -eq 1 && "${translations[0]}" == "" ]]; then
+    translations=()
+fi
+
+# if no translations were provided, get them from the server
+if [ ${#translations[@]} -eq 0 ]; then
+    echo "no translations provided, getting them from the server"
+    translations_str="$(curl --fail-with-body -s http://localtest.me:8000/dyn/translations/ | jq -r '.translations|@sh')"
+    declare -a translations="($translations_str)"
+fi
+
+echo "testing ${#translations[@]} translations: ${translations[*]}"
+
+for translation in "${translations[@]}"; do
+    echo "testing translation '$translation'"
+
+    for page in "${pages[@]}"; do
+        url="http://$translation.localtest.me:8000$page"
+        echo "testing $url"
+        file="$(jq -r -n --arg tr "$translation" --arg page "$page" '"\($tr)--\($page).html" | @uri')"
+        if ! curl -v --fail-with-body -s "$url" > "$file" 2>&1; then
+            echo "! failed to load $url"
+            echo "! output was saved to ./$file"
+        else
+            rm -f "$file"
+        fi
+    done
+
+    echo
+done

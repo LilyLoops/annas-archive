@@ -5,6 +5,7 @@ import base64
 import sys
 import time
 import babel.numbers as babel_numbers
+import babel.lists as babel_list
 import multiprocessing
 import ipaddress
 import datetime
@@ -16,7 +17,6 @@ from werkzeug.security import safe_join
 from werkzeug.debug import DebuggedApplication
 from werkzeug.middleware.proxy_fix import ProxyFix
 from flask_babel import get_locale, get_translations, force_locale, gettext
-from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from allthethings.account.views import account
@@ -24,7 +24,7 @@ from allthethings.blog.views import blog
 from allthethings.page.views import page, all_search_aggs
 from allthethings.dyn.views import dyn
 from allthethings.cli.views import cli
-from allthethings.extensions import engine, mariapersist_engine, babel, debug_toolbar, flask_static_digest, Base, Reflected, ReflectedMariapersist, mail, LibgenrsUpdated, LibgenliFiles
+from allthethings.extensions import engine, mariapersist_engine, babel, debug_toolbar, flask_static_digest, mail
 from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, X_AA_SECRET
 
 import allthethings.utils
@@ -88,6 +88,13 @@ def create_app(settings_override=None):
 
     return app
 
+@functools.cache
+def get_static_file_contents(filepath):
+    if os.path.isfile(filepath):
+        with open(filepath, 'r') as static_file:
+            return static_file.read()
+    return ''
+
 def extensions(app):
     """
     Register 0 or more extensions (mutates the app passed in).
@@ -99,41 +106,15 @@ def extensions(app):
     flask_static_digest.init_app(app)
     with app.app_context():
         try:
-            with Session(engine) as session:
-                session.execute('SELECT 1')
-        except:
-            print("mariadb not yet online, restarting")
-            time.sleep(3)
-            sys.exit(1)
-
-        try:
             with Session(mariapersist_engine) as mariapersist_session:
                 mariapersist_session.execute('SELECT 1')
-        except:
+        except Exception:
             if os.getenv("DATA_IMPORTS_MODE", "") == "1":
                 print("Ignoring mariapersist not being online because DATA_IMPORTS_MODE=1")
             else:
                 print("mariapersist not yet online, restarting")
                 time.sleep(3)
                 sys.exit(1)
-
-        try:
-            Reflected.prepare(engine)
-        except:
-            if os.getenv("DATA_IMPORTS_MODE", "") == "1":
-                print("Ignoring mariadb problems because DATA_IMPORTS_MODE=1")
-            else:
-                print("Error in loading mariadb tables; reset using './run flask cli dbreset'")
-                raise
-
-        try:
-            ReflectedMariapersist.prepare(mariapersist_engine)
-        except:
-            if os.getenv("DATA_IMPORTS_MODE", "") == "1":
-                print("Ignoring mariapersist problems because DATA_IMPORTS_MODE=1")
-            else:
-                print("Error in loading mariapersist tables")
-                raise
     mail.init_app(app)
 
     def localeselector():
@@ -150,9 +131,14 @@ def extensions(app):
     app.jinja_env.lstrip_blocks = True
     app.jinja_env.globals['get_locale'] = get_locale
     app.jinja_env.globals['FEATURE_FLAGS'] = allthethings.utils.FEATURE_FLAGS
+
     def urlsafe_b64encode(string):
         return base64.urlsafe_b64encode(string.encode()).decode()
     app.jinja_env.globals['urlsafe_b64encode'] = urlsafe_b64encode
+
+    def format_list(lst, style='standard'):
+        return babel_list.format_list(lst, style=style, locale=get_locale())
+    app.jinja_env.globals['format_list'] = format_list
 
     # https://stackoverflow.com/a/18095320
     hash_cache = {}
@@ -177,24 +163,20 @@ def extensions(app):
                 values['hash'] = hash_cache[filename] = filehash
 
     @functools.cache
-    def get_display_name_for_lang(lang_code, display_lang):
-        result = langcodes.Language.make(lang_code).display_name(display_lang)
-        if '[' not in result:
-            result = result + ' [' + lang_code + ']'
-        return result.replace(' []', '')
-
-    @functools.cache
     def last_data_refresh_date():
-        with engine.connect() as conn:
-            libgenrs_statement = select(LibgenrsUpdated.TimeLastModified).order_by(LibgenrsUpdated.ID.desc()).limit(1)
-            libgenli_statement = select(LibgenliFiles.time_last_modified).order_by(LibgenliFiles.f_id.desc()).limit(1)
-            try:
-                libgenrs_time = conn.execute(libgenrs_statement).scalars().first()
-                libgenli_time = conn.execute(libgenli_statement).scalars().first()
-            except:
-                return ''
+        try:
+            with engine.connect() as conn:
+                cursor = allthethings.utils.get_cursor_ping_conn(conn)
+
+                cursor.execute('SELECT TimeLastModified FROM libgenrs_updated ORDER BY ID DESC LIMIT 1')
+                libgenrs_time = allthethings.utils.fetch_one_field(cursor)
+
+                cursor.execute('SELECT time_last_modified FROM libgenli_files ORDER BY f_id DESC LIMIT 1')
+                libgenli_time = allthethings.utils.fetch_one_field(cursor)
             latest_time = max([libgenrs_time, libgenli_time])
             return latest_time.date()
+        except Exception:
+            return ''
 
     translations_with_english_fallback = set()
     @app.before_request
@@ -240,7 +222,7 @@ def extensions(app):
         try:
             ipaddress.ip_address(request.headers['Host'])
             host_is_ip = True
-        except:
+        except Exception:
             pass
         if (not host_is_ip) and (request.headers['Host'] != full_hostname):
             redir_path = f"{g.full_domain}{request.full_path}"
@@ -252,9 +234,13 @@ def extensions(app):
 
         g.last_data_refresh_date = last_data_refresh_date()
         doc_counts = {content_type['key']: content_type['doc_count'] for content_type in all_search_aggs('en', 'aarecords')[0]['search_content_type']}
-        doc_counts_journals = {content_type['key']: content_type['doc_count'] for content_type in all_search_aggs('en', 'aarecords_journals')[0]['search_content_type']}
         doc_counts['total_without_journals'] = sum(doc_counts.values())
-        doc_counts['journal_article'] = doc_counts_journals.get('journal_article') or 0
+        doc_counts_journals = {}
+        try:
+            doc_counts_journals = {content_type['key']: content_type['doc_count'] for content_type in all_search_aggs('en', 'aarecords_journals')[0]['search_content_type']}
+        except:
+            pass
+        doc_counts['journal_article'] = doc_counts_journals.get('journal_article') or 100000000
         doc_counts['total'] = doc_counts['total_without_journals'] + doc_counts['journal_article']
         doc_counts['book_comic'] = doc_counts.get('book_comic') or 0
         doc_counts['magazine'] = doc_counts.get('magazine') or 0
@@ -264,8 +250,8 @@ def extensions(app):
         new_header_tagline_scihub = gettext('layout.index.header.tagline_scihub')
         new_header_tagline_libgen = gettext('layout.index.header.tagline_libgen')
         new_header_tagline_zlib = gettext('layout.index.header.tagline_zlib')
-        new_header_tagline_openlib = gettext('layout.index.header.tagline_openlib')
-        new_header_tagline_ia = gettext('layout.index.header.tagline_ia')
+        _new_header_tagline_openlib = gettext('layout.index.header.tagline_openlib')
+        _new_header_tagline_ia = gettext('layout.index.header.tagline_ia')
         new_header_tagline_duxiu = gettext('layout.index.header.tagline_duxiu')
         new_header_tagline_separator = gettext('layout.index.header.tagline_separator')
         new_header_tagline_and = gettext('layout.index.header.tagline_and')
@@ -298,10 +284,10 @@ def extensions(app):
         today = datetime.date.today().day
         currentYear = datetime.date.today().year
         currentMonth = datetime.date.today().month
-        currentMonthName = calendar.month_name[currentMonth]
         monthrange = calendar.monthrange(currentYear, currentMonth)[1]
         g.fraction_of_the_month = today / monthrange
 
+        g.darkreader_code = get_static_file_contents(safe_join(app.static_folder, 'js/darkreader.js'))
 
     return None
 

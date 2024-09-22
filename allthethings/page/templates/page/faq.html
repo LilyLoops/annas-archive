@@ -149,7 +149,7 @@
   </div>
 
   <div class="mb-4">
-    {{ gettext('page.donate.faq.non_member_donation', div_question=(h.bold | xmlattr), address=('<span class="text-xs break-all"> 8C1Tdvfhj6wHHPtvMHyAmn3jgt9vF9qSdKCYFy8U9ioB2Z16tEhjLSaB8qMSfzsnQeSrbohpYAiMgcW1acmmvCHQ4YGmZip</span>' | safe)) }}
+    {{ gettext('page.donate.faq.non_member_donation', div_question=(h.bold | xmlattr), address=(a.xmr_address | safe)) }}
   </div>
 
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="upload">{{ gettext('page.faq.upload.title') }} <a href="#upload" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
@@ -184,9 +184,10 @@
 
   <p class="mb-4">
     <a href="/datasets">{{ gettext('page.faq.metadata.indeed') }}</a>
-    {{ gettext('page.faq.metadata.inspiration1', a_openlib=(' href="https://en.wikipedia.org/wiki/Open_Library" ' | safe)) }}
-    {{ gettext('page.faq.metadata.inspiration2') }}
-    {{ gettext('page.faq.metadata.inspiration3', a_blog=(' href="https://annas-archive.se/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html" ' | safe)) }}
+    {{ gettext('page.faq.metadata.inspiration',
+        a_openlib=(dict(href="https://en.wikipedia.org/wiki/Open_Library") | xmlattr),
+        a_blog=(dict(href="https://annas-archive.se/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html") | xmlattr),
+    ) }}
   </p>
 
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="1984">{{ gettext('page.faq.1984.title') }} <a href="#1984" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
@@ -220,7 +221,7 @@
   </p>
 
   <p class="mb-4">
-    {{ gettext('page.faq.api.text3', a_torrents=(' href="/dyn/torrents.json" | safe')) }}
+    {{ gettext('page.faq.api.text3', a_torrents=(' href="/dyn/torrents.json"' | safe)) }}
   </p>
 
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="torrents">{{ gettext('page.faq.torrents.title') }} <a href="#torrents" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
@@ -306,6 +307,19 @@
     {{ gettext('page.faq.hate.text1') }}
   </p>
 
+  <!-- TODO:TRANSLATE -->
+  <h3 class="group mt-4 mb-1 text-xl font-bold" id="uptime">Do you have an uptime monitor? <a href="#uptime" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
+
+  <p class="mb-4">
+    Please see <a rel="noopener noreferrer" target="_blank" href="https://open-slum.org/">this excellent project</a>.
+  </p>
+
+  <h3 class="group mt-4 mb-1 text-xl font-bold" id="anna">Who is Anna? <a href="#anna" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
+
+  <p class="mb-4">
+    <a rel="noopener noreferrer" target="_blank" href="https://www.reddit.com/r/Annas_Archive/comments/1f6h74r/im_curious_actually_who_is_anna/">You are Anna!</a>
+  </p>
+
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="favorite">{{ gettext('page.faq.favorite.title') }} <a href="#favorite" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
   <p class="mb-4">
@@ -315,8 +329,8 @@
   {% for aarecord in aarecords %}
     <a href="/search?q={{aarecord.file_unified_data.title_best | urlencode}}" class="custom-a flex items-center relative left-[-10] px-[10] py-2 hover:bg-black/6.7" rel="nofollow">
       <div class="flex-none">
-        <div class="relative overflow-hidden w-[72] h-[108] flex flex-col justify-center">
-          <div class="absolute w-full h-[90]" style="background-color: hsl({{ (loop.index0 % 4) * (256//3) + (range(0, 256//3) | random) }}deg 43% 73%)"></div>
+        <div class="relative overflow-hidden w-[72px] h-[108px] flex flex-col justify-center">
+          <div class="absolute w-full h-[90px]" style="background-color: hsl({{ (loop.index0 % 4) * (256//3) + (range(0, 256//3) | random) }}deg 43% 73%)"></div>
           <img class="relative inline-block" src="{{aarecord.file_unified_data.cover_url_best if 'zlibcdn2' not in aarecord.file_unified_data.cover_url_best}}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.removeChild(this)" loading="lazy" decoding="async"/>
         </div>
       </div>

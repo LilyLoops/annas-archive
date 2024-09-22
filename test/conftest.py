@@ -41,18 +41,18 @@ def client(app):
     yield app.test_client()
 
 
-@pytest.fixture(scope="session")
-def db(app):
-    """
-    Setup our database, this only gets executed once per session.
+# @pytest.fixture(scope="session")
+# def db(app):
+#     """
+#     Setup our database, this only gets executed once per session.
 
-    :param app: Pytest fixture
-    :return: SQLAlchemy database session
-    """
-    _db.drop_all()
-    _db.create_all()
+#     :param app: Pytest fixture
+#     :return: SQLAlchemy database session
+#     """
+#     _db.drop_all()
+#     _db.create_all()
 
-    return _db
+#     return _db
 
 
 @pytest.fixture(scope="function")

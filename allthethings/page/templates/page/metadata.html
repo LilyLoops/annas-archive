@@ -1,102 +1,101 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
 {% block title %}
   {{ gettext('page.metadata.header') }}
 {% endblock %}
 
 {% block body %}
-  <div lang="en">
-    <h2 class="mt-4 mb-4 text-3xl font-bold">{{ gettext('page.metadata.header') }}</h2>
+  <h2 class="mt-4 mb-4 text-3xl font-bold">{{ gettext('page.metadata.header') }}</h2>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.body1') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.body1') }}
+  </p>
 
-    <h3 class="group mt-4 mb-1 text-xl font-bold" id="background">{{ gettext('page.metadata.background.title') }} <a href="#background" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
+  <h3 class="group mt-4 mb-1 text-xl font-bold" id="background">{{ gettext('page.metadata.background.title') }} <a href="#background" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.background.body1') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.background.body1') }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.background.body2') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.background.body2') }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.background.body3') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.background.body3') }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.background.body4') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.background.body4') }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.background.body5') }}
+  <p class="mb-4">
+    {{ gettext('page.metadata.background.body5') }}
 
-    </p>
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.background.body6') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.background.body6') }}
+  </p>
 
-    <p class="mb-4">
-      {{ 
-        gettext(
-          'page.metadata.background.body7',
-          a_datasets=(' href="/datasets"' | safe),
-          a_search_metadata=(' href="/search?index=meta"' | safe),
-          a_codes=(' href="/member_codes"' | safe),
-          a_example=(' href="/db/aarecord/md5:8336332bf5877e3adbfb60ac70720cd5.json"' | safe),
-          a_generated=(' href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md"' | safe),
-          a_downloaded=(' href="/torrents#aa_derived_mirror_metadata"' | safe),
-        ) 
-      }}
-    </p>
+  <p class="mb-4">
+    {{ 
+      gettext(
+        'page.metadata.background.body7',
+        a_datasets=(' href="/datasets"' | safe),
+        a_search_metadata=(' href="/search?index=meta"' | safe),
+        a_codes=(' href="/member_codes"' | safe),
+        a_example=(' href="/db/aarecord/md5:8336332bf5877e3adbfb60ac70720cd5.json"' | safe),
+        a_generated=(' href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md"' | safe),
+        a_downloaded=(' href="/torrents#aa_derived_mirror_metadata"' | safe),
+      ) 
+    }}
+  </p>
 
-    <h3 class="group mt-4 mb-1 text-xl font-bold" id="openlib">{{ gettext('page.metadata.openlib.title') }} <a href="#openlib" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
+  <h3 class="group mt-4 mb-1 text-xl font-bold" id="openlib">{{ gettext('page.metadata.openlib.title') }} <a href="#openlib" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.openlib.body1') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.openlib.body1') }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.openlib.body2') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.openlib.body2') }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.openlib.body3') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.openlib.body3') }}
+  </p>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.openlib.body4') }}
-    </p>
+  <p class="mb-4">
+    {{ gettext('page.metadata.openlib.body4') }}
+  </p>
 
-    <ul class="list-inside mb-4">
-      <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.1', a_openlib=(' href="https://openlibrary.org/"' | safe) ) }}</li>
-      <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2') }}
-        <ul class="list-inside ml-4">
-          <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.1') }}</li>
-          <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2') }}
-            <ul class="list-inside ml-4">
-              <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2.1') }}</li>
-              <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2.2') }}</li>
-              <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2.3') }}</li>
-            </ul>
-          </li>
-          <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.3') }}</li>
-        </ul>
-      </li>
-      <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.3') }}</li>
-      <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.4') }}
-        <ul class="list-inside ml-4">
-          <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.4.1') }}</li>
-        </ul>
-      </li>
-      <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.5', a_contact=(' href="/contact"' | safe)) }}</li>
-    </ul>
+  <ul class="list-inside mb-4">
+    <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.1', a_openlib=(' href="https://openlibrary.org/"' | safe) ) }}</li>
+    <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2') }}
+      <ul class="list-inside ml-4">
+        <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.1') }}</li>
+        <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2') }}
+          <ul class="list-inside ml-4">
+            <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2.1') }}</li>
+            <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2.2') }}</li>
+            <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.2.3') }}</li>
+          </ul>
+        </li>
+        <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.2.3') }}</li>
+      </ul>
+    </li>
+    <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.3') }}</li>
+    <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.4') }}
+      <ul class="list-inside ml-4">
+        <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.4.1') }}</li>
+      </ul>
+    </li>
+    <li class="list-disc">{{ gettext('page.metadata.openlib.howto.item.5', a_contact=(' href="/contact"' | safe)) }}</li>
+  </ul>
 
-    <p class="mb-4">
-      {{ gettext('page.metadata.openlib.body5') }}
-    </p>
-  </div>
+  <p class="mb-4">
+    {{ gettext('page.metadata.openlib.body5') }}
+  </p>
 {% endblock %}

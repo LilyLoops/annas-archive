@@ -11,13 +11,13 @@ for line in sys.stdin:
     record = {}
     try:
         record = orjson.loads(line)
-    except:
-        print(f"Error parsing JSON.", file=sys.stderr)
+    except Exception:
+        print("Error parsing JSON.", file=sys.stderr)
         print(line, file=sys.stderr)
         continue
 
     if 'isbn13' not in record:
-        print(f"Incorrect JSON, missing isbn13.", file=sys.stderr)
+        print("Incorrect JSON, missing isbn13.", file=sys.stderr)
         print(line, file=sys.stderr)
         continue
 

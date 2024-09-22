@@ -1,109 +1,231 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
-{% block title %}Datasets{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.upload.title') }} [upload]{% endblock %}
 
 {% block body %}
-  {% if gettext('common.english_only') != 'Text below continues in English.' %}
-    <p class="mb-4 font-bold">{{ gettext('common.english_only') }}</p>
-  {% endif %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.upload.title') }} [upload]</div>
 
-  <div lang="en">
-    <div class="mb-4"><a href="/datasets">Datasets</a> ▶ Uploads to Anna’s Archive</div>
-
-    <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
-      If you are interested in mirroring this dataset for <a href="/faq#what">archival</a> or <a href="/llm">LLM training</a> purposes, please contact us.
-    </div>
-
-    <p class="mb-4">
-      Various smaller or one-off sources. We encourage people to upload to other shadow libraries first, but sometimes people have collections that are too big for others to sort through, though not big enough to warrant their own category.
-    </p>
-
-    <p class="mb-4">
-      The “upload” collection is split up in smaller subcollections, which are indicated in the AACIDs and torrent names. All subcollections were first deduplicated against the main collection, though the metadata “upload_records” JSON files still contain a lot of references to the original files. Non-book files were also removed from most subcollections, and are typically <em>not</em> noted in the “upload_records” JSON.
-    </p>
-
-    <p class="mb-4">
-      Many subcollections themselves are comprised of sub-sub-collections (e.g. from different original sources), which are represented as directories in the “filepath” fields.
-    </p>
-
-    <p class="mb-4">
-      The subcollections are:
-    </p>
-
-    <p class="mb-4">
-      <strong>aaaaarg</strong> (<a href="/member_codes?prefix=filepath:upload/aaaaarg/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/aaaaarg">search</a>): From <a rel="noopener noreferrer nofollow" target="_blank" href="http://aaaaarg.fail">aaaaarg.fail</a>. Appears to be fairly complete. From our volunteer “cgiym”.
-    </p>
-    <p class="mb-4">
-      <strong>acm</strong> (<a href="/member_codes?prefix=filepath:upload/acm/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/acm">search</a>): From an <a rel="noopener noreferrer nofollow" target="_blank" href="https://1337x.to/torrent/4536161/ACM-Digital-Library-2020/">“ACM Digital Library 2020”</a> torrent. Has fairly high overlap with existing papers collections, but very few MD5 matches, so we decided to keep it completely.
-    </p>
-    <p class="mb-4">
-      <strong>alexandrina</strong> (<a href="/member_codes?prefix=filepath:upload/alexandrina/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/alexandrina">search</a>): From a collection <a rel="noopener noreferrer nofollow" target="_blank" href="https://www.reddit.com/r/DataHoarder/comments/zuniqw/bibliotheca_alexandrina_a_600_gb_hoard_of_history/">“Bibliotheca Alexandrina”</a>, exact origin unclear. Partly from the-eye.eu, partly from other sources.
-    </p>
-    <p class="mb-4">
-      <strong>bibliotik</strong> (<a href="/member_codes?prefix=filepath:upload/bibliotik/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/bibliotik">search</a>): From a private books torrent website, <a rel="noopener noreferrer nofollow" target="_blank" href="https://bibliotik.me/">Bibliotik</a> (often referred to as “Bib”), of which books were bundled into torrents by name (A.torrent, B.torrent) and distributed through the-eye.eu.
-    </p>
-    <p class="mb-4">
-      <strong>bpb9v_cadal</strong> (<a href="/member_codes?prefix=filepath:upload/bpb9v_cadal/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/bpb9v_cadal">search</a>): From our volunteer “bpb9v”. From more information about <a rel="noopener noreferrer nofollow" target="_blank" href="https://cadal.edu.cn/">CADAL</a>, see the notes in our <a href="/datasets/duxiu">DuXiu dataset page</a>.
-    </p>
-    <p class="mb-4">
-      <strong>bpb9v_direct</strong> (<a href="/member_codes?prefix=filepath:upload/bpb9v_direct/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/bpb9v_direct">search</a>): More from our volunteer “bpb9v”, mostly DuXiu files, as well as a folder “WenQu” and “SuperStar_Journals” (SuperStar is the company behind DuXiu).
-    </p>
-    <p class="mb-4">
-      <strong>cgiym_chinese</strong> (<a href="/member_codes?prefix=filepath:upload/cgiym_chinese/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/cgiym_chinese">search</a>): From our volunteer “cgiym”, Chinese texts from various sources (represented as subdirectories), including from <a rel="noopener noreferrer nofollow" target="_blank" href="cmpedu.com">China Machine Press</a> (a major Chinese publisher).
-    </p>
-    <p class="mb-4">
-      <strong>cgiym_more</strong> (<a href="/member_codes?prefix=filepath:upload/cgiym_more/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/cgiym_more">search</a>): Non-Chinese collections (represented as subdirectories) from our volunteer “cgiym”.
-    </p>
-    <p class="mb-4">
-      <strong>degruyter</strong> (<a href="/member_codes?prefix=filepath:upload/degruyter/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/degruyter">search</a>): Books from academic publishing house <a rel="noopener noreferrer nofollow" target="_blank" href="https://www.degruyter.com/">De Gruyter</a>, collected from a few large torrents.
-    </p>
-    <p class="mb-4">
-      <strong>docer</strong> (<a href="/member_codes?prefix=filepath:upload/docer/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/docer">search</a>): Scrape of <a rel="noopener noreferrer nofollow" target="_blank" href="https://docer.pl/">docer.pl</a>, a polish file sharing website focused on books and other written works. Scraped in late 2023 by volunteer “p”. We don't have good metadata from the original website (not even file extensions), but we filtered for book-like files and were often able to extract metadata from the files themselves.
-    </p>
-    <p class="mb-4">
-      <strong>duxiu_epub</strong> (<a href="/member_codes?prefix=filepath:upload/duxiu_epub/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/duxiu_epub">search</a>): DuXiu epubs, directly from DuXiu, collected by volunteer “w”. Only recent DuXiu books are available directly through ebooks, so most of these must be recent.
-    </p>
-    <p class="mb-4">
-      <strong>duxiu_main</strong> (<a href="/member_codes?prefix=filepath:upload/duxiu_main/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/duxiu_main">search</a>): Remaining DuXiu files from volunteer “m”, which weren’t in the DuXiu proprietary PDG format (the main <a href="/datasets/duxiu">DuXiu dataset</a>). Collected from many original sources, unfortunately without preserving those sources in the filepath.
-    </p>
-    <p class="mb-4">
-      <strong>japanese_manga</strong> (<a href="/member_codes?prefix=filepath:upload/japanese_manga/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/japanese_manga">search</a>): Collection scraped from a Japanese Manga publisher by volunteer “t”.
-    </p>
-    <p class="mb-4">
-      <strong>longquan_archives</strong> (<a href="/member_codes?prefix=filepath:upload/longquan_archives/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/longquan_archives">search</a>): <a rel="noopener noreferrer nofollow" target="_blank" href="http://www.xinhuanet.com/english/2019-11/15/c_138557853.htm">Selected judicial archives of Longquan</a>, provided by volunteer “c”.
-    </p>
-    <p class="mb-4">
-      <strong>magzdb</strong> (<a href="/member_codes?prefix=filepath:upload/magzdb/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/magzdb">search</a>): Scrape of <a rel="noopener noreferrer nofollow" target="_blank" href="https://magzdb.org/">magzdb.org</a>, an ally of Library Genesis (it’s linked on the libgen.rs homepage) but who didn’t want to provide their files directly. Obtained by volunteer “p” in late 2023.
-    </p>
-    <p class="mb-4">
-      <strong>misc</strong> (<a href="/member_codes?prefix=filepath:upload/misc/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/misc">search</a>): Various small uploads, too small as their own subcollection, but represented as directories.
-    </p>
-    <p class="mb-4">
-      <strong>polish</strong> (<a href="/member_codes?prefix=filepath:upload/polish/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/polish">search</a>): Collection of volunteer “o” who collected Polish books directly from original release (“scene”) websites.
-    </p>
-    <p class="mb-4">
-      <strong>shuge</strong> (<a href="/member_codes?prefix=filepath:upload/shuge/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/shuge">search</a>): Combined collections of <a rel="noopener noreferrer nofollow" target="_blank" href="https://www.shuge.org/">shuge.org</a> by volunteers “cgiym” and “woz9ts”.
-    </p>
-    <p class="mb-4">
-      <strong>trantor</strong> (<a href="/member_codes?prefix=filepath:upload/trantor/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/trantor">search</a>): <a rel="noopener noreferrer nofollow" target="_blank" href="https://github.com/trantor-library/trantor">“Imperial Library of Trantor”</a> (named after the fictional library), scraped in 2022 by volunteer “t”.
-    </p>
-    <p class="mb-4">
-      <strong>woz9ts_direct</strong> (<a href="/member_codes?prefix=filepath:upload/woz9ts_direct/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/woz9ts_direct">search</a>): Sub-sub-collections (represented as directories) from volunteer “woz9ts”: <a rel="noopener noreferrer nofollow" target="_blank" href="https://github.com/programthink/books">program-think</a>, <a rel="noopener noreferrer nofollow" target="_blank" href="https://haodoo.net">haodoo</a>, <a rel="noopener noreferrer nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Siku_Quanshu">skqs</a> (by <a rel="noopener noreferrer nofollow" target="_blank" href="http://www.sikuquanshu.com/">Dizhi(迪志)</a> in Taiwan), mebook (mebook.cc, 我的小书屋, my little bookroom — woz9ts: “This site mainly focus on sharing high quality ebook files, some of which are typeset by the owner himself. The owner was <a rel="noopener noreferrer nofollow" target="_blank" href="https://www.thepaper.cn/newsDetail_forward_7943463">arrested</a> in 2019 and someone made a collection of files he shared.”).
-    </p>
-    <p class="mb-4">
-      <strong>woz9ts_duxiu</strong> (<a href="/member_codes?prefix=filepath:upload/woz9ts_duxiu/">browse</a>, <a href="/search?termtype_1=original_filename&termval_1=upload/woz9ts_duxiu">search</a>): Remaining DuXiu files from volunteer “woz9ts”, which weren’t in the DuXiu proprietary PDG format (still to be converted to PDF).
-    </p>
-
-    <p><strong>Resources</strong></p>
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc">Total files: {{ stats_data.stats_by_group.upload.count | numberformat }}</li>
-      <li class="list-disc">Total filesize: {{ stats_data.stats_by_group.upload.filesize | filesizeformat }}</li>
-      <li class="list-disc">Files mirrored by Anna’s Archive: {{ stats_data.stats_by_group.upload.aa_count | numberformat }} ({{ (stats_data.stats_by_group.upload.aa_count/stats_data.stats_by_group.upload.count*100.0) | decimalformat }}%)</li>
-      <li class="list-disc">Last updated: {{ stats_data.upload_file_date }}</li>
-      <li class="list-disc"><a href="/torrents#upload">Torrents by Anna’s Archive</a></li>
-      <li class="list-disc"><a href="/db/aac_upload/b6b884b30179add94c388e72d077cdb0.json">Example record on Anna’s Archive</a></li>
-      <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">Scripts for importing metadata</a></li>
-      <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers format</a></li>
-    </ul>
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
   </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/uploads">
+            {{ gettext('common.record_sources_mapping.uploads') }} [upload]
+          </a>
+        </td>
+        <td class="p-2 align-top" colspan="2">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.uploads.metadata_and_files', icon='') }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.upload.description') }}
+  </p>
+  
+  <p class="mb-4">
+    {{ gettext('page.datasets.upload.subcollections') }}
+  </p>
+  
+  <p class="mb-4">
+    {{ gettext('page.datasets.upload.subsubcollections') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.upload.subs.heading') }}
+  </p>
+
+  <div class="relative overflow-x-auto border sm:rounded-lg mb-4">
+    <table class="w-full text-sm text-left">
+      <thead class="text-xs text-gray-700 uppercase bg-black/5">
+        <tr>
+          <th scope="col" class="px-6 py-3" colspan="3">Subcollection</th>
+          <th scope="col" class="px-6 py-3">Notes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">aaaaarg</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/aaaaarg/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/aaaaarg">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.aaaaarg', a_href=(dict(href="http://aaaaarg.fail", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">acm</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/acm/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/acm">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.acm', a_href=(dict(href="https://1337x.to/torrent/4536161/ACM-Digital-Library-2020/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+        
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">alexandrina</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/alexandrina/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/alexandrina">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.alexandrina', a_href=(dict(href="https://www.reddit.com/r/DataHoarder/comments/zuniqw/bibliotheca_alexandrina_a_600_gb_hoard_of_history/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+        
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">bibliotik</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/bibliotik/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/bibliotik">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.bibliotik', a_href=(dict(href="https://bibliotik.me/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+        
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">bpb9v_cadal</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/bpb9v_cadal/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/bpb9v_cadal">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.bpb9v_cadal', a_href=(dict(href="https://cadal.edu.cn/", **a.external_link) | xmlattr), a_duxiu=(dict(href="/datasets/duxiu") | xmlattr)) }}</td>
+        </tr>
+        
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">bpb9v_direct</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/bpb9v_direct/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/bpb9v_direct">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.bpb9v_direct') }}</td>
+        </tr>
+        
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">cgiym_chinese</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/cgiym_chinese/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/cgiym_chinese">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.cgiym_chinese', a_href=(dict(href="http://cmpedu.com/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+        
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">cgiym_more</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/cgiym_more/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/cgiym_more">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.cgiym_more') }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">degruyter</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/degruyter/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/degruyter">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.degruyter', a_href=(dict(href="https://www.degruyter.com/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">docer</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/docer/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/docer">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.docer', a_href=(dict(href="https://docer.pl/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">duxiu_epub</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/duxiu_epub/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/duxiu_epub">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.duxiu_epub') }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">duxiu_main</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/duxiu_main/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/duxiu_main">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.duxiu_main', a_href=(dict(href="/datasets/duxiu", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">japanese_manga</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/japanese_manga/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/japanese_manga">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.japanese_manga', a_href=(dict(href="", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">longquan_archives</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/longquan_archives/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/longquan_archives">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.longquan_archives', a_href=(dict(href="http://www.xinhuanet.com/english/2019-11/15/c_138557853.htm", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">magzdb</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/magzdb/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/magzdb">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.magzdb', a_href=(dict(href="https://magzdb.org/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">misc</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/misc/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/misc">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.misc', a_href=(dict(href="", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">polish</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/polish/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/polish">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.polish', a_href=(dict(href="", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">shuge</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/shuge/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/shuge">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.shuge', a_href=(dict(href="https://www.shuge.org/", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">trantor</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/trantor/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/trantor">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.trantor', a_href=(dict(href="https://github.com/trantor-library/trantor", **a.external_link) | xmlattr)) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">woz9ts_direct</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/woz9ts_direct/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/woz9ts_direct">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext(
+            'page.datasets.upload.source.woz9ts_direct',
+            a_program_think=(dict(href="https://github.com/programthink/books", **a.external_link) | xmlattr),
+            a_haodoo=(dict(href="https://haodoo.net", **a.external_link) | xmlattr),
+            a_skqs=(dict(href="https://en.wikipedia.org/wiki/Siku_Quanshu", **a.external_link) | xmlattr),
+            a_sikuquanshu=(dict(href="http://www.sikuquanshu.com/", **a.external_link) | xmlattr),
+            a_arrested=(dict(href="https://www.thepaper.cn/newsDetail_forward_7943463", **a.external_link) | xmlattr),
+          ) }}</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">woz9ts_duxiu</th>
+          <td class="px-6 py-4"><a href="/member_codes?prefix=filepath:upload/woz9ts_duxiu/">{{ gettext('page.datasets.upload.action.browse') }}</a></td>
+          <td class="px-6 py-4"><a href="/search?termtype_1=original_filename&termval_1=upload/woz9ts_duxiu">{{ gettext('page.datasets.upload.action.search') }}</a></td>
+          <td class="px-6 py-4">{{ gettext('page.datasets.upload.source.woz9ts_duxiu') }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.upload.count | numberformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.upload.filesize | filesizeformat)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.upload.aa_count | numberformat), percent=((stats_data.stats_by_group.upload.aa_count/(stats_data.stats_by_group.upload.count+1)*100.0) | decimalformat)) }}</li>
+    <li class="list-disc"><a href="/torrents#upload">{{ gettext('page.datasets.upload.aa_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/aac_upload/b6b884b30179add94c388e72d077cdb0.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
 {% endblock %}

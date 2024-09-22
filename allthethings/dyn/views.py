@@ -1,14 +1,9 @@
 import time
-import json
 import orjson
-import flask_mail
 import datetime
-import jwt
 import re
 import collections
 import shortuuid
-import urllib.parse
-import base64
 import pymysql
 import hashlib
 import hmac
@@ -21,20 +16,25 @@ import babel.numbers as babel_numbers
 import io
 import random
 
-from flask import Blueprint, request, g, make_response, render_template, redirect, send_file
+from flask import Blueprint, request, g, make_response, render_template, send_file
 from flask_cors import cross_origin
-from sqlalchemy import select, func, text, inspect
+from sqlalchemy import text
 from sqlalchemy.orm import Session
-from flask_babel import format_timedelta, gettext, get_locale
+from flask_babel import gettext, get_locale
 
-from allthethings.extensions import es, es_aux, engine, mariapersist_engine, MariapersistDownloadsTotalByMd5, mail, MariapersistDownloadsHourlyByMd5, MariapersistDownloadsHourly, MariapersistMd5Report, MariapersistAccounts, MariapersistComments, MariapersistReactions, MariapersistLists, MariapersistListEntries, MariapersistDonations, MariapersistDownloads, MariapersistFastDownloadAccess, MariapersistSmallFiles
-from config.settings import SECRET_KEY, PAYMENT1_KEY, PAYMENT1B_KEY, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, PAYMENT2_HMAC, PAYMENT2_SIG_HEADER, GC_NOTIFY_SIG, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY
+from allthethings.extensions import es, engine, mariapersist_engine
+from config.settings import PAYMENT1_KEY, PAYMENT1B_KEY, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, PAYMENT2_HMAC, PAYMENT2_SIG_HEADER, GC_NOTIFY_SIG, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY
 from allthethings.page.views import get_aarecords_elasticsearch, ES_TIMEOUT_PRIMARY, get_torrents_data
 
 import allthethings.utils
 
 
 dyn = Blueprint("dyn", __name__, template_folder="templates", url_prefix="/dyn")
+
+@dyn.get("/translations/")
+@allthethings.utils.no_cache()
+def language_codes():
+    return orjson.dumps({ "translations": sorted(str(t) for t in allthethings.utils.list_translations()) })
 
 
 @dyn.get("/up/")
@@ -63,9 +63,9 @@ def databases():
                 mariapersist_conn.execute(text("SELECT 1 FROM mariapersist_downloads_total_by_md5 LIMIT 1"))
         if not es.ping():
             raise Exception("es.ping failed!")
-        if not es_aux.ping():
-            raise Exception("es_aux.ping failed!")
-    except:
+        # if not es_aux.ping():
+        #     raise Exception("es_aux.ping failed!")
+    except Exception:
         number_of_db_exceptions += 1
         if number_of_db_exceptions > 10:
             raise
@@ -105,6 +105,11 @@ def api_md5_fast_download():
 
     if not allthethings.utils.validate_canonical_md5s([canonical_md5]) or canonical_md5 != md5_input:
         return api_md5_fast_download_get_json(None, { "error": "Invalid md5" }), 400, {'Content-Type': 'text/json; charset=utf-8'}
+
+    account_id = allthethings.utils.account_id_from_secret_key(key_input)
+    if account_id is None:
+        return api_md5_fast_download_get_json(None, { "error": "Invalid secret key" }), 401, {'Content-Type': 'text/json; charset=utf-8'}
+
     aarecords = get_aarecords_elasticsearch([f"md5:{canonical_md5}"])
     if aarecords is None:
         return api_md5_fast_download_get_json(None, { "error": "Error during fetching" }), 500, {'Content-Type': 'text/json; charset=utf-8'}
@@ -114,13 +119,10 @@ def api_md5_fast_download():
     try:
         domain = allthethings.utils.FAST_DOWNLOAD_DOMAINS[domain_index]
         path_info = aarecord['additional']['partner_url_paths'][path_index]
-    except:
+    except Exception:
         return api_md5_fast_download_get_json(None, { "error": "Invalid domain_index or path_index" }), 400, {'Content-Type': 'text/json; charset=utf-8'}
     url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(False, 20000, path_info['path'], aarecord['additional']['filename'], domain)
 
-    account_id = allthethings.utils.account_id_from_secret_key(key_input)
-    if account_id is None:
-        return api_md5_fast_download_get_json(None, { "error": "Invalid secret key" }), 401, {'Content-Type': 'text/json; charset=utf-8'}
     with Session(mariapersist_engine) as mariapersist_session:
         account_fast_download_info = allthethings.utils.get_account_fast_download_info(mariapersist_session, account_id)
         if account_fast_download_info is None:
@@ -187,7 +189,7 @@ def generate_torrents_page():
     max_tb = 10000000
     try:
         max_tb = float(request.args.get('max_tb'))
-    except:
+    except Exception:
         pass
     if max_tb < 0.00001:
         max_tb = 10000000
@@ -247,11 +249,13 @@ def torrents_latest_aac_page(collection):
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def small_file_page(file_path):
     with mariapersist_engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        file = connection.execute(select(MariapersistSmallFiles.data).where(MariapersistSmallFiles.file_path == file_path).limit(10000)).first()
+        cursor = allthethings.utils.get_cursor_ping_conn(connection)
+        # SQLAlchemy query originally had LIMIT 10000, but was fetching only the first row (.first())??
+        cursor.execute('SELECT data FROM mariapersist_small_files WHERE file_path = %(file_path)s LIMIT 1', { 'file_path': file_path })
+        file = cursor.fetchone()
         if file is None:
             return "File not found", 404
-        return send_file(io.BytesIO(file.data), as_attachment=True, download_name=file_path.split('/')[-1])
+        return send_file(io.BytesIO(file['data']), as_attachment=True, download_name=file_path.split('/')[-1])
 
 @dyn.post("/downloads/increment/<string:md5_input>")
 @allthethings.utils.no_cache()
@@ -286,10 +290,15 @@ def downloads_stats_total():
     with mariapersist_engine.connect() as mariapersist_conn:
         hour_now = int(time.time() / 3600)
         hour_week_ago = hour_now - 24*31
-        timeseries = mariapersist_conn.execute(select(MariapersistDownloadsHourly.hour_since_epoch, MariapersistDownloadsHourly.count).where(MariapersistDownloadsHourly.hour_since_epoch >= hour_week_ago).limit(hour_week_ago+1)).all()
+        cursor = allthethings.utils.get_cursor_ping_conn(mariapersist_conn)
+        cursor.execute('SELECT hour_since_epoch, count FROM mariapersist_downloads_hourly '
+                       'WHERE hour_since_epoch >= %(hour_week_ago)s '#
+                       'LIMIT %(limit)s',
+                       { 'hour_week_ago': hour_week_ago, 'limit': hour_week_ago + 1 })
+        timeseries = cursor.fetchall()
         timeseries_by_hour = {}
         for t in timeseries:
-            timeseries_by_hour[t.hour_since_epoch] = t.count
+            timeseries_by_hour[t['hour_since_epoch']] = t['count']
         timeseries_x = list(range(hour_week_ago, hour_now))
         timeseries_y = [timeseries_by_hour.get(x, 0) for x in timeseries_x]
         return orjson.dumps({ "timeseries_x": timeseries_x, "timeseries_y": timeseries_y })
@@ -304,13 +313,17 @@ def downloads_stats_md5(md5_input):
         return "Non-canonical md5", 404
 
     with mariapersist_engine.connect() as mariapersist_conn:
-        total = mariapersist_conn.execute(select(MariapersistDownloadsTotalByMd5.count).where(MariapersistDownloadsTotalByMd5.md5 == bytes.fromhex(canonical_md5)).limit(1)).scalar() or 0
+        cursor = allthethings.utils.get_cursor_ping_conn(mariapersist_conn)
+
+        cursor.execute('SELECT count FROM mariapersist_downloads_total_by_md5 WHERE md5 = %(md5_digest)s LIMIT 1', { 'md5_digest': bytes.fromhex(canonical_md5) })
+        total = allthethings.utils.fetch_one_field(cursor) or 0
         hour_now = int(time.time() / 3600)
         hour_week_ago = hour_now - 24*31
-        timeseries = mariapersist_conn.execute(select(MariapersistDownloadsHourlyByMd5.hour_since_epoch, MariapersistDownloadsHourlyByMd5.count).where((MariapersistDownloadsHourlyByMd5.md5 == bytes.fromhex(canonical_md5)) & (MariapersistDownloadsHourlyByMd5.hour_since_epoch >= hour_week_ago)).limit(hour_week_ago+1)).all()
+        cursor.execute('SELECT hour_since_epoch, count FROM mariapersist_downloads_hourly_by_md5 WHERE md5 = %(md5_digest)s AND hour_since_epoch >= %(hour_week_ago)s LIMIT %(limit)s', { 'md5_digest': bytes.fromhex(canonical_md5), 'hour_week_ago': hour_week_ago, 'limit': hour_week_ago + 1 })
+        timeseries = cursor.fetchall()
         timeseries_by_hour = {}
         for t in timeseries:
-            timeseries_by_hour[t.hour_since_epoch] = t.count
+            timeseries_by_hour[t['hour_since_epoch']] = t['count']
         timeseries_x = list(range(hour_week_ago, hour_now))
         timeseries_y = [timeseries_by_hour.get(x, 0) for x in timeseries_x]
         return orjson.dumps({ "total": int(total), "timeseries_x": timeseries_x, "timeseries_y": timeseries_y })
@@ -370,18 +383,32 @@ def md5_summary(md5_input):
     account_id = allthethings.utils.get_account_id(request.cookies)
 
     with Session(mariapersist_engine) as mariapersist_session:
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
         data_md5 = bytes.fromhex(canonical_md5)
-        reports_count = mariapersist_session.connection().execute(select(func.count(MariapersistMd5Report.md5_report_id)).where(MariapersistMd5Report.md5 == data_md5).limit(1)).scalar()
-        comments_count = mariapersist_session.connection().execute(select(func.count(MariapersistComments.comment_id)).where(MariapersistComments.resource == f"md5:{canonical_md5}").limit(1)).scalar()
-        lists_count = mariapersist_session.connection().execute(select(func.count(MariapersistListEntries.list_entry_id)).where(MariapersistListEntries.resource == f"md5:{canonical_md5}").limit(1)).scalar()
-        downloads_total = mariapersist_session.connection().execute(select(MariapersistDownloadsTotalByMd5.count).where(MariapersistDownloadsTotalByMd5.md5 == data_md5).limit(1)).scalar() or 0
-        great_quality_count = mariapersist_session.connection().execute(select(func.count(MariapersistReactions.reaction_id)).where(MariapersistReactions.resource == f"md5:{canonical_md5}").limit(1)).scalar()
+
+        cursor.execute('SELECT COUNT(*) FROM mariapersist_md5_report WHERE md5 = %(md5_digest)s LIMIT 1', { 'md5_digest': data_md5 })
+        reports_count = allthethings.utils.fetch_one_field(cursor)
+
+        cursor.execute('SELECT COUNT(*) FROM mariapersist_comments WHERE resource = %(resource)s LIMIT 1', { 'resource': f"md5:{canonical_md5}" })
+        comments_count = allthethings.utils.fetch_one_field(cursor)
+
+        cursor.execute('SELECT COUNT(*) FROM mariapersist_list_entries WHERE resource = %(resource)s LIMIT 1', { 'resource': f"md5:{canonical_md5}" })
+        lists_count = allthethings.utils.fetch_one_field(cursor)
+
+        cursor.execute('SELECT count FROM mariapersist_downloads_total_by_md5 WHERE md5 = %(md5_digest)s LIMIT 1', { 'md5_digest': data_md5 })
+        downloads_total = allthethings.utils.fetch_one_field(cursor)
+
+        cursor.execute('SELECT COUNT(*) FROM mariapersist_reactions WHERE resource = %(resource)s LIMIT 1', { 'resource': f"md5:{canonical_md5}" })
+        great_quality_count = allthethings.utils.fetch_one_field(cursor)
+
         user_reaction = None
         downloads_left = 0
         is_member = 0
         download_still_active = 0
         if account_id is not None:
-            user_reaction = mariapersist_session.connection().execute(select(MariapersistReactions.type).where((MariapersistReactions.resource == f"md5:{canonical_md5}") & (MariapersistReactions.account_id == account_id)).limit(1)).scalar()
+            cursor.execute('SELECT type FROM mariapersist_reactions WHERE resource = %(resource)s AND account_id = %(account_id)s LIMIT 1', { 'resource': f"md5:{canonical_md5}", 'account_id': account_id })
+            user_reaction = allthethings.utils.fetch_one_field(cursor)
 
             account_fast_download_info = allthethings.utils.get_account_fast_download_info(mariapersist_session, account_id)
             if account_fast_download_info is not None:
@@ -496,66 +523,87 @@ def put_comment(resource):
         if resource_type not in ['md5', 'comment']:
             raise Exception("Invalid resource")
 
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
         if resource_type == 'comment':
-            parent_resource = mariapersist_session.connection().execute(select(MariapersistComments.resource).where(MariapersistComments.comment_id == int(resource[len('comment:'):])).limit(1)).scalar()
+            cursor.execute('SELECT resource FROM mariapersist_comments WHERE comment_id = %(comment_id)s LIMIT 1', { 'comment_id': int(resource[len('comment:'):]) })
+            parent_resource = allthethings.utils.fetch_one_field(cursor)
             if parent_resource is None:
                 raise Exception("No parent comment")
             parent_resource_type = get_resource_type(parent_resource)
             if parent_resource_type == 'comment':
                 raise Exception("Parent comment is itself a reply")
 
-        mariapersist_session.connection().execute(
-            text('INSERT INTO mariapersist_comments (account_id, resource, content) VALUES (:account_id, :resource, :content)')
-                .bindparams(account_id=account_id, resource=resource, content=content))
+        cursor.execute('INSERT INTO mariapersist_comments (account_id, resource, content) VALUES (%(account_id)s, %(resource)s, %(content)s)',
+                       { 'account_id': account_id, 'resource': resource, 'content': content })
         mariapersist_session.commit()
         return "{}"
 
 
-def get_comment_dicts(mariapersist_session, resources):
+def get_comment_dicts(cursor, resources):
     account_id = allthethings.utils.get_account_id(request.cookies)
 
-    comments = mariapersist_session.connection().execute(
-            select(MariapersistComments, MariapersistAccounts.display_name, MariapersistReactions.type.label('user_reaction'))
-            .join(MariapersistAccounts, MariapersistAccounts.account_id == MariapersistComments.account_id)
-            .join(MariapersistReactions, (MariapersistReactions.resource == func.concat("comment:",MariapersistComments.comment_id)) & (MariapersistReactions.account_id == account_id), isouter=True)
-            .where(MariapersistComments.resource.in_(resources))
-            .limit(10000)
-        ).all()
-    replies = mariapersist_session.connection().execute(
-            select(MariapersistComments, MariapersistAccounts.display_name, MariapersistReactions.type.label('user_reaction'))
-            .join(MariapersistAccounts, MariapersistAccounts.account_id == MariapersistComments.account_id)
-            .join(MariapersistReactions, (MariapersistReactions.resource == func.concat("comment:",MariapersistComments.comment_id)) & (MariapersistReactions.account_id == account_id), isouter=True)
-            .where(MariapersistComments.resource.in_([f"comment:{comment.comment_id}" for comment in comments]))
-            .order_by(MariapersistComments.comment_id.asc())
-            .limit(10000)
-        ).all()
-    comment_reactions = mariapersist_session.connection().execute(
-            select(MariapersistReactions.resource, MariapersistReactions.type, func.count(MariapersistReactions.account_id).label('count'))
-            .where(MariapersistReactions.resource.in_([f"comment:{comment.comment_id}" for comment in (comments+replies)]))
-            .group_by(MariapersistReactions.resource, MariapersistReactions.type)
-            .limit(10000)
-        ).all()
+    cursor.execute('SELECT c.*, a.display_name, r.type AS user_reaction FROM mariapersist_comments c '
+                   'INNER JOIN mariapersist.mariapersist_accounts a USING(account_id) '
+                   'LEFT JOIN mariapersist.mariapersist_reactions r '
+                   '    ON r.resource = CONCAT(\'comment:\', c.comment_id) '
+                   '        AND r.account_id = %(account_id)s '
+                   'WHERE c.resource IN %(resources)s '
+                   'LIMIT 10000',
+                   { 'account_id': account_id, 'resources': resources })
+    comments = cursor.fetchall()
+
+    replies_res = [f"comment:{comment['comment_id']}" for comment in comments]
+    # SQL does not allow empty IN() lists
+    if len(replies_res) <= 0:
+        replies_res.append('x')
+
+    cursor.execute('SELECT c.*, a.display_name, r.type AS user_reaction FROM mariapersist_comments c '
+                   'INNER JOIN mariapersist.mariapersist_accounts a USING(account_id) '
+                   'LEFT JOIN mariapersist.mariapersist_reactions r '
+                   '    ON c.account_id = r.account_id '
+                   '        AND r.resource = CONCAT(\'comment:\', c.comment_id) '
+                   '        AND r.account_id = %(account_id)s '
+                   'WHERE c.resource IN %(resources)s '
+                   'ORDER BY c.comment_id '
+                   'LIMIT 10000',
+                   { 'account_id': account_id, 'resources': replies_res })
+    replies = cursor.fetchall()
+
+    # cursor.fetchall() returns a tuple if there is no results
+    if type(replies) is tuple:
+        replies = []
+
+    reactions_res = [f"comment:{comment['comment_id']}" for comment in (comments+replies)]
+    # SQL does not allow empty IN() lists
+    if len(reactions_res) <= 0:
+        reactions_res.append('x')
+
+    cursor.execute('SELECT resource, type, COUNT(*) as count FROM mariapersist_reactions '
+                   'WHERE resource IN %(resources)s GROUP BY resource, type '
+                   'LIMIT 10000', { 'resources': reactions_res })
+    comment_reactions = cursor.fetchall()
+
     comment_reactions_by_id = collections.defaultdict(dict)
     for reaction in comment_reactions:
         comment_reactions_by_id[int(reaction['resource'][len("comment:"):])][reaction['type']] = reaction['count']
 
     reply_dicts_by_parent_comment_id = collections.defaultdict(list)
     for reply in replies: # Note: these are already sorted chronologically.
-        reply_dicts_by_parent_comment_id[int(reply.resource[len('comment:'):])].append({ 
+        reply_dicts_by_parent_comment_id[int(reply['resource'][len('comment:'):])].append({
             **reply,
-            'created_delta': reply.created - datetime.datetime.now(),
-            'abuse_total': comment_reactions_by_id[reply.comment_id].get(1, 0),
-            'thumbs_up': comment_reactions_by_id[reply.comment_id].get(2, 0),
-            'thumbs_down': comment_reactions_by_id[reply.comment_id].get(3, 0),
+            'created_delta': reply['created'] - datetime.datetime.now(),
+            'abuse_total': comment_reactions_by_id[reply['comment_id']].get(1, 0),
+            'thumbs_up': comment_reactions_by_id[reply['comment_id']].get(2, 0),
+            'thumbs_down': comment_reactions_by_id[reply['comment_id']].get(3, 0),
         })
 
-    comment_dicts = [{ 
+    comment_dicts = [{
         **comment,
-        'created_delta': comment.created - datetime.datetime.now(),
-        'abuse_total': comment_reactions_by_id[comment.comment_id].get(1, 0),
-        'thumbs_up': comment_reactions_by_id[comment.comment_id].get(2, 0),
-        'thumbs_down': comment_reactions_by_id[comment.comment_id].get(3, 0),
-        'reply_dicts': reply_dicts_by_parent_comment_id[comment.comment_id],
+        'created_delta': comment['created'] - datetime.datetime.now(),
+        'abuse_total': comment_reactions_by_id[comment['comment_id']].get(1, 0),
+        'thumbs_up': comment_reactions_by_id[comment['comment_id']].get(2, 0),
+        'thumbs_down': comment_reactions_by_id[comment['comment_id']].get(3, 0),
+        'reply_dicts': reply_dicts_by_parent_comment_id[comment['comment_id']],
         'can_have_replies': True,
     } for comment in comments]
 
@@ -592,20 +640,26 @@ def md5_reports(md5_input):
 
     with Session(mariapersist_engine) as mariapersist_session:
         data_md5 = bytes.fromhex(canonical_md5)
-        reports = mariapersist_session.connection().execute(
-                select(MariapersistMd5Report.md5_report_id, MariapersistMd5Report.type, MariapersistMd5Report.better_md5)
-                .where(MariapersistMd5Report.md5 == data_md5)
-                .order_by(MariapersistMd5Report.created.desc())
-                .limit(10000)
-            ).all()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+        cursor.execute('SELECT md5_report_id, type, better_md5 FROM mariapersist_md5_report '
+                       'WHERE md5 = %(data_md5)s '
+                       'ORDER BY created DESC '
+                       'LIMIT 10000',
+                       { 'data_md5': data_md5 })
+        reports = cursor.fetchall()
         report_dicts_by_resource = {}
         for r in reports:
-            report_dicts_by_resource[f"md5_report:{r.md5_report_id}"] = dict(r)
+            report_dict = dict(r)
+            if better_md5 := report_dict.get("better_md5"):
+                report_dict["better_md5"] = better_md5.hex()
+            report_dicts_by_resource[f"md5_report:{report_dict['md5_report_id']}"] = report_dict
+
 
         comment_dicts = [{ 
             **comment_dict,
             'report_dict': report_dicts_by_resource.get(comment_dict['resource'], None),
-        } for comment_dict in get_comment_dicts(mariapersist_session, ([f"md5:{canonical_md5}"] + list(report_dicts_by_resource.keys())))]
+        } for comment_dict in get_comment_dicts(cursor, ([f"md5:{canonical_md5}"] + list(report_dicts_by_resource.keys())))]
 
         return render_template(
             "dyn/comments.html",
@@ -623,14 +677,17 @@ def put_comment_reaction(reaction_type, resource):
     if account_id is None:
         return "", 403
 
-    with Session(mariapersist_engine) as mariapersist_session:
+    with (Session(mariapersist_engine) as mariapersist_session):
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
         resource_type = get_resource_type(resource)
         if resource_type not in ['md5', 'comment']:
             raise Exception("Invalid resource")
         if resource_type == 'comment':
             if reaction_type not in [0,1,2,3]:
                 raise Exception("Invalid reaction_type")
-            comment_account_id = mariapersist_session.connection().execute(select(MariapersistComments.resource).where(MariapersistComments.comment_id == int(resource[len('comment:'):])).limit(1)).scalar()
+            cursor.execute('SELECT resource FROM mariapersist_comments WHERE comment_id = %(comment_id)s LIMIT 1',
+                           { 'comment_id': int(resource[len('comment:'):]) })
+            comment_account_id = allthethings.utils.fetch_one_field(cursor)
             if comment_account_id is None:
                 raise Exception("No parent comment")
             if comment_account_id == account_id:
@@ -640,9 +697,14 @@ def put_comment_reaction(reaction_type, resource):
                 raise Exception("Invalid reaction_type")
 
         if reaction_type == 0:
-            mariapersist_session.connection().execute(text('DELETE FROM mariapersist_reactions WHERE account_id = :account_id AND resource = :resource').bindparams(account_id=account_id, resource=resource))
+            cursor.execute('DELETE FROM mariapersist_reactions '
+                           'WHERE account_id = %(account_id)s AND resource = %(resource)s',
+                           { 'account_id': account_id, 'resource': resource })
         else:
-            mariapersist_session.connection().execute(text('INSERT INTO mariapersist_reactions (account_id, resource, type) VALUES (:account_id, :resource, :type) ON DUPLICATE KEY UPDATE type = :type').bindparams(account_id=account_id, resource=resource, type=reaction_type))
+            cursor.execute('INSERT INTO mariapersist_reactions (account_id, resource, type) '
+                           'VALUES (%(account_id)s, %(resource)s, %(type)s) '
+                           'ON DUPLICATE KEY UPDATE type = %(type)s',
+                           { 'account_id': account_id, 'resource': resource, 'type': reaction_type })
         mariapersist_session.commit()
         return "{}"
 
@@ -659,29 +721,32 @@ def lists_update(resource):
         if resource_type not in ['md5']:
             raise Exception("Invalid resource")
 
-        my_lists = mariapersist_session.connection().execute(
-            select(MariapersistLists.list_id, MariapersistListEntries.list_entry_id)
-            .join(MariapersistListEntries, (MariapersistListEntries.list_id == MariapersistLists.list_id) & (MariapersistListEntries.account_id == account_id) & (MariapersistListEntries.resource == resource), isouter=True)
-            .where(MariapersistLists.account_id == account_id)
-            .order_by(MariapersistLists.updated.desc())
-            .limit(10000)
-        ).all()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+        cursor.execute('SELECT l.list_id, le.list_entry_id FROM mariapersist_lists l '
+                       'LEFT JOIN mariapersist_list_entries le ON l.list_id = le.list_id '
+                       '    AND l.account_id = le.account_id AND le.resource = %(resource)s '
+                       'WHERE l.account_id = %(account_id)s '
+                       'ORDER BY l.updated DESC '
+                       'LIMIT 10000',
+                       { 'account_id': account_id, 'resource': resource })
+        my_lists = cursor.fetchall()
 
         selected_list_ids = set([list_id for list_id in request.form.keys() if list_id != 'list_new_name' and request.form[list_id] == 'on'])
         list_ids_to_add = []
         list_ids_to_remove = []
         for list_record in my_lists:
-            if list_record.list_entry_id is None and list_record.list_id in selected_list_ids:
-                list_ids_to_add.append(list_record.list_id)
-            elif list_record.list_entry_id is not None and list_record.list_id not in selected_list_ids:
-                list_ids_to_remove.append(list_record.list_id)
+            if list_record['list_entry_id'] is None and list_record['list_id'] in selected_list_ids:
+                list_ids_to_add.append(list_record['list_id'])
+            elif list_record['list_entry_id'] is not None and list_record['list_id'] not in selected_list_ids:
+                list_ids_to_remove.append(list_record['list_id'])
         list_new_name = request.form['list_new_name'].strip()
 
         if len(list_new_name) > 0:
             for _ in range(5):
                 insert_data = { 'list_id': shortuuid.random(length=7), 'account_id': account_id, 'name': list_new_name }
                 try:
-                    mariapersist_session.connection().execute(text('INSERT INTO mariapersist_lists (list_id, account_id, name) VALUES (:list_id, :account_id, :name)').bindparams(**insert_data))
+                    cursor.execute('INSERT INTO mariapersist_lists (list_id, account_id, name) VALUES (%(list_id)s, %(account_id)s, %(name)s)',
+                                   insert_data)
                     list_ids_to_add.append(insert_data['list_id'])
                     break
                 except Exception as err:
@@ -689,10 +754,10 @@ def lists_update(resource):
                     pass
 
         if len(list_ids_to_add) > 0:
-            mariapersist_session.execute('INSERT INTO mariapersist_list_entries (account_id, list_id, resource) VALUES (:account_id, :list_id, :resource)',
+            cursor.executemany('INSERT INTO mariapersist_list_entries (account_id, list_id, resource) VALUES (%(account_id)s, %(list_id)s, %(resource)s)',
                 [{ 'account_id': account_id, 'list_id': list_id, 'resource': resource } for list_id in list_ids_to_add])
         if len(list_ids_to_remove) > 0:
-            mariapersist_session.execute('DELETE FROM mariapersist_list_entries WHERE account_id = :account_id AND resource = :resource AND list_id = :list_id',
+            cursor.executemany('DELETE FROM mariapersist_list_entries WHERE account_id = %(account_id)s AND resource = %(resource)s AND list_id = %(list_id)s',
                 [{ 'account_id': account_id, 'list_id': list_id, 'resource': resource } for list_id in list_ids_to_remove])
         mariapersist_session.commit()
 
@@ -703,25 +768,28 @@ def lists_update(resource):
 @allthethings.utils.no_cache()
 def lists(resource):
     with Session(mariapersist_engine) as mariapersist_session:
-        resource_lists = mariapersist_session.connection().execute(
-            select(MariapersistLists.list_id, MariapersistLists.name, MariapersistAccounts.display_name, MariapersistAccounts.account_id)
-            .join(MariapersistListEntries, MariapersistListEntries.list_id == MariapersistLists.list_id)
-            .join(MariapersistAccounts, MariapersistLists.account_id == MariapersistAccounts.account_id)
-            .where(MariapersistListEntries.resource == resource)
-            .order_by(MariapersistLists.updated.desc())
-            .limit(10000)
-        ).all()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+        cursor.execute('SELECT l.list_id, l.name, a.display_name, a.account_id FROM mariapersist_lists l '
+                       'INNER JOIN mariapersist_list_entries le USING(list_id) '
+                       'INNER JOIN mariapersist_accounts a ON l.account_id = a.account_id '
+                       'WHERE le.resource = %(resource)s '
+                       'ORDER BY l.updated DESC '
+                       'LIMIT 10000',
+                       { 'resource': resource })
+        resource_lists = cursor.fetchall()
 
         my_lists = []
         account_id = allthethings.utils.get_account_id(request.cookies)
         if account_id is not None:
-            my_lists = mariapersist_session.connection().execute(
-                select(MariapersistLists.list_id, MariapersistLists.name, MariapersistListEntries.list_entry_id)
-                .join(MariapersistListEntries, (MariapersistListEntries.list_id == MariapersistLists.list_id) & (MariapersistListEntries.account_id == account_id) & (MariapersistListEntries.resource == resource), isouter=True)
-                .where(MariapersistLists.account_id == account_id)
-                .order_by(MariapersistLists.updated.desc())
-                .limit(10000)
-            ).all()
+            cursor.execute('SELECT l.list_id, l.name, le.list_entry_id FROM mariapersist_lists l '
+                           'LEFT JOIN mariapersist_list_entries le ON l.list_id = le.list_id '
+                           '    AND l.account_id = le.account_id AND le.resource = %(resource)s '
+                           'WHERE l.account_id = %(account_id)s ' 
+                           'ORDER BY l.updated DESC '
+                           'LIMIT 10000',
+                           { 'account_id': account_id, 'resource': resource })
+            my_lists = cursor.fetchall()
 
         return render_template(
             "dyn/lists.html",
@@ -776,7 +844,7 @@ def search_counts_page():
                     total_by_index_long[multi_searches[i*2]['index'][0].split('__', 1)[0]]['timed_out'] = True
                     any_timeout = True
                 total_by_index_long[multi_searches[i*2]['index'][0].split('__', 1)[0]]['took'] = result['took']
-    except Exception as err:
+    except Exception:
         pass
 
     r = make_response(orjson.dumps(total_by_index_long))
@@ -800,10 +868,10 @@ def account_buy_membership():
 
     cost_cents_usd_verification = request.form['costCentsUsdVerification']
     if str(membership_costs['cost_cents_usd']) != cost_cents_usd_verification:
-        raise Exception(f"Invalid costCentsUsdVerification")
+        raise Exception("Invalid costCentsUsdVerification")
 
     donation_type = 0 # manual
-    if method in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b']:
+    if method in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b']:
         donation_type = 1
 
     with Session(mariapersist_engine) as mariapersist_session:
@@ -852,19 +920,22 @@ def account_buy_membership():
                 print(f"Warning payment3_request error: {donation_json['payment3_request']}")
                 return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.unknown', email="https://annas-archive.se/contact") })
 
-        if method in ['payment2', 'payment2paypal', 'payment2cashapp', 'payment2cc']:
+        if method in ['payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc']:
             if method == 'payment2':
                 pay_currency = request.form['pay_currency']
             elif method == 'payment2paypal':
                 pay_currency = 'pyusd'
-            elif method in ['payment2cc', 'payment2cashapp']:
+            elif method in ['payment2cc', 'payment2cashapp', 'payment2revolut']:
                 pay_currency = 'btc'
-            if pay_currency not in ['btc','eth','bch','ltc','xmr','ada','bnbbsc','busdbsc','dai','doge','dot','matic','near','pax','pyusd','sol','ton','trx','tusd','usdc','usdtbsc','usdterc20','usdttrc20','usdtsol']: # No XRP, needs a "tag"
+            if pay_currency not in ['btc','eth','ethbase','bch','ltc','xmr','ada','bnbbsc','busdbsc','dai','doge','dot','matic','near','pax','pyusd','sol','ton','trx','tusd','usdc','usdtbsc','usdterc20','usdttrc20','usdtsol']: # No XRP, needs a "tag"
                 raise Exception(f"Invalid pay_currency: {pay_currency}")
 
             price_currency = 'usd'
             if pay_currency in ['busdbsc','dai','pyusd','tusd','usdc','usdterc20','usdttrc20']:
                 price_currency = pay_currency
+
+            if (pay_currency == 'btc') and (membership_costs['cost_cents_usd'] < 1000):
+                return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.minimum') })
 
             response = None
             try:
@@ -875,7 +946,7 @@ def account_buy_membership():
                     "order_id": donation_id,
                 })
                 donation_json['payment2_request'] = response.json()
-            except httpx.HTTPError as err:
+            except httpx.HTTPError:
                 return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.try_again', email="https://annas-archive.se/contact") })
             except Exception as err:
                 print(f"Warning: unknown error in payment2 http request: {repr(err)} /// {traceback.format_exc()}")
@@ -897,7 +968,6 @@ def account_buy_membership():
         # if existing_unpaid_donations_counts > 0:
         #     raise Exception(f"Existing unpaid or manualconfirm donations open")
 
-        data_ip = allthethings.utils.canonical_ip_bytes(request.remote_addr)
         data = {
             'donation_id': donation_id,
             'account_id': account_id,
@@ -923,11 +993,14 @@ def account_mark_manual_donation_sent(donation_id):
         return "", 403
 
     with Session(mariapersist_engine) as mariapersist_session:
-        donation = mariapersist_session.connection().execute(select(MariapersistDonations).where((MariapersistDonations.account_id == account_id) & (MariapersistDonations.processing_status == 0) & (MariapersistDonations.donation_id == donation_id)).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+        cursor.execute('SELECT * FROM mariapersist_donations WHERE account_id = %(account_id)s AND processing_status = 0 AND donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'account_id': account_id })
+        donation = cursor.fetchone()
         if donation is None:
             return "", 403
 
-        mariapersist_session.execute('UPDATE mariapersist_donations SET processing_status = 4 WHERE donation_id = :donation_id AND processing_status = 0 AND account_id = :account_id LIMIT 1', [{ 'donation_id': donation_id, 'account_id': account_id }])
+        cursor.execute('UPDATE mariapersist_donations SET processing_status = 4 WHERE donation_id = %(donation_id)s AND processing_status = 0 AND account_id = %(account_id)s LIMIT 1', { 'donation_id': donation_id, 'account_id': account_id })
         mariapersist_session.commit()
         return "{}"
 
@@ -940,11 +1013,14 @@ def account_cancel_donation(donation_id):
         return "", 403
 
     with Session(mariapersist_engine) as mariapersist_session:
-        donation = mariapersist_session.connection().execute(select(MariapersistDonations).where((MariapersistDonations.account_id == account_id) & ((MariapersistDonations.processing_status == 0) | (MariapersistDonations.processing_status == 4)) & (MariapersistDonations.donation_id == donation_id)).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+        cursor.execute('SELECT * FROM mariapersist_donations WHERE account_id = %(account_id)s AND (processing_status = 0 OR processing_status = 4) AND donation_id = %(donation_id)s LIMIT 1', { 'account_id': account_id, 'donation_id': donation_id })
+        donation = cursor.fetchone()
         if donation is None:
             return "", 403
 
-        mariapersist_session.execute('UPDATE mariapersist_donations SET processing_status = 2 WHERE donation_id = :donation_id AND (processing_status = 0 OR processing_status = 4) AND account_id = :account_id LIMIT 1', [{ 'donation_id': donation_id, 'account_id': account_id }])
+        cursor.execute('UPDATE mariapersist_donations SET processing_status = 2 WHERE donation_id = %(donation_id)s AND (processing_status = 0 OR processing_status = 4) AND account_id = %(account_id)s LIMIT 1', { 'donation_id': donation_id, 'account_id': account_id })
         mariapersist_session.commit()
         return "{}"
 
@@ -953,13 +1029,12 @@ def account_cancel_donation(donation_id):
 @allthethings.utils.public_cache(minutes=1, cloudflare_minutes=1)
 @cross_origin()
 def recent_downloads():
-    with Session(engine) as session:
+    with Session(engine):
         with Session(mariapersist_engine) as mariapersist_session:
-            downloads = mariapersist_session.connection().execute(
-                select(MariapersistDownloads)
-                .order_by(MariapersistDownloads.timestamp.desc())
-                .limit(50)
-            ).all()
+            cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+
+            cursor.execute('SELECT * FROM mariapersist_downloads ORDER BY timestamp DESC LIMIT 50')
+            downloads = cursor.fetchall()
 
             aarecords = []
             if len(downloads) > 0:
@@ -1071,12 +1146,13 @@ def payment3_notify():
 def hoodpay_notify():
     donation_id = request.json['forPaymentEvents']['metadata']['donation_id']
     with mariapersist_engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        donation = connection.execute(select(MariapersistDonations).where(MariapersistDonations.donation_id == donation_id).limit(1)).first()
+        cursor = allthethings.utils.get_cursor_ping_conn(connection)
+
+        cursor.execute('SELECT * FROM mariapersist_donations WHERE donation_id = %(donation_id)s LIMIT 1')
+        donation = cursor.fetchone()
         if donation is None:
             return "", 403
         donation_json = orjson.loads(donation['json'])
-        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
         hoodpay_status, hoodpay_request_success = allthethings.utils.hoodpay_check(cursor, donation_json['hoodpay_request']['data']['id'], donation_id)
         if not hoodpay_request_success:
             return "Error happened", 404
@@ -1112,8 +1188,7 @@ def gc_notify():
     donation_id = allthethings.utils.receipt_id_to_donation_id(to_split[1])
 
     with mariapersist_engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
+        cursor = allthethings.utils.get_cursor_ping_conn(connection)
         cursor.execute('SELECT * FROM mariapersist_donations WHERE donation_id=%(donation_id)s LIMIT 1', { 'donation_id': donation_id })
         donation = cursor.fetchone()
         if donation is None:
@@ -1129,50 +1204,30 @@ def gc_notify():
 
         message_body = "\n\n".join([item.get_payload(decode=True).decode() for item in message.get_payload() if item is not None])
 
+        def exec_err(error_txt):
+            donation_json['gc_notify_debug'].append({ "error": error_txt, "message_body": message_body, "email_data": request_data.decode() })
+            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
+            cursor.execute('COMMIT')
+            print(error_txt)
+            return "", 404
+
         auth_results = "\n\n".join(message.get_all('Authentication-Results'))
         if "dkim=pass" not in auth_results:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with wrong auth_results: {auth_results}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong auth_results: {auth_results}")
 
         if re.search(r'<gc-orders@gc\.email\.amazon\.com>$', message['From'].strip()) is None:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with wrong From: {message['From']}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong From: {message['From']}")
 
         if not (message['Subject'].strip().endswith('sent you an Amazon Gift Card!') or message['Subject'].strip().endswith('is waiting')):
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with wrong Subject: {message['Subject']}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong Subject: {message['Subject']}")
 
-        # Keep in sync!
         potential_money = re.findall(r"\n\$([0123456789]+\.[0123456789]{2})", message_body)
         if len(potential_money) == 0:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for potential_money"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for potential_money")
 
-        # Keep in sync!
         links = [str(link) for link in re.findall(r'(https://www.amazon.com/gp/r.html?[^\n)>"]+)', message_body)]
         if len(links) == 0:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for links"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for links")
 
         # Keep in sync!
         main_link = None
@@ -1191,45 +1246,13 @@ def gc_notify():
         money = float(potential_money[-1])
         # Allow for 5% margin
         if money * 105 < int(donation['cost_cents_usd']):
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' with too small amount gift card {money*110} < {donation['cost_cents_usd']}"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with too small amount gift card {money*110} < {donation['cost_cents_usd']}")
 
         sig = request.headers['X-GC-NOTIFY-SIG']
         if sig != GC_NOTIFY_SIG:
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' has incorrect signature: '{sig}'"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' has incorrect signature: '{sig}'")
 
         data_value = { "links": links, "money": money }
         if not allthethings.utils.confirm_membership(cursor, donation_id, 'amazon_gc_done', data_value):
-            error = f"Warning: gc_notify message '{message['X-Original-To']}' confirm_membership failed"
-            donation_json['gc_notify_debug'].append({ "error": error, "message_body": message_body, "email_data": request_data.decode() })
-            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
-            cursor.execute('COMMIT')
-            print(error)
-            return "", 404
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' confirm_membership failed")
     return ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

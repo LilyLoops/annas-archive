@@ -1,58 +1,86 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
-{% block title %}Datasets{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.isbndb.title') }} [isbndb]{% endblock %}
 
 {% block body %}
-  {% if gettext('common.english_only') != 'Text below continues in English.' %}
-    <p class="mb-4 font-bold">{{ gettext('common.english_only') }}</p>
-  {% endif %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.isbndb.title') }} [isbndb]</div>
 
-  <div lang="en">
-    <div class="mb-4"><a href="/datasets">Datasets</a> ▶ ISBNdb</div>
-
-    <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
-      If you are interested in mirroring this dataset for <a href="/faq#what">archival</a> or <a href="/llm">LLM training</a> purposes, please contact us.
-    </div>
-
-    <p class="mb-4">
-      ISBNdb is a company that scrapes various online bookstores to find ISBN metadata.
-      Anna’s Archive has been making backups of the ISBNdb book metadata.
-      This metadata is available through Anna’s Archive (though not currently in search, except if you explicitly search for an ISBN number).
-    </p>
-
-    <p class="mb-4">
-      For technical details, see below.
-      At some point we can use it to determine which books are still missing from shadow libraries, in order to prioritize which books to find and/or scan.
-    </p>
-
-    <p><strong>Resources</strong></p>
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc">Last updated: {{ stats_data.isbndb_date }}</li>
-      <li class="list-disc"><a href="/torrents#isbndb">Torrents by Anna’s Archive (metadata)</a></li>
-      <li class="list-disc"><a href="/db/isbndb/9780060512804.json">Example record on Anna’s Archive</a></li>
-      <li class="list-disc"><a href="https://isbndb.com/">Main website</a></li>
-      <li class="list-disc"><a href="https://annas-archive.se/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html">Our blog post about this data</a></li>
-      <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">Scripts for importing metadata</a></li>
-    </ul>
-
-    <h2 class="mt-4 mb-4 text-3xl font-bold">ISBNdb scrape</h2>
-
-    <p><strong>Release 1 (2022-10-31)</strong></p>
-
-    <p class="mb-4">
-      This is a dump of a lot of calls to isbndb.com during September 2022. We tried to cover all ISBN ranges. These are about 30.9 million records. On their website they claim that they actually have 32.6 million records, so we might somehow have missed some, or <em>they</em> could be doing something wrong.
-    </p>
-
-    <p class="mb-4">
-      The JSON responses are pretty much raw from their server. One data quality issue that we noticed, is that for ISBN-13 numbers that start with a different prefix than "978-", they still include an "isbn" field that simply is the ISBN-13 number with the first 3 numbers chopped off (and the check digit recalculated). This is obviously wrong, but this is how they seem to do it, so we didn't alter it.
-    </p>
-
-    <p class="mb-4">
-      Another potential issue that you might run into, is the fact that the "isbn13" field has duplicates, so you cannot use it as a primary key in a database. "isbn13"+"isbn" fields combined do seem to be unique.
-    </p>
-
-    <p class="mb-4">
-      Currently we have a single torrent, that contains a 4.4GB gzipped <a href="https://jsonlines.org/">JSON Lines</a> file (20GB unzipped): "isbndb_2022_09.jsonl.gz". To import a ".jsonl" file into PostgreSQL, you can use something like <a href="https://gist.github.com/JeffCarpenter/757be2645a8671a2ce92aadc7568e5d0">this script</a>. You can even pipe it directly using something like "zcat isbndb_2022_09.jsonl.gz | " so it decompresses on the fly.
-    </p>
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
   </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left">{{ gettext('page.datasets.sources.last_updated.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/isbndb">
+            {{ gettext('common.record_sources_mapping.isbndb') }} [isbndb]
+          </a>
+        </td>
+        <td class="p-2 align-top">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.isbndb.metadata1', icon='❌') }}
+          </div>
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.isbndb.metadata2', icon='👩‍💻',
+                isbndb=(dict(href="/torrents#isbndb") | xmlattr),
+            ) }}
+          </div>
+        </td>
+        <td class="p-2 align-top">{{ stats_data.isbndb_date }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.isbndb.description') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.isbndb.technical') }}
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.isbndb_date) }}</li>
+    <li class="list-disc"><a href="/torrents#isbndb">{{ gettext('page.datasets.common.aa_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/isbndb/9780060512804.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="https://isbndb.com/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.isbndb.title')) }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html">{{ gettext('page.datasets.isbndb.blog_post') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+
+  <h2 class="mt-4 mb-4 text-3xl font-bold">{{ gettext('page.datasets.isbndb.scrape.title') }}</h2>
+
+  <p><strong>{{ gettext('page.datasets.isbndb.release1.title') }}</strong></p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.isbndb.release1.text1') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.isbndb.release1.text2') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.isbndb.release1.text3') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext(
+      'page.datasets.isbndb.release1.text4',
+      a_jsonl=(dict(href="https://jsonlines.org/") | xmlattr),
+      a_script=(dict(href="https://gist.github.com/JeffCarpenter/757be2645a8671a2ce92aadc7568e5d0") | xmlattr),
+      example_code=('<code class="text-sm bg-black/5">zcat isbndb_2022_09.jsonl.gz | postgresql-import-jsonl.sh</code>' | safe)
+    ) }}
+  </p>
 {% endblock %}

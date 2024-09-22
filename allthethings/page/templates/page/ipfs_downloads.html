@@ -10,12 +10,12 @@
   <h2 class="mt-4 mb-4 text-3xl font-bold">{{ gettext('page.ipfs_downloads.title') }}</h2>
 
   <p class="mb-4">
-    {{ gettext('page.partner_download.main_page', a_main=((' href="/md5/' + canonical_md5 + '"') | safe)) }}
+    {{ gettext('page.partner_download.main_page', a_main=((' href="' + original_path + '"') | safe)) }}
   </p>
 
   <ul class="mb-4">
     {% for url in ipfs_urls %}
-      <li>- <a rel="noopener noreferrer nofollow" href="{{ url.url }}">{{ gettext('page.md5.box.download.ipfs_gateway', num=loop.index) }}</a> [{{ url.from }}] {% if loop.index == 1 %}{{ gettext('page.md5.box.download.ipfs_gateway_extra')}}{% endif %}</li>
+      <li>- <a rel="noopener noreferrer nofollow" href="{{ url.url }}">{{ gettext('page.md5.box.download.ipfs_gateway', num=loop.index) }} {{ url.name }}</a> [{{ url.from }}] {% if loop.index == 1 %}{{ gettext('page.md5.box.download.ipfs_gateway_extra')}}{% endif %}</li>
     {% endfor %}
   </ul>
 

@@ -166,7 +166,7 @@
           {{ gettext('page.donation.expired') }}
         </p>
       {% else %}
-        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>{{ gettext('page.donation.buy_pyusd') }}</p>
+        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">{{ gettext('page.donation.step1') }}</span>{{ gettext('page.donation.buy_pyusd') }}</p>
 
         <p class="mb-4">
           {{ gettext('page.donate.one_time_payment.paypal.text2') }}
@@ -177,7 +177,7 @@
           {{ gettext('page.donation.pyusd.more', more='$5', amount=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions) }}
         </p>
 
-        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">2</span>Transfer the PYUSD to our address</p>
+        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">{{ gettext('page.donation.step2') }}</span>Transfer the PYUSD to our address</p>
 
         <p class="mb-4">
           {{ gettext('page.donation.pyusd.transfer', icon=('<span class="icon-[cil--transfer] align-middle"></span>' | safe)) }}
@@ -206,20 +206,20 @@
           {{ gettext('page.donation.expired') }}
         </p>
       {% else %}
-        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>Buy Bitcoin (BTC) on Cash App</p>
+        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">{{ gettext('page.donation.step1') }}</span>{{ gettext('page.donation.cash_app_btc.step1') }}</p>
 
         <p class="mb-4">
-          Go to the “Bitcoin” (BTC) page in Cash App.
+          {{ gettext('page.donation.cash_app_btc.step1.text1') }}
         </p>
 
         <p class="mb-4">
-          Buy a bit more (we recommend $4 more) than the amount that you’re donating ({{ donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions }}), to cover transaction fees. You will keep anything left over.
+          {{ gettext('page.donation.cash_app_btc.step1.more', more='$4', amount=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions) }}
         </p>
 
-        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">2</span>Transfer the Bitcoin to our address</p>
+        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">{{ gettext('page.donation.step2') }}</span>{{ gettext('page.donation.cash_app_btc.step2') }}</p>
 
         <p class="mb-4">
-          Click the “Send bitcoin” button to make a “withdrawal”. Switch from dollars to BTC by pressing the <span class="icon-[cil--transfer] align-middle"></span> icon. Enter the BTC amount below and click “Send”. See <a href="https://youtu.be/YldIAkST7fw?t=63">this video</a> if you get stuck.
+          {{ gettext('page.donation.cash_app_btc.step2.transfer', icon=('<span class="icon-[cil--transfer] align-middle"></span>' | safe), help_video=(dict(href="https://youtu.be/YldIAkST7fw?t=63") | xmlattr)) }}
         </p>
 
         <p class="mb-4">
@@ -227,7 +227,50 @@
         </p>
 
         <!-- <p class="mb-4">
-          For small donations (under $25) you might need to use Rush or Priority.
+          {{ gettext('page.donation.cash_app_btc.step2.rush_priority') }}
+        </p> -->
+
+        <p class="mb-4">
+          <strong>{{ gettext('page.donation.status_header') }}</strong> {% if donation_confirming %}{{ gettext('page.donation.waiting_for_confirmation_refresh') }}{% else %}{{ gettext('page.donation.waiting_for_transfer_refresh') }}{% endif %}<br>
+          <strong>{{ gettext('page.donation.time_left_header') }}</strong> {{ (donation_time_left | string).split('.')[0] }} {% if donation_time_left_not_much %}{{ gettext('page.donation.might_want_to_cancel') }}{% endif %}
+        </p>
+
+        <p class="mb-4">
+          {{ gettext('page.donation.reset_timer') }}
+        </p>
+
+        <p class="mb-4">
+          <button onclick="window.location.reload()" class="bg-[#0195ff] hover:bg-blue-600 px-4 py-1 rounded-md text-white mb-1">{{ gettext('page.donation.refresh_status') }}</button>
+        </p>
+      {% endif %}
+    {% elif donation_dict.json.method == 'payment2revolut' %}
+      {% if donation_time_expired %}
+        <p class="mb-4">
+          {{ gettext('page.donation.expired') }}
+        </p>
+      {% else %}
+        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">{{ gettext('page.donation.step1') }}</span>{{ gettext('page.donation.revolut.step1') }}</p>
+
+        <p class="mb-4">
+          {{ gettext('page.donation.revolut.step1.text1') }}
+        </p>
+
+        <p class="mb-4">
+          {{ gettext('page.donation.revolut.step1.more', more='$4', amount=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions) }}
+        </p>
+
+        <p class="mb-4 mt-6 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">{{ gettext('page.donation.step2') }}</span>{{ gettext('page.donation.revolut.step2') }}</p>
+
+        <p class="mb-4">
+          {{ gettext('page.donation.revolut.step2.transfer', icon=('<span class="icon-[cil--transfer] align-middle"></span>' | safe), help_video=(dict(href="https://youtu.be/iYMtrm5SViE") | xmlattr)) }}
+        </p>
+
+        <p class="mb-4">
+          {{ gettext('page.donation.transfer_amount_to', amount=((donation_pay_amount + ' ' + (donation_dict.json.payment2_request.pay_currency | upper) + ' ' + copy_button(donation_pay_amount)) | safe), account=((donation_dict.json.payment2_request.pay_address + ' ' + copy_button(donation_dict.json.payment2_request.pay_address)) | safe)) }}
+        </p>
+
+        <!-- <p class="mb-4">
+          {{ gettext('page.donation.revolut.step2.rush_priority') }}
         </p> -->
 
         <p class="mb-4">
@@ -251,24 +294,26 @@
           {{ gettext('page.donation.expired') }}
         </p>
       {% else %}
+        <p>
+          {{ gettext('page.donation.payment2cc.cc2btc') }}
+        </p>
+        <ul class="list-inside mb-2 ml-1">
+          <li class="list-disc"><a href="https://paybis.com/" rel="noopener noreferrer nofollow" target="_blank">Paybis</a> {{ gettext('page.donation.payment2cc.method.paybis', minimum="$5") }}</li>
+          <li class="list-disc"><a href="https://switchere.com/exchange/buy-bitcoin" rel="noopener noreferrer nofollow" target="_blank">Switchere</a> {{ gettext('page.donation.payment2cc.method.switchere', minimum="$10-$20") }}</li>
+          <li class="list-disc"><a href="https://munzen.io/buy/bitcoin-btc" rel="noopener noreferrer nofollow" target="_blank">Münzen</a> {{ gettext('page.donation.payment2cc.method.munzen', minimum="$15") }}</li>
+          <li class="list-disc"><a href="https://exchange.mercuryo.io/" rel="noopener noreferrer nofollow" target="_blank">Mercuryo.io</a> {{ gettext('page.donation.payment2cc.method.mercuryo', minimum="$30") }}</li>
+          <li class="list-disc"><a href="https://www.moonpay.com/buy" rel="noopener noreferrer nofollow" target="_blank">Moonpay</a> {{ gettext('page.donation.payment2cc.method.moonpay', minimum="$35") }}</li>
+          <li class="list-disc"><a href="https://buy.coingate.com/" rel="noopener noreferrer nofollow" target="_blank">Coingate</a> {{ gettext('page.donation.payment2cc.method.coingate', minimum="$45") }}</li>
+        </ul>
+        <p class="mb-4 text-sm text-gray-500">{{ gettext('page.donation.payment2cc.cc2btc.outdated') }}</p>
+
         <p class="mb-4">
-          Use any of the following “credit card to Bitcoin” express services, which only take a few minutes:<br>
-          - <a href="https://paybis.com/" rel="noopener noreferrer nofollow" target="_blank">Paybis</a> (minimum: $5)<br>
-          - <a href="https://switchere.com/exchange/buy-bitcoin" rel="noopener noreferrer nofollow" target="_blank">Switchere</a> (minimum: $10-20 depending on country, no verification for first transaction)<br>
-          - <a href="https://munzen.io/buy/bitcoin-btc" rel="noopener noreferrer nofollow" target="_blank">Münzen</a> (minimum: $15, no verification for first transaction)<br>
-          - <a href="https://exchange.mercuryo.io/" rel="noopener noreferrer nofollow" target="_blank">Mercuryo.io</a> (minimum: $30)<br>
-          - <a href="https://www.moonpay.com/buy" rel="noopener noreferrer nofollow" target="_blank">Moonpay</a> (minimum: $35)<br>
-          - <a href="https://buy.coingate.com/" rel="noopener noreferrer nofollow" target="_blank">Coingate</a> (minimum: $45)<br>
-          <span class="text-sm text-gray-500">If any of this information is out of date, please email us to let us know.</span>
+          {{ gettext('page.donation.payment2cc.cc2btc.form') }}
         </p>
 
         <p class="mb-4">
-          Fill in the following details in the form:<br>
-        </p>
-
-        <p class="mb-4">
-          <strong>BTC / Bitcoin amount:</strong> {{ donation_pay_amount }} {{ copy_button(donation_pay_amount) }}<br>Please use this <span class="underline">exact amount</span>. Your total cost might be higher because of credit card fees. For small amounts this may be more than our discount, unfortunately.<br>
-          <strong>BTC / Bitcoin address (external wallet):</strong> {{ donation_dict.json.payment2_request.pay_address }} {{ copy_button(donation_dict.json.payment2_request.pay_address) }}
+          <strong>{{ gettext('page.donation.payment2cc.cc2btc.btc_amount') }}</strong> {{ donation_pay_amount }} {{ copy_button(donation_pay_amount) }}<br>{{ gettext('page.donation.payment2cc.exact_amount', underline=(' class="underline"' | safe)) }}<br>
+          <strong>{{ gettext('page.donation.payment2cc.cc2btc.btc_address') }}</strong> {{ donation_dict.json.payment2_request.pay_address }} {{ copy_button(donation_dict.json.payment2_request.pay_address) }}
         </p>
 
         <p class="mb-4">
@@ -495,12 +540,12 @@
       </p> -->
     {% endif %}
 
-    {% if donation_dict.json.method not in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b'] %}
+    {% if donation_dict.json.method not in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b'] %}
       <p class="mt-8 mb-4 font-bold">{{ gettext('page.donation.footer.header', span_circle=(' class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5"' | safe), circle_number=(3 if donation_dict.json.method in ['paypal', 'binance'] else 2)) }}
 
       <p class="mb-4">
         {% if donation_dict.json.method == 'paypalreg' %}
-          Send a receipt or screenshot to your personal verification address. Do NOT use this email address for your PayPal donation.
+          {{ gettext('page.donation.footer.verification') }}
         {% else %}
           {{ gettext('page.donation.footer.text1') }}
         {% endif %}

@@ -1,252 +1,289 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
-{% block title %}Datasets{% endblock %}
+{% block title %}{{ gettext('page.datasets.title') }} ▶ {{ gettext('page.datasets.zlib.title') }} [zlib/zlibzh]{% endblock %}
 
 {% block body %}
-  {% if gettext('common.english_only') != 'Text below continues in English.' %}
-    <p class="mb-4 font-bold">{{ gettext('common.english_only') }}</p>
-  {% endif %}
+  <div class="mb-4"><a href="/datasets">{{ gettext('page.datasets.title') }}</a> ▶ {{ gettext('page.datasets.zlib.title') }} [zlib/zlibzh]</div>
 
-  <div lang="en">
-    <div class="mb-4"><a href="/datasets">Datasets</a> ▶ Z-Library scrape</div>
-
-    <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
-      If you are interested in mirroring this dataset for <a href="/faq#what">archival</a> or <a href="/llm">LLM training</a> purposes, please contact us.
-    </div>
-
-    <p class="mb-4">
-      Z-Library has its roots in the <a href="/datasets/libgen_rs">Library Genesis</a> community, and originally bootstrapped with their data.
-      Since then, it has professionalized considerably, and has a much more modern interface.
-      They are therefore able to get many more donations, both monetarily to keep improving their website, as well as donations of new books.
-      They have amassed a large collection in addition to Library Genesis.
-    </p>
-
-    <!-- <p class="mb-4">
-      <strong>Update as of February 2023.</strong> In late 2022, the alleged founders of Z-Library were arrested, and domains were seized by United States authorities.
-      Since then the website has slowly been making its way online again.
-      It is unknown who currently runs it.
-    </p> -->
-
-    <p class="">
-      The collection consists of three parts. The original description pages for the first two parts are preserved below. You need all three parts to get all data (except superseded torrents, which are crossed out on the torrents page).
-    </p>
-
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc"><strong>zlib:</strong> our first release. This was the very first release of what was then called the “Pirate Library Mirror” (“pilimi”).</li>
-      <li class="list-disc"><strong>zlib2:</strong> second release, this time with all files wrapped in .tar files.</li>
-      <li class="list-disc"><strong>zlib3:</strong> incremental new releases, using the <a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers (AAC) format</a>, now released in collaboration with the Z-Library team.</li>
-    </ul>
-
-    <p><strong>Resources</strong></p>
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc">Total files: {{ stats_data.stats_by_group.zlib.count | numberformat }}</li>
-      <li class="list-disc">Total filesize: {{ stats_data.stats_by_group.zlib.filesize | filesizeformat }}</li>
-      <li class="list-disc">Files mirrored by Anna’s Archive: {{ stats_data.stats_by_group.zlib.aa_count | numberformat }} ({{ (stats_data.stats_by_group.zlib.aa_count/stats_data.stats_by_group.zlib.count*100.0) | decimalformat }}%)</li>
-      <li class="list-disc">Last updated: {{ stats_data.zlib_date }}</li>
-      <li class="list-disc"><a href="/db/zlib/1837947.json">Example record on Anna’s Archive (original collection)</a></li>
-      <li class="list-disc"><a href="/db/aac_zlib3/27250246.json">Example record on Anna’s Archive (“zlib3” collection)</a></li>
-      <li class="list-disc"><a href="/torrents#zlib">Torrents by Anna’s Archive (metadata + content)</a></li>
-      <li class="list-disc"><a href="https://singlelogin.site/">Main website</a></li>
-      <li class="list-disc"><a href="http://loginzlib2vrak5zzpcocc3ouizykn6k5qecgj2tzlnab5wcbqhembyd.onion/">Tor domain</a></li>
-      <li class="list-disc">Blogs: <a href="https://annas-archive.se/blog/blog-introducing.html">Release 1</a> <a href="https://annas-archive.se/blog/blog-3x-new-books.html">Release 2</a></li>
-      <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">Scripts for importing metadata</a></li>
-      <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers format</a></li>
-    </ul>
-
-    <h2 class="mt-8 mb-4 text-3xl font-bold">Zlib releases (original description pages)</h2>
-
-    <p><strong>Release 1 (2022-07-01)</strong></p>
-
-    <p class="mb-4">
-      The initial mirror was painstakingly obtained over the course of 2021 and 2022. At this point it is slightly outdated: it reflects the state of the collection in June 2021. We will update this in the future. Right now we are focused on getting this first release out.
-    </p>
-
-    <p class="mb-4">
-      Since Library Genesis is already preserved with public torrents, and is included in the Z-Library, we did a basic deduplication against Library Genesis in June 2022. For this we used MD5 hashes. There is likely a lot more duplicate content in the library, such as multiple file formats with the same book. This is hard to detect accurately, so we don't. After the deduplication we are left with over 2 million files, totalling just under 7TB.
-    </p>
-
-    <p class="mb-4">
-      The collection consists of two parts: a MySQL ".sql.gz" dump of the metadata, and the 72 torrent files of around 50-100GB each. The metadata contains the data as reported by the Z-Library website (title, author, description, filetype), as well as the actual filesize and md5sum that we observed, since sometimes these do not agree. There seem to be ranges of files for which the Z-Library itself has incorrect metadata. We might also have incorrectly downloaded files in some isolated cases, which we will try to detect and fix in the future.
-    </p>
-
-    <p class="mb-4">
-      The large torrent files contain the actual book data, with the Z-Library ID as the filename. The file extensions can be reconstructed using the metadata dump.
-    </p>
-
-    <p class="mb-4">
-      The collection is a mix of non-fiction and fiction content (not separated out as in Library Genesis). The quality is also widely varying.
-    </p>
-
-    <p class="mb-4">
-      This first release is now fully available. Note that the torrent files are only available through our Tor mirror.
-    </p>
-
-    <p><strong>Release 2 (2022-09-25)</strong></p>
-
-    <p class="mb-4">
-      We have gotten all books that were added to the Z-Library between our last mirror and August 2022. We have also gone back and scraped some books that we missed the first time around. All in all, this new collection is about 24TB. Again, this collection is deduplicated against Library Genesis, since there are already torrents available for that collection.
-    </p>
-
-    <p class="mb-4">
-      The data is organized similarly to the first release. There is a MySQL ".sql.gz" dump of the metadata, which also includes all the metadata from the first release, thereby superseding it. We also added some new columns:
-    </p>
-
-    <ul class="list-inside mb-4 ml-1">
-      <li class="list-disc">"in_libgen" (bool): whether this file is already in Library Genesis, in either the non-fiction or fiction collection (matched by md5).</li>
-      <li class="list-disc">"pilimi_torrent" (string): which torrent this file is in.</li>
-      <li class="list-disc">"unavailable" (bool): set when we were unable to download the book.</li>
-    </ul>
-
-    <p class="mb-4">
-      We mentioned this last time, but just to clarify: "filename" and "md5" are the actual properties of the file, whereas "filename_reported" and "md5_reported" are what we scraped from Z-Library. Sometimes these two don't agree with each other, so we included both.
-    </p>
-
-    <p class="mb-4">
-      For this release, we changed the collation to "utf8mb4_unicode_ci", which should be compatible with older versions of MySQL.
-    </p>
-
-    <p class="mb-4">
-      The data files are similar to last time, though they are much bigger. We simply couldn't be bothered creating tons of smaller torrent files. "pilimi-zlib2-0-14679999-extra.torrent" contains all the files that we missed in the last release, while the other torrents are all new ID ranges. <strong>Update 2022-09-29:</strong> We made most of our torrents too big, causing torrent clients to struggle. We have removed them and released new torrents. <strong>Update 2022-10-10:</strong> There were still too many files, so we wrapped them in tar files and released new torrents again.
-    </p>
-
-    <p><strong>Release 2 addendum (2022-11-22)</strong></p>
-
-    <p class="mb-4">
-      This is a single extra torrent file. It does not contain any new information, but it has some data in it that can take a while to compute. That makes it convenient to have, since downloading this torrent is often faster than computing it from scratch. In particular, it contains SQLite indexes for the tar files, for use with <a href="https://github.com/mxmlnkn/ratarmount">ratarmount</a><!--, as well as <a href="https://docs.ipfs.tech/concepts/content-addressing/#cid-inspector">IPFS CIDs</a> in a CSV file, corresponding to the command line parameters <code>ipfs add --nocopy --recursive --hash=blake2b-256 --chunker=size-1048576</code>. For more information, see our <a href="http://annas-archive.se/blog/putting-5,998,794-books-on-ipfs.html">blog post</a> on hosting this collection on IPFS-->.
-    </p>
-
-    <!-- <p class="mb-4">
-      Also, for completeness, these are the CIDs for the entire directories in our collection, similar to the list for <a href="https://freeread.org/ipfs/">Library Genesis</a>. It is recommended to instead host IPFS from our torrent files (it's faster because of fewer individual files), but if you really want to, you can mirror these in IPFS directly:
-    </p>
-
-    <code class="mb-4" style="overflow: scroll; max-height: 300px; display: block; white-space: nowrap; font-size: 70%;">
-      cid,dir<br>
-      bafykbzacebt2c7p4h5733z434k3ktwzi74t6ded3y7et4ub6y3elrmpdccbji,pilimi-zlib-0-119999<br>
-      bafykbzacebgypkw2fj4bfshhwvvkhedvxyz52ij7ionbqbqsyikt2vjmv72ws,pilimi-zlib-11000000-11039999<br>
-      bafykbzacea3r5mvgvvl7j5gq5unwssxlliwkn7jp5uu3c5i7miy5tf4lh3izq,pilimi-zlib-11040000-11079999<br>
-      bafykbzacebwedtvaks5ecpmq2353ukjzueic6plnekyj43wt2sn2pvscxovbs,pilimi-zlib-11080000-11129999<br>
-      bafykbzaceaw7zimgdo625upqbukorwdsraqphojaphr7yzdx27kypb2edvpxu,pilimi-zlib-11130000-11169999<br>
-      bafykbzacecmyzcurfx6dfdquyou3j5csoavqbdj6g25nk4lodocgmipvk4spo,pilimi-zlib-11170000-11209999<br>
-      bafykbzacedj57ufj2vmve4meocnnuwrlcpoguast4bab2nlj7ikghwfnab4dg,pilimi-zlib-11210000-11269999<br>
-      bafykbzaceaqeko4y6nk3ltuyhahi57v6hctcefikjnetesyz43yzfvirn253u,pilimi-zlib-11270000-11299999<br>
-      bafykbzacedculikjsbrgm3tj7cgp7t4ksi2qhe3juo4asiyddgb2u3yepqemc,pilimi-zlib-11300000-11329999<br>
-      bafykbzaceazasfvzuz5d3ygh5xuvejsonpnosoaw5htapfossfn6zyt7tt53u,pilimi-zlib-11330000-11359999<br>
-      bafykbzacea6wsi2rypyceieo66mgiodidzbxaecu4zvgjyb256dn3cf5xu4bk,pilimi-zlib-11360000-11399999<br>
-      bafykbzacect2g5lyz5jjpxi4atebh6ckdscaotunqdl7abtaozzfhbvfc3uwm,pilimi-zlib-11400000-11449999<br>
-      bafykbzacebijcccbsn34cut6v47vzntlp4esylwiv2yoialiq4jiw3i6rgjtg,pilimi-zlib-11450000-11499999<br>
-      bafykbzacedevalb2oteaor4q5nnpqg2crprastnq64tnwppaeaxsvbityx3ao,pilimi-zlib-11500000-11549999<br>
-      bafykbzaceah2ulor5myroru4afn3oamzopvgvoyicukgyz2v67565raamvche,pilimi-zlib-11550000-11579999<br>
-      bafykbzaced23i3k7ucbaohxw72xbcpsxkeqxgt7madq52hn6rbuy5nq3lmjcq,pilimi-zlib-11580000-11599999<br>
-      bafykbzacecmtrfzgjl5kjhkl3f2aomnrxdemxhl7snfps3hiyhxe5hv6pq7f4,pilimi-zlib-11600000-11659999<br>
-      bafykbzacednt5jt6fkvro3vhbckhbrts4s2og5sqsw5h6qmltl7h27xd3ecdk,pilimi-zlib-11660000-11699999<br>
-      bafykbzacecobcszddrea2beysukcevue3krfcswlkoqd6laofsd737rdyke4e,pilimi-zlib-11700000-11729999<br>
-      bafykbzaceatkueumjn3xfwqgkvgfhigk2xlh3lg2cmwjouudujpsmrjebfmf2,pilimi-zlib-11730000-11759999<br>
-      bafykbzacec4nkat22rnqgt3euy6ngfeue4hzv44l7uze27ffyvezhybf4kz7y,pilimi-zlib-11760000-11799999<br>
-      bafykbzacech3svrt3vxlh3vcwtgvulx7fw6vtuz7bwwijpvun7lhp5hhfedss,pilimi-zlib-11800000-11829999<br>
-      bafykbzacebqcwzl6xuaadjsddiwv65pzde437iv7dnmt4qvbfeljgrgwvwnlg,pilimi-zlib-11830000-11859999<br>
-      bafykbzaceciac66rt77ulep5heqydyhromgrp2d6c5nxl7poe4l2xrnjmcafu,pilimi-zlib-11860000-11899999<br>
-      bafykbzaceb4oodne74flfelsb2ss5slqwhkkded252yofbappt4wzfewmoazk,pilimi-zlib-11900000-11929999<br>
-      bafykbzaceaaheqywldl6anem6kbxpgduzymanzbwe5yip4gfskovbetlsvtx6,pilimi-zlib-11930000-11949999<br>
-      bafykbzacebfdl5kj5x5gzs5mccyxjviolr33z4rub3gi4c4qeypifqaaw4ohk,pilimi-zlib-11950000-11969999<br>
-      bafykbzaceasdlk3jn7wq5xmradpdhxnyldy6jut2lavez5wn2kfb3djckhucq,pilimi-zlib-11970000-11999999<br>
-      bafykbzaceaehckjn3rxuvmhhkbdzkrtcds55s6gk2rgarqe54r4dktffxbuay,pilimi-zlib-120000-419999<br>
-      bafykbzacebfm23khehitmbsxy74r4y5fo4fbm7kipyufhmwlad3vwtzz6e6bi,pilimi-zlib-12000000-12039999<br>
-      bafykbzacebzyi5cyso6k2wwcf3m5xc7iwlvyc7ryqwblwpjaxeyphnqilageq,pilimi-zlib-12040000-12099999<br>
-      bafykbzaceb27vlcqhrrc5msi5swxicgos26744yrbu7w6ozhc57xlgs4nxd24,pilimi-zlib-12100000-12159999<br>
-      bafykbzacechfhota2jsgsogqrykfp6xl6xvjgdkgrfh3j26j67dcl5v6jptd6,pilimi-zlib-12160000-12229999<br>
-      bafykbzacebo2e6q3m6xs5ukwsaoc3hyontod7tinm36bq6vag6ndzqgzlsw6y,pilimi-zlib-12230000-12349999<br>
-      bafykbzacedrp3rgmrsfjv6wwegwwt3igxpyp5xxptiaus3yolgn3rqw54os4w,pilimi-zlib-12350000-12619999<br>
-      bafykbzacebj5gtxmxgkcgei66p37zbvrae3j7fxbhj53uztkn3sfyidfutue2,pilimi-zlib-12620000-12769999<br>
-      bafykbzacedp7c7edd2pfa4hjlewvtu7ph7npjib6gm5zl4skfwzppfojodrki,pilimi-zlib-12770000-12809999<br>
-      bafykbzacecapavie7dp5fvgbhofo5x4te4as5hnovxhjyzeb2evzztanvp6pw,pilimi-zlib-12810000-13229999<br>
-      bafykbzacec2popotohypo7luhmg3geirt4rsag37mf2u2bch75yj65vtxafcy,pilimi-zlib-13230000-13529999<br>
-      bafykbzaceay6avq77sbvnrxo3jsre7qfptaxackveb5pwfzh442b6jp6lh46w,pilimi-zlib-13530000-13849999<br>
-      bafykbzacedw4k2zuhtn65wyhpnhgohib6rmamoy4wfgybqu564oir64nukgiy,pilimi-zlib-13850000-13959999<br>
-      bafykbzaceb7ulew2nvb3zv36emqs2kvaf6nscj3xlufutxg44ti622v3tpet2,pilimi-zlib-13960000-14029999<br>
-      bafykbzacedggtn2mliokszaykbwwgbechq2lrxw6euw225e7vnmakpymxc3ai,pilimi-zlib-14030000-14379999<br>
-      bafykbzaceckl6oabw3raos3dxqklsef5yyolymnlu347b67d564nh7ylurq36,pilimi-zlib-14380000-14679999<br>
-      bafykbzacedxe5lvv7rhosytcpnnxlarle7ov6kgnj3dv7myhktb6wur7ntha4,pilimi-zlib-2380000-2829999<br>
-      bafykbzacectuprw5cyi2jnh3iqkd6wwatlco5vbfsqxstq5sux2hmzsikxgvm,pilimi-zlib-2830000-5239999<br>
-      bafykbzaceaguyebgcwg3sbs3kahy3hgnd6r65jvenr7j4fnukq2unvvhpmnii,pilimi-zlib-420000-2379999<br>
-      bafykbzacebmgj2rsk5foiilozd47balsa7g6zm4uhehh7zhdku7cadlqkl6es,pilimi-zlib-5240000-5329999<br>
-      bafykbzacedzl36nhlwmq72wsjx3rulgong24ctpdk2rj3vwdx4cf3ecrfojls,pilimi-zlib-5330000-5359999<br>
-      bafykbzaceacpj5lzufx3pqmveselef366httdhciz345btehpmrbuftaovjoc,pilimi-zlib-5360000-5379999<br>
-      bafykbzacectb4feksaacku3aw67hwq5wpgarvgtza3jaz55yemxnhq333gqrw,pilimi-zlib-5380000-5449999<br>
-      bafykbzacebubtfshzn5gv7zsml7xrg46y6tl5ekw3jia3ehyzkn2s7fys2osk,pilimi-zlib-5450000-5479999<br>
-      bafykbzacecilokhsw5mwognnhcb3uttrtb3uyjga3gukfkunlah7x4hsfzieg,pilimi-zlib-5480000-5499999<br>
-      bafykbzacebrlmhwy4wd4tbmkith7tvugcnr4c62hiwxmh5uq5spzxvgg2faou,pilimi-zlib-5500000-5519999<br>
-      bafykbzaceadewlz5iaouke6gtlukvutren3dpb24iroqlml2qoraiw4damng2,pilimi-zlib-5520000-5549999<br>
-      bafykbzacea6mmwn3wwk7gzqoyfb7p5iet5ykoat5t5guxvlbm6mzm6lk5lpf2,pilimi-zlib-5550000-5579999<br>
-      bafykbzacecx7dfzxdqw3av52hnfkl6duylebmbodsm6atd6fq4r5r3ijp54cg,pilimi-zlib-5580000-5609999<br>
-      bafykbzaceau7mxjw5eqbg7kmxz2ivmxrx6fywz7uqgaes2bknxcooijyndmgu,pilimi-zlib-5610000-5639999<br>
-      bafykbzacea3zq5goykxgqggvdzcacmc42iseee2qvvias2ckomqkjr4prtl7a,pilimi-zlib-5640000-5659999<br>
-      bafykbzacedjzwc2ir43b7xjiph3gilsgwsdjk2wcqhkwee4wxu75c7vcpc2ra,pilimi-zlib-5660000-5709999<br>
-      bafykbzacecb2dptam6nt5bjdmzo25dexu6orfivtcnos5sm4nprzl6me6bnk4,pilimi-zlib-5710000-5729999<br>
-      bafykbzacebmddkp7rf5x44xqw3d57ct2luat7ymjdeq26pq7wnwh652pkgwve,pilimi-zlib-5730000-5749999<br>
-      bafykbzaceczfrq2qc2w2bikyyinowxarm4lr7qytktkhcpxjvyoc5b6kxxpw6,pilimi-zlib-5750000-5769999<br>
-      bafykbzacedi3xhkebxf6ftuq4f3wlgn2op2aopmnz2mlafibphxcnqgbhges2,pilimi-zlib-5770000-5789999<br>
-      bafykbzaceasm4rlo6ybphahhbyjfkcc2esa6thyyntspu6dmknexysfeoxy2w,pilimi-zlib-5790000-5809999<br>
-      bafykbzacec7byb2tu6ofwyrrmx55t3dqlk6e42w6vzzhjflekiwvq3kew3uwc,pilimi-zlib-5810000-6039999<br>
-      bafykbzacecl2mmtpyd2qu6ejbbfrtbh2owajd3zwzr5juqzfvc7wncmm6efd4,pilimi-zlib-6040000-6069999<br>
-      bafykbzaceddacys6rgb4lczygok3j7l42jzlxxgaa76ez4etdk5jybfkgpzvy,pilimi-zlib-6070000-6129999<br>
-      bafykbzacedh2tkwri34ando36luj23atty4ndt4qu5oy5fdcrfwyvqohrbl7s,pilimi-zlib-6130000-6159999<br>
-      bafykbzaceahxsapzkbwevnhmcxogy3rwav7jsnjfsbbwx3woqmhah5mdqhh2c,pilimi-zlib-6160000-7229999<br>
-      bafykbzacebrz6vemno5rpx35ceicpqrrf6c7jxrcwilrnn3e6ejlg7vldwyvu,pilimi-zlib-7230000-9459999<br>
-      bafykbzacec33gan7zoygi6j2mhwokvmeahsuraqkioviftndqv57t6mywugyo,pilimi-zlib-9460000-10999999<br>
-      bafykbzaceareptri2lvexdosm7klodwchxmmrkwq4xixmoupxfxd5yizbmupe,pilimi-zlib2-0-14679999-extra<br>
-      bafykbzacedbp5mamr2pldkirowdq3origbtsfrf63bd365sg7tnysea3fvzds,pilimi-zlib2-14680000-14999999<br>
-      bafykbzacecxygf7eqspgkfatyudz5fmgkrcbupz352xvnd7pd24dl7gchripo,pilimi-zlib2-15000000-15679999<br>
-      bafykbzaceavynq5u6tpiocpbsei4xmsigzfgnba6dqtejg4xwog5tc5pd3yd2,pilimi-zlib2-15680000-16179999<br>
-      bafykbzacec3lljzin4hm6wsjvchyfdnjmagebwaxlyj34xuvtkeb23c4cclzu,pilimi-zlib2-16180000-16379999<br>
-      bafykbzacec4ew42yfymw4wqll6zkhyo647jsiorp4x354s65avh6wlxjmo7ia,pilimi-zlib2-16380000-16469999<br>
-      bafykbzacechmwrwiwd6h3yhxoeklg6wdivtd5bjidnnyyx63hfqm5ztw75qru,pilimi-zlib2-16470000-16579999<br>
-      bafykbzacechphjhtwl2c3spnqu6yyacnta4zx3myrq6xhvdxxyxshtapkpeak,pilimi-zlib2-16580000-16669999<br>
-      bafykbzacedmu6opvkirlprn4pfus7dgvnm7g5qcxpsagg6dfqr4kritdcudo2,pilimi-zlib2-16670000-16759999<br>
-      bafykbzacec6nsr2rwajm3gtosg5v6r7akjguecbwsfoja7wgu3kmvaizybhgg,pilimi-zlib2-16760000-16859999<br>
-      bafykbzaceblalakbzrseqlutxoc4chck2mgoqctet3u63dldiy2stq4uxbxni,pilimi-zlib2-16860000-16959999<br>
-      bafykbzacec4awhincxej4sdb2hfnxv6qe3omdlrgqj3uerhxm4w46tzmlabja,pilimi-zlib2-16960000-17059999<br>
-      bafykbzacec57t3fw4bsqd4b6xocde3cwbb5mxjqdmwa5zhso45d3is2dywszk,pilimi-zlib2-17060000-17149999<br>
-      bafykbzacecxs2rhrbaf6dk5r5afltsv2zdad452skx7okvun5dqwa2xj37tki,pilimi-zlib2-17150000-17249999<br>
-      bafykbzacebqzercqpcpaxn6hqzadbo2dwwr7fsjseo3qefylck2owwi453nwa,pilimi-zlib2-17250000-17339999<br>
-      bafykbzaceatcfcn6jmvgyg5ugjhhav4zbl3uoznyaqrhiifwofjbwyzidpfti,pilimi-zlib2-17340000-17469999<br>
-      bafykbzacean7scmcur7e5i65pu65rqayzat4wsczhgwwidwbxbs2qrliqt6ca,pilimi-zlib2-17470000-17599999<br>
-      bafykbzaceb4dspfomo6jqaqjjkqw3vzs5mplxukmxz2clxgklqutpbzi2d2y6,pilimi-zlib2-17600000-17689999<br>
-      bafykbzaceagxjvxfesrkku2t2ui3vvb5ghdr6744j4vvg6uwakpipurjwabn2,pilimi-zlib2-17690000-17779999<br>
-      bafykbzacebjlu6cuofqm3kljshr7gbjn5iole7arudilcg32mead6tyxvc7mg,pilimi-zlib2-17780000-17859999<br>
-      bafykbzacebvwjygfw5wkwd7qno2x7aqzohzspf7wdiammwgdfr6qx4vvavfki,pilimi-zlib2-17860000-17949999<br>
-      bafykbzaceccy56py652c53gerdymlwhs6vvcbvpuztlnwgdirfo6smd2j3uii,pilimi-zlib2-17950000-18039999<br>
-      bafykbzaceazimuuaq7l2myz23kykfo3qgpvclzlh3jc3bgbeoia2ztdwaouaw,pilimi-zlib2-18040000-18129999<br>
-      bafykbzacebaeocd7tnsdsmcfi4qxi55v6kqpoiqco2ep6xhdgn2ndlsmu3ab6,pilimi-zlib2-18130000-18209999<br>
-      bafykbzacebstgtwkwsdnm5kw74z3tllo6ehpgsjo4d3qnnf6y3elkge3yu6u4,pilimi-zlib2-18210000-18319999<br>
-      bafykbzacecapd7zl2sthtk4yfjyf6fp6gi2sjkgyfkjrpamtcn3ps5pqcdqd4,pilimi-zlib2-18320000-18399999<br>
-      bafykbzacecdqiysywaoy3defmg6ul6botl4xekyl25ajgrio4ettjihtmsf34,pilimi-zlib2-18400000-18509999<br>
-      bafykbzacecb6jjkxquoyj42ibtpuu2e2l7qq7yi6ly4mnovyrtyzjcpfbrnhm,pilimi-zlib2-18510000-18609999<br>
-      bafykbzacecyxhxa3l5aj4lzcz47mfarlzj5qelsly24kc26bg6gkyncycugxm,pilimi-zlib2-18610000-18699999<br>
-      bafykbzacedft6aatjmaaqhz6bnys2drw6gcuvboowdcpfsdigtmrjdegskpks,pilimi-zlib2-18700000-18809999<br>
-      bafykbzacecu4pksf5xzgklyto3gaynnvawofklgywr4fwqueezsznqbluiawg,pilimi-zlib2-18810000-19019999<br>
-      bafykbzacebs3alm53q3gaz7qq6ofe3misbmdwqetj4nczitu2xggclgobbe34,pilimi-zlib2-19020000-19159999<br>
-      bafykbzacedd6ysh6sfkyslawornsqncjvl73cetlmeeapkhwormthdzooc3ta,pilimi-zlib2-19160000-19249999<br>
-      bafykbzaceaimozyawmbzriu2qvr37pyyf2qe26cvnlmi6a73h4mstnyioq52w,pilimi-zlib2-19250000-19329999<br>
-      bafykbzacea325tfns4wbhxbtybpqkxrx7glt6sikox4olhxneeqkyrllviavu,pilimi-zlib2-19330000-21079999<br>
-      bafykbzacedtdjqxlpen7q5qac4olbztiupjpvlertzsijwvgq6vzu5lxxy5mq,pilimi-zlib2-21080000-21179999<br>
-      bafykbzacecw4akrxeukcjr667tulxcln5ikevfviqna3ng5r6aeqbwer4foig,pilimi-zlib2-21180000-21229999<br>
-      bafykbzacedffcoilh4l3hkgl4cblhu7xiz2zjhcjplikt5znatduhtizkmzv6,pilimi-zlib2-21230000-21319999<br>
-      bafykbzacec4ksqhf66fxmnnfuzqz5gwdkgvybpjuozdovfpkubzepmge4amo6,pilimi-zlib2-21320000-21399999<br>
-      bafykbzacecdgebycx445a42xudenyryy6mp36gwkkeojeyxs6dvl4x6w4qgti,pilimi-zlib2-21400000-21489999<br>
-      bafykbzacedmyybav65i6ygmt7jk3qt4w5rxnjxuazruy326bmicmxzntxmsfc,pilimi-zlib2-21490000-21589999<br>
-      bafykbzacec6kyoklluietozxhmq3mghzk73wtcwggoxy2psxiikg74inuxyda,pilimi-zlib2-21590000-21689999<br>
-      bafykbzaceczqyzswivcc74socb4xd2kdrzkix4wyfm74x54fto2ouma4pni4c,pilimi-zlib2-21690000-21799999<br>
-      bafykbzaceb7blu7yiosxa2sj3kvay5xsb5xxh6lj6e7xis2e66psxhjajeaaq,pilimi-zlib2-21800000-21839999<br>
-      bafykbzaceajbd4ewbu5f63ya3fseia4zmnwccsdyk5qthw43mpd4oawt4m64k,pilimi-zlib2-21840000-21939999<br>
-      bafykbzacedkzmzbynon7jpkhteohfi4jecz5en75czbjl5djlqt55awk5z42g,pilimi-zlib2-21940000-22019999<br>
-      bafykbzacedaa3ynwqac5pxsx6224evimlwilesf4svdpnuh6ro3gsfyxe3nrq,pilimi-zlib2-22020000-22049999<br>
-      bafykbzaceaefrbzb6hmulltlbtdnn7c5ccvysut3ayadjzenjl4qszbe2phiu,pilimi-zlib2-22050000-22069999<br>
-      bafykbzacecdf2xlf67t2lbo7middim6lc2gncd56xxtd3xa64sgmb63sm2ygc,pilimi-zlib2-22070000-22099999<br>
-      bafykbzacea242nc7wuwr5vckvvpgpdkv7rbxlqxw5gcmqqow53csub2yhvwge,pilimi-zlib2-22100000-22119999<br>
-      bafykbzacedl4qbg5dqvp6bhzzcnwrup3w5isb3kzww6hgo3jvnhxnmaalqrxc,pilimi-zlib2-22120000-22199999<br>
-      bafykbzaceapkthjb4rm3skd73cbjdhc37b777p4j5374tuq5tj3tovqvmcnje,pilimi-zlib2-22200000-22299999<br>
-      bafykbzaceanqpal6kmc6gbc7s5iwl5jnli74e3luvbisjecobu4emwlg2acn4,pilimi-zlib2-22300000-22399999<br>
-      bafykbzaceb3o6h4kgj32tmd4nsgmkleqtcbndq7xkvxfszsnut2q7ixyc4ciq,pilimi-zlib2-22400000-22433982<br>
-    </code style=" overflow: scroll; max-height: 300px; display: block; white-space: nowrap; font-size: 70%;"> -->
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    {{ gettext('page.datasets.common.intro', a_archival=(a.faqs_what | xmlattr), a_llm=(a.llm | xmlattr)) }}
   </div>
+
+  <div class="mb-4 p-2 overflow-hidden bg-black/5 break-words">
+    <div class="text-xs mb-2">Overview from <a href="/datasets">datasets page</a>.</div>
+    <table class="w-full mx-[-8px]">
+      <tr class="even:bg-[#f2f2f2]">
+        <th class="p-2 align-bottom text-left" width="20%">{{ gettext('page.datasets.sources.source.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.metadata.header') }}</th>
+        <th class="p-2 align-bottom text-left" width="40%">{{ gettext('page.datasets.sources.files.header') }}</th>
+      </tr>
+
+      <tr class="even:bg-[#f2f2f2]">
+        <td class="p-2 align-top">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/zlib">
+            {{ gettext('common.record_sources_mapping.zlib') }} [zlib/zlibzh]
+          </a>
+        </td>
+        <td class="p-2 align-top" colspan="2">
+          <div class="my-2 first:mt-0 last:mb-0">
+            {{ gettext('page.datasets.sources.zlib.metadata_and_files', icon='👩‍💻',
+                metadata=(dict(href="/torrents#zlib") | xmlattr),
+                files=(dict(href="/torrents#zlib") | xmlattr),
+            ) }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.description.intro', a_href=(dict(href="/datasets/lgrs") | xmlattr)) }}
+  </p>
+
+  <!-- <p class="mb-4">
+    <strong>{{ gettext('page.datasets.zlib.description.allegations.title') }}</strong>
+    {{ gettext('page.datasets.zlib.description.allegations') }}
+  </p> -->
+  
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.description.three_parts') }}
+  </p>
+  
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.zlib.description.three_parts.first', title=('<strong>zlib</strong>' | safe)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.zlib.description.three_parts.second', title=('<strong>zlib2</strong>' | safe)) }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.zlib.description.three_parts.third_and_incremental', title=('<strong>zlib3</strong>' | safe), a_href=(dict(href="https://annas-archive.se/blog/annas-archive-containers.html") | xmlattr)) }}</li>
+  </ul>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlibzh.searchable') }}
+  </p>
+
+  <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">Main collection
+      <ul class="list-inside ml-4">
+        <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.zlib.count | numberformat)) }}</li>
+        <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.zlib.filesize | filesizeformat)) }}</li>
+        <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.zlib.aa_count | numberformat), percent=((stats_data.stats_by_group.zlib.aa_count/(stats_data.stats_by_group.zlib.count+1)*100.0) | decimalformat)) }}</li>
+      </ul>
+    </li>
+    <li class="list-disc">Chinese collection
+      <ul class="list-inside ml-4">
+        <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.zlibzh.count | numberformat)) }}</li>
+        <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.zlibzh.filesize | filesizeformat)) }}</li>
+        <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.zlibzh.aa_count | numberformat), percent=((stats_data.stats_by_group.zlibzh.aa_count/(stats_data.stats_by_group.zlibzh.count+1)*100.0) | decimalformat)) }}</li>
+      </ul>
+    </li>
+    <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.zlib_date) }}</li>
+    <li class="list-disc"><a href="/torrents#zlib">{{ gettext('page.datasets.zlib.aa_torrents') }}</a></li>
+    <li class="list-disc"><a href="/db/zlib/1837947.json">{{ gettext('page.datasets.zlib.aa_example_record.original') }}</a></li>
+    <li class="list-disc"><a href="/db/aac_zlib3/27250246.json">{{ gettext('page.datasets.zlib.aa_example_record.zlib3') }}</a></li>
+    <li class="list-disc"><a href="https://singlelogin.site/">{{ gettext('page.datasets.zlib.link.zlib') }}</a></li>
+    <li class="list-disc"><a href="http://loginzlib2vrak5zzpcocc3ouizykn6k5qecgj2tzlnab5wcbqhembyd.onion/">{{ gettext('page.datasets.zlib.link.onion') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/blog-introducing.html">{{ gettext('page.datasets.zlib.blog.release1') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/blog-3x-new-books.html">{{ gettext('page.datasets.zlib.blog.release2') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+  </ul>
+
+  <h2 class="mt-8 mb-4 text-3xl font-bold">{{ gettext('page.datasets.zlib.historical.title') }}</h2>
+
+  <p><strong>{{ gettext('page.datasets.zlib.historical.release1.title', date='2022-07-01') }}</strong></p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release1.description1') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release1.description2') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release1.description3') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release1.description4') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release1.description5') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release1.description6') }}
+  </p>
+
+  <p><strong>{{ gettext('page.datasets.zlib.historical.release2.title', date='2022-09-25') }}</strong></p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release2.description1') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release2.description2') }}
+  </p>
+
+  <ul class="list-inside mb-4 ml-1">
+    <li class="list-disc">{{ gettext('page.datasets.zlib.historical.release2.field.in_libgen', key='"in_libgen" (bool)') }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.zlib.historical.release2.field.pilimi_torrent', key='"pilimi_torrent" (string)') }}</li>
+    <li class="list-disc">{{ gettext('page.datasets.zlib.historical.release2.field.unavailable', key='"unavailable" (bool)') }}</li>
+  </ul>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release2.description3') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release2.description4') }}
+  </p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release2.description5') }}
+    {{ gettext('page.datasets.zlib.historical.release2.description5.update1', date='2022-09-29') }}
+    {{ gettext('page.datasets.zlib.historical.release2.description5.update2', date='2022-10-10') }}
+  </p>
+
+  <p><strong>{{ gettext('page.datasets.zlib.historical.release2.addendum.title', date='2022-11-22') }}</strong></p>
+
+  <p class="mb-4">
+    {{ gettext('page.datasets.zlib.historical.release2.addendum.description1', a_href=(dict(href="https://github.com/mxmlnkn/ratarmount") | xmlattr)) }}
+    <!--, as well as <a href="https://docs.ipfs.tech/concepts/content-addressing/#cid-inspector">IPFS CIDs</a> in a CSV file, corresponding to the command line parameters <code>ipfs add --nocopy --recursive --hash=blake2b-256 --chunker=size-1048576</code>. For more information, see our <a href="http://annas-archive.se/blog/putting-5,998,794-books-on-ipfs.html">blog post</a> on hosting this collection on IPFS.-->
+  </p>
+
+  <!-- <p class="mb-4">
+    Also, for completeness, these are the CIDs for the entire directories in our collection, similar to the list for <a href="https://freeread.org/ipfs/">Library Genesis</a>. It is recommended to instead host IPFS from our torrent files (it's faster because of fewer individual files), but if you really want to, you can mirror these in IPFS directly:
+  </p>
+
+  <code class="mb-4" style="overflow: scroll; max-height: 300px; display: block; white-space: nowrap; font-size: 70%;">
+    cid,dir<br>
+    bafykbzacebt2c7p4h5733z434k3ktwzi74t6ded3y7et4ub6y3elrmpdccbji,pilimi-zlib-0-119999<br>
+    bafykbzacebgypkw2fj4bfshhwvvkhedvxyz52ij7ionbqbqsyikt2vjmv72ws,pilimi-zlib-11000000-11039999<br>
+    bafykbzacea3r5mvgvvl7j5gq5unwssxlliwkn7jp5uu3c5i7miy5tf4lh3izq,pilimi-zlib-11040000-11079999<br>
+    bafykbzacebwedtvaks5ecpmq2353ukjzueic6plnekyj43wt2sn2pvscxovbs,pilimi-zlib-11080000-11129999<br>
+    bafykbzaceaw7zimgdo625upqbukorwdsraqphojaphr7yzdx27kypb2edvpxu,pilimi-zlib-11130000-11169999<br>
+    bafykbzacecmyzcurfx6dfdquyou3j5csoavqbdj6g25nk4lodocgmipvk4spo,pilimi-zlib-11170000-11209999<br>
+    bafykbzacedj57ufj2vmve4meocnnuwrlcpoguast4bab2nlj7ikghwfnab4dg,pilimi-zlib-11210000-11269999<br>
+    bafykbzaceaqeko4y6nk3ltuyhahi57v6hctcefikjnetesyz43yzfvirn253u,pilimi-zlib-11270000-11299999<br>
+    bafykbzacedculikjsbrgm3tj7cgp7t4ksi2qhe3juo4asiyddgb2u3yepqemc,pilimi-zlib-11300000-11329999<br>
+    bafykbzaceazasfvzuz5d3ygh5xuvejsonpnosoaw5htapfossfn6zyt7tt53u,pilimi-zlib-11330000-11359999<br>
+    bafykbzacea6wsi2rypyceieo66mgiodidzbxaecu4zvgjyb256dn3cf5xu4bk,pilimi-zlib-11360000-11399999<br>
+    bafykbzacect2g5lyz5jjpxi4atebh6ckdscaotunqdl7abtaozzfhbvfc3uwm,pilimi-zlib-11400000-11449999<br>
+    bafykbzacebijcccbsn34cut6v47vzntlp4esylwiv2yoialiq4jiw3i6rgjtg,pilimi-zlib-11450000-11499999<br>
+    bafykbzacedevalb2oteaor4q5nnpqg2crprastnq64tnwppaeaxsvbityx3ao,pilimi-zlib-11500000-11549999<br>
+    bafykbzaceah2ulor5myroru4afn3oamzopvgvoyicukgyz2v67565raamvche,pilimi-zlib-11550000-11579999<br>
+    bafykbzaced23i3k7ucbaohxw72xbcpsxkeqxgt7madq52hn6rbuy5nq3lmjcq,pilimi-zlib-11580000-11599999<br>
+    bafykbzacecmtrfzgjl5kjhkl3f2aomnrxdemxhl7snfps3hiyhxe5hv6pq7f4,pilimi-zlib-11600000-11659999<br>
+    bafykbzacednt5jt6fkvro3vhbckhbrts4s2og5sqsw5h6qmltl7h27xd3ecdk,pilimi-zlib-11660000-11699999<br>
+    bafykbzacecobcszddrea2beysukcevue3krfcswlkoqd6laofsd737rdyke4e,pilimi-zlib-11700000-11729999<br>
+    bafykbzaceatkueumjn3xfwqgkvgfhigk2xlh3lg2cmwjouudujpsmrjebfmf2,pilimi-zlib-11730000-11759999<br>
+    bafykbzacec4nkat22rnqgt3euy6ngfeue4hzv44l7uze27ffyvezhybf4kz7y,pilimi-zlib-11760000-11799999<br>
+    bafykbzacech3svrt3vxlh3vcwtgvulx7fw6vtuz7bwwijpvun7lhp5hhfedss,pilimi-zlib-11800000-11829999<br>
+    bafykbzacebqcwzl6xuaadjsddiwv65pzde437iv7dnmt4qvbfeljgrgwvwnlg,pilimi-zlib-11830000-11859999<br>
+    bafykbzaceciac66rt77ulep5heqydyhromgrp2d6c5nxl7poe4l2xrnjmcafu,pilimi-zlib-11860000-11899999<br>
+    bafykbzaceb4oodne74flfelsb2ss5slqwhkkded252yofbappt4wzfewmoazk,pilimi-zlib-11900000-11929999<br>
+    bafykbzaceaaheqywldl6anem6kbxpgduzymanzbwe5yip4gfskovbetlsvtx6,pilimi-zlib-11930000-11949999<br>
+    bafykbzacebfdl5kj5x5gzs5mccyxjviolr33z4rub3gi4c4qeypifqaaw4ohk,pilimi-zlib-11950000-11969999<br>
+    bafykbzaceasdlk3jn7wq5xmradpdhxnyldy6jut2lavez5wn2kfb3djckhucq,pilimi-zlib-11970000-11999999<br>
+    bafykbzaceaehckjn3rxuvmhhkbdzkrtcds55s6gk2rgarqe54r4dktffxbuay,pilimi-zlib-120000-419999<br>
+    bafykbzacebfm23khehitmbsxy74r4y5fo4fbm7kipyufhmwlad3vwtzz6e6bi,pilimi-zlib-12000000-12039999<br>
+    bafykbzacebzyi5cyso6k2wwcf3m5xc7iwlvyc7ryqwblwpjaxeyphnqilageq,pilimi-zlib-12040000-12099999<br>
+    bafykbzaceb27vlcqhrrc5msi5swxicgos26744yrbu7w6ozhc57xlgs4nxd24,pilimi-zlib-12100000-12159999<br>
+    bafykbzacechfhota2jsgsogqrykfp6xl6xvjgdkgrfh3j26j67dcl5v6jptd6,pilimi-zlib-12160000-12229999<br>
+    bafykbzacebo2e6q3m6xs5ukwsaoc3hyontod7tinm36bq6vag6ndzqgzlsw6y,pilimi-zlib-12230000-12349999<br>
+    bafykbzacedrp3rgmrsfjv6wwegwwt3igxpyp5xxptiaus3yolgn3rqw54os4w,pilimi-zlib-12350000-12619999<br>
+    bafykbzacebj5gtxmxgkcgei66p37zbvrae3j7fxbhj53uztkn3sfyidfutue2,pilimi-zlib-12620000-12769999<br>
+    bafykbzacedp7c7edd2pfa4hjlewvtu7ph7npjib6gm5zl4skfwzppfojodrki,pilimi-zlib-12770000-12809999<br>
+    bafykbzacecapavie7dp5fvgbhofo5x4te4as5hnovxhjyzeb2evzztanvp6pw,pilimi-zlib-12810000-13229999<br>
+    bafykbzacec2popotohypo7luhmg3geirt4rsag37mf2u2bch75yj65vtxafcy,pilimi-zlib-13230000-13529999<br>
+    bafykbzaceay6avq77sbvnrxo3jsre7qfptaxackveb5pwfzh442b6jp6lh46w,pilimi-zlib-13530000-13849999<br>
+    bafykbzacedw4k2zuhtn65wyhpnhgohib6rmamoy4wfgybqu564oir64nukgiy,pilimi-zlib-13850000-13959999<br>
+    bafykbzaceb7ulew2nvb3zv36emqs2kvaf6nscj3xlufutxg44ti622v3tpet2,pilimi-zlib-13960000-14029999<br>
+    bafykbzacedggtn2mliokszaykbwwgbechq2lrxw6euw225e7vnmakpymxc3ai,pilimi-zlib-14030000-14379999<br>
+    bafykbzaceckl6oabw3raos3dxqklsef5yyolymnlu347b67d564nh7ylurq36,pilimi-zlib-14380000-14679999<br>
+    bafykbzacedxe5lvv7rhosytcpnnxlarle7ov6kgnj3dv7myhktb6wur7ntha4,pilimi-zlib-2380000-2829999<br>
+    bafykbzacectuprw5cyi2jnh3iqkd6wwatlco5vbfsqxstq5sux2hmzsikxgvm,pilimi-zlib-2830000-5239999<br>
+    bafykbzaceaguyebgcwg3sbs3kahy3hgnd6r65jvenr7j4fnukq2unvvhpmnii,pilimi-zlib-420000-2379999<br>
+    bafykbzacebmgj2rsk5foiilozd47balsa7g6zm4uhehh7zhdku7cadlqkl6es,pilimi-zlib-5240000-5329999<br>
+    bafykbzacedzl36nhlwmq72wsjx3rulgong24ctpdk2rj3vwdx4cf3ecrfojls,pilimi-zlib-5330000-5359999<br>
+    bafykbzaceacpj5lzufx3pqmveselef366httdhciz345btehpmrbuftaovjoc,pilimi-zlib-5360000-5379999<br>
+    bafykbzacectb4feksaacku3aw67hwq5wpgarvgtza3jaz55yemxnhq333gqrw,pilimi-zlib-5380000-5449999<br>
+    bafykbzacebubtfshzn5gv7zsml7xrg46y6tl5ekw3jia3ehyzkn2s7fys2osk,pilimi-zlib-5450000-5479999<br>
+    bafykbzacecilokhsw5mwognnhcb3uttrtb3uyjga3gukfkunlah7x4hsfzieg,pilimi-zlib-5480000-5499999<br>
+    bafykbzacebrlmhwy4wd4tbmkith7tvugcnr4c62hiwxmh5uq5spzxvgg2faou,pilimi-zlib-5500000-5519999<br>
+    bafykbzaceadewlz5iaouke6gtlukvutren3dpb24iroqlml2qoraiw4damng2,pilimi-zlib-5520000-5549999<br>
+    bafykbzacea6mmwn3wwk7gzqoyfb7p5iet5ykoat5t5guxvlbm6mzm6lk5lpf2,pilimi-zlib-5550000-5579999<br>
+    bafykbzacecx7dfzxdqw3av52hnfkl6duylebmbodsm6atd6fq4r5r3ijp54cg,pilimi-zlib-5580000-5609999<br>
+    bafykbzaceau7mxjw5eqbg7kmxz2ivmxrx6fywz7uqgaes2bknxcooijyndmgu,pilimi-zlib-5610000-5639999<br>
+    bafykbzacea3zq5goykxgqggvdzcacmc42iseee2qvvias2ckomqkjr4prtl7a,pilimi-zlib-5640000-5659999<br>
+    bafykbzacedjzwc2ir43b7xjiph3gilsgwsdjk2wcqhkwee4wxu75c7vcpc2ra,pilimi-zlib-5660000-5709999<br>
+    bafykbzacecb2dptam6nt5bjdmzo25dexu6orfivtcnos5sm4nprzl6me6bnk4,pilimi-zlib-5710000-5729999<br>
+    bafykbzacebmddkp7rf5x44xqw3d57ct2luat7ymjdeq26pq7wnwh652pkgwve,pilimi-zlib-5730000-5749999<br>
+    bafykbzaceczfrq2qc2w2bikyyinowxarm4lr7qytktkhcpxjvyoc5b6kxxpw6,pilimi-zlib-5750000-5769999<br>
+    bafykbzacedi3xhkebxf6ftuq4f3wlgn2op2aopmnz2mlafibphxcnqgbhges2,pilimi-zlib-5770000-5789999<br>
+    bafykbzaceasm4rlo6ybphahhbyjfkcc2esa6thyyntspu6dmknexysfeoxy2w,pilimi-zlib-5790000-5809999<br>
+    bafykbzacec7byb2tu6ofwyrrmx55t3dqlk6e42w6vzzhjflekiwvq3kew3uwc,pilimi-zlib-5810000-6039999<br>
+    bafykbzacecl2mmtpyd2qu6ejbbfrtbh2owajd3zwzr5juqzfvc7wncmm6efd4,pilimi-zlib-6040000-6069999<br>
+    bafykbzaceddacys6rgb4lczygok3j7l42jzlxxgaa76ez4etdk5jybfkgpzvy,pilimi-zlib-6070000-6129999<br>
+    bafykbzacedh2tkwri34ando36luj23atty4ndt4qu5oy5fdcrfwyvqohrbl7s,pilimi-zlib-6130000-6159999<br>
+    bafykbzaceahxsapzkbwevnhmcxogy3rwav7jsnjfsbbwx3woqmhah5mdqhh2c,pilimi-zlib-6160000-7229999<br>
+    bafykbzacebrz6vemno5rpx35ceicpqrrf6c7jxrcwilrnn3e6ejlg7vldwyvu,pilimi-zlib-7230000-9459999<br>
+    bafykbzacec33gan7zoygi6j2mhwokvmeahsuraqkioviftndqv57t6mywugyo,pilimi-zlib-9460000-10999999<br>
+    bafykbzaceareptri2lvexdosm7klodwchxmmrkwq4xixmoupxfxd5yizbmupe,pilimi-zlib2-0-14679999-extra<br>
+    bafykbzacedbp5mamr2pldkirowdq3origbtsfrf63bd365sg7tnysea3fvzds,pilimi-zlib2-14680000-14999999<br>
+    bafykbzacecxygf7eqspgkfatyudz5fmgkrcbupz352xvnd7pd24dl7gchripo,pilimi-zlib2-15000000-15679999<br>
+    bafykbzaceavynq5u6tpiocpbsei4xmsigzfgnba6dqtejg4xwog5tc5pd3yd2,pilimi-zlib2-15680000-16179999<br>
+    bafykbzacec3lljzin4hm6wsjvchyfdnjmagebwaxlyj34xuvtkeb23c4cclzu,pilimi-zlib2-16180000-16379999<br>
+    bafykbzacec4ew42yfymw4wqll6zkhyo647jsiorp4x354s65avh6wlxjmo7ia,pilimi-zlib2-16380000-16469999<br>
+    bafykbzacechmwrwiwd6h3yhxoeklg6wdivtd5bjidnnyyx63hfqm5ztw75qru,pilimi-zlib2-16470000-16579999<br>
+    bafykbzacechphjhtwl2c3spnqu6yyacnta4zx3myrq6xhvdxxyxshtapkpeak,pilimi-zlib2-16580000-16669999<br>
+    bafykbzacedmu6opvkirlprn4pfus7dgvnm7g5qcxpsagg6dfqr4kritdcudo2,pilimi-zlib2-16670000-16759999<br>
+    bafykbzacec6nsr2rwajm3gtosg5v6r7akjguecbwsfoja7wgu3kmvaizybhgg,pilimi-zlib2-16760000-16859999<br>
+    bafykbzaceblalakbzrseqlutxoc4chck2mgoqctet3u63dldiy2stq4uxbxni,pilimi-zlib2-16860000-16959999<br>
+    bafykbzacec4awhincxej4sdb2hfnxv6qe3omdlrgqj3uerhxm4w46tzmlabja,pilimi-zlib2-16960000-17059999<br>
+    bafykbzacec57t3fw4bsqd4b6xocde3cwbb5mxjqdmwa5zhso45d3is2dywszk,pilimi-zlib2-17060000-17149999<br>
+    bafykbzacecxs2rhrbaf6dk5r5afltsv2zdad452skx7okvun5dqwa2xj37tki,pilimi-zlib2-17150000-17249999<br>
+    bafykbzacebqzercqpcpaxn6hqzadbo2dwwr7fsjseo3qefylck2owwi453nwa,pilimi-zlib2-17250000-17339999<br>
+    bafykbzaceatcfcn6jmvgyg5ugjhhav4zbl3uoznyaqrhiifwofjbwyzidpfti,pilimi-zlib2-17340000-17469999<br>
+    bafykbzacean7scmcur7e5i65pu65rqayzat4wsczhgwwidwbxbs2qrliqt6ca,pilimi-zlib2-17470000-17599999<br>
+    bafykbzaceb4dspfomo6jqaqjjkqw3vzs5mplxukmxz2clxgklqutpbzi2d2y6,pilimi-zlib2-17600000-17689999<br>
+    bafykbzaceagxjvxfesrkku2t2ui3vvb5ghdr6744j4vvg6uwakpipurjwabn2,pilimi-zlib2-17690000-17779999<br>
+    bafykbzacebjlu6cuofqm3kljshr7gbjn5iole7arudilcg32mead6tyxvc7mg,pilimi-zlib2-17780000-17859999<br>
+    bafykbzacebvwjygfw5wkwd7qno2x7aqzohzspf7wdiammwgdfr6qx4vvavfki,pilimi-zlib2-17860000-17949999<br>
+    bafykbzaceccy56py652c53gerdymlwhs6vvcbvpuztlnwgdirfo6smd2j3uii,pilimi-zlib2-17950000-18039999<br>
+    bafykbzaceazimuuaq7l2myz23kykfo3qgpvclzlh3jc3bgbeoia2ztdwaouaw,pilimi-zlib2-18040000-18129999<br>
+    bafykbzacebaeocd7tnsdsmcfi4qxi55v6kqpoiqco2ep6xhdgn2ndlsmu3ab6,pilimi-zlib2-18130000-18209999<br>
+    bafykbzacebstgtwkwsdnm5kw74z3tllo6ehpgsjo4d3qnnf6y3elkge3yu6u4,pilimi-zlib2-18210000-18319999<br>
+    bafykbzacecapd7zl2sthtk4yfjyf6fp6gi2sjkgyfkjrpamtcn3ps5pqcdqd4,pilimi-zlib2-18320000-18399999<br>
+    bafykbzacecdqiysywaoy3defmg6ul6botl4xekyl25ajgrio4ettjihtmsf34,pilimi-zlib2-18400000-18509999<br>
+    bafykbzacecb6jjkxquoyj42ibtpuu2e2l7qq7yi6ly4mnovyrtyzjcpfbrnhm,pilimi-zlib2-18510000-18609999<br>
+    bafykbzacecyxhxa3l5aj4lzcz47mfarlzj5qelsly24kc26bg6gkyncycugxm,pilimi-zlib2-18610000-18699999<br>
+    bafykbzacedft6aatjmaaqhz6bnys2drw6gcuvboowdcpfsdigtmrjdegskpks,pilimi-zlib2-18700000-18809999<br>
+    bafykbzacecu4pksf5xzgklyto3gaynnvawofklgywr4fwqueezsznqbluiawg,pilimi-zlib2-18810000-19019999<br>
+    bafykbzacebs3alm53q3gaz7qq6ofe3misbmdwqetj4nczitu2xggclgobbe34,pilimi-zlib2-19020000-19159999<br>
+    bafykbzacedd6ysh6sfkyslawornsqncjvl73cetlmeeapkhwormthdzooc3ta,pilimi-zlib2-19160000-19249999<br>
+    bafykbzaceaimozyawmbzriu2qvr37pyyf2qe26cvnlmi6a73h4mstnyioq52w,pilimi-zlib2-19250000-19329999<br>
+    bafykbzacea325tfns4wbhxbtybpqkxrx7glt6sikox4olhxneeqkyrllviavu,pilimi-zlib2-19330000-21079999<br>
+    bafykbzacedtdjqxlpen7q5qac4olbztiupjpvlertzsijwvgq6vzu5lxxy5mq,pilimi-zlib2-21080000-21179999<br>
+    bafykbzacecw4akrxeukcjr667tulxcln5ikevfviqna3ng5r6aeqbwer4foig,pilimi-zlib2-21180000-21229999<br>
+    bafykbzacedffcoilh4l3hkgl4cblhu7xiz2zjhcjplikt5znatduhtizkmzv6,pilimi-zlib2-21230000-21319999<br>
+    bafykbzacec4ksqhf66fxmnnfuzqz5gwdkgvybpjuozdovfpkubzepmge4amo6,pilimi-zlib2-21320000-21399999<br>
+    bafykbzacecdgebycx445a42xudenyryy6mp36gwkkeojeyxs6dvl4x6w4qgti,pilimi-zlib2-21400000-21489999<br>
+    bafykbzacedmyybav65i6ygmt7jk3qt4w5rxnjxuazruy326bmicmxzntxmsfc,pilimi-zlib2-21490000-21589999<br>
+    bafykbzacec6kyoklluietozxhmq3mghzk73wtcwggoxy2psxiikg74inuxyda,pilimi-zlib2-21590000-21689999<br>
+    bafykbzaceczqyzswivcc74socb4xd2kdrzkix4wyfm74x54fto2ouma4pni4c,pilimi-zlib2-21690000-21799999<br>
+    bafykbzaceb7blu7yiosxa2sj3kvay5xsb5xxh6lj6e7xis2e66psxhjajeaaq,pilimi-zlib2-21800000-21839999<br>
+    bafykbzaceajbd4ewbu5f63ya3fseia4zmnwccsdyk5qthw43mpd4oawt4m64k,pilimi-zlib2-21840000-21939999<br>
+    bafykbzacedkzmzbynon7jpkhteohfi4jecz5en75czbjl5djlqt55awk5z42g,pilimi-zlib2-21940000-22019999<br>
+    bafykbzacedaa3ynwqac5pxsx6224evimlwilesf4svdpnuh6ro3gsfyxe3nrq,pilimi-zlib2-22020000-22049999<br>
+    bafykbzaceaefrbzb6hmulltlbtdnn7c5ccvysut3ayadjzenjl4qszbe2phiu,pilimi-zlib2-22050000-22069999<br>
+    bafykbzacecdf2xlf67t2lbo7middim6lc2gncd56xxtd3xa64sgmb63sm2ygc,pilimi-zlib2-22070000-22099999<br>
+    bafykbzacea242nc7wuwr5vckvvpgpdkv7rbxlqxw5gcmqqow53csub2yhvwge,pilimi-zlib2-22100000-22119999<br>
+    bafykbzacedl4qbg5dqvp6bhzzcnwrup3w5isb3kzww6hgo3jvnhxnmaalqrxc,pilimi-zlib2-22120000-22199999<br>
+    bafykbzaceapkthjb4rm3skd73cbjdhc37b777p4j5374tuq5tj3tovqvmcnje,pilimi-zlib2-22200000-22299999<br>
+    bafykbzaceanqpal6kmc6gbc7s5iwl5jnli74e3luvbisjecobu4emwlg2acn4,pilimi-zlib2-22300000-22399999<br>
+    bafykbzaceb3o6h4kgj32tmd4nsgmkleqtcbndq7xkvxfszsnut2q7ixyc4ciq,pilimi-zlib2-22400000-22433982<br>
+  </code> -->
 {% endblock %}

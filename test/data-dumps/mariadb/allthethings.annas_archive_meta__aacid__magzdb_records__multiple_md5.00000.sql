@@ -1,0 +1,21 @@
+/*!40101 SET NAMES binary*/;
+/*!40014 SET FOREIGN_KEY_CHECKS=0*/;
+/*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
+/*!40103 SET TIME_ZONE='+00:00' */;
+INSERT INTO `annas_archive_meta__aacid__magzdb_records__multiple_md5` VALUES("089f4c242f933787311546740a2b42ac","aacid__magzdb_records__20240906T130340Z__record_1623__dyGqeTHiz94A266p2aFAYR")
+,("2b6140ea5ff52461125286ca668fc40e","aacid__magzdb_records__20240906T130340Z__record_2138771__UZvgZmVDmyZGFbes7GUx9f")
+,("2c73f78aab27aefb3d42c70c410183df","aacid__magzdb_records__20240906T130340Z__record_2207__dSK98BRYPocH2CargdCxdN")
+,("2d7b0f6e604bf1fcb053640cb464cc94","aacid__magzdb_records__20240906T130340Z__record_1609__V6anYZbCWbFrDpxcb9jGmw")
+,("2ee33ba573e0f8995116073f34f47fea","aacid__magzdb_records__20240906T130340Z__record_1623__dyGqeTHiz94A266p2aFAYR")
+,("35f05a3bd2e0b55982bb9d5fac424872","aacid__magzdb_records__20240906T130340Z__record_2207__dSK98BRYPocH2CargdCxdN")
+,("3ca27e14cf07bee8d28aee54d5a4dfca","aacid__magzdb_records__20240906T130340Z__record_2537301__DZCKxSfh43mLBcnzckZcQK")
+,("4712022054deaf5ee10d8e8acb04c647","aacid__magzdb_records__20240906T130340Z__record_2537301__DZCKxSfh43mLBcnzckZcQK")
+,("4a5429f357556b09023a448a5b66bb57","aacid__magzdb_records__20240906T130340Z__record_2138772__NM9b5M4gkb5Tkm3eqUrVMg")
+,("767aa2cfd486b9835687cd548202f34c","aacid__magzdb_records__20240906T130340Z__record_3537954__nneBmpnGxunWbvoLq8Uq9x")
+,("8bd52a3e7ede1984141dec60093426b9","aacid__magzdb_records__20240906T130340Z__record_4036778__4kc6iXMVKpvzbdGxF52x9q")
+,("cc64d07de13dce3b0a1ea723ed2385ce","aacid__magzdb_records__20240906T130340Z__record_1609__V6anYZbCWbFrDpxcb9jGmw")
+,("d129057bc21897e90c10aa97eea22094","aacid__magzdb_records__20240906T130340Z__record_3810648__RQHSk6gP57YFAXeNp8NGqZ")
+,("e4ac50ba199eeb67dbf445ea3b0bea48","aacid__magzdb_records__20240906T130340Z__record_3810612__2A8s6CVmaPMK9EPPyXmFSW")
+,("e7d2e1ac04c6b89731a9be617a296b94","aacid__magzdb_records__20240906T130340Z__record_1623__dyGqeTHiz94A266p2aFAYR")
+,("f93ec9349ad5761db0f694bbcdef8d31","aacid__magzdb_records__20240906T130340Z__record_3810611__EvjjJxVNnpaAsPKt5pBAQz")
+;

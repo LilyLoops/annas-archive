@@ -20,7 +20,7 @@ To get Anna's Archive running locally:
   ```bash
   mkdir annas-archive-outer # Several data directories will get created in here.
   cd annas-archive-outer
-  git clone https://software.annas-archive.se/AnnaArchivist/annas-archive.git
+  git clone https://software.annas-archive.se/AnnaArchivist/annas-archive.git --depth=1
   cd annas-archive
   cp .env.dev .env
   cp data-imports/.env-data-imports.dev data-imports/.env-data-imports
@@ -91,15 +91,18 @@ Anna’s Archive is built on a scalable architecture designed to support a large
 
 - **Web Servers:** One or more servers handling web requests, with heavy caching (e.g., Cloudflare) to optimize performance.
 - **Database Servers:**
-  - Critical for basic operation:
-    - 2 ElasticSearch servers "elasticsearch" (main) and "elasticsearchaux" (journal papers, digital lending, and metadata). Split out into two so the full index of "elasticsearch" can be easily forced into memory with `vmtouch` for performance.
-  - Currently required for basic operation, but in the future only necessary for generating the search index:
-    - MariaDB for read-only data with MyISAM tables ("mariadb")
-    - Static read-only files in AAC (Anna’s Archive Container) format, with accompanying index tables (with byte offsets) in MariaDB.
-  - Currently required for basic operation, but in the future only necessary for user accounts and other persistence:
-    - A separate MariaDB instance for read/write operations ("mariapersist").
+  - Required for minimal operation. If you just run these two servers then some pages won't work, but the main search will work.
+    - ElasticSearch server "elasticsearch" (main search index "Downloads")
+    - MariaDB instance for read/write persistent data like user accounts, logs, comments ("mariapersist").
+  - Full mirror:
+    - ElasticSearch server "elasticsearchaux" (journal papers, digital lending, and metadata).
+    - Mostly used for database generation, but some pages won't work without it (at time of writing: /datasets, /codes, and the /db debug pages):
+      - MariaDB for read-only data with MyISAM tables ("mariadb")
+      - Static read-only files in AAC (Anna’s Archive Container) format (the "allthethings-file-data/" folder), with accompanying index tables (with byte offsets) in MariaDB.
+  - Optional:
     - A persistent data replica ("mariapersistreplica") for backups and redundancy.
-- **Caching and Proxy Servers:** Recommended setup includes proxy servers (e.g., nginx) in front of the web servers for added control and security (DMCA notices).
+    - "mariabackup" instance for regular backups.
+- **Caching and Proxy Servers:** Recommended setup includes proxy servers (e.g., nginx) in front of the web servers for added control and security (DMCA notices). [Blog post](https://annas-archive.org/blog/how-to-run-a-shadow-library.html).
 
 In our setup, the web and database servers are duplicated multiple times on different servers, with the exception of "mariapersist" which is shared between all servers. The ElasticSearch main server (or both servers) can also be run separately on optimized hardware, since search speed is usually a bottleneck.
 
@@ -153,8 +156,18 @@ To report bugs or suggest new ideas, please file an ["issue"](https://software.a
 To contribute code, also file an [issue](https://software.annas-archive.se/AnnaArchivist/annas-archive/-/issues), and include your `git diff` inline (you can use \`\`\`diff to get some syntax highlighting on the diff). Merge requests are currently disabled for security purposes — if you make consistently useful contributions you might get access.
 
 For larger projects, please contact Anna first on [Reddit](https://www.reddit.com/r/Annas_Archive/).
+
+## Testing
+
+Please run `docker exec -it web bin/check` before committing to ensure that your changes pass the automated checks. You can also run `./bin/fix` to apply some automatic fixes to common lint issues.
+
+To check that all pages are working, you can start your docker-compose stack, then run `docker exec -it web bin/smoke-test`.
+
+You can also run `docker exec -it web bin/smoke-test <language-code>` to check a single language.
+
+The script will output .html files in the current directory named `<language>--<path>.html`, where path is the url-encoded pathname that errored. You can open that file to see the error.
+
 ## License
 
-
+>>>>>>> README.md
 Released in the public domain under the terms of [CC0](./LICENSE). By contributing you agree to license your code under the same license.
-

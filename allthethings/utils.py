@@ -1,10 +1,10 @@
+import collections
 import jwt
 import re
 import ipaddress
 import flask
 import functools
 import datetime
-import forex_python.converter
 import cachetools
 import babel.numbers
 import babel
@@ -16,7 +16,6 @@ import urllib.parse
 import orjson
 import isbnlib
 import math
-import bip_utils
 import shortuuid
 import pymysql
 import httpx
@@ -24,18 +23,11 @@ import indexed_zstd
 import threading
 import traceback
 import time
-import langcodes
 
 from flask_babel import gettext, get_babel, force_locale
 
-from flask import Blueprint, request, g, make_response, render_template
-from flask_cors import cross_origin
-from sqlalchemy import select, func, text, inspect
-from sqlalchemy.orm import Session
-from flask_babel import format_timedelta
-
-from allthethings.extensions import es, es_aux, engine, mariapersist_engine, MariapersistDownloadsTotalByMd5, mail, MariapersistDownloadsHourlyByMd5, MariapersistDownloadsHourly, MariapersistMd5Report, MariapersistAccounts, MariapersistComments, MariapersistReactions, MariapersistLists, MariapersistListEntries, MariapersistDonations, MariapersistDownloads, MariapersistFastDownloadAccess
-from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, MEMBERS_TELEGRAM_URL, FLASK_DEBUG, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, FAST_PARTNER_SERVER1, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY, AACID_SMALL_DATA_IMPORTS
+from allthethings.extensions import es, es_aux, engine
+from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, MEMBERS_TELEGRAM_URL, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, FAST_PARTNER_SERVER1, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY, AACID_SMALL_DATA_IMPORTS
 
 FEATURE_FLAGS = {}
 
@@ -90,12 +82,21 @@ def validate_oclc_ids(oclc_ids):
 def validate_duxiu_ssids(duxiu_ssids):
     return all([str(duxiu_ssid).isdigit() for duxiu_ssid in duxiu_ssids])
 
+def validate_magzdb_ids(magzdb_ids):
+    return all([str(magzdb_id).isdigit() for magzdb_id in magzdb_ids])
+
+def validate_nexusstc_ids(nexusstc_ids):
+    return all([bool(re.match(r"^[a-z\d]+$", nexusstc_id)) for nexusstc_id in nexusstc_ids])
+
+def validate_edsebk_ids(edsebk_ids):
+    return all([str(edsebk_id).isdigit() for edsebk_id in edsebk_ids])
+
 def validate_aarecord_ids(aarecord_ids):
     try:
         split_ids = split_aarecord_ids(aarecord_ids)
-    except:
+    except Exception:
         return False
-    return validate_canonical_md5s(split_ids['md5']) and validate_ol_editions(split_ids['ol']) and validate_oclc_ids(split_ids['oclc']) and validate_duxiu_ssids(split_ids['duxiu_ssid'])
+    return validate_canonical_md5s(split_ids['md5']) and validate_ol_editions(split_ids['ol']) and validate_oclc_ids(split_ids['oclc']) and validate_duxiu_ssids(split_ids['duxiu_ssid']) and validate_magzdb_ids(split_ids['magzdb']) and validate_nexusstc_ids(split_ids['nexusstc']) and validate_nexusstc_ids(split_ids['nexusstc_download']) and validate_edsebk_ids(split_ids['edsebk'])
 
 def split_aarecord_ids(aarecord_ids):
     ret = {
@@ -107,6 +108,10 @@ def split_aarecord_ids(aarecord_ids):
         'oclc': [],
         'duxiu_ssid': [],
         'cadal_ssno': [],
+        'magzdb': [],
+        'nexusstc': [],
+        'nexusstc_download': [],
+        'edsebk': [],
     }
     for aarecord_id in aarecord_ids:
         split_aarecord_id = aarecord_id.split(':', 1)
@@ -116,6 +121,10 @@ def split_aarecord_ids(aarecord_ids):
 def path_for_aarecord_id(aarecord_id):
     aarecord_id_split = aarecord_id.split(':', 1)
     return '/' + aarecord_id_split[0].replace('isbn', 'isbndb') + '/' + aarecord_id_split[1]
+
+def validate_year(year):
+    year_str = str(year)
+    return year_str.isdigit() and int(year_str) >= 1600 and int(year_str) < 2100
 
 def doi_is_isbn(doi):
     return doi.startswith('10.978.') or doi.startswith('10.979.')
@@ -145,14 +154,24 @@ def scidb_info(aarecord, additional=None):
     if len(additional['partner_url_paths']) > 0:
         path_info = additional['partner_url_paths'][0]
 
+    ipfs_url = None
+    if len(additional['ipfs_urls']) > 0:
+        ipfs_url = additional['ipfs_urls'][0]['url']
+
+    nexusstc_id = None
+    if aarecord.get('aac_nexusstc') is not None:
+        nexusstc_id = aarecord['aac_nexusstc']['id']
+
     if path_info:
         priority = 1
     elif scihub_link:
         priority = 2
-    else:
+    elif ipfs_url:
         priority = 3
+    else:
+        return None
 
-    return { "priority": priority, "doi": valid_dois[0], "path_info": path_info, "scihub_link": scihub_link }
+    return { "priority": priority, "doi": valid_dois[0], "path_info": path_info, "scihub_link": scihub_link, "ipfs_url": ipfs_url, "nexusstc_id": nexusstc_id }
 
 JWT_PREFIX = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.'
 
@@ -311,10 +330,10 @@ CLOUDFLARE_NETWORKS = [ipaddress.ip_network(row) for row in [
 
 def is_canonical_ip_cloudflare(canonical_ip_bytes):
     if not isinstance(canonical_ip_bytes, bytes):
-        raise Exception(f"Bad instance in is_canonical_ip_cloudflare")
+        raise Exception("Bad instance in is_canonical_ip_cloudflare")
     ipv6 = ipaddress.ip_address(canonical_ip_bytes)
     if ipv6.version != 6:
-        raise Exception(f"Bad ipv6.version in is_canonical_ip_cloudflare")
+        raise Exception("Bad ipv6.version in is_canonical_ip_cloudflare")
     if ipv6.sixtofour is not None:
         for network in CLOUDFLARE_NETWORKS:
             if ipv6.sixtofour in network:
@@ -416,6 +435,7 @@ MEMBERSHIP_METHOD_DISCOUNTS = {
     "payment2paypal": 0,
     "payment2cc": 0,
     "payment2cashapp": 10,
+    "payment2revolut": 10,
 
     "paypalreg": 0,
     "amazon": 0,
@@ -455,6 +475,7 @@ MEMBERSHIP_METHOD_MINIMUM_CENTS_USD = {
     "paypal": 3500,
     "payment2paypal": 2500,
     "payment2cashapp": 2500,
+    "payment2revolut": 2500,
     "payment2cc": 0,
     "paypalreg": 0,
     "amazon": 1000,
@@ -512,7 +533,11 @@ def get_account_fast_download_info(mariapersist_session, account_id):
     downloads_per_day += bonus_downloads
 
     downloads_left = downloads_per_day
-    recently_downloaded_md5s = [md5.hex() for md5 in mariapersist_session.connection().execute(select(MariapersistFastDownloadAccess.md5).where((MariapersistFastDownloadAccess.timestamp >= datetime.datetime.now(tz=datetime.timezone.utc) - datetime.timedelta(hours=18)) & (MariapersistFastDownloadAccess.account_id == account_id)).limit(50000)).scalars()]
+    cursor.execute("SELECT md5 FROM mariapersist_fast_download_access "
+                   "WHERE timestamp >= %(timestamp)s AND account_id = %(account_id)s "
+                   "LIMIT 50000",
+                   { 'timestamp': datetime.datetime.now(tz=datetime.timezone.utc) - datetime.timedelta(hours=18), 'account_id': account_id })
+    recently_downloaded_md5s = [md5.hex() for md5 in fetch_scalars(cursor)]
     downloads_left -= len(recently_downloaded_md5s)
 
     max_tier = str(max([int(membership['membership_tier']) for membership in memberships]))
@@ -581,8 +606,8 @@ def membership_costs_data(locale):
             raise Exception("Invalid fields")
 
         discounts = MEMBERSHIP_METHOD_DISCOUNTS[method] + MEMBERSHIP_DURATION_DISCOUNTS[duration]
-        monthly_cents = round(MEMBERSHIP_TIER_COSTS[tier]*(100-discounts));
-        cost_cents_usd = monthly_cents * int(duration);
+        monthly_cents = round(MEMBERSHIP_TIER_COSTS[tier]*(100-discounts))
+        cost_cents_usd = monthly_cents * int(duration)
 
         native_currency_code = 'USD'
         cost_cents_native_currency = cost_cents_usd
@@ -643,6 +668,91 @@ def membership_costs_data(locale):
     return data
 
 
+def get_cursor_ping(session):
+    session.connection().connection.ping(reconnect=True)
+    return session.connection().connection.cursor(pymysql.cursors.DictCursor)
+
+
+def get_cursor_ping_conn(connection):
+    connection.connection.ping(reconnect=True)
+    return connection.connection.cursor(pymysql.cursors.DictCursor)
+
+
+def fetch_one_field(cursor):
+    row = cursor.fetchone()
+    if row is None:
+        return None
+    return row[next(iter(row))]
+
+
+def fetch_scalars(cursor) -> list | tuple:
+    """
+    Fetches value of the first column from all the rows using the cursor
+    :return: If no rows were returned: an empty tuple, otherwise a list of values of the first column.
+    """
+    rows = cursor.fetchall()
+    if rows is None or len(rows) <= 0:
+        # SQLAlchemy would return an empty tuple, keeping for compatibility with existing code
+        return ()
+    scalars = []
+    for row in rows:
+        scalars.append(row[next(iter(row))])
+    return scalars
+
+
+def split_columns_row(row: dict | None, column_count: list[int]) -> tuple | None:
+    """ Splits separate table columns into tuple values
+        Example: SELECT * FROM table1.*, table2.* JOIN table2 USING (id)
+        Returns: tuple( {table1 dict}, {table2 dict} )
+    """
+    if row is None:
+        return None
+
+    column_count_index = 0
+    column_index = 0
+    tuple_values: list[dict | None] = [dict() for _ in column_count]
+    for column in iter(row):
+        # Remove any table name prefixes
+        # These appear if two columns with the same name appear in a single SQL query (e.g. table1.id and table2.id)
+        # Columns with the same name cannot appear in a single table so it's safe to just trim out the prefix here
+        dict_column_name = column[(column.find('.') + 1):]
+
+        tuple_values[column_count_index][dict_column_name] = row[column]
+        column_index += 1
+
+        if column_count[column_count_index] <= column_index:
+            found_non_none = False
+            for column_value in tuple_values[column_count_index].values():
+                if column_value is not None:
+                    found_non_none = True
+                    break
+
+            if not found_non_none:
+                # Set tuple value to None if the entire list was just containing Nones
+                tuple_values[column_count_index] = None
+
+            column_count_index += 1
+            column_index = 0
+
+    return tuple(tuple_values)
+
+
+def split_columns(rows: list[dict], column_count: list[int]) -> list[tuple]:
+    """ Splits separate table columns into tuple values
+        Example: SELECT * FROM table1.*, table2.* JOIN table2 USING (id)
+        Returns: tuple( {table1 dict}, {table2 dict} )
+    """
+    tuples = []
+    for row in rows:
+        tuples.append(split_columns_row(row, column_count))
+    return tuples
+
+
+def get_account_by_id(cursor, account_id: str) -> dict | tuple | None:
+    cursor.execute('SELECT * FROM mariapersist_accounts WHERE account_id = %(account_id)s LIMIT 1', {'account_id': account_id})
+    return cursor.fetchone()
+
+
 # Keep in sync.
 def confirm_membership(cursor, donation_id, data_key, data_value):
     cursor.execute('SELECT * FROM mariapersist_donations WHERE donation_id=%(donation_id)s LIMIT 1', { 'donation_id': donation_id })
@@ -662,7 +772,7 @@ def confirm_membership(cursor, donation_id, data_key, data_value):
     #     return False
 
     donation_json = orjson.loads(donation['json'])
-    if donation_json['method'] not in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b']:
+    if donation_json['method'] not in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b']:
         print(f"Warning: failed {data_key} request because method is not valid: {donation_id}")
         return False
 
@@ -705,7 +815,7 @@ def payment2_check(cursor, payment_id):
             payment2_request.raise_for_status()
             payment2_status = payment2_request.json()
             break
-        except:
+        except Exception:
             if attempt == 5:
                 raise
             time.sleep(1)
@@ -734,7 +844,7 @@ def payment3_check(cursor, donation_id):
             if str(payment3_status['code']) != '1':
                 raise Exception(f"Invalid payment3_status {donation_id=}: {payment3_status}")
             break
-        except:
+        except Exception:
             if attempt == 5:
                 raise
             time.sleep(1)
@@ -941,53 +1051,101 @@ LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
 }
 
 UNIFIED_IDENTIFIERS = {
-    "md5": { "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
+    "md5": { "shortenvalue": True, "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
     "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },
-    "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.rs/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_rs" },
-    "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.rs/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_rs" },
-    "lgli": { "label": "Libgen.li File", "url": "https://libgen.li/file.php?id=%s", "description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.", "website": "/datasets/libgen_li" },
-    "zlib": { "label": "Z-Library", "url": "https://z-lib.gs/", "description": "", "website": "/datasets/zlib" },
-    # TODO: Add URL/description for these.
+    "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.rs/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
+    "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.rs/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
+    "lgli": { "label": "Libgen.li File", "url": "https://libgen.li/file.php?id=%s", "description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.", "website": "/datasets/lgli" },
+    "zlib": { "label": "Z-Library", "url": "https://z-lib.gs/", "description": "ID in Z-Library.", "website": "/datasets/zlib" },
     "csbn": { "label": "CSBN", "url": "", "description": "China Standard Book Number, predecessor of ISBN in China", "website": "https://zh.wikipedia.org/zh-cn/%E7%BB%9F%E4%B8%80%E4%B9%A6%E5%8F%B7" },
     "ean13": { "label": "EAN-13", "url": "", "description": "", "website": "https://en.wikipedia.org/wiki/International_Article_Number" },
     "duxiu_ssid": { "label": "DuXiu SSID", "url": "", "description": "", "website": "/datasets/duxiu" },
     "duxiu_dxid": { "label": "DuXiu DXID", "url": "", "description": "", "website": "/datasets/duxiu" },
     "cadal_ssno": { "label": "CADAL SSNO", "url": "", "description": "", "website": "/datasets/duxiu" },
-    "lgli_libgen_id": { "label": "Libgen.li libgen_id", "description": "Repository ID for the 'libgen' repository in Libgen.li. Directly taken from the 'libgen_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_fiction_id": { "label": "Libgen.li fiction_id", "description": "Repository ID for the 'fiction' repository in Libgen.li. Directly taken from the 'fiction_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_fiction_rus_id": { "label": "Libgen.li fiction_rus_id", "description": "Repository ID for the 'fiction_rus' repository in Libgen.li. Directly taken from the 'fiction_rus_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_comics_id": { "label": "Libgen.li comics_id", "description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_scimag_id": { "label": "Libgen.li scimag_id", "description": "Repository ID for the 'scimag' repository in Libgen.li. Directly taken from the 'scimag_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_standarts_id": { "label": "Libgen.li standarts_id", "description": "Repository ID for the 'standarts' repository in Libgen.li. Directly taken from the 'standarts_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
-    "lgli_magz_id": { "label": "Libgen.li magz_id", "description": "Repository ID for the 'magz' repository in Libgen.li. Directly taken from the 'magz_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/libgen_li" },
+    "lgli_libgen_id": { "label": "Libgen.li libgen_id", "description": "Repository ID for the 'libgen' repository in Libgen.li. Directly taken from the 'libgen_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_fiction_id": { "label": "Libgen.li fiction_id", "description": "Repository ID for the 'fiction' repository in Libgen.li. Directly taken from the 'fiction_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_fiction_rus_id": { "label": "Libgen.li fiction_rus_id", "description": "Repository ID for the 'fiction_rus' repository in Libgen.li. Directly taken from the 'fiction_rus_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_comics_id": { "label": "Libgen.li comics_id", "description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_scimag_id": { "label": "Libgen.li scimag_id", "description": "Repository ID for the 'scimag' repository in Libgen.li. Directly taken from the 'scimag_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_standarts_id": { "label": "Libgen.li standarts_id", "description": "Repository ID for the 'standarts' repository in Libgen.li. Directly taken from the 'standarts_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
+    "lgli_magz_id": { "label": "Libgen.li magz_id", "description": "Repository ID for the 'magz' repository in Libgen.li. Directly taken from the 'magz_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgli" },
     "filepath": { "label": "Filepath", "description": "Original filepath in source library." },
     "server_path": { "label": "Server Path", "description": "Path on Anna’s Archive partner servers." },
-    "aacid": { "label": "AacId", "website": "/blog/annas-archive-containers.html", "description": "Anna’s Archive Container identifier." },
+    "aacid": { "shortenvalue": True, "label": "AacId", "website": "/blog/annas-archive-containers.html", "description": "Anna’s Archive Container identifier." },
+    "magzdb": { "label": "MagzDB Edition ID", "url": "http://magzdb.org/num/%s", "description": "ID of an individual edition of a magazine in MagzDB.", "website": "/datasets/magzdb" },
+    "nexusstc": { "shortenvalue": True, "label": "Nexus/STC", "url": "https://libstc.cc/#/stc/nid:%s", "description": "ID of an individual edition of a file in Nexus/STC.", "website": "/datasets/nexusstc" },
+    "ipfs_cid": { "shortenvalue": True, "label": "IPFS CID", "url": "ipfs://%s", "description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).", "website": "https://ipfs.tech/" },
+    "manualslib": { "label": "ManualsLib", "url": "https://www.manualslib.com/manual/%s/manual.html", "description": "File ID in ManualsLib", "website": "https://www.manualslib.com/" },
+    "iso": { "label": "ISO", "url": "https://iso.org/standard/%s.html", "description": "ISO standard number.", "website": "https://iso.org/" },
+    "british_standard": { "label": "British Standard", "url": "", "description": "British Standards (BS) are the standards produced by the BSI Group.", "website": "https://en.wikipedia.org/wiki/British_Standards" },
+    "edsebk": { "label": "EBSCOhost eBook Index Accession Number", "url": "https://library.macewan.ca/full-record/edsebk/%s", "description": "ID in the EBSCOhost eBook Index (edsebk).", "website": "/datasets/edsebk" },
     **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
     # Plus more added below!
 }
 UNIFIED_CLASSIFICATIONS = {
-    "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/libgen_rs" },
+    "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/lgrs" },
     "torrent": { "label": "Torrent", "url": "/dyn/small_file/torrents/%s", "description": "Bulk torrent for long-term preservation.", "website": "/torrents" },
     "collection": { "label": "Collection", "url": "/datasets/%s", "description": "The collection on Anna’s Archive that provided data for this record.", "website": "/datasets" },
     "ia_collection": { "label": "IA Collection", "url": "https://archive.org/details/%s", "description": "Internet Archive collection which this file is part of.", "website": "https://help.archive.org/help/collections-a-basic-guide/" },
     "lang": { "label": "Language", "website": "https://en.wikipedia.org/wiki/IETF_language_tag", "description": "IETF language tag." },
     "year": { "label": "Year", "description": "Publication year." },
+    # TODO: Remove on index refresh.
     "duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
-    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/libgen_li", "description": "Date we scraped the DuXiu collection." },
-    "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/libgen_li", "description": "Date of creation from the file’s own metadata." },
+    "date_duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
+    # TODO: Remove on index refresh.
+    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
+    "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
+    # TODO: Remove on index refresh.
+    "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
+    "date_file_created": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
+    # TODO: Remove on index refresh.
     "ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
-    "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/libgen_li", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
-    "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/libgen_li", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
-    "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/libgen_li", "description": "Date Libgen.li published this file." },
-    "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/libgen_rs", "description": "Date Libgen.rs Fiction published this file." },
-    "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/libgen_rs", "description": "Date Libgen.rs Non_Fiction published this file." },
-    "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/libgen_li", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
-    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/libgen_li", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+    "date_ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
+    "date_ia_record_scrape": { "label": "IA Record Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the record from the Internet Archive." },
+    # TODO: Remove on index refresh.
+    "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
+    "date_ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
+    # TODO: Remove on index refresh.
+    "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
+    "date_isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
+    # TODO: Remove on index refresh.
+    "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
+    "date_lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
+    # TODO: Remove on index refresh.
+    "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
+    "date_lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
+    # TODO: Remove on index refresh.
+    "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
+    "date_lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
+    # TODO: Remove on index refresh.
+    "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
+    "date_oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
+    # TODO: Remove on index refresh.
+    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+    "date_ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
+    # TODO: Remove on index refresh.
     "upload_record_date": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
+    "date_upload_record": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
+    # TODO: Remove on index refresh.
     "zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
+    "date_zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
+    "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
+    # TODO: Remove on index refresh.
+    "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
+    "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
+    "magzdb_keyword": { "label": "MagzDB Keyword", "url": "", "description": "Publication keyword in MagzDB (in Russian).", "website": "/datasets/magzdb" },
+    # TODO: Remove on index refresh.
+    "nexusstc_source_issued_at_date": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
+    "date_nexusstc_source_issued_at": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
+    # TODO: Remove on index refresh.
+    "nexusstc_source_update_date": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
+    "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
+    "nexusstc_tag": { "label": "Nexus/STC tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
+    "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },
+    "date_edsebk_meta_scrape": { "label": "EBSCOhost eBook Index Source Scrape Date", "website": "/datasets/edsebk", "description": "Date we scraped the EBSCOhost metadata." },
+    "edsebk_subject": { "label": "EBSCOhost eBook Index subject", "url": "", "description": "Tag in EBSCOhost eBook Index.", "website": "/datasets/edsebk" },
     **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
     # Plus more added below!
 }
@@ -1198,7 +1356,7 @@ def normalize_isbn(string):
     try: 
         if (not isbnlib.is_isbn10(isbnlib.to_isbn10(canonical_isbn13))) or len(canonical_isbn13) != 13 or len(isbnlib.info(canonical_isbn13)) == 0:
             return ''
-    except:
+    except Exception:
         return ''
     return canonical_isbn13
 
@@ -1225,6 +1383,12 @@ def add_isbns_unified(output_dict, potential_isbns):
     for csbn in csbns:
         add_identifier_unified(output_dict, 'csbn', csbn)
 
+def add_issn_unified(output_dict, issn):
+    add_identifier_unified(output_dict, 'issn', issn.replace('-', '').strip())
+
+def add_orcid_unified(output_dict, orcid):
+    add_classification_unified(output_dict, 'orcid', orcid.replace('-', '').strip())
+
 def merge_unified_fields(list_of_fields_unified):
     merged_sets = {}
     for fields_unified in list_of_fields_unified:
@@ -1235,12 +1399,14 @@ def merge_unified_fields(list_of_fields_unified):
                 merged_sets[unified_name].add(value)
     return { unified_name: list(merged_set) for unified_name, merged_set in merged_sets.items() }
 
+CODES_HIGHLIGHT = ['isbn13', 'isbn10', 'csbn', 'doi', 'issn', 'duxiu_ssid', 'cadal_ssno', 'oclc']
 def make_code_for_display(key, value):
     return {
         'key': key,
         'value': value,
         'masked_isbn': isbnlib.mask(value) if (key in ['isbn10', 'isbn13']) and (isbnlib.is_isbn10(value) or isbnlib.is_isbn13(value)) else '',
         'info': UNIFIED_IDENTIFIERS.get(key) or UNIFIED_CLASSIFICATIONS.get(key) or {},
+        'highlight': (key in CODES_HIGHLIGHT),
     }
 
 def get_isbnlike(text):
@@ -1264,28 +1430,28 @@ SEARCH_INDEX_SHORT_LONG_MAPPING = {
     'meta': 'aarecords_metadata',
 }
 def get_aarecord_id_prefix_is_metadata(id_prefix):
-    return (id_prefix in ['isbn', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno'])
+    return (id_prefix in ['isbn', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc', 'edsebk'])
 def get_aarecord_search_indexes_for_id_prefix(id_prefix):
     if get_aarecord_id_prefix_is_metadata(id_prefix):
         return ['aarecords_metadata']
     elif id_prefix == 'ia':
         return ['aarecords_digital_lending']
-    elif id_prefix in ['md5', 'doi']:
+    elif id_prefix in ['md5', 'doi', 'nexusstc_download']:
         return ['aarecords', 'aarecords_journals']
     else:
-        raise Exception(f"Unknown aarecord_id prefix: {aarecord_id}")
+        raise Exception(f"Unknown aarecord_id prefix: {id_prefix}")
 def get_aarecord_search_index(id_prefix, content_type):
     if get_aarecord_id_prefix_is_metadata(id_prefix):
         return 'aarecords_metadata'
     elif id_prefix == 'ia':
         return 'aarecords_digital_lending'
-    elif id_prefix in ['md5', 'doi']:
+    elif id_prefix in ['md5', 'doi', 'nexusstc_download']:
         if content_type == 'journal_article':
             return 'aarecords_journals'
         else:
             return 'aarecords'
     else:
-        raise Exception(f"Unknown aarecord_id prefix: {aarecord_id}")
+        raise Exception(f"Unknown aarecord_id prefix: {id_prefix}")
 SEARCH_INDEX_TO_ES_MAPPING = {
     'aarecords': es,
     'aarecords_journals': es_aux,
@@ -1305,13 +1471,13 @@ def all_virtshards_for_index(index_name):
 def attempt_fix_chinese_uninterrupted_text(text):
     try:
         return text.encode().decode('gbk')
-    except:
+    except Exception:
         return text
 
 def attempt_fix_chinese_filepath(filepath):
     return '/'.join([attempt_fix_chinese_uninterrupted_text(part) for part in filepath.split('/')])
 
-FILEPATH_PREFIXES = [ 'duxiu', 'ia', 'lgli', 'lgrsfic', 'lgrsnf', 'scihub', 'scimag', 'upload' ]
+FILEPATH_PREFIXES = ['duxiu', 'ia', 'lgli', 'lgrsfic', 'lgrsnf', 'scihub', 'scimag', 'upload', 'magzdb', 'nexusstc']
 def prefix_filepath(prefix, filepath):
     if prefix not in FILEPATH_PREFIXES:
         raise Exception(f"prefix_filepath: {prefix=} not in {FILEPATH_PREFIXES=}")
@@ -1768,6 +1934,12 @@ def aa_currently_seeding(metadata):
 
 @functools.cache
 def get_torrents_json_aa_currently_seeding_by_torrent_path():
+    try:
+        with engine.connect() as connection:
+            cursor.execute('SELECT 1')
+    except:
+        return {}
+
     with engine.connect() as connection:
         connection.connection.ping(reconnect=True)
         cursor = connection.connection.cursor(pymysql.cursors.DictCursor)

@@ -8,13 +8,13 @@
 
 {% block main %}
   <div class="flex flex-row h-full">
-    <div class="js-left-side p-1 md:p-4 bg-black/5 break-words space-y-4 w-[10%] md:w-[40%] min-w-[120px] max-w-[300px] overflow-hidden overflow-y-auto">
-      <div class="flex justify-between md:items-center">
-        <div class="flex flex-col md:flex-row md:items-center">
-          <a href="/" class="custom-a text-black hover:text-[#444]"><h1 class="text-md sm:text-lg leading-none font-black">{{ gettext('layout.index.header.title') }}</h1></a>
-          <a href="/scidb" class="custom-a text-sm text-black hover:text-[#444] md:ml-2">🧬&nbsp;{{ gettext('page.scidb.header') }}</a>
+    <div id="left-side-menu" class="hidden absolute md:static w-full h-full p-4 bg-white md:block md:bg-black/5 break-words space-y-4 md:w-[40%] md:min-w-[120px] md:max-w-[300px] overflow-hidden overflow-y-auto">
+      <div class="flex flex-wrap justify-between items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <a href="/" class="custom-a text-black hover:text-[#666]"><h1 class="text-lg leading-none font-black">{{ gettext('layout.index.header.title') }}</h1></a>
+          <a href="/scidb" class="custom-a text-sm text-black hover:text-[#666]">🧬&nbsp;{{ gettext('page.scidb.header') }}</a>
         </div>
-        <a href="#" class="custom-a text-sm text-black hover:text-[#444]" onclick="event.preventDefault(); document.querySelector('.js-left-side').style.display = 'none'; return false;">✕</a>
+        <button class="icon-[material-symbols--close] custom-a text-lg text-black hover:text-[#666]" onclick="toggleMenu(true)"></button>
       </div>
 
       <div class="text-sm sm:text-md">{{ gettext('page.scidb.doi', doi=doi_input) }} <a class="custom-a text-[10px] align-[1px] opacity-80 hover:opacity-100" href='/search?q="doi:{{ doi_input | urlencode }}"'>🔍</a></div>
@@ -30,6 +30,8 @@
         <li>- <a href="{{ aarecord.additional.path }}">{{ gettext('page.scidb.aa_record') }}</a></li>
         {% if download_url %}<li>- <a href="{{ download_url }}">{{ gettext('page.scidb.download') }}</a></li>{% endif %}
         {% if scihub_link %}<li>- <a href="{{ scihub_link }}" rel="noopener noreferrer nofollow" target="_blank">{{ gettext('page.scidb.scihub') }}</a></li>{% endif %}
+        {% if nexusstc_id %}<li>- <a href="https://libstc.cc/#/stc/nid:{{ nexusstc_id }}" rel="noopener noreferrer nofollow" target="_blank">{{ gettext('page.scidb.nexusstc') }}</a></li>{% endif %}
+        {% if ipfs_url %}<li>- <a href="{{ ipfs_url }}" rel="noopener noreferrer nofollow" target="_blank">{{ gettext('page.md5.box.download.ipfs_gateway', num=1) }}</a></li>{% endif %}
         <li>- <a href="https://doi.org/{{ doi_input }}" rel="noopener noreferrer nofollow" target="_blank">doi.org</a></li>
       </ul>
 
@@ -44,10 +46,35 @@
 
       <div class="text-xs text-gray-500">{{ gettext('page.scidb.refresh', a_refresh=(' href="javascript:window.location.reload()" ' | safe)) }}</div>
     </div>
+
+    <div id="toggled-menu" class="md:hidden absolute flex flex-row gap-2 justify-center flex-wrap items-center bg-white bg-blend-normal left-1 bottom-1 p-2 rounded">
+      <a href="/" class="custom-a text-black hover:text-[#666]"><h1 class="text-md sm:text-lg leading-none font-black text-center">{{ gettext('layout.index.header.title') }}</h1></a>
+      <a href="/scidb" class="custom-a text-sm text-black hover:text-[#666]">🧬&nbsp;{{ gettext('page.scidb.header') }}</a>
+      <button class="icon-[material-symbols--open-in-full] text-sm cursor-pointer hover:text-[#666]" onclick="toggleMenu(false)"></button>
+    </div>
+    <script>
+      function toggleMenu(hideLeftSide) {
+        const leftSide = document.querySelector('#left-side-menu');
+        const toggleMenu = document.querySelector('#toggled-menu');
+        if (hideLeftSide) {
+          leftSide.classList.replace('md:block', 'md:hidden');
+          leftSide.classList.add('hidden');
+          toggleMenu.classList.remove('md:hidden', 'hidden');
+        } else {
+          leftSide.classList.replace('md:hidden', 'md:block');
+          leftSide.classList.remove('hidden');
+          toggleMenu.classList.add('md:hidden', 'hidden');
+        }
+      }
+    </script>
+
     {% if pdf_url %}
       <iframe src="/pdfjs/web/viewer.html?file={{ pdf_url | urlencode }}" title="webviewer" frameborder="0" class="w-full"></iframe>
     {% elif scihub_link %}
+      <script>toggleMenu(true);</script>
       <iframe class="w-full" src="{{ scihub_link }}">
+    {% elif ipfs_url %}
+      <iframe class="w-full" src="{{ ipfs_url }}">
     {% else %}
       <div class="p-8">{{ gettext('page.scidb.no_preview_new', a_path=((' href="' + aarecord.additional.path + '"') | safe)) }}</div>
     {% endif %}

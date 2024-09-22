@@ -3,9 +3,7 @@
 {% block title %}{{ gettext('page.account.logged_out.title') }}{% endblock %}
 
 {% block body %}
-  <div lang="en">
-    <p class="mb-4">
-      {{ gettext('page.login.please', a_account=(' href="/account" ' | safe)) }}
-    </p>
-  </div>
+  <p class="mb-4">
+    {{ gettext('page.login.please', a_account=(' href="/account" ' | safe)) }}
+  </p>
 {% endblock %}

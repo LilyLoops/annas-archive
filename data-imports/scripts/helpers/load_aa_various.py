@@ -62,6 +62,6 @@ for json_file_chunk in more_itertools.ichunked(json_tar_file, 10000):
     db.commit()
 
 for ia_id_chunk in more_itertools.ichunked(thumbs_set, 100000):
-    print(f"Saving leftover chunk from thumbs...")
+    print("Saving leftover chunk from thumbs...")
     cursor.executemany("INSERT IGNORE INTO aa_ia_2023_06_metadata (ia_id, has_thumb, json) VALUES (%s, 1, NULL);", [(ia_id,) for ia_id in ia_id_chunk])
     db.commit()
