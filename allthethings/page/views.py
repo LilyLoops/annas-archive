@@ -4729,7 +4729,7 @@ def get_aarecords_elasticsearch(aarecord_ids):
                         print("Haven't reached number_of_get_aarecords_elasticsearch_exceptions limit yet, so not raising")
                         return None
         number_of_get_aarecords_elasticsearch_exceptions = 0
-        if set([aarecord_raw['_id'] for aarecord_raw in search_results_raw]) == aarecord_ids_set:
+        if set([aarecord_raw['_id'] for aarecord_raw in search_results_raw if aarecord_raw.get('found')]) == aarecord_ids_set:
             break
     return [add_additional_to_aarecord(aarecord_raw) for aarecord_raw in search_results_raw if aarecord_raw.get('found') and (aarecord_raw['_id'] not in allthethings.utils.SEARCH_FILTERED_BAD_AARECORD_IDS)]
 
