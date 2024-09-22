@@ -29,7 +29,7 @@ from allthethings.extensions import engine, es, es_aux, mariapersist_engine
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from flask_babel import gettext, force_locale, get_locale
-from config.settings import AA_EMAIL, DOWNLOADS_SECRET_KEY, AACID_SMALL_DATA_IMPORTS
+from config.settings import AA_EMAIL, DOWNLOADS_SECRET_KEY, AACID_SMALL_DATA_IMPORTS, FLASK_DEBUG
 
 import allthethings.utils
 
@@ -6566,29 +6566,18 @@ def scidb_page(doi_input):
     if allthethings.utils.doi_is_isbn(doi_input):
         return redirect(f'/search?index=journals&q="doi:{doi_input}"', code=302)
 
-    if doi_input == "10.1145/1543135.1542528":
-        pdf_url = "/pdfjs/web/compressed.tracemonkey-pldi-09.pdf"
-        download_url = "web/compressed.tracemonkey-pldi-09.pdf"
-
-        aarecord = {
-            "additional": {
-                "top_box": {
-                    "meta_information": ["Test PDF"],
-                    "title": "Test PDF",
-                },
-            },
-        }
-
+    if FLASK_DEBUG and (doi_input == "10.1145/1543135.1542528"):
         render_fields = {
             "header_active": "home/search",
             "aarecord_id": "test_pdf",
             "aarecord_id_split": "test_pdf",
-            "aarecord": aarecord,
+            "aarecord": { "additional": { "top_box": { "meta_information": ["Test PDF"], "title": "Test PDF" } } },
             "doi_input": doi_input,
-            "pdf_url": pdf_url,
-            "download_url": download_url,
+            "pdf_url": "/pdfjs/web/compressed.tracemonkey-pldi-09.pdf",
+            "download_url": "web/compressed.tracemonkey-pldi-09.pdf",
         }
         return render_template("page/scidb.html", **render_fields)
+
     fast_scidb = False
     # verified = False
     # if str(request.args.get("scidb_verified") or "") == "1":
@@ -6644,8 +6633,6 @@ def scidb_page(doi_input):
             speed = compute_download_speed(path_info['targeted_seconds']*targeted_seconds_multiplier, aarecord['file_unified_data']['filesize_best'], minimum, maximum)
             pdf_url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(False, speed, path_info['path'], aarecord['additional']['filename'], domain)
             download_url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(True, speed, path_info['path'], aarecord['additional']['filename'], domain)
-        
-        print(aarecord)
 
         render_fields = {
             "header_active": "home/search",

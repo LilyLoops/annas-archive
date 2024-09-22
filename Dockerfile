@@ -89,13 +89,9 @@ COPY --from=assets /app/public /public
 
 # Get pdf.js
 RUN curl -L https://github.com/mozilla/pdf.js/releases/download/v4.5.136/pdfjs-4.5.136-dist.zip --output /public/pdfjs-4.5.136-dist.zip
-
 RUN rm -rf /public/pdfjs
-
 RUN mkdir /public/pdfjs
-
 RUN unzip /public/pdfjs-4.5.136-dist.zip -d /public/pdfjs
-
 # Remove lines
 RUN sed -i -e '/if (fileOrigin !== viewerOrigin) {/,+2d' /public/pdfjs/web/viewer.mjs
 
