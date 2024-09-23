@@ -27,7 +27,7 @@
 
   {% if wait_seconds %}
     <div class="mb-4 font-bold text-xl">
-      {{ gettext('page.partner_download.wait_banner', wait_seconds=wait_seconds) }}
+      {{ gettext('page.partner_download.wait_banner', span_countdown=(' class="js-partner-countdown"' | safe), wait_seconds=wait_seconds) }}
     </div>
   {% endif %}
 
@@ -52,7 +52,7 @@
   {% if wait_seconds %}
     <div class="bg-[#f2f2f2] p-4 pb-3 rounded-lg mb-4">
       <ul class="pl-4">
-          <li class="list-disc">{{ gettext('page.partner_download.text1') }}</li>
+          <li class="list-disc">{{ gettext('page.partner_download.wait') }}</li>
           <li class="list-disc">{{ gettext('page.partner_download.li1') }}</li>
           <li class="list-disc">{{ gettext('page.partner_download.li2') }}</li>
           <li class="list-disc">{{ gettext('page.partner_download.li3') }}</li>
@@ -62,20 +62,23 @@
     <script>
       (function() {
         let partnerCountdown = undefined;
-        let valueCountdown = {{ wait_seconds | tojson }};
+        let countdownStart = Date.now();
+        let waitSeconds = {{ wait_seconds | tojson }};
 
         function countDown()
         {
-          valueCountdown = valueCountdown - 1;
-          document.querySelector('.js-partner-countdown').innerText = valueCountdown;
+          let secondsDelta = (Date.now() - countdownStart) / 1000;
+          let remaining = Math.floor(waitSeconds - secondsDelta);
 
-          if (valueCountdown === 0) {
+          document.querySelector('.js-partner-countdown').innerText = remaining;
+
+          if (remaining <= 0) {
             clearInterval(partnerCountdown);
             window.location.assign(window.location.href);
           }
         }
 
-        partnerCountdown = setInterval(countDown, 1000);
+        partnerCountdown = setInterval(countDown, 200);
       })();
     </script>
   {% endif %}
