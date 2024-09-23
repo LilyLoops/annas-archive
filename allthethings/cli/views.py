@@ -66,6 +66,14 @@ def nonpersistent_dbreset_internal():
     engine_multi = create_engine(mariadb_url_no_timeout, connect_args={"client_flag": CLIENT.MULTI_STATEMENTS})
     cursor = engine_multi.raw_connection().cursor()
 
+    # From https://stackoverflow.com/a/8248281
+    cursor.execute("SELECT concat('DROP TABLE IF EXISTS `', table_name, '`;') FROM information_schema.tables WHERE table_schema = 'allthethings';")
+    delete_all_query = "\n".join([item[0] for item in cursor.fetchall()])
+    if len(delete_all_query) > 0:
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
+        cursor.execute(delete_all_query)
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 1; COMMIT;")
+
     # Generated with `docker compose exec mariadb mysqldump -u allthethings -ppassword --opt --where="1 limit 100" --skip-comments --ignore-table=computed_all_md5s allthethings > mariadb_dump.sql`
     mariadb_dump = pathlib.Path(os.path.join(__location__, 'mariadb_dump.sql')).read_text()
     for sql in mariadb_dump.split('# DELIMITER FOR cli/views.py'):
