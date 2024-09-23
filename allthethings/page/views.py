@@ -6523,8 +6523,7 @@ def render_aarecord(record_id):
         if aarecords is None:
             return render_template("page/aarecord_issue.html", header_active="search"), 500
         if len(aarecords) == 0:
-            code = record_id.replace('isbn:', 'isbn13:')
-            return redirect(f'/search?q="{code}"', code=301)
+            return redirect(f'/search?q="{record_id}"', code=301)
             # return render_template("page/aarecord_not_found.html", header_active="search", not_found_field=record_id), 404
 
         aarecord = aarecords[0]
