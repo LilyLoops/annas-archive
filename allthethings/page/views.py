@@ -29,7 +29,7 @@ from allthethings.extensions import engine, es, es_aux, mariapersist_engine
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from flask_babel import gettext, force_locale, get_locale
-from config.settings import AA_EMAIL, DOWNLOADS_SECRET_KEY, AACID_SMALL_DATA_IMPORTS
+from config.settings import AA_EMAIL, DOWNLOADS_SECRET_KEY, AACID_SMALL_DATA_IMPORTS, FLASK_DEBUG
 
 import allthethings.utils
 
@@ -73,60 +73,60 @@ for language in ol_languages_json:
 # * http://localhost:8000/ol/OL2862972M
 # * http://localhost:8000/ol/OL24764643M
 # * http://localhost:8000/ol/OL7002375M
-# * http://localhost:8000/db/lgrsnf/288054.json
-# * http://localhost:8000/db/lgrsnf/3175616.json
-# * http://localhost:8000/db/lgrsnf/2933905.json
-# * http://localhost:8000/db/lgrsnf/1125703.json
-# * http://localhost:8000/db/lgrsnf/59.json
-# * http://localhost:8000/db/lgrsnf/1195487.json
-# * http://localhost:8000/db/lgrsnf/1360257.json
-# * http://localhost:8000/db/lgrsnf/357571.json
-# * http://localhost:8000/db/lgrsnf/2425562.json
-# * http://localhost:8000/db/lgrsnf/3354081.json
-# * http://localhost:8000/db/lgrsnf/3357578.json
-# * http://localhost:8000/db/lgrsnf/3357145.json
-# * http://localhost:8000/db/lgrsnf/2040423.json
-# * http://localhost:8000/db/lgrsfic/1314135.json
-# * http://localhost:8000/db/lgrsfic/25761.json
-# * http://localhost:8000/db/lgrsfic/2443846.json
-# * http://localhost:8000/db/lgrsfic/2473252.json
-# * http://localhost:8000/db/lgrsfic/2340232.json
-# * http://localhost:8000/db/lgrsfic/1122239.json
-# * http://localhost:8000/db/lgrsfic/6862.json
-# * http://localhost:8000/db/lgli/100.json
-# * http://localhost:8000/db/lgli/1635550.json
-# * http://localhost:8000/db/lgli/94069002.json
-# * http://localhost:8000/db/lgli/40122.json
-# * http://localhost:8000/db/lgli/21174.json
-# * http://localhost:8000/db/lgli/91051161.json
-# * http://localhost:8000/db/lgli/733269.json
-# * http://localhost:8000/db/lgli/156965.json
-# * http://localhost:8000/db/lgli/10000000.json
-# * http://localhost:8000/db/lgli/933304.json
-# * http://localhost:8000/db/lgli/97559799.json
-# * http://localhost:8000/db/lgli/3756440.json
-# * http://localhost:8000/db/lgli/91128129.json
-# * http://localhost:8000/db/lgli/44109.json
-# * http://localhost:8000/db/lgli/2264591.json
-# * http://localhost:8000/db/lgli/151611.json
-# * http://localhost:8000/db/lgli/1868248.json
-# * http://localhost:8000/db/lgli/1761341.json
-# * http://localhost:8000/db/lgli/4031847.json
-# * http://localhost:8000/db/lgli/2827612.json
-# * http://localhost:8000/db/lgli/2096298.json
-# * http://localhost:8000/db/lgli/96751802.json
-# * http://localhost:8000/db/lgli/5064830.json
-# * http://localhost:8000/db/lgli/1747221.json
-# * http://localhost:8000/db/lgli/1833886.json
-# * http://localhost:8000/db/lgli/3908879.json
-# * http://localhost:8000/db/lgli/41752.json
-# * http://localhost:8000/db/lgli/97768237.json
-# * http://localhost:8000/db/lgli/4031335.json
-# * http://localhost:8000/db/lgli/1842179.json
-# * http://localhost:8000/db/lgli/97562793.json
-# * http://localhost:8000/db/lgli/4029864.json
-# * http://localhost:8000/db/lgli/2834701.json
-# * http://localhost:8000/db/lgli/97562143.json
+# * http://localhost:8000/db/raw/lgrsnf/288054.json
+# * http://localhost:8000/db/raw/lgrsnf/3175616.json
+# * http://localhost:8000/db/raw/lgrsnf/2933905.json
+# * http://localhost:8000/db/raw/lgrsnf/1125703.json
+# * http://localhost:8000/db/raw/lgrsnf/59.json
+# * http://localhost:8000/db/raw/lgrsnf/1195487.json
+# * http://localhost:8000/db/raw/lgrsnf/1360257.json
+# * http://localhost:8000/db/raw/lgrsnf/357571.json
+# * http://localhost:8000/db/raw/lgrsnf/2425562.json
+# * http://localhost:8000/db/raw/lgrsnf/3354081.json
+# * http://localhost:8000/db/raw/lgrsnf/3357578.json
+# * http://localhost:8000/db/raw/lgrsnf/3357145.json
+# * http://localhost:8000/db/raw/lgrsnf/2040423.json
+# * http://localhost:8000/db/raw/lgrsfic/1314135.json
+# * http://localhost:8000/db/raw/lgrsfic/25761.json
+# * http://localhost:8000/db/raw/lgrsfic/2443846.json
+# * http://localhost:8000/db/raw/lgrsfic/2473252.json
+# * http://localhost:8000/db/raw/lgrsfic/2340232.json
+# * http://localhost:8000/db/raw/lgrsfic/1122239.json
+# * http://localhost:8000/db/raw/lgrsfic/6862.json
+# * http://localhost:8000/db/raw/lgli/100.json
+# * http://localhost:8000/db/raw/lgli/1635550.json
+# * http://localhost:8000/db/raw/lgli/94069002.json
+# * http://localhost:8000/db/raw/lgli/40122.json
+# * http://localhost:8000/db/raw/lgli/21174.json
+# * http://localhost:8000/db/raw/lgli/91051161.json
+# * http://localhost:8000/db/raw/lgli/733269.json
+# * http://localhost:8000/db/raw/lgli/156965.json
+# * http://localhost:8000/db/raw/lgli/10000000.json
+# * http://localhost:8000/db/raw/lgli/933304.json
+# * http://localhost:8000/db/raw/lgli/97559799.json
+# * http://localhost:8000/db/raw/lgli/3756440.json
+# * http://localhost:8000/db/raw/lgli/91128129.json
+# * http://localhost:8000/db/raw/lgli/44109.json
+# * http://localhost:8000/db/raw/lgli/2264591.json
+# * http://localhost:8000/db/raw/lgli/151611.json
+# * http://localhost:8000/db/raw/lgli/1868248.json
+# * http://localhost:8000/db/raw/lgli/1761341.json
+# * http://localhost:8000/db/raw/lgli/4031847.json
+# * http://localhost:8000/db/raw/lgli/2827612.json
+# * http://localhost:8000/db/raw/lgli/2096298.json
+# * http://localhost:8000/db/raw/lgli/96751802.json
+# * http://localhost:8000/db/raw/lgli/5064830.json
+# * http://localhost:8000/db/raw/lgli/1747221.json
+# * http://localhost:8000/db/raw/lgli/1833886.json
+# * http://localhost:8000/db/raw/lgli/3908879.json
+# * http://localhost:8000/db/raw/lgli/41752.json
+# * http://localhost:8000/db/raw/lgli/97768237.json
+# * http://localhost:8000/db/raw/lgli/4031335.json
+# * http://localhost:8000/db/raw/lgli/1842179.json
+# * http://localhost:8000/db/raw/lgli/97562793.json
+# * http://localhost:8000/db/raw/lgli/4029864.json
+# * http://localhost:8000/db/raw/lgli/2834701.json
+# * http://localhost:8000/db/raw/lgli/97562143.json
 # * http://localhost:8000/isbndb/9789514596933
 # * http://localhost:8000/isbndb/9780000000439
 # * http://localhost:8000/isbndb/9780001055506
@@ -507,7 +507,6 @@ def get_stats_data():
             'upload': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
             'magzdb': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
             'nexusstc': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
-            'edsebk': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
         }
         for bucket in stats_data_es['responses'][2]['aggregations']['search_record_sources']['buckets']:
             stats_by_group[bucket['key']] = {
@@ -577,6 +576,22 @@ def torrent_group_data_from_file_path(file_path):
     if 'nexusstc' in file_path:
         group = 'nexusstc'
     if 'ebscohost_records' in file_path:
+        group = 'other_metadata'
+    if 'gbook_records' in file_path:
+        group = 'other_metadata'
+    if 'rgb_records' in file_path:
+        group = 'other_metadata'
+    if 'trantor_records' in file_path:
+        group = 'other_metadata'
+    if 'libby_records' in file_path:
+        group = 'other_metadata'
+    if 'isbngrp_records' in file_path:
+        group = 'other_metadata'
+    if 'goodreads_records' in file_path:
+        group = 'other_metadata'
+    if 'cerlalc_records' in file_path:
+        group = 'other_metadata'
+    if 'czech_oo42hcks_records' in file_path:
         group = 'other_metadata'
 
     return { 'group': group, 'aac_meta_group': aac_meta_group }
@@ -1299,24 +1314,6 @@ def get_aac_zlib3_book_dicts(session, key, values):
         aac_zlib3_book_dicts.append(add_comments_to_dict(aac_zlib3_book_dict, zlib_book_dict_comments))
     return aac_zlib3_book_dicts
 
-@page.get("/db/zlib/<int:zlib_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def zlib_book_json(zlib_id):
-    with Session(engine) as session:
-        zlib_book_dicts = get_zlib_book_dicts(session, "zlibrary_id", [zlib_id])
-        if len(zlib_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(zlib_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-@page.get("/db/aac_zlib3/<int:zlib_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_zlib3_book_json(zlib_id):
-    with Session(engine) as session:
-        aac_zlib3_book_dicts = get_aac_zlib3_book_dicts(session, "zlibrary_id", [zlib_id])
-        if len(aac_zlib3_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_zlib3_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 def extract_list_from_ia_json_field(ia_record_dict, key):
     val = ia_record_dict['json'].get('metadata', {}).get(key, [])
     if isinstance(val, str):
@@ -1593,15 +1590,6 @@ def get_ia_record_dicts(session, key, values):
         ia_record_dicts.append(add_comments_to_dict(ia_record_dict, ia_record_dict_comments))
 
     return ia_record_dicts
-
-@page.get("/db/ia/<string:ia_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def ia_record_json(ia_id):
-    with Session(engine) as session:
-        ia_record_dicts = get_ia_record_dicts(session, "ia_id", [ia_id])
-        if len(ia_record_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(ia_record_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 def extract_ol_str_field(field):
     if field is None:
@@ -1966,15 +1954,6 @@ def get_ol_book_dicts_by_annas_archive_md5(session, annas_archive_md5s):
                 retval[annas_archive_md5].append(ol_book_dict)
         return dict(retval)
 
-@page.get("/db/ol/<string:ol_edition>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def ol_book_json(ol_edition):
-    with Session(engine) as session:
-        ol_book_dicts = get_ol_book_dicts(session, "ol_edition", [ol_edition])
-        if len(ol_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(ol_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 def get_lgrsnf_book_dicts(session, key, values):
     if len(values) == 0:
         return []
@@ -2118,32 +2097,6 @@ def get_lgrsfic_book_dicts(session, key, values):
         lgrs_book_dicts.append(add_comments_to_dict(lgrs_book_dict, lgrs_book_dict_comments))
 
     return lgrs_book_dicts
-
-@page.get("/db/lgrs/nf/<int:lgrsnf_book_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def lgrsnf_book_json_redirect(lgrsnf_book_id):
-    return redirect(f"/db/lgrsnf/{lgrsnf_book_id}.json", code=301)
-@page.get("/db/lgrs/fic/<int:lgrsfic_book_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def lgrsfic_book_json_redirect(lgrsfic_book_id):
-    return redirect(f"/db/lgrsfic/{lgrsfic_book_id}.json", code=301)
-
-@page.get("/db/lgrsnf/<int:lgrsnf_book_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def lgrsnf_book_json(lgrsnf_book_id):
-    with Session(engine) as session:
-        lgrs_book_dicts = get_lgrsnf_book_dicts(session, "ID", [lgrsnf_book_id])
-        if len(lgrs_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(lgrs_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-@page.get("/db/lgrsfic/<int:lgrsfic_book_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def lgrsfic_book_json(lgrsfic_book_id):
-    with Session(engine) as session:
-        lgrs_book_dicts = get_lgrsfic_book_dicts(session, "ID", [lgrsfic_book_id])
-        if len(lgrs_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(lgrs_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 libgenli_elem_descr_output = None
 def libgenli_elem_descr(conn):
@@ -2588,20 +2541,6 @@ def get_lgli_file_dicts(session, key, values):
 
     return lgli_file_dicts
 
-@page.get("/db/lgli/file/<int:lgli_file_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def lgli_file_json(lgli_file_id):
-    return redirect(f"/db/lgli/{lgli_file_id}.json", code=301)
-
-@page.get("/db/lgli/<int:lgli_file_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def lgli_json(lgli_file_id):
-    with Session(engine) as session:
-        lgli_file_dicts = get_lgli_file_dicts(session, "f_id", [lgli_file_id])
-        if len(lgli_file_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(lgli_file_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 def get_isbndb_dicts(session, canonical_isbn13s):
     if len(canonical_isbn13s) == 0:
         return []
@@ -2688,16 +2627,6 @@ def get_isbndb_dicts(session, canonical_isbn13s):
 
     return isbn_dicts
 
-@page.get("/db/isbndb/<string:isbn>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def isbndb_json(isbn):
-    with Session(engine) as session:
-        isbndb_dicts = get_isbndb_dicts(session, [isbn])
-        if len(isbndb_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(isbndb_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-
 def get_scihub_doi_dicts(session, key, values):
     if len(values) == 0:
         return []
@@ -2730,16 +2659,6 @@ def get_scihub_doi_dicts(session, key, values):
         }
         scihub_doi_dicts.append(add_comments_to_dict(scihub_doi_dict, scihub_doi_dict_comments))
     return scihub_doi_dicts
-
-@page.get("/db/scihub_doi/<path:doi>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def scihub_doi_json(doi):
-    with Session(engine) as session:
-        scihub_doi_dicts = get_scihub_doi_dicts(session, 'doi', [doi])
-        if len(scihub_doi_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(scihub_doi_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 
 def oclc_get_authors_from_contributors(contributors):
     has_primary = any(contributor['isPrimary'] for contributor in contributors)
@@ -3004,15 +2923,19 @@ def get_oclc_dicts_by_isbn13(session, isbn13s):
                 retval[isbn13].append(oclc_dict)
         return dict(retval)
 
-@page.get("/db/oclc/<path:oclc>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def oclc_oclc_json(oclc):
-    with Session(engine) as session:
-        oclc_dicts = get_oclc_dicts(session, 'oclc', [oclc])
-        if len(oclc_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(oclc_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
+# Good examples:
+# select primary_id, count(*) as c, group_concat(json_extract(metadata, '$.type')) as type from annas_archive_meta__aacid__duxiu_records group by primary_id order by c desc limit 100;
+# duxiu_ssid_10000431    |        3 | "dx_20240122__books","dx_20240122__remote_files","512w_final_csv"
+# cadal_ssno_06G48911    |        2 | "cadal_table__site_journal_items","cadal_table__sa_newspaper_items"
+# cadal_ssno_01000257    |        2 | "cadal_table__site_book_collection_items","cadal_table__sa_collection_items"
+# cadal_ssno_06G48910    |        2 | "cadal_table__sa_newspaper_items","cadal_table__site_journal_items"
+# cadal_ssno_ZY297043388 |        2 | "cadal_table__sa_collection_items","cadal_table__books_aggregation"
+# cadal_ssno_01000001    |        2 | "cadal_table__books_solr","cadal_table__books_detail"
+# duxiu_ssid_11454502    |        1 | "dx_toc_db__dx_toc"
+# duxiu_ssid_10002062    |        1 | "DX_corrections240209_csv"
+# 
+# duxiu_ssid_14084714 has Miaochuan link.
+# cadal_ssno_44517971 has some <font>s.
 def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path):
     if len(values) == 0:
         return []
@@ -3557,47 +3480,6 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
 
     return duxiu_dicts
 
-# Good examples:
-# select primary_id, count(*) as c, group_concat(json_extract(metadata, '$.type')) as type from annas_archive_meta__aacid__duxiu_records group by primary_id order by c desc limit 100;
-# duxiu_ssid_10000431    |        3 | "dx_20240122__books","dx_20240122__remote_files","512w_final_csv"
-# cadal_ssno_06G48911    |        2 | "cadal_table__site_journal_items","cadal_table__sa_newspaper_items"
-# cadal_ssno_01000257    |        2 | "cadal_table__site_book_collection_items","cadal_table__sa_collection_items"
-# cadal_ssno_06G48910    |        2 | "cadal_table__sa_newspaper_items","cadal_table__site_journal_items"
-# cadal_ssno_ZY297043388 |        2 | "cadal_table__sa_collection_items","cadal_table__books_aggregation"
-# cadal_ssno_01000001    |        2 | "cadal_table__books_solr","cadal_table__books_detail"
-# duxiu_ssid_11454502    |        1 | "dx_toc_db__dx_toc"
-# duxiu_ssid_10002062    |        1 | "DX_corrections240209_csv"
-# 
-# duxiu_ssid_14084714 has Miaochuan link.
-# cadal_ssno_44517971 has some <font>s.
-# 
-@page.get("/db/duxiu_ssid/<path:duxiu_ssid>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def duxiu_ssid_json(duxiu_ssid):
-    with Session(engine) as session:
-        duxiu_dicts = get_duxiu_dicts(session, 'duxiu_ssid', [duxiu_ssid], include_deep_transitive_md5s_size_path=True)
-        if len(duxiu_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(duxiu_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-@page.get("/db/cadal_ssno/<path:cadal_ssno>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def cadal_ssno_json(cadal_ssno):
-    with Session(engine) as session:
-        duxiu_dicts = get_duxiu_dicts(session, 'cadal_ssno', [cadal_ssno], include_deep_transitive_md5s_size_path=True)
-        if len(duxiu_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(duxiu_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-@page.get("/db/duxiu_md5/<path:md5>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def duxiu_md5_json(md5):
-    with Session(engine) as session:
-        duxiu_dicts = get_duxiu_dicts(session, 'md5', [md5], include_deep_transitive_md5s_size_path=False)
-        if len(duxiu_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(duxiu_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 def upload_book_exiftool_append(newlist, record, fieldname):
     field = (record['metadata'].get('exiftool_output') or {}).get(fieldname)
     if field is None:
@@ -3849,16 +3731,6 @@ def get_aac_upload_book_dicts(session, key, values):
 
     return aac_upload_book_dicts
 
-@page.get("/db/aac_upload/<string:md5>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_upload_book_json(md5):
-    with Session(engine) as session:
-        aac_upload_book_dicts = get_aac_upload_book_dicts(session, "md5", [md5])
-        if len(aac_upload_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_upload_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-
 def get_aac_magzdb_book_dicts(session, key, values):
     if len(values) == 0:
         return []
@@ -4003,24 +3875,6 @@ def get_aac_magzdb_book_dicts(session, key, values):
         aac_magzdb_book_dict['aa_magzdb_derived']['filepath_best'] = next(iter(aac_magzdb_book_dict['aa_magzdb_derived']['filepath_multiple']), '')
         aac_magzdb_book_dicts.append(aac_magzdb_book_dict)
     return aac_magzdb_book_dicts
-
-@page.get("/db/aac_magzdb/<string:magzdb_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_magzdb_book_json(magzdb_id):
-    with Session(engine) as session:
-        aac_magzdb_book_dicts = get_aac_magzdb_book_dicts(session, "magzdb_id", [magzdb_id])
-        if len(aac_magzdb_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_magzdb_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-@page.get("/db/aac_magzdb_md5/<string:md5>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_magzdb_md5_book_json(md5):
-    with Session(engine) as session:
-        aac_magzdb_book_dicts = get_aac_magzdb_book_dicts(session, "md5", [md5])
-        if len(aac_magzdb_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_magzdb_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 def get_nexusstc_ids(ids, key):
     if type(ids) is not dict:
@@ -4713,7 +4567,7 @@ def get_aarecords_elasticsearch(aarecord_ids):
                         print("Haven't reached number_of_get_aarecords_elasticsearch_exceptions limit yet, so not raising")
                         return None
         number_of_get_aarecords_elasticsearch_exceptions = 0
-        if set([aarecord_raw['_id'] for aarecord_raw in search_results_raw]) == aarecord_ids_set:
+        if set([aarecord_raw['_id'] for aarecord_raw in search_results_raw if aarecord_raw.get('found')]) == aarecord_ids_set:
             break
     return [add_additional_to_aarecord(aarecord_raw) for aarecord_raw in search_results_raw if aarecord_raw.get('found') and (aarecord_raw['_id'] not in allthethings.utils.SEARCH_FILTERED_BAD_AARECORD_IDS)]
 
@@ -4775,9 +4629,9 @@ def aarecord_sources(aarecord):
     return list(dict.fromkeys([
         # Should match /datasets/<aarecord_source>!!
         *(['duxiu']     if aarecord['duxiu'] is not None else []),
-        *(['edsebk']    if aarecord.get('aac_edsebk') is not None else []),
+        *(['edsebk']    if (aarecord_id_split[0] == 'edsebk' and aarecord.get('aac_edsebk') is not None) else []),
         *(['ia']        if aarecord['ia_record'] is not None else []),
-        *(['isbndb']    if (aarecord_id_split[0] == 'isbn' and len(aarecord['isbndb'] or []) > 0) else []),
+        *(['isbndb']    if (aarecord_id_split[0] == 'isbndb' and len(aarecord['isbndb'] or []) > 0) else []),
         *(['lgli']      if aarecord['lgli_file'] is not None else []),
         *(['lgrs']      if aarecord['lgrsfic_book'] is not None else []),
         *(['lgrs']      if aarecord['lgrsnf_book'] is not None else []),
@@ -4812,7 +4666,7 @@ def get_aarecords_mysql(session, aarecord_ids):
     aac_zlib3_book_dicts2 = dict(('md5:' + item['md5'].lower(), item) for item in get_aac_zlib3_book_dicts(session, "md5", split_ids['md5']))
     ia_record_dicts = dict(('md5:' + item['aa_ia_file']['md5'].lower(), item) for item in get_ia_record_dicts(session, "md5", split_ids['md5']) if item.get('aa_ia_file') is not None)
     ia_record_dicts2 = dict(('ia:' + item['ia_id'], item) for item in get_ia_record_dicts(session, "ia_id", split_ids['ia']) if item.get('aa_ia_file') is None)
-    isbndb_dicts = {('isbn:' + item['ean13']): item['isbndb'] for item in get_isbndb_dicts(session, split_ids['isbn'])}
+    isbndb_dicts = {('isbndb:' + item['ean13']): item['isbndb'] for item in get_isbndb_dicts(session, split_ids['isbndb'])}
     ol_book_dicts = {('ol:' + item['ol_edition']): [item] for item in get_ol_book_dicts(session, 'ol_edition', split_ids['ol'])}
     scihub_doi_dicts = {('doi:' + item['doi']): [item] for item in get_scihub_doi_dicts(session, 'doi', split_ids['doi'])}
     oclc_dicts = {('oclc:' + item['oclc_id']): [item] for item in get_oclc_dicts(session, 'oclc', split_ids['oclc'])}
@@ -5556,7 +5410,7 @@ def get_aarecords_mysql(session, aarecord_ids):
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ia_source']
             elif 'date_ia_record_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ia_record_scrape']
-        elif aarecord_id_split[0] == 'isbn':
+        elif aarecord_id_split[0] == 'isbndb':
             if 'date_isbndb_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_isbndb_scrape']
         elif aarecord_id_split[0] == 'ol':
@@ -6079,12 +5933,15 @@ def get_additional_for_aarecord(aarecord):
                 ])),
                 format_filesize(aarecord['file_unified_data'].get('filesize_best') or 0) if aarecord['file_unified_data'].get('filesize_best') else '',
                 md5_content_type_mapping[aarecord['file_unified_data']['content_type']],
-                (aarecord['file_unified_data'].get('original_filename_best') or ''),
                 aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
-                f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbn' else '',
+                # TODO:TRANSLATE
+                f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbndb' else '',
                 f"OCLC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'oclc' else '',
                 f"DuXiu SSID {aarecord_id_split[1]}" if aarecord_id_split[0] == 'duxiu_ssid' else '',
-                f"CADAL SSNO {aarecord_id_split[1]}" if aarecord_id_split[0] == 'cadal_ssno' else '',
+                f"MagzDB {aarecord_id_split[1]}" if aarecord_id_split[0] == 'magzdb' else '',
+                f"Nexus/STC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'nexusstc' else '',
+                f"EBSCOhost edsebk {aarecord_id_split[1]}" if aarecord_id_split[0] == 'edsebk' else '',
+                (aarecord['file_unified_data'].get('original_filename_best') or ''),
             ] if item != '']),
         'title': aarecord['file_unified_data'].get('title_best') or aarecord['file_unified_data'].get('original_filename_best_name_only') or '',
         'publisher_and_edition': ", ".join([item for item in [
@@ -6382,7 +6239,7 @@ def get_additional_for_aarecord(aarecord):
                 additional['download_urls'].append(("", "", 'Bulk torrents not yet available for this file. If you have this file, help out by <a href="/faq#upload">uploading</a>.'))
             else:
                 additional['download_urls'].append(("", "", 'Bulk torrents not yet available for this file.'))
-    if aarecord_id_split[0] == 'isbn':
+    if aarecord_id_split[0] == 'isbndb':
         additional['download_urls'].append((gettext('page.md5.box.download.aa_isbn'), f'/search?q="isbn13:{aarecord_id_split[1]}"', ""))
         additional['download_urls'].append((gettext('page.md5.box.download.other_isbn'), f"https://en.wikipedia.org/wiki/Special:BookSources?isbn={aarecord_id_split[1]}", ""))
         if len(aarecord.get('isbndb') or []) > 0:
@@ -6445,7 +6302,7 @@ def isbn_page(isbn_input):
 @page.get("/isbndb/<string:isbn_input>")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def isbndb_page(isbn_input):
-    return render_aarecord(f"isbn:{isbn_input}")
+    return render_aarecord(f"isbndb:{isbn_input}")
 
 @page.get("/ol/<string:ol_input>")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -6505,8 +6362,7 @@ def render_aarecord(record_id):
         if aarecords is None:
             return render_template("page/aarecord_issue.html", header_active="search"), 500
         if len(aarecords) == 0:
-            code = record_id.replace('isbn:', 'isbn13:')
-            return redirect(f'/search?q="{code}"', code=301)
+            return redirect(f'/search?q="{record_id}"', code=301)
             # return render_template("page/aarecord_not_found.html", header_active="search", not_found_field=record_id), 404
 
         aarecord = aarecords[0]
@@ -6549,6 +6405,18 @@ def scidb_page(doi_input):
 
     if allthethings.utils.doi_is_isbn(doi_input):
         return redirect(f'/search?index=journals&q="doi:{doi_input}"', code=302)
+
+    if FLASK_DEBUG and (doi_input == "10.1145/1543135.1542528"):
+        render_fields = {
+            "header_active": "home/search",
+            "aarecord_id": "test_pdf",
+            "aarecord_id_split": "test_pdf",
+            "aarecord": { "additional": { "top_box": { "meta_information": ["Test PDF"], "title": "Test PDF" } } },
+            "doi_input": doi_input,
+            "pdf_url": "/pdfjs/web/compressed.tracemonkey-pldi-09.pdf",
+            "download_url": "web/compressed.tracemonkey-pldi-09.pdf",
+        }
+        return render_template("page/scidb.html", **render_fields)
 
     fast_scidb = False
     # verified = False
@@ -6605,7 +6473,7 @@ def scidb_page(doi_input):
             speed = compute_download_speed(path_info['targeted_seconds']*targeted_seconds_multiplier, aarecord['file_unified_data']['filesize_best'], minimum, maximum)
             pdf_url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(False, speed, path_info['path'], aarecord['additional']['filename'], domain)
             download_url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(True, speed, path_info['path'], aarecord['additional']['filename'], domain)
-        
+
         render_fields = {
             "header_active": "home/search",
             "aarecord_id": aarecord['id'],
@@ -6634,21 +6502,21 @@ def md5_json(aarecord_id):
         "id": ("before", ["File from the combined collections of Anna's Archive.",
                            "More details at https://annas-archive.se/datasets",
                            allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
-        "lgrsnf_book": ("before", ["Source data at: https://annas-archive.se/db/lgrsnf/<id>.json"]),
-        "lgrsfic_book": ("before", ["Source data at: https://annas-archive.se/db/lgrsfic/<id>.json"]),
-        "lgli_file": ("before", ["Source data at: https://annas-archive.se/db/lgli/<f_id>.json"]),
-        "zlib_book": ("before", ["Source data at: https://annas-archive.se/db/zlib/<zlibrary_id>.json"]),
-        "aac_zlib3_book": ("before", ["Source data at: https://annas-archive.se/db/aac_zlib3/<zlibrary_id>.json"]),
-        "ia_record": ("before", ["Source data at: https://annas-archive.se/db/ia/<ia_id>.json"]),
-        "isbndb": ("before", ["Source data at: https://annas-archive.se/db/isbndb/<isbn13>.json"]),
-        "ol": ("before", ["Source data at: https://annas-archive.se/db/ol/<ol_edition>.json"]),
-        "scihub_doi": ("before", ["Source data at: https://annas-archive.se/db/scihub_doi/<doi>.json"]),
-        "oclc": ("before", ["Source data at: https://annas-archive.se/db/oclc/<oclc>.json"]),
-        "duxiu": ("before", ["Source data at: https://annas-archive.se/db/duxiu_ssid/<duxiu_ssid>.json or https://annas-archive.se/db/cadal_ssno/<cadal_ssno>.json or https://annas-archive.se/db/duxiu_md5/<md5>.json"]),
-        "aac_upload": ("before", ["Source data at: https://annas-archive.se/db/aac_upload/<md5>.json"]),
-        "aac_magzdb": ("before", ["Source data at: https://annas-archive.se/db/aac_magzdb/<requested_value>.json or https://annas-archive.se/db/aac_magzdb_md5/<requested_value>.json"]),
-        "aac_nexusstc": ("before", ["Source data at: https://annas-archive.se/db/aac_nexusstc/<requested_value>.json or https://annas-archive.se/db/aac_nexusstc_download/<requested_value>.json or https://annas-archive.se/db/aac_nexusstc_md5/<requested_value>.json"]),
-        "aac_edsebk": ("before", ["Source data at: https://annas-archive.se/db/aac_edsebk/<edsebk_id>.json"]),
+        "lgrsnf_book": ("before", ["Source data at: https://annas-archive.se/db/raw/lgrsnf/<id>.json"]),
+        "lgrsfic_book": ("before", ["Source data at: https://annas-archive.se/db/raw/lgrsfic/<id>.json"]),
+        "lgli_file": ("before", ["Source data at: https://annas-archive.se/db/raw/lgli/<f_id>.json"]),
+        "zlib_book": ("before", ["Source data at: https://annas-archive.se/db/raw/zlib/<zlibrary_id>.json"]),
+        "aac_zlib3_book": ("before", ["Source data at: https://annas-archive.se/db/raw/aac_zlib3/<zlibrary_id>.json"]),
+        "ia_record": ("before", ["Source data at: https://annas-archive.se/db/raw/ia/<ia_id>.json"]),
+        "isbndb": ("before", ["Source data at: https://annas-archive.se/db/raw/isbndb/raw/<isbn13>.json"]),
+        "ol": ("before", ["Source data at: https://annas-archive.se/db/raw/ol/<ol_edition>.json"]),
+        "scihub_doi": ("before", ["Source data at: https://annas-archive.se/db/raw/scihub_doi/<doi>.json"]),
+        "oclc": ("before", ["Source data at: https://annas-archive.se/db/raw/oclc/<oclc>.json"]),
+        "duxiu": ("before", ["Source data at: https://annas-archive.se/db/raw/duxiu_ssid/<duxiu_ssid>.json or https://annas-archive.se/db/raw/cadal_ssno/<cadal_ssno>.json or https://annas-archive.se/db/raw/duxiu_md5/<md5>.json"]),
+        "aac_upload": ("before", ["Source data at: https://annas-archive.se/db/raw/aac_upload/<md5>.json"]),
+        "aac_magzdb": ("before", ["Source data at: https://annas-archive.se/db/raw/aac_magzdb/raw/<requested_value>.json or https://annas-archive.se/db/raw/aac_magzdb_md5/<requested_value>.json"]),
+        "aac_nexusstc": ("before", ["Source data at: https://annas-archive.se/db/raw/aac_nexusstc/<requested_value>.json or https://annas-archive.se/db/raw/aac_nexusstc_download/<requested_value>.json or https://annas-archive.se/db/raw/aac_nexusstc_md5/<requested_value>.json"]),
+        "aac_edsebk": ("before", ["Source data at: https://annas-archive.se/db/raw/aac_edsebk/<edsebk_id>.json"]),
         "file_unified_data": ("before", ["Combined data by Anna's Archive from the various source collections, attempting to get pick the best field where possible."]),
         "ipfs_infos": ("before", ["Data about the IPFS files."]),
         "search_only_fields": ("before", ["Data that is used during searching."]),
@@ -6660,6 +6528,59 @@ def md5_json(aarecord_id):
     aarecord['additional'].pop('slow_partner_urls')
 
     return allthethings.utils.nice_json(aarecord), {'Content-Type': 'text/json; charset=utf-8'}
+
+@page.get("/db/raw/<path:raw_path>.json")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def db_raw_json(raw_path):
+    with Session(engine) as session:
+        raw_path_split = raw_path.split('/', 1)
+
+        if raw_path_split[0] == 'zlib':
+            result_dicts = get_zlib_book_dicts(session, "zlibrary_id", [raw_path_split[1]])
+        elif raw_path_split[0] == 'aac_zlib3':
+            result_dicts = get_aac_zlib3_book_dicts(session, "zlibrary_id", [raw_path_split[1]])
+        elif raw_path_split[0] == 'ia':
+            result_dicts = get_ia_record_dicts(session, "ia_id", [raw_path_split[1]])
+        elif raw_path_split[0] == 'ol':
+            result_dicts = get_ol_book_dicts(session, "ol_edition", [raw_path_split[1]])
+        elif raw_path_split[0] == 'lgrsnf':
+            result_dicts = get_lgrsnf_book_dicts(session, "ID", [raw_path_split[1]])
+        elif raw_path_split[0] == 'lgrsfic':
+            result_dicts = get_lgrsfic_book_dicts(session, "ID", [raw_path_split[1]])
+        elif raw_path_split[0] == 'lgli':
+            result_dicts = get_lgli_file_dicts(session, "f_id", [raw_path_split[1]])
+        elif raw_path_split[0] == 'isbndb':
+            result_dicts = get_isbndb_dicts(session, [raw_path_split[1]])
+        elif raw_path_split[0] == 'scihub_doi':
+            result_dicts = get_scihub_doi_dicts(session, 'doi', [raw_path_split[1]])
+        elif raw_path_split[0] == 'oclc':
+            result_dicts = get_oclc_dicts(session, 'oclc', [raw_path_split[1]])
+        elif raw_path_split[0] == 'duxiu_ssid':
+            result_dicts = get_duxiu_dicts(session, 'duxiu_ssid', [raw_path_split[1]], include_deep_transitive_md5s_size_path=True)
+        elif raw_path_split[0] == 'cadal_ssno':
+            result_dicts = get_duxiu_dicts(session, 'cadal_ssno', [raw_path_split[1]], include_deep_transitive_md5s_size_path=True)
+        elif raw_path_split[0] == 'duxiu_md5':
+            result_dicts = get_duxiu_dicts(session, 'md5', [raw_path_split[1]], include_deep_transitive_md5s_size_path=False)
+        elif raw_path_split[0] == 'aac_upload':
+            result_dicts = get_aac_upload_book_dicts(session, "md5", [raw_path_split[1]])
+        elif raw_path_split[0] == 'aac_magzdb':
+            result_dicts = get_aac_magzdb_book_dicts(session, "magzdb_id", [raw_path_split[1]])
+        elif raw_path_split[0] == 'aac_magzdb_md5':
+            result_dicts = get_aac_magzdb_book_dicts(session, "md5", [raw_path_split[1]])
+        elif raw_path_split[0] == 'aac_nexusstc':
+            result_dicts = get_aac_nexusstc_book_dicts(session, "nexusstc_id", [raw_path_split[1]])
+        elif raw_path_split[0] == 'aac_nexusstc_download':
+            result_dicts = get_aac_nexusstc_book_dicts(session, "nexusstc_download", [raw_path_split[1]])
+        elif raw_path_split[0] == 'aac_nexusstc_md5':
+            result_dicts = get_aac_nexusstc_book_dicts(session, "md5", [raw_path_split[1]])
+        elif raw_path_split[0] == 'edsebk':
+            result_dicts = get_aac_edsebk_book_dicts(session, "edsebk_id", [raw_path_split[1]])
+        else:
+            return '{"error":"Unknown path"}', 404
+
+        if len(result_dicts) == 0:
+            return "{}", 404
+        return allthethings.utils.nice_json(result_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 # IMPORTANT: Keep in sync with api_md5_fast_download.
 @page.get("/fast_download/<string:md5_input>/<int:path_index>/<int:domain_index>")

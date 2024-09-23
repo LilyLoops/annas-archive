@@ -69,14 +69,7 @@
     </script>
 
     {% if pdf_url %}
-      <div id="pdfembed" class="w-full"></div>
-      <script>
-        (function() {
-          document.addEventListener("DOMContentLoaded", function() {
-            window.PDFObject.embed({{ pdf_url | tojson }}, "#pdfembed", {fallbackLink:true});
-          });
-        })();
-      </script>
+      <iframe src="/pdfjs/web/viewer.html?file={{ pdf_url | urlencode }}" title="webviewer" frameborder="0" class="w-full"></iframe>
     {% elif scihub_link %}
       <script>toggleMenu(true);</script>
       <iframe class="w-full" src="{{ scihub_link }}">

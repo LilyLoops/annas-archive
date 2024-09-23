@@ -102,7 +102,7 @@ def split_aarecord_ids(aarecord_ids):
     ret = {
         'md5': [],
         'ia': [],
-        'isbn': [],
+        'isbndb': [],
         'ol': [],
         'doi': [],
         'oclc': [],
@@ -120,7 +120,7 @@ def split_aarecord_ids(aarecord_ids):
 
 def path_for_aarecord_id(aarecord_id):
     aarecord_id_split = aarecord_id.split(':', 1)
-    return '/' + aarecord_id_split[0].replace('isbn', 'isbndb') + '/' + aarecord_id_split[1]
+    return '/' + aarecord_id_split[0] + '/' + aarecord_id_split[1]
 
 def validate_year(year):
     year_str = str(year)
@@ -1430,7 +1430,7 @@ SEARCH_INDEX_SHORT_LONG_MAPPING = {
     'meta': 'aarecords_metadata',
 }
 def get_aarecord_id_prefix_is_metadata(id_prefix):
-    return (id_prefix in ['isbn', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc', 'edsebk'])
+    return (id_prefix in ['isbndb', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc', 'edsebk'])
 def get_aarecord_search_indexes_for_id_prefix(id_prefix):
     if get_aarecord_id_prefix_is_metadata(id_prefix):
         return ['aarecords_metadata']

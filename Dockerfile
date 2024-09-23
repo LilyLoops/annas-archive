@@ -39,7 +39,7 @@ LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 WORKDIR /app
 
 RUN sed -i -e's/ main/ main contrib non-free archive stretch /g' /etc/apt/sources.list
-RUN apt-get update && apt-get install -y build-essential curl libpq-dev python3-dev default-libmysqlclient-dev aria2 unrar p7zip curl python3 python3-pip ctorrent mariadb-client pv rclone gcc g++ make wget git cmake ca-certificates curl gnupg sshpass p7zip-full p7zip-rar libatomic1 libglib2.0-0 pigz parallel
+RUN apt-get update && apt-get install -y build-essential curl libpq-dev python3-dev default-libmysqlclient-dev aria2 unrar unzip p7zip curl python3 python3-pip ctorrent mariadb-client pv rclone gcc g++ make wget git cmake ca-certificates curl gnupg sshpass p7zip-full p7zip-rar libatomic1 libglib2.0-0 pigz parallel
 
 # https://github.com/nodesource/distributions
 RUN mkdir -p /etc/apt/keyrings
@@ -85,7 +85,17 @@ ENV FLASK_DEBUG="${FLASK_DEBUG}" \
 
 ENV PYTHONFAULTHANDLER=1
 
+# Get pdf.js
+RUN mkdir -p /public
+RUN wget https://github.com/mozilla/pdf.js/releases/download/v4.5.136/pdfjs-4.5.136-dist.zip -O /public/pdfjs-4.5.136-dist.zip
+RUN rm -rf /public/pdfjs
+RUN mkdir /public/pdfjs
+RUN unzip /public/pdfjs-4.5.136-dist.zip -d /public/pdfjs
+# Remove lines
+RUN sed -i -e '/if (fileOrigin !== viewerOrigin) {/,+2d' /public/pdfjs/web/viewer.mjs
+
 COPY --from=assets /app/public /public
+
 COPY . .
 
 # RUN if [ "${FLASK_DEBUG}" != "true" ]; then \

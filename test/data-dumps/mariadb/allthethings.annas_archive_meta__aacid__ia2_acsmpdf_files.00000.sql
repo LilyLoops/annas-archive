@@ -3,4 +3,5 @@
 /*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
 /*!40103 SET TIME_ZONE='+00:00' */;
 INSERT INTO `annas_archive_meta__aacid__ia2_acsmpdf_files` VALUES("aacid__ia2_acsmpdf_files__20231008T203648Z__22ALUqpZVKsrofSnWVD6rW","foundationsofmar0000fahy","b6b75de1b3a330095eb7388068c1b948",0,285)
+,("aacid__ia2_acsmpdf_files__20240823T234615Z__Kxw3rjhx89g75T5rYtMPE6","humanvaluessocia0000unse_g5g1","86cc11d4e61ced2a36995b8d009ef962",285,290)
 ;

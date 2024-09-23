@@ -104,7 +104,6 @@ check-mariadb() {
 
     mydumper \
         --threads 32 \
-        --omit-from-file /app/data-imports/scripts/dump_mariadb_omit_tables.txt \
         --exit-if-broken-table-found \
         --tz-utc \
         --host mariadb \
@@ -114,10 +113,17 @@ check-mariadb() {
         --verbose 3 \
         --long-query-guard 999999 \
         --no-locks \
+        --order-by-primary \
         --outputdir /data-dumps/mariadb
+
+    # Remove first and last lines
+    mv /data-dumps/mariadb/metadata /data-dumps/mariadb/metadata-orig
+    sed '1d;$d' /data-dumps/mariadb/metadata-orig > /data-dumps/mariadb/metadata
+    rm /data-dumps/mariadb/metadata-orig
 }
 
 flask cli dbreset
+flask cli mysql_change_aarecords_codes_tables_for_check_dumps
 
 echo "elasticsearch: start"
 time check-elasticsearch

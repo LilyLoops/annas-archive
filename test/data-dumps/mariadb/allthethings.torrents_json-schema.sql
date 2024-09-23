@@ -3,5 +3,6 @@
 /*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
 /*!40103 SET TIME_ZONE='+00:00' */;
 CREATE TABLE `torrents_json` (
-  `json` longtext NOT NULL CHECK (json_valid(`json`))
+  `json` longtext NOT NULL CHECK (json_valid(`json`)),
+  PRIMARY KEY (`json`(100))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;

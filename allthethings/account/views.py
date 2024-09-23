@@ -43,7 +43,12 @@ def account_index_page():
         cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
         account = allthethings.utils.get_account_by_id(cursor, account_id)
         if account is None:
-            raise Exception("Valid account_id was not found in db!")
+            print(f"ERROR: Valid account_id was not found in db! {account_id=}")
+            return render_template(
+                "account/index.html",
+                header_active="account",
+                membership_tier_names=allthethings.utils.membership_tier_names(get_locale()),
+            )
 
         cursor.execute('SELECT membership_tier, membership_expiration, bonus_downloads, mariapersist_memberships.membership_expiration >= CURDATE() AS active FROM mariapersist_memberships WHERE account_id = %(account_id)s', { 'account_id': account_id })
         memberships = cursor.fetchall()

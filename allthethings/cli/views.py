@@ -66,6 +66,14 @@ def nonpersistent_dbreset_internal():
     engine_multi = create_engine(mariadb_url_no_timeout, connect_args={"client_flag": CLIENT.MULTI_STATEMENTS})
     cursor = engine_multi.raw_connection().cursor()
 
+    # From https://stackoverflow.com/a/8248281
+    cursor.execute("SELECT concat('DROP TABLE IF EXISTS `', table_name, '`;') FROM information_schema.tables WHERE table_schema = 'allthethings';")
+    delete_all_query = "\n".join([item[0] for item in cursor.fetchall()])
+    if len(delete_all_query) > 0:
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
+        cursor.execute(delete_all_query)
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 1; COMMIT;")
+
     # Generated with `docker compose exec mariadb mysqldump -u allthethings -ppassword --opt --where="1 limit 100" --skip-comments --ignore-table=computed_all_md5s allthethings > mariadb_dump.sql`
     mariadb_dump = pathlib.Path(os.path.join(__location__, 'mariadb_dump.sql')).read_text()
     for sql in mariadb_dump.split('# DELIMITER FOR cli/views.py'):
@@ -76,7 +84,7 @@ def nonpersistent_dbreset_internal():
         cursor.execute(sql.replace('delimiter //', '').replace('delimiter ;', '').replace('END //', 'END'))
 
     torrents_json = pathlib.Path(os.path.join(__location__, 'torrents.json')).read_text()
-    cursor.execute('DROP TABLE IF EXISTS torrents_json; CREATE TABLE torrents_json (json JSON NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; INSERT INTO torrents_json (json) VALUES (%(json)s); COMMIT', {'json': torrents_json})
+    cursor.execute('DROP TABLE IF EXISTS torrents_json; CREATE TABLE torrents_json (json JSON NOT NULL, PRIMARY KEY(json(100))) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; INSERT INTO torrents_json (json) VALUES (%(json)s); COMMIT', {'json': torrents_json})
     cursor.close()
 
     mysql_reset_aac_tables_internal()
@@ -548,7 +556,7 @@ def elastic_build_aarecords_job_init_pool():
 AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME = {
     'edsebk': 'aarecords_codes_edsebk',
     'ia': 'aarecords_codes_ia',
-    'isbn': 'aarecords_codes_isbndb',
+    'isbndb': 'aarecords_codes_isbndb',
     'ol': 'aarecords_codes_ol',
     'duxiu_ssid': 'aarecords_codes_duxiu',
     'cadal_ssno': 'aarecords_codes_duxiu',
@@ -576,8 +584,8 @@ def elastic_build_aarecords_job(aarecord_ids):
                 list(cursor.fetchall())
 
                 # Filter out records that are filtered in get_isbndb_dicts, because there are some bad records there.
-                canonical_isbn13s = [aarecord_id[len('isbn:'):] for aarecord_id in aarecord_ids if aarecord_id.startswith('isbn:')]
-                bad_isbn13_aarecord_ids = set([f"isbn:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, canonical_isbn13s) if len(isbndb_dict['isbndb']) == 0])
+                canonical_isbn13s = [aarecord_id[len('isbndb:'):] for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:')]
+                bad_isbn13_aarecord_ids = set([f"isbndb:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, canonical_isbn13s) if len(isbndb_dict['isbndb']) == 0])
 
                 # Filter out "doi:" records that already have an md5. We don't need standalone records for those.
                 dois_from_ids = [aarecord_id[4:].encode() for aarecord_id in aarecord_ids if aarecord_id.startswith('doi:')]
@@ -882,8 +890,8 @@ def elastic_build_aarecords_isbndb_internal():
                     isbn13s = set()
                     for item in batch:
                         if item['isbn10'] != "0000000000":
-                            isbn13s.add(f"isbn:{item['isbn13']}")
-                            isbn13s.add(f"isbn:{isbnlib.ean13(item['isbn10'])}")
+                            isbn13s.add(f"isbndb:{item['isbn13']}")
+                            isbn13s.add(f"isbndb:{isbnlib.ean13(item['isbn10'])}")
                     last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked(list(isbn13s), CHUNK_SIZE))
                     pbar.update(len(batch))
                     current_isbn13 = batch[-1]['isbn13']
@@ -1368,7 +1376,7 @@ def mysql_build_aarecords_codes_numbers_internal():
 
         # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
         print("Creating fresh table aarecords_codes_new")
-        cursor.execute(f'CREATE TABLE aarecords_codes_new (code VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, aarecord_id VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_LENGTH}) NOT NULL, aarecord_id_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_PREFIX_LENGTH}) NOT NULL, row_number_order_by_code BIGINT NOT NULL, dense_rank_order_by_code BIGINT NOT NULL, row_number_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, dense_rank_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, PRIMARY KEY (code, aarecord_id), INDEX aarecord_id_prefix (aarecord_id_prefix, code, aarecord_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT code, aarecord_id, SUBSTRING_INDEX(aarecord_id, ":", 1) AS aarecord_id_prefix, (ROW_NUMBER() OVER (ORDER BY code)) AS row_number_order_by_code, (DENSE_RANK() OVER (ORDER BY code)) AS dense_rank_order_by_code, (ROW_NUMBER() OVER (PARTITION BY aarecord_id_prefix ORDER BY code)) AS row_number_partition_by_aarecord_id_prefix_order_by_code, (DENSE_RANK() OVER (PARTITION BY aarecord_id_prefix ORDER BY code)) AS dense_rank_partition_by_aarecord_id_prefix_order_by_code FROM (SELECT code, aarecord_id FROM aarecords_codes_ia UNION ALL SELECT code, aarecord_id FROM aarecords_codes_isbndb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_ol UNION ALL SELECT code, aarecord_id FROM aarecords_codes_duxiu UNION ALL SELECT code, aarecord_id FROM aarecords_codes_oclc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_magzdb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_edsebk UNION ALL SELECT code, aarecord_id FROM aarecords_codes_nexusstc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_main) x')
+        cursor.execute(f'CREATE TABLE aarecords_codes_new (code VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, aarecord_id VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_LENGTH}) NOT NULL, aarecord_id_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_PREFIX_LENGTH}) NOT NULL, row_number_order_by_code BIGINT NOT NULL, dense_rank_order_by_code BIGINT NOT NULL, row_number_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, dense_rank_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, PRIMARY KEY (code, aarecord_id), INDEX aarecord_id_prefix (aarecord_id_prefix, code, aarecord_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT code, aarecord_id, SUBSTRING_INDEX(aarecord_id, ":", 1) AS aarecord_id_prefix, (ROW_NUMBER() OVER (ORDER BY code, aarecord_id)) AS row_number_order_by_code, (DENSE_RANK() OVER (ORDER BY code)) AS dense_rank_order_by_code, (ROW_NUMBER() OVER (PARTITION BY aarecord_id_prefix ORDER BY code, aarecord_id)) AS row_number_partition_by_aarecord_id_prefix_order_by_code, (DENSE_RANK() OVER (PARTITION BY aarecord_id_prefix ORDER BY code)) AS dense_rank_partition_by_aarecord_id_prefix_order_by_code FROM (SELECT code, aarecord_id FROM aarecords_codes_ia UNION ALL SELECT code, aarecord_id FROM aarecords_codes_isbndb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_ol UNION ALL SELECT code, aarecord_id FROM aarecords_codes_duxiu UNION ALL SELECT code, aarecord_id FROM aarecords_codes_oclc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_magzdb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_edsebk UNION ALL SELECT code, aarecord_id FROM aarecords_codes_nexusstc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_main) x ORDER BY code, aarecord_id')
         cursor.execute(f'CREATE TABLE aarecords_codes_prefixes_new (code_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, PRIMARY KEY (code_prefix)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT DISTINCT SUBSTRING_INDEX(code, ":", 1) AS code_prefix FROM aarecords_codes_new')
 
         cursor.execute('SELECT table_rows FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = "allthethings" and TABLE_NAME = "aarecords_codes_new" LIMIT 1')
@@ -1378,7 +1386,7 @@ def mysql_build_aarecords_codes_numbers_internal():
         if SLOW_DATA_IMPORTS:
             connection.connection.ping(reconnect=True)
             cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-            cursor.execute('SELECT MIN(correct) AS min_correct FROM (SELECT ((row_number_order_by_code = ROW_NUMBER() OVER (ORDER BY code)) AND (dense_rank_order_by_code = DENSE_RANK() OVER (ORDER BY code)) AND (row_number_partition_by_aarecord_id_prefix_order_by_code = ROW_NUMBER() OVER (PARTITION BY aarecord_id_prefix ORDER BY code)) AND (dense_rank_partition_by_aarecord_id_prefix_order_by_code = DENSE_RANK() OVER (PARTITION BY aarecord_id_prefix ORDER BY code))) AS correct FROM aarecords_codes_new ORDER BY code DESC LIMIT 10) x')
+            cursor.execute('SELECT MIN(correct) AS min_correct FROM (SELECT ((row_number_order_by_code = ROW_NUMBER() OVER (ORDER BY code, aarecord_id)) AND (dense_rank_order_by_code = DENSE_RANK() OVER (ORDER BY code)) AND (row_number_partition_by_aarecord_id_prefix_order_by_code = ROW_NUMBER() OVER (PARTITION BY aarecord_id_prefix ORDER BY code, aarecord_id)) AND (dense_rank_partition_by_aarecord_id_prefix_order_by_code = DENSE_RANK() OVER (PARTITION BY aarecord_id_prefix ORDER BY code))) AS correct FROM aarecords_codes_new ORDER BY code DESC LIMIT 10) x')
             if str(cursor.fetchone()['min_correct']) != '1':
                 raise Exception('mysql_build_aarecords_codes_numbers_internal final sanity check failed!')
 
@@ -1393,6 +1401,20 @@ def mysql_build_aarecords_codes_numbers_internal():
         cursor.execute('ALTER TABLE aarecords_codes_prefixes_new RENAME aarecords_codes_prefixes')
         cursor.execute('COMMIT')
     print(f"Done! {processed_rows=}")
+
+#################################################################################################
+# Add a better primary key to the aarecords_codes_* tables so we get better diffs in bin/check-dumps.
+#
+# ./run flask cli mysql_change_aarecords_codes_tables_for_check_dumps
+@cli.cli.command('mysql_change_aarecords_codes_tables_for_check_dumps')
+def mysql_change_aarecords_codes_tables_for_check_dumps():
+    with engine.connect() as connection:
+        connection.connection.ping(reconnect=True)
+        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
+        for table_name in list(dict.fromkeys(AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME.values())):
+            cursor.execute(f"ALTER TABLE {table_name} DROP PRIMARY KEY, DROP COLUMN id, ADD PRIMARY KEY(code, aarecord_id);")
+
+    print(f"Done!")
 
 
 #################################################################################################
