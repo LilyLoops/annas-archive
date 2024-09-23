@@ -4,4 +4,5 @@
 /*!40103 SET TIME_ZONE='+00:00' */;
 INSERT INTO `annas_archive_meta__aacid__ebscohost_records` VALUES("aacid__ebscohost_records__20240823T161730Z__F7fhxHqSyepTMg3djDKBdy","3698744",NULL,0,1155)
 ,("aacid__ebscohost_records__20240823T161732Z__d4AU7eCAqgN8XtU6hL25Qs","1509715",NULL,1155,2132)
+,("aacid__ebscohost_records__20240823T161746Z__dNKnzFACHDdK3LMXwKKT7g","252634",NULL,3287,2581)
 ;

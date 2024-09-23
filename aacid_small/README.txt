@@ -8,3 +8,7 @@ docker exec -it web bash -c 'for f in /app/aacid_small/*.jsonl; do echo "Process
 - DMCA record: 28406459
 - Spam record: 28403296
 - Chinese collection record: 29212943
+
+# Connections
+- aacid__nexusstc_records__20240516T173540Z__eRfYDiAsk9u9RsE1T4LRiq => ISBN 9780080123011 => OCLC 260
+- aacid__ebscohost_records__20240823T161746Z__dNKnzFACHDdK3LMXwKKT7g => ISBN 9789004128101 => aacid__ia2_records__20240701T024508Z__fXwMUwGaE2u4Qi3vLi6hXe and aacid__ia2_acsmpdf_files__20240823T234615Z__Kxw3rjhx89g75T5rYtMPE6
