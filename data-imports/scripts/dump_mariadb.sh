@@ -12,7 +12,7 @@ cd /temp-dir
 rm -rf /exports/mariadb
 mkdir /exports/mariadb
 cd /exports/mariadb
-mydumper --threads 32 --omit-from-file /app/data-imports/scripts/dump_mariadb_omit_tables.txt --exit-if-broken-table-found --tz-utc --host ${MARIADB_HOST:-mariadb} --user allthethings --password password --database allthethings --compress --verbose 3 --long-query-guard 999999 --no-locks --compress-protocol --outputdir /exports/mariadb
+mydumper --threads 32 --omit-from-file /app/data-imports/scripts/dump_mariadb_omit_tables.txt --exit-if-broken-table-found --tz-utc --host ${MARIADB_HOST:-mariadb} --user allthethings --password password --database allthethings --compress --verbose 3 --long-query-guard 999999 --no-locks --compress-protocol --order-by-primary --outputdir /exports/mariadb
 
 # Not as acutely necessary to verify gzip integrity here (compared to elasticdump scripts), but might as well.
 time ls *.gz | parallel 'echo {}: $(zcat {} | wc -l)'

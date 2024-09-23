@@ -1402,6 +1402,20 @@ def mysql_build_aarecords_codes_numbers_internal():
         cursor.execute('COMMIT')
     print(f"Done! {processed_rows=}")
 
+#################################################################################################
+# Add a better primary key to the aarecords_codes_* tables so we get better diffs in bin/check-dumps.
+#
+# ./run flask cli mysql_change_aarecords_codes_tables_for_check_dumps
+@cli.cli.command('mysql_change_aarecords_codes_tables_for_check_dumps')
+def mysql_change_aarecords_codes_tables_for_check_dumps():
+    with engine.connect() as connection:
+        connection.connection.ping(reconnect=True)
+        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
+        for table_name in list(dict.fromkeys(AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME.values())):
+            cursor.execute(f"ALTER TABLE {table_name} DROP PRIMARY KEY, DROP COLUMN id, ADD PRIMARY KEY(code, aarecord_id);")
+
+    print(f"Done!")
+
 
 #################################################################################################
 # ./run flask cli mariapersist_reset
