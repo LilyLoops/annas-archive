@@ -93,7 +93,7 @@
     <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.journals.filesize | filesizeformat)) }}</li>
     <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.journals.aa_count | numberformat), percent=((stats_data.stats_by_group.journals.aa_count/(stats_data.stats_by_group.journals.count+1)*100.0) | decimalformat)) }}</li>
     <li class="list-disc"><a href="/torrents#scihub">{{ gettext('page.datasets.scihub.aa_torrents') }}</a></li>
-    <li class="list-disc"><a href="/db/scihub_doi/10.5822/978-1-61091-843-5_15.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
+    <li class="list-disc"><a href="/db/raw/scihub_doi/10.5822/978-1-61091-843-5_15.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
     <li class="list-disc"><a href="https://sci-hub.ru/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.scihub.title')) }}</a></li>
     <li class="list-disc"><a href="https://sci-hub.ru/database">{{ gettext('page.datasets.scihub.link_metadata') }}</a></li>
     <li class="list-disc"><a href="https://libgen.rs/scimag/repository_torrent/">{{ gettext('page.datasets.scihub.link_libgen_rs_torrents') }}</a></li>
