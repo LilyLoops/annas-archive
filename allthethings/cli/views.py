@@ -523,7 +523,7 @@ def elastic_reset_aarecords_internal():
 # These tables always need to be created new if they don't exist yet.
 # They should only be used when doing a full refresh, but things will
 # crash if they don't exist.
-def new_tables_internal(codes_table_name):
+def new_tables_internal(codes_table_name, codes_for_lookup_table_name=None):
     with Session(engine) as session:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
@@ -531,6 +531,11 @@ def new_tables_internal(codes_table_name):
         cursor.execute(f'DROP TABLE IF EXISTS {codes_table_name}')
         cursor.execute(f'CREATE TABLE {codes_table_name} (id BIGINT NOT NULL AUTO_INCREMENT, code VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, aarecord_id VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_LENGTH}) NOT NULL, PRIMARY KEY (id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
         cursor.execute('COMMIT')
+        if codes_for_lookup_table_name is not None:
+            print(f"Creating fresh table {codes_for_lookup_table_name}")
+            cursor.execute(f'DROP TABLE IF EXISTS {codes_for_lookup_table_name}')
+            cursor.execute(f'CREATE TABLE {codes_for_lookup_table_name} (code VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, aarecord_id VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_LENGTH}) NOT NULL, PRIMARY KEY (code, aarecord_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
+            cursor.execute('COMMIT')
 
 #################################################################################################
 # ./run flask cli update_aarecords_index_mappings
@@ -566,6 +571,11 @@ AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME = {
     'md5': 'aarecords_codes_main',
     'doi': 'aarecords_codes_main',
     'nexusstc_download': 'aarecords_codes_main',
+}
+
+AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
+    'oclc': { 'table_name': 'aarecords_codes_oclc_for_lookup', 'code_names': 'isbn13' },
+    'edsebk': { 'table_name': 'aarecords_codes_edsebk_for_lookup', 'code_names': 'isbn13' },
 }
 
 def elastic_build_aarecords_job(aarecord_ids):
@@ -604,8 +614,6 @@ def elastic_build_aarecords_job(aarecord_ids):
                 aarecords = get_aarecords_mysql(session, aarecord_ids)
                 # print(f"[{os.getpid()}] elastic_build_aarecords_job got aarecords {len(aarecords)}")
                 aarecords_all_md5_insert_data = []
-                isbn13_oclc_insert_data = []
-                isbn13_edsebk_insert_data = []
                 nexusstc_cid_only_insert_data = []
                 temp_md5_with_doi_seen_insert_data = []
                 aarecords_codes_insert_data_by_codes_table_name = collections.defaultdict(list)
@@ -630,22 +638,6 @@ def elastic_build_aarecords_job(aarecord_ids):
                         })
                         for doi in aarecord['file_unified_data']['identifiers_unified'].get('doi') or []:
                             temp_md5_with_doi_seen_insert_data.append({ "doi": doi.encode() })
-                    elif aarecord_id_split[0] == 'oclc':
-                        isbn13s = aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []
-                        if len(isbn13s) < 10: # Remove excessive lists.
-                            for isbn13 in isbn13s:
-                                isbn13_oclc_insert_data.append({
-                                    'isbn13': isbn13,
-                                    'oclc_id': int(aarecord_id_split[1]),
-                                })
-                    elif aarecord_id_split[0] == 'edsebk':
-                        isbn13s = aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []
-                        if len(isbn13s) < 10: # Remove excessive lists.
-                            for isbn13 in isbn13s:
-                                isbn13_edsebk_insert_data.append({
-                                    'isbn13': isbn13,
-                                    'edsebk_id': int(aarecord_id_split[1]),
-                                })
                     elif aarecord_id_split[0] == 'nexusstc':
                         if len(aarecord['aac_nexusstc']['aa_nexusstc_derived']['cid_only_links']) > 0:
                             nexusstc_cid_only_insert_data.append({ "nexusstc_id": aarecord['aac_nexusstc']['id'] })
@@ -657,13 +649,18 @@ def elastic_build_aarecords_job(aarecord_ids):
                     codes = []
                     for code_name in aarecord['file_unified_data']['identifiers_unified'].keys():
                         for code_value in aarecord['file_unified_data']['identifiers_unified'][code_name]:
-                            codes.append(f"{code_name}:{code_value}")
+                            codes.append((code_name, code_value))
                     for code_name in aarecord['file_unified_data']['classifications_unified'].keys():
                         for code_value in aarecord['file_unified_data']['classifications_unified'][code_name]:
-                            codes.append(f"{code_name}:{code_value}")
+                            codes.append((code_name, code_value))
                     for code in codes:
+                        code_text = f"{code[0]}:{code[1]}".encode()
                         codes_table_name = AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME[aarecord_id_split[0]]
-                        aarecords_codes_insert_data_by_codes_table_name[codes_table_name].append({ 'code': code.encode(), 'aarecord_id': aarecord['id'].encode() })
+                        aarecords_codes_insert_data_by_codes_table_name[codes_table_name].append({ 'code': code_text, 'aarecord_id': aarecord['id'].encode() })
+                        if aarecord_id_split[0] in AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP:
+                            if code[0] in AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP[aarecord_id_split[0]]['code_names']:
+                                codes_for_lookup_table_name = AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP[aarecord_id_split[0]]['table_name']
+                                aarecords_codes_insert_data_by_codes_table_name[codes_for_lookup_table_name].append({ 'code': code_text, 'aarecord_id': aarecord['id'].encode() })
 
                 # print(f"[{os.getpid()}] elastic_build_aarecords_job finished for loop")
                     
@@ -694,22 +691,6 @@ def elastic_build_aarecords_job(aarecord_ids):
                     # WARNING: when trying to optimize this (e.g. if you see this in SHOW PROCESSLIST) know that this is a bit of a bottleneck, but
                     # not a huge one. Commenting out all these inserts doesn't speed up the job by that much.
                     cursor.executemany('INSERT DELAYED INTO aarecords_all_md5 (md5, json_compressed) VALUES (%(md5)s, %(json_compressed)s)', aarecords_all_md5_insert_data)
-                    cursor.execute('COMMIT')
-
-                if len(isbn13_oclc_insert_data) > 0:
-                    session.connection().connection.ping(reconnect=True)
-                    # Avoiding IGNORE / ON DUPLICATE KEY here because of locking.
-                    # WARNING: when trying to optimize this (e.g. if you see this in SHOW PROCESSLIST) know that this is a bit of a bottleneck, but
-                    # not a huge one. Commenting out all these inserts doesn't speed up the job by that much.
-                    cursor.executemany('INSERT DELAYED INTO isbn13_oclc (isbn13, oclc_id) VALUES (%(isbn13)s, %(oclc_id)s)', isbn13_oclc_insert_data)
-                    cursor.execute('COMMIT')
-
-                if len(isbn13_edsebk_insert_data) > 0:
-                    session.connection().connection.ping(reconnect=True)
-                    # Avoiding IGNORE / ON DUPLICATE KEY here because of locking.
-                    # WARNING: when trying to optimize this (e.g. if you see this in SHOW PROCESSLIST) know that this is a bit of a bottleneck, but
-                    # not a huge one. Commenting out all these inserts doesn't speed up the job by that much.
-                    cursor.executemany('INSERT DELAYED INTO isbn13_edsebk (isbn13, edsebk_id) VALUES (%(isbn13)s, %(edsebk_id)s)', isbn13_edsebk_insert_data)
                     cursor.execute('COMMIT')
 
                 if len(nexusstc_cid_only_insert_data) > 0:
@@ -775,15 +756,15 @@ def elastic_build_aarecords_all():
     elastic_build_aarecords_all_internal()
 
 def elastic_build_aarecords_all_internal():
-    elastic_build_aarecords_oclc_internal() # OCLC first since we use `isbn13_oclc` table in later steps.
-    elastic_build_aarecords_edsebk_internal() # First since we use `isbn13_edsebk` table in later steps.
+    elastic_build_aarecords_oclc_internal()
+    elastic_build_aarecords_edsebk_internal()
     elastic_build_aarecords_magzdb_internal()
-    elastic_build_aarecords_nexusstc_internal() # Nexus before 'main' since we use `nexusstc_cid_only` table in 'main'.
+    elastic_build_aarecords_nexusstc_internal()
     elastic_build_aarecords_ia_internal()
     elastic_build_aarecords_isbndb_internal()
     elastic_build_aarecords_ol_internal()
     elastic_build_aarecords_duxiu_internal()
-    elastic_build_aarecords_main_internal()
+    elastic_build_aarecords_main_internal() # Main depends on tables generated above, so we do it last.
     elastic_build_aarecords_forcemerge_internal()
 
 
@@ -1011,13 +992,7 @@ def elastic_build_aarecords_oclc():
 
 def elastic_build_aarecords_oclc_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_oclc')
-
-    with Session(engine) as session:
-        session.connection().connection.ping(reconnect=True)
-        cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('DROP TABLE IF EXISTS isbn13_oclc')
-        cursor.execute('CREATE TABLE isbn13_oclc (isbn13 CHAR(13) NOT NULL, oclc_id BIGINT NOT NULL, PRIMARY KEY (isbn13, oclc_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=FIXED')
+    new_tables_internal('aarecords_codes_oclc', 'aarecords_codes_oclc_for_lookup')
 
     before_first_primary_id = ''
     # before_first_primary_id = '123'
@@ -1059,13 +1034,7 @@ def elastic_build_aarecords_edsebk():
 
 def elastic_build_aarecords_edsebk_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_edsebk')
-
-    with Session(engine) as session:
-        session.connection().connection.ping(reconnect=True)
-        cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('DROP TABLE IF EXISTS isbn13_edsebk')
-        cursor.execute('CREATE TABLE isbn13_edsebk (isbn13 CHAR(13) NOT NULL, edsebk_id BIGINT NOT NULL, PRIMARY KEY (isbn13, edsebk_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=FIXED')
+    new_tables_internal('aarecords_codes_edsebk', 'aarecords_codes_edsebk_for_lookup')
 
     before_first_primary_id = ''
     # before_first_primary_id = '123'

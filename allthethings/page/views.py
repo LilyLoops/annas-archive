@@ -2902,25 +2902,33 @@ def get_oclc_dicts(session, key, values):
         oclc_dicts.append(oclc_dict)
     return oclc_dicts
 
-# SIMILAR to get_edsebk_dicts_by_isbn13
-def get_oclc_dicts_by_isbn13(session, isbn13s):
-    if len(isbn13s) == 0:
+def get_transitive_lookup_dicts(session, lookup_table_name, codes):
+    if len(codes) == 0:
         return {}
     with engine.connect() as connection:
         connection.connection.ping(reconnect=True)
         cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT isbn13, oclc_id FROM isbn13_oclc WHERE isbn13 IN %(isbn13s)s', { "isbn13s": isbn13s })
+        cursor.execute(f'SELECT code, aarecord_id FROM {lookup_table_name} WHERE code IN %(codes)s', { "codes": [code.encode() for code in codes] })
         rows = list(cursor.fetchall())
         if len(rows) == 0:
             return {}
-        isbn13s_by_oclc_id = collections.defaultdict(list)
+        codes_by_aarecord_ids = collections.defaultdict(list)
         for row in rows:
-            isbn13s_by_oclc_id[str(row['oclc_id'])].append(str(row['isbn13']))
-        oclc_dicts = get_oclc_dicts(session, 'oclc', list(isbn13s_by_oclc_id.keys()))
+            codes_by_aarecord_ids[row['aarecord_id'].decode()].append(row['code'].decode())
+        split_ids = allthethings.utils.split_aarecord_ids(codes_by_aarecord_ids.keys())
         retval = collections.defaultdict(list)
-        for oclc_dict in oclc_dicts:
-            for isbn13 in isbn13s_by_oclc_id[str(oclc_dict['oclc_id'])]:
-                retval[isbn13].append(oclc_dict)
+        if lookup_table_name == 'aarecords_codes_oclc_for_lookup':
+            if len(split_ids['oclc']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_oclc_dicts(session, 'oclc', split_ids['oclc']):
+                for code in codes_by_aarecord_ids[f"oclc:{return_dict['oclc_id']}"]:
+                    retval[code].append(return_dict)
+        if lookup_table_name == 'aarecords_codes_edsebk_for_lookup':
+            if len(split_ids['edsebk']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_edsebk_book_dicts(session, 'edsebk_id', split_ids['edsebk']):
+                for code in codes_by_aarecord_ids[f"edsebk:{return_dict['edsebk_id']}"]:
+                    retval[code].append(return_dict)
         return dict(retval)
 
 # Good examples:
@@ -4351,27 +4359,6 @@ def get_aac_edsebk_book_dicts(session, key, values):
         aac_edsebk_book_dicts.append(aac_edsebk_book_dict)
     return aac_edsebk_book_dicts
 
-# SIMILAR to get_oclc_dicts_by_isbn13
-def get_edsebk_dicts_by_isbn13(session, isbn13s):
-    if len(isbn13s) == 0:
-        return {}
-    with engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT isbn13, edsebk_id FROM isbn13_edsebk WHERE isbn13 IN %(isbn13s)s', { "isbn13s": isbn13s })
-        rows = list(cursor.fetchall())
-        if len(rows) == 0:
-            return {}
-        isbn13s_by_edsebk_id = collections.defaultdict(list)
-        for row in rows:
-            isbn13s_by_edsebk_id[str(row['edsebk_id'])].append(str(row['isbn13']))
-        edsebk_dicts = get_aac_edsebk_book_dicts(session, 'edsebk_id', list(isbn13s_by_edsebk_id.keys()))
-        retval = collections.defaultdict(list)
-        for edsebk_dict in edsebk_dicts:
-            for isbn13 in isbn13s_by_edsebk_id[str(edsebk_dict['edsebk_id'])]:
-                retval[isbn13].append(edsebk_dict)
-        return dict(retval)
-
 @page.get("/db/aac_edsebk/<string:edsebk_id>.json")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def aac_edsebk_book_json(edsebk_id):
@@ -4772,10 +4759,10 @@ def get_aarecords_mysql(session, aarecord_ids):
         ia_record_dicts3 = {item['ia_id']: item for item in get_ia_record_dicts(session, "ia_id", list(dict.fromkeys(ia_ids))) if item.get('aa_ia_file') is None}
         scihub_doi_dicts2 = {item['doi']: item for item in get_scihub_doi_dicts(session, 'doi', list(dict.fromkeys(dois)))}
         oclc_dicts2 = {item['oclc_id']: item for item in get_oclc_dicts(session, 'oclc', list(dict.fromkeys(oclc_ids)))}
-        oclc_dicts2_for_isbn13 = get_oclc_dicts_by_isbn13(session, list(dict.fromkeys(canonical_isbn13s)))
+        oclc_dicts2_for_lookup = get_transitive_lookup_dicts(session, "aarecords_codes_oclc_for_lookup", [f"isbn13:{isbn13}" for isbn13 in list(dict.fromkeys(canonical_isbn13s))])
         duxiu_dicts4 = {item['duxiu_ssid']: item for item in get_duxiu_dicts(session, 'duxiu_ssid', list(dict.fromkeys(duxiu_ssids)), include_deep_transitive_md5s_size_path=False)}
         duxiu_dicts5 = {item['cadal_ssno']: item for item in get_duxiu_dicts(session, 'cadal_ssno', list(dict.fromkeys(cadal_ssnos)), include_deep_transitive_md5s_size_path=False)}
-        edsebk_dicts2_for_isbn13 = get_edsebk_dicts_by_isbn13(session, list(dict.fromkeys(canonical_isbn13s)))
+        edsebk_dicts2_for_lookup = get_transitive_lookup_dicts(session, "aarecords_codes_edsebk_for_lookup", [f"isbn13:{isbn13}" for isbn13 in list(dict.fromkeys(canonical_isbn13s))])
 
     # Second pass
     for aarecord in aarecords:
@@ -4860,7 +4847,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             oclc_all = []
             existing_oclc_ids = set([oclc['oclc_id'] for oclc in aarecord['oclc']])
             for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
-                for oclc_dict in (oclc_dicts2_for_isbn13.get(canonical_isbn13) or []):
+                for oclc_dict in (oclc_dicts2_for_lookup.get(f"isbn13:{canonical_isbn13}") or []):
                     if oclc_dict['oclc_id'] not in existing_oclc_ids:
                         oclc_all.append(oclc_dict)
                         existing_oclc_ids.add(oclc_dict['oclc_id'])
@@ -4891,7 +4878,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             if aarecord['aac_edsebk'] is None:
                 edsebk_all = []
                 for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
-                    for edsebk_dict in (edsebk_dicts2_for_isbn13.get(canonical_isbn13) or []):
+                    for edsebk_dict in (edsebk_dicts2_for_lookup.get(f"isbn13:{canonical_isbn13}") or []):
                         edsebk_all.append(edsebk_dict)
                 if len(edsebk_all) > 0:
                     aarecord['aac_edsebk'] = edsebk_all[0]
