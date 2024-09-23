@@ -2915,11 +2915,11 @@ def get_oclc_dicts_by_isbn13(session, isbn13s):
             return {}
         isbn13s_by_oclc_id = collections.defaultdict(list)
         for row in rows:
-            isbn13s_by_oclc_id[row['oclc_id']].append(str(row['isbn13']))
+            isbn13s_by_oclc_id[str(row['oclc_id'])].append(str(row['isbn13']))
         oclc_dicts = get_oclc_dicts(session, 'oclc', list(isbn13s_by_oclc_id.keys()))
         retval = collections.defaultdict(list)
         for oclc_dict in oclc_dicts:
-            for isbn13 in isbn13s_by_oclc_id[oclc_dict['oclc_id']]:
+            for isbn13 in isbn13s_by_oclc_id[str(oclc_dict['oclc_id'])]:
                 retval[isbn13].append(oclc_dict)
         return dict(retval)
 
@@ -4364,11 +4364,11 @@ def get_edsebk_dicts_by_isbn13(session, isbn13s):
             return {}
         isbn13s_by_edsebk_id = collections.defaultdict(list)
         for row in rows:
-            isbn13s_by_edsebk_id[row['edsebk_id']].append(str(row['isbn13']))
+            isbn13s_by_edsebk_id[str(row['edsebk_id'])].append(str(row['isbn13']))
         edsebk_dicts = get_aac_edsebk_book_dicts(session, 'edsebk_id', list(isbn13s_by_edsebk_id.keys()))
         retval = collections.defaultdict(list)
         for edsebk_dict in edsebk_dicts:
-            for isbn13 in isbn13s_by_edsebk_id[edsebk_dict['edsebk_id']]:
+            for isbn13 in isbn13s_by_edsebk_id[str(edsebk_dict['edsebk_id'])]:
                 retval[isbn13].append(edsebk_dict)
         return dict(retval)
 
@@ -4892,7 +4892,7 @@ def get_aarecords_mysql(session, aarecord_ids):
                 edsebk_all = []
                 for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
                     for edsebk_dict in (edsebk_dicts2_for_isbn13.get(canonical_isbn13) or []):
-                        edsebk_all += edsebk_dict
+                        edsebk_all.append(edsebk_dict)
                 if len(edsebk_all) > 0:
                     aarecord['aac_edsebk'] = edsebk_all[0]
 
