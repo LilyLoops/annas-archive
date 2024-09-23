@@ -6094,12 +6094,15 @@ def get_additional_for_aarecord(aarecord):
                 ])),
                 format_filesize(aarecord['file_unified_data'].get('filesize_best') or 0) if aarecord['file_unified_data'].get('filesize_best') else '',
                 md5_content_type_mapping[aarecord['file_unified_data']['content_type']],
-                (aarecord['file_unified_data'].get('original_filename_best') or ''),
                 aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
+                # TODO:TRANSLATE
                 f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbndb' else '',
                 f"OCLC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'oclc' else '',
                 f"DuXiu SSID {aarecord_id_split[1]}" if aarecord_id_split[0] == 'duxiu_ssid' else '',
-                f"CADAL SSNO {aarecord_id_split[1]}" if aarecord_id_split[0] == 'cadal_ssno' else '',
+                f"MagzDB {aarecord_id_split[1]}" if aarecord_id_split[0] == 'magzdb' else '',
+                f"Nexus/STC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'nexusstc' else '',
+                f"EBSCOhost edsebk {aarecord_id_split[1]}" if aarecord_id_split[0] == 'edsebk' else '',
+                (aarecord['file_unified_data'].get('original_filename_best') or ''),
             ] if item != '']),
         'title': aarecord['file_unified_data'].get('title_best') or aarecord['file_unified_data'].get('original_filename_best_name_only') or '',
         'publisher_and_edition': ", ".join([item for item in [
