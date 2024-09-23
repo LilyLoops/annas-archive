@@ -550,7 +550,7 @@ def get_comment_dicts(cursor, resources):
                    'WHERE c.resource IN %(resources)s '
                    'LIMIT 10000',
                    { 'account_id': account_id, 'resources': resources })
-    comments = cursor.fetchall()
+    comments = list(cursor.fetchall())
 
     replies_res = [f"comment:{comment['comment_id']}" for comment in comments]
     # SQL does not allow empty IN() lists
@@ -567,11 +567,7 @@ def get_comment_dicts(cursor, resources):
                    'ORDER BY c.comment_id '
                    'LIMIT 10000',
                    { 'account_id': account_id, 'resources': replies_res })
-    replies = cursor.fetchall()
-
-    # cursor.fetchall() returns a tuple if there is no results
-    if type(replies) is tuple:
-        replies = []
+    replies = list(cursor.fetchall())
 
     reactions_res = [f"comment:{comment['comment_id']}" for comment in (comments+replies)]
     # SQL does not allow empty IN() lists
@@ -581,7 +577,7 @@ def get_comment_dicts(cursor, resources):
     cursor.execute('SELECT resource, type, COUNT(*) as count FROM mariapersist_reactions '
                    'WHERE resource IN %(resources)s GROUP BY resource, type '
                    'LIMIT 10000', { 'resources': reactions_res })
-    comment_reactions = cursor.fetchall()
+    comment_reactions = list(cursor.fetchall())
 
     comment_reactions_by_id = collections.defaultdict(dict)
     for reaction in comment_reactions:
