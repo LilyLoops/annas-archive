@@ -548,7 +548,7 @@ def elastic_build_aarecords_job_init_pool():
 AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME = {
     'edsebk': 'aarecords_codes_edsebk',
     'ia': 'aarecords_codes_ia',
-    'isbn': 'aarecords_codes_isbndb',
+    'isbndb': 'aarecords_codes_isbndb',
     'ol': 'aarecords_codes_ol',
     'duxiu_ssid': 'aarecords_codes_duxiu',
     'cadal_ssno': 'aarecords_codes_duxiu',
@@ -576,8 +576,8 @@ def elastic_build_aarecords_job(aarecord_ids):
                 list(cursor.fetchall())
 
                 # Filter out records that are filtered in get_isbndb_dicts, because there are some bad records there.
-                canonical_isbn13s = [aarecord_id[len('isbn:'):] for aarecord_id in aarecord_ids if aarecord_id.startswith('isbn:')]
-                bad_isbn13_aarecord_ids = set([f"isbn:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, canonical_isbn13s) if len(isbndb_dict['isbndb']) == 0])
+                canonical_isbn13s = [aarecord_id[len('isbndb:'):] for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:')]
+                bad_isbn13_aarecord_ids = set([f"isbndb:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, canonical_isbn13s) if len(isbndb_dict['isbndb']) == 0])
 
                 # Filter out "doi:" records that already have an md5. We don't need standalone records for those.
                 dois_from_ids = [aarecord_id[4:].encode() for aarecord_id in aarecord_ids if aarecord_id.startswith('doi:')]
@@ -882,8 +882,8 @@ def elastic_build_aarecords_isbndb_internal():
                     isbn13s = set()
                     for item in batch:
                         if item['isbn10'] != "0000000000":
-                            isbn13s.add(f"isbn:{item['isbn13']}")
-                            isbn13s.add(f"isbn:{isbnlib.ean13(item['isbn10'])}")
+                            isbn13s.add(f"isbndb:{item['isbn13']}")
+                            isbn13s.add(f"isbndb:{isbnlib.ean13(item['isbn10'])}")
                     last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked(list(isbn13s), CHUNK_SIZE))
                     pbar.update(len(batch))
                     current_isbn13 = batch[-1]['isbn13']

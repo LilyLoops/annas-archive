@@ -4790,9 +4790,9 @@ def aarecord_sources(aarecord):
     return list(dict.fromkeys([
         # Should match /datasets/<aarecord_source>!!
         *(['duxiu']     if aarecord['duxiu'] is not None else []),
-        *(['edsebk']    if aarecord.get('aac_edsebk') is not None else []),
+        *(['edsebk']    if (aarecord_id_split[0] == 'edsebk' and aarecord.get('aac_edsebk') is not None) else []),
         *(['ia']        if aarecord['ia_record'] is not None else []),
-        *(['isbndb']    if (aarecord_id_split[0] == 'isbn' and len(aarecord['isbndb'] or []) > 0) else []),
+        *(['isbndb']    if (aarecord_id_split[0] == 'isbndb' and len(aarecord['isbndb'] or []) > 0) else []),
         *(['lgli']      if aarecord['lgli_file'] is not None else []),
         *(['lgrs']      if aarecord['lgrsfic_book'] is not None else []),
         *(['lgrs']      if aarecord['lgrsnf_book'] is not None else []),
@@ -4827,7 +4827,7 @@ def get_aarecords_mysql(session, aarecord_ids):
     aac_zlib3_book_dicts2 = dict(('md5:' + item['md5'].lower(), item) for item in get_aac_zlib3_book_dicts(session, "md5", split_ids['md5']))
     ia_record_dicts = dict(('md5:' + item['aa_ia_file']['md5'].lower(), item) for item in get_ia_record_dicts(session, "md5", split_ids['md5']) if item.get('aa_ia_file') is not None)
     ia_record_dicts2 = dict(('ia:' + item['ia_id'], item) for item in get_ia_record_dicts(session, "ia_id", split_ids['ia']) if item.get('aa_ia_file') is None)
-    isbndb_dicts = {('isbn:' + item['ean13']): item['isbndb'] for item in get_isbndb_dicts(session, split_ids['isbn'])}
+    isbndb_dicts = {('isbndb:' + item['ean13']): item['isbndb'] for item in get_isbndb_dicts(session, split_ids['isbndb'])}
     ol_book_dicts = {('ol:' + item['ol_edition']): [item] for item in get_ol_book_dicts(session, 'ol_edition', split_ids['ol'])}
     scihub_doi_dicts = {('doi:' + item['doi']): [item] for item in get_scihub_doi_dicts(session, 'doi', split_ids['doi'])}
     oclc_dicts = {('oclc:' + item['oclc_id']): [item] for item in get_oclc_dicts(session, 'oclc', split_ids['oclc'])}
@@ -5571,7 +5571,7 @@ def get_aarecords_mysql(session, aarecord_ids):
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ia_source']
             elif 'date_ia_record_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_ia_record_scrape']
-        elif aarecord_id_split[0] == 'isbn':
+        elif aarecord_id_split[0] == 'isbndb':
             if 'date_isbndb_scrape' in aarecord['file_unified_data']['added_date_unified']:
                 aarecord['file_unified_data']['added_date_best'] = aarecord['file_unified_data']['added_date_unified']['date_isbndb_scrape']
         elif aarecord_id_split[0] == 'ol':
@@ -6096,7 +6096,7 @@ def get_additional_for_aarecord(aarecord):
                 md5_content_type_mapping[aarecord['file_unified_data']['content_type']],
                 (aarecord['file_unified_data'].get('original_filename_best') or ''),
                 aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
-                f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbn' else '',
+                f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbndb' else '',
                 f"OCLC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'oclc' else '',
                 f"DuXiu SSID {aarecord_id_split[1]}" if aarecord_id_split[0] == 'duxiu_ssid' else '',
                 f"CADAL SSNO {aarecord_id_split[1]}" if aarecord_id_split[0] == 'cadal_ssno' else '',
@@ -6397,7 +6397,7 @@ def get_additional_for_aarecord(aarecord):
                 additional['download_urls'].append(("", "", 'Bulk torrents not yet available for this file. If you have this file, help out by <a href="/faq#upload">uploading</a>.'))
             else:
                 additional['download_urls'].append(("", "", 'Bulk torrents not yet available for this file.'))
-    if aarecord_id_split[0] == 'isbn':
+    if aarecord_id_split[0] == 'isbndb':
         additional['download_urls'].append((gettext('page.md5.box.download.aa_isbn'), f'/search?q="isbn13:{aarecord_id_split[1]}"', ""))
         additional['download_urls'].append((gettext('page.md5.box.download.other_isbn'), f"https://en.wikipedia.org/wiki/Special:BookSources?isbn={aarecord_id_split[1]}", ""))
         if len(aarecord.get('isbndb') or []) > 0:
@@ -6460,7 +6460,7 @@ def isbn_page(isbn_input):
 @page.get("/isbndb/<string:isbn_input>")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def isbndb_page(isbn_input):
-    return render_aarecord(f"isbn:{isbn_input}")
+    return render_aarecord(f"isbndb:{isbn_input}")
 
 @page.get("/ol/<string:ol_input>")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
