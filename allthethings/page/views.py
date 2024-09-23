@@ -6537,46 +6537,46 @@ def db_raw_json(raw_path):
 
         if raw_path_split[0] == 'zlib':
             result_dicts = get_zlib_book_dicts(session, "zlibrary_id", [raw_path_split[1]])
-        if raw_path_split[0] == 'aac_zlib3':
+        elif raw_path_split[0] == 'aac_zlib3':
             result_dicts = get_aac_zlib3_book_dicts(session, "zlibrary_id", [raw_path_split[1]])
-        if raw_path_split[0] == 'ia':
+        elif raw_path_split[0] == 'ia':
             result_dicts = get_ia_record_dicts(session, "ia_id", [raw_path_split[1]])
-        if raw_path_split[0] == 'ol':
+        elif raw_path_split[0] == 'ol':
             result_dicts = get_ol_book_dicts(session, "ol_edition", [raw_path_split[1]])
-        if raw_path_split[0] == 'lgrsnf':
+        elif raw_path_split[0] == 'lgrsnf':
             result_dicts = get_lgrsnf_book_dicts(session, "ID", [raw_path_split[1]])
-        if raw_path_split[0] == 'lgrsfic':
+        elif raw_path_split[0] == 'lgrsfic':
             result_dicts = get_lgrsfic_book_dicts(session, "ID", [raw_path_split[1]])
-        if raw_path_split[0] == 'lgli':
+        elif raw_path_split[0] == 'lgli':
             result_dicts = get_lgli_file_dicts(session, "f_id", [raw_path_split[1]])
-        if raw_path_split[0] == 'isbndb':
+        elif raw_path_split[0] == 'isbndb':
             result_dicts = get_isbndb_dicts(session, [raw_path_split[1]])
-        if raw_path_split[0] == 'scihub_doi':
+        elif raw_path_split[0] == 'scihub_doi':
             result_dicts = get_scihub_doi_dicts(session, 'doi', [raw_path_split[1]])
-        if raw_path_split[0] == 'oclc':
+        elif raw_path_split[0] == 'oclc':
             result_dicts = get_oclc_dicts(session, 'oclc', [raw_path_split[1]])
-        if raw_path_split[0] == 'duxiu_ssid':
+        elif raw_path_split[0] == 'duxiu_ssid':
             result_dicts = get_duxiu_dicts(session, 'duxiu_ssid', [raw_path_split[1]], include_deep_transitive_md5s_size_path=True)
-        if raw_path_split[0] == 'cadal_ssno':
+        elif raw_path_split[0] == 'cadal_ssno':
             result_dicts = get_duxiu_dicts(session, 'cadal_ssno', [raw_path_split[1]], include_deep_transitive_md5s_size_path=True)
-        if raw_path_split[0] == 'duxiu_md5':
+        elif raw_path_split[0] == 'duxiu_md5':
             result_dicts = get_duxiu_dicts(session, 'md5', [raw_path_split[1]], include_deep_transitive_md5s_size_path=False)
-        if raw_path_split[0] == 'aac_upload':
+        elif raw_path_split[0] == 'aac_upload':
             result_dicts = get_aac_upload_book_dicts(session, "md5", [raw_path_split[1]])
-        if raw_path_split[0] == 'aac_magzdb':
+        elif raw_path_split[0] == 'aac_magzdb':
             result_dicts = get_aac_magzdb_book_dicts(session, "magzdb_id", [raw_path_split[1]])
-        if raw_path_split[0] == 'aac_magzdb_md5':
+        elif raw_path_split[0] == 'aac_magzdb_md5':
             result_dicts = get_aac_magzdb_book_dicts(session, "md5", [raw_path_split[1]])
-        if raw_path_split[0] == 'aac_nexusstc':
+        elif raw_path_split[0] == 'aac_nexusstc':
             result_dicts = get_aac_nexusstc_book_dicts(session, "nexusstc_id", [raw_path_split[1]])
-        if raw_path_split[0] == 'aac_nexusstc_download':
+        elif raw_path_split[0] == 'aac_nexusstc_download':
             result_dicts = get_aac_nexusstc_book_dicts(session, "nexusstc_download", [raw_path_split[1]])
-        if raw_path_split[0] == 'aac_nexusstc_md5':
+        elif raw_path_split[0] == 'aac_nexusstc_md5':
             result_dicts = get_aac_nexusstc_book_dicts(session, "md5", [raw_path_split[1]])
-        if raw_path_split[0] == 'edsebk':
+        elif raw_path_split[0] == 'edsebk':
             result_dicts = get_aac_edsebk_book_dicts(session, "edsebk_id", [raw_path_split[1]])
         else:
-            result_dicts = []
+            return '{"error":"Unknown path"}', 404
 
         if len(result_dicts) == 0:
             return "{}", 404
