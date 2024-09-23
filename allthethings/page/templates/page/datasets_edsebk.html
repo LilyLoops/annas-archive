@@ -48,9 +48,6 @@
 
   <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
   <ul class="list-inside mb-4 ml-1">
-    <li class="list-disc">{{ gettext('page.datasets.common.total_files', count=(stats_data.stats_by_group.edsebk.count | numberformat)) }}</li>
-    <li class="list-disc">{{ gettext('page.datasets.common.total_filesize', size=(stats_data.stats_by_group.edsebk.filesize | filesizeformat)) }}</li>
-    <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.edsebk.aa_count | numberformat), percent=((stats_data.stats_by_group.edsebk.aa_count/(stats_data.stats_by_group.edsebk.count+1)*100.0) | decimalformat)) }}</li>
     <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.edsebk_date) }}</li>
     <li class="list-disc"><a href="/torrents#other_metadata">Metadata torrents by Anna’s Archive</a></li>
     <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/ebscohost-scrape">Scraper code by volunteer “teamcoltra”.</a></li>

@@ -507,7 +507,6 @@ def get_stats_data():
             'upload': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
             'magzdb': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
             'nexusstc': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
-            'edsebk': {'count': 0, 'filesize': 0, 'aa_count': 0, 'torrent_count': 0},
         }
         for bucket in stats_data_es['responses'][2]['aggregations']['search_record_sources']['buckets']:
             stats_by_group[bucket['key']] = {
