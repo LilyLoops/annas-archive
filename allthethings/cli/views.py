@@ -84,7 +84,7 @@ def nonpersistent_dbreset_internal():
         cursor.execute(sql.replace('delimiter //', '').replace('delimiter ;', '').replace('END //', 'END'))
 
     torrents_json = pathlib.Path(os.path.join(__location__, 'torrents.json')).read_text()
-    cursor.execute('DROP TABLE IF EXISTS torrents_json; CREATE TABLE torrents_json (json JSON NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; INSERT INTO torrents_json (json) VALUES (%(json)s); COMMIT', {'json': torrents_json})
+    cursor.execute('DROP TABLE IF EXISTS torrents_json; CREATE TABLE torrents_json (json JSON NOT NULL, PRIMARY KEY(json(100))) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; INSERT INTO torrents_json (json) VALUES (%(json)s); COMMIT', {'json': torrents_json})
     cursor.close()
 
     mysql_reset_aac_tables_internal()

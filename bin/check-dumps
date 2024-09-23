@@ -115,6 +115,11 @@ check-mariadb() {
         --no-locks \
         --order-by-primary \
         --outputdir /data-dumps/mariadb
+
+    # Remove first and last lines
+    mv /data-dumps/mariadb/metadata /data-dumps/mariadb/metadata-orig
+    sed '1d;$d' /data-dumps/mariadb/metadata-orig > /data-dumps/mariadb/metadata
+    rm /data-dumps/mariadb/metadata-orig
 }
 
 flask cli dbreset
