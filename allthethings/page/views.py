@@ -2825,7 +2825,7 @@ def get_oclc_dicts(session, key, values):
                 oclc_dict["aa_oclc_derived"]["isbn_multiple"] += (rft.get('rft.isbn') or [])
                 # TODO: series/volume?
             elif aac_metadata['type'] in ['not_found_title_json', 'redirect_title_json']:
-                pass
+                raise Exception(f"Should not encounter worldcat aac_metadata.type here (must be filtered out at AAC ingestion level): {aac_metadata['type']}")
             else:
                 raise Exception(f"Unexpected aac_metadata.type: {aac_metadata['type']}")
 
