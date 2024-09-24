@@ -68,7 +68,7 @@ check-elasticsearch() {
         --input=http://elasticsearch:9200 \
         --output=/data-dumps/elasticsearch \
         --match='aarecords.*' \
-        --parallel=20 \
+        --parallel=50 \
         --limit=3000 \
         --includeType=data,mapping
 
@@ -90,7 +90,7 @@ check-elasticsearchaux() {
         --input=http://elasticsearchaux:9201 \
         --output=/data-dumps/elasticsearchaux \
         --match='aarecords.*' \
-        --parallel=20 \
+        --parallel=50 \
         --limit=3000 \
         --includeType=data,mapping
 
