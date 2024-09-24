@@ -37,8 +37,8 @@ cli = Blueprint("cli", __name__, template_folder="templates")
 def dbreset():
     print("Erasing entire database (2 MariaDB databases servers + 1 ElasticSearch)! Did you double-check that any production/large databases are offline/inaccessible from here?")
     time.sleep(2)
-    print("Giving you 5 seconds to abort..")
-    time.sleep(5)
+    print("Giving you 2 seconds to abort..")
+    time.sleep(2)
 
     mariapersist_reset_internal()
     nonpersistent_dbreset_internal()
@@ -318,8 +318,8 @@ def mysql_build_aac_tables_internal():
 def mysql_build_computed_all_md5s():
     print("Erasing entire MySQL 'computed_all_md5s' table! Did you double-check that any production/large databases are offline/inaccessible from here?")
     time.sleep(2)
-    print("Giving you 5 seconds to abort..")
-    time.sleep(5)
+    print("Giving you 2 seconds to abort..")
+    time.sleep(2)
 
     mysql_build_computed_all_md5s_internal()
 
@@ -488,8 +488,8 @@ es_create_index_body = {
 def elastic_reset_aarecords():
     print("Erasing entire ElasticSearch 'aarecords' index! Did you double-check that any production/large databases are offline/inaccessible from here?")
     time.sleep(2)
-    print("Giving you 5 seconds to abort..")
-    time.sleep(5)
+    print("Giving you 2 seconds to abort..")
+    time.sleep(2)
 
     elastic_reset_aarecords_internal()
 
@@ -1388,8 +1388,8 @@ def mysql_change_aarecords_codes_tables_for_check_dumps():
 def mariapersist_reset():
     print("Erasing entire persistent database ('mariapersist')! Did you double-check that any production databases are offline/inaccessible from here?")
     time.sleep(2)
-    print("Giving you 5 seconds to abort..")
-    time.sleep(5)
+    print("Giving you 2 seconds to abort..")
+    time.sleep(2)
     mariapersist_reset_internal()
 
 def mariapersist_reset_internal():

@@ -15,3 +15,4 @@ docker exec -it web bash -c 'for f in /app/aacid_small/*.jsonl; do echo "Process
 - OL /books/OL1000004M => md5:a50f2e8f2963888a976899e2c4675d70 (annas_archive identifier field)
 - OL /books/OL1000000M => ocaid:tankkillingantit0000hogg => aacid__ia2_records__20240126T070451Z__NvMQ2fj3EjR2pzmFn77hyJ (ISBN and openlib ID deliberately removed from aac record so that only ocaid matches)
 - OL /books/OL1000003M => isbn10:1861523505 converted to isbn13:9781861523501 => aacid__ia2_records__20240126T065900Z__HoFf9oz2n3hxufw8hvrys2 (deliberately no ocaid match, and removed openlib ID from aac record)
+- IA 100insightslesso0000maie / md5 74f3b80bbb292475043d13f21e5f5059 => isbn13:9780462099699 => ISBNdb 9780462099699
