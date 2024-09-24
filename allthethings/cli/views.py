@@ -76,12 +76,7 @@ def nonpersistent_dbreset_internal():
 
     # Generated with `docker compose exec mariadb mysqldump -u allthethings -ppassword --opt --where="1 limit 100" --skip-comments --ignore-table=computed_all_md5s allthethings > mariadb_dump.sql`
     mariadb_dump = pathlib.Path(os.path.join(__location__, 'mariadb_dump.sql')).read_text()
-    for sql in mariadb_dump.split('# DELIMITER FOR cli/views.py'):
-        cursor.execute(sql)
-
-    openlib_final_sql = pathlib.Path(os.path.join(__location__, '../../data-imports/scripts/helpers/openlib_final.sql')).read_text()
-    for sql in openlib_final_sql.split('# DELIMITER FOR cli/views.py'):
-        cursor.execute(sql.replace('delimiter //', '').replace('delimiter ;', '').replace('END //', 'END'))
+    cursor.execute(mariadb_dump)
 
     torrents_json = pathlib.Path(os.path.join(__location__, 'torrents.json')).read_text()
     cursor.execute('DROP TABLE IF EXISTS torrents_json; CREATE TABLE torrents_json (json JSON NOT NULL, PRIMARY KEY(json(100))) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; INSERT INTO torrents_json (json) VALUES (%(json)s); COMMIT', {'json': torrents_json})
@@ -574,8 +569,9 @@ AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME = {
 }
 
 AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
-    'oclc': { 'table_name': 'aarecords_codes_oclc_for_lookup', 'code_names': 'isbn13' },
-    'edsebk': { 'table_name': 'aarecords_codes_edsebk_for_lookup', 'code_names': 'isbn13' },
+    'ol': { 'table_name': 'aarecords_codes_ol_for_lookup', 'code_names': ['isbn13', 'ocaid', 'md5'] },
+    'oclc': { 'table_name': 'aarecords_codes_oclc_for_lookup', 'code_names': ['isbn13'] },
+    'edsebk': { 'table_name': 'aarecords_codes_edsebk_for_lookup', 'code_names': ['isbn13'] },
 }
 
 def elastic_build_aarecords_job(aarecord_ids):
@@ -760,10 +756,10 @@ def elastic_build_aarecords_all_internal():
     elastic_build_aarecords_edsebk_internal()
     elastic_build_aarecords_magzdb_internal()
     elastic_build_aarecords_nexusstc_internal()
-    elastic_build_aarecords_ia_internal()
     elastic_build_aarecords_isbndb_internal()
     elastic_build_aarecords_ol_internal()
     elastic_build_aarecords_duxiu_internal()
+    elastic_build_aarecords_ia_internal() # IA depends on tables generated above, so we do it last.
     elastic_build_aarecords_main_internal() # Main depends on tables generated above, so we do it last.
     elastic_build_aarecords_forcemerge_internal()
 
@@ -886,7 +882,7 @@ def elastic_build_aarecords_ol():
 
 def elastic_build_aarecords_ol_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_ol')
+    new_tables_internal('aarecords_codes_ol', 'aarecords_codes_ol_for_lookup')
 
     before_first_ol_key = ''
     # before_first_ol_key = '/books/OL5624024M'

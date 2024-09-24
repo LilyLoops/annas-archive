@@ -2284,7 +2284,8 @@ CREATE TABLE `ol_base` (
   `ol_key` char(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `revision` int(11) NOT NULL,
   `last_modified` datetime NOT NULL,
-  `json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`json`))
+  `json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`json`)),
+  PRIMARY KEY(ol_key)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

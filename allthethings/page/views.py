@@ -1888,72 +1888,6 @@ def get_ol_book_dicts(session, key, values):
 
         return ol_book_dicts
 
-def get_ol_book_dicts_by_isbn13(session, isbn13s):
-    if len(isbn13s) == 0:
-        return {}
-    with engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT ol_key, isbn FROM ol_isbn13 WHERE isbn IN %(isbn13s)s', { "isbn13s": isbn13s })
-        rows = list(cursor.fetchall())
-        if len(rows) == 0:
-            return {}
-        isbn13s_by_ol_edition = collections.defaultdict(list)
-        for row in rows:
-            if row['ol_key'].startswith('/books/OL') and row['ol_key'].endswith('M'):
-                ol_edition = row['ol_key'][len('/books/'):]
-                isbn13s_by_ol_edition[ol_edition].append(row['isbn'])
-        ol_book_dicts = get_ol_book_dicts(session, 'ol_edition', list(isbn13s_by_ol_edition.keys()))
-        retval = collections.defaultdict(list)
-        for ol_book_dict in ol_book_dicts:
-            for isbn13 in isbn13s_by_ol_edition[ol_book_dict['ol_edition']]: 
-                retval[isbn13].append(ol_book_dict)
-        return dict(retval)
-
-def get_ol_book_dicts_by_ia_id(session, ia_ids):
-    if len(ia_ids) == 0:
-        return {}
-    with engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT ol_key, ocaid FROM ol_ocaid WHERE ocaid IN %(ia_ids)s', { "ia_ids": [ia_id for ia_id in ia_ids if ia_id.isascii()] })
-        rows = list(cursor.fetchall())
-        if len(rows) == 0:
-            return {}
-        ia_ids_by_ol_edition = collections.defaultdict(list)
-        for row in rows:
-            if row['ol_key'].startswith('/books/OL') and row['ol_key'].endswith('M'):
-                ol_edition = row['ol_key'][len('/books/'):]
-                ia_ids_by_ol_edition[ol_edition].append(row['ocaid'])
-        ol_book_dicts = get_ol_book_dicts(session, 'ol_edition', list(ia_ids_by_ol_edition.keys()))
-        retval = collections.defaultdict(list)
-        for ol_book_dict in ol_book_dicts:
-            for ia_id in ia_ids_by_ol_edition[ol_book_dict['ol_edition']]: 
-                retval[ia_id].append(ol_book_dict)
-        return dict(retval)
-
-def get_ol_book_dicts_by_annas_archive_md5(session, annas_archive_md5s):
-    if len(annas_archive_md5s) == 0:
-        return {}
-    with engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT ol_key, annas_archive_md5 FROM ol_annas_archive WHERE annas_archive_md5 IN %(annas_archive_md5s)s', { "annas_archive_md5s": annas_archive_md5s })
-        rows = list(cursor.fetchall())
-        if len(rows) == 0:
-            return {}
-        annas_archive_md5s_by_ol_edition = collections.defaultdict(list)
-        for row in rows:
-            if row['ol_key'].startswith('/books/OL') and row['ol_key'].endswith('M'):
-                ol_edition = row['ol_key'][len('/books/'):]
-                annas_archive_md5s_by_ol_edition[ol_edition].append(row['annas_archive_md5'])
-        ol_book_dicts = get_ol_book_dicts(session, 'ol_edition', list(annas_archive_md5s_by_ol_edition.keys()))
-        retval = collections.defaultdict(list)
-        for ol_book_dict in ol_book_dicts:
-            for annas_archive_md5 in annas_archive_md5s_by_ol_edition[ol_book_dict['ol_edition']]: 
-                retval[annas_archive_md5].append(ol_book_dict)
-        return dict(retval)
-
 def get_lgrsnf_book_dicts(session, key, values):
     if len(values) == 0:
         return []
@@ -2901,35 +2835,6 @@ def get_oclc_dicts(session, key, values):
 
         oclc_dicts.append(oclc_dict)
     return oclc_dicts
-
-def get_transitive_lookup_dicts(session, lookup_table_name, codes):
-    if len(codes) == 0:
-        return {}
-    with engine.connect() as connection:
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(f'SELECT code, aarecord_id FROM {lookup_table_name} WHERE code IN %(codes)s', { "codes": [code.encode() for code in codes] })
-        rows = list(cursor.fetchall())
-        if len(rows) == 0:
-            return {}
-        codes_by_aarecord_ids = collections.defaultdict(list)
-        for row in rows:
-            codes_by_aarecord_ids[row['aarecord_id'].decode()].append(row['code'].decode())
-        split_ids = allthethings.utils.split_aarecord_ids(codes_by_aarecord_ids.keys())
-        retval = collections.defaultdict(list)
-        if lookup_table_name == 'aarecords_codes_oclc_for_lookup':
-            if len(split_ids['oclc']) != len(rows):
-                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
-            for return_dict in get_oclc_dicts(session, 'oclc', split_ids['oclc']):
-                for code in codes_by_aarecord_ids[f"oclc:{return_dict['oclc_id']}"]:
-                    retval[code].append(return_dict)
-        if lookup_table_name == 'aarecords_codes_edsebk_for_lookup':
-            if len(split_ids['edsebk']) != len(rows):
-                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
-            for return_dict in get_aac_edsebk_book_dicts(session, 'edsebk_id', split_ids['edsebk']):
-                for code in codes_by_aarecord_ids[f"edsebk:{return_dict['edsebk_id']}"]:
-                    retval[code].append(return_dict)
-        return dict(retval)
 
 # Good examples:
 # select primary_id, count(*) as c, group_concat(json_extract(metadata, '$.type')) as type from annas_archive_meta__aacid__duxiu_records group by primary_id order by c desc limit 100;
@@ -4636,6 +4541,43 @@ def aarecord_sources(aarecord):
 # Dummy translation to keep this msgid around. TODO: fix see below.
 dummy_translation_affected_files = gettext('page.md5.box.download.affected_files')
 
+def get_transitive_lookup_dicts(session, lookup_table_name, codes):
+    if len(codes) == 0:
+        return {}
+    with engine.connect() as connection:
+        connection.connection.ping(reconnect=True)
+        cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(f'SELECT code, aarecord_id FROM {lookup_table_name} WHERE code IN %(codes)s', { "codes": [code.encode() for code in codes] })
+        rows = list(cursor.fetchall())
+        if len(rows) == 0:
+            return {}
+        codes_by_aarecord_ids = collections.defaultdict(list)
+        for row in rows:
+            codes_by_aarecord_ids[row['aarecord_id'].decode()].append(row['code'].decode())
+        split_ids = allthethings.utils.split_aarecord_ids(codes_by_aarecord_ids.keys())
+        retval = collections.defaultdict(list)
+        if lookup_table_name == 'aarecords_codes_oclc_for_lookup':
+            if len(split_ids['oclc']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_oclc_dicts(session, 'oclc', split_ids['oclc']):
+                for code in codes_by_aarecord_ids[f"oclc:{return_dict['oclc_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_edsebk_for_lookup':
+            if len(split_ids['edsebk']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_edsebk_book_dicts(session, 'edsebk_id', split_ids['edsebk']):
+                for code in codes_by_aarecord_ids[f"edsebk:{return_dict['edsebk_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_ol_for_lookup':
+            if len(split_ids['ol']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_ol_book_dicts(session, 'ol_edition', split_ids['ol']):
+                for code in codes_by_aarecord_ids[f"ol:{return_dict['ol_edition']}"]:
+                    retval[code].append(return_dict)
+        else:
+            raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
+        return dict(retval)
+
 def get_aarecords_mysql(session, aarecord_ids):
     if not allthethings.utils.validate_aarecord_ids(aarecord_ids):
         raise Exception(f"Invalid aarecord_ids {aarecord_ids=}")
@@ -4666,7 +4608,7 @@ def get_aarecords_mysql(session, aarecord_ids):
     aac_nexusstc_book_dicts = {('md5:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'md5', split_ids['md5'])}
     aac_nexusstc_book_dicts2 = {('nexusstc:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'nexusstc_id', split_ids['nexusstc'])}
     aac_nexusstc_book_dicts3 = {('nexusstc_download:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'nexusstc_download', split_ids['nexusstc_download'])}
-    ol_book_dicts_primary_linked = {('md5:' + md5): item for md5, item in get_ol_book_dicts_by_annas_archive_md5(session, split_ids['md5']).items()}
+    ol_book_dicts_primary_linked = get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [f"md5:{md5}" for md5 in split_ids['md5']])
     aac_edsebk_book_dicts = {('edsebk:' + item['edsebk_id']): item for item in get_aac_edsebk_book_dicts(session, 'edsebk_id', split_ids['edsebk'])}
 
     # First pass, so we can fetch more dependencies.
@@ -4754,8 +4696,7 @@ def get_aarecords_mysql(session, aarecord_ids):
     if not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]):
         isbndb_dicts2 = {item['ean13']: item for item in get_isbndb_dicts(session, list(dict.fromkeys(canonical_isbn13s)))}
         ol_book_dicts2 = {item['ol_edition']: item for item in get_ol_book_dicts(session, 'ol_edition', list(dict.fromkeys(ol_editions)))}
-        ol_book_dicts2_for_isbn13 = get_ol_book_dicts_by_isbn13(session, list(dict.fromkeys(canonical_isbn13s)))
-        ol_book_dicts2_for_ia_id = get_ol_book_dicts_by_ia_id(session, list(dict.fromkeys(ia_ids)))
+        ol_book_dicts2_for_lookup = get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [f"isbn13:{isbn13}" for isbn13 in list(dict.fromkeys(canonical_isbn13s))] + [f"ocaid:{ocaid}" for ocaid in list(dict.fromkeys(ia_ids))])
         ia_record_dicts3 = {item['ia_id']: item for item in get_ia_record_dicts(session, "ia_id", list(dict.fromkeys(ia_ids))) if item.get('aa_ia_file') is None}
         scihub_doi_dicts2 = {item['doi']: item for item in get_scihub_doi_dicts(session, 'doi', list(dict.fromkeys(dois)))}
         oclc_dicts2 = {item['oclc_id']: item for item in get_oclc_dicts(session, 'oclc', list(dict.fromkeys(oclc_ids)))}
@@ -4794,7 +4735,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ol_book_dicts_all = []
             existing_ol_editions = set([ol_book_dict['ol_edition'] for ol_book_dict in aarecord['ol']])
             for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
-                for ol_book_dict in (ol_book_dicts2_for_isbn13.get(canonical_isbn13) or []):
+                for ol_book_dict in (ol_book_dicts2_for_lookup.get(f"isbn13:{canonical_isbn13}") or []):
                     if ol_book_dict['ol_edition'] not in existing_ol_editions:
                         ol_book_dicts_all.append(ol_book_dict)
                         existing_ol_editions.add(ol_book_dict['ol_edition'])
@@ -4807,7 +4748,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ol_book_dicts_all = []
             existing_ol_editions = set([ol_book_dict['ol_edition'] for ol_book_dict in aarecord['ol']])
             for ia_id in (aarecord['file_unified_data']['identifiers_unified'].get('ocaid') or []):
-                for ol_book_dict in (ol_book_dicts2_for_ia_id.get(ia_id) or []):
+                for ol_book_dict in (ol_book_dicts2_for_lookup.get(f"ocaid:{ia_id}") or []):
                     if ol_book_dict['ol_edition'] not in existing_ol_editions:
                         ol_book_dicts_all.append(ol_book_dict)
                         existing_ol_editions.add(ol_book_dict['ol_edition'])

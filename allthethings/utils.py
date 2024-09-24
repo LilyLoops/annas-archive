@@ -1151,6 +1151,7 @@ UNIFIED_CLASSIFICATIONS = {
 }
 
 OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING = {
+    'annas_archive': 'md5',
     'abebooks,de': 'abebooks.de',
     'amazon': 'asin',
     'amazon.ca_asin': 'asin',
