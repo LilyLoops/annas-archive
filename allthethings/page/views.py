@@ -5189,12 +5189,15 @@ def get_aarecords_mysql(session, aarecord_ids):
         stripped_description_multiple += [ol_book_dict['stripped_description'].strip()[0:5000] for ol_book_dict in aarecord['ol']]
         stripped_description_multiple += [(isbndb['json'].get('synopsis') or '').strip()[0:5000] for isbndb in aarecord['isbndb']]
         stripped_description_multiple += [(isbndb['json'].get('overview') or '').strip()[0:5000] for isbndb in aarecord['isbndb']]
-        # Don't make ia_record's description a primary choice here, since it's often not very good.
-        stripped_description_multiple += [(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('stripped_description_and_references') or '').strip()[0:5000]]
         stripped_description_multiple += [ia_record['aa_ia_derived']['stripped_description_and_references'].strip()[0:5000] for ia_record in aarecord['ia_records_meta_only']]
         for oclc in aarecord['oclc']:
             stripped_description_multiple += oclc['aa_oclc_derived']['stripped_description_multiple']
         stripped_description_multiple += [duxiu_record['aa_duxiu_derived']['description_best'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']]
+        stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
+        if aarecord['file_unified_data']['stripped_description_best'] == '':
+            aarecord['file_unified_data']['stripped_description_best'] = max(stripped_description_multiple + [''], key=len)
+        # Make ia_record's description a very last resort here, since it's usually not very good.
+        stripped_description_multiple += [(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('stripped_description_and_references') or '').strip()[0:5000]]
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['stripped_description_best'] == '':
             aarecord['file_unified_data']['stripped_description_best'] = max(stripped_description_multiple + [''], key=len)
