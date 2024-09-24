@@ -6750,6 +6750,7 @@ INSERT INTO `annas_archive_meta__aacid__duxiu_records` VALUES("aacid__duxiu_reco
 ,("aacid__duxiu_records__20240205T000000Z__6UUZFEDKmBuVp4PfgqWud8","duxiu_ssid_10001565",NULL,12247794,360,NULL)
 ,("aacid__duxiu_records__20240205T000000Z__6ykvFuSCsy9naQDz8Jo32a","duxiu_ssid_10001952",NULL,12254444,384,NULL)
 ,("aacid__duxiu_records__20240205T000000Z__6ZAuEvUzfTMSPbNnv5VNeb","duxiu_ssid_10001161",NULL,12248511,370,NULL)
+,("aacid__duxiu_records__20240205T000000Z__6zNPtVef7GFMUCKoLnjPjv","duxiu_ssid_14648061",NULL,13084800,378,NULL)
 ,("aacid__duxiu_records__20240205T000000Z__72UMmx3uJQDqSmvTRtEAEr","duxiu_ssid_10001205",NULL,12254828,416,NULL)
 ,("aacid__duxiu_records__20240205T000000Z__746uxTt2TgvvbJUYnjVaWc","duxiu_ssid_10001664",NULL,12255244,435,NULL)
 ,("aacid__duxiu_records__20240205T000000Z__755CLUoqwxD4nC8Wjk5Hau","duxiu_ssid_10002270",NULL,12255679,365,NULL)
