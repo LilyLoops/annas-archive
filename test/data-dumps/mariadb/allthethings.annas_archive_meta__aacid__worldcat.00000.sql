@@ -999,4 +999,5 @@ INSERT INTO `annas_archive_meta__aacid__worldcat` VALUES("aacid__worldcat__20231
 ,("aacid__worldcat__20231001T025039Z__99__RAnrypDNdsdPvfa5s2z74Y","99",NULL,659980,1560)
 ,("aacid__worldcat__20231001T025039Z__9__b9q4yTKXpumwG85VkAzwQA","9",NULL,55760,2224)
 ,("aacid__worldcat__20231001T025039Z__9__hHi9Rq7KLWmWMsiisGL9t6","9",NULL,57984,2111)
+,("aacid__worldcat__20231001T204903Z__1193939360__Q3dKxjPoCZHUJ2weEywu2b","1193939360",NULL,2460376,2843)
 ;
