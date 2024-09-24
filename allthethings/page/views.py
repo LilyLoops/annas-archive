@@ -4796,7 +4796,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['oclc'] = (aarecord['oclc'] + oclc_all)
 
             duxiu_all = []
-            existing_duxiu_ssids = set([duxiu_record.get('duxiu_ssid') for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else [])])
+            existing_duxiu_ssids = set([code_value for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for code_value in (duxiu_record['aa_duxiu_derived']['identifiers_unified'].get('duxiu_ssid') or [])])
             for duxiu_ssid in (aarecord['file_unified_data']['identifiers_unified'].get('duxiu_ssid') or []):
                 if (duxiu_ssid in duxiu_dicts4) and (duxiu_ssid not in existing_duxiu_ssids):
                     duxiu_all.append(duxiu_dicts4[duxiu_ssid])
@@ -4805,7 +4805,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['duxius_nontransitive_meta_only'] = (aarecord['duxius_nontransitive_meta_only'] + duxiu_all)
 
             duxiu_all = []
-            existing_cadal_ssnos = set([duxiu_record.get('cadal_ssno') for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else [])])
+            existing_cadal_ssnos = set([code_value for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for code_value in (duxiu_record['aa_duxiu_derived']['identifiers_unified'].get('cadal_ssno') or [])])
             for cadal_ssno in (aarecord['file_unified_data']['identifiers_unified'].get('cadal_ssno') or []):
                 if (cadal_ssno in duxiu_dicts5) and (cadal_ssno not in existing_cadal_ssnos):
                     duxiu_all.append(duxiu_dicts5[cadal_ssno])
