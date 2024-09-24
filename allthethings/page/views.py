@@ -4544,13 +4544,13 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
     with engine.connect() as connection:
         connection.connection.ping(reconnect=True)
         cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(f'SELECT code, aarecord_id FROM {lookup_table_name} WHERE code IN %(codes)s', { "codes": [code.encode() for code in codes] })
+        cursor.execute(f'SELECT code, aarecord_id FROM {lookup_table_name} WHERE code IN %(codes)s', { "codes": [':'.join(code).encode() for code in codes] })
         rows = list(cursor.fetchall())
         if len(rows) == 0:
             return {}
         codes_by_aarecord_ids = collections.defaultdict(list)
         for row in rows:
-            codes_by_aarecord_ids[row['aarecord_id'].decode()].append(row['code'].decode())
+            codes_by_aarecord_ids[row['aarecord_id'].decode()].append(tuple(row['code'].decode().split(':', 1)))
         split_ids = allthethings.utils.split_aarecord_ids(codes_by_aarecord_ids.keys())
         retval = collections.defaultdict(list)
         if lookup_table_name == 'aarecords_codes_oclc_for_lookup':
@@ -4605,18 +4605,12 @@ def get_aarecords_mysql(session, aarecord_ids):
     aac_nexusstc_book_dicts = {('md5:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'md5', split_ids['md5'])}
     aac_nexusstc_book_dicts2 = {('nexusstc:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'nexusstc_id', split_ids['nexusstc'])}
     aac_nexusstc_book_dicts3 = {('nexusstc_download:' + item['requested_value']): item for item in get_aac_nexusstc_book_dicts(session, 'nexusstc_download', split_ids['nexusstc_download'])}
-    ol_book_dicts_primary_linked = get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [f"md5:{md5}" for md5 in split_ids['md5']])
+    ol_book_dicts_primary_linked = get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [('md5', md5) for md5 in split_ids['md5']])
     aac_edsebk_book_dicts = {('edsebk:' + item['edsebk_id']): item for item in get_aac_edsebk_book_dicts(session, 'edsebk_id', split_ids['edsebk'])}
 
     # First pass, so we can fetch more dependencies.
     aarecords = []
-    canonical_isbn13s = []
-    ol_editions = []
-    dois = []
-    oclc_ids = []
-    ia_ids = []
-    duxiu_ssids = []
-    cadal_ssnos = []
+    transitive_codes = collections.defaultdict(list)
     for aarecord_id in aarecord_ids:
         aarecord_id_split = aarecord_id.split(':', 1)
         aarecord = {}
@@ -4638,7 +4632,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['aac_upload'] = aac_upload_md5_dicts.get(aarecord_id)
         aarecord['aac_magzdb'] = aac_magzdb_book_dicts.get(aarecord_id) or aac_magzdb_book_dicts2.get(aarecord_id)
         aarecord['aac_nexusstc'] = aac_nexusstc_book_dicts.get(aarecord_id) or aac_nexusstc_book_dicts2.get(aarecord_id) or aac_nexusstc_book_dicts3.get(aarecord_id)
-        aarecord['ol_book_dicts_primary_linked'] = list(ol_book_dicts_primary_linked.get(aarecord_id) or [])
+        aarecord['ol_book_dicts_primary_linked'] = list(ol_book_dicts_primary_linked.get(tuple(aarecord_id_split)) or [])
         aarecord['duxius_nontransitive_meta_only'] = []
         aarecord['aac_edsebk'] = aac_edsebk_book_dicts.get(aarecord_id)
 
@@ -4668,39 +4662,76 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[duxiu_record['aa_duxiu_derived']['identifiers_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
             (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('identifiers_unified') or {}),
         ])
+
         # TODO: This `if` is not necessary if we make sure that the fields of the primary records get priority.
         if not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]):
-            current_record_isbn13s = aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []
-            if len(current_record_isbn13s) < 10: # Filter out obscenely long ISBN lists, e.g. https://archive.org/details/240524-CL-aa
-                for canonical_isbn13 in current_record_isbn13s:
-                    canonical_isbn13s.append(canonical_isbn13)
-            for potential_ol_edition in (aarecord['file_unified_data']['identifiers_unified'].get('ol') or []):
-                if allthethings.utils.validate_ol_editions([potential_ol_edition]):
-                    ol_editions.append(potential_ol_edition)
-            for code in (aarecord['file_unified_data']['identifiers_unified'].get('doi') or []):
-                dois.append(code)
-            for code in (aarecord['file_unified_data']['identifiers_unified'].get('oclc') or []):
-                oclc_ids.append(code)
-            for code in (aarecord['file_unified_data']['identifiers_unified'].get('ocaid') or []):
-                ia_ids.append(code)
-            for code in (aarecord['file_unified_data']['identifiers_unified'].get('duxiu_ssid') or []):
-                duxiu_ssids.append(code)
-            for code in (aarecord['file_unified_data']['identifiers_unified'].get('cadal_ssno') or []):
-                cadal_ssnos.append(code)
+            for code_name, code_values in aarecord['file_unified_data']['identifiers_unified'].items():
+                # Filter out obscenely long ISBN lists, e.g. https://archive.org/details/240524-CL-aa
+                if len(code_values) >= 10:
+                    continue
+                if code_name in ['isbn13', 'ol', 'doi', 'oclc', 'ocaid', 'duxiu_ssid', 'cadal_ssno']:
+                    for code_value in code_values:
+                        transitive_codes[(code_name, code_value)].append(aarecord)
 
         aarecords.append(aarecord)
 
-    if not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]):
-        isbndb_dicts2 = {item['ean13']: item for item in get_isbndb_dicts(session, list(dict.fromkeys(canonical_isbn13s)))}
-        ol_book_dicts2 = {item['ol_edition']: item for item in get_ol_book_dicts(session, 'ol_edition', list(dict.fromkeys(ol_editions)))}
-        ol_book_dicts2_for_lookup = get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [f"isbn13:{isbn13}" for isbn13 in list(dict.fromkeys(canonical_isbn13s))] + [f"ocaid:{ocaid}" for ocaid in list(dict.fromkeys(ia_ids))])
-        ia_record_dicts3 = {item['ia_id']: item for item in get_ia_record_dicts(session, "ia_id", list(dict.fromkeys(ia_ids))) if item.get('aa_ia_file') is None}
-        scihub_doi_dicts2 = {item['doi']: item for item in get_scihub_doi_dicts(session, 'doi', list(dict.fromkeys(dois)))}
-        oclc_dicts2 = {item['oclc_id']: item for item in get_oclc_dicts(session, 'oclc', list(dict.fromkeys(oclc_ids)))}
-        oclc_dicts2_for_lookup = get_transitive_lookup_dicts(session, "aarecords_codes_oclc_for_lookup", [f"isbn13:{isbn13}" for isbn13 in list(dict.fromkeys(canonical_isbn13s))])
-        duxiu_dicts4 = {item['duxiu_ssid']: item for item in get_duxiu_dicts(session, 'duxiu_ssid', list(dict.fromkeys(duxiu_ssids)), include_deep_transitive_md5s_size_path=False)}
-        duxiu_dicts5 = {item['cadal_ssno']: item for item in get_duxiu_dicts(session, 'cadal_ssno', list(dict.fromkeys(cadal_ssnos)), include_deep_transitive_md5s_size_path=False)}
-        edsebk_dicts2_for_lookup = get_transitive_lookup_dicts(session, "aarecords_codes_edsebk_for_lookup", [f"isbn13:{isbn13}" for isbn13 in list(dict.fromkeys(canonical_isbn13s))])
+    for isbndb_dict in get_isbndb_dicts(session, [code[1] for code in transitive_codes.keys() if code[0] == 'isbn13']):
+        for aarecord in transitive_codes[('isbn13', isbndb_dict['ean13'])]:
+            if any([existing_isbndb_dict['ean13'] == isbndb_dict['ean13'] for existing_isbndb_dict in aarecord['isbndb']]):
+                continue
+            # TODO: make consistent with other dicts
+            for isbndb_inner in isbndb_dict['isbndb']:
+                aarecord['isbndb'].append(isbndb_inner)
+    for ol_book_dict in get_ol_book_dicts(session, 'ol_edition', [code[1] for code in transitive_codes.keys() if code[0] == 'ol' and allthethings.utils.validate_ol_editions([code[1]])]):
+        for aarecord in transitive_codes[('ol', ol_book_dict['ol_edition'])]:
+            if any([existing_ol_book_dict['ol_edition'] == ol_book_dict['ol_edition'] for existing_ol_book_dict in aarecord['ol']]):
+                continue
+            aarecord['ol'].append(ol_book_dict)
+    for code_full, ol_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13', 'ocaid']]).items():
+        for aarecord in transitive_codes[code_full]:
+            for ol_book_dict in ol_book_dicts:
+                if any([existing_ol_book_dict['ol_edition'] == ol_book_dict['ol_edition'] for existing_ol_book_dict in aarecord['ol']]):
+                    continue
+                aarecord['ol'].append(ol_book_dict)
+    for oclc_dict in get_oclc_dicts(session, 'oclc', [code[1] for code in transitive_codes.keys() if code[0] == 'oclc']):
+        for aarecord in transitive_codes[('oclc', oclc_dict['oclc_id'])]:
+            if any([existing_oclc_dict['oclc_id'] == oclc_dict['oclc_id'] for existing_oclc_dict in aarecord['oclc']]):
+                continue
+            aarecord['oclc'].append(oclc_dict)
+    for code_full, oclc_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_oclc_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
+        for aarecord in transitive_codes[code_full]:
+            for oclc_dict in oclc_dicts:
+                if any([existing_oclc_dict['oclc_id'] == oclc_dict['oclc_id'] for existing_oclc_dict in aarecord['oclc']]):
+                    continue
+                aarecord['oclc'].append(oclc_dict)
+    for code_full, edsebk_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_edsebk_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
+        for aarecord in transitive_codes[code_full]:
+            for edsebk_dict in edsebk_dicts:
+                # TODO: make consistent with other dicts
+                if aarecord['aac_edsebk'] is None:
+                    aarecord['aac_edsebk'] = edsebk_dict
+    for ia_record_dict in get_ia_record_dicts(session, 'ia_id', [code[1] for code, aarecords in transitive_codes.items() if code[0] == 'ocaid' and any((aarecord.get('aa_ia_file') is None) for aarecord in aarecords)]):
+        for aarecord in transitive_codes[('ocaid', ia_record_dict['ia_id'])]:
+            if aarecord.get('aa_ia_file') is not None:
+                continue
+            if any([existing_ia_record_dict['ia_id'] == ia_record_dict['ia_id'] for existing_ia_record_dict in ([aarecord['ia_record']] if aarecord['ia_record'] is not None else []) + aarecord['ia_records_meta_only']]):
+                continue
+            aarecord['ia_records_meta_only'].append(ia_record_dict)
+    for scihub_doi_dict in get_scihub_doi_dicts(session, 'doi', [code[1] for code in transitive_codes.keys() if code[0] == 'doi']):
+        for aarecord in transitive_codes[('doi', scihub_doi_dict['doi'])]:
+            if any([existing_scihub_doi_dict['doi'] == scihub_doi_dict['doi'] for existing_scihub_doi_dict in aarecord['scihub_doi']]):
+                continue
+            aarecord['scihub_doi'].append(scihub_doi_dict)
+    for duxiu_dict in get_duxiu_dicts(session, 'duxiu_ssid', [code[1] for code in transitive_codes.keys() if code[0] == 'duxiu_ssid'], include_deep_transitive_md5s_size_path=False):
+        for aarecord in transitive_codes[('duxiu_ssid', duxiu_dict['duxiu_ssid'])]:
+            if any([duxiu_dict['duxiu_ssid'] == duxiu_ssid for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for duxiu_ssid in (duxiu_record['aa_duxiu_derived']['identifiers_unified'].get('duxiu_ssid') or [])]):
+                continue
+            aarecord['duxius_nontransitive_meta_only'].append(duxiu_dict)
+    for duxiu_dict in get_duxiu_dicts(session, 'cadal_ssno', [code[1] for code in transitive_codes.keys() if code[0] == 'cadal_ssno'], include_deep_transitive_md5s_size_path=False):
+        for aarecord in transitive_codes[('cadal_ssno', duxiu_dict['cadal_ssno'])]:
+            if any([duxiu_dict['cadal_ssno'] == cadal_ssno for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for cadal_ssno in (duxiu_record['aa_duxiu_derived']['identifiers_unified'].get('cadal_ssno') or [])]):
+                continue
+            aarecord['duxius_nontransitive_meta_only'].append(duxiu_dict)
 
     # Second pass
     for aarecord in aarecords:
@@ -4708,118 +4739,6 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord_id_split = aarecord_id.split(':', 1)
         lgli_single_edition = aarecord['lgli_file']['editions'][0] if len((aarecord.get('lgli_file') or {}).get('editions') or []) == 1 else None
         lgli_all_editions = aarecord['lgli_file']['editions'] if aarecord.get('lgli_file') else []
-
-        if not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]):
-            isbndb_all = []
-            existing_isbn13s = set([isbndb['isbn13'] for isbndb in aarecord['isbndb']])
-            for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
-                if (canonical_isbn13 in isbndb_dicts2) and (canonical_isbn13 not in existing_isbn13s):
-                    for isbndb in isbndb_dicts2[canonical_isbn13]['isbndb']:
-                        isbndb_all.append(isbndb)
-                    # No need to add to existing_isbn13s here.
-            isbndb_all = isbndb_all[0:5]
-            aarecord['isbndb'] = (aarecord['isbndb'] + isbndb_all)
-
-            ol_book_dicts_all = []
-            existing_ol_editions = set([ol_book_dict['ol_edition'] for ol_book_dict in aarecord['ol']])
-            for potential_ol_edition in (aarecord['file_unified_data']['identifiers_unified'].get('ol') or []):
-                if (potential_ol_edition in ol_book_dicts2) and (potential_ol_edition not in existing_ol_editions):
-                    ol_book_dicts_all.append(ol_book_dicts2[potential_ol_edition])
-                    # No need to add to existing_ol_editions here.
-            ol_book_dicts_all = ol_book_dicts_all[0:5]
-            aarecord['ol'] = (aarecord['ol'] + ol_book_dicts_all)
-
-            ol_book_dicts_all = []
-            existing_ol_editions = set([ol_book_dict['ol_edition'] for ol_book_dict in aarecord['ol']])
-            for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
-                for ol_book_dict in (ol_book_dicts2_for_lookup.get(f"isbn13:{canonical_isbn13}") or []):
-                    if ol_book_dict['ol_edition'] not in existing_ol_editions:
-                        ol_book_dicts_all.append(ol_book_dict)
-                        existing_ol_editions.add(ol_book_dict['ol_edition'])
-            ol_book_dicts_all = ol_book_dicts_all[0:5]
-            # Since these come from isbn13, we don't have the ol codes yet.
-            for ol_book_dict in ol_book_dicts_all:
-                allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ol', ol_book_dict['ol_edition'])
-            aarecord['ol'] = (aarecord['ol'] + ol_book_dicts_all)
-
-            ol_book_dicts_all = []
-            existing_ol_editions = set([ol_book_dict['ol_edition'] for ol_book_dict in aarecord['ol']])
-            for ia_id in (aarecord['file_unified_data']['identifiers_unified'].get('ocaid') or []):
-                for ol_book_dict in (ol_book_dicts2_for_lookup.get(f"ocaid:{ia_id}") or []):
-                    if ol_book_dict['ol_edition'] not in existing_ol_editions:
-                        ol_book_dicts_all.append(ol_book_dict)
-                        existing_ol_editions.add(ol_book_dict['ol_edition'])
-            ol_book_dicts_all = ol_book_dicts_all[0:5]
-            # Since these come from ocaid (ia_id), we don't have the ol codes yet.
-            for ol_book_dict in ol_book_dicts_all:
-                allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ol', ol_book_dict['ol_edition'])
-            aarecord['ol'] = (aarecord['ol'] + ol_book_dicts_all)
-
-            ia_record_dicts_all = []
-            existing_ia_ids = set([aarecord['ia_record']['ia_id']] if aarecord['ia_record'] is not None else [])
-            for potential_ia_id in (aarecord['file_unified_data']['identifiers_unified'].get('ocaid') or []):
-                if (potential_ia_id in ia_record_dicts3) and (potential_ia_id not in existing_ia_ids):
-                    ia_record_dicts_all.append(ia_record_dicts3[potential_ia_id])
-                    # No need to add to existing_ia_ids here.
-            ia_record_dicts_all = ia_record_dicts_all[0:5]
-            aarecord['ia_records_meta_only'] = (aarecord['ia_records_meta_only'] + ia_record_dicts_all)
-
-            scihub_doi_all = []
-            existing_dois = set([scihub_doi['doi'] for scihub_doi in aarecord['scihub_doi']])
-            for doi in (aarecord['file_unified_data']['identifiers_unified'].get('doi') or []):
-                if (doi in scihub_doi_dicts2) and (doi not in existing_dois):
-                    scihub_doi_all.append(scihub_doi_dicts2[doi])
-                    # No need to add to existing_dois here.
-            scihub_doi_all = scihub_doi_all[0:5]
-            aarecord['scihub_doi'] = (aarecord['scihub_doi'] + scihub_doi_all)
-
-            oclc_all = []
-            existing_oclc_ids = set([oclc['oclc_id'] for oclc in aarecord['oclc']])
-            for oclc_id in (aarecord['file_unified_data']['identifiers_unified'].get('oclc') or []):
-                if (oclc_id in oclc_dicts2) and (oclc_id not in existing_oclc_ids):
-                    oclc_all.append(oclc_dicts2[oclc_id])
-                    # No need to add to existing_oclc_ids here.
-            oclc_all = oclc_all[0:5]
-            aarecord['oclc'] = (aarecord['oclc'] + oclc_all)
-
-            oclc_all = []
-            existing_oclc_ids = set([oclc['oclc_id'] for oclc in aarecord['oclc']])
-            for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
-                for oclc_dict in (oclc_dicts2_for_lookup.get(f"isbn13:{canonical_isbn13}") or []):
-                    if oclc_dict['oclc_id'] not in existing_oclc_ids:
-                        oclc_all.append(oclc_dict)
-                        existing_oclc_ids.add(oclc_dict['oclc_id'])
-            oclc_all = oclc_all[0:5]
-            # Since these come from isbn13, we don't have the oclc codes yet.
-            for oclc_dict in oclc_all:
-                allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'oclc', oclc_dict['oclc_id'])
-            aarecord['oclc'] = (aarecord['oclc'] + oclc_all)
-
-            duxiu_all = []
-            existing_duxiu_ssids = set([code_value for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for code_value in (duxiu_record['aa_duxiu_derived']['identifiers_unified'].get('duxiu_ssid') or [])])
-            for duxiu_ssid in (aarecord['file_unified_data']['identifiers_unified'].get('duxiu_ssid') or []):
-                if (duxiu_ssid in duxiu_dicts4) and (duxiu_ssid not in existing_duxiu_ssids):
-                    duxiu_all.append(duxiu_dicts4[duxiu_ssid])
-                    # No need to add to existing_duxiu_ssids here.
-            duxiu_all = duxiu_all[0:5]
-            aarecord['duxius_nontransitive_meta_only'] = (aarecord['duxius_nontransitive_meta_only'] + duxiu_all)
-
-            duxiu_all = []
-            existing_cadal_ssnos = set([code_value for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for code_value in (duxiu_record['aa_duxiu_derived']['identifiers_unified'].get('cadal_ssno') or [])])
-            for cadal_ssno in (aarecord['file_unified_data']['identifiers_unified'].get('cadal_ssno') or []):
-                if (cadal_ssno in duxiu_dicts5) and (cadal_ssno not in existing_cadal_ssnos):
-                    duxiu_all.append(duxiu_dicts5[cadal_ssno])
-                    # No need to add to existing_cadal_ssnos here.
-            duxiu_all = duxiu_all[0:5]
-            aarecord['duxius_nontransitive_meta_only'] = (aarecord['duxius_nontransitive_meta_only'] + duxiu_all)
-
-            if aarecord['aac_edsebk'] is None:
-                edsebk_all = []
-                for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
-                    for edsebk_dict in (edsebk_dicts2_for_lookup.get(f"isbn13:{canonical_isbn13}") or []):
-                        edsebk_all.append(edsebk_dict)
-                if len(edsebk_all) > 0:
-                    aarecord['aac_edsebk'] = edsebk_all[0]
 
         aarecord['ipfs_infos'] = []
         if aarecord['lgrsnf_book'] and ((aarecord['lgrsnf_book'].get('ipfs_cid') or '') != ''):
