@@ -763,28 +763,49 @@ def elastic_build_aarecords_all_internal():
     elastic_build_aarecords_main_internal() # Main depends on tables generated above, so we do it last.
     elastic_build_aarecords_forcemerge_internal()
 
+def build_common(table_name, primary_id_to_aarecord_id, primary_id_column='primary_id', additional_where='', before_first_primary_id_WARNING_WARNING=''):
+    before_first_primary_id=before_first_primary_id_WARNING_WARNING
+    if before_first_primary_id != '':
+        for i in range(5):
+            print(f"WARNING! before_first_primary_id set in {table_name} to {before_first_primary_id} (total will be off)!!!!!!!!!!!!")
+
+    with engine.connect() as connection:
+        print(f"Processing from {table_name}")
+        cursor = allthethings.utils.get_cursor_ping_conn(connection)
+        cursor.execute(f'SELECT COUNT(*) AS count FROM {table_name} {"WHERE" if additional_where else ""} {additional_where} LIMIT 1', { "from": before_first_primary_id })
+        total = list(cursor.fetchall())[0]['count']
+        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
+            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
+                current_primary_id = before_first_primary_id
+                last_map = None
+                while True:
+                    cursor = allthethings.utils.get_cursor_ping_conn(connection)
+                    cursor.execute(f'SELECT {primary_id_column} AS primary_id, COUNT(*) AS count FROM {table_name} WHERE {additional_where} {"AND" if additional_where else ""} {primary_id_column} > %(from)s GROUP BY {primary_id_column} ORDER BY {primary_id_column} LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
+                    batch = list(cursor.fetchall())
+                    if last_map is not None:
+                        if any(last_map.get()):
+                            print("Error detected; exiting")
+                            os._exit(1)
+                    if len(batch) == 0:
+                        break
+                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from {table_name} ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
+                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([primary_id_to_aarecord_id(row['primary_id']) for row in batch], CHUNK_SIZE))
+                    pbar.update(sum([row['count'] for row in batch]))
+                    current_primary_id = batch[-1]['primary_id']
+        print(f"Done with {table_name}!")
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_ia
 @cli.cli.command('elastic_build_aarecords_ia')
 def elastic_build_aarecords_ia():
     elastic_build_aarecords_ia_internal()
-
 def elastic_build_aarecords_ia_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_ia')
 
-    before_first_ia_id = ''
-
-    if len(before_first_ia_id) > 0:
-        print(f'WARNING!!!!! before_first_ia_id is set to {before_first_ia_id}')
-        print(f'WARNING!!!!! before_first_ia_id is set to {before_first_ia_id}')
-        print(f'WARNING!!!!! before_first_ia_id is set to {before_first_ia_id}')
-
     with engine.connect() as connection:
         print("Processing from aa_ia_2023_06_metadata+annas_archive_meta__aacid__ia2_records")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
+        cursor = allthethings.utils.get_cursor_ping_conn(connection)
 
         # Sanity check: we assume that in annas_archive_meta__aacid__ia2_records we have no libgen-imported records.
         print("Running sanity check on aa_ia_2023_06_metadata")
@@ -797,29 +818,12 @@ def elastic_build_aarecords_ia_internal():
         cursor.execute('DROP TABLE IF EXISTS temp_ia_ids')
         cursor.execute('CREATE TABLE temp_ia_ids (ia_id VARCHAR(250) NOT NULL, PRIMARY KEY(ia_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT ia_id FROM (SELECT ia_id, libgen_md5 FROM aa_ia_2023_06_metadata UNION SELECT primary_id AS ia_id, NULL AS libgen_md5 FROM annas_archive_meta__aacid__ia2_records) combined LEFT JOIN aa_ia_2023_06_files USING (ia_id) LEFT JOIN annas_archive_meta__aacid__ia2_acsmpdf_files ON (combined.ia_id = annas_archive_meta__aacid__ia2_acsmpdf_files.primary_id) WHERE aa_ia_2023_06_files.md5 IS NULL AND annas_archive_meta__aacid__ia2_acsmpdf_files.md5 IS NULL AND combined.libgen_md5 IS NULL')
 
-        cursor.execute('SELECT COUNT(ia_id) AS count FROM temp_ia_ids WHERE ia_id > %(from)s ORDER BY ia_id LIMIT 1', { "from": before_first_ia_id })
-        total = cursor.fetchone()['count']
-        current_ia_id = before_first_ia_id
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT ia_id FROM temp_ia_ids WHERE ia_id > %(from)s ORDER BY ia_id LIMIT %(limit)s', { "from": current_ia_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from aa_ia_2023_06_metadata+annas_archive_meta__aacid__ia2_records ( starting ia_id: {batch[0]['ia_id']} , ia_id: {batch[-1]['ia_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"ia:{item['ia_id']}" for item in batch], CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_ia_id = batch[-1]['ia_id']
+    build_common('temp_ia_ids', lambda primary_id: f"ia:{primary_id}",
+        primary_id_column='ia_id')
 
+    with engine.connect() as connection:
         print("Removing table temp_ia_ids")
+        cursor = allthethings.utils.get_cursor_ping_conn(connection)
         cursor.execute('DROP TABLE IF EXISTS temp_ia_ids')
         print("Done with IA!")
 
@@ -879,39 +883,11 @@ def elastic_build_aarecords_isbndb_internal():
 @cli.cli.command('elastic_build_aarecords_ol')
 def elastic_build_aarecords_ol():
     elastic_build_aarecords_ol_internal()
-
 def elastic_build_aarecords_ol_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_ol', 'aarecords_codes_ol_for_lookup')
-
-    before_first_ol_key = ''
-    # before_first_ol_key = '/books/OL5624024M'
-    with engine.connect() as connection:
-        print("Processing from ol_base")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(ol_key) AS count FROM ol_base WHERE ol_key LIKE "/books/OL%%" AND ol_key > %(from)s ORDER BY ol_key LIMIT 1', { "from": before_first_ol_key })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_ol_key = before_first_ol_key
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT ol_key FROM ol_base WHERE ol_key LIKE "/books/OL%%" AND ol_key > %(from)s ORDER BY ol_key LIMIT %(limit)s', { "from": current_ol_key, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from ol_base ( starting ol_key: {batch[0]['ol_key']} , ending ol_key: {batch[-1]['ol_key']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"ol:{item['ol_key'].replace('/books/','')}" for item in batch if allthethings.utils.validate_ol_editions([item['ol_key'].replace('/books/','')])], CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_ol_key = batch[-1]['ol_key']
-        print("Done with OpenLib!")
+    build_common('ol_base', lambda primary_id: f"ol:{primary_id.replace('/books/','')}", 
+        primary_id_column='ol_key', additional_where='ol_key LIKE "/books/OL%%"')
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_duxiu
@@ -985,169 +961,46 @@ def elastic_build_aarecords_duxiu_internal():
 @cli.cli.command('elastic_build_aarecords_oclc')
 def elastic_build_aarecords_oclc():
     elastic_build_aarecords_oclc_internal()
-
 def elastic_build_aarecords_oclc_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_oclc', 'aarecords_codes_oclc_for_lookup')
-
-    before_first_primary_id = ''
-    # before_first_primary_id = '123'
-    oclc_done_already = 0 # To get a proper total count. A real query with primary_id>before_first_primary_id would take too long.
-    # oclc_done_already = 456
-
-    with engine.connect() as connection:
-        print("Processing from annas_archive_meta__aacid__worldcat")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(*) AS count FROM annas_archive_meta__aacid__worldcat LIMIT 1')
-        total = list(cursor.fetchall())[0]['count'] - oclc_done_already
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_primary_id = before_first_primary_id
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT primary_id, COUNT(*) AS count FROM annas_archive_meta__aacid__worldcat WHERE primary_id > %(from)s GROUP BY primary_id ORDER BY primary_id LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from annas_archive_meta__aacid__worldcat ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"oclc:{row['primary_id']}" for row in batch], CHUNK_SIZE))
-                    pbar.update(sum([row['count'] for row in batch]))
-                    current_primary_id = batch[-1]['primary_id']
-        print("Done with annas_archive_meta__aacid__worldcat!")
+    build_common('annas_archive_meta__aacid__worldcat', lambda primary_id: f"oclc:{primary_id}")
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_edsebk
 @cli.cli.command('elastic_build_aarecords_edsebk')
 def elastic_build_aarecords_edsebk():
     elastic_build_aarecords_edsebk_internal()
-
 def elastic_build_aarecords_edsebk_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_edsebk', 'aarecords_codes_edsebk_for_lookup')
-
-    before_first_primary_id = ''
-    # before_first_primary_id = '123'
-
-    with engine.connect() as connection:
-        print("Processing from annas_archive_meta__aacid__ebscohost_records")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(DISTINCT primary_id) AS count FROM annas_archive_meta__aacid__ebscohost_records WHERE primary_id > %(from)s ORDER BY primary_id LIMIT 1', { "from": before_first_primary_id })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_primary_id = before_first_primary_id
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT primary_id FROM annas_archive_meta__aacid__ebscohost_records WHERE primary_id > %(from)s ORDER BY primary_id LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from annas_archive_meta__aacid__ebscohost_records ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"edsebk:{row['primary_id']}" for row in batch], CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_primary_id = batch[-1]['primary_id']
-        print(f"Done with annas_archive_meta__aacid__ebscohost_records!")
-
+    build_common('annas_archive_meta__aacid__ebscohost_records', lambda primary_id: f"edsebk:{primary_id}")
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_magzdb
 @cli.cli.command('elastic_build_aarecords_magzdb')
 def elastic_build_aarecords_magzdb():
     elastic_build_aarecords_magzdb_internal()
-
 def elastic_build_aarecords_magzdb_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_magzdb')
-
-    before_first_primary_id = ''
-    # before_first_primary_id = '123'
-
-    with engine.connect() as connection:
-        print("Processing from annas_archive_meta__aacid__magzdb_records")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(primary_id) AS count FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id LIKE "record%%" AND primary_id > %(from)s ORDER BY primary_id LIMIT 1', { "from": before_first_primary_id })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_primary_id = before_first_primary_id
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT primary_id FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id LIKE "record%%" AND primary_id > %(from)s ORDER BY primary_id LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from annas_archive_meta__aacid__magzdb_records ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"magzdb:{row['primary_id'][len('record_'):]}" for row in batch], CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_primary_id = batch[-1]['primary_id']
-        print(f"Done with annas_archive_meta__aacid__magzdb_records!")
+    build_common('annas_archive_meta__aacid__magzdb_records', lambda primary_id: f"magzdb:{primary_id[len('record_'):]}",
+        additional_where='primary_id LIKE "record%%"')
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_nexusstc
 @cli.cli.command('elastic_build_aarecords_nexusstc')
 def elastic_build_aarecords_nexusstc():
     elastic_build_aarecords_nexusstc_internal()
-
 def elastic_build_aarecords_nexusstc_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_nexusstc')
-
     with Session(engine) as session:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         cursor.execute('DROP TABLE IF EXISTS nexusstc_cid_only')
         cursor.execute('CREATE TABLE nexusstc_cid_only (nexusstc_id VARCHAR(200) NOT NULL, PRIMARY KEY (nexusstc_id)) ENGINE=MyISAM DEFAULT CHARSET=ascii COLLATE=ascii_bin ROW_FORMAT=FIXED')
-
-    before_first_primary_id = ''
-    # before_first_primary_id = '123'
-
-    with engine.connect() as connection:
-        print("Processing from annas_archive_meta__aacid__nexusstc_records")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(primary_id) AS count FROM annas_archive_meta__aacid__nexusstc_records WHERE primary_id > %(from)s ORDER BY primary_id LIMIT 1', { "from": before_first_primary_id })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_primary_id = before_first_primary_id
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT primary_id FROM annas_archive_meta__aacid__nexusstc_records WHERE primary_id > %(from)s ORDER BY primary_id LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from annas_archive_meta__aacid__nexusstc_records ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"nexusstc:{row['primary_id']}" for row in batch], CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_primary_id = batch[-1]['primary_id']
-        print(f"Done with annas_archive_meta__aacid__nexusstc_records!")
+    build_common('annas_archive_meta__aacid__nexusstc_records', lambda primary_id: f"nexusstc:{primary_id}")
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_main
