@@ -10,8 +10,9 @@ docker exec -it web bash -c 'for f in /app/aacid_small/*.jsonl; do echo "Process
 - Chinese collection record: 29212943
 
 # Connections
-- aacid__nexusstc_records__20240516T173540Z__eRfYDiAsk9u9RsE1T4LRiq => isbn13:9780080123011 => OCLC 260
+- aacid__nexusstc_records__20240516T173540Z__eRfYDiAsk9u9RsE1T4LRiq => isbn13:9780080123011 => OCLC ocaid:260
 - aacid__ebscohost_records__20240823T161746Z__dNKnzFACHDdK3LMXwKKT7g => isbn13:9789004128101 => aacid__ia2_records__20240701T024508Z__fXwMUwGaE2u4Qi3vLi6hXe and aacid__ia2_acsmpdf_files__20240823T234615Z__Kxw3rjhx89g75T5rYtMPE6
+- aacid__ia2_records__20240126T065114Z__36XV8fUiR5vpmLUMMamqyS (IA 1000carsofnycsol0000kore) => ol:OL10000075M (deliberately modified "openlibrary_edition" in the ia2_records AAC to match like this)
 - OL /books/OL1000004M => md5:a50f2e8f2963888a976899e2c4675d70 (annas_archive identifier field)
 - OL /books/OL1000000M => ocaid:tankkillingantit0000hogg => aacid__ia2_records__20240126T070451Z__NvMQ2fj3EjR2pzmFn77hyJ (ISBN and openlib ID deliberately removed from aac record so that only ocaid matches)
 - OL /books/OL1000003M => isbn10:1861523505 converted to isbn13:9781861523501 => aacid__ia2_records__20240126T065900Z__HoFf9oz2n3hxufw8hvrys2 (deliberately no ocaid match, and removed openlib ID from aac record)
