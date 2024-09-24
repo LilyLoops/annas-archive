@@ -13,8 +13,6 @@ INSERT INTO `aarecords_codes_ia` VALUES("aacid:aacid__ia2_records__20240126T0651
 ,("date_ia_source:2023-06-06","ia:tankkillingantit0000hogg")
 ,("date_ia_source:2023-11-17","ia:1000carsofnycsol0000kore")
 ,("date_ia_source:2023-11-30","ia:isbn_9781861523501")
-,("date_oclc_scrape:2023-10-01","ia:1000carsofnycsol0000kore")
-,("date_oclc_scrape:2023-10-01","ia:tankkillingantit0000hogg")
 ,("date_ol_source:2008-04-01","ia:isbn_9781861523501")
 ,("date_ol_source:2008-04-01","ia:tankkillingantit0000hogg")
 ,("date_ol_source:2008-04-30","ia:1000carsofnycsol0000kore")

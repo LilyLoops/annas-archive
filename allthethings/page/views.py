@@ -2643,13 +2643,10 @@ def get_oclc_dicts(session, key, values):
 
     aac_records_by_oclc_id = collections.defaultdict(list)
     for index, line_bytes in enumerate(allthethings.utils.get_lines_from_aac_file(cursor, 'worldcat', worldcat_offsets_and_lengths)):
-        aac_records_by_oclc_id[worldcat_oclc_ids[index]].append(orjson.loads(line_bytes))
+        aac_records_by_oclc_id[str(worldcat_oclc_ids[index])].append(orjson.loads(line_bytes))
 
     oclc_dicts = []
-    for oclc_id in values:
-        oclc_id = str(oclc_id)
-        aac_records = aac_records_by_oclc_id[oclc_id]
-
+    for oclc_id, aac_records in aac_records_by_oclc_id.items():
         oclc_dict = {}
         oclc_dict["oclc_id"] = oclc_id
         oclc_dict["aa_oclc_derived"] = {}
