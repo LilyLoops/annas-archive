@@ -3,6 +3,7 @@
 /*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
 /*!40103 SET TIME_ZONE='+00:00' */;
 INSERT INTO `aarecords_codes_main` VALUES("aacid:aacid__duxiu_records__20240130T000000Z__G5fyw5pcTWVBKCSduDNuch","md5:79cb6eb3f10a9e0ce886d85a592b5462")
+,("aacid:aacid__duxiu_records__20240130T000000Z__RLEZTJEFBcuCCGdmBrnfSB","md5:259cc06fb75e2dc7958d6324df831a20")
 ,("aacid:aacid__duxiu_records__20240130T000000Z__dMeNQLMkWhXCrMUkZNr9vu","md5:abfd5d823be635970971397f6a1f7d94")
 ,("aacid:aacid__duxiu_records__20240130T000000Z__egmMTSSJNMuu6gWjdHe7GL","md5:79cb6eb3f10a9e0ce886d85a592b5462")
 ,("aacid:aacid__duxiu_records__20240205T000000Z__88PKKHaz2HXZJerK8qrHk2","md5:79cb6eb3f10a9e0ce886d85a592b5462")
@@ -2728,6 +2729,7 @@ INSERT INTO `aarecords_codes_main` VALUES("aacid:aacid__duxiu_records__20240130T
 ,("lang:ru","md5:c383cbeb9879388205dda1a6f6ccefcb")
 ,("lang:ru","md5:cc64d07de13dce3b0a1ea723ed2385ce")
 ,("lang:ru","md5:e7d2e1ac04c6b89731a9be617a296b94")
+,("lang:zh","md5:259cc06fb75e2dc7958d6324df831a20")
 ,("lang:zh","md5:6527e2904ce20f76a4636790852d7a52")
 ,("lang:zh","md5:6674f46c2b68a990b2bbb89865fa7a6d")
 ,("lang:zh","md5:79cb6eb3f10a9e0ce886d85a592b5462")
@@ -5297,6 +5299,7 @@ INSERT INTO `aarecords_codes_main` VALUES("aacid:aacid__duxiu_records__20240130T
 ,("year:2024","md5:5d3c91f55e7834570f7e3da030c9ffd3")
 ,("year:2024","md5:6410db585e7aecf94ede694eb3dc7f25")
 ,("year:2024","md5:7b721f58829ac7c1af37fbfc8e2b3c2e")
+,("year:其他","md5:259cc06fb75e2dc7958d6324df831a20")
 ,("zlib:1","md5:3feaca47d82f5900c53ab0082c778957")
 ,("zlib:1","md5:6de36a601e633e6412d72eb1860bf161")
 ,("zlib:10","md5:14ac6512e0a7bd2d2e0f37e658acaf3a")

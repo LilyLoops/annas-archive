@@ -5334,6 +5334,7 @@ INSERT INTO `annas_archive_meta__aacid__duxiu_records` VALUES("aacid__duxiu_reco
 ,("aacid__duxiu_records__20240130T000000Z__RKmD6KpHumUZqMAoUMiL5C","cadal_collection_id_23233",NULL,6363832,211,NULL)
 ,("aacid__duxiu_records__20240130T000000Z__RkSqCPgprPJADd9BGYchVz","cadal_journal_id_1185",NULL,6522993,232,NULL)
 ,("aacid__duxiu_records__20240130T000000Z__RKtWdnpJufqYHxTmU8SyhD","cadal_journal_id_1165",NULL,6364043,232,NULL)
+,("aacid__duxiu_records__20240130T000000Z__RLEZTJEFBcuCCGdmBrnfSB","cadal_ssno_01020456",NULL,13083499,1301,NULL)
 ,("aacid__duxiu_records__20240130T000000Z__RLmfzHphSgoVHSEheHuoPu","cadal_journal_id_3493",NULL,6364275,232,NULL)
 ,("aacid__duxiu_records__20240130T000000Z__RM8q9F3448wWnnxgf3CLPX","cadal_ssno_01000102",NULL,6364507,3419,NULL)
 ,("aacid__duxiu_records__20240130T000000Z__RmcMxATTiMVXnMD3hrTmLw","cadal_ssno_44407279",NULL,6523225,3753,NULL)
