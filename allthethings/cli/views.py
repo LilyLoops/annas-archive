@@ -770,7 +770,7 @@ def elastic_build_aarecords_all_internal():
     elastic_build_aarecords_main_internal() # Main depends on tables generated above, so we do it last.
     elastic_build_aarecords_forcemerge_internal()
 
-def build_common(table_name, primary_id_to_aarecord_id, primary_id_column='primary_id', additional_where='', before_first_primary_id_WARNING_WARNING=''):
+def build_common(table_name, batch_to_aarecord_ids, primary_id_column='primary_id', additional_where='', additional_select='', before_first_primary_id_WARNING_WARNING=''):
     before_first_primary_id=before_first_primary_id_WARNING_WARNING
     if before_first_primary_id != '':
         for i in range(5):
@@ -787,7 +787,7 @@ def build_common(table_name, primary_id_to_aarecord_id, primary_id_column='prima
                 last_map = None
                 while True:
                     cursor = allthethings.utils.get_cursor_ping_conn(connection)
-                    cursor.execute(f'SELECT {primary_id_column} AS primary_id, COUNT(*) AS count FROM {table_name} WHERE {additional_where} {"AND" if additional_where else ""} {primary_id_column} > %(from)s GROUP BY {primary_id_column} ORDER BY {primary_id_column} LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
+                    cursor.execute(f'SELECT {primary_id_column} AS primary_id, COUNT(*) AS count {additional_select} FROM {table_name} WHERE {additional_where} {"AND" if additional_where else ""} {primary_id_column} > %(from)s GROUP BY {primary_id_column} {additional_select} ORDER BY {primary_id_column} LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
                     batch = list(cursor.fetchall())
                     if last_map is not None:
                         if any(last_map.get()):
@@ -796,7 +796,7 @@ def build_common(table_name, primary_id_to_aarecord_id, primary_id_column='prima
                     if len(batch) == 0:
                         break
                     print(f"Processing with {THREADS=} {len(batch)=} aarecords from {table_name} ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([primary_id_to_aarecord_id(row['primary_id']) for row in batch], CHUNK_SIZE))
+                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked(batch_to_aarecord_ids(batch), CHUNK_SIZE))
                     pbar.update(sum([row['count'] for row in batch]))
                     current_primary_id = batch[-1]['primary_id']
         print(f"Done with {table_name}!")
@@ -825,7 +825,7 @@ def elastic_build_aarecords_ia_internal():
         cursor.execute('DROP TABLE IF EXISTS temp_ia_ids')
         cursor.execute('CREATE TABLE temp_ia_ids (ia_id VARCHAR(250) NOT NULL, PRIMARY KEY(ia_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT ia_id FROM (SELECT ia_id, libgen_md5 FROM aa_ia_2023_06_metadata UNION SELECT primary_id AS ia_id, NULL AS libgen_md5 FROM annas_archive_meta__aacid__ia2_records) combined LEFT JOIN aa_ia_2023_06_files USING (ia_id) LEFT JOIN annas_archive_meta__aacid__ia2_acsmpdf_files ON (combined.ia_id = annas_archive_meta__aacid__ia2_acsmpdf_files.primary_id) WHERE aa_ia_2023_06_files.md5 IS NULL AND annas_archive_meta__aacid__ia2_acsmpdf_files.md5 IS NULL AND combined.libgen_md5 IS NULL')
 
-    build_common('temp_ia_ids', lambda primary_id: f"ia:{primary_id}", primary_id_column='ia_id')
+    build_common('temp_ia_ids', lambda batch: [f"ia:{row['primary_id']}" for row in batch], primary_id_column='ia_id')
 
     with engine.connect() as connection:
         print("Removing table temp_ia_ids")
@@ -842,8 +842,8 @@ def elastic_build_aarecords_isbndb():
 def elastic_build_aarecords_isbndb_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_isbndb', 'aarecords_codes_isbndb_for_lookup')
-    build_common('isbndb_isbns', lambda primary_id: f"isbndb:{primary_id}", primary_id_column='isbn13')
-    build_common('isbndb_isbns', lambda primary_id: f"isbndb:{isbnlib.ean13(primary_id)}", primary_id_column='isbn10')
+    build_common('isbndb_isbns', lambda batch: [f"isbndb:{row['primary_id']}" for row in batch], primary_id_column='isbn13')
+    build_common('isbndb_isbns', lambda batch: [f"isbndb:{isbnlib.ean13(row['primary_id'])}" for row in batch], primary_id_column='isbn10')
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_ol
@@ -853,7 +853,7 @@ def elastic_build_aarecords_ol():
 def elastic_build_aarecords_ol_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_ol', 'aarecords_codes_ol_for_lookup')
-    build_common('ol_base', lambda primary_id: f"ol:{primary_id.replace('/books/','')}", 
+    build_common('ol_base', lambda batch: [f"ol:{row['primary_id'].replace('/books/','')}" for row in batch],
         primary_id_column='ol_key', additional_where='ol_key LIKE "/books/OL%%"')
 
 #################################################################################################
@@ -864,63 +864,35 @@ def elastic_build_aarecords_duxiu():
 def elastic_build_aarecords_duxiu_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_duxiu')
-
-    before_first_primary_id = ''
-    # before_first_primary_id = 'duxiu_ssid_10000431'
-    with engine.connect() as connection:
-        print("Processing from annas_archive_meta__aacid__duxiu_records")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(primary_id) AS count FROM annas_archive_meta__aacid__duxiu_records WHERE (primary_id LIKE "duxiu_ssid_%%" OR primary_id LIKE "cadal_ssno_%%") AND primary_id > %(from)s ORDER BY primary_id LIMIT 1', { "from": before_first_primary_id })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_primary_id = before_first_primary_id
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT primary_id, byte_offset, byte_length FROM annas_archive_meta__aacid__duxiu_records WHERE (primary_id LIKE "duxiu_ssid_%%" OR primary_id LIKE "cadal_ssno_%%") AND primary_id > %(from)s ORDER BY primary_id LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from annas_archive_meta__aacid__duxiu_records ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
-
-                    lines_bytes = allthethings.utils.get_lines_from_aac_file(cursor, 'duxiu_records', [(row['byte_offset'], row['byte_length']) for row in batch])
-
-                    ids = []
-                    for item_index, item in enumerate(batch):
-                        line_bytes = lines_bytes[item_index]
-
-                        if item['primary_id'] == 'duxiu_ssid_-1':
-                            continue
-                        if item['primary_id'].startswith('cadal_ssno_hj'):
-                            # These are collections.
-                            continue
-                        # TODO: pull these things out into the table?
-                        if b'dx_20240122__books' in line_bytes:
-                            # Skip, because 512w_final_csv is the authority on these records, and has a bunch of records from dx_20240122__books deleted.
-                            continue
-                        if (b'dx_toc_db__dx_toc' in line_bytes) and (b'"toc_xml":null' in line_bytes):
-                            # Skip empty TOC records.
-                            continue
-                        if b'dx_20240122__remote_files' in line_bytes:
-                            # Skip for now because a lot of the DuXiu SSIDs are actual CADAL SSNOs, and stand-alone records from
-                            # remote_files are not useful anyway since they lack metadata like title, author, etc.
-                            continue
-                        ids.append(item['primary_id'].replace('duxiu_ssid_','duxiu_ssid:').replace('cadal_ssno_','cadal_ssno:'))
-                    # Deduping at this level leads to some duplicates at the edges, but thats okay because aarecord
-                    # generation is idempotent.
-                    ids = list(set(ids))
-
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked(ids, CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_primary_id = batch[-1]['primary_id']
-        print("Done with annas_archive_meta__aacid__duxiu_records!")
+    def duxiu_batch_to_aarecord_ids(batch):
+        with engine.connect() as connection:
+            cursor = allthethings.utils.get_cursor_ping_conn(connection)
+            lines_bytes = allthethings.utils.get_lines_from_aac_file(cursor, 'duxiu_records', [(row['byte_offset'], row['byte_length']) for row in batch])
+            ids = []
+            for item_index, item in enumerate(batch):
+                line_bytes = lines_bytes[item_index]
+                if item['primary_id'] == 'duxiu_ssid_-1':
+                    continue
+                if item['primary_id'].startswith('cadal_ssno_hj'):
+                    # These are collections.
+                    continue
+                # TODO: pull these things out into the table?
+                if b'dx_20240122__books' in line_bytes:
+                    # Skip, because 512w_final_csv is the authority on these records, and has a bunch of records from dx_20240122__books deleted.
+                    continue
+                if (b'dx_toc_db__dx_toc' in line_bytes) and (b'"toc_xml":null' in line_bytes):
+                    # Skip empty TOC records.
+                    continue
+                if b'dx_20240122__remote_files' in line_bytes:
+                    # Skip for now because a lot of the DuXiu SSIDs are actual CADAL SSNOs, and stand-alone records from
+                    # remote_files are not useful anyway since they lack metadata like title, author, etc.
+                    continue
+                ids.append(item['primary_id'].replace('duxiu_ssid_','duxiu_ssid:').replace('cadal_ssno_','cadal_ssno:'))
+            # Deduping at this level leads to some duplicates at the edges, but thats okay because aarecord
+            # generation is idempotent.
+            return list(set(ids))
+    build_common('annas_archive_meta__aacid__duxiu_records', duxiu_batch_to_aarecord_ids,
+        additional_where='(primary_id LIKE "duxiu_ssid_%%" OR primary_id LIKE "cadal_ssno_%%")', additional_select=', byte_offset, byte_length')
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_oclc
@@ -930,7 +902,7 @@ def elastic_build_aarecords_oclc():
 def elastic_build_aarecords_oclc_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_oclc', 'aarecords_codes_oclc_for_lookup')
-    build_common('annas_archive_meta__aacid__worldcat', lambda primary_id: f"oclc:{primary_id}")
+    build_common('annas_archive_meta__aacid__worldcat', lambda batch: [f"oclc:{row['primary_id']}" for row in batch])
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_edsebk
@@ -940,7 +912,7 @@ def elastic_build_aarecords_edsebk():
 def elastic_build_aarecords_edsebk_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_edsebk', 'aarecords_codes_edsebk_for_lookup')
-    build_common('annas_archive_meta__aacid__ebscohost_records', lambda primary_id: f"edsebk:{primary_id}")
+    build_common('annas_archive_meta__aacid__ebscohost_records', lambda batch: [f"edsebk:{row['primary_id']}" for row in batch])
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_magzdb
@@ -950,7 +922,7 @@ def elastic_build_aarecords_magzdb():
 def elastic_build_aarecords_magzdb_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_magzdb')
-    build_common('annas_archive_meta__aacid__magzdb_records', lambda primary_id: f"magzdb:{primary_id[len('record_'):]}",
+    build_common('annas_archive_meta__aacid__magzdb_records', lambda batch: [f"magzdb:{row['primary_id'][len('record_'):]}" for row in batch],
         additional_where='primary_id LIKE "record%%"')
 
 #################################################################################################
@@ -966,7 +938,7 @@ def elastic_build_aarecords_nexusstc_internal():
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         cursor.execute('DROP TABLE IF EXISTS nexusstc_cid_only')
         cursor.execute('CREATE TABLE nexusstc_cid_only (nexusstc_id VARCHAR(200) NOT NULL, PRIMARY KEY (nexusstc_id)) ENGINE=MyISAM DEFAULT CHARSET=ascii COLLATE=ascii_bin ROW_FORMAT=FIXED')
-    build_common('annas_archive_meta__aacid__nexusstc_records', lambda primary_id: f"nexusstc:{primary_id}")
+    build_common('annas_archive_meta__aacid__nexusstc_records', lambda batch: [f"nexusstc:{row['primary_id']}" for row in batch])
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_main
