@@ -827,8 +827,7 @@ def build_common(table_name, batch_to_aarecord_ids, primary_id_column='primary_i
 def elastic_build_aarecords_ia():
     elastic_build_aarecords_ia_internal()
 def elastic_build_aarecords_ia_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_ia')
+    new_tables_internal('aarecords_codes_ia') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
 
     with engine.connect() as connection:
         print("Processing from aa_ia_2023_06_metadata+annas_archive_meta__aacid__ia2_records")
@@ -860,8 +859,7 @@ def elastic_build_aarecords_ia_internal():
 def elastic_build_aarecords_isbndb():
     elastic_build_aarecords_isbndb_internal()
 def elastic_build_aarecords_isbndb_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_isbndb', 'aarecords_codes_isbndb_for_lookup')
+    new_tables_internal('aarecords_codes_isbndb', 'aarecords_codes_isbndb_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('isbndb_isbns', lambda batch: [f"isbndb:{row['primary_id']}" for row in batch], primary_id_column='isbn13')
     build_common('isbndb_isbns', lambda batch: [f"isbndb:{isbnlib.ean13(row['primary_id'])}" for row in batch], primary_id_column='isbn10')
 
@@ -871,8 +869,7 @@ def elastic_build_aarecords_isbndb_internal():
 def elastic_build_aarecords_ol():
     elastic_build_aarecords_ol_internal()
 def elastic_build_aarecords_ol_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_ol', 'aarecords_codes_ol_for_lookup')
+    new_tables_internal('aarecords_codes_ol', 'aarecords_codes_ol_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('ol_base', lambda batch: [f"ol:{row['primary_id'].replace('/books/','')}" for row in batch],
         primary_id_column='ol_key', additional_where='ol_key LIKE "/books/OL%%"')
 
@@ -882,8 +879,7 @@ def elastic_build_aarecords_ol_internal():
 def elastic_build_aarecords_duxiu():
     elastic_build_aarecords_duxiu_internal()
 def elastic_build_aarecords_duxiu_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_duxiu')
+    new_tables_internal('aarecords_codes_duxiu') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     def duxiu_batch_to_aarecord_ids(batch):
         with engine.connect() as connection:
             cursor = allthethings.utils.get_cursor_ping_conn(connection)
@@ -920,8 +916,7 @@ def elastic_build_aarecords_duxiu_internal():
 def elastic_build_aarecords_oclc():
     elastic_build_aarecords_oclc_internal()
 def elastic_build_aarecords_oclc_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_oclc', 'aarecords_codes_oclc_for_lookup')
+    new_tables_internal('aarecords_codes_oclc', 'aarecords_codes_oclc_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__worldcat', lambda batch: [f"oclc:{row['primary_id']}" for row in batch])
 
 #################################################################################################
@@ -930,8 +925,7 @@ def elastic_build_aarecords_oclc_internal():
 def elastic_build_aarecords_edsebk():
     elastic_build_aarecords_edsebk_internal()
 def elastic_build_aarecords_edsebk_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_edsebk', 'aarecords_codes_edsebk_for_lookup')
+    new_tables_internal('aarecords_codes_edsebk', 'aarecords_codes_edsebk_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__ebscohost_records', lambda batch: [f"edsebk:{row['primary_id']}" for row in batch])
 
 #################################################################################################
@@ -940,8 +934,7 @@ def elastic_build_aarecords_edsebk_internal():
 def elastic_build_aarecords_magzdb():
     elastic_build_aarecords_magzdb_internal()
 def elastic_build_aarecords_magzdb_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_magzdb')
+    new_tables_internal('aarecords_codes_magzdb') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__magzdb_records', lambda batch: [f"magzdb:{row['primary_id'][len('record_'):]}" for row in batch],
         additional_where='primary_id LIKE "record%%"')
 
@@ -951,8 +944,7 @@ def elastic_build_aarecords_magzdb_internal():
 def elastic_build_aarecords_nexusstc():
     elastic_build_aarecords_nexusstc_internal()
 def elastic_build_aarecords_nexusstc_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_nexusstc')
+    new_tables_internal('aarecords_codes_nexusstc') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     with Session(engine) as session:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
@@ -965,152 +957,35 @@ def elastic_build_aarecords_nexusstc_internal():
 @cli.cli.command('elastic_build_aarecords_main')
 def elastic_build_aarecords_main():
     elastic_build_aarecords_main_internal()
-
 def elastic_build_aarecords_main_internal():
-    # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_main')
+    new_tables_internal('aarecords_codes_main') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
 
-    before_first_md5 = ''
-    # before_first_md5 = 'aaa5a4759e87b0192c1ecde213535ba1'
-    before_first_doi = ''
-    # before_first_doi = ''
-    before_first_nexusstc_id = ''
-    # before_first_nexusstc_id = ''
-
-    if before_first_md5 != '':
-        print(f'WARNING!!!!! before_first_md5 is set to {before_first_md5}')
-        print(f'WARNING!!!!! before_first_md5 is set to {before_first_md5}')
-        print(f'WARNING!!!!! before_first_md5 is set to {before_first_md5}')
-    if before_first_doi != '':
-        print(f'WARNING!!!!! before_first_doi is set to {before_first_doi}')
-        print(f'WARNING!!!!! before_first_doi is set to {before_first_doi}')
-        print(f'WARNING!!!!! before_first_doi is set to {before_first_doi}')
+    print("Deleting main ES indices")
+    for index_name, es_handle in allthethings.utils.SEARCH_INDEX_TO_ES_MAPPING.items():
+        if index_name in allthethings.utils.MAIN_SEARCH_INDEXES:
+            es_handle.options(ignore_status=[400,404]).indices.delete(index=index_name) # Old
+            for virtshard in range(0, 100): # Out of abundance, delete up to a large number
+                es_handle.options(ignore_status=[400,404]).indices.delete(index=f'{index_name}__{virtshard}')
+    if not SLOW_DATA_IMPORTS:
+        print("Sleeping 3 minutes (no point in making this less)")
+        time.sleep(60*3)
+    print("Creating main ES indices")
+    for index_name, es_handle in allthethings.utils.SEARCH_INDEX_TO_ES_MAPPING.items():
+        if index_name in allthethings.utils.MAIN_SEARCH_INDEXES:
+            for full_index_name in allthethings.utils.all_virtshards_for_index(index_name):
+                es_handle.indices.create(wait_for_active_shards=1,index=full_index_name, body=es_create_index_body)
 
     with engine.connect() as connection:
-        if before_first_md5 == '' and before_first_doi == '':
-            print("Deleting main ES indices")
-            for index_name, es_handle in allthethings.utils.SEARCH_INDEX_TO_ES_MAPPING.items():
-                if index_name in allthethings.utils.MAIN_SEARCH_INDEXES:
-                    es_handle.options(ignore_status=[400,404]).indices.delete(index=index_name) # Old
-                    for virtshard in range(0, 100): # Out of abundance, delete up to a large number
-                        es_handle.options(ignore_status=[400,404]).indices.delete(index=f'{index_name}__{virtshard}')
-
-            connection.connection.ping(reconnect=True)
-            cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-            cursor.execute('DROP TABLE IF EXISTS aarecords_all_md5')
-            cursor.execute('CREATE TABLE aarecords_all_md5 (md5 BINARY(16) NOT NULL, json_compressed LONGBLOB NOT NULL, PRIMARY KEY (md5)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
-            cursor.execute('DROP TABLE IF EXISTS temp_md5_with_doi_seen')
-            cursor.execute('CREATE TABLE temp_md5_with_doi_seen (doi VARBINARY(1000), PRIMARY KEY (doi)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
-
-        print("Counting computed_all_md5s")
         connection.connection.ping(reconnect=True)
         cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(md5) AS count FROM computed_all_md5s WHERE md5 > %(from)s ORDER BY md5 LIMIT 1', { "from": bytes.fromhex(before_first_md5) })
-        total = list(cursor.fetchall())[0]['count']
+        cursor.execute('DROP TABLE IF EXISTS aarecords_all_md5')
+        cursor.execute('CREATE TABLE aarecords_all_md5 (md5 BINARY(16) NOT NULL, json_compressed LONGBLOB NOT NULL, PRIMARY KEY (md5)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
+        cursor.execute('DROP TABLE IF EXISTS temp_md5_with_doi_seen')
+        cursor.execute('CREATE TABLE temp_md5_with_doi_seen (doi VARBINARY(1000), PRIMARY KEY (doi)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
 
-        if before_first_md5 == '' and before_first_doi == '':
-            if not SLOW_DATA_IMPORTS:
-                print("Sleeping 3 minutes (no point in making this less)")
-                time.sleep(60*3)
-            print("Creating main ES indices")
-            for index_name, es_handle in allthethings.utils.SEARCH_INDEX_TO_ES_MAPPING.items():
-                if index_name in allthethings.utils.MAIN_SEARCH_INDEXES:
-                    for full_index_name in allthethings.utils.all_virtshards_for_index(index_name):
-                        es_handle.indices.create(wait_for_active_shards=1,index=full_index_name, body=es_create_index_body)
-
-        if before_first_doi == '':
-            with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}', smoothing=0.01) as pbar:
-                with concurrent.futures.ProcessPoolExecutor(max_workers=THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                    futures = set()
-                    def process_future():
-                        # print(f"Futures waiting: {len(futures)}")
-                        (done, not_done) = concurrent.futures.wait(futures, return_when=concurrent.futures.FIRST_COMPLETED)
-                        # print(f"Done!")
-                        for future_done in done:
-                            futures.remove(future_done)
-                            pbar.update(CHUNK_SIZE)
-                            err = future_done.exception()
-                            if err:
-                                print(f"ERROR IN FUTURE RESOLUTION!!!!! {repr(err)}\n\n/////\n\n{traceback.format_exc()}")
-                                raise err
-                            result = future_done.result()
-                            if result:
-                                print("Error detected; exiting")
-                                os._exit(1)
-
-                    current_md5 = bytes.fromhex(before_first_md5)
-                    last_map = None
-                    while True:
-                        connection.connection.ping(reconnect=True)
-                        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                        cursor.execute('SELECT md5 FROM computed_all_md5s WHERE md5 > %(from)s ORDER BY md5 LIMIT %(limit)s', { "from": current_md5, "limit": BATCH_SIZE })
-                        batch = list(cursor.fetchall())
-                        if last_map is not None:
-                            if any(last_map.get()):
-                                print("Error detected; exiting")
-                                os._exit(1)
-                        if len(batch) == 0:
-                            break
-                        print(f"Processing (ahead!) with {THREADS=} {len(batch)=} aarecords from computed_all_md5s ( starting md5: {batch[0]['md5'].hex()} , ending md5: {batch[-1]['md5'].hex()} )...")
-                        for chunk in more_itertools.chunked([f"md5:{item['md5'].hex()}" for item in batch], CHUNK_SIZE):
-                            futures.add(executor.submit(elastic_build_aarecords_job, chunk))
-                            if len(futures) > THREADS*2:
-                                process_future()
-                        # last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"md5:{item['md5'].hex()}" for item in batch], CHUNK_SIZE))
-                        # pbar.update(len(batch))
-                        current_md5 = batch[-1]['md5']
-                    while len(futures) > 0:
-                        process_future()
-
-        print("Processing from scihub_dois")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(*) AS count FROM scihub_dois WHERE doi > %(from)s ORDER BY doi LIMIT 1', { "from": before_first_doi })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_doi = before_first_doi
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT doi FROM scihub_dois WHERE doi > %(from)s ORDER BY doi LIMIT %(limit)s', { "from": current_doi, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from scihub_dois ( starting doi: {batch[0]['doi']}, ending doi: {batch[-1]['doi']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"doi:{item['doi']}" for item in batch], CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_doi = batch[-1]['doi']
-
-        print("Processing from nexusstc_cid_only")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(*) AS count FROM nexusstc_cid_only WHERE nexusstc_id > %(from)s ORDER BY nexusstc_id LIMIT 1', { "from": before_first_nexusstc_id })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_nexusstc_id = before_first_nexusstc_id
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    cursor.execute('SELECT nexusstc_id FROM nexusstc_cid_only WHERE nexusstc_id > %(from)s ORDER BY nexusstc_id LIMIT %(limit)s', { "from": current_nexusstc_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from nexusstc_cid_only ( starting nexusstc_id: {batch[0]['nexusstc_id']}, ending nexusstc_id: {batch[-1]['nexusstc_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked([f"nexusstc_download:{item['nexusstc_id']}" for item in batch], CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_nexusstc_id = batch[-1]['nexusstc_id']
+    build_common('computed_all_md5s', lambda batch: [f"md5:{row['primary_id'].hex()}" for row in batch], primary_id_column='md5')
+    build_common('scihub_dois', lambda batch: [f"doi:{row['primary_id']}" for row in batch], primary_id_column='doi')
+    build_common('nexusstc_cid_only', lambda batch: [f"nexusstc_download:{row['primary_id']}" for row in batch], primary_id_column='nexusstc_id')
 
     with Session(engine) as session:
         session.connection().connection.ping(reconnect=True)
@@ -1124,7 +999,6 @@ def elastic_build_aarecords_main_internal():
 @cli.cli.command('elastic_build_aarecords_forcemerge')
 def elastic_build_aarecords_forcemerge():
     elastic_build_aarecords_forcemerge_internal()
-
 def elastic_build_aarecords_forcemerge_internal():
     for index_name, es_handle in allthethings.utils.SEARCH_INDEX_TO_ES_MAPPING.items():
         for full_index_name in allthethings.utils.all_virtshards_for_index(index_name):
@@ -1139,7 +1013,6 @@ def elastic_build_aarecords_forcemerge_internal():
 @cli.cli.command('mysql_build_aarecords_codes_numbers')
 def mysql_build_aarecords_codes_numbers():
     mysql_build_aarecords_codes_numbers_internal()
-
 def mysql_build_aarecords_codes_numbers_internal():
     processed_rows = 0
     with engine.connect() as connection:
@@ -1150,8 +1023,7 @@ def mysql_build_aarecords_codes_numbers_internal():
             cursor.execute('DROP TABLE IF EXISTS aarecords_codes_new')
             cursor.execute('DROP TABLE IF EXISTS aarecords_codes_prefixes_new')
 
-        # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-        print("Creating fresh table aarecords_codes_new")
+        print("Creating fresh table aarecords_codes_new") # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
         cursor.execute(f'CREATE TABLE aarecords_codes_new (code VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, aarecord_id VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_LENGTH}) NOT NULL, aarecord_id_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_PREFIX_LENGTH}) NOT NULL, row_number_order_by_code BIGINT NOT NULL, dense_rank_order_by_code BIGINT NOT NULL, row_number_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, dense_rank_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, PRIMARY KEY (code, aarecord_id), INDEX aarecord_id_prefix (aarecord_id_prefix, code, aarecord_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT code, aarecord_id, SUBSTRING_INDEX(aarecord_id, ":", 1) AS aarecord_id_prefix, (ROW_NUMBER() OVER (ORDER BY code, aarecord_id)) AS row_number_order_by_code, (DENSE_RANK() OVER (ORDER BY code)) AS dense_rank_order_by_code, (ROW_NUMBER() OVER (PARTITION BY aarecord_id_prefix ORDER BY code, aarecord_id)) AS row_number_partition_by_aarecord_id_prefix_order_by_code, (DENSE_RANK() OVER (PARTITION BY aarecord_id_prefix ORDER BY code)) AS dense_rank_partition_by_aarecord_id_prefix_order_by_code FROM (SELECT code, aarecord_id FROM aarecords_codes_ia UNION ALL SELECT code, aarecord_id FROM aarecords_codes_isbndb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_ol UNION ALL SELECT code, aarecord_id FROM aarecords_codes_duxiu UNION ALL SELECT code, aarecord_id FROM aarecords_codes_oclc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_magzdb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_edsebk UNION ALL SELECT code, aarecord_id FROM aarecords_codes_nexusstc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_main) x ORDER BY code, aarecord_id')
         cursor.execute(f'CREATE TABLE aarecords_codes_prefixes_new (code_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, PRIMARY KEY (code_prefix)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT DISTINCT SUBSTRING_INDEX(code, ":", 1) AS code_prefix FROM aarecords_codes_new')
 
