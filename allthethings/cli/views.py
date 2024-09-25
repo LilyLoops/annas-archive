@@ -174,6 +174,12 @@ def mysql_build_aac_tables_internal():
                 extra_index_fields['filename_decoded_basename'] = 'VARCHAR(250) NULL'
 
             def build_insert_data(line, byte_offset):
+                if SLOW_DATA_IMPORTS:
+                    try:
+                        orjson.loads(line)
+                    except Exception as err:
+                        raise Exception(f"Error parsing AAC JSON: {collection=} {filename=} {line=} {err=}")
+
                 # Parse "canonical AAC" more efficiently than parsing all the JSON
                 matches = re.match(rb'\{"aacid":"([^"]+)",("data_folder":"([^"]+)",)?"metadata":\{"[^"]+":([^,]+),("md5":"([^"]+)")?', line)
                 if matches is None:

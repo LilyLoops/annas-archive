@@ -14,5 +14,6 @@ INSERT INTO `annas_archive_meta__aacid__nexusstc_records` VALUES("aacid__nexusst
 ,("aacid__nexusstc_records__20240516T175026Z__7UpGThHbFhaLaQpngUx8y2","1aq6gcl3bo1yxavod8lpw1t7h",NULL,3182,6191)
 ,("aacid__nexusstc_records__20240516T175401Z__9N6E4X5UjUynd5o9BtSjS8","e6envx3axp3tce54a0wnrpe80",NULL,13980,1943)
 ,("aacid__nexusstc_records__20240516T175406Z__3gpw2dbGcBd114FAfepfYW","71g3ffgytoaco703nhjzu6hd6",NULL,17339,1002)
+,("aacid__nexusstc_records__20240516T181305Z__78xFBbXdi1dSBZxyoVNAdn","6etg0wq0q8nsoufh9gtj4n9s5",NULL,18341,2151)
 ,("aacid__nexusstc_records__20240516T181757Z__DZJVzcSyz345MugcovG2iG","101orwkkequ1g2w1r8b1gjg5w",NULL,26369,2880)
 ;
