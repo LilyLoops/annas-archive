@@ -6073,7 +6073,7 @@ def get_additional_for_aarecord(aarecord):
         additional['download_urls'].append(("IPFS", f"/ipfs_downloads/{aarecord['id']}", ""))
     
     for source_record in source_records_by_type['zlib_book']:
-        if len(source_record['pilimi_torrent'] or '') != '':
+        if (source_record['pilimi_torrent'] or '') != '':
             zlib_path = make_temp_anon_zlib_path(source_record['zlibrary_id'], source_record['pilimi_torrent'])
             add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional)
             if "-zlib2-" in source_record['pilimi_torrent']:
