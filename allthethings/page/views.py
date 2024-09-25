@@ -4583,15 +4583,15 @@ def get_aarecords_mysql(session, aarecord_ids):
     aarecord_ids = list(dict.fromkeys([val for val in aarecord_ids if val not in allthethings.utils.SEARCH_FILTERED_BAD_AARECORD_IDS]))
 
     split_ids = allthethings.utils.split_aarecord_ids(aarecord_ids)
-    lgrsnf_book_dicts = dict(('md5:' + item['md5'].lower(), item) for item in get_lgrsnf_book_dicts(session, "MD5", split_ids['md5']))
-    lgrsfic_book_dicts = dict(('md5:' + item['md5'].lower(), item) for item in get_lgrsfic_book_dicts(session, "MD5", split_ids['md5']))
-    lgli_file_dicts = dict(('md5:' + item['md5'].lower(), item) for item in get_lgli_file_dicts(session, "md5", split_ids['md5']))
-    zlib_book_dicts1 = dict(('md5:' + item['md5_reported'].lower(), item) for item in get_zlib_book_dicts(session, "md5_reported", split_ids['md5']))
-    zlib_book_dicts2 = dict(('md5:' + item['md5'].lower(), item) for item in get_zlib_book_dicts(session, "md5", split_ids['md5']))
-    aac_zlib3_book_dicts1 = dict(('md5:' + item['md5_reported'].lower(), item) for item in get_aac_zlib3_book_dicts(session, "md5_reported", split_ids['md5']))
-    aac_zlib3_book_dicts2 = dict(('md5:' + item['md5'].lower(), item) for item in get_aac_zlib3_book_dicts(session, "md5", split_ids['md5']))
-    ia_record_dicts = dict(('md5:' + item['aa_ia_file']['md5'].lower(), item) for item in get_ia_record_dicts(session, "md5", split_ids['md5']) if item.get('aa_ia_file') is not None)
-    ia_record_dicts2 = dict(('ia:' + item['ia_id'], item) for item in get_ia_record_dicts(session, "ia_id", split_ids['ia']) if item.get('aa_ia_file') is None)
+    lgrsnf_book_dicts = {('md5:' + item['md5'].lower()): item for item in get_lgrsnf_book_dicts(session, "MD5", split_ids['md5'])}
+    lgrsfic_book_dicts = {('md5:' + item['md5'].lower()): item for item in get_lgrsfic_book_dicts(session, "MD5", split_ids['md5'])}
+    lgli_file_dicts = {('md5:' + item['md5'].lower()): item for item in get_lgli_file_dicts(session, "md5", split_ids['md5'])}
+    zlib_book_dicts1 = {('md5:' + item['md5_reported'].lower()): item for item in get_zlib_book_dicts(session, "md5_reported", split_ids['md5'])}
+    zlib_book_dicts2 = {('md5:' + item['md5'].lower()): item for item in get_zlib_book_dicts(session, "md5", split_ids['md5'])}
+    aac_zlib3_book_dicts1 = {('md5:' + item['md5_reported'].lower()): item for item in get_aac_zlib3_book_dicts(session, "md5_reported", split_ids['md5'])}
+    aac_zlib3_book_dicts2 = {('md5:' + item['md5'].lower()): item for item in get_aac_zlib3_book_dicts(session, "md5", split_ids['md5'])}
+    ia_record_dicts = {('md5:' + item['aa_ia_file']['md5'].lower()): item for item in get_ia_record_dicts(session, "md5", split_ids['md5']) if item.get('aa_ia_file') is not None}
+    ia_record_dicts2 = {('ia:' + item['ia_id']): item for item in get_ia_record_dicts(session, "ia_id", split_ids['ia']) if item.get('aa_ia_file') is None}
     isbndb_dicts = {('isbndb:' + item['ean13']): item['isbndb'] for item in get_isbndb_dicts(session, split_ids['isbndb'])}
     ol_book_dicts = {('ol:' + item['ol_edition']): [item] for item in get_ol_book_dicts(session, 'ol_edition', split_ids['ol'])}
     scihub_doi_dicts = {('doi:' + item['doi']): [item] for item in get_scihub_doi_dicts(session, 'doi', split_ids['doi'])}
