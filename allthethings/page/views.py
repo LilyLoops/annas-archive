@@ -4583,10 +4583,8 @@ def make_source_record(aarecord, source_type):
         return [{"source_type": source_type, "source_record": record} for record in orig]
     else:
         return [{"source_type": source_type, "source_record": orig}]
-def make_source_records(aarecord, backwards_compatibility=False):
-    if backwards_compatibility and 'source_records' in aarecord:
-        return
-    aarecord['source_records'] = [
+def make_source_records(aarecord):
+    return [
         *make_source_record(aarecord, 'lgrsnf_book'),
         *make_source_record(aarecord, 'lgrsfic_book'),
         *make_source_record(aarecord, 'lgli_file'),
@@ -4667,9 +4665,6 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['ol_book_dicts_primary_linked'] = list(ol_book_dicts_primary_linked.get(tuple(aarecord_id_split)) or [])
         aarecord['duxius_nontransitive_meta_only'] = []
         aarecord['aac_edsebk'] = aac_edsebk_book_dicts.get(aarecord_id)
-
-        # TODO:SOURCE Remove and use source_records directly.
-        make_source_records(aarecord)
 
         lgli_all_editions = aarecord['lgli_file']['editions'] if aarecord.get('lgli_file') else []
 
@@ -4769,8 +4764,9 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['duxius_nontransitive_meta_only'].append(duxiu_dict)
 
     # TODO:SOURCE Remove and use source_records directly.
+    source_records_full_by_aarecord_id = {}
     for aarecord in aarecords:
-        make_source_records(aarecord)
+        source_records_full_by_aarecord_id[aarecord['id']] = make_source_records(aarecord)
 
     # Second pass
     for aarecord in aarecords:
@@ -5411,139 +5407,191 @@ def get_aarecords_mysql(session, aarecord_ids):
         if aarecord['file_unified_data']['content_type'] is None:
             aarecord['file_unified_data']['content_type'] = 'book_unknown'
 
-        if aarecord['lgrsnf_book'] is not None:
-            aarecord['lgrsnf_book'] = {
-                'id': aarecord['lgrsnf_book']['id'],
-                'md5': aarecord['lgrsnf_book']['md5'],
-            }
-        if aarecord['lgrsfic_book'] is not None:
-            aarecord['lgrsfic_book'] = {
-                'id': aarecord['lgrsfic_book']['id'],
-                'md5': aarecord['lgrsfic_book']['md5'],
-            }
-        if aarecord['lgli_file'] is not None:
-            aarecord['lgli_file'] = {
-                'f_id': aarecord['lgli_file']['f_id'],
-                'md5': aarecord['lgli_file']['md5'],
-                'libgen_topic': aarecord['lgli_file']['libgen_topic'],
-                'libgen_id': aarecord['lgli_file']['libgen_id'],
-                'fiction_id': aarecord['lgli_file']['fiction_id'],
-                'fiction_rus_id': aarecord['lgli_file']['fiction_rus_id'],
-                'comics_id': aarecord['lgli_file']['comics_id'],
-                'scimag_id': aarecord['lgli_file']['scimag_id'],
-                'standarts_id': aarecord['lgli_file']['standarts_id'],
-                'magz_id': aarecord['lgli_file']['magz_id'],
-                'scimag_archive_path': aarecord['lgli_file']['scimag_archive_path'],
-            }
-        if aarecord['zlib_book'] is not None:
-            aarecord['zlib_book'] = {
-                'zlibrary_id': aarecord['zlib_book']['zlibrary_id'],
-                'md5': aarecord['zlib_book']['md5'],
-                'md5_reported': aarecord['zlib_book']['md5_reported'],
-                'filesize': aarecord['zlib_book']['filesize'],
-                'filesize_reported': aarecord['zlib_book']['filesize_reported'],
-                'in_libgen': aarecord['zlib_book']['in_libgen'],
-                'pilimi_torrent': aarecord['zlib_book']['pilimi_torrent'],
-            }
-        if aarecord['aac_zlib3_book'] is not None:
-            aarecord['aac_zlib3_book'] = {
-                'zlibrary_id': aarecord['aac_zlib3_book']['zlibrary_id'],
-                'md5': aarecord['aac_zlib3_book']['md5'],
-                'md5_reported': aarecord['aac_zlib3_book']['md5_reported'],
-                'filesize_reported': aarecord['aac_zlib3_book']['filesize_reported'],
-                'file_data_folder': aarecord['aac_zlib3_book']['file_data_folder'],
-                'record_aacid': aarecord['aac_zlib3_book']['record_aacid'],
-                'file_aacid': aarecord['aac_zlib3_book']['file_aacid'],
-                'deleted_comment': (aarecord['aac_zlib3_book'].get('deleted_comment') or 0),
-                'cover_path': (aarecord['aac_zlib3_book'].get('cover_path') or ''),
-                'storage': (aarecord['aac_zlib3_book'].get('storage') or ''),
-            }
-        if aarecord['ia_record'] is not None:
-            aarecord['ia_record'] = {
-                'ia_id': aarecord['ia_record']['ia_id'],
-                # 'has_thumb': aarecord['ia_record']['has_thumb'],
-                'aa_ia_file': {
-                    'type': aarecord['ia_record']['aa_ia_file']['type'],
-                    'filesize': aarecord['ia_record']['aa_ia_file']['filesize'],
-                    'extension': aarecord['ia_record']['aa_ia_file']['extension'],
-                    'ia_id': aarecord['ia_record']['aa_ia_file']['ia_id'],
-                    'aacid': aarecord['ia_record']['aa_ia_file'].get('aacid'),
-                    'data_folder': aarecord['ia_record']['aa_ia_file'].get('data_folder'),
-                } if (aarecord['ia_record'].get('aa_ia_file') is not None) else None,
-                'aa_ia_derived': {
-                    'printdisabled_only': aarecord['ia_record']['aa_ia_derived']['printdisabled_only'],
+        aarecord['source_records'] = []
+        for source_record in source_records_full_by_aarecord_id[aarecord_id]:
+            if source_record['source_type'] == 'lgrsnf_book':
+                aarecord['source_records'].append({ 
+                    'source_type': 'lgrsnf_book', 
+                    'source_record': {
+                        'id': source_record['source_record']['id'],
+                        'md5': source_record['source_record']['md5'],
+                    },
+                })
+            elif source_record['source_type'] == 'lgrsfic_book':
+                aarecord['source_records'].append({ 
+                    'source_type': 'lgrsfic_book', 
+                    'source_record': {
+                        'id': source_record['source_record']['id'],
+                        'md5': source_record['source_record']['md5'],
+                    },
+                })
+            elif source_record['source_type'] == 'lgli_file':
+                aarecord['source_records'].append({ 
+                    'source_type': 'lgli_file', 
+                    'source_record': {
+                        'f_id': source_record['source_record']['f_id'],
+                        'md5': source_record['source_record']['md5'],
+                        'libgen_topic': source_record['source_record']['libgen_topic'],
+                        'libgen_id': source_record['source_record']['libgen_id'],
+                        'fiction_id': source_record['source_record']['fiction_id'],
+                        'fiction_rus_id': source_record['source_record']['fiction_rus_id'],
+                        'comics_id': source_record['source_record']['comics_id'],
+                        'scimag_id': source_record['source_record']['scimag_id'],
+                        'standarts_id': source_record['source_record']['standarts_id'],
+                        'magz_id': source_record['source_record']['magz_id'],
+                        'scimag_archive_path': source_record['source_record']['scimag_archive_path'],
+                    },
+                })
+            elif source_record['source_type'] == 'zlib_book':
+                aarecord['source_records'].append({ 
+                    'source_type': 'zlib_book', 
+                    'source_record': {
+                        'zlibrary_id': source_record['source_record']['zlibrary_id'],
+                        'md5': source_record['source_record']['md5'],
+                        'md5_reported': source_record['source_record']['md5_reported'],
+                        'filesize': source_record['source_record']['filesize'],
+                        'filesize_reported': source_record['source_record']['filesize_reported'],
+                        'in_libgen': source_record['source_record']['in_libgen'],
+                        'pilimi_torrent': source_record['source_record']['pilimi_torrent'],
+                    },
+                })
+            elif source_record['source_type'] == 'aac_zlib3_book':
+                aarecord['source_records'].append({ 
+                    'source_type': 'aac_zlib3_book', 
+                    'source_record': {
+                        'zlibrary_id': source_record['source_record']['zlibrary_id'],
+                        'md5': source_record['source_record']['md5'],
+                        'md5_reported': source_record['source_record']['md5_reported'],
+                        'filesize_reported': source_record['source_record']['filesize_reported'],
+                        'file_data_folder': source_record['source_record']['file_data_folder'],
+                        'record_aacid': source_record['source_record']['record_aacid'],
+                        'file_aacid': source_record['source_record']['file_aacid'],
+                        'deleted_comment': (source_record['source_record'].get('deleted_comment') or 0),
+                        'cover_path': (source_record['source_record'].get('cover_path') or ''),
+                        'storage': (source_record['source_record'].get('storage') or ''),
+                    },
+                })
+            elif source_record['source_type'] == 'ia_record':
+                aarecord['source_records'].append({ 
+                    'source_type': 'ia_record', 
+                    'source_record': {
+                        'ia_id': source_record['source_record']['ia_id'],
+                        # 'has_thumb': source_record['source_record']['has_thumb'],
+                        'aa_ia_file': {
+                            'type': source_record['source_record']['aa_ia_file']['type'],
+                            'filesize': source_record['source_record']['aa_ia_file']['filesize'],
+                            'extension': source_record['source_record']['aa_ia_file']['extension'],
+                            'ia_id': source_record['source_record']['aa_ia_file']['ia_id'],
+                            'aacid': source_record['source_record']['aa_ia_file'].get('aacid'),
+                            'data_folder': source_record['source_record']['aa_ia_file'].get('data_folder'),
+                        } if (source_record['source_record'].get('aa_ia_file') is not None) else None,
+                        'aa_ia_derived': {
+                            'printdisabled_only': source_record['source_record']['aa_ia_derived']['printdisabled_only'],
+                        }
+                    },
+                })
+            elif source_record['source_type'] == 'ia_records_meta_only':
+                aarecord['source_records'].append({
+                    'source_type': 'ia_records_meta_only',
+                    'source_record': {
+                        'ia_id': source_record['source_record']['ia_id'],
+                    },
+                })
+            elif source_record['source_type'] == 'isbndb':
+                aarecord['source_records'].append({
+                    'source_type': 'isbndb',
+                    'source_record': {
+                        'isbn13': source_record['source_record']['isbn13'],
+                    },
+                })
+            elif source_record['source_type'] == 'ol_book_dicts_primary_linked':
+                aarecord['source_records'].append({
+                    'source_type': 'ol_book_dicts_primary_linked',
+                    'source_record': {
+                        'ol_edition': source_record['source_record']['ol_edition'],
+                    },
+                })
+            elif source_record['source_type'] == 'ol':
+                aarecord['source_records'].append({
+                    'source_type': 'ol',
+                    'source_record': {
+                        'ol_edition': source_record['source_record']['ol_edition'],
+                    },
+                })
+            elif source_record['source_type'] == 'scihub_doi':
+                aarecord['source_records'].append({
+                    'source_type': 'scihub_doi',
+                    'source_record': {
+                        'doi': source_record['source_record']['doi'],
+                    },
+                })
+            elif source_record['source_type'] == 'oclc':
+                aarecord['source_records'].append({
+                    'source_type': 'oclc',
+                    'source_record': {
+                        'oclc_id': source_record['source_record']['oclc_id'],
+                    },
+                })
+            elif source_record['source_type'] == 'duxiu':
+                new_source_record = { 
+                    'source_type': 'duxiu', 
+                    'source_record': {
+                        'duxiu_ssid': source_record['source_record'].get('duxiu_ssid'),
+                        'cadal_ssno': source_record['source_record'].get('cadal_ssno'),
+                        'md5': source_record['source_record'].get('md5'),
+                        'duxiu_file': source_record['source_record'].get('duxiu_file'),
+                    },
                 }
-            }
-        aarecord['ia_records_meta_only'] = aarecord.get('ia_records_meta_only') or []
-        for index, item in enumerate(aarecord['ia_records_meta_only']):
-            aarecord['ia_records_meta_only'][index] = {
-                'ia_id': aarecord['ia_records_meta_only'][index]['ia_id'],
-            }
-        aarecord['isbndb'] = aarecord.get('isbndb') or []
-        for index, item in enumerate(aarecord['isbndb']):
-            aarecord['isbndb'][index] = {
-                'isbn13': aarecord['isbndb'][index]['isbn13'],
-            }
-        aarecord['ol_book_dicts_primary_linked'] = aarecord.get('ol_book_dicts_primary_linked') or []
-        for index, item in enumerate(aarecord['ol_book_dicts_primary_linked']):
-            aarecord['ol_book_dicts_primary_linked'][index] = {
-                'ol_edition': aarecord['ol_book_dicts_primary_linked'][index]['ol_edition'],
-            }
-        aarecord['ol'] = aarecord.get('ol') or []
-        for index, item in enumerate(aarecord['ol']):
-            aarecord['ol'][index] = {
-                'ol_edition': aarecord['ol'][index]['ol_edition'],
-            }
-        aarecord['scihub_doi'] = aarecord.get('scihub_doi') or []
-        for index, item in enumerate(aarecord['scihub_doi']):
-            aarecord['scihub_doi'][index] = {
-                'doi': aarecord['scihub_doi'][index]['doi'],
-            }
-        aarecord['oclc'] = aarecord.get('oclc') or []
-        for index, item in enumerate(aarecord['oclc']):
-            aarecord['oclc'][index] = {
-                'oclc_id': aarecord['oclc'][index]['oclc_id'],
-            }
-        if aarecord['duxiu'] is not None:
-            aarecord['duxiu'] = {
-                'duxiu_ssid': aarecord['duxiu'].get('duxiu_ssid'),
-                'cadal_ssno': aarecord['duxiu'].get('cadal_ssno'),
-                'md5': aarecord['duxiu'].get('md5'),
-                'duxiu_file': aarecord['duxiu'].get('duxiu_file'),
-            }
-            if aarecord['duxiu']['duxiu_ssid'] is None:
-                del aarecord['duxiu']['duxiu_ssid']
-            if aarecord['duxiu']['cadal_ssno'] is None:
-                del aarecord['duxiu']['cadal_ssno']
-        aarecord['duxius_nontransitive_meta_only'] = aarecord.get('duxius_nontransitive_meta_only') or []
-        for index, item in enumerate(aarecord['duxius_nontransitive_meta_only']):
-            aarecord['duxius_nontransitive_meta_only'][index] = {
-                'duxiu_ssid': aarecord['duxius_nontransitive_meta_only'][index].get('duxiu_ssid'),
-                'cadal_ssno': aarecord['duxius_nontransitive_meta_only'][index].get('cadal_ssno'),
-                'md5': aarecord['duxius_nontransitive_meta_only'][index].get('md5'),
-            }
-        if aarecord.get('aac_upload') is not None:
-            aarecord['aac_upload'] = {
-                'md5': aarecord['aac_upload']['md5'],
-                'files': aarecord['aac_upload']['files'],
-            }
-        if aarecord.get('aac_magzdb') is not None:
-            aarecord['aac_magzdb'] = {
-                'requested_value': aarecord['aac_magzdb']['requested_value'],
-                'id': aarecord['aac_magzdb']['id'],
-            }
-        if aarecord.get('aac_nexusstc') is not None:
-            aarecord['aac_nexusstc'] = {
-                'requested_value': aarecord['aac_nexusstc']['requested_value'],
-                'id': aarecord['aac_nexusstc']['id'],
-                'aa_nexusstc_derived': {
-                    'cid_only_links': aarecord['aac_nexusstc']['aa_nexusstc_derived']['cid_only_links'],
-                },
-            }
-        if aarecord.get('aac_edsebk') is not None:
-            aarecord['aac_edsebk'] = {
-                'edsebk_id': aarecord['aac_edsebk']['edsebk_id'],
-            }
+                if new_source_record['source_record']['duxiu_ssid'] is None:
+                    del new_source_record['source_record']['duxiu_ssid']
+                if new_source_record['source_record']['cadal_ssno'] is None:
+                    del new_source_record['source_record']['cadal_ssno']
+                aarecord['source_records'].append(new_source_record)
+            elif source_record['source_type'] == 'duxius_nontransitive_meta_only':
+                aarecord['source_records'].append({ 
+                    'source_type': 'duxius_nontransitive_meta_only', 
+                    'source_record': {
+                        'duxiu_ssid': source_record['source_record'].get('duxiu_ssid'),
+                        'cadal_ssno': source_record['source_record'].get('cadal_ssno'),
+                        'md5': source_record['source_record'].get('md5'),
+                    },
+                })
+            elif source_record['source_type'] == 'aac_upload':
+                aarecord['source_records'].append({ 
+                    'source_type': 'aac_upload', 
+                    'source_record': {
+                        'md5': source_record['source_record']['md5'],
+                        'files': source_record['source_record']['files'],
+                    },
+                })
+            elif source_record['source_type'] == 'aac_magzdb':
+                aarecord['source_records'].append({ 
+                    'source_type': 'aac_magzdb', 
+                    'source_record': {
+                        'requested_value': source_record['source_record']['requested_value'],
+                        'id': source_record['source_record']['id'],
+                    },
+                })
+            elif source_record['source_type'] == 'aac_nexusstc':
+                aarecord['source_records'].append({ 
+                    'source_type': 'aac_nexusstc', 
+                    'source_record': {
+                        'requested_value': source_record['source_record']['requested_value'],
+                        'id': source_record['source_record']['id'],
+                        'aa_nexusstc_derived': {
+                            'cid_only_links': source_record['source_record']['aa_nexusstc_derived']['cid_only_links'],
+                        },
+                    },
+                })
+            elif source_record['source_type'] == 'aac_edsebk':
+                aarecord['source_records'].append({ 
+                    'source_type': 'aac_edsebk', 
+                    'source_record': {
+                        'edsebk_id': source_record['source_record']['edsebk_id'],
+                    },
+                })
+            else:
+                raise Exception(f"Unknown {source_record['source_type']=}")
 
         search_content_type = aarecord['file_unified_data']['content_type']
         # Once we have the content type.
@@ -5647,7 +5695,6 @@ def get_aarecords_mysql(session, aarecord_ids):
 
     # TODO:SOURCE Remove and use source_records directly.
     for aarecord in aarecords:
-        make_source_records(aarecord)
         del aarecord['lgrsnf_book']
         del aarecord['lgrsfic_book']
         del aarecord['lgli_file']
@@ -5787,9 +5834,10 @@ def max_length_with_word_boundary(sentence, max_len):
 
 def get_additional_for_aarecord(aarecord):
     # TODO:SOURCE Remove backwards compatibility.
-    make_source_records(aarecord, backwards_compatibility=True)
-    source_records_by_type = allthethings.utils.groupby(aarecord['source_records'], 'source_type', 'source_record')
+    if 'source_records' not in aarecord:
+        aarecord['source_records'] = make_source_records(aarecord)
 
+    source_records_by_type = allthethings.utils.groupby(aarecord['source_records'], 'source_type', 'source_record')
     aarecord_id_split = aarecord['id'].split(':', 1)
 
     additional = {}
