@@ -770,7 +770,7 @@ def elastic_build_aarecords_all_internal():
     elastic_build_aarecords_main_internal() # Main depends on tables generated above, so we do it last.
     elastic_build_aarecords_forcemerge_internal()
 
-def build_common(table_name, batch_to_aarecord_ids, primary_id_column='primary_id', additional_where='', additional_select='', before_first_primary_id_WARNING_WARNING=''):
+def build_common(table_name, batch_to_aarecord_ids, primary_id_column='primary_id', additional_where='', additional_select_AGGREGATES='', before_first_primary_id_WARNING_WARNING=''):
     before_first_primary_id=before_first_primary_id_WARNING_WARNING
     if before_first_primary_id != '':
         for i in range(5):
@@ -782,23 +782,43 @@ def build_common(table_name, batch_to_aarecord_ids, primary_id_column='primary_i
         cursor.execute(f'SELECT COUNT(*) AS count FROM {table_name} {"WHERE" if additional_where else ""} {additional_where} LIMIT 1', { "from": before_first_primary_id })
         total = list(cursor.fetchall())[0]['count']
         with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_primary_id = before_first_primary_id
-                last_map = None
-                while True:
-                    cursor = allthethings.utils.get_cursor_ping_conn(connection)
-                    cursor.execute(f'SELECT {primary_id_column} AS primary_id, COUNT(*) AS count {additional_select} FROM {table_name} WHERE {additional_where} {"AND" if additional_where else ""} {primary_id_column} > %(from)s GROUP BY {primary_id_column} {additional_select} ORDER BY {primary_id_column} LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
+            with concurrent.futures.ProcessPoolExecutor(max_workers=THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
+                futures = set()
+                count_by_future = {}
+                def process_future():
+                    # print(f"Futures waiting: {len(futures)}")
+                    (done, not_done) = concurrent.futures.wait(futures, return_when=concurrent.futures.FIRST_COMPLETED)
+                    # print(f"Done!")
+                    for future_done in done:
+                        futures.remove(future_done)
+                        pbar.update(count_by_future[future_done])
+                        del count_by_future[future_done]
+                        err = future_done.exception()
+                        if err:
+                            print(f"ERROR IN FUTURE RESOLUTION!!!!! {repr(err)}\n\n/////\n\n{traceback.format_exc()}")
+                            raise err
+                        result = future_done.result()
+                        if result:
                             print("Error detected; exiting")
                             os._exit(1)
+
+                current_primary_id = before_first_primary_id
+                while True:
+                    cursor = allthethings.utils.get_cursor_ping_conn(connection)
+                    cursor.execute(f'SELECT {primary_id_column} AS primary_id, COUNT(*) AS count {additional_select_AGGREGATES} FROM {table_name} WHERE {additional_where} {"AND" if additional_where else ""} {primary_id_column} > %(from)s GROUP BY {primary_id_column} ORDER BY {primary_id_column} LIMIT %(limit)s', { "from": current_primary_id, "limit": BATCH_SIZE })
+                    batch = list(cursor.fetchall())
                     if len(batch) == 0:
                         break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from {table_name} ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked(batch_to_aarecord_ids(batch), CHUNK_SIZE))
-                    pbar.update(sum([row['count'] for row in batch]))
+                    print(f"Processing (ahead!) with {THREADS=} {len(batch)=} aarecords from {table_name} ( starting primary_id: {batch[0]['primary_id']} , ending primary_id: {batch[-1]['primary_id']} )...")
+                    for subbatch in more_itertools.chunked(batch, CHUNK_SIZE):
+                        future = executor.submit(elastic_build_aarecords_job, batch_to_aarecord_ids(subbatch))
+                        count_by_future[future] = sum([row['count'] for row in subbatch])
+                        futures.add(future)
+                        if len(futures) > THREADS*2:
+                            process_future()
                     current_primary_id = batch[-1]['primary_id']
+                while len(futures) > 0:
+                    process_future()
         print(f"Done with {table_name}!")
 
 #################################################################################################
@@ -867,9 +887,10 @@ def elastic_build_aarecords_duxiu_internal():
     def duxiu_batch_to_aarecord_ids(batch):
         with engine.connect() as connection:
             cursor = allthethings.utils.get_cursor_ping_conn(connection)
-            lines_bytes = allthethings.utils.get_lines_from_aac_file(cursor, 'duxiu_records', [(row['byte_offset'], row['byte_length']) for row in batch])
+            unrolled_rows = [{"primary_id": row['primary_id'], "byte_offset": int(byte_offset), "byte_length": int(byte_length)} for row in batch for byte_offset, byte_length in zip(row['byte_offsets'].split(','), row['byte_lengths'].split(',')) ]
+            lines_bytes = allthethings.utils.get_lines_from_aac_file(cursor, 'duxiu_records', [(row['byte_offset'], row['byte_length']) for row in unrolled_rows])
             ids = []
-            for item_index, item in enumerate(batch):
+            for item_index, item in enumerate(unrolled_rows):
                 line_bytes = lines_bytes[item_index]
                 if item['primary_id'] == 'duxiu_ssid_-1':
                     continue
@@ -888,11 +909,10 @@ def elastic_build_aarecords_duxiu_internal():
                     # remote_files are not useful anyway since they lack metadata like title, author, etc.
                     continue
                 ids.append(item['primary_id'].replace('duxiu_ssid_','duxiu_ssid:').replace('cadal_ssno_','cadal_ssno:'))
-            # Deduping at this level leads to some duplicates at the edges, but thats okay because aarecord
-            # generation is idempotent.
             return list(set(ids))
     build_common('annas_archive_meta__aacid__duxiu_records', duxiu_batch_to_aarecord_ids,
-        additional_where='(primary_id LIKE "duxiu_ssid_%%" OR primary_id LIKE "cadal_ssno_%%")', additional_select=', byte_offset, byte_length')
+        additional_where='(primary_id LIKE "duxiu_ssid_%%" OR primary_id LIKE "cadal_ssno_%%")',
+        additional_select_AGGREGATES=', GROUP_CONCAT(byte_offset) AS byte_offsets, GROUP_CONCAT(byte_length) AS byte_lengths')
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_oclc
