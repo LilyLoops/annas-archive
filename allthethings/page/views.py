@@ -5792,7 +5792,7 @@ def get_additional_for_aarecord(aarecord):
     for key, values in aarecord['file_unified_data'].get('classifications_unified', {}).items():
         for value in values:
             additional['codes'].append(allthethings.utils.make_code_for_display(key, value))
-    additional['codes'].sort(key=lambda item: (0 if item['highlight'] else 1, item['key']))
+    additional['codes'].sort(key=lambda item: ((-1000+allthethings.utils.CODES_HIGHLIGHT.index(item['key'])) if item['highlight'] else 1, item['key'], item['value']))
 
     md5_content_type_mapping = get_md5_content_type_mapping(allthethings.utils.get_base_lang_code(get_locale()))
 
