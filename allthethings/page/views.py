@@ -4575,35 +4575,37 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
             raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
         return dict(retval)
 
-def make_source_record(orig):
+def make_source_record(aarecord, source_type):
+    orig = aarecord.get(source_type)
     if orig is None:
         return []
     elif type(orig) == list:
-        return orig
+        return [{"source_type": source_type, "source_record": record} for record in orig]
     else:
-        return [orig]
-# TODO:SOURCE Remove backwards compatibility layer.
-def make_source_records(aarecord):
-    aarecord['source_records'] = {
-        "lgrsnf_book": make_source_record(aarecord.get('lgrsnf_book')),
-        "lgrsfic_book": make_source_record(aarecord.get('lgrsfic_book')),
-        "lgli_file": make_source_record(aarecord.get('lgli_file')),
-        "zlib_book": make_source_record(aarecord.get('zlib_book')),
-        "aac_zlib3_book": make_source_record(aarecord.get('aac_zlib3_book')),
-        "ia_record": make_source_record(aarecord.get('ia_record')),
-        "ia_records_meta_only": make_source_record(aarecord.get('ia_records_meta_only')),
-        "isbndb": make_source_record(aarecord.get('isbndb')),
-        "ol": make_source_record(aarecord.get('ol')),
-        "scihub_doi": make_source_record(aarecord.get('scihub_doi')),
-        "oclc": make_source_record(aarecord.get('oclc')),
-        "duxiu": make_source_record(aarecord.get('duxiu')),
-        "aac_upload": make_source_record(aarecord.get('aac_upload')),
-        "aac_magzdb": make_source_record(aarecord.get('aac_magzdb')),
-        "aac_nexusstc": make_source_record(aarecord.get('aac_nexusstc')),
-        "ol_book_dicts_primary_linked": make_source_record(aarecord.get('ol_book_dicts_primary_linked')),
-        "duxius_nontransitive_meta_only": make_source_record(aarecord.get('duxius_nontransitive_meta_only')),
-        "aac_edsebk": make_source_record(aarecord.get('aac_edsebk')),
-    }
+        return [{"source_type": source_type, "source_record": orig}]
+def make_source_records(aarecord, backwards_compatibility=False):
+    if backwards_compatibility and 'source_records' in aarecord:
+        return
+    aarecord['source_records'] = [
+        *make_source_record(aarecord, 'lgrsnf_book'),
+        *make_source_record(aarecord, 'lgrsfic_book'),
+        *make_source_record(aarecord, 'lgli_file'),
+        *make_source_record(aarecord, 'zlib_book'),
+        *make_source_record(aarecord, 'aac_zlib3_book'),
+        *make_source_record(aarecord, 'ia_record'),
+        *make_source_record(aarecord, 'ia_records_meta_only'),
+        *make_source_record(aarecord, 'isbndb'),
+        *make_source_record(aarecord, 'ol'),
+        *make_source_record(aarecord, 'scihub_doi'),
+        *make_source_record(aarecord, 'oclc'),
+        *make_source_record(aarecord, 'duxiu'),
+        *make_source_record(aarecord, 'aac_upload'),
+        *make_source_record(aarecord, 'aac_magzdb'),
+        *make_source_record(aarecord, 'aac_nexusstc'),
+        *make_source_record(aarecord, 'ol_book_dicts_primary_linked'),
+        *make_source_record(aarecord, 'duxius_nontransitive_meta_only'),
+        *make_source_record(aarecord, 'aac_edsebk'),
+    ]
 
 def get_aarecords_mysql(session, aarecord_ids):
     if not allthethings.utils.validate_aarecord_ids(aarecord_ids):
@@ -5764,6 +5766,9 @@ def max_length_with_word_boundary(sentence, max_len):
         return ' '.join(str_split[0:output_index]).strip()
 
 def get_additional_for_aarecord(aarecord):
+    # TODO:SOURCE Remove backwards compatibility.
+    make_source_records(aarecord, backwards_compatibility=True)
+
     aarecord_id_split = aarecord['id'].split(':', 1)
 
     additional = {}
