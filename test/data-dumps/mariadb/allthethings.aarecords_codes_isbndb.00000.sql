@@ -2,7 +2,8 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0*/;
 /*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
 /*!40103 SET TIME_ZONE='+00:00' */;
-INSERT INTO `aarecords_codes_isbndb` VALUES("collection:isbndb","isbndb:9780000000019")
+INSERT INTO `aarecords_codes_isbndb` VALUES("collection:isbndb","isbndb:9780000000002")
+,("collection:isbndb","isbndb:9780000000019")
 ,("collection:isbndb","isbndb:9780000000026")
 ,("collection:isbndb","isbndb:9780000000033")
 ,("collection:isbndb","isbndb:9780000000040")
@@ -102,6 +103,7 @@ INSERT INTO `aarecords_codes_isbndb` VALUES("collection:isbndb","isbndb:97800000
 ,("collection:isbndb","isbndb:9780000000989")
 ,("collection:isbndb","isbndb:9780000000996")
 ,("collection:isbndb","isbndb:9780462099699")
+,("date_isbndb_scrape:2022-09-01","isbndb:9780000000002")
 ,("date_isbndb_scrape:2022-09-01","isbndb:9780000000019")
 ,("date_isbndb_scrape:2022-09-01","isbndb:9780000000026")
 ,("date_isbndb_scrape:2022-09-01","isbndb:9780000000033")
@@ -402,6 +404,7 @@ INSERT INTO `aarecords_codes_isbndb` VALUES("collection:isbndb","isbndb:97800000
 ,("isbn13:9780000000989","isbndb:9780000000989")
 ,("isbn13:9780000000996","isbndb:9780000000996")
 ,("isbn13:9780462099699","isbndb:9780462099699")
+,("lang:en","isbndb:9780000000002")
 ,("lang:en","isbndb:9780000000019")
 ,("lang:en","isbndb:9780000000026")
 ,("lang:en","isbndb:9780000000033")
@@ -590,6 +593,7 @@ INSERT INTO `aarecords_codes_isbndb` VALUES("collection:isbndb","isbndb:97800000
 ,("year:2003","isbndb:9780000000132")
 ,("year:2003","isbndb:9780000000156")
 ,("year:2003","isbndb:9780000000217")
+,("year:2007","isbndb:9780000000002")
 ,("year:2009","isbndb:9780000000750")
 ,("year:2010","isbndb:9780000000231")
 ,("year:2010","isbndb:9780000000248")

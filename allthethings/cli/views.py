@@ -569,6 +569,7 @@ AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME = {
 }
 
 AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
+    'isbndb': { 'table_name': 'aarecords_codes_isbndb_for_lookup', 'code_names': ['collection'] }, # TODO: Use aarecord_id code here instead.
     'ol': { 'table_name': 'aarecords_codes_ol_for_lookup', 'code_names': ['isbn13', 'ocaid', 'md5'] },
     'oclc': { 'table_name': 'aarecords_codes_oclc_for_lookup', 'code_names': ['isbn13'] },
     'edsebk': { 'table_name': 'aarecords_codes_edsebk_for_lookup', 'code_names': ['isbn13'] },
@@ -589,16 +590,22 @@ def elastic_build_aarecords_job(aarecord_ids):
                 cursor.execute('SELECT 1')
                 list(cursor.fetchall())
 
-                # Filter out records that are filtered in get_isbndb_dicts, because there are some bad records there.
                 canonical_isbn13s = [aarecord_id[len('isbndb:'):] for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:')]
-                bad_isbn13_aarecord_ids = set([f"isbndb:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, canonical_isbn13s) if len(isbndb_dict['isbndb']) == 0])
+                bad_isbn13_aarecord_ids = []
+                if len(canonical_isbn13s) > 0:
+                    # Filter out records that are filtered in get_isbndb_dicts, because there are some bad records there.
+                    bad_isbn13_aarecord_ids += set([f"isbndb:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, canonical_isbn13s) if len(isbndb_dict['isbndb']) == 0])
+                    # Also filter out existing isbndb: aarecord_ids, which we can get since we do two passes (isbn13 and isbn10).
+                    cursor = allthethings.utils.get_cursor_ping(session)
+                    cursor.execute('SELECT aarecord_id FROM aarecords_codes_isbndb_for_lookup WHERE code="collection:isbndb" AND aarecord_id IN %(aarecord_ids)s', { "aarecord_ids": [aarecord_id for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:')]})
+                    bad_isbn13_aarecord_ids += set([aarecord_id.decode() for aarecord_id in allthethings.utils.fetch_scalars(cursor)])
+                bad_isbn13_aarecord_ids = set(bad_isbn13_aarecord_ids)
 
                 # Filter out "doi:" records that already have an md5. We don't need standalone records for those.
                 dois_from_ids = [aarecord_id[4:].encode() for aarecord_id in aarecord_ids if aarecord_id.startswith('doi:')]
                 doi_codes_with_md5 = set()
                 if len(dois_from_ids) > 0:
-                    session.connection().connection.ping(reconnect=True)
-                    cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
+                    cursor = allthethings.utils.get_cursor_ping(session)
                     cursor.execute('SELECT doi FROM temp_md5_with_doi_seen WHERE doi IN %(dois_from_ids)s', { "dois_from_ids": dois_from_ids })
                     doi_codes_with_md5 = set([f"doi:{row['doi'].decode(errors='replace')}" for row in cursor.fetchall()])
 
@@ -818,8 +825,7 @@ def elastic_build_aarecords_ia_internal():
         cursor.execute('DROP TABLE IF EXISTS temp_ia_ids')
         cursor.execute('CREATE TABLE temp_ia_ids (ia_id VARCHAR(250) NOT NULL, PRIMARY KEY(ia_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT ia_id FROM (SELECT ia_id, libgen_md5 FROM aa_ia_2023_06_metadata UNION SELECT primary_id AS ia_id, NULL AS libgen_md5 FROM annas_archive_meta__aacid__ia2_records) combined LEFT JOIN aa_ia_2023_06_files USING (ia_id) LEFT JOIN annas_archive_meta__aacid__ia2_acsmpdf_files ON (combined.ia_id = annas_archive_meta__aacid__ia2_acsmpdf_files.primary_id) WHERE aa_ia_2023_06_files.md5 IS NULL AND annas_archive_meta__aacid__ia2_acsmpdf_files.md5 IS NULL AND combined.libgen_md5 IS NULL')
 
-    build_common('temp_ia_ids', lambda primary_id: f"ia:{primary_id}",
-        primary_id_column='ia_id')
+    build_common('temp_ia_ids', lambda primary_id: f"ia:{primary_id}", primary_id_column='ia_id')
 
     with engine.connect() as connection:
         print("Removing table temp_ia_ids")
@@ -833,50 +839,11 @@ def elastic_build_aarecords_ia_internal():
 @cli.cli.command('elastic_build_aarecords_isbndb')
 def elastic_build_aarecords_isbndb():
     elastic_build_aarecords_isbndb_internal()
-
 def elastic_build_aarecords_isbndb_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
-    new_tables_internal('aarecords_codes_isbndb')
-
-    before_first_isbn13 = ''
-
-    if len(before_first_isbn13) > 0:
-        print(f'WARNING!!!!! before_first_isbn13 is set to {before_first_isbn13}')
-        print(f'WARNING!!!!! before_first_isbn13 is set to {before_first_isbn13}')
-        print(f'WARNING!!!!! before_first_isbn13 is set to {before_first_isbn13}')
-
-    with engine.connect() as connection:
-        print("Processing from isbndb_isbns")
-        connection.connection.ping(reconnect=True)
-        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-        cursor.execute('SELECT COUNT(isbn13) AS count FROM isbndb_isbns WHERE isbn13 > %(from)s ORDER BY isbn13 LIMIT 1', { "from": before_first_isbn13 })
-        total = list(cursor.fetchall())[0]['count']
-        with tqdm.tqdm(total=total, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
-            with multiprocessing.Pool(THREADS, initializer=elastic_build_aarecords_job_init_pool) as executor:
-                current_isbn13 = before_first_isbn13
-                last_map = None
-                while True:
-                    connection.connection.ping(reconnect=True)
-                    cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
-                    # Note that with `isbn13 >` we might be skipping some, because isbn13 is not unique, but oh well..
-                    cursor.execute('SELECT isbn13, isbn10 FROM isbndb_isbns WHERE isbn13 > %(from)s ORDER BY isbn13 LIMIT %(limit)s', { "from": current_isbn13, "limit": BATCH_SIZE })
-                    batch = list(cursor.fetchall())
-                    if last_map is not None:
-                        if any(last_map.get()):
-                            print("Error detected; exiting")
-                            os._exit(1)
-                    if len(batch) == 0:
-                        break
-                    print(f"Processing with {THREADS=} {len(batch)=} aarecords from isbndb_isbns ( starting isbn13: {batch[0]['isbn13']} , ending isbn13: {batch[-1]['isbn13']} )...")
-                    isbn13s = set()
-                    for item in batch:
-                        if item['isbn10'] != "0000000000":
-                            isbn13s.add(f"isbndb:{item['isbn13']}")
-                            isbn13s.add(f"isbndb:{isbnlib.ean13(item['isbn10'])}")
-                    last_map = executor.map_async(elastic_build_aarecords_job, more_itertools.ichunked(list(isbn13s), CHUNK_SIZE))
-                    pbar.update(len(batch))
-                    current_isbn13 = batch[-1]['isbn13']
-        print("Done with ISBNdb!")
+    new_tables_internal('aarecords_codes_isbndb', 'aarecords_codes_isbndb_for_lookup')
+    build_common('isbndb_isbns', lambda primary_id: f"isbndb:{primary_id}", primary_id_column='isbn13')
+    build_common('isbndb_isbns', lambda primary_id: f"isbndb:{isbnlib.ean13(primary_id)}", primary_id_column='isbn10')
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_ol
@@ -894,7 +861,6 @@ def elastic_build_aarecords_ol_internal():
 @cli.cli.command('elastic_build_aarecords_duxiu')
 def elastic_build_aarecords_duxiu():
     elastic_build_aarecords_duxiu_internal()
-
 def elastic_build_aarecords_duxiu_internal():
     # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt, when changing aarecords_codes_* temp tables.
     new_tables_internal('aarecords_codes_duxiu')

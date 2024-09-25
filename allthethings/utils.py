@@ -688,12 +688,11 @@ def fetch_one_field(cursor):
 def fetch_scalars(cursor) -> list | tuple:
     """
     Fetches value of the first column from all the rows using the cursor
-    :return: If no rows were returned: an empty tuple, otherwise a list of values of the first column.
+    :return: A list of values of the first column.
     """
     rows = cursor.fetchall()
     if rows is None or len(rows) <= 0:
-        # SQLAlchemy would return an empty tuple, keeping for compatibility with existing code
-        return ()
+        return []
     scalars = []
     for row in rows:
         scalars.append(row[next(iter(row))])
