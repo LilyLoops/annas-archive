@@ -4575,6 +4575,36 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
             raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
         return dict(retval)
 
+def make_source_record(orig):
+    if orig is None:
+        return []
+    elif type(orig) == list:
+        return orig
+    else:
+        return [orig]
+# TODO:SOURCE Remove backwards compatibility layer.
+def make_source_records(aarecord):
+    aarecord['source_records'] = {
+        "lgrsnf_book": make_source_record(aarecord.get('lgrsnf_book')),
+        "lgrsfic_book": make_source_record(aarecord.get('lgrsfic_book')),
+        "lgli_file": make_source_record(aarecord.get('lgli_file')),
+        "zlib_book": make_source_record(aarecord.get('zlib_book')),
+        "aac_zlib3_book": make_source_record(aarecord.get('aac_zlib3_book')),
+        "ia_record": make_source_record(aarecord.get('ia_record')),
+        "ia_records_meta_only": make_source_record(aarecord.get('ia_records_meta_only')),
+        "isbndb": make_source_record(aarecord.get('isbndb')),
+        "ol": make_source_record(aarecord.get('ol')),
+        "scihub_doi": make_source_record(aarecord.get('scihub_doi')),
+        "oclc": make_source_record(aarecord.get('oclc')),
+        "duxiu": make_source_record(aarecord.get('duxiu')),
+        "aac_upload": make_source_record(aarecord.get('aac_upload')),
+        "aac_magzdb": make_source_record(aarecord.get('aac_magzdb')),
+        "aac_nexusstc": make_source_record(aarecord.get('aac_nexusstc')),
+        "ol_book_dicts_primary_linked": make_source_record(aarecord.get('ol_book_dicts_primary_linked')),
+        "duxius_nontransitive_meta_only": make_source_record(aarecord.get('duxius_nontransitive_meta_only')),
+        "aac_edsebk": make_source_record(aarecord.get('aac_edsebk')),
+    }
+
 def get_aarecords_mysql(session, aarecord_ids):
     if not allthethings.utils.validate_aarecord_ids(aarecord_ids):
         raise Exception(f"Invalid aarecord_ids {aarecord_ids=}")
@@ -4635,6 +4665,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['ol_book_dicts_primary_linked'] = list(ol_book_dicts_primary_linked.get(tuple(aarecord_id_split)) or [])
         aarecord['duxius_nontransitive_meta_only'] = []
         aarecord['aac_edsebk'] = aac_edsebk_book_dicts.get(aarecord_id)
+
+        # TODO:SOURCE Remove and use source_records directly.
+        make_source_records(aarecord)
 
         lgli_all_editions = aarecord['lgli_file']['editions'] if aarecord.get('lgli_file') else []
 
@@ -4732,6 +4765,10 @@ def get_aarecords_mysql(session, aarecord_ids):
             if any([duxiu_dict['cadal_ssno'] == cadal_ssno for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for cadal_ssno in (duxiu_record['aa_duxiu_derived']['identifiers_unified'].get('cadal_ssno') or [])]):
                 continue
             aarecord['duxius_nontransitive_meta_only'].append(duxiu_dict)
+
+    # TODO:SOURCE Remove and use source_records directly.
+    for aarecord in aarecords:
+        make_source_records(aarecord)
 
     # Second pass
     for aarecord in aarecords:
@@ -5603,6 +5640,10 @@ def get_aarecords_mysql(session, aarecord_ids):
     #     # ES limit https://github.com/langchain-ai/langchain/issues/10218#issuecomment-1706481539
     #     # We can simply cut the embedding for ES because of Matryoshka: https://openai.com/index/new-embedding-models-and-api-updates/
     #     aarecord['search_only_fields']['search_text_embedding_3_small_100_tokens_1024_dims'] = embedding['text_embedding_3_small_100_tokens'][0:1024]
+
+    # TODO:SOURCE Remove and use source_records directly.
+    for aarecord in aarecords:
+        make_source_records(aarecord)
     
     return aarecords
 
