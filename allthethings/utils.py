@@ -2053,6 +2053,23 @@ def find_doi_in_text(text):
 def extract_ia_archive_org_from_string(string):
     return list(dict.fromkeys(re.findall(r'archive.org\/details\/([^\n\r\/ ]+)', string)))
 
+def groupby(dicts, index_field, unpack_field=None):
+    if type(index_field) == str:
+        index_field_func = lambda row: row[index_field]
+    else:
+        index_field_func = index_field
+    if unpack_field is None:
+        unpack_field_func = lambda row: row
+    elif type(unpack_field) == str:
+        unpack_field_func = lambda row: row[unpack_field]
+    else:
+        unpack_field_func = unpack_field
+    output = collections.defaultdict(list)
+    for row in dicts:
+        index_field_value = index_field_func(row)
+        unpack_field_value = unpack_field_func(row)
+        output[index_field_value].append(unpack_field_value)
+    return output
 
 
 
