@@ -29,7 +29,7 @@ from allthethings.extensions import engine, es, es_aux, mariapersist_engine
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from flask_babel import gettext, force_locale, get_locale
-from config.settings import AA_EMAIL, DOWNLOADS_SECRET_KEY, AACID_SMALL_DATA_IMPORTS, FLASK_DEBUG
+from config.settings import AA_EMAIL, DOWNLOADS_SECRET_KEY, AACID_SMALL_DATA_IMPORTS, FLASK_DEBUG, SLOW_DATA_IMPORTS
 
 import allthethings.utils
 
@@ -5561,6 +5561,8 @@ def get_aarecords_mysql(session, aarecord_ids):
                 allthethings.utils.add_classification_unified(aarecord['file_unified_data'], 'torrent', torrent_path['torrent_path'])
             for partner_url_path in additional['partner_url_paths']:
                 allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'server_path', partner_url_path['path'])
+            if SLOW_DATA_IMPORTS:
+                aarecord['additional_SLOW_DATA_IMPORTS'] = additional
 
         record_sources = aarecord_sources(aarecord)
         for source_name in record_sources:
