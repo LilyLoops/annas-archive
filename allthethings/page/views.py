@@ -5648,6 +5648,24 @@ def get_aarecords_mysql(session, aarecord_ids):
     # TODO:SOURCE Remove and use source_records directly.
     for aarecord in aarecords:
         make_source_records(aarecord)
+        del aarecord['lgrsnf_book']
+        del aarecord['lgrsfic_book']
+        del aarecord['lgli_file']
+        del aarecord['zlib_book']
+        del aarecord['aac_zlib3_book']
+        del aarecord['ia_record']
+        del aarecord['ia_records_meta_only']
+        del aarecord['isbndb']
+        del aarecord['ol']
+        del aarecord['scihub_doi']
+        del aarecord['oclc']
+        del aarecord['duxiu']
+        del aarecord['aac_upload']
+        del aarecord['aac_magzdb']
+        del aarecord['aac_nexusstc']
+        del aarecord['ol_book_dicts_primary_linked']
+        del aarecord['duxius_nontransitive_meta_only']
+        del aarecord['aac_edsebk']
     
     return aarecords
 

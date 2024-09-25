@@ -648,8 +648,10 @@ def elastic_build_aarecords_job(aarecord_ids):
                         for doi in aarecord['file_unified_data']['identifiers_unified'].get('doi') or []:
                             temp_md5_with_doi_seen_insert_data.append({ "doi": doi.encode() })
                     elif aarecord_id_split[0] == 'nexusstc':
-                        if len(aarecord['aac_nexusstc']['aa_nexusstc_derived']['cid_only_links']) > 0:
-                            nexusstc_cid_only_insert_data.append({ "nexusstc_id": aarecord['aac_nexusstc']['id'] })
+                        source_records_by_type = allthethings.utils.groupby(aarecord['source_records'], 'source_type', 'source_record')
+                        for source_record in source_records_by_type['aac_nexusstc']:
+                            if len(source_record['aa_nexusstc_derived']['cid_only_links']) > 0:
+                                nexusstc_cid_only_insert_data.append({ "nexusstc_id": source_record['id'] })
 
                     for index in aarecord['indexes']:
                         virtshard = allthethings.utils.virtshard_for_hashed_aarecord_id(hashed_aarecord_id)
