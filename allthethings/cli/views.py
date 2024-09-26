@@ -596,11 +596,12 @@ def elastic_build_aarecords_job(aarecord_ids):
                 cursor.execute('SELECT 1')
                 list(cursor.fetchall())
 
-                canonical_isbn13s = [aarecord_id[len('isbndb:'):] for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:')]
+                isbndb_canonical_isbn13s = [aarecord_id[len('isbndb:'):] for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:')]
                 bad_isbn13_aarecord_ids = []
-                if len(canonical_isbn13s) > 0:
+                if len(isbndb_canonical_isbn13s) > 0:
                     # Filter out records that are filtered in get_isbndb_dicts, because there are some bad records there.
-                    bad_isbn13_aarecord_ids += set([f"isbndb:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, canonical_isbn13s) if len(isbndb_dict['isbndb']) == 0])
+                    valid_isbndb_aarecord_ids = set(f"isbndb:{isbndb_dict['ean13']}" for isbndb_dict in get_isbndb_dicts(session, isbndb_canonical_isbn13s))
+                    bad_isbn13_aarecord_ids += set([aarecord_id for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:') and aarecord_id not in valid_isbndb_aarecord_ids])
                     # Also filter out existing isbndb: aarecord_ids, which we can get since we do two passes (isbn13 and isbn10).
                     cursor = allthethings.utils.get_cursor_ping(session)
                     cursor.execute('SELECT aarecord_id FROM aarecords_codes_isbndb_for_lookup WHERE code="collection:isbndb" AND aarecord_id IN %(aarecord_ids)s', { "aarecord_ids": [aarecord_id for aarecord_id in aarecord_ids if aarecord_id.startswith('isbndb:')]})
