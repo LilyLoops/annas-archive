@@ -1473,7 +1473,7 @@ def get_ia_record_dicts(session, key, values):
         ia_record_dict['aa_ia_derived']['title'] = (' '.join(extract_list_from_ia_json_field(ia_record_dict, 'title'))).replace(' : ', ': ')
         ia_record_dict['aa_ia_derived']['author'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'creator') + extract_list_from_ia_json_field(ia_record_dict, 'associated-names'))).replace(' : ', ': ')
         ia_record_dict['aa_ia_derived']['publisher'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'publisher'))).replace(' : ', ': ')
-        ia_record_dict['aa_ia_derived']['combined_comments'] = [strip_description(comment) for comment in extract_list_from_ia_json_field(ia_record_dict, 'notes') + extract_list_from_ia_json_field(ia_record_dict, 'comment') + extract_list_from_ia_json_field(ia_record_dict, 'curation')]
+        ia_record_dict['aa_ia_derived']['comments_multiple'] = [strip_description(comment) for comment in extract_list_from_ia_json_field(ia_record_dict, 'notes') + extract_list_from_ia_json_field(ia_record_dict, 'comment') + extract_list_from_ia_json_field(ia_record_dict, 'curation')]
         ia_record_dict['aa_ia_derived']['subjects'] = '\n\n'.join(extract_list_from_ia_json_field(ia_record_dict, 'subject') + extract_list_from_ia_json_field(ia_record_dict, 'level_subject'))
         ia_record_dict['aa_ia_derived']['stripped_description_and_references'] = strip_description('\n\n'.join(extract_list_from_ia_json_field(ia_record_dict, 'description') + extract_list_from_ia_json_field(ia_record_dict, 'references')))
         ia_record_dict['aa_ia_derived']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(lang) for lang in (extract_list_from_ia_json_field(ia_record_dict, 'language') + extract_list_from_ia_json_field(ia_record_dict, 'ocr_detected_lang'))])
@@ -1543,7 +1543,7 @@ def get_ia_record_dicts(session, key, values):
                 if urn.startswith('urn:isbn:'):
                     isbns.append(urn[len('urn:isbn:'):])
             allthethings.utils.add_isbns_unified(ia_record_dict['aa_ia_derived'], isbns)
-            allthethings.utils.add_isbns_unified(ia_record_dict['aa_ia_derived'], allthethings.utils.get_isbnlike('\n'.join([ia_record_dict['ia_id'], ia_record_dict['aa_ia_derived']['title'], ia_record_dict['aa_ia_derived']['stripped_description_and_references']] + ia_record_dict['aa_ia_derived']['combined_comments'])))
+            allthethings.utils.add_isbns_unified(ia_record_dict['aa_ia_derived'], allthethings.utils.get_isbnlike('\n'.join([ia_record_dict['ia_id'], ia_record_dict['aa_ia_derived']['title'], ia_record_dict['aa_ia_derived']['stripped_description_and_references']] + ia_record_dict['aa_ia_derived']['comments_multiple'])))
 
         # Clear out title if it only contains the ISBN, but only *after* extracting ISBN from it.
         if ia_record_dict['aa_ia_derived']['title'].strip().lower() == ia_record_dict['ia_id'].strip().lower():
@@ -1562,7 +1562,7 @@ def get_ia_record_dicts(session, key, values):
                               allthethings.utils.DICT_COMMENTS_NO_API_DISCLAIMER]),
             "cover_url": ("before", "Constructed directly from ia_id."),
             "author": ("after", "From `metadata.creator` and `metadata.associated-names`."),
-            "combined_comments": ("after", "From `metadata.notes`, `metadata.comment`, and `metadata.curation`."),
+            "comments_multiple": ("after", "From `metadata.notes`, `metadata.comment`, and `metadata.curation`."),
             "subjects": ("after", "From `metadata.subject` and `metadata.level_subject`."),
             "stripped_description_and_references": ("after", "From `metadata.description` and `metadata.references`, stripped from HTML tags."),
             "all_dates": ("after", "All potential dates, combined from `metadata.year`, `metadata.date`, and `metadata.range`."),
@@ -3621,7 +3621,7 @@ def get_aac_upload_book_dicts(session, key, values):
         aac_upload_book_dict['aa_upload_derived']['description_best'] = '\n\n'.join(list(dict.fromkeys(aac_upload_book_dict['aa_upload_derived']['description_cumulative'])))        
         sources_joined = '\n'.join(sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(aac_upload_book_dict['aa_upload_derived']['source_multiple']))
         producers_joined = '\n'.join(sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(aac_upload_book_dict['aa_upload_derived']['producer_multiple']))
-        aac_upload_book_dict['aa_upload_derived']['combined_comments'] = list(dict.fromkeys(filter(len, aac_upload_book_dict['aa_upload_derived']['comments_cumulative'] + [
+        aac_upload_book_dict['aa_upload_derived']['comments_multiple'] = list(dict.fromkeys(filter(len, aac_upload_book_dict['aa_upload_derived']['comments_cumulative'] + [
             # TODO: pass through comments metadata in a structured way so we can add proper translations.
             f"sources:\n{sources_joined}" if sources_joined != "" else "",
             f"producers:\n{producers_joined}" if producers_joined != "" else "",
@@ -3724,7 +3724,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
                 "edition_varia_normalized": '',
                 "year": '',
                 "stripped_description": '',
-                "combined_comments": [],
+                "comments_multiple": [],
                 "language_codes": [],
                 "added_date_unified": { "date_magzdb_meta_scrape": datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] },
             },
@@ -3769,14 +3769,14 @@ def get_aac_magzdb_book_dicts(session, key, values):
 
         year_range_stripped = (publication_aac_record['metadata']['record']['yearRange'] or '').strip()
         if year_range_stripped != '':
-            aac_magzdb_book_dict['aa_magzdb_derived']['combined_comments'].append(year_range_stripped)
+            aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(year_range_stripped)
 
         for previous_edition in (publication_aac_record['metadata']['record']['previousEditions'] or []):
-            aac_magzdb_book_dict['aa_magzdb_derived']['combined_comments'].append(f"Previous edition: magzdb_pub:{previous_edition}")
+            aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(f"Previous edition: magzdb_pub:{previous_edition}")
         for subsequent_edition in (publication_aac_record['metadata']['record']['subsequentEditions'] or []):
-            aac_magzdb_book_dict['aa_magzdb_derived']['combined_comments'].append(f"Subsequent edition: magzdb_pub:{subsequent_edition}")
+            aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(f"Subsequent edition: magzdb_pub:{subsequent_edition}")
         for supplementary_edition in (publication_aac_record['metadata']['record']['supplementaryEditions'] or []):
-            aac_magzdb_book_dict['aa_magzdb_derived']['combined_comments'].append(f"Supplementary edition: magzdb_pub:{supplementary_edition}")
+            aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(f"Supplementary edition: magzdb_pub:{supplementary_edition}")
 
         for upload in aac_record['metadata']['record']['uploads']:
             if key == 'md5':
@@ -3786,13 +3786,13 @@ def get_aac_magzdb_book_dicts(session, key, values):
                 aac_magzdb_book_dict['aa_magzdb_derived']['filesize'] = upload['sizeB'] or 0
                 content_type_stripped = (upload['contentType'] or '').strip()
                 if content_type_stripped != '':
-                    aac_magzdb_book_dict['aa_magzdb_derived']['combined_comments'].append(content_type_stripped)
+                    aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(content_type_stripped)
                 author_stripped = (upload['author'] or '').strip()
                 if author_stripped != '':
-                    aac_magzdb_book_dict['aa_magzdb_derived']['combined_comments'].append(f"Uploaded by: {author_stripped}")
+                    aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(f"Uploaded by: {author_stripped}")
                 note_stripped = (upload['note'] or '').strip()
                 if note_stripped != '':
-                    aac_magzdb_book_dict['aa_magzdb_derived']['combined_comments'].append(note_stripped)
+                    aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(note_stripped)
 
             extension_with_dot = f".{upload['format']}" if upload['format'] != '' else ''
             aac_magzdb_book_dict['aa_magzdb_derived']['filepath_multiple'].append(f"{publication_aac_record['metadata']['record']['title'].strip()}/{aac_record['metadata']['record']['year']}/{(aac_record['metadata']['record']['edition'] or '').strip()}/{upload['md5'].lower()}{extension_with_dot}")
@@ -3870,7 +3870,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
                 "edition_varia_normalized": '',
                 "year": '',
                 "stripped_description": '',
-                "combined_comments": [],
+                "comments_multiple": [],
                 "language_codes": [],
                 "content_type": "",
                 "cid_only_links": [],
@@ -4007,7 +4007,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
         aac_nexusstc_book_dict['aa_nexusstc_derived']['edition_varia_normalized'] = ', '.join(edition_varia_normalized)
 
         if metadata != {}:
-            aac_nexusstc_book_dict['aa_nexusstc_derived']['combined_comments'].append(orjson.dumps(metadata).decode())
+            aac_nexusstc_book_dict['aa_nexusstc_derived']['comments_multiple'].append(orjson.dumps(metadata).decode())
 
         aac_nexusstc_book_dict['aa_nexusstc_derived']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(language.strip()) for language in aac_record['metadata']['record']['languages']])
 
@@ -4140,7 +4140,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
 
         if len(aac_record['metadata']['record']['references'] or []) > 0:
             references = ' '.join([f"doi:{ref['doi']}" for ref in aac_record['metadata']['record']['references']])
-            aac_nexusstc_book_dict['aa_nexusstc_derived']['combined_comments'].append(f"Referenced by: {references}")
+            aac_nexusstc_book_dict['aa_nexusstc_derived']['comments_multiple'].append(f"Referenced by: {references}")
 
         aac_nexusstc_book_dict['aa_nexusstc_derived']['filepath_best'] = next(iter(aac_nexusstc_book_dict['aa_nexusstc_derived']['filepath_multiple']), '')
         aac_nexusstc_book_dicts.append(aac_nexusstc_book_dict)
@@ -4216,7 +4216,7 @@ def get_aac_edsebk_book_dicts(session, key, values):
                 "edition_varia_best": '',
                 "year_best": '',
                 "stripped_description": '',
-                "combined_comments": [],
+                "comments_multiple": [],
                 "language_codes": [],
                 "added_date_unified": { "date_edsebk_meta_scrape": datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] },
             },
@@ -5111,13 +5111,13 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((lgli_single_edition or {}).get('editions_add_info') or '').strip(),
             ((lgli_single_edition or {}).get('commentary') or '').strip(),
             *[note.strip() for note in (((lgli_single_edition or {}).get('descriptions_mapped') or {}).get('descriptions_mapped.notes') or [])],
-            *(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('combined_comments') or []),
-            *[comment for ia_record in aarecord['ia_records_meta_only'] for comment in ia_record['aa_ia_derived']['combined_comments']],
+            *(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('comments_multiple') or []),
+            *[comment for ia_record in aarecord['ia_records_meta_only'] for comment in ia_record['aa_ia_derived']['comments_multiple']],
             *(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('combined_comments') or []),
-            *(((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('combined_comments') or []),
-            *(((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('combined_comments') or []),
-            *(((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('combined_comments') or []),
+            *(((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('comments_multiple') or []),
+            *(((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('comments_multiple') or []),
+            *(((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('comments_multiple') or []),
+            *(((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
         ]
         comments_multiple += [(edition.get('comments_normalized') or '').strip() for edition in lgli_all_editions]
         for edition in lgli_all_editions:
