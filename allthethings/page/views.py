@@ -3011,8 +3011,8 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
         duxiu_dict['aa_duxiu_derived']['dxid_multiple'] = []
         duxiu_dict['aa_duxiu_derived']['md5_multiple'] = []
         duxiu_dict['aa_duxiu_derived']['aacid_multiple'] = []
-        duxiu_dict['aa_duxiu_derived']['filesize_multiple'] = []
-        duxiu_dict['aa_duxiu_derived']['filepath_multiple'] = []
+        duxiu_dict['aa_duxiu_derived']['filesize_additional'] = []
+        duxiu_dict['aa_duxiu_derived']['original_filename_additional'] = []
         duxiu_dict['aa_duxiu_derived']['ini_values_multiple'] = []
         duxiu_dict['aa_duxiu_derived']['description_cumulative'] = []
         duxiu_dict['aa_duxiu_derived']['comments_cumulative'] = []
@@ -3213,8 +3213,8 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                     # No need to check for include_deep_transitive_md5s_size_path here, because generated_file_aacid only exists
                     # for the primary (non-transitive) md5 record.
                     duxiu_dict['aa_duxiu_derived']['md5_multiple'] = [aac_record['generated_file_metadata']['md5'], aac_record['generated_file_metadata']['original_md5']] + duxiu_dict['aa_duxiu_derived']['md5_multiple']
-                    duxiu_dict['aa_duxiu_derived']['filesize_multiple'] = [int(aac_record['generated_file_metadata']['filesize'])] + duxiu_dict['aa_duxiu_derived']['filesize_multiple']
-                    duxiu_dict['aa_duxiu_derived']['filepath_multiple'] = [aac_record['metadata']['record']['filename_decoded']] + duxiu_dict['aa_duxiu_derived']['filepath_multiple']
+                    duxiu_dict['aa_duxiu_derived']['filesize_additional'] = [int(aac_record['generated_file_metadata']['filesize'])] + duxiu_dict['aa_duxiu_derived']['filesize_additional']
+                    duxiu_dict['aa_duxiu_derived']['original_filename_additional'] = [aac_record['metadata']['record']['filename_decoded']] + duxiu_dict['aa_duxiu_derived']['original_filename_additional']
 
                     duxiu_dict['aa_duxiu_derived']['added_date_unified']['date_duxiu_filegen'] = datetime.datetime.strptime(aac_record['generated_file_aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
 
@@ -3283,13 +3283,13 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
         duxiu_dict['file_unified_data']['author_additional'] = duxiu_dict['aa_duxiu_derived']['author_additional']
         duxiu_dict['file_unified_data']['publisher_additional'] = duxiu_dict['aa_duxiu_derived']['publisher_additional']
         duxiu_dict['file_unified_data']['year_additional'] = duxiu_dict['aa_duxiu_derived']['year_multiple']
-        duxiu_dict['file_unified_data']['filesize_additional'] = duxiu_dict['aa_duxiu_derived']['filesize_multiple']
-        duxiu_dict['file_unified_data']['original_filename_additional'] = duxiu_dict['aa_duxiu_derived']['filepath_multiple']
+        duxiu_dict['file_unified_data']['filesize_additional'] = duxiu_dict['aa_duxiu_derived']['filesize_additional']
+        duxiu_dict['file_unified_data']['original_filename_additional'] = duxiu_dict['aa_duxiu_derived']['original_filename_additional']
         duxiu_dict['file_unified_data']['added_date_unified'] = duxiu_dict['aa_duxiu_derived']['added_date_unified']
 
         allthethings.utils.init_identifiers_and_classification_unified(duxiu_dict['file_unified_data'])
         allthethings.utils.add_isbns_unified(duxiu_dict['file_unified_data'], duxiu_dict['aa_duxiu_derived']['isbn_multiple'])
-        allthethings.utils.add_isbns_unified(duxiu_dict['file_unified_data'], allthethings.utils.get_isbnlike('\n'.join(duxiu_dict['aa_duxiu_derived']['filepath_multiple'] + duxiu_dict['aa_duxiu_derived']['description_cumulative'] + duxiu_dict['aa_duxiu_derived']['comments_cumulative'])))
+        allthethings.utils.add_isbns_unified(duxiu_dict['file_unified_data'], allthethings.utils.get_isbnlike('\n'.join(duxiu_dict['aa_duxiu_derived']['original_filename_additional'] + duxiu_dict['aa_duxiu_derived']['description_cumulative'] + duxiu_dict['aa_duxiu_derived']['comments_cumulative'])))
         for duxiu_ssid in duxiu_dict['aa_duxiu_derived']['duxiu_ssid_multiple']:
             allthethings.utils.add_identifier_unified(duxiu_dict['file_unified_data'], 'duxiu_ssid', duxiu_ssid)
         for cadal_ssno in duxiu_dict['aa_duxiu_derived']['cadal_ssno_multiple']:
@@ -3310,9 +3310,9 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                 if related_file['md5'] is not None:
                     duxiu_dict['aa_duxiu_derived']['md5_multiple'].append(related_file['md5'])
                 if related_file['filesize'] is not None:
-                    duxiu_dict['aa_duxiu_derived']['filesize_multiple'].append(related_file['filesize'])
+                    duxiu_dict['aa_duxiu_derived']['filesize_additional'].append(related_file['filesize'])
                 if related_file['filepath'] is not None:
-                    duxiu_dict['aa_duxiu_derived']['filepath_multiple'].append(related_file['filepath'])
+                    duxiu_dict['aa_duxiu_derived']['original_filename_additional'].append(related_file['filepath'])
                 if related_file['aacid'] is not None:
                     duxiu_dict['aa_duxiu_derived']['aacid_multiple'].append(related_file['aacid'])
 
@@ -3338,8 +3338,8 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
         duxiu_dict['file_unified_data']['publisher_best'] = next(iter(duxiu_dict['aa_duxiu_derived']['publisher_additional']), '')
         duxiu_dict['file_unified_data']['year_best'] = next(iter(duxiu_dict['aa_duxiu_derived']['year_multiple']), '')
         duxiu_dict['file_unified_data']['series_best'] = next(iter(duxiu_dict['aa_duxiu_derived']['series_multiple']), '')
-        duxiu_dict['file_unified_data']['filesize_best'] = next(iter(duxiu_dict['aa_duxiu_derived']['filesize_multiple']), 0)
-        duxiu_dict['file_unified_data']['original_filename_best'] = next(iter(duxiu_dict['aa_duxiu_derived']['filepath_multiple']), '')
+        duxiu_dict['file_unified_data']['filesize_best'] = next(iter(duxiu_dict['aa_duxiu_derived']['filesize_additional']), 0)
+        duxiu_dict['file_unified_data']['original_filename_best'] = next(iter(duxiu_dict['aa_duxiu_derived']['original_filename_additional']), '')
         duxiu_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(list(dict.fromkeys(duxiu_dict['aa_duxiu_derived']['description_cumulative']))))
         _sources_joined = '\n'.join(sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(duxiu_dict['aa_duxiu_derived']['source_multiple']))
         related_files_joined = '\n'.join(sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode([" — ".join([f"{key}:{related_file[key]}" for key in ["filepath", "md5", "filesize"] if related_file[key] is not None]) for related_file in duxiu_dict['aa_duxiu_derived']['related_files']]))
@@ -3369,9 +3369,9 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
             **allthethings.utils.COMMON_DICT_COMMENTS,
             "source_multiple": ("before", ["Sources of the metadata."]),
             "md5_multiple": ("before", ["Includes both our generated MD5, and the original file MD5."]),
-            "filesize_multiple": ("before", ["Includes both our generated file’s size, and the original filesize.",
+            "filesize_additional": ("before", ["Includes both our generated file’s size, and the original filesize.",
                                 "Our generated filesize should be the first listed."]),
-            "filepath_multiple": ("before", ["Original filenames."]),
+            "original_filename_additional": ("before", ["Original filenames."]),
             "ini_values_multiple": ("before", ["Extracted .ini-style entries from serialized_files."]),
             "language_codes": ("before", ["Our inferred language codes (BCP 47).",
                                 "Gets set to 'zh' if the ISBN is Chinese, or if the language detection finds a CJK lang."]),
@@ -3478,9 +3478,9 @@ def get_aac_upload_book_dicts(session, key, values):
             "files": aac_upload_book_dict_raw['files'],
         }
         aac_upload_book_dict['aa_upload_derived']['subcollection_multiple'] = []
-        aac_upload_book_dict['aa_upload_derived']['filename_multiple'] = []
-        aac_upload_book_dict['aa_upload_derived']['filesize_multiple'] = []
-        aac_upload_book_dict['aa_upload_derived']['extension_multiple'] = []
+        aac_upload_book_dict['aa_upload_derived']['original_filename_additional'] = []
+        aac_upload_book_dict['aa_upload_derived']['filesize_additional'] = []
+        aac_upload_book_dict['aa_upload_derived']['extension_additional'] = []
         aac_upload_book_dict['aa_upload_derived']['title_additional'] = []
         aac_upload_book_dict['aa_upload_derived']['author_additional'] = []
         aac_upload_book_dict['aa_upload_derived']['publisher_additional'] = []
@@ -3503,15 +3503,15 @@ def get_aac_upload_book_dicts(session, key, values):
             allthethings.utils.add_identifier_unified(aac_upload_book_dict['aa_upload_derived'], 'aacid', record['aacid'])
             subcollection = record['aacid'].split('__')[1].replace('upload_records_', '')
             aac_upload_book_dict['aa_upload_derived']['subcollection_multiple'].append(subcollection)
-            aac_upload_book_dict['aa_upload_derived']['filename_multiple'].append(f"{subcollection}/{record['metadata']['filepath']}")
-            aac_upload_book_dict['aa_upload_derived']['filesize_multiple'].append(int(record['metadata']['filesize']))
+            aac_upload_book_dict['aa_upload_derived']['original_filename_additional'].append(f"{subcollection}/{record['metadata']['filepath']}")
+            aac_upload_book_dict['aa_upload_derived']['filesize_additional'].append(int(record['metadata']['filesize']))
 
             if '.' in record['metadata']['filepath']:
                 extension = record['metadata']['filepath'].rsplit('.', 1)[-1]
                 if (len(extension) <= 4) and (extension not in ['bin']):
-                    aac_upload_book_dict['aa_upload_derived']['extension_multiple'].append(extension)
+                    aac_upload_book_dict['aa_upload_derived']['extension_additional'].append(extension)
             # Note that exiftool detects comic books as zip, so actual filename extension is still preferable in most cases.
-            upload_book_exiftool_append(aac_upload_book_dict['aa_upload_derived']['extension_multiple'], record, 'FileTypeExtension')
+            upload_book_exiftool_append(aac_upload_book_dict['aa_upload_derived']['extension_additional'], record, 'FileTypeExtension')
 
             upload_book_exiftool_append(aac_upload_book_dict['aa_upload_derived']['title_additional'], record, 'Title')
             if len(((record['metadata'].get('pikepdf_docinfo') or {}).get('/Title') or '').strip()) > 0:
@@ -3599,7 +3599,7 @@ def get_aac_upload_book_dicts(session, key, values):
                 aac_upload_book_dict['aa_upload_derived']['added_date_unified']['date_file_created'] = min(file_created_date, aac_upload_book_dict['aa_upload_derived']['added_date_unified'].get('date_file_created') or file_created_date)
 
         if any([('duxiu' in subcollection) or ('chinese' in subcollection) for subcollection in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']]):
-            aac_upload_book_dict['aa_upload_derived']['filename_multiple'] = [allthethings.utils.attempt_fix_chinese_filepath(text) for text in aac_upload_book_dict['aa_upload_derived']['filename_multiple']]
+            aac_upload_book_dict['aa_upload_derived']['original_filename_additional'] = [allthethings.utils.attempt_fix_chinese_filepath(text) for text in aac_upload_book_dict['aa_upload_derived']['original_filename_additional']]
             aac_upload_book_dict['aa_upload_derived']['title_additional'] = [allthethings.utils.attempt_fix_chinese_uninterrupted_text(text) for text in aac_upload_book_dict['aa_upload_derived']['title_additional']]
             aac_upload_book_dict['aa_upload_derived']['author_additional'] = [allthethings.utils.attempt_fix_chinese_uninterrupted_text(text) for text in aac_upload_book_dict['aa_upload_derived']['author_additional']]
             aac_upload_book_dict['aa_upload_derived']['publisher_additional'] = [allthethings.utils.attempt_fix_chinese_uninterrupted_text(text) for text in aac_upload_book_dict['aa_upload_derived']['publisher_additional']]
@@ -3611,9 +3611,9 @@ def get_aac_upload_book_dicts(session, key, values):
         if any(['degruyter' in subcollection for subcollection in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']]):
             aac_upload_book_dict['aa_upload_derived']['title_additional'] = [title for title in aac_upload_book_dict['aa_upload_derived']['title_additional'] if title != 'Page not found']
 
-        aac_upload_book_dict['aa_upload_derived']['filename_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['filename_multiple']), '')
-        aac_upload_book_dict['aa_upload_derived']['filesize_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['filesize_multiple']), '')
-        aac_upload_book_dict['aa_upload_derived']['extension_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['extension_multiple']), '')
+        aac_upload_book_dict['aa_upload_derived']['original_filename_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['original_filename_additional']), '')
+        aac_upload_book_dict['aa_upload_derived']['filesize_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['filesize_additional']), '')
+        aac_upload_book_dict['aa_upload_derived']['extension_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['extension_additional']), '')
         aac_upload_book_dict['aa_upload_derived']['title_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['title_additional']), '')
         aac_upload_book_dict['aa_upload_derived']['author_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['author_additional']), '')
         aac_upload_book_dict['aa_upload_derived']['publisher_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['publisher_additional']), '')
@@ -3633,7 +3633,7 @@ def get_aac_upload_book_dicts(session, key, values):
         if 'acm' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
             aac_upload_book_dict['aa_upload_derived']['content_type'] = 'journal_article'
         elif 'degruyter' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
-            if 'DeGruyter Journals' in aac_upload_book_dict['aa_upload_derived']['filename_best']:
+            if 'DeGruyter Journals' in aac_upload_book_dict['aa_upload_derived']['original_filename_best']:
                 aac_upload_book_dict['aa_upload_derived']['content_type'] = 'journal_article'
             else:
                 aac_upload_book_dict['aa_upload_derived']['content_type'] = 'book_nonfiction'
@@ -3643,7 +3643,7 @@ def get_aac_upload_book_dicts(session, key, values):
             aac_upload_book_dict['aa_upload_derived']['content_type'] = 'magazine'
         elif 'longquan_archives' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
             aac_upload_book_dict['aa_upload_derived']['content_type'] = 'book_nonfiction'
-        elif any('misc/music_books' in filename for filename in aac_upload_book_dict['aa_upload_derived']['filename_multiple']):
+        elif any('misc/music_books' in filename for filename in aac_upload_book_dict['aa_upload_derived']['original_filename_additional']):
             aac_upload_book_dict['aa_upload_derived']['content_type'] = 'musical_score'
 
         aac_upload_dict_comments = {
@@ -3719,8 +3719,8 @@ def get_aac_magzdb_book_dicts(session, key, values):
                 "extension": '',
                 "title_best": '',
                 "title_additional": [],
-                "filepath_best": '',
-                "filepath_multiple": [],
+                "original_filename_best": '',
+                "original_filename_additional": [],
                 "edition_varia_normalized": '',
                 "year": '',
                 "stripped_description": '',
@@ -3795,12 +3795,12 @@ def get_aac_magzdb_book_dicts(session, key, values):
                     aac_magzdb_book_dict['aa_magzdb_derived']['comments_multiple'].append(note_stripped)
 
             extension_with_dot = f".{upload['format']}" if upload['format'] != '' else ''
-            aac_magzdb_book_dict['aa_magzdb_derived']['filepath_multiple'].append(f"{publication_aac_record['metadata']['record']['title'].strip()}/{aac_record['metadata']['record']['year']}/{(aac_record['metadata']['record']['edition'] or '').strip()}/{upload['md5'].lower()}{extension_with_dot}")
+            aac_magzdb_book_dict['aa_magzdb_derived']['original_filename_additional'].append(f"{publication_aac_record['metadata']['record']['title'].strip()}/{aac_record['metadata']['record']['year']}/{(aac_record['metadata']['record']['edition'] or '').strip()}/{upload['md5'].lower()}{extension_with_dot}")
 
             if (upload['md5'] or '') != '':
                 allthethings.utils.add_identifier_unified(aac_magzdb_book_dict['aa_magzdb_derived'], 'md5', upload['md5'].lower())
 
-        aac_magzdb_book_dict['aa_magzdb_derived']['filepath_best'] = next(iter(aac_magzdb_book_dict['aa_magzdb_derived']['filepath_multiple']), '')
+        aac_magzdb_book_dict['aa_magzdb_derived']['original_filename_best'] = next(iter(aac_magzdb_book_dict['aa_magzdb_derived']['original_filename_additional']), '')
         aac_magzdb_book_dicts.append(aac_magzdb_book_dict)
     return aac_magzdb_book_dicts
 
@@ -3866,7 +3866,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
                 "title_best": '',
                 "author_best": '',
                 "publisher_best": '',
-                "filepath_multiple": [],
+                "original_filename_additional": [],
                 "edition_varia_normalized": '',
                 "year": '',
                 "stripped_description": '',
@@ -4129,7 +4129,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
             if (link.get('md5') or '') != '':
                 allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['aa_nexusstc_derived'], 'md5', link['md5'].lower())
                 extension_with_dot = f".{link['extension']}" if (link.get('extension') or '') != '' else ''
-                aac_nexusstc_book_dict['aa_nexusstc_derived']['filepath_multiple'].append(f"{title_stripped + '/' if title_stripped != '' else ''}{link['md5'].lower()}{extension_with_dot}")
+                aac_nexusstc_book_dict['aa_nexusstc_derived']['original_filename_additional'].append(f"{title_stripped + '/' if title_stripped != '' else ''}{link['md5'].lower()}{extension_with_dot}")
             if (link.get('cid') or '') != '':
                 allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['aa_nexusstc_derived'], 'ipfs_cid', link['cid'])
 
@@ -4142,7 +4142,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
             references = ' '.join([f"doi:{ref['doi']}" for ref in aac_record['metadata']['record']['references']])
             aac_nexusstc_book_dict['aa_nexusstc_derived']['comments_multiple'].append(f"Referenced by: {references}")
 
-        aac_nexusstc_book_dict['aa_nexusstc_derived']['filepath_best'] = next(iter(aac_nexusstc_book_dict['aa_nexusstc_derived']['filepath_multiple']), '')
+        aac_nexusstc_book_dict['aa_nexusstc_derived']['original_filename_best'] = next(iter(aac_nexusstc_book_dict['aa_nexusstc_derived']['original_filename_additional']), '')
         aac_nexusstc_book_dicts.append(aac_nexusstc_book_dict)
     return aac_nexusstc_book_dicts
 
@@ -4816,9 +4816,9 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[allthethings.utils.prefix_filepath('lgli', filename.strip()) for filename in (((aarecord['lgli_file'] or {}).get('descriptions_mapped') or {}).get('library_filename') or [])],
             *[allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('original_filename') or '').strip()])],
             *[allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in filter(len, [(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in filter(len, [(((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('filepath_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('upload', filepath) for filepath in filter(len, [(((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('nexusstc', filepath) for filepath in filter(len, [(((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('filepath_best') or '').strip()])],
+            *[allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in filter(len, [(((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('original_filename_best') or '').strip()])],
+            *[allthethings.utils.prefix_filepath('upload', filepath) for filepath in filter(len, [(((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('original_filename_best') or '').strip()])],
+            *[allthethings.utils.prefix_filepath('nexusstc', filepath) for filepath in filter(len, [(((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('scimag', filepath) for filepath in filter(len, [((aarecord['lgli_file'] or {}).get('scimag_archive_path_decoded') or '').strip()])],
         ]
         original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
@@ -4826,9 +4826,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         original_filename_multiple += [allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(ia_record['aa_ia_derived']['original_filename'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
         original_filename_multiple += [allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].strip()}.pdf") for scihub_doi in aarecord['scihub_doi']]
         original_filename_multiple += [allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('upload', filepath) for filepath in (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('filename_multiple') or [])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('filepath_multiple') or [])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('nexusstc', filepath) for filepath in (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('filepath_multiple') or [])]
+        original_filename_multiple += [allthethings.utils.prefix_filepath('upload', filepath) for filepath in (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('original_filename_additional') or [])]
+        original_filename_multiple += [allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('original_filename_additional') or [])]
+        original_filename_multiple += [allthethings.utils.prefix_filepath('nexusstc', filepath) for filepath in (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('original_filename_additional') or [])]
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
             original_filename_multiple += [allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in duxiu_record['file_unified_data']['original_filename_additional']]
         if aarecord['file_unified_data']['original_filename_best'] == '':
@@ -4914,7 +4914,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             # If we have a zlib_book with a `filesize`, then that is leading, since we measured it ourselves.
             aarecord['file_unified_data']['filesize_best'] = zlib_book_filesize
         filesize_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('filesize_additional') or [])
-        filesize_multiple += (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('filesize_multiple') or [])
+        filesize_multiple += (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('filesize_additional') or [])
         aarecord['file_unified_data']['filesize_additional'] = [s for s in dict.fromkeys(filter(lambda fz: fz > 0, filesize_multiple)) if s != aarecord['file_unified_data']['filesize_best']]
 
         title_multiple = [
