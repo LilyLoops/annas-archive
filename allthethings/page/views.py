@@ -2582,9 +2582,15 @@ def get_scihub_doi_dicts(session, key, values):
 
     scihub_doi_dicts = []
     for scihub_doi in scihub_dois:
-        scihub_doi_dict = { "doi": scihub_doi["doi"] }
-        allthethings.utils.init_identifiers_and_classification_unified(scihub_doi_dict)
-        allthethings.utils.add_identifier_unified(scihub_doi_dict, "doi", scihub_doi_dict["doi"])
+        scihub_doi_dict = { 
+            "doi": scihub_doi["doi"], 
+            "file_unified_data": {
+                "original_filename_best": f"{scihub_doi['doi'].strip()}.pdf",
+                "content_type": 'journal_article',
+            },
+        }
+        allthethings.utils.init_identifiers_and_classification_unified(scihub_doi_dict['file_unified_data'])
+        allthethings.utils.add_identifier_unified(scihub_doi_dict['file_unified_data'], "doi", scihub_doi_dict["doi"])
         scihub_doi_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
             "doi": ("before", ["This is a file from Sci-Hub's dois-2022-02-12.7z dataset.",
@@ -4707,7 +4713,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[isbndb['identifiers_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[scihub_doi['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
+            *[scihub_doi['file_unified_data']['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
             *[oclc['file_unified_data']['identifiers_unified'] for oclc in aarecord['oclc']],
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
@@ -4829,7 +4835,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
         original_filename_multiple += [allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(ia_record['file_unified_data']['original_filename_best'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].strip()}.pdf") for scihub_doi in aarecord['scihub_doi']]
+        original_filename_multiple += [allthethings.utils.prefix_filepath('scihub', scihub_doi['file_unified_data']['original_filename_best']) for scihub_doi in aarecord['scihub_doi']]
         original_filename_multiple += [allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
         original_filename_multiple += [allthethings.utils.prefix_filepath('upload', filepath) for filepath in (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
         original_filename_multiple += [allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
@@ -5269,7 +5275,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[isbndb['identifiers_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[scihub_doi['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
+            *[scihub_doi['file_unified_data']['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
             *[oclc['file_unified_data']['identifiers_unified'] for oclc in aarecord['oclc']],
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
@@ -5290,7 +5296,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[isbndb['classifications_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['classifications_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['classifications_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[scihub_doi['classifications_unified'] for scihub_doi in aarecord['scihub_doi']],
+            *[scihub_doi['file_unified_data']['classifications_unified'] for scihub_doi in aarecord['scihub_doi']],
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
@@ -5408,7 +5414,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         if (aarecord['file_unified_data']['content_type'] is None) and (len(aarecord['ol_book_dicts_primary_linked']) > 0):
             aarecord['file_unified_data']['content_type'] = 'book_unknown'
         if (aarecord['file_unified_data']['content_type'] is None) and (len(aarecord['scihub_doi']) > 0):
-            aarecord['file_unified_data']['content_type'] = 'journal_article'
+            aarecord['file_unified_data']['content_type'] = aarecord['scihub_doi'][0]['file_unified_data']['content_type']
         if (aarecord['file_unified_data']['content_type'] is None) and (len(aarecord['oclc']) > 0):
             for oclc in aarecord['oclc']:
                 # OCLC has a lot of books mis-tagged as journal article.
