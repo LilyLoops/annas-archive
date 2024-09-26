@@ -4190,13 +4190,13 @@ def get_aac_edsebk_book_dicts(session, key, values):
     for primary_id, aac_record in aac_records_by_primary_id.items():
         aac_edsebk_book_dict = {
             "edsebk_id": primary_id,
-            "aa_edsebk_derived": {
+            "file_unified_data": {
                 "title_best": '',
                 "title_multiple": [],
                 "author_best": '',
                 "publisher_best": '',
-                "edition_varia_normalized": '',
-                "year": '',
+                "edition_varia_best": '',
+                "year_best": '',
                 "stripped_description": '',
                 "combined_comments": [],
                 "language_codes": [],
@@ -4205,58 +4205,58 @@ def get_aac_edsebk_book_dicts(session, key, values):
             "aac_record": aac_record,
         }
 
-        allthethings.utils.init_identifiers_and_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'])
-        allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'aacid', aac_record['aacid'])
-        allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'edsebk', primary_id)
+        allthethings.utils.init_identifiers_and_classification_unified(aac_edsebk_book_dict['file_unified_data'])
+        allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
+        allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['file_unified_data'], 'edsebk', primary_id)
 
         title_stripped = aac_record['metadata']['header']['artinfo']['title'].strip()
         if title_stripped != '':
-            aac_edsebk_book_dict['aa_edsebk_derived']['title_best'] = title_stripped
+            aac_edsebk_book_dict['file_unified_data']['title_best'] = title_stripped
 
         subtitle_stripped = (aac_record['metadata']['header']['artinfo'].get('subtitle') or '').strip()
         if subtitle_stripped != '':
-            aac_edsebk_book_dict['aa_edsebk_derived']['title_multiple'] = [subtitle_stripped]
+            aac_edsebk_book_dict['file_unified_data']['title_multiple'] = [subtitle_stripped]
 
-        aac_edsebk_book_dict['aa_edsebk_derived']['author_best'] = '; '.join([author.strip() for author in (aac_record['metadata']['header']['artinfo'].get('authors') or [])])
+        aac_edsebk_book_dict['file_unified_data']['author_best'] = '; '.join([author.strip() for author in (aac_record['metadata']['header']['artinfo'].get('authors') or [])])
 
         publisher_stripped = (aac_record['metadata']['header']['pubinfo'].get('publisher') or '').strip()
         if publisher_stripped != '':
-            aac_edsebk_book_dict['aa_edsebk_derived']['publisher_best'] = publisher_stripped
+            aac_edsebk_book_dict['file_unified_data']['publisher_best'] = publisher_stripped
 
-        edition_varia_normalized = []
+        edition_varia_best = []
         if len((aac_record['metadata']['header']['pubinfo'].get('publisher_contract') or '').strip()) > 0:
-            edition_varia_normalized.append(aac_record['metadata']['header']['pubinfo']['publisher_contract'].strip())
+            edition_varia_best.append(aac_record['metadata']['header']['pubinfo']['publisher_contract'].strip())
         if len((aac_record['metadata']['header']['pubinfo'].get('place') or '').strip()) > 0:
-            edition_varia_normalized.append(aac_record['metadata']['header']['pubinfo']['place'].strip())
-        edition_varia_normalized.append(aac_record['metadata']['header']['pubinfo']['date']['year'].strip())
-        aac_edsebk_book_dict['aa_edsebk_derived']['edition_varia_normalized'] = ', '.join(edition_varia_normalized)
+            edition_varia_best.append(aac_record['metadata']['header']['pubinfo']['place'].strip())
+        edition_varia_best.append(aac_record['metadata']['header']['pubinfo']['date']['year'].strip())
+        aac_edsebk_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_best)
 
-        aac_edsebk_book_dict['aa_edsebk_derived']['year'] = aac_record['metadata']['header']['pubinfo']['date']['year'].strip()
+        aac_edsebk_book_dict['file_unified_data']['year_best'] = aac_record['metadata']['header']['pubinfo']['date']['year'].strip()
 
         abstract_stripped = strip_description(aac_record['metadata']['header']['artinfo']['abstract'])
         if abstract_stripped != '':
-            aac_edsebk_book_dict['aa_edsebk_derived']['stripped_description'] = abstract_stripped
+            aac_edsebk_book_dict['file_unified_data']['stripped_description'] = abstract_stripped
 
-        allthethings.utils.add_isbns_unified(aac_edsebk_book_dict['aa_edsebk_derived'], aac_record['metadata']['header']['bkinfo']['print_isbns'] + aac_record['metadata']['header']['bkinfo']['electronic_isbns'])
+        allthethings.utils.add_isbns_unified(aac_edsebk_book_dict['file_unified_data'], aac_record['metadata']['header']['bkinfo']['print_isbns'] + aac_record['metadata']['header']['bkinfo']['electronic_isbns'])
 
         oclc_stripped = (aac_record['metadata']['header']['artinfo']['uis'].get('oclc') or '').strip()
         if oclc_stripped != '':
-            allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'oclc', oclc_stripped)
+            allthethings.utils.add_identifier_unified(aac_edsebk_book_dict['file_unified_data'], 'oclc', oclc_stripped)
 
         dewey_stripped = (aac_record['metadata']['header']['pubinfo']['pre_pub_group']['dewey'].get('class') or '').strip()
         if dewey_stripped != '':
-            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'ddc', dewey_stripped)
+            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['file_unified_data'], 'ddc', dewey_stripped)
 
         lcc_stripped = (aac_record['metadata']['header']['pubinfo']['pre_pub_group']['lc'].get('class') or '').strip()
         if lcc_stripped != '':
-            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'lcc', lcc_stripped)
+            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['file_unified_data'], 'lcc', lcc_stripped)
 
         language_code_stripped = (aac_record['metadata']['header']['language'].get('code') or '').strip()
         if language_code_stripped != '':
-            aac_edsebk_book_dict['aa_edsebk_derived']['language_codes'] = get_bcp47_lang_codes(language_code_stripped)
+            aac_edsebk_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(language_code_stripped)
 
         for subject in (aac_record['metadata']['header']['artinfo'].get('subject_groups') or []):
-            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['aa_edsebk_derived'], 'edsebk_subject', f"{subject['Type']}/{subject['Subject']}")
+            allthethings.utils.add_classification_unified(aac_edsebk_book_dict['file_unified_data'], 'edsebk_subject', f"{subject['Type']}/{subject['Subject']}")
 
         aac_edsebk_book_dicts.append(aac_edsebk_book_dict)
     return aac_edsebk_book_dicts
@@ -4691,7 +4691,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('identifiers_unified') or {}),
             *[duxiu_record['aa_duxiu_derived']['identifiers_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('identifiers_unified') or {}),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
         ])
 
         # TODO: This `if` is not necessary if we make sure that the fields of the primary records get priority.
@@ -4914,7 +4914,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('title_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('title_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('title_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('title_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
         ]
         title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['title_best'] == '':
@@ -4928,7 +4928,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         title_multiple += (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('title_multiple') or [])
         title_multiple += (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('title_multiple') or [])
         title_multiple += (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('title_multiple') or [])
-        title_multiple += (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('title_multiple') or [])
+        title_multiple += (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('title_multiple') or [])
         for oclc in aarecord['oclc']:
             title_multiple += oclc['aa_oclc_derived']['title_multiple']
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
@@ -4952,7 +4952,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('author_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('author_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('author_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('author_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
         ]
         author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['author_best'] == '':
@@ -4986,7 +4986,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('publisher_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('publisher_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('publisher_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
         ]
         publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['publisher_best'] == '':
@@ -5020,7 +5020,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('edition_varia_normalized') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('edition_varia_normalized') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('edition_varia_normalized') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('edition_varia_normalized') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
         ]
         edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['edition_varia_best'] == '':
@@ -5054,7 +5054,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['duxiu'] or {}).get('aa_duxiu_derived') or {}).get('year_best') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('year') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('year') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('year') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
         ]
         # Filter out years in for which we surely don't have books (famous last words..)
         # WARNING duplicated above
@@ -5099,7 +5099,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *(((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('combined_comments') or []),
             *(((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('combined_comments') or []),
             *(((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('combined_comments') or []),
-            *(((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('combined_comments') or []),
+            *(((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('combined_comments') or []),
         ]
         comments_multiple += [(edition.get('comments_normalized') or '').strip() for edition in lgli_all_editions]
         for edition in lgli_all_editions:
@@ -5132,7 +5132,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('stripped_description') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('stripped_description') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('description_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('description_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('description_best') or '').strip(),
         ]
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['stripped_description_best'] == '':
@@ -5169,7 +5169,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('language_codes') or []),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('language_codes') or []),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('language_codes') or []),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('language_codes') or []),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
         ])
         if len(aarecord['file_unified_data']['most_likely_language_codes']) == 0:
             aarecord['file_unified_data']['most_likely_language_codes'] = aarecord['file_unified_data']['language_codes']
@@ -5228,7 +5228,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('added_date_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('added_date_unified') or {}),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('added_date_unified') or {}),
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('added_date_unified') or {}),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
         ]))
         for prefix, date in aarecord['file_unified_data']['added_date_unified'].items():
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], prefix, date)
@@ -5253,7 +5253,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('identifiers_unified') or {}),
             *[duxiu_record['aa_duxiu_derived']['identifiers_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('identifiers_unified') or {}),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
         ])
         aarecord['file_unified_data']['classifications_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['classifications_unified'],
@@ -5272,7 +5272,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('classifications_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('classifications_unified') or {}),
             *[duxiu_record['aa_duxiu_derived']['classifications_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
-            (((aarecord['aac_edsebk'] or {}).get('aa_edsebk_derived') or {}).get('classifications_unified') or {}),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
         ])
 
         aarecord['file_unified_data']['added_date_best'] = ''
