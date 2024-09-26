@@ -2667,7 +2667,6 @@ def get_oclc_dicts(session, key, values):
         oclc_dict["aa_oclc_derived"]["doi_multiple"] = []
         oclc_dict["aa_oclc_derived"]["general_format_multiple"] = []
         oclc_dict["aa_oclc_derived"]["specific_format_multiple"] = []
-        oclc_dict["aa_oclc_derived"]["content_type"] = "other"
         oclc_dict["aa_oclc_derived"]["rft_multiple"] = []
         oclc_dict["aac_records"] = aac_records
 
@@ -2761,9 +2760,10 @@ def get_oclc_dicts(session, key, values):
             else:
                 raise Exception(f"Unexpected aac_metadata.type: {aac_metadata['type']}")
 
-        oclc_dict["aa_oclc_derived"]["title_additional"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["title_additional"]])))
-        oclc_dict["aa_oclc_derived"]["author_additional"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["author_additional"]])))
-        oclc_dict["aa_oclc_derived"]["publisher_additional"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["publisher_additional"]])))
+        oclc_dict["file_unified_data"] = {}
+        oclc_dict["file_unified_data"]["title_additional"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["title_additional"]])))
+        oclc_dict["file_unified_data"]["author_additional"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["author_additional"]])))
+        oclc_dict["file_unified_data"]["publisher_additional"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["publisher_additional"]])))
         oclc_dict["aa_oclc_derived"]["edition_multiple"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["edition_multiple"]])))
         oclc_dict["aa_oclc_derived"]["place_multiple"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["place_multiple"]])))
         oclc_dict["aa_oclc_derived"]["date_multiple"] = list(dict.fromkeys(filter(len, [re.sub(r'[ ]+', ' ', s.strip(' \n\t,.;[]')) for s in oclc_dict["aa_oclc_derived"]["date_multiple"]])))
@@ -2777,29 +2777,31 @@ def get_oclc_dicts(session, key, values):
         oclc_dict["aa_oclc_derived"]["general_format_multiple"] = list(dict.fromkeys(filter(len, [s.lower() for s in oclc_dict["aa_oclc_derived"]["general_format_multiple"]])))
         oclc_dict["aa_oclc_derived"]["specific_format_multiple"] = list(dict.fromkeys(filter(len, [s.lower() for s in oclc_dict["aa_oclc_derived"]["specific_format_multiple"]])))
 
+        oclc_dict["file_unified_data"]["year_additional"] = []
         for s in oclc_dict["aa_oclc_derived"]["date_multiple"]:
             potential_year = re.search(r"(\d\d\d\d)", s)
             if potential_year is not None:
-                oclc_dict["aa_oclc_derived"]["year_multiple"].append(potential_year[0])
+                oclc_dict["file_unified_data"]["year_additional"].append(potential_year[0])
 
+        oclc_dict["file_unified_data"]["content_type"] = 'other'
         if "thsis" in oclc_dict["aa_oclc_derived"]["specific_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
         elif "mss" in oclc_dict["aa_oclc_derived"]["specific_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
         elif "book" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'book_unknown'
+            oclc_dict["file_unified_data"]["content_type"] = 'book_unknown'
         elif "artchap" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
         elif "artcl" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
         elif "news" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'magazine'
+            oclc_dict["file_unified_data"]["content_type"] = 'magazine'
         elif "jrnl" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'magazine'
+            oclc_dict["file_unified_data"]["content_type"] = 'magazine'
         elif "msscr" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["aa_oclc_derived"]["content_type"] = 'musical_score'
+            oclc_dict["file_unified_data"]["content_type"] = 'musical_score'
 
-        oclc_dict["aa_oclc_derived"]['edition_varia_normalized'] = ', '.join(list(dict.fromkeys(filter(len, [
+        oclc_dict["file_unified_data"]['edition_varia_best'] = ', '.join(list(dict.fromkeys(filter(len, [
             max(['', *oclc_dict["aa_oclc_derived"]["series_multiple"]], key=len),
             max(['', *oclc_dict["aa_oclc_derived"]["volume_multiple"]], key=len),
             max(['', *oclc_dict["aa_oclc_derived"]["edition_multiple"]], key=len),
@@ -2807,20 +2809,20 @@ def get_oclc_dicts(session, key, values):
             max(['', *oclc_dict["aa_oclc_derived"]["date_multiple"]], key=len),
         ]))))
 
-        oclc_dict['aa_oclc_derived']['stripped_description_multiple'] = [strip_description(description) for description in oclc_dict['aa_oclc_derived']['description_multiple']]
-        oclc_dict['aa_oclc_derived']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(language) for language in oclc_dict['aa_oclc_derived']['languages_multiple']])
+        oclc_dict['file_unified_data']['stripped_description_additional'] = [strip_description(description) for description in oclc_dict['aa_oclc_derived']['description_multiple']]
+        oclc_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(language) for language in oclc_dict['aa_oclc_derived']['languages_multiple']])
 
-        allthethings.utils.init_identifiers_and_classification_unified(oclc_dict['aa_oclc_derived'])
-        allthethings.utils.add_identifier_unified(oclc_dict['aa_oclc_derived'], 'oclc', oclc_id)
-        allthethings.utils.add_isbns_unified(oclc_dict['aa_oclc_derived'], oclc_dict['aa_oclc_derived']['isbn_multiple'])
+        allthethings.utils.init_identifiers_and_classification_unified(oclc_dict['file_unified_data'])
+        allthethings.utils.add_identifier_unified(oclc_dict['file_unified_data'], 'oclc', oclc_id)
+        allthethings.utils.add_isbns_unified(oclc_dict['file_unified_data'], oclc_dict['aa_oclc_derived']['isbn_multiple'])
         for issn in oclc_dict['aa_oclc_derived']['issn_multiple']:
-            allthethings.utils.add_issn_unified(oclc_dict['aa_oclc_derived'], issn)
+            allthethings.utils.add_issn_unified(oclc_dict['file_unified_data'], issn)
         for doi in oclc_dict['aa_oclc_derived']['doi_multiple']:
-            allthethings.utils.add_identifier_unified(oclc_dict['aa_oclc_derived'], 'doi', doi)
+            allthethings.utils.add_identifier_unified(oclc_dict['file_unified_data'], 'doi', doi)
         for aac_record in aac_records:
-            allthethings.utils.add_identifier_unified(oclc_dict['aa_oclc_derived'], 'aacid', aac_record['aacid'])
+            allthethings.utils.add_identifier_unified(oclc_dict['file_unified_data'], 'aacid', aac_record['aacid'])
 
-        oclc_dict['aa_oclc_derived']["added_date_unified"] = { "date_oclc_scrape": "2023-10-01" }
+        oclc_dict['file_unified_data']["added_date_unified"] = { "date_oclc_scrape": "2023-10-01" }
 
         # TODO:
         # * cover_url
@@ -4706,7 +4708,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
             *[scihub_doi['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
-            *[oclc['aa_oclc_derived']['identifiers_unified'] for oclc in aarecord['oclc']],
+            *[oclc['file_unified_data']['identifiers_unified'] for oclc in aarecord['oclc']],
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
@@ -4951,7 +4953,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         title_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
         title_multiple += (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
         for oclc in aarecord['oclc']:
-            title_multiple += oclc['aa_oclc_derived']['title_additional']
+            title_multiple += oclc['file_unified_data']['title_additional']
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
             title_multiple += duxiu_record['file_unified_data']['title_additional']
         title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
@@ -4985,7 +4987,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         author_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
         author_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
         for oclc in aarecord['oclc']:
-            author_multiple += oclc['aa_oclc_derived']['author_additional']
+            author_multiple += oclc['file_unified_data']['author_additional']
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
             author_multiple += duxiu_record['file_unified_data']['author_additional']
         author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
@@ -5019,7 +5021,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         publisher_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
         publisher_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
         for oclc in aarecord['oclc']:
-            publisher_multiple += oclc['aa_oclc_derived']['publisher_additional']
+            publisher_multiple += oclc['file_unified_data']['publisher_additional']
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
             publisher_multiple += duxiu_record['file_unified_data']['publisher_additional']
         publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
@@ -5050,7 +5052,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         edition_varia_multiple += [(ol_book_dict.get('edition_varia_normalized') or '').strip() for ol_book_dict in aarecord['ol']]
         edition_varia_multiple += [(isbndb.get('edition_varia_normalized') or '').strip() for isbndb in aarecord['isbndb']]
         edition_varia_multiple += [ia_record['file_unified_data']['edition_varia_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
-        edition_varia_multiple += [oclc['aa_oclc_derived']['edition_varia_normalized'] for oclc in aarecord['oclc']]
+        edition_varia_multiple += [oclc['file_unified_data']['edition_varia_best'] for oclc in aarecord['oclc']]
         edition_varia_multiple += [duxiu_record['file_unified_data']['edition_varia_best'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']]
         edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['edition_varia_best'] == '':
@@ -5089,7 +5091,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         year_multiple += [ia_record['file_unified_data']['year_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
         year_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('year_additional') or [])
         for oclc in aarecord['oclc']:
-            year_multiple += oclc['aa_oclc_derived']['year_multiple']
+            year_multiple += oclc['file_unified_data']['year_additional']
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
             year_multiple += duxiu_record['file_unified_data']['year_additional']
         for year in year_multiple:
@@ -5164,7 +5166,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         stripped_description_multiple += [(isbndb['json'].get('overview') or '').strip()[0:5000] for isbndb in aarecord['isbndb']]
         stripped_description_multiple += [ia_record['file_unified_data']['stripped_description_best'].strip()[0:5000] for ia_record in aarecord['ia_records_meta_only']]
         for oclc in aarecord['oclc']:
-            stripped_description_multiple += oclc['aa_oclc_derived']['stripped_description_multiple']
+            stripped_description_multiple += oclc['file_unified_data']['stripped_description_additional']
         stripped_description_multiple += [duxiu_record['file_unified_data']['stripped_description_best'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']]
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['stripped_description_best'] == '':
@@ -5200,7 +5202,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[(ol_book_dict.get('language_codes') or []) for ol_book_dict in aarecord['ol']],
             *[ia_record['file_unified_data']['language_codes'] for ia_record in aarecord['ia_records_meta_only']],
             *[(isbndb.get('language_codes') or []) for isbndb in aarecord['isbndb']],
-            *[oclc['aa_oclc_derived']['language_codes'] for oclc in aarecord['oclc']],
+            *[oclc['file_unified_data']['language_codes'] for oclc in aarecord['oclc']],
             *[duxiu_record['file_unified_data']['language_codes'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
         ])
         if len(aarecord['file_unified_data']['language_codes']) == 0:
@@ -5244,7 +5246,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[isbndb['added_date_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['added_date_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['added_date_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[oclc['aa_oclc_derived']['added_date_unified'] for oclc in aarecord['oclc']],
+            *[oclc['file_unified_data']['added_date_unified'] for oclc in aarecord['oclc']],
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
@@ -5268,7 +5270,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
             *[scihub_doi['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
-            *[oclc['aa_oclc_derived']['identifiers_unified'] for oclc in aarecord['oclc']],
+            *[oclc['file_unified_data']['identifiers_unified'] for oclc in aarecord['oclc']],
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
@@ -5410,8 +5412,8 @@ def get_aarecords_mysql(session, aarecord_ids):
         if (aarecord['file_unified_data']['content_type'] is None) and (len(aarecord['oclc']) > 0):
             for oclc in aarecord['oclc']:
                 # OCLC has a lot of books mis-tagged as journal article.
-                if (aarecord_id_split[0] == 'oclc') or (oclc['aa_oclc_derived']['content_type'] != 'other' and oclc['aa_oclc_derived']['content_type'] != 'journal_article'):
-                    aarecord['file_unified_data']['content_type'] = oclc['aa_oclc_derived']['content_type']
+                if (aarecord_id_split[0] == 'oclc') or (oclc['file_unified_data']['content_type'] != 'other' and oclc['file_unified_data']['content_type'] != 'journal_article'):
+                    aarecord['file_unified_data']['content_type'] = oclc['file_unified_data']['content_type']
                     break
         if (aarecord['file_unified_data']['content_type'] is None) and ((((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('content_type') or '') != ''):
             aarecord['file_unified_data']['content_type'] = aarecord['aac_upload']['file_unified_data']['content_type']
