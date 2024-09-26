@@ -4515,24 +4515,25 @@ def aarecord_score_base(aarecord):
 
 def aarecord_sources(aarecord):
     aarecord_id_split = aarecord['id'].split(':', 1)
+    source_records_by_type = allthethings.utils.groupby(aarecord['source_records'], 'source_type', 'source_record')
     return list(dict.fromkeys([
         # Should match /datasets/<aarecord_source>!!
-        *(['duxiu']     if aarecord['duxiu'] is not None else []),
-        *(['edsebk']    if (aarecord_id_split[0] == 'edsebk' and aarecord.get('aac_edsebk') is not None) else []),
-        *(['ia']        if aarecord['ia_record'] is not None else []),
-        *(['isbndb']    if (aarecord_id_split[0] == 'isbndb' and len(aarecord['isbndb'] or []) > 0) else []),
-        *(['lgli']      if aarecord['lgli_file'] is not None else []),
-        *(['lgrs']      if aarecord['lgrsfic_book'] is not None else []),
-        *(['lgrs']      if aarecord['lgrsnf_book'] is not None else []),
-        *(['magzdb']    if aarecord.get('aac_magzdb') is not None else []),
-        *(['nexusstc']  if aarecord.get('aac_nexusstc') is not None else []),
-        *(['oclc']      if (aarecord_id_split[0] == 'oclc' and len(aarecord['oclc'] or []) > 0) else []),
-        *(['ol']        if (aarecord_id_split[0] == 'ol' and len(aarecord['ol'] or []) > 0) else []),
-        *(['scihub']    if len(aarecord['scihub_doi']) > 0 else []),
-        *(['upload']    if aarecord.get('aac_upload') is not None else []),
-        *(['zlib']      if (aarecord['aac_zlib3_book'] is not None) and ((aarecord['aac_zlib3_book'].get('storage') or '') != 'chinese') else []),
-        *(['zlib']      if aarecord['zlib_book'] is not None else []),
-        *(['zlibzh']    if (aarecord['aac_zlib3_book'] is not None) and ((aarecord['aac_zlib3_book'].get('storage') or '') == 'chinese') else []),
+        *(['duxiu']     if len(source_records_by_type['duxiu']) > 0 else []),
+        *(['edsebk']    if (aarecord_id_split[0] == 'edsebk' and len(source_records_by_type['aac_edsebk']) > 0) else []),
+        *(['ia']        if len(source_records_by_type['ia_record']) > 0 else []),
+        *(['isbndb']    if (aarecord_id_split[0] == 'isbndb' and len(source_records_by_type['isbndb']) > 0) else []),
+        *(['lgli']      if len(source_records_by_type['lgli_file']) > 0 else []),
+        *(['lgrs']      if len(source_records_by_type['lgrsfic_book']) > 0 else []),
+        *(['lgrs']      if len(source_records_by_type['lgrsnf_book']) > 0 else []),
+        *(['magzdb']    if len(source_records_by_type['aac_magzdb']) > 0 else []),
+        *(['nexusstc']  if len(source_records_by_type['aac_nexusstc']) > 0 else []),
+        *(['oclc']      if (aarecord_id_split[0] == 'oclc' and len(source_records_by_type['oclc']) > 0) else []),
+        *(['ol']        if (aarecord_id_split[0] == 'ol' and len(source_records_by_type['ol']) > 0) else []),
+        *(['scihub']    if len(source_records_by_type['scihub_doi']) > 0 else []),
+        *(['upload']    if len(source_records_by_type['aac_upload']) > 0 else []),
+        *(['zlib']      if (len(source_records_by_type['aac_zlib3_book']) > 0) and (any((source_record.get('storage') or '') != 'chinese' for source_record in source_records_by_type['aac_zlib3_book'])) else []),
+        *(['zlib']      if len(source_records_by_type['zlib_book']) > 0 else []),
+        *(['zlibzh']    if (len(source_records_by_type['aac_zlib3_book']) > 0) and (any((source_record.get('storage') or '') == 'chinese' for source_record in source_records_by_type['aac_zlib3_book'])) else []),
     ]))
 
 # Dummy translation to keep this msgid around. TODO: fix see below.
