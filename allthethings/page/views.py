@@ -4215,7 +4215,7 @@ def get_aac_edsebk_book_dicts(session, key, values):
                 "publisher_best": '',
                 "edition_varia_best": '',
                 "year_best": '',
-                "stripped_description": '',
+                "stripped_description_best": '',
                 "comments_multiple": [],
                 "language_codes": [],
                 "added_date_unified": { "date_edsebk_meta_scrape": datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0] },
@@ -4253,7 +4253,7 @@ def get_aac_edsebk_book_dicts(session, key, values):
 
         abstract_stripped = strip_description(aac_record['metadata']['header']['artinfo']['abstract'])
         if abstract_stripped != '':
-            aac_edsebk_book_dict['file_unified_data']['stripped_description'] = abstract_stripped
+            aac_edsebk_book_dict['file_unified_data']['stripped_description_best'] = abstract_stripped
 
         allthethings.utils.add_isbns_unified(aac_edsebk_book_dict['file_unified_data'], aac_record['metadata']['header']['bkinfo']['print_isbns'] + aac_record['metadata']['header']['bkinfo']['electronic_isbns'])
 
@@ -5150,7 +5150,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (((aarecord['aac_magzdb'] or {}).get('aa_magzdb_derived') or {}).get('stripped_description') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('aa_nexusstc_derived') or {}).get('stripped_description') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('aa_upload_derived') or {}).get('description_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('description_best') or '').strip(),
+            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip(),
         ]
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['stripped_description_best'] == '':
