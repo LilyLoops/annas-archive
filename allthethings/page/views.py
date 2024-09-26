@@ -1467,38 +1467,39 @@ def get_ia_record_dicts(session, key, values):
         ia_collections = ((ia_record_dict['json'].get('metadata') or {}).get('collection') or [])
 
         ia_record_dict['aa_ia_derived'] = {}
+        ia_record_dict['file_unified_data'] = {}
         ia_record_dict['aa_ia_derived']['printdisabled_only'] = 'inlibrary' not in ia_collections
-        ia_record_dict['aa_ia_derived']['original_filename'] = (ia_record_dict['ia_id'] + '.pdf') if ia_record_dict['aa_ia_file'] is not None else None
-        ia_record_dict['aa_ia_derived']['cover_url'] = f"https://archive.org/download/{ia_record_dict['ia_id']}/__ia_thumb.jpg"
-        ia_record_dict['aa_ia_derived']['title'] = (' '.join(extract_list_from_ia_json_field(ia_record_dict, 'title'))).replace(' : ', ': ')
-        ia_record_dict['aa_ia_derived']['author'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'creator') + extract_list_from_ia_json_field(ia_record_dict, 'associated-names'))).replace(' : ', ': ')
-        ia_record_dict['aa_ia_derived']['publisher'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'publisher'))).replace(' : ', ': ')
-        ia_record_dict['aa_ia_derived']['comments_multiple'] = [strip_description(comment) for comment in extract_list_from_ia_json_field(ia_record_dict, 'notes') + extract_list_from_ia_json_field(ia_record_dict, 'comment') + extract_list_from_ia_json_field(ia_record_dict, 'curation')]
+        ia_record_dict['file_unified_data']['original_filename_best'] = (ia_record_dict['ia_id'] + '.pdf') if ia_record_dict['aa_ia_file'] is not None else None
+        ia_record_dict['file_unified_data']['cover_url_best'] = f"https://archive.org/download/{ia_record_dict['ia_id']}/__ia_thumb.jpg"
+        ia_record_dict['file_unified_data']['title_best'] = (' '.join(extract_list_from_ia_json_field(ia_record_dict, 'title'))).replace(' : ', ': ')
+        ia_record_dict['file_unified_data']['author_best'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'creator') + extract_list_from_ia_json_field(ia_record_dict, 'associated-names'))).replace(' : ', ': ')
+        ia_record_dict['file_unified_data']['publisher_best'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'publisher'))).replace(' : ', ': ')
+        ia_record_dict['file_unified_data']['comments_multiple'] = [strip_description(comment) for comment in extract_list_from_ia_json_field(ia_record_dict, 'notes') + extract_list_from_ia_json_field(ia_record_dict, 'comment') + extract_list_from_ia_json_field(ia_record_dict, 'curation')]
         ia_record_dict['aa_ia_derived']['subjects'] = '\n\n'.join(extract_list_from_ia_json_field(ia_record_dict, 'subject') + extract_list_from_ia_json_field(ia_record_dict, 'level_subject'))
-        ia_record_dict['aa_ia_derived']['stripped_description_and_references'] = strip_description('\n\n'.join(extract_list_from_ia_json_field(ia_record_dict, 'description') + extract_list_from_ia_json_field(ia_record_dict, 'references')))
-        ia_record_dict['aa_ia_derived']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(lang) for lang in (extract_list_from_ia_json_field(ia_record_dict, 'language') + extract_list_from_ia_json_field(ia_record_dict, 'ocr_detected_lang'))])
+        ia_record_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(extract_list_from_ia_json_field(ia_record_dict, 'description') + extract_list_from_ia_json_field(ia_record_dict, 'references')))
+        ia_record_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(lang) for lang in (extract_list_from_ia_json_field(ia_record_dict, 'language') + extract_list_from_ia_json_field(ia_record_dict, 'ocr_detected_lang'))])
         ia_record_dict['aa_ia_derived']['all_dates'] = list(dict.fromkeys(extract_list_from_ia_json_field(ia_record_dict, 'year') + extract_list_from_ia_json_field(ia_record_dict, 'date') + extract_list_from_ia_json_field(ia_record_dict, 'range')))
         ia_record_dict['aa_ia_derived']['longest_date_field'] = max([''] + ia_record_dict['aa_ia_derived']['all_dates'])
-        ia_record_dict['aa_ia_derived']['year'] = ''
+        ia_record_dict['file_unified_data']['year_best'] = ''
         for date in ([ia_record_dict['aa_ia_derived']['longest_date_field']] + ia_record_dict['aa_ia_derived']['all_dates']):
             potential_year = re.search(r"(\d\d\d\d)", date)
             if potential_year is not None:
-                ia_record_dict['aa_ia_derived']['year'] = potential_year[0]
+                ia_record_dict['file_unified_data']['year_best'] = potential_year[0]
                 break
 
-        ia_record_dict['aa_ia_derived']['added_date_unified'] = {}
+        ia_record_dict['file_unified_data']['added_date_unified'] = {}
         publicdate = extract_list_from_ia_json_field(ia_record_dict, 'publicdate')
         if len(publicdate) > 0:
             if publicdate[0].encode('ascii', 'ignore').decode() != publicdate[0]:
                 print(f"Warning: {publicdate[0]=} is not ASCII; skipping!")
             else:
-                ia_record_dict['aa_ia_derived']['added_date_unified'] = { **added_date_unified_file, "date_ia_source": datetime.datetime.strptime(publicdate[0], "%Y-%m-%d %H:%M:%S").isoformat().split('T', 1)[0] }
+                ia_record_dict['file_unified_data']['added_date_unified'] = { **added_date_unified_file, "date_ia_source": datetime.datetime.strptime(publicdate[0], "%Y-%m-%d %H:%M:%S").isoformat().split('T', 1)[0] }
 
-        ia_record_dict['aa_ia_derived']['content_type'] = 'book_unknown'
+        ia_record_dict['file_unified_data']['content_type'] = 'book_unknown'
         if ia_record_dict['ia_id'].split('_', 1)[0] in ['sim', 'per'] or extract_list_from_ia_json_field(ia_record_dict, 'pub_type') in ["Government Documents", "Historical Journals", "Law Journals", "Magazine", "Magazines", "Newspaper", "Scholarly Journals", "Trade Journals"]:
-            ia_record_dict['aa_ia_derived']['content_type'] = 'magazine'
+            ia_record_dict['file_unified_data']['content_type'] = 'magazine'
 
-        ia_record_dict['aa_ia_derived']['edition_varia_normalized'] = ', '.join([
+        ia_record_dict['file_unified_data']['edition_varia_best'] = ', '.join([
             *extract_list_from_ia_json_field(ia_record_dict, 'series'),
             *extract_list_from_ia_json_field(ia_record_dict, 'series_name'),
             *[f"Volume {volume}" for volume in extract_list_from_ia_json_field(ia_record_dict, 'volume')],
@@ -1513,28 +1514,28 @@ def get_ia_record_dicts(session, key, values):
         else:
             added_date_unified_file["date_ia_record_scrape"] = '2023-06-28'
 
-        allthethings.utils.init_identifiers_and_classification_unified(ia_record_dict['aa_ia_derived'])
-        allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'ocaid', ia_record_dict['ia_id'])
+        allthethings.utils.init_identifiers_and_classification_unified(ia_record_dict['file_unified_data'])
+        allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'ocaid', ia_record_dict['ia_id'])
         if ia_record_dict.get('aacid') is not None:
-            allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'aacid', ia_record_dict['aacid'])
+            allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'aacid', ia_record_dict['aacid'])
         if ia_record_dict['libgen_md5'] is not None:
-            allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'md5', ia_record_dict['libgen_md5'])
+            allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'md5', ia_record_dict['libgen_md5'])
         if ia_record_dict['aa_ia_file'] is not None:
-            allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'md5', ia_record_dict['aa_ia_file']['md5'])
+            allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'md5', ia_record_dict['aa_ia_file']['md5'])
             if ia_record_dict['aa_ia_file'].get('aacid') is not None:
-                allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'aacid', ia_record_dict['aa_ia_file']['aacid'])
+                allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'aacid', ia_record_dict['aa_ia_file']['aacid'])
         for item in (extract_list_from_ia_json_field(ia_record_dict, 'openlibrary_edition') + extract_list_from_ia_json_field(ia_record_dict, 'openlibrary_work')):
-            allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'ol', item)
+            allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'ol', item)
         for item in extract_list_from_ia_json_field(ia_record_dict, 'item'):
-            allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'lccn', item)
+            allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'lccn', item)
         for item in ia_collections:
-            allthethings.utils.add_classification_unified(ia_record_dict['aa_ia_derived'], 'ia_collection', item)
+            allthethings.utils.add_classification_unified(ia_record_dict['file_unified_data'], 'ia_collection', item)
 
         for urn in extract_list_from_ia_json_field(ia_record_dict, 'external-identifier'):
             if urn.startswith('urn:oclc:record:'):
-                allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'oclc', urn[len('urn:oclc:record:'):])
+                allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'oclc', urn[len('urn:oclc:record:'):])
             elif urn.startswith('urn:oclc:'):
-                allthethings.utils.add_identifier_unified(ia_record_dict['aa_ia_derived'], 'oclc', urn[len('urn:oclc:'):])
+                allthethings.utils.add_identifier_unified(ia_record_dict['file_unified_data'], 'oclc', urn[len('urn:oclc:'):])
 
         # Items in this collection have an insane number of ISBNs, unclear what for exactly. E.g. https://archive.org/details/240524-CL-aa
         if 'specialproject_exclude_list' not in ia_collections:
@@ -1542,15 +1543,15 @@ def get_ia_record_dicts(session, key, values):
             for urn in extract_list_from_ia_json_field(ia_record_dict, 'external-identifier'):
                 if urn.startswith('urn:isbn:'):
                     isbns.append(urn[len('urn:isbn:'):])
-            allthethings.utils.add_isbns_unified(ia_record_dict['aa_ia_derived'], isbns)
-            allthethings.utils.add_isbns_unified(ia_record_dict['aa_ia_derived'], allthethings.utils.get_isbnlike('\n'.join([ia_record_dict['ia_id'], ia_record_dict['aa_ia_derived']['title'], ia_record_dict['aa_ia_derived']['stripped_description_and_references']] + ia_record_dict['aa_ia_derived']['comments_multiple'])))
+            allthethings.utils.add_isbns_unified(ia_record_dict['file_unified_data'], isbns)
+            allthethings.utils.add_isbns_unified(ia_record_dict['file_unified_data'], allthethings.utils.get_isbnlike('\n'.join([ia_record_dict['ia_id'], ia_record_dict['file_unified_data']['title_best'], ia_record_dict['file_unified_data']['stripped_description_best']] + ia_record_dict['file_unified_data']['comments_multiple'])))
 
         # Clear out title if it only contains the ISBN, but only *after* extracting ISBN from it.
-        if ia_record_dict['aa_ia_derived']['title'].strip().lower() == ia_record_dict['ia_id'].strip().lower():
-            ia_record_dict['aa_ia_derived']['title'] = ''
-        condensed_title = ia_record_dict['aa_ia_derived']['title'].strip().lower().replace(' ', '').replace('_', '')
+        if ia_record_dict['file_unified_data']['title_best'].strip().lower() == ia_record_dict['ia_id'].strip().lower():
+            ia_record_dict['file_unified_data']['title_best'] = ''
+        condensed_title = ia_record_dict['file_unified_data']['title_best'].strip().lower().replace(' ', '').replace('_', '')
         if condensed_title.startswith('isbn') or condensed_title.startswith('bookisbn'):
-            ia_record_dict['aa_ia_derived']['title'] = ''
+            ia_record_dict['file_unified_data']['title_best'] = ''
 
         # TODO: add "reviews" array info as comments.
 
@@ -4699,8 +4700,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('identifiers_unified') or {}),
             ((aarecord['lgli_file'] or {}).get('identifiers_unified') or {}),
             *[edition['identifiers_unified'] for edition in lgli_all_editions],
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('identifiers_unified') or {}),
-            *[ia_record['aa_ia_derived']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
+            *[ia_record['file_unified_data']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['identifiers_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
@@ -4816,7 +4817,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             *[allthethings.utils.prefix_filepath('lgrsfic', filepath) for filepath in filter(len, [((aarecord['lgrsfic_book'] or {}).get('locator') or '').strip()])],
             *[allthethings.utils.prefix_filepath('lgli', filepath) for filepath in filter(len, [((aarecord['lgli_file'] or {}).get('locator') or '').strip()])],
             *[allthethings.utils.prefix_filepath('lgli', filename.strip()) for filename in (((aarecord['lgli_file'] or {}).get('descriptions_mapped') or {}).get('library_filename') or [])],
-            *[allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('original_filename') or '').strip()])],
+            *[allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in filter(len, [(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in filter(len, [(((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('upload', filepath) for filepath in filter(len, [(((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
@@ -4825,7 +4826,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         ]
         original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(ia_record['aa_ia_derived']['original_filename'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
+        original_filename_multiple += [allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(ia_record['file_unified_data']['original_filename_best'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
         original_filename_multiple += [allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].strip()}.pdf") for scihub_doi in aarecord['scihub_doi']]
         original_filename_multiple += [allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
         original_filename_multiple += [allthethings.utils.prefix_filepath('upload', filepath) for filepath in (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
@@ -4848,8 +4849,8 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['file_unified_data']['cover_url_best'] = (cover_url_multiple + [''])[0]
         # Select the cover_url_normalized in order of what is likely to be the best one: ia, lgrsnf, lgrsfic, lgli, zlib.
         cover_url_multiple += [
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('cover_url') or '').strip(),
-            *[ia_record['aa_ia_derived']['cover_url'].strip() for ia_record in aarecord['ia_records_meta_only']],
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
+            *[ia_record['file_unified_data']['cover_url_best'].strip() for ia_record in aarecord['ia_records_meta_only']],
             ((aarecord['lgrsnf_book'] or {}).get('cover_url_normalized') or '').strip(),
             ((aarecord['lgrsfic_book'] or {}).get('cover_url_normalized') or '').strip(),
             ((aarecord['lgli_file'] or {}).get('cover_url_guess_normalized') or '').strip(),
@@ -4929,7 +4930,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['lgrsfic_book'] or {}).get('title') or '').strip(),
             ((lgli_single_edition or {}).get('title') or '').strip(),
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('title') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('title') or '').strip(),
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
@@ -4944,7 +4945,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         title_multiple += [title.strip() for edition in lgli_all_editions for title in (edition['descriptions_mapped'].get('maintitleonenglishtranslate') or [])]
         title_multiple += [(ol_book_dict.get('title_normalized') or '').strip() for ol_book_dict in aarecord['ol']]
         title_multiple += [(isbndb.get('title_normalized') or '').strip() for isbndb in aarecord['isbndb']]
-        title_multiple += [ia_record['aa_ia_derived']['title'].strip() for ia_record in aarecord['ia_records_meta_only']]
+        title_multiple += [ia_record['file_unified_data']['title_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
         title_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
         title_multiple += (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
         title_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
@@ -4968,7 +4969,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             (aarecord['lgrsfic_book'] or {}).get('author', '').strip(),
             (lgli_single_edition or {}).get('authors_normalized', '').strip(),
             (aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('author', '').strip(),
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('author') or '').strip(),
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
@@ -4980,7 +4981,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         author_multiple += [edition.get('authors_normalized', '').strip() for edition in lgli_all_editions]
         author_multiple += [ol_book_dict['authors_normalized'] for ol_book_dict in aarecord['ol']]
         author_multiple += [", ".join(isbndb['json'].get('authors') or []) for isbndb in aarecord['isbndb']]
-        author_multiple += [ia_record['aa_ia_derived']['author'].strip() for ia_record in aarecord['ia_records_meta_only']]
+        author_multiple += [ia_record['file_unified_data']['author_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
         author_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
         author_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
         for oclc in aarecord['oclc']:
@@ -5002,7 +5003,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['lgrsfic_book'] or {}).get('publisher') or '').strip(),
             ((lgli_single_edition or {}).get('publisher_normalized') or '').strip(),
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('publisher') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('publisher') or '').strip(),
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
@@ -5014,7 +5015,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         publisher_multiple += [(edition.get('publisher_normalized') or '').strip() for edition in lgli_all_editions]
         publisher_multiple += [(ol_book_dict.get('publishers_normalized') or '').strip() for ol_book_dict in aarecord['ol']]
         publisher_multiple += [(isbndb['json'].get('publisher') or '').strip() for isbndb in aarecord['isbndb']]
-        publisher_multiple += [ia_record['aa_ia_derived']['publisher'].strip() for ia_record in aarecord['ia_records_meta_only']]
+        publisher_multiple += [ia_record['file_unified_data']['publisher_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
         publisher_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
         publisher_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
         for oclc in aarecord['oclc']:
@@ -5036,7 +5037,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['lgrsfic_book'] or {}).get('edition_varia_normalized') or '').strip(),
             ((lgli_single_edition or {}).get('edition_varia_normalized') or '').strip(),
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('edition_varia_normalized') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('edition_varia_normalized') or '').strip(),
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
@@ -5048,7 +5049,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         edition_varia_multiple += [(edition.get('edition_varia_normalized') or '').strip() for edition in lgli_all_editions]
         edition_varia_multiple += [(ol_book_dict.get('edition_varia_normalized') or '').strip() for ol_book_dict in aarecord['ol']]
         edition_varia_multiple += [(isbndb.get('edition_varia_normalized') or '').strip() for isbndb in aarecord['isbndb']]
-        edition_varia_multiple += [ia_record['aa_ia_derived']['edition_varia_normalized'].strip() for ia_record in aarecord['ia_records_meta_only']]
+        edition_varia_multiple += [ia_record['file_unified_data']['edition_varia_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
         edition_varia_multiple += [oclc['aa_oclc_derived']['edition_varia_normalized'] for oclc in aarecord['oclc']]
         edition_varia_multiple += [duxiu_record['file_unified_data']['edition_varia_best'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']]
         edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
@@ -5070,7 +5071,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((lgli_single_edition or {}).get('year') or '').strip(),
             ((lgli_single_edition or {}).get('issue_year_number') or '').strip(),
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('year') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('year') or '').strip(),
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
@@ -5085,7 +5086,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         year_multiple += [(edition.get('year_normalized') or '').strip() for edition in lgli_all_editions]
         year_multiple += [(ol_book_dict.get('year_normalized') or '').strip() for ol_book_dict in aarecord['ol']]
         year_multiple += [(isbndb.get('year_normalized') or '').strip() for isbndb in aarecord['isbndb']]
-        year_multiple += [ia_record['aa_ia_derived']['year'].strip() for ia_record in aarecord['ia_records_meta_only']]
+        year_multiple += [ia_record['file_unified_data']['year_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
         year_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('year_additional') or [])
         for oclc in aarecord['oclc']:
             year_multiple += oclc['aa_oclc_derived']['year_multiple']
@@ -5113,8 +5114,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((lgli_single_edition or {}).get('editions_add_info') or '').strip(),
             ((lgli_single_edition or {}).get('commentary') or '').strip(),
             *[note.strip() for note in (((lgli_single_edition or {}).get('descriptions_mapped') or {}).get('descriptions_mapped.notes') or [])],
-            *(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('comments_multiple') or []),
-            *[comment for ia_record in aarecord['ia_records_meta_only'] for comment in ia_record['aa_ia_derived']['comments_multiple']],
+            *(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
+            *[comment for ia_record in aarecord['ia_records_meta_only'] for comment in ia_record['file_unified_data']['comments_multiple']],
             *(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
             *(((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
             *(((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
@@ -5161,7 +5162,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         stripped_description_multiple += [ol_book_dict['stripped_description'].strip()[0:5000] for ol_book_dict in aarecord['ol']]
         stripped_description_multiple += [(isbndb['json'].get('synopsis') or '').strip()[0:5000] for isbndb in aarecord['isbndb']]
         stripped_description_multiple += [(isbndb['json'].get('overview') or '').strip()[0:5000] for isbndb in aarecord['isbndb']]
-        stripped_description_multiple += [ia_record['aa_ia_derived']['stripped_description_and_references'].strip()[0:5000] for ia_record in aarecord['ia_records_meta_only']]
+        stripped_description_multiple += [ia_record['file_unified_data']['stripped_description_best'].strip()[0:5000] for ia_record in aarecord['ia_records_meta_only']]
         for oclc in aarecord['oclc']:
             stripped_description_multiple += oclc['aa_oclc_derived']['stripped_description_multiple']
         stripped_description_multiple += [duxiu_record['file_unified_data']['stripped_description_best'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']]
@@ -5169,7 +5170,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         if aarecord['file_unified_data']['stripped_description_best'] == '':
             aarecord['file_unified_data']['stripped_description_best'] = max(stripped_description_multiple + [''], key=len)
         # Make ia_record's description a very last resort here, since it's usually not very good.
-        stripped_description_multiple += [(((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('stripped_description_and_references') or '').strip()[0:5000]]
+        stripped_description_multiple += [(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip()[0:5000]]
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['stripped_description_best'] == '':
             aarecord['file_unified_data']['stripped_description_best'] = max(stripped_description_multiple + [''], key=len)
@@ -5184,7 +5185,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['lgrsfic_book'] or {}).get('language_codes') or []),
             ((lgli_single_edition or {}).get('language_codes') or []),
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('language_codes') or []),
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('language_codes') or []),
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
@@ -5197,7 +5198,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['language_codes'],
             *[(edition.get('language_codes') or []) for edition in lgli_all_editions],
             *[(ol_book_dict.get('language_codes') or []) for ol_book_dict in aarecord['ol']],
-            *[ia_record['aa_ia_derived']['language_codes'] for ia_record in aarecord['ia_records_meta_only']],
+            *[ia_record['file_unified_data']['language_codes'] for ia_record in aarecord['ia_records_meta_only']],
             *[(isbndb.get('language_codes') or []) for isbndb in aarecord['isbndb']],
             *[oclc['aa_oclc_derived']['language_codes'] for oclc in aarecord['oclc']],
             *[duxiu_record['file_unified_data']['language_codes'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
@@ -5238,8 +5239,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['lgrsfic_book'] or {}).get('added_date_unified') or {}),
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('added_date_unified') or {}),
             ((aarecord['lgli_file'] or {}).get('added_date_unified') or {}),
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('added_date_unified') or {}),
-            *[ia_record['aa_ia_derived']['added_date_unified'] for ia_record in aarecord['ia_records_meta_only']],
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
+            *[ia_record['file_unified_data']['added_date_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['added_date_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['added_date_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['added_date_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
@@ -5261,8 +5262,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('identifiers_unified') or {}),
             ((aarecord['lgli_file'] or {}).get('identifiers_unified') or {}),
             *[edition['identifiers_unified'] for edition in lgli_all_editions],
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('identifiers_unified') or {}),
-            *[ia_record['aa_ia_derived']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
+            *[ia_record['file_unified_data']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['identifiers_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
@@ -5282,8 +5283,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('classifications_unified') or {}),
             ((aarecord['lgli_file'] or {}).get('classifications_unified') or {}),
             *[(edition['classifications_unified'] or {}) for edition in lgli_all_editions],
-            (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('classifications_unified') or {}),
-            *[ia_record['aa_ia_derived']['classifications_unified'] for ia_record in aarecord['ia_records_meta_only']],
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
+            *[ia_record['file_unified_data']['classifications_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['classifications_unified'] for isbndb in aarecord['isbndb']],
             *[ol_book_dict['classifications_unified'] for ol_book_dict in aarecord['ol']],
             *[ol_book_dict['classifications_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
@@ -5395,10 +5396,10 @@ def get_aarecords_mysql(session, aarecord_ids):
         if (aarecord['file_unified_data']['content_type'] is None) and aarecord['aac_nexusstc'] and (aarecord['aac_nexusstc']['file_unified_data']['content_type'] != ''):
             aarecord['file_unified_data']['content_type'] = aarecord['aac_nexusstc']['file_unified_data']['content_type']
         if aarecord['file_unified_data']['content_type'] is None:
-            ia_content_type = (((aarecord['ia_record'] or {}).get('aa_ia_derived') or {}).get('content_type') or 'book_unknown')
+            ia_content_type = (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('content_type') or 'book_unknown')
             for ia_record in aarecord['ia_records_meta_only']:
                 if ia_content_type == 'book_unknown':
-                    ia_content_type = ia_record['aa_ia_derived']['content_type']
+                    ia_content_type = ia_record['file_unified_data']['content_type']
             if (aarecord['file_unified_data']['content_type'] is None) and (ia_content_type != 'book_unknown'):
                 aarecord['file_unified_data']['content_type'] = ia_content_type
         # TODO: pull non-fiction vs fiction from "subjects" in ol_book_dicts_primary_linked, and make that more leading?
