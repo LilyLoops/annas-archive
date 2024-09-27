@@ -6809,6 +6809,8 @@ def md5_slow_download(md5_input, path_index, domain_index):
             return render_template(
                 "page/partner_download.html",
                 header_active="search",
+                aarecords=[aarecord],
+                domain_index=domain_index,
                 wait_seconds=wait_seconds,
                 canonical_md5=canonical_md5,
                 daily_download_count_from_ip=daily_download_count_from_ip,
@@ -6830,6 +6832,8 @@ def md5_slow_download(md5_input, path_index, domain_index):
     return render_template(
         "page/partner_download.html",
         header_active="search",
+        aarecords=[aarecord],
+        domain_index=domain_index,
         url=url,
         warning=warning,
         canonical_md5=canonical_md5,

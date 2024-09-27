@@ -37,6 +37,17 @@
     </p>
   {% endif %}
 
+  {% if aarecords %}
+    <div>
+      {% from 'macros/aarecord_list.html' import aarecord_list %}
+      {{ aarecord_list(aarecords) }}
+    </div>
+
+    <p class="mb-4 text-sm">
+      {{gettext('common.md5.servers.slow_partner', number=domain_index+1)}}
+    </p>
+  {% endif %}
+
   <p>
     {{ gettext('page.partner_download.li4') }}
   </p>
