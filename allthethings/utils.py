@@ -1094,8 +1094,8 @@ UNIFIED_CLASSIFICATIONS = {
     "duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
     "date_duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
     # TODO: Remove on index refresh.
-    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
-    "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date we scraped the DuXiu collection." },
+    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date Anna’s Archive scraped the DuXiu collection." },
+    "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date Anna’s Archive scraped the DuXiu collection." },
     # TODO: Remove on index refresh.
     "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
     "date_file_created": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
@@ -1132,8 +1132,8 @@ UNIFIED_CLASSIFICATIONS = {
     "date_zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
     "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
     # TODO: Remove on index refresh.
-    "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
-    "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date we scraped the MagzDB metadata." },
+    "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date Anna’s Archive scraped the MagzDB metadata." },
+    "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date Anna’s Archive scraped the MagzDB metadata." },
     "magzdb_keyword": { "label": "MagzDB Keyword", "url": "", "description": "Publication keyword in MagzDB (in Russian).", "website": "/datasets/magzdb" },
     # TODO: Remove on index refresh.
     "nexusstc_source_issued_at_date": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
@@ -1143,7 +1143,7 @@ UNIFIED_CLASSIFICATIONS = {
     "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "nexusstc_tag": { "label": "Nexus/STC tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
     "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },
-    "date_edsebk_meta_scrape": { "label": "EBSCOhost eBook Index Source Scrape Date", "website": "/datasets/edsebk", "description": "Date we scraped the EBSCOhost metadata." },
+    "date_edsebk_meta_scrape": { "label": "EBSCOhost eBook Index Source Scrape Date", "website": "/datasets/edsebk", "description": "Date Anna’s Archive scraped the EBSCOhost metadata." },
     "edsebk_subject": { "label": "EBSCOhost eBook Index subject", "url": "", "description": "Tag in EBSCOhost eBook Index.", "website": "/datasets/edsebk" },
     **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
     # Plus more added below!
