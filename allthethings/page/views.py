@@ -1500,7 +1500,9 @@ def get_ia_record_dicts(session, key, values):
         ia_record_dict['aa_ia_derived'] = {}
         ia_record_dict['file_unified_data'] = {}
         ia_record_dict['aa_ia_derived']['printdisabled_only'] = 'inlibrary' not in ia_collections
-        ia_record_dict['file_unified_data']['original_filename_best'] = (ia_record_dict['ia_id'] + '.pdf') if ia_record_dict['aa_ia_file'] is not None else None
+        ia_record_dict['file_unified_data']['extension_best'] = (ia_record_dict['aa_ia_file']['extension'] or '') if ia_record_dict['aa_ia_file'] is not None else ''
+        ia_record_dict['file_unified_data']['filesize_best'] = (ia_record_dict['aa_ia_file']['filesize'] or 0) if ia_record_dict['aa_ia_file'] is not None else 0
+        ia_record_dict['file_unified_data']['original_filename_best'] = (ia_record_dict['ia_id'] + '.pdf') if ia_record_dict['aa_ia_file'] is not None else ''
         ia_record_dict['file_unified_data']['cover_url_best'] = f"https://archive.org/download/{ia_record_dict['ia_id']}/__ia_thumb.jpg"
         ia_record_dict['file_unified_data']['title_best'] = (' '.join(extract_list_from_ia_json_field(ia_record_dict, 'title'))).replace(' : ', ': ')
         ia_record_dict['file_unified_data']['author_best'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'creator') + extract_list_from_ia_json_field(ia_record_dict, 'associated-names'))).replace(' : ', ': ')
@@ -3464,6 +3466,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                 raise Exception(f"Unknown type of duxiu metadata type {aac_record['metadata']['type']=}")
 
         duxiu_dict['file_unified_data'] = {}
+        duxiu_dict['file_unified_data']['extension_best'] = (duxiu_dict['duxiu_file']['extension'] or '') if duxiu_dict.get('duxiu_file') is not None else ''
         duxiu_dict['file_unified_data']['title_additional'] = duxiu_dict['aa_duxiu_derived']['title_additional']
         duxiu_dict['file_unified_data']['author_additional'] = duxiu_dict['aa_duxiu_derived']['author_additional']
         duxiu_dict['file_unified_data']['publisher_additional'] = duxiu_dict['aa_duxiu_derived']['publisher_additional']
@@ -5043,12 +5046,12 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['cover_url_additional'] = [s for s in cover_url_multiple if s != aarecord['file_unified_data']['cover_url_best']]
 
         extension_multiple = [
-            (((aarecord['ia_record'] or {}).get('aa_ia_file') or {}).get('extension') or '').strip().lower(),
+            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
             (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
             (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
             (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
-            (((aarecord['duxiu'] or {}).get('duxiu_file') or {}).get('extension') or '').strip().lower(),
+            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
             (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
@@ -5063,7 +5066,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['file_unified_data']['extension_additional'] = [s for s in dict.fromkeys(filter(len, extension_multiple)) if s != aarecord['file_unified_data']['extension_best']]
 
         filesize_multiple = [
-            ((aarecord['ia_record'] or {}).get('aa_ia_file') or {}).get('filesize') or 0,
+            ((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
             ((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
             ((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
