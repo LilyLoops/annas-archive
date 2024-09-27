@@ -4905,28 +4905,15 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['duxius_nontransitive_meta_only'] = []
         aarecord['aac_edsebk'] = aac_edsebk_book_dicts.get(aarecord_id)
 
+        # TODO:SOURCE Remove and use source_records directly.
+        source_records = make_source_records(aarecord)
+
         aarecord['file_unified_data'] = {}
         allthethings.utils.init_identifiers_and_classification_unified(aarecord['file_unified_data'])
         # Duplicated below, with more fields
         aarecord['file_unified_data']['identifiers_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['identifiers_unified'],
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            *[ia_record['file_unified_data']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
-            *[isbndb['file_unified_data']['identifiers_unified'] for isbndb in aarecord['isbndb']],
-            *[ol_book_dict['file_unified_data']['identifiers_unified'] for ol_book_dict in aarecord['ol']],
-            *[ol_book_dict['file_unified_data']['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[scihub_doi['file_unified_data']['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
-            *[oclc['file_unified_data']['identifiers_unified'] for oclc in aarecord['oclc']],
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            *[duxiu_record['file_unified_data']['identifiers_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
+            *[source_record['source_record']['file_unified_data']['identifiers_unified'] for source_record in source_records],
         ])
 
         # TODO: This `if` is not necessary if we make sure that the fields of the primary records get priority.
@@ -5078,18 +5065,9 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['cover_url_best'] = (cover_url_multiple + [''])[0]
             aarecord['file_unified_data']['cover_url_additional'] = [s for s in cover_url_multiple if s != aarecord['file_unified_data']['cover_url_best']]
 
-        extension_multiple = [
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
-            ('pdf' if aarecord_id_split[0] == 'doi' else ''),
-        ]
+        extension_multiple = [(source_record['source_record']['file_unified_data'].get('extension_best') or '') for source_record in source_records]
+        if aarecord_id_split[0] == 'doi':
+            extension_multiple.append('pdf')
         if "epub" in extension_multiple:
             aarecord['file_unified_data']['extension_best'] = "epub"
         elif "pdf" in extension_multiple:
@@ -5098,27 +5076,17 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['extension_best'] = max(extension_multiple + [''], key=len)
         aarecord['file_unified_data']['extension_additional'] = [s for s in dict.fromkeys(filter(len, extension_multiple)) if s != aarecord['file_unified_data']['extension_best']]
 
-        filesize_multiple = [
-            ((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            ((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-        ]
+        filesize_multiple = [(source_record['source_record']['file_unified_data'].get('filesize_best') or 0) for source_record in source_records]
         aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
         if aarecord['ia_record'] is not None and len(aarecord['ia_record']['json']['aa_shorter_files']) > 0:
             filesize_multiple.append(max(int(file.get('size') or '0') for file in aarecord['ia_record']['json']['aa_shorter_files']))
         for ia_record in aarecord['ia_records_meta_only']:
+            # TODO: move this into file_unified_data.
             if len(ia_record['json']['aa_shorter_files']) > 0:
                 filesize_multiple.append(max(int(file.get('size') or '0') for file in ia_record['json']['aa_shorter_files']))
         if aarecord['file_unified_data']['filesize_best'] == 0:
             aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
-        filesize_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('filesize_additional') or [])
-        filesize_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('filesize_additional') or [])
+        filesize_multiple += [filesize for source_record in source_records for filesize in (source_record['source_record']['file_unified_data'].get('filesize_additional') or [])]
         aarecord['file_unified_data']['filesize_additional'] = [s for s in dict.fromkeys(filter(lambda fz: fz > 0, filesize_multiple)) if s != aarecord['file_unified_data']['filesize_best']]
 
         aarecord['file_unified_data']['title_best'], aarecord['file_unified_data']['title_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'title_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'title_best')], [(MERGE_ALL, 'title_best'), (MERGE_ALL, 'title_additional')]])
@@ -5269,64 +5237,18 @@ def get_aarecords_mysql(session, aarecord_ids):
         #         detected_language_codes_probs.append(f"{code}: {item.prob}")
         # aarecord['file_unified_data']['detected_language_codes_probs'] = ", ".join(detected_language_codes_probs)
 
-        aarecord['file_unified_data']['added_date_unified'] = dict(collections.ChainMap(*[
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            *[ia_record['file_unified_data']['added_date_unified'] for ia_record in aarecord['ia_records_meta_only']],
-            *[isbndb['file_unified_data']['added_date_unified'] for isbndb in aarecord['isbndb']],
-            *[ol_book_dict['file_unified_data']['added_date_unified'] for ol_book_dict in aarecord['ol']],
-            *[ol_book_dict['file_unified_data']['added_date_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[oclc['file_unified_data']['added_date_unified'] for oclc in aarecord['oclc']],
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-        ]))
+        aarecord['file_unified_data']['added_date_unified'] = dict(collections.ChainMap(*[(source_record['source_record']['file_unified_data'].get('added_date_unified') or {}) for source_record in source_records]))
         for prefix, date in aarecord['file_unified_data']['added_date_unified'].items():
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], prefix, date)
 
         # Duplicated from above, but with more fields now.
         aarecord['file_unified_data']['identifiers_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['identifiers_unified'],
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            *[ia_record['file_unified_data']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
-            *[isbndb['file_unified_data']['identifiers_unified'] for isbndb in aarecord['isbndb']],
-            *[ol_book_dict['file_unified_data']['identifiers_unified'] for ol_book_dict in aarecord['ol']],
-            *[ol_book_dict['file_unified_data']['identifiers_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[scihub_doi['file_unified_data']['identifiers_unified'] for scihub_doi in aarecord['scihub_doi']],
-            *[oclc['file_unified_data']['identifiers_unified'] for oclc in aarecord['oclc']],
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            *[duxiu_record['file_unified_data']['identifiers_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
+            *[source_record['source_record']['file_unified_data']['identifiers_unified'] for source_record in source_records],
         ])
         aarecord['file_unified_data']['classifications_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['classifications_unified'],
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            *[ia_record['file_unified_data']['classifications_unified'] for ia_record in aarecord['ia_records_meta_only']],
-            *[isbndb['file_unified_data']['classifications_unified'] for isbndb in aarecord['isbndb']],
-            *[ol_book_dict['file_unified_data']['classifications_unified'] for ol_book_dict in aarecord['ol']],
-            *[ol_book_dict['file_unified_data']['classifications_unified'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            *[scihub_doi['file_unified_data']['classifications_unified'] for scihub_doi in aarecord['scihub_doi']],
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            *[duxiu_record['file_unified_data']['classifications_unified'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
+            *[source_record['source_record']['file_unified_data']['classifications_unified'] for source_record in source_records],
         ])
 
         aarecord['file_unified_data']['added_date_best'] = ''
@@ -5376,19 +5298,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         else:
             raise Exception(f"Unknown {aarecord_id_split[0]=}")
 
-        aarecord['file_unified_data']['problems'] = []
-        for problem in (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('problems') or []):
-            aarecord['file_unified_data']['problems'].append(problem)
-        for problem in (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('problems') or []):
-            aarecord['file_unified_data']['problems'].append(problem)
-        for problem in (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('problems') or []):
-            aarecord['file_unified_data']['problems'].append(problem)
-        for problem in (((aarecord['aac_zlib3_book'] or {}).get('file_unified_data') or {}).get('problems') or []):
-            aarecord['file_unified_data']['problems'].append(problem)
-        for problem in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('problems') or []):
-            aarecord['file_unified_data']['problems'].append(problem)
-        for problem in (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('problems') or []):
-            aarecord['file_unified_data']['problems'].append(problem)
+        aarecord['file_unified_data']['problems'] = [problem for source_record in source_records for problem in source_record['source_record']['file_unified_data'].get('problems') or []]
         
         aarecord['file_unified_data']['content_type'] = None
         if (aarecord['file_unified_data']['content_type'] is None) and (aarecord['lgli_file'] is not None):

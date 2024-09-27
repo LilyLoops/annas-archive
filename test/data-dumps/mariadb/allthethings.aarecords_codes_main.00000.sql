@@ -689,6 +689,8 @@ INSERT INTO `aarecords_codes_main` VALUES("aacid:aacid__duxiu_records__20240130T
 ,("date_duxiu_filegen:2024-03-12","md5:79cb6eb3f10a9e0ce886d85a592b5462")
 ,("date_duxiu_filegen:2024-03-12","md5:a9716c32284be70c7110ffec88404c26")
 ,("date_duxiu_filegen:2024-03-12","md5:abfd5d823be635970971397f6a1f7d94")
+,("date_duxiu_meta_scrape:2024-01-30","md5:259cc06fb75e2dc7958d6324df831a20")
+,("date_duxiu_meta_scrape:2024-02-05","md5:bed1734fbf901360e98aba2c5234294d")
 ,("date_duxiu_meta_scrape:2024-03-05","md5:79cb6eb3f10a9e0ce886d85a592b5462")
 ,("date_duxiu_meta_scrape:2024-03-05","md5:a9716c32284be70c7110ffec88404c26")
 ,("date_duxiu_meta_scrape:2024-03-05","md5:abfd5d823be635970971397f6a1f7d94")
