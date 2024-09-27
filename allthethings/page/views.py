@@ -6810,7 +6810,7 @@ def md5_slow_download(md5_input, path_index, domain_index):
                 "page/partner_download.html",
                 header_active="search",
                 aarecords=[aarecord],
-                domain_index=domain_index,
+                number=(path_index*len(allthethings.utils.SLOW_DOWNLOAD_DOMAINS)) + domain_index + 1,
                 wait_seconds=wait_seconds,
                 canonical_md5=canonical_md5,
                 daily_download_count_from_ip=daily_download_count_from_ip,
