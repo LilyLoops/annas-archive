@@ -6800,6 +6800,8 @@ def md5_slow_download(md5_input, path_index, domain_index):
     elif daily_download_count_from_ip >= 20:
         domain = domain_slowest
 
+    slow_server_index = (path_index*len(allthethings.utils.SLOW_DOWNLOAD_DOMAINS)) + domain_index + 1
+
     if allthethings.utils.SLOW_DOWNLOAD_DOMAINS_SLIGHTLY_FASTER[domain_index]:
         WAITLIST_DOWNLOAD_WINDOW_SECONDS = 2*60
         hashed_md5_bytes = int.from_bytes(hashlib.sha256(bytes.fromhex(canonical_md5) + HASHED_DOWNLOADS_SECRET_KEY).digest(), byteorder='big')
@@ -6810,7 +6812,7 @@ def md5_slow_download(md5_input, path_index, domain_index):
                 "page/partner_download.html",
                 header_active="search",
                 aarecords=[aarecord],
-                number=(path_index*len(allthethings.utils.SLOW_DOWNLOAD_DOMAINS)) + domain_index + 1,
+                slow_server_index=slow_server_index,
                 wait_seconds=wait_seconds,
                 canonical_md5=canonical_md5,
                 daily_download_count_from_ip=daily_download_count_from_ip,
@@ -6833,7 +6835,7 @@ def md5_slow_download(md5_input, path_index, domain_index):
         "page/partner_download.html",
         header_active="search",
         aarecords=[aarecord],
-        domain_index=domain_index,
+        slow_server_index=slow_server_index,
         url=url,
         warning=warning,
         canonical_md5=canonical_md5,

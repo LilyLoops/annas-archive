@@ -21,9 +21,20 @@
     </p>
   {% endif %}
 
-  <p class="mb-4">
+  <p class="mb-4 hidden">
     {{ gettext('page.partner_download.main_page', a_main=((' href="/md5/' + canonical_md5 + '"') | safe)) }}
   </p>
+
+  {% if aarecords %}
+    <div>
+      {% from 'macros/aarecord_list.html' import aarecord_list %}
+      {{ aarecord_list(aarecords) }}
+    </div>
+
+    <p class="mb-4 mt-[-8px] text-sm italic">
+      {{gettext('common.md5.servers.slow_partner', number=slow_server_index)}}
+    </p>
+  {% endif %}
 
   {% if wait_seconds %}
     <div class="mb-4 font-bold text-xl">
@@ -34,17 +45,6 @@
   {% if url %}
     <p class="mb-4 text-xl font-bold">
       {{ gettext('page.partner_download.url', a_download=((' href="' + url + '"') | safe)) }}
-    </p>
-  {% endif %}
-
-  {% if aarecords %}
-    <div>
-      {% from 'macros/aarecord_list.html' import aarecord_list %}
-      {{ aarecord_list(aarecords) }}
-    </div>
-
-    <p class="mb-4 mt-[-8px] text-sm italic">
-      {{gettext('common.md5.servers.slow_partner', number=number)}}
     </p>
   {% endif %}
 
