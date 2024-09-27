@@ -5066,14 +5066,12 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['cover_url_additional'] = [s for s in cover_url_multiple if s != aarecord['file_unified_data']['cover_url_best']]
 
         extension_multiple = [(source_record['source_record']['file_unified_data'].get('extension_best') or '') for source_record in source_records]
-        if aarecord_id_split[0] == 'doi':
-            extension_multiple.append('pdf')
-        if "epub" in extension_multiple:
-            aarecord['file_unified_data']['extension_best'] = "epub"
-        elif "pdf" in extension_multiple:
-            aarecord['file_unified_data']['extension_best'] = "pdf"
-        else:
-            aarecord['file_unified_data']['extension_best'] = max(extension_multiple + [''], key=len)
+        extension_multiple += ['pdf'] if aarecord_id_split[0] == 'doi' else []
+        aarecord['file_unified_data']['extension_best'] = max(extension_multiple + [''], key=len)
+        for preferred_extension in ['epub', 'pdf']:
+            if preferred_extension in extension_multiple:
+                aarecord['file_unified_data']['extension_best'] = preferred_extension
+                break
         aarecord['file_unified_data']['extension_additional'] = [s for s in dict.fromkeys(filter(len, extension_multiple)) if s != aarecord['file_unified_data']['extension_best']]
 
         filesize_multiple = [(source_record['source_record']['file_unified_data'].get('filesize_best') or 0) for source_record in source_records]
@@ -5180,34 +5178,16 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['stripped_description_best'] = max(stripped_description_multiple + [''], key=len)
         aarecord['file_unified_data']['stripped_description_additional'] = [s for s in stripped_description_multiple if s != aarecord['file_unified_data']['stripped_description_best']]
 
-        aarecord['file_unified_data']['most_likely_language_codes'] = []
-        aarecord['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([
-            # Still lump in other language codes with ol_book_dicts_primary_linked. We use the
-            # fact that combine_bcp47_lang_codes is stable (preserves order).
-            *[ol_book_dict['file_unified_data']['language_codes'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
-        ])
-        if len(aarecord['file_unified_data']['most_likely_language_codes']) == 0:
-            aarecord['file_unified_data']['most_likely_language_codes'] = aarecord['file_unified_data']['language_codes']
-        aarecord['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([
-            aarecord['file_unified_data']['language_codes'],
-            *[ol_book_dict['file_unified_data']['language_codes'] for ol_book_dict in aarecord['ol']],
-            *[ia_record['file_unified_data']['language_codes'] for ia_record in aarecord['ia_records_meta_only']],
-            *[isbndb['file_unified_data']['language_codes'] for isbndb in aarecord['isbndb']],
-            *[oclc['file_unified_data']['language_codes'] for oclc in aarecord['oclc']],
-            *[duxiu_record['file_unified_data']['language_codes'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']],
-        ])
+        # Still lump in other language codes with ol_book_dicts_primary_linked. We use the
+        # fact that combine_bcp47_lang_codes is stable (preserves order).
+        aarecord['file_unified_data']['most_likely_language_codes'] = combine_bcp47_lang_codes([(source_record['file_unified_data'].get('language_codes') or []) for source_type in ['ol_book_dicts_primary_linked','lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'] for source_record in source_records_by_type[source_type]])
+        aarecord['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([aarecord['file_unified_data']['most_likely_language_codes']] + [(source_record['source_record']['file_unified_data'].get('language_codes') or []) for source_record in source_records])
         if len(aarecord['file_unified_data']['language_codes']) == 0:
-            for canonical_isbn13 in (aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []):
+            identifiers_unified = allthethings.utils.merge_unified_fields([
+                aarecord['file_unified_data']['identifiers_unified'],
+                *[source_record['source_record']['file_unified_data']['identifiers_unified'] for source_record in source_records],
+            ])
+            for canonical_isbn13 in (identifiers_unified.get('isbn13') or []):
                 potential_code = get_bcp47_lang_codes_parse_substr(isbnlib.info(canonical_isbn13))
                 if potential_code != '':
                     aarecord['file_unified_data']['language_codes'] = [potential_code]
