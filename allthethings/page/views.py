@@ -5006,6 +5006,8 @@ def get_aarecords_mysql(session, aarecord_ids):
     for aarecord in aarecords:
         aarecord_id = aarecord['id']
         aarecord_id_split = aarecord_id.split(':', 1)
+        source_records = source_records_full_by_aarecord_id[aarecord_id]
+        source_records_by_type = allthethings.utils.groupby(source_records, 'source_type', 'source_record')
         
         aarecord['ipfs_infos'] = []
         if aarecord['lgrsnf_book']:
@@ -5119,109 +5121,10 @@ def get_aarecords_mysql(session, aarecord_ids):
         filesize_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('filesize_additional') or [])
         aarecord['file_unified_data']['filesize_additional'] = [s for s in dict.fromkeys(filter(lambda fz: fz > 0, filesize_multiple)) if s != aarecord['file_unified_data']['filesize_best']]
 
-        source_records_by_type = allthethings.utils.groupby(source_records_full_by_aarecord_id[aarecord_id], 'source_type', 'source_record')
         aarecord['file_unified_data']['title_best'], aarecord['file_unified_data']['title_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'title_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'title_best')], [(MERGE_ALL, 'title_best'), (MERGE_ALL, 'title_additional')]])
-
-        author_multiple = [
-            *[ol_book_dict['file_unified_data']['author_best'].strip() for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-        ]
-        author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
-        aarecord['file_unified_data']['author_best'] = max(author_multiple + [''], key=len)
-        author_multiple += [
-            ((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('author_best', '').strip(),
-            ((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('author_best', '').strip(),
-            ((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('author_best', '').strip(),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
-        ]
-        author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['author_best'] == '':
-            aarecord['file_unified_data']['author_best'] = max(author_multiple + [''], key=len)
-        author_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
-        author_multiple += [ol_book_dict['file_unified_data']['author_best'] for ol_book_dict in aarecord['ol']]
-        for isbndb in aarecord['isbndb']:
-            author_multiple += isbndb['file_unified_data']['author_additional']
-        author_multiple += [ia_record['file_unified_data']['author_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
-        author_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
-        author_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
-        for oclc in aarecord['oclc']:
-            author_multiple += oclc['file_unified_data']['author_additional']
-        for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
-            author_multiple += duxiu_record['file_unified_data']['author_additional']
-        author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['author_best'] == '':
-            aarecord['file_unified_data']['author_best'] = max(author_multiple + [''], key=len)
-        aarecord['file_unified_data']['author_additional'] = [s for s in author_multiple if s != aarecord['file_unified_data']['author_best']]
-
-        publisher_multiple = [
-            *[ol_book_dict['file_unified_data']['publisher_best'].strip() for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-        ]
-        publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
-        aarecord['file_unified_data']['publisher_best'] = max(publisher_multiple + [''], key=len)
-        publisher_multiple += [
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
-        ]
-        publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['publisher_best'] == '':
-            aarecord['file_unified_data']['publisher_best'] = max(publisher_multiple + [''], key=len)
-        publisher_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
-        publisher_multiple += [ol_book_dict['file_unified_data']['publisher_best'].strip() for ol_book_dict in aarecord['ol']]
-        for isbndb in aarecord['isbndb']:
-            publisher_multiple += isbndb['file_unified_data']['publisher_additional']
-        publisher_multiple += [ia_record['file_unified_data']['publisher_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
-        publisher_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
-        publisher_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
-        for oclc in aarecord['oclc']:
-            publisher_multiple += oclc['file_unified_data']['publisher_additional']
-        for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
-            publisher_multiple += duxiu_record['file_unified_data']['publisher_additional']
-        publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['publisher_best'] == '':
-            aarecord['file_unified_data']['publisher_best'] = max(publisher_multiple + [''], key=len)
-        aarecord['file_unified_data']['publisher_additional'] = [s for s in publisher_multiple if s != aarecord['file_unified_data']['publisher_best']]
-
-        edition_varia_multiple = [
-            *[ol_book_dict['file_unified_data']['edition_varia_best'].strip() for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-        ]
-        edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
-        aarecord['file_unified_data']['edition_varia_best'] = max(edition_varia_multiple + [''], key=len)
-        edition_varia_multiple += [
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
-        ]
-        edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['edition_varia_best'] == '':
-            aarecord['file_unified_data']['edition_varia_best'] = max(edition_varia_multiple + [''], key=len)
-        edition_varia_multiple += [ol_book_dict['file_unified_data']['edition_varia_best'].strip() for ol_book_dict in aarecord['ol']]
-        edition_varia_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('edition_varia_multiple') or [])
-        for isbndb in aarecord['isbndb']:
-            edition_varia_multiple += isbndb['file_unified_data']['edition_varia_additional']
-        edition_varia_multiple += [ia_record['file_unified_data']['edition_varia_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
-        edition_varia_multiple += [oclc['file_unified_data']['edition_varia_best'] for oclc in aarecord['oclc']]
-        edition_varia_multiple += [duxiu_record['file_unified_data']['edition_varia_best'] for duxiu_record in aarecord['duxius_nontransitive_meta_only']]
-        edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['edition_varia_best'] == '':
-            aarecord['file_unified_data']['edition_varia_best'] = max(edition_varia_multiple + [''], key=len)
-        aarecord['file_unified_data']['edition_varia_additional'] = [s for s in edition_varia_multiple if s != aarecord['file_unified_data']['edition_varia_best']]
+        aarecord['file_unified_data']['author_best'], aarecord['file_unified_data']['author_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'author_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'author_best')], [(MERGE_ALL, 'author_best'), (MERGE_ALL, 'author_additional')]])
+        aarecord['file_unified_data']['publisher_best'], aarecord['file_unified_data']['publisher_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'publisher_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'publisher_best')], [(MERGE_ALL, 'publisher_best'), (MERGE_ALL, 'publisher_additional')]])
+        aarecord['file_unified_data']['edition_varia_best'], aarecord['file_unified_data']['edition_varia_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'edition_varia_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'edition_varia_best')], [(MERGE_ALL, 'edition_varia_best'), (MERGE_ALL, 'edition_varia_additional')]])
 
         year_multiple = [
             *[ol_book_dict['file_unified_data']['year_best'].strip() for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
@@ -5270,25 +5173,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         for year in year_multiple:
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], 'year', year)
 
-        comments_multiple = [
-            *(((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *[comment for ia_record in aarecord['ia_records_meta_only'] for comment in ia_record['file_unified_data']['comments_multiple']],
-            *(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-            *(((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
-        ]
-        for ol_book_dict in aarecord['ol']:
-            comments_multiple += ol_book_dict['file_unified_data']['comments_multiple']
-        for ol_book_dict in aarecord['ol_book_dicts_primary_linked']:
-            comments_multiple += ol_book_dict['file_unified_data']['comments_multiple']
-        for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
-            comments_multiple += duxiu_record['file_unified_data']['comments_multiple']
-        aarecord['file_unified_data']['comments_multiple'] = [s for s in sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(comments_multiple)]
+        aarecord['file_unified_data']['comments_multiple'] = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode([comment for source_record in source_records for comment in source_record['source_record']['file_unified_data'].get('comments_multiple') or []])
 
         stripped_description_multiple = [
             *[ol_book_dict['file_unified_data']['stripped_description_best'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
