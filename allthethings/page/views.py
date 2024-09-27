@@ -1953,15 +1953,28 @@ def get_lgrsnf_book_dicts(session, key, values):
     lgrs_book_dicts = []
     for lgrsnf_book in lgrsnf_books:
         lgrs_book_dict = dict((k.lower(), v) for k,v in dict(lgrsnf_book).items())
-        lgrs_book_dict['stripped_description'] = strip_description('\n\n'.join(filter(len, list(dict.fromkeys([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('toc') or ''])))))
-        lgrs_book_dict['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
-        lgrs_book_dict['cover_url_normalized'] = f"https://libgen.rs/covers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
 
-        lgrs_book_dict['added_date_unified'] = {}
+        lgrs_book_dict['file_unified_data'] = {}
+        lgrs_book_dict['file_unified_data']['original_filename_best'] = (lgrs_book_dict['locator'] or '').strip()
+        lgrs_book_dict['file_unified_data']['extension_best'] = (lgrs_book_dict['extension'] or '').strip().lower()
+        lgrs_book_dict['file_unified_data']['filesize_best'] = (lgrs_book_dict['filesize'] or 0)
+        lgrs_book_dict['file_unified_data']['title_best'] = (lgrs_book_dict['title'] or '').strip()
+        lgrs_book_dict['file_unified_data']['author_best'] = (lgrs_book_dict['author'] or '').strip()
+        lgrs_book_dict['file_unified_data']['publisher_best'] = (lgrs_book_dict['publisher'] or '').strip()
+        lgrs_book_dict['file_unified_data']['year_best'] = (lgrs_book_dict['year'] or '').strip()
+        lgrs_book_dict['file_unified_data']['comments_multiple'] = list(filter(len, [
+            (lgrs_book_dict['commentary'] or '').strip(),
+            ' -- '.join(filter(len, [(lgrs_book_dict['library'] or '').strip(), (lgrs_book_dict['issue'] or '').strip()])),
+        ]))
+        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(filter(len, list(dict.fromkeys([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('toc') or ''])))))[0:5000]
+        lgrs_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
+        lgrs_book_dict['file_unified_data']['cover_url_best'] = f"https://libgen.rs/covers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
+
+        lgrs_book_dict['file_unified_data']['added_date_unified'] = {}
         if lgrs_book_dict['timeadded'] != '0000-00-00 00:00:00':
             if not isinstance(lgrs_book_dict['timeadded'], datetime.datetime):
                 raise Exception(f"Unexpected {lgrs_book_dict['timeadded']=} for {lgrs_book_dict=}")
-            lgrs_book_dict['added_date_unified'] = { 'date_lgrsnf_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
+            lgrs_book_dict['file_unified_data']['added_date_unified'] = { 'date_lgrsnf_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
 
         edition_varia_normalized = []
         if len((lgrs_book_dict.get('series') or '').strip()) > 0:
@@ -1974,21 +1987,31 @@ def get_lgrsnf_book_dicts(session, key, values):
             edition_varia_normalized.append(lgrs_book_dict['periodical'].strip())
         if len((lgrs_book_dict.get('year') or '').strip()) > 0:
             edition_varia_normalized.append(lgrs_book_dict['year'].strip())
-        lgrs_book_dict['edition_varia_normalized'] = ', '.join(edition_varia_normalized)
+        lgrs_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
 
-        allthethings.utils.init_identifiers_and_classification_unified(lgrs_book_dict)
-        allthethings.utils.add_identifier_unified(lgrs_book_dict, 'lgrsnf', lgrs_book_dict['id'])
+        lgrs_book_dict['file_unified_data']['ipfs_infos'] = []
+        if (lgrs_book_dict['ipfs_cid'] or '') != '':
+            lgrs_book_dict['file_unified_data']['ipfs_infos'].append({ 'ipfs_cid': lgrs_book_dict['ipfs_cid'], 'from': 'lgrsnf' })
+
+        lgrs_book_dict['file_unified_data']['problems'] = []
+        if (lgrs_book_dict['visible'] or '') != '':
+            lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsnf_visible', 'descr': lgrs_book_dict['visible'], 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
+
+        lgrs_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+
+        allthethings.utils.init_identifiers_and_classification_unified(lgrs_book_dict['file_unified_data'])
+        allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'lgrsnf', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
-        allthethings.utils.add_identifier_unified(lgrs_book_dict, 'md5', lgrs_book_dict['md5'].lower())
-        allthethings.utils.add_isbns_unified(lgrs_book_dict, lgrsnf_book['Identifier'].split(",") + lgrsnf_book['IdentifierWODash'].split(","))
-        allthethings.utils.add_isbns_unified(lgrs_book_dict, allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or '', lgrs_book_dict.get('toc') or ''])))
-        allthethings.utils.add_classification_unified(lgrs_book_dict, 'lgrsnf_topic', lgrs_book_dict.get('topic_descr') or '')
+        allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'md5', lgrs_book_dict['md5'].lower())
+        allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], lgrsnf_book['Identifier'].split(",") + lgrsnf_book['IdentifierWODash'].split(","))
+        allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or '', lgrs_book_dict.get('toc') or ''])))
+        allthethings.utils.add_classification_unified(lgrs_book_dict['file_unified_data'], 'lgrsnf_topic', lgrs_book_dict.get('topic_descr') or '')
         for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING.items():
             if name in lgrs_book_dict:
-                allthethings.utils.add_identifier_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
+                allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], unified_name, lgrs_book_dict[name])
         for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING.items():
             if name in lgrs_book_dict:
-                allthethings.utils.add_classification_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
+                allthethings.utils.add_classification_unified(lgrs_book_dict['file_unified_data'], unified_name, lgrs_book_dict[name])
 
         lgrs_book_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
@@ -2028,15 +2051,28 @@ def get_lgrsfic_book_dicts(session, key, values):
 
     for lgrsfic_book in lgrsfic_books:
         lgrs_book_dict = dict((k.lower(), v) for k,v in dict(lgrsfic_book).items())
-        lgrs_book_dict['stripped_description'] = strip_description(lgrs_book_dict.get('descr') or '')
-        lgrs_book_dict['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
-        lgrs_book_dict['cover_url_normalized'] = f"https://libgen.rs/fictioncovers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
+
+        lgrs_book_dict['file_unified_data'] = {}
+        lgrs_book_dict['file_unified_data']['original_filename_best'] = (lgrs_book_dict['locator'] or '').strip()
+        lgrs_book_dict['file_unified_data']['extension_best'] = (lgrs_book_dict['extension'] or '').strip().lower()
+        lgrs_book_dict['file_unified_data']['filesize_best'] = (lgrs_book_dict['filesize'] or 0)
+        lgrs_book_dict['file_unified_data']['title_best'] = (lgrs_book_dict['title'] or '').strip()
+        lgrs_book_dict['file_unified_data']['author_best'] = (lgrs_book_dict['author'] or '').strip()
+        lgrs_book_dict['file_unified_data']['publisher_best'] = (lgrs_book_dict['publisher'] or '').strip()
+        lgrs_book_dict['file_unified_data']['year_best'] = (lgrs_book_dict['year'] or '').strip()
+        lgrs_book_dict['file_unified_data']['comments_multiple'] = list(filter(len, [
+            (lgrs_book_dict['commentary'] or '').strip(),
+            ' -- '.join(filter(len, [(lgrs_book_dict['library'] or '').strip(), (lgrs_book_dict['issue'] or '').strip()])),
+        ]))
+        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(filter(len, list(dict.fromkeys([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('toc') or ''])))))[0:5000]
+        lgrs_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
+        lgrs_book_dict['file_unified_data']['cover_url_best'] = f"https://libgen.rs/fictioncovers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
         
-        lgrs_book_dict['added_date_unified'] = {}
+        lgrs_book_dict['file_unified_data']['added_date_unified'] = {}
         if lgrs_book_dict['timeadded'] != '0000-00-00 00:00:00':
             if not isinstance(lgrs_book_dict['timeadded'], datetime.datetime):
                 raise Exception(f"Unexpected {lgrs_book_dict['timeadded']=} for {lgrs_book_dict=}")
-            lgrs_book_dict['added_date_unified'] = { 'date_lgrsfic_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
+            lgrs_book_dict['file_unified_data']['added_date_unified'] = { 'date_lgrsfic_source': lgrs_book_dict['timeadded'].isoformat().split('T', 1)[0] }
 
         edition_varia_normalized = []
         if len((lgrs_book_dict.get('series') or '').strip()) > 0:
@@ -2045,20 +2081,30 @@ def get_lgrsfic_book_dicts(session, key, values):
             edition_varia_normalized.append(lgrs_book_dict['edition'].strip())
         if len((lgrs_book_dict.get('year') or '').strip()) > 0:
             edition_varia_normalized.append(lgrs_book_dict['year'].strip())
-        lgrs_book_dict['edition_varia_normalized'] = ', '.join(edition_varia_normalized)
+        lgrs_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
 
-        allthethings.utils.init_identifiers_and_classification_unified(lgrs_book_dict)
-        allthethings.utils.add_identifier_unified(lgrs_book_dict, 'lgrsfic', lgrs_book_dict['id'])
+        lgrs_book_dict['file_unified_data']['ipfs_infos'] = []
+        if (lgrs_book_dict['ipfs_cid'] or '') != '':
+            lgrs_book_dict['file_unified_data']['ipfs_infos'].append({ 'ipfs_cid': lgrs_book_dict['ipfs_cid'], 'from': 'lgrsfic' })
+
+        lgrs_book_dict['file_unified_data']['problems'] = []
+        if (lgrs_book_dict['visible'] or '') != '':
+            lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsfic_visible', 'descr': lgrs_book_dict['visible'], 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
+
+        lgrs_book_dict['file_unified_data']['content_type'] = 'book_fiction'
+
+        allthethings.utils.init_identifiers_and_classification_unified(lgrs_book_dict['file_unified_data'])
+        allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'lgrsfic', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
-        allthethings.utils.add_identifier_unified(lgrs_book_dict, 'md5', lgrs_book_dict['md5'].lower())
-        allthethings.utils.add_isbns_unified(lgrs_book_dict, lgrsfic_book['Identifier'].split(","))
-        allthethings.utils.add_isbns_unified(lgrs_book_dict, allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or ''])))
+        allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'md5', lgrs_book_dict['md5'].lower())
+        allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], lgrsfic_book['Identifier'].split(","))
+        allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or ''])))
         for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING.items():
             if name in lgrs_book_dict:
-                allthethings.utils.add_identifier_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
+                allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], unified_name, lgrs_book_dict[name])
         for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING.items():
             if name in lgrs_book_dict:
-                allthethings.utils.add_classification_unified(lgrs_book_dict, unified_name, lgrs_book_dict[name])
+                allthethings.utils.add_classification_unified(lgrs_book_dict['file_unified_data'], unified_name, lgrs_book_dict[name])
 
 
         lgrs_book_dict_comments = {
@@ -2289,15 +2335,39 @@ def get_lgli_file_dicts(session, key, values):
     for lgli_file in lgli_files:
         lgli_file_dict = lgli_file.copy() # originally: **lgli_file.to_dict()
 
-        # These would not be included in the SQLAlchemy to_dict()
-        # these fields were used to build the normalized (nested) dicts
-        del lgli_file_dict['add_descrs']
-        del lgli_file_dict['editions']
+        print(f"=============== {lgli_file_dict=}")
 
         lgli_file_descriptions_dict = [{**descr, 'meta': description_metadata[descr['key']]} for descr in lgli_file['add_descrs']]
         lgli_file_dict['descriptions_mapped'] = lgli_map_descriptions(lgli_file_descriptions_dict)
-        lgli_file_dict['editions'] = []
 
+        allthethings.utils.init_identifiers_and_classification_unified(lgli_file_dict)
+        allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli', lgli_file_dict['f_id'])
+        allthethings.utils.add_identifier_unified(lgli_file_dict, 'md5', lgli_file_dict['md5'].lower())
+        allthethings.utils.add_isbns_unified(lgli_file_dict, allthethings.utils.get_isbnlike(lgli_file_dict['locator']))
+        lgli_file_dict['scimag_archive_path_decoded'] = urllib.parse.unquote(lgli_file_dict['scimag_archive_path'].replace('\\', '/'))
+        potential_doi_scimag_archive_path = lgli_file_dict['scimag_archive_path_decoded']
+        if potential_doi_scimag_archive_path.endswith('.pdf'):
+            potential_doi_scimag_archive_path = potential_doi_scimag_archive_path[:-len('.pdf')]
+        potential_doi_scimag_archive_path = normalize_doi(potential_doi_scimag_archive_path)
+        if potential_doi_scimag_archive_path != '':
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'doi', potential_doi_scimag_archive_path)
+
+        if lgli_file_dict['libgen_id'] > 0:
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_libgen_id', lgli_file_dict['libgen_id'])
+        if lgli_file_dict['fiction_id'] > 0:
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_fiction_id', lgli_file_dict['fiction_id'])
+        if lgli_file_dict['fiction_rus_id'] > 0:
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_fiction_rus_id', lgli_file_dict['fiction_rus_id'])
+        if lgli_file_dict['comics_id'] > 0:
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_comics_id', lgli_file_dict['comics_id'])
+        if lgli_file_dict['scimag_id'] > 0:
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_scimag_id', lgli_file_dict['scimag_id'])
+        if lgli_file_dict['standarts_id'] > 0:
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_standarts_id', lgli_file_dict['standarts_id'])
+        if lgli_file_dict['magz_id'] > 0:
+            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_magz_id', lgli_file_dict['magz_id'])
+
+        lgli_file_dict['editions_all'] = []
         for edition in lgli_file['editions']:
             edition_dict = {
                 **edition, # originally: **edition.to_dict()
@@ -2431,7 +2501,54 @@ def get_lgli_file_dicts(session, key, values):
                 "languageoriginal_codes": ("before", ["Same as 'language_codes' but for the 'languageoriginal' field, which contains the original language if the work is a translation."]),
                 "edition_type_full": ("after", ["Anna's Archive expansion of the `type` field in the edition, based on the `descr_elems` table."]),
             }
-            lgli_file_dict['editions'].append(add_comments_to_dict(edition_dict, edition_dict_comments))
+            lgli_file_dict['editions_all'].append(add_comments_to_dict(edition_dict, edition_dict_comments))
+
+        lgli_file_dict['editions'] = lgli_file_dict['editions_all'][0:5]
+
+        lgli_file_dict['file_unified_data'] = {}
+        lgli_file_dict['file_unified_data']['extension_best'] = (lgli_file_dict.get('extension') or '').strip().lower()
+        lgli_file_dict['file_unified_data']['filesize_best'] = lgli_file_dict.get('filesize') or 0
+
+        lgli_file_dict['file_unified_data']['original_filename_additional'] = list(filter(len, [
+            *[(lgli_file_dict['locator'] or '').strip()],
+            *[filename.strip() for filename in ((lgli_file_dict['descriptions_mapped'] or {}).get('library_filename') or [])],
+        ]))
+        lgli_file_dict['file_unified_data']['original_filename_best'] = next(iter(lgli_file_dict['file_unified_data']['original_filename_additional']), '')
+        lgli_file_dict['file_unified_data']['original_filename_additional'] = list(filter(len, [
+            *lgli_file_dict['file_unified_data']['original_filename_additional'],
+            (lgli_file_dict['scimag_archive_path_decoded'] or '').strip(),
+        ]))
+
+        lgli_file_dict['file_unified_data']['title_best'] = (lgli_file_dict['editions'][0]['title'] or '').strip() if len(lgli_file_dict['editions']) == 1 else ''
+        lgli_file_dict['file_unified_data']['title_additional'] = [(edition['title'] or '').strip() for edition in lgli_file_dict['editions']]
+        lgli_file_dict['file_unified_data']['title_additional'] = [title.strip() for edition in lgli_file_dict['editions'] for title in (edition['descriptions_mapped'].get('maintitleonoriginallanguage') or [])]
+        lgli_file_dict['file_unified_data']['title_additional'] = [title.strip() for edition in lgli_file_dict['editions'] for title in (edition['descriptions_mapped'].get('maintitleonenglishtranslate') or [])]
+
+        lgli_file_dict['file_unified_data']['author_best'] = lgli_file_dict['editions'][0]['authors_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
+        lgli_file_dict['file_unified_data']['author_additional'] = [edition['authors_normalized'] for edition in lgli_file_dict['editions']]
+
+        lgli_file_dict['file_unified_data']['publisher_best'] = lgli_file_dict['editions'][0]['publishers_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
+        lgli_file_dict['file_unified_data']['publisher_additional'] = [edition['publishers_normalized'] for edition in lgli_file_dict['editions']]
+
+        lgli_file_dict['file_unified_data']['edition_varia_best'] = lgli_file_dict['editions'][0]['edition_varia_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
+        lgli_file_dict['file_unified_data']['edition_varia_additional'] = [edition['edition_varia_normalized'] for edition in lgli_file_dict['editions']]
+
+        lgli_file_dict['file_unified_data']['year_best'] = (lgli_file_dict['editions'][0]['year'] or '').strip() if len(lgli_file_dict['editions']) == 1 else ''
+        if lgli_file_dict['file_unified_data']['year_best'] == '':
+            lgli_file_dict['file_unified_data']['year_best'] = (lgli_file_dict['editions'][0]['issue_year_number'] or '').strip() if len(lgli_file_dict['editions']) == 1 else ''
+        lgli_file_dict['file_unified_data']['year_additional'] = [(edition['year'] or '').strip() for edition in lgli_file_dict['editions']] + [(edition['issue_year_number'] or '').strip() for edition in lgli_file_dict['editions']]
+
+        lgli_file_dict['file_unified_data']['stripped_description_best'] = lgli_file_dict['editions'][0]['stripped_description_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
+        lgli_file_dict['file_unified_data']['stripped_description_additional'] = [edition['stripped_description_normalized'] for edition in lgli_file_dict['editions']]
+
+        lgli_file_dict['file_unified_data']['comments_multiple'] = list(filter(len, [
+            ' -- '.join(filter(len, [*(lgli_file_dict.get('descriptions_mapped') or {}).get('descriptions_mapped.library', []), *lgli_file_dict.get('descriptions_mapped', {}).get('descriptions_mapped.library_issue', [])])),
+            *[(edition.get('editions_add_info') or '').strip() for edition in lgli_file_dict['editions']],
+            *[(edition.get('commentary') or '').strip() for edition in lgli_file_dict['editions']],
+            *[note.strip() for edition in lgli_file_dict['editions'] for note in (((lgli_single_edition or {}).get('descriptions_mapped') or {}).get('descriptions_mapped.notes') or [])],
+        ]))
+
+        lgli_file_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([edition['language_codes'] for edition in lgli_file_dict['editions']])
 
         lgli_file_dict['cover_url_guess'] = ''
         if lgli_file_dict['cover_exists'] > 0:
@@ -2447,14 +2564,16 @@ def get_lgli_file_dicts(session, key, values):
             if lgli_file_dict['magz_id'] and lgli_file_dict['magz_id'] > 0:
                 lgli_file_dict['cover_url_guess'] = f"https://libgen.li/magzcovers/{(lgli_file_dict['magz_id'] // 1000) * 1000}/{lgli_file_dict['md5'].lower()}.jpg"
 
-        lgli_file_dict['cover_url_guess_normalized'] = ''
+        lgli_file_dict['file_unified_data']['cover_url_best'] = ''
         if len(lgli_file_dict['cover_url_guess']) > 0:
-            lgli_file_dict['cover_url_guess_normalized'] = lgli_file_dict['cover_url_guess']
+            lgli_file_dict['file_unified_data']['cover_url_best'] = lgli_file_dict['cover_url_guess']
         else:
             for edition_dict in lgli_file_dict['editions']:
                 if len(edition_dict['cover_url_guess']) > 0:
-                    lgli_file_dict['cover_url_guess_normalized'] = edition_dict['cover_url_guess']
+                    lgli_file_dict['file_unified_data']['cover_url_best'] = edition_dict['cover_url_guess']
+                    break
 
+        # TODO: Unused
         lgli_file_dict['scimag_url_guess'] = ''
         if len(lgli_file_dict['scimag_archive_path']) > 0:
             lgli_file_dict['scimag_url_guess'] = lgli_file_dict['scimag_archive_path'].replace('\\', '/')
@@ -2465,38 +2584,37 @@ def get_lgli_file_dicts(session, key, values):
             else:
                 lgli_file_dict['scimag_url_guess'] = 'https://doi.org/' + lgli_file_dict['scimag_url_guess']
 
-        allthethings.utils.init_identifiers_and_classification_unified(lgli_file_dict)
-        allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli', lgli_file_dict['f_id'])
-        allthethings.utils.add_identifier_unified(lgli_file_dict, 'md5', lgli_file_dict['md5'].lower())
-        allthethings.utils.add_isbns_unified(lgli_file_dict, allthethings.utils.get_isbnlike(lgli_file_dict['locator']))
-        lgli_file_dict['scimag_archive_path_decoded'] = urllib.parse.unquote(lgli_file_dict['scimag_archive_path'].replace('\\', '/'))
-        potential_doi_scimag_archive_path = lgli_file_dict['scimag_archive_path_decoded']
-        if potential_doi_scimag_archive_path.endswith('.pdf'):
-            potential_doi_scimag_archive_path = potential_doi_scimag_archive_path[:-len('.pdf')]
-        potential_doi_scimag_archive_path = normalize_doi(potential_doi_scimag_archive_path)
-        if potential_doi_scimag_archive_path != '':
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'doi', potential_doi_scimag_archive_path)
+        allthethings.utils.init_identifiers_and_classification_unified(lgli_file_dict['file_unified_data'])
+        lgli_file_dict['file_unified_data']['identifiers_unified'] = allthethings.utils.merge_unified_fields([lgli_file_dict['identifiers_unified']] + [edition['identifiers_unified'] for edition in lgli_file_dict['editions']])
+        lgli_file_dict['file_unified_data']['classifications_unified'] = allthethings.utils.merge_unified_fields([lgli_file_dict['classifications_unified']] + [edition['classifications_unified'] for edition in lgli_file_dict['editions']])
 
-        if lgli_file_dict['libgen_id'] > 0:
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_libgen_id', lgli_file_dict['libgen_id'])
-        if lgli_file_dict['fiction_id'] > 0:
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_fiction_id', lgli_file_dict['fiction_id'])
-        if lgli_file_dict['fiction_rus_id'] > 0:
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_fiction_rus_id', lgli_file_dict['fiction_rus_id'])
-        if lgli_file_dict['comics_id'] > 0:
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_comics_id', lgli_file_dict['comics_id'])
-        if lgli_file_dict['scimag_id'] > 0:
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_scimag_id', lgli_file_dict['scimag_id'])
-        if lgli_file_dict['standarts_id'] > 0:
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_standarts_id', lgli_file_dict['standarts_id'])
-        if lgli_file_dict['magz_id'] > 0:
-            allthethings.utils.add_identifier_unified(lgli_file_dict, 'lgli_magz_id', lgli_file_dict['magz_id'])
-
-        lgli_file_dict['added_date_unified'] = {}
+        lgli_file_dict['file_unified_data']['added_date_unified'] = {}
         if lgli_file_dict['time_added'] != '0000-00-00 00:00:00':
             if not isinstance(lgli_file_dict['time_added'], datetime.datetime):
                 raise Exception(f"Unexpected {lgli_file_dict['time_added']=} for {lgli_file_dict=}")
-            lgli_file_dict['added_date_unified'] = { 'date_lgli_source': lgli_file_dict['time_added'].isoformat().split('T', 1)[0] }
+            lgli_file_dict['file_unified_data']['added_date_unified'] = { 'date_lgli_source': lgli_file_dict['time_added'].isoformat().split('T', 1)[0] }
+
+        lgli_file_dict['file_unified_data']['problems'] = []
+        if (lgli_file_dict['visible'] or '') != '':
+            lgli_file_dict['file_unified_data']['problems'].append({ 'type': 'lgli_visible', 'descr': (lgli_file_dict['visible'] or ''), 'better_md5': (lgli_file_dict['generic'] or '').lower() })
+        if (lgli_file_dict['broken'] or '') in [1, "1", "y", "Y"]:
+            lgli_file_dict['file_unified_data']['problems'].append({ 'type': 'lgli_broken', 'descr': (lgli_file_dict['broken'] or ''), 'better_md5': (lgli_file_dict['generic'] or '').lower() })
+
+        lgli_file_dict['file_unified_data']['content_type'] = ''
+        if lgli_file_dict['libgen_topic'] == 'l':
+            lgli_file_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+        if lgli_file_dict['libgen_topic'] == 'f':
+            lgli_file_dict['file_unified_data']['content_type'] = 'book_fiction'
+        if lgli_file_dict['libgen_topic'] == 'r':
+            lgli_file_dict['file_unified_data']['content_type'] = 'book_fiction'
+        if lgli_file_dict['libgen_topic'] == 'a':
+            lgli_file_dict['file_unified_data']['content_type'] = 'journal_article'
+        if lgli_file_dict['libgen_topic'] == 's':
+            lgli_file_dict['file_unified_data']['content_type'] = 'standards_document'
+        if lgli_file_dict['libgen_topic'] == 'm':
+            lgli_file_dict['file_unified_data']['content_type'] = 'magazine'
+        if lgli_file_dict['libgen_topic'] == 'c':
+            lgli_file_dict['file_unified_data']['content_type'] = 'book_comic'
 
         lgli_file_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
@@ -3868,6 +3986,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
                 allthethings.utils.add_identifier_unified(aac_magzdb_book_dict['file_unified_data'], 'md5', upload['md5'].lower())
 
         aac_magzdb_book_dict['file_unified_data']['original_filename_best'] = next(iter(aac_magzdb_book_dict['file_unified_data']['original_filename_additional']), '')
+        aac_magzdb_book_dict['file_unified_data']['content_type'] = 'magazine'
         aac_magzdb_book_dicts.append(aac_magzdb_book_dict)
     return aac_magzdb_book_dicts
 
@@ -4736,8 +4855,6 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['lgrsnf_book'] = lgrsnf_book_dicts.get(aarecord_id)
         aarecord['lgrsfic_book'] = lgrsfic_book_dicts.get(aarecord_id)
         aarecord['lgli_file'] = lgli_file_dicts.get(aarecord_id)
-        if aarecord.get('lgli_file'):
-            aarecord['lgli_file']['editions'] = aarecord['lgli_file']['editions'][0:5]
         aarecord['zlib_book'] = zlib_book_dicts1.get(aarecord_id) or zlib_book_dicts2.get(aarecord_id)
         aarecord['aac_zlib3_book'] = aac_zlib3_book_dicts1.get(aarecord_id) or aac_zlib3_book_dicts2.get(aarecord_id)
         aarecord['ia_record'] = ia_record_dicts.get(aarecord_id) or ia_record_dicts2.get(aarecord_id)
@@ -4754,18 +4871,15 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['duxius_nontransitive_meta_only'] = []
         aarecord['aac_edsebk'] = aac_edsebk_book_dicts.get(aarecord_id)
 
-        lgli_all_editions = aarecord['lgli_file']['editions'] if aarecord.get('lgli_file') else []
-
         aarecord['file_unified_data'] = {}
         allthethings.utils.init_identifiers_and_classification_unified(aarecord['file_unified_data'])
         # Duplicated below, with more fields
         aarecord['file_unified_data']['identifiers_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['identifiers_unified'],
-            ((aarecord['lgrsnf_book'] or {}).get('identifiers_unified') or {}),
-            ((aarecord['lgrsfic_book'] or {}).get('identifiers_unified') or {}),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            ((aarecord['lgli_file'] or {}).get('identifiers_unified') or {}),
-            *[edition['identifiers_unified'] for edition in lgli_all_editions],
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             *[ia_record['file_unified_data']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['file_unified_data']['identifiers_unified'] for isbndb in aarecord['isbndb']],
@@ -4858,14 +4972,12 @@ def get_aarecords_mysql(session, aarecord_ids):
     for aarecord in aarecords:
         aarecord_id = aarecord['id']
         aarecord_id_split = aarecord_id.split(':', 1)
-        lgli_single_edition = aarecord['lgli_file']['editions'][0] if len((aarecord.get('lgli_file') or {}).get('editions') or []) == 1 else None
-        lgli_all_editions = aarecord['lgli_file']['editions'] if aarecord.get('lgli_file') else []
-
+        
         aarecord['ipfs_infos'] = []
-        if aarecord['lgrsnf_book'] and ((aarecord['lgrsnf_book'].get('ipfs_cid') or '') != ''):
-            aarecord['ipfs_infos'].append({ 'ipfs_cid': aarecord['lgrsnf_book']['ipfs_cid'], 'from': 'lgrsnf' })
-        if aarecord['lgrsfic_book'] and ((aarecord['lgrsfic_book'].get('ipfs_cid') or '') != ''):
-            aarecord['ipfs_infos'].append({ 'ipfs_cid': aarecord['lgrsfic_book']['ipfs_cid'], 'from': 'lgrsfic' })
+        if aarecord['lgrsnf_book']:
+            aarecord['ipfs_infos'] += aarecord['lgrsnf_book']['file_unified_data']['ipfs_infos']
+        if aarecord['lgrsfic_book']:
+            aarecord['ipfs_infos'] += aarecord['lgrsfic_book']['file_unified_data']['ipfs_infos']
         if aarecord['aac_zlib3_book']:
             aarecord['ipfs_infos'] += aarecord['aac_zlib3_book']['file_unified_data']['ipfs_infos']
         if aarecord['aac_nexusstc']:
@@ -4875,19 +4987,18 @@ def get_aarecords_mysql(session, aarecord_ids):
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ipfs_cid', ipfs_info['ipfs_cid'])
 
         original_filename_multiple = [
-            *[allthethings.utils.prefix_filepath('lgrsnf', filepath) for filepath in filter(len, [((aarecord['lgrsnf_book'] or {}).get('locator') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('lgrsfic', filepath) for filepath in filter(len, [((aarecord['lgrsfic_book'] or {}).get('locator') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('lgli', filepath) for filepath in filter(len, [((aarecord['lgli_file'] or {}).get('locator') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('lgli', filename.strip()) for filename in (((aarecord['lgli_file'] or {}).get('descriptions_mapped') or {}).get('library_filename') or [])],
+            *[allthethings.utils.prefix_filepath('lgrsnf', filepath) for filepath in filter(len, [(((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[allthethings.utils.prefix_filepath('lgrsfic', filepath) for filepath in filter(len, [(((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[allthethings.utils.prefix_filepath('lgli', filepath) for filepath in filter(len, [(((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in filter(len, [(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in filter(len, [(((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('upload', filepath) for filepath in filter(len, [(((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
             *[allthethings.utils.prefix_filepath('nexusstc', filepath) for filepath in filter(len, [(((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('scimag', filepath) for filepath in filter(len, [((aarecord['lgli_file'] or {}).get('scimag_archive_path_decoded') or '').strip()])],
         ]
         original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
+        original_filename_multiple += [allthethings.utils.prefix_filepath('lgli', filepath) for filepath in (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
         original_filename_multiple += [allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(ia_record['file_unified_data']['original_filename_best'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
         original_filename_multiple += [allthethings.utils.prefix_filepath('scihub', scihub_doi['file_unified_data']['original_filename_best']) for scihub_doi in aarecord['scihub_doi']]
         original_filename_multiple += [allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
@@ -4913,9 +5024,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         cover_url_multiple += [
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
             *[ia_record['file_unified_data']['cover_url_best'].strip() for ia_record in aarecord['ia_records_meta_only']],
-            ((aarecord['lgrsnf_book'] or {}).get('cover_url_normalized') or '').strip(),
-            ((aarecord['lgrsfic_book'] or {}).get('cover_url_normalized') or '').strip(),
-            ((aarecord['lgli_file'] or {}).get('cover_url_guess_normalized') or '').strip(),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
             *[ol_book_dict['file_unified_data']['cover_url_best'] for ol_book_dict in aarecord['ol']],
             *[isbndb['file_unified_data']['cover_url_best'] for isbndb in aarecord['isbndb']],
         ]
@@ -4934,9 +5045,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         extension_multiple = [
             (((aarecord['ia_record'] or {}).get('aa_ia_file') or {}).get('extension') or '').strip().lower(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
-            ((aarecord['lgrsnf_book'] or {}).get('extension') or '').strip().lower(),
-            ((aarecord['lgrsfic_book'] or {}).get('extension') or '').strip().lower(),
-            ((aarecord['lgli_file'] or {}).get('extension') or '').strip().lower(),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip().lower(),
             (((aarecord['duxiu'] or {}).get('duxiu_file') or {}).get('extension') or '').strip().lower(),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
             (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('extension_best') or '').strip(),
@@ -4954,9 +5065,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         filesize_multiple = [
             ((aarecord['ia_record'] or {}).get('aa_ia_file') or {}).get('filesize') or 0,
             ((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
-            (aarecord['lgrsnf_book'] or {}).get('filesize') or 0,
-            (aarecord['lgrsfic_book'] or {}).get('filesize') or 0,
-            (aarecord['lgli_file'] or {}).get('filesize') or 0,
+            ((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
+            ((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
+            ((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
             ((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
             ((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
             ((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('filesize_best') or 0,
@@ -4980,9 +5091,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['title_best'] = max(title_multiple + [''], key=len)
         title_multiple += [
-            ((aarecord['lgrsnf_book'] or {}).get('title') or '').strip(),
-            ((aarecord['lgrsfic_book'] or {}).get('title') or '').strip(),
-            ((lgli_single_edition or {}).get('title') or '').strip(),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
@@ -4994,9 +5105,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['title_best'] == '':
             aarecord['file_unified_data']['title_best'] = max(title_multiple + [''], key=len)
-        title_multiple += [(edition.get('title') or '').strip() for edition in lgli_all_editions]
-        title_multiple += [title.strip() for edition in lgli_all_editions for title in (edition['descriptions_mapped'].get('maintitleonoriginallanguage') or [])]
-        title_multiple += [title.strip() for edition in lgli_all_editions for title in (edition['descriptions_mapped'].get('maintitleonenglishtranslate') or [])]
+        title_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
         title_multiple += [ol_book_dict['file_unified_data']['title_best'].strip() for ol_book_dict in aarecord['ol']]
         for isbndb in aarecord['isbndb']:
             title_multiple += isbndb['file_unified_data']['title_additional']
@@ -5020,9 +5129,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['author_best'] = max(author_multiple + [''], key=len)
         author_multiple += [
-            (aarecord['lgrsnf_book'] or {}).get('author', '').strip(),
-            (aarecord['lgrsfic_book'] or {}).get('author', '').strip(),
-            (lgli_single_edition or {}).get('authors_normalized', '').strip(),
+            ((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('author_best', '').strip(),
+            ((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('author_best', '').strip(),
+            ((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('author_best', '').strip(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('author_best') or '').strip(),
@@ -5033,7 +5142,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         author_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(author_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['author_best'] == '':
             aarecord['file_unified_data']['author_best'] = max(author_multiple + [''], key=len)
-        author_multiple += [edition.get('authors_normalized', '').strip() for edition in lgli_all_editions]
+        author_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('author_additional') or [])
         author_multiple += [ol_book_dict['file_unified_data']['author_best'] for ol_book_dict in aarecord['ol']]
         for isbndb in aarecord['isbndb']:
             author_multiple += isbndb['file_unified_data']['author_additional']
@@ -5055,9 +5164,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['publisher_best'] = max(publisher_multiple + [''], key=len)
         publisher_multiple += [
-            ((aarecord['lgrsnf_book'] or {}).get('publisher') or '').strip(),
-            ((aarecord['lgrsfic_book'] or {}).get('publisher') or '').strip(),
-            ((lgli_single_edition or {}).get('publisher_normalized') or '').strip(),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('publisher_best') or '').strip(),
@@ -5068,7 +5177,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         publisher_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(publisher_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['publisher_best'] == '':
             aarecord['file_unified_data']['publisher_best'] = max(publisher_multiple + [''], key=len)
-        publisher_multiple += [(edition.get('publisher_normalized') or '').strip() for edition in lgli_all_editions]
+        publisher_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('publisher_additional') or [])
         publisher_multiple += [ol_book_dict['file_unified_data']['publisher_best'].strip() for ol_book_dict in aarecord['ol']]
         for isbndb in aarecord['isbndb']:
             publisher_multiple += isbndb['file_unified_data']['publisher_additional']
@@ -5090,9 +5199,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['edition_varia_best'] = max(edition_varia_multiple + [''], key=len)
         edition_varia_multiple += [
-            ((aarecord['lgrsnf_book'] or {}).get('edition_varia_normalized') or '').strip(),
-            ((aarecord['lgrsfic_book'] or {}).get('edition_varia_normalized') or '').strip(),
-            ((lgli_single_edition or {}).get('edition_varia_normalized') or '').strip(),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('edition_varia_best') or '').strip(),
@@ -5103,8 +5212,8 @@ def get_aarecords_mysql(session, aarecord_ids):
         edition_varia_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(edition_varia_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['edition_varia_best'] == '':
             aarecord['file_unified_data']['edition_varia_best'] = max(edition_varia_multiple + [''], key=len)
-        edition_varia_multiple += [(edition.get('edition_varia_normalized') or '').strip() for edition in lgli_all_editions]
         edition_varia_multiple += [ol_book_dict['file_unified_data']['edition_varia_best'].strip() for ol_book_dict in aarecord['ol']]
+        edition_varia_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('edition_varia_multiple') or [])
         for isbndb in aarecord['isbndb']:
             edition_varia_multiple += isbndb['file_unified_data']['edition_varia_additional']
         edition_varia_multiple += [ia_record['file_unified_data']['edition_varia_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
@@ -5124,10 +5233,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         year_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(year_multiple) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['year_best'] = max(year_multiple + [''], key=len)
         year_multiple += [
-            ((aarecord['lgrsnf_book'] or {}).get('year') or '').strip(),
-            ((aarecord['lgrsfic_book'] or {}).get('year') or '').strip(),
-            ((lgli_single_edition or {}).get('year') or '').strip(),
-            ((lgli_single_edition or {}).get('issue_year_number') or '').strip(),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('year_best') or '').strip(),
@@ -5141,7 +5249,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         year_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(year_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['year_best'] == '':
             aarecord['file_unified_data']['year_best'] = max(year_multiple + [''], key=len)
-        year_multiple += [(edition.get('year_normalized') or '').strip() for edition in lgli_all_editions]
+        year_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('year_additional') or [])
         year_multiple += [ol_book_dict['file_unified_data']['year_best'] for ol_book_dict in aarecord['ol']]
         for isbndb in aarecord['isbndb']:
             year_multiple += isbndb['file_unified_data']['year_additional']
@@ -5164,15 +5272,9 @@ def get_aarecords_mysql(session, aarecord_ids):
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], 'year', year)
 
         comments_multiple = [
-            ((aarecord['lgrsnf_book'] or {}).get('commentary') or '').strip(),
-            ((aarecord['lgrsfic_book'] or {}).get('commentary') or '').strip(),
-            ' -- '.join(filter(len, [((aarecord['lgrsnf_book'] or {}).get('library') or '').strip(), (aarecord['lgrsnf_book'] or {}).get('issue', '').strip()])),
-            ' -- '.join(filter(len, [((aarecord['lgrsfic_book'] or {}).get('library') or '').strip(), (aarecord['lgrsfic_book'] or {}).get('issue', '').strip()])),
-            ' -- '.join(filter(len, [*((aarecord['lgli_file'] or {}).get('descriptions_mapped') or {}).get('descriptions_mapped.library', []), *(aarecord['lgli_file'] or {}).get('descriptions_mapped', {}).get('descriptions_mapped.library_issue', [])])),
-            ((lgli_single_edition or {}).get('commentary') or '').strip(),
-            ((lgli_single_edition or {}).get('editions_add_info') or '').strip(),
-            ((lgli_single_edition or {}).get('commentary') or '').strip(),
-            *[note.strip() for note in (((lgli_single_edition or {}).get('descriptions_mapped') or {}).get('descriptions_mapped.notes') or [])],
+            *(((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
+            *(((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
+            *(((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
             *(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
             *[comment for ia_record in aarecord['ia_records_meta_only'] for comment in ia_record['file_unified_data']['comments_multiple']],
             *(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
@@ -5181,12 +5283,6 @@ def get_aarecords_mysql(session, aarecord_ids):
             *(((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
             *(((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('comments_multiple') or []),
         ]
-        comments_multiple += [(edition.get('comments_normalized') or '').strip() for edition in lgli_all_editions]
-        for edition in lgli_all_editions:
-            comments_multiple.append((edition.get('editions_add_info') or '').strip())
-            comments_multiple.append((edition.get('commentary') or '').strip())
-            for note in (edition.get('descriptions_mapped') or {}).get('descriptions_mapped.notes', []):
-                comments_multiple.append(note.strip())
         for ol_book_dict in aarecord['ol']:
             comments_multiple += ol_book_dict['file_unified_data']['comments_multiple']
         for ol_book_dict in aarecord['ol_book_dicts_primary_linked']:
@@ -5201,9 +5297,9 @@ def get_aarecords_mysql(session, aarecord_ids):
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['stripped_description_best'] = max(stripped_description_multiple + [''], key=len)
         stripped_description_multiple += [
-            ((aarecord['lgrsnf_book'] or {}).get('stripped_description') or '').strip()[0:5000],
-            ((aarecord['lgrsfic_book'] or {}).get('stripped_description') or '').strip()[0:5000],
-            ((lgli_single_edition or {}).get('stripped_description') or '').strip()[0:5000],
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip(),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip(),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip(),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip(),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip(),
             (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('stripped_description_best') or '').strip(),
@@ -5214,7 +5310,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         stripped_description_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(stripped_description_multiple) # Before selecting best, since the best might otherwise get filtered.
         if aarecord['file_unified_data']['stripped_description_best'] == '':
             aarecord['file_unified_data']['stripped_description_best'] = max(stripped_description_multiple + [''], key=len)
-        stripped_description_multiple += [(edition.get('stripped_description') or '').strip()[0:5000] for edition in lgli_all_editions]
+        stripped_description_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('stripped_description_additional') or [])
         stripped_description_multiple += [ol_book_dict['file_unified_data']['stripped_description_best'] for ol_book_dict in aarecord['ol']]
         for isbndb in aarecord['isbndb']:
             stripped_description_multiple += isbndb['file_unified_data']['stripped_description_additional']
@@ -5237,9 +5333,9 @@ def get_aarecords_mysql(session, aarecord_ids):
             # Still lump in other language codes with ol_book_dicts_primary_linked. We use the
             # fact that combine_bcp47_lang_codes is stable (preserves order).
             *[ol_book_dict['file_unified_data']['language_codes'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-            ((aarecord['lgrsnf_book'] or {}).get('language_codes') or []),
-            ((aarecord['lgrsfic_book'] or {}).get('language_codes') or []),
-            ((lgli_single_edition or {}).get('language_codes') or []),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
             (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('language_codes') or []),
@@ -5252,7 +5348,6 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['most_likely_language_codes'] = aarecord['file_unified_data']['language_codes']
         aarecord['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([
             aarecord['file_unified_data']['language_codes'],
-            *[(edition.get('language_codes') or []) for edition in lgli_all_editions],
             *[ol_book_dict['file_unified_data']['language_codes'] for ol_book_dict in aarecord['ol']],
             *[ia_record['file_unified_data']['language_codes'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['file_unified_data']['language_codes'] for isbndb in aarecord['isbndb']],
@@ -5291,10 +5386,10 @@ def get_aarecords_mysql(session, aarecord_ids):
         # aarecord['file_unified_data']['detected_language_codes_probs'] = ", ".join(detected_language_codes_probs)
 
         aarecord['file_unified_data']['added_date_unified'] = dict(collections.ChainMap(*[
-            ((aarecord['lgrsnf_book'] or {}).get('added_date_unified') or {}),
-            ((aarecord['lgrsfic_book'] or {}).get('added_date_unified') or {}),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
-            ((aarecord['lgli_file'] or {}).get('added_date_unified') or {}),
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('added_date_unified') or {}),
             *[ia_record['file_unified_data']['added_date_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['file_unified_data']['added_date_unified'] for isbndb in aarecord['isbndb']],
@@ -5313,11 +5408,10 @@ def get_aarecords_mysql(session, aarecord_ids):
         # Duplicated from above, but with more fields now.
         aarecord['file_unified_data']['identifiers_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['identifiers_unified'],
-            ((aarecord['lgrsnf_book'] or {}).get('identifiers_unified') or {}),
-            ((aarecord['lgrsfic_book'] or {}).get('identifiers_unified') or {}),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
-            ((aarecord['lgli_file'] or {}).get('identifiers_unified') or {}),
-            *[edition['identifiers_unified'] for edition in lgli_all_editions],
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('identifiers_unified') or {}),
             *[ia_record['file_unified_data']['identifiers_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['file_unified_data']['identifiers_unified'] for isbndb in aarecord['isbndb']],
@@ -5334,11 +5428,10 @@ def get_aarecords_mysql(session, aarecord_ids):
         ])
         aarecord['file_unified_data']['classifications_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['classifications_unified'],
-            ((aarecord['lgrsnf_book'] or {}).get('classifications_unified') or {}),
-            ((aarecord['lgrsfic_book'] or {}).get('classifications_unified') or {}),
+            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
+            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
             (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
-            ((aarecord['lgli_file'] or {}).get('classifications_unified') or {}),
-            *[(edition['classifications_unified'] or {}) for edition in lgli_all_editions],
+            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
             (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('classifications_unified') or {}),
             *[ia_record['file_unified_data']['classifications_unified'] for ia_record in aarecord['ia_records_meta_only']],
             *[isbndb['file_unified_data']['classifications_unified'] for isbndb in aarecord['isbndb']],
@@ -5400,14 +5493,12 @@ def get_aarecords_mysql(session, aarecord_ids):
             raise Exception(f"Unknown {aarecord_id_split[0]=}")
 
         aarecord['file_unified_data']['problems'] = []
-        if ((aarecord['lgrsnf_book'] or {}).get('visible') or '') != '':
-            aarecord['file_unified_data']['problems'].append({ 'type': 'lgrsnf_visible', 'descr': ((aarecord['lgrsnf_book'] or {}).get('visible') or ''), 'better_md5': ((aarecord['lgrsnf_book'] or {}).get('generic') or '').lower() })
-        if ((aarecord['lgrsfic_book'] or {}).get('visible') or '') != '':
-            aarecord['file_unified_data']['problems'].append({ 'type': 'lgrsfic_visible', 'descr': ((aarecord['lgrsfic_book'] or {}).get('visible') or ''), 'better_md5': ((aarecord['lgrsfic_book'] or {}).get('generic') or '').lower() })
-        if ((aarecord['lgli_file'] or {}).get('visible') or '') != '':
-            aarecord['file_unified_data']['problems'].append({ 'type': 'lgli_visible', 'descr': ((aarecord['lgli_file'] or {}).get('visible') or ''), 'better_md5': ((aarecord['lgli_file'] or {}).get('generic') or '').lower() })
-        if ((aarecord['lgli_file'] or {}).get('broken') or '') in [1, "1", "y", "Y"]:
-            aarecord['file_unified_data']['problems'].append({ 'type': 'lgli_broken', 'descr': ((aarecord['lgli_file'] or {}).get('broken') or ''), 'better_md5': ((aarecord['lgli_file'] or {}).get('generic') or '').lower() })
+        for problem in (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('problems') or []):
+            aarecord['file_unified_data']['problems'].append(problem)
+        for problem in (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('problems') or []):
+            aarecord['file_unified_data']['problems'].append(problem)
+        for problem in (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('problems') or []):
+            aarecord['file_unified_data']['problems'].append(problem)
         for problem in (((aarecord['aac_zlib3_book'] or {}).get('file_unified_data') or {}).get('problems') or []):
             aarecord['file_unified_data']['problems'].append(problem)
         for problem in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('problems') or []):
@@ -5417,26 +5508,13 @@ def get_aarecords_mysql(session, aarecord_ids):
         
         aarecord['file_unified_data']['content_type'] = None
         if (aarecord['file_unified_data']['content_type'] is None) and (aarecord['lgli_file'] is not None):
-            if aarecord['lgli_file']['libgen_topic'] == 'l':
-                aarecord['file_unified_data']['content_type'] = 'book_nonfiction'
-            if aarecord['lgli_file']['libgen_topic'] == 'f':
-                aarecord['file_unified_data']['content_type'] = 'book_fiction'
-            if aarecord['lgli_file']['libgen_topic'] == 'r':
-                aarecord['file_unified_data']['content_type'] = 'book_fiction'
-            if aarecord['lgli_file']['libgen_topic'] == 'a':
-                aarecord['file_unified_data']['content_type'] = 'journal_article'
-            if aarecord['lgli_file']['libgen_topic'] == 's':
-                aarecord['file_unified_data']['content_type'] = 'standards_document'
-            if aarecord['lgli_file']['libgen_topic'] == 'm':
-                aarecord['file_unified_data']['content_type'] = 'magazine'
-            if aarecord['lgli_file']['libgen_topic'] == 'c':
-                aarecord['file_unified_data']['content_type'] = 'book_comic'
+            aarecord['file_unified_data']['content_type'] = aarecord['lgli_file']['file_unified_data']['content_type']
         if (aarecord['file_unified_data']['content_type'] is None) and aarecord['aac_magzdb']:
-            aarecord['file_unified_data']['content_type'] = 'magazine'
+            aarecord['file_unified_data']['content_type'] = aarecord['aac_magzdb']['file_unified_data']['content_type']
         if (aarecord['file_unified_data']['content_type'] is None) and aarecord['lgrsnf_book'] and (not aarecord['lgrsfic_book']):
-            aarecord['file_unified_data']['content_type'] = 'book_nonfiction'
+            aarecord['file_unified_data']['content_type'] = aarecord['lgrsnf_book']['file_unified_data']['content_type']
         if (aarecord['file_unified_data']['content_type'] is None) and (not aarecord['lgrsnf_book']) and aarecord['lgrsfic_book']:
-            aarecord['file_unified_data']['content_type'] = 'book_fiction'
+            aarecord['file_unified_data']['content_type'] = aarecord['lgrsfic_book']['file_unified_data']['content_type']
         if (aarecord['file_unified_data']['content_type'] is None) and aarecord['aac_nexusstc'] and (aarecord['aac_nexusstc']['file_unified_data']['content_type'] != ''):
             aarecord['file_unified_data']['content_type'] = aarecord['aac_nexusstc']['file_unified_data']['content_type']
         if aarecord['file_unified_data']['content_type'] is None:
