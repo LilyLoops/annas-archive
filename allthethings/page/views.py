@@ -2337,8 +2337,6 @@ def get_lgli_file_dicts(session, key, values):
     for lgli_file in lgli_files:
         lgli_file_dict = lgli_file.copy() # originally: **lgli_file.to_dict()
 
-        print(f"=============== {lgli_file_dict=}")
-
         lgli_file_descriptions_dict = [{**descr, 'meta': description_metadata[descr['key']]} for descr in lgli_file['add_descrs']]
         lgli_file_dict['descriptions_mapped'] = lgli_map_descriptions(lgli_file_descriptions_dict)
 
@@ -4815,6 +4813,39 @@ def make_source_records(aarecord):
         *make_source_record(aarecord, 'aac_edsebk'),
     ]
 
+MERGE_ALL = '___all'
+def merge_file_unified_data_strings(source_records_by_type, iterations):
+    best_str = ''
+    multiple_str = []
+    for iteration in iterations:
+        expanded_iteration = []
+        for source_type, field_name in iteration:
+            if source_type == MERGE_ALL:
+                for found_source_type in source_records_by_type:
+                    expanded_iteration.append((found_source_type, field_name))
+            elif type(source_type) == list:
+                for found_source_type in source_type:
+                    expanded_iteration.append((found_source_type, field_name))
+            elif type(source_type) == str:
+                expanded_iteration.append((source_type, field_name))
+            else:
+                raise Exception(f"Unexpected {source_type=} in merge_file_unified_data_strings")
+        for source_type, field_name in expanded_iteration:
+            for source_record in source_records_by_type[source_type]:
+                if field_name.endswith('_best'):
+                    strings_to_add = [(source_record['file_unified_data'].get(field_name) or '')]
+                elif field_name.endswith('_additional'):
+                    strings_to_add = (source_record['file_unified_data'].get(field_name) or [])
+                else:
+                    raise Exception(f"Unsupported field_name in merge_file_unified_data_strings: {field_name}")
+                for string_to_add in strings_to_add:
+                    multiple_str.append(string_to_add.strip())
+        multiple_str = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(multiple_str) # Before selecting best, since the best might otherwise get filtered.
+        if best_str == '':
+            best_str = max(multiple_str + [''], key=len)
+    multiple_str = [s for s in multiple_str if s != best_str]
+    return (best_str, multiple_str)
+
 def get_aarecords_mysql(session, aarecord_ids):
     if not allthethings.utils.validate_aarecord_ids(aarecord_ids):
         raise Exception(f"Invalid aarecord_ids {aarecord_ids=}")
@@ -5088,43 +5119,8 @@ def get_aarecords_mysql(session, aarecord_ids):
         filesize_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('filesize_additional') or [])
         aarecord['file_unified_data']['filesize_additional'] = [s for s in dict.fromkeys(filter(lambda fz: fz > 0, filesize_multiple)) if s != aarecord['file_unified_data']['filesize_best']]
 
-        title_multiple = [
-            *[ol_book_dict['file_unified_data']['title_best'].strip() for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-        ]
-        title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
-        aarecord['file_unified_data']['title_best'] = max(title_multiple + [''], key=len)
-        title_multiple += [
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['aac_zlib3_book'] or aarecord['zlib_book'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-            (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('title_best') or '').strip(),
-        ]
-        title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['title_best'] == '':
-            aarecord['file_unified_data']['title_best'] = max(title_multiple + [''], key=len)
-        title_multiple += (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
-        title_multiple += [ol_book_dict['file_unified_data']['title_best'].strip() for ol_book_dict in aarecord['ol']]
-        for isbndb in aarecord['isbndb']:
-            title_multiple += isbndb['file_unified_data']['title_additional']
-        title_multiple += [ia_record['file_unified_data']['title_best'].strip() for ia_record in aarecord['ia_records_meta_only']]
-        title_multiple += (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
-        title_multiple += (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
-        title_multiple += (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
-        title_multiple += (((aarecord['aac_edsebk'] or {}).get('file_unified_data') or {}).get('title_additional') or [])
-        for oclc in aarecord['oclc']:
-            title_multiple += oclc['file_unified_data']['title_additional']
-        for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
-            title_multiple += duxiu_record['file_unified_data']['title_additional']
-        title_multiple = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(title_multiple) # Before selecting best, since the best might otherwise get filtered.
-        if aarecord['file_unified_data']['title_best'] == '':
-            aarecord['file_unified_data']['title_best'] = max(title_multiple + [''], key=len)
-        aarecord['file_unified_data']['title_additional'] = [s for s in title_multiple if s != aarecord['file_unified_data']['title_best']]
+        source_records_by_type = allthethings.utils.groupby(source_records_full_by_aarecord_id[aarecord_id], 'source_type', 'source_record')
+        aarecord['file_unified_data']['title_best'], aarecord['file_unified_data']['title_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'title_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'title_best')], [(MERGE_ALL, 'title_best'), (MERGE_ALL, 'title_additional')]])
 
         author_multiple = [
             *[ol_book_dict['file_unified_data']['author_best'].strip() for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
@@ -5368,7 +5364,7 @@ def get_aarecords_mysql(session, aarecord_ids):
 
         aarecord['file_unified_data']['language_codes_detected'] = []
         if len(aarecord['file_unified_data']['most_likely_language_codes']) == 0 and len(aarecord['file_unified_data']['stripped_description_best']) > 20:
-            language_detect_string = " ".join(title_multiple) + " ".join(stripped_description_multiple)
+            language_detect_string = " ".join([aarecord['file_unified_data']['title_best']] + aarecord['file_unified_data']['title_additional']) + " ".join(stripped_description_multiple)
             try:
                 language_detection_data = fast_langdetect.detect(language_detect_string)
                 if language_detection_data['score'] > 0.5: # Somewhat arbitrary cutoff
