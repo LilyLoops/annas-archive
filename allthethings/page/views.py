@@ -5040,7 +5040,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
             aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
         aarecord['file_unified_data']['original_filename_additional'] = [s for s in original_filename_multiple_processed if s != aarecord['file_unified_data']['original_filename_best']]
-        aarecord['file_unified_data']['original_filename_best_name_only'] = re.split(r'[\\/]', aarecord['file_unified_data']['original_filename_best'])[-1] if not aarecord['file_unified_data']['original_filename_best'].startswith('10.') else aarecord['file_unified_data']['original_filename_best']
+        aarecord['file_unified_data']['original_filename_best_name_only'] = re.split(r'[\\/]', aarecord['file_unified_data']['original_filename_best'])[-1] if '/10.' not in aarecord['file_unified_data']['original_filename_best'] else aarecord['file_unified_data']['original_filename_best'][(aarecord['file_unified_data']['original_filename_best'].index('/10.') + 1):]
         for filepath in original_filename_multiple:
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'filepath', filepath.encode()[0:allthethings.utils.AARECORDS_CODES_CODE_LENGTH-len('filepath:')-5].decode(errors='replace'))
 
