@@ -65,7 +65,7 @@ INSERT INTO `aarecords_codes_nexusstc` VALUES("aacid:aacid__nexusstc_records__20
 ,("doi:10.3390/curroncol30070478","nexusstc:1aq6gcl3bo1yxavod8lpw1t7h")
 ,("doi:10.5040/9781718219342.ch-010","nexusstc:7no9iu5hjybj8ebyi4ggp8jxz")
 ,("doi:10.5194/ems2023-297","nexusstc:cn369b16y2p5udyu56ke4n4mi")
-,("filepath:nexusstc/160个CrackMe之057-063（pk8900）/6527e2904ce20f76a4636790852d7a52.epub","nexusstc:6s7w2pwgd81akkrpw3803pyhk")
+,("filepath:nexusstc/160个CrackMe之057-063(pk8900)/6527e2904ce20f76a4636790852d7a52.epub","nexusstc:6s7w2pwgd81akkrpw3803pyhk")
 ,("filepath:nexusstc/Chronic Myeloid Leukemia/82b5082a02374cdadb03e3c4dd27c486.epub","nexusstc:bsinlt28ndwrmj2hl3zhk88jm")
 ,("filepath:nexusstc/Chronic Myeloid Leukemia/b91e9ae814107362e97747b3aeda1cbe.pdf","nexusstc:bsinlt28ndwrmj2hl3zhk88jm")
 ,("filepath:nexusstc/Chronic Myeloid Leukemia/d2f8d24ae039ced9fe618627227e56e8.pdf","nexusstc:bsinlt28ndwrmj2hl3zhk88jm")

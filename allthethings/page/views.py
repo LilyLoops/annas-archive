@@ -3965,10 +3965,12 @@ def get_aac_magzdb_book_dicts(session, key, values):
             aac_magzdb_book_dict['file_unified_data']['comments_multiple'].append(f"Supplementary edition: magzdb_pub:{supplementary_edition}")
 
         for upload in aac_record['metadata']['record']['uploads']:
+            extension = (upload['format'] or '').rsplit('/', 1)[-1]
+
             if key == 'md5':
                 if (upload['md5'] or '').lower() != requested_value:
                     continue
-                aac_magzdb_book_dict['file_unified_data']['extension_best'] = upload['format'] or ''
+                aac_magzdb_book_dict['file_unified_data']['extension_best'] = extension
                 aac_magzdb_book_dict['file_unified_data']['filesize_best'] = upload['sizeB'] or 0
                 content_type_stripped = (upload['contentType'] or '').strip()
                 if content_type_stripped != '':
@@ -3980,7 +3982,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
                 if note_stripped != '':
                     aac_magzdb_book_dict['file_unified_data']['comments_multiple'].append(note_stripped)
 
-            extension_with_dot = f".{upload['format']}" if upload['format'] != '' else ''
+            extension_with_dot = f".{extension}" if extension else ''
             aac_magzdb_book_dict['file_unified_data']['original_filename_additional'].append(allthethings.utils.prefix_filepath('magzdb', f"{publication_aac_record['metadata']['record']['title'].strip()}/{aac_record['metadata']['record']['year']}/{(aac_record['metadata']['record']['edition'] or '').strip()}/{upload['md5'].lower()}{extension_with_dot}"))
 
             if (upload['md5'] or '') != '':
@@ -5015,60 +5017,24 @@ def get_aarecords_mysql(session, aarecord_ids):
         for ipfs_info in aarecord['ipfs_infos']:
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ipfs_cid', ipfs_info['ipfs_cid'])
 
-        original_filename_multiple = [
-            *[filepath for filepath in filter(len, [(((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[filepath for filepath in filter(len, [(((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[filepath for filepath in filter(len, [(((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[filepath for filepath in filter(len, [(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[filepath for filepath in filter(len, [(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[filepath for filepath in filter(len, [(((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[filepath for filepath in filter(len, [(((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[filepath for filepath in filter(len, [(((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-        ]
-        original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
-        aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
-        original_filename_multiple += [filepath for filepath in (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [filepath for filepath in filter(len, [(ia_record['file_unified_data']['original_filename_best'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
-        original_filename_multiple += [scihub_doi['file_unified_data']['original_filename_best'] for scihub_doi in aarecord['scihub_doi']]
-        original_filename_multiple += [filepath for filepath in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [filepath for filepath in (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [filepath for filepath in (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [filepath for filepath in (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
-            original_filename_multiple += [filepath for filepath in duxiu_record['file_unified_data']['original_filename_additional']]
-        if aarecord['file_unified_data']['original_filename_best'] == '':
-            original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
-            aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
-        aarecord['file_unified_data']['original_filename_additional'] = [s for s in original_filename_multiple_processed if s != aarecord['file_unified_data']['original_filename_best']]
-        for filepath in original_filename_multiple:
+        aarecord['file_unified_data']['original_filename_best'], aarecord['file_unified_data']['original_filename_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'original_filename_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'original_filename_best')], [(UNIFIED_DATA_MERGE_ALL, 'original_filename_best'), (UNIFIED_DATA_MERGE_ALL, 'original_filename_additional')]])
+        for filepath in ([aarecord['file_unified_data']['original_filename_best']] + aarecord['file_unified_data']['original_filename_additional']):
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'filepath', filepath.encode()[0:allthethings.utils.AARECORDS_CODES_CODE_LENGTH-len('filepath:')-5].decode(errors='replace'))
 
-        cover_url_multiple = [
-            *[ol_book_dict['file_unified_data']['cover_url_best'] for ol_book_dict in aarecord['ol_book_dicts_primary_linked']],
-        ]
-        cover_url_multiple = list(dict.fromkeys(filter(len, cover_url_multiple)))
-        aarecord['file_unified_data']['cover_url_best'] = (cover_url_multiple + [''])[0]
-        # Select the cover_url_normalized in order of what is likely to be the best one: ia, lgrsnf, lgrsfic, lgli, zlib.
-        cover_url_multiple += [
-            (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
-            *[ia_record['file_unified_data']['cover_url_best'].strip() for ia_record in aarecord['ia_records_meta_only']],
-            (((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
-            (((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
-            (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('cover_url_best') or '').strip(),
-            *[ol_book_dict['file_unified_data']['cover_url_best'] for ol_book_dict in aarecord['ol']],
-            *[isbndb['file_unified_data']['cover_url_best'] for isbndb in aarecord['isbndb']],
-        ]
-        cover_url_multiple = list(dict.fromkeys(filter(len, cover_url_multiple)))
-        if aarecord['file_unified_data']['cover_url_best'] == '':
-            aarecord['file_unified_data']['cover_url_best'] = (cover_url_multiple + [''])[0]
-        aarecord['file_unified_data']['cover_url_additional'] = [s for s in cover_url_multiple if s != aarecord['file_unified_data']['cover_url_best']]
-        if aarecord['file_unified_data']['cover_url_best'] == '':
-            for isbndb in aarecord['isbndb']:
-                cover_url_multiple += isbndb['file_unified_data']['cover_url_additional']
-            # For now, keep out cover urls from zlib entirely, and only add them ad-hoc from aac_zlib3_book.cover_path.
-            cover_url_multiple = list(dict.fromkeys(filter(len, cover_url_multiple)))
-            aarecord['file_unified_data']['cover_url_best'] = (cover_url_multiple + [''])[0]
-            aarecord['file_unified_data']['cover_url_additional'] = [s for s in cover_url_multiple if s != aarecord['file_unified_data']['cover_url_best']]
+        # Select the cover_url_normalized in order of what is likely to be the best one.
+        # For now, keep out cover urls from zlib entirely, and only add them ad-hoc from aac_zlib3_book.cover_path.
+        aarecord['file_unified_data']['cover_url_best'], aarecord['file_unified_data']['cover_url_additional'] = merge_file_unified_data_strings(source_records_by_type, [
+            [('ol_book_dicts_primary_linked', 'cover_url_best')], 
+            [('ia_record', 'cover_url_best')], 
+            [('ia_records_meta_only', 'cover_url_best')], 
+            [('lgrsnf_book', 'cover_url_best')], 
+            [('lgrsfic_book', 'cover_url_best')], 
+            [('lgli_file', 'cover_url_best')], 
+            [('ol', 'cover_url_best')], 
+            [('isbndb', 'cover_url_best')], 
+            [(UNIFIED_DATA_MERGE_ALL, 'cover_url_best')], 
+            [(UNIFIED_DATA_MERGE_ALL, 'cover_url_additional')]
+        ])
 
         extension_multiple = [(source_record['source_record']['file_unified_data'].get('extension_best') or '') for source_record in source_records]
         extension_multiple += ['pdf'] if aarecord_id_split[0] == 'doi' else []

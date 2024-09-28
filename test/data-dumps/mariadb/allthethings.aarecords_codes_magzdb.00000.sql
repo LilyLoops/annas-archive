@@ -64,7 +64,6 @@ INSERT INTO `aarecords_codes_magzdb` VALUES("aacid:aacid__magzdb_records__202409
 ,("filepath:magzdb/Искатель/1962/6/e7d2e1ac04c6b89731a9be617a296b94.fb2","magzdb:1623")
 ,("filepath:magzdb/Огонёк Еженедельный иллюстрированный журнал/1923/6/2b6140ea5ff52461125286ca668fc40e.pdf","magzdb:2138771")
 ,("filepath:magzdb/Огонёк Еженедельный иллюстрированный журнал/1923/7/4a5429f357556b09023a448a5b66bb57.pdf","magzdb:2138772")
-,("filepath:magzdb/Ремонт & сервис электронной техники/2019/9/8bd52a3e7ede1984141dec60093426b9.application/pdf","magzdb:4036778")
 ,("filepath:magzdb/Ремонт & сервис электронной техники/2019/9/8bd52a3e7ede1984141dec60093426b9.pdf","magzdb:4036778")
 ,("filepath:magzdb/Юный техник/1956/2/2c73f78aab27aefb3d42c70c410183df.djvu","magzdb:2207")
 ,("filepath:magzdb/Юный техник/1956/2/35f05a3bd2e0b55982bb9d5fac424872.djvu","magzdb:2207")
