@@ -4920,17 +4920,8 @@ def get_aarecords_mysql(session, aarecord_ids):
         source_records = source_records_full_by_aarecord_id[aarecord_id]
         source_records_by_type = allthethings.utils.groupby(source_records, 'source_type', 'source_record')
         
-        aarecord['ipfs_infos'] = []
-        if aarecord['lgrsnf_book']:
-            aarecord['ipfs_infos'] += aarecord['lgrsnf_book']['file_unified_data']['ipfs_infos']
-        if aarecord['lgrsfic_book']:
-            aarecord['ipfs_infos'] += aarecord['lgrsfic_book']['file_unified_data']['ipfs_infos']
-        if aarecord['aac_zlib3_book']:
-            aarecord['ipfs_infos'] += aarecord['aac_zlib3_book']['file_unified_data']['ipfs_infos']
-        if aarecord['aac_nexusstc']:
-            aarecord['ipfs_infos'] += aarecord['aac_nexusstc']['file_unified_data']['ipfs_infos']
-
-        for ipfs_info in aarecord['ipfs_infos']:
+        aarecord['file_unified_data']['ipfs_infos'] = [ipfs_info for source_record in source_records for ipfs_info in source_record['source_record']['file_unified_data']['ipfs_infos']]
+        for ipfs_info in aarecord['file_unified_data']['ipfs_infos']:
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ipfs_cid', ipfs_info['ipfs_cid'])
 
         aarecord['file_unified_data']['original_filename_best'], aarecord['file_unified_data']['original_filename_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'original_filename_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'original_filename_best')], [(UNIFIED_DATA_MERGE_ALL, 'original_filename_best'), (UNIFIED_DATA_MERGE_ALL, 'original_filename_additional')]])
@@ -5841,10 +5832,12 @@ def get_additional_for_aarecord(aarecord):
         # TODO:TRANSLATE
         additional['download_urls'].append((gettext('page.md5.box.download.nexusstc'), f"https://libstc.cc/#/stc/nid:{source_record['id']}", "(Nexus/STC files can be unreliable to download)"))
 
-    if (len(aarecord.get('ipfs_infos') or []) > 0) and (aarecord_id_split[0] in ['md5', 'nexusstc_download']):
-        # additional['download_urls'].append((gettext('page.md5.box.download.ipfs_gateway', num=1), f"https://ipfs.eth.aragon.network/ipfs/{aarecord['ipfs_infos'][0]['ipfs_cid'].lower()}?filename={additional['filename_without_annas_archive']}", gettext('page.md5.box.download.ipfs_gateway_extra')))
+    # TODO:SOURCE remove backwards compatibility.
+    ipfs_infos = aarecord['file_unified_data'].get('ipfs_infos') or aarecord.get('ipfs_infos') or []
+    if (len(ipfs_infos) > 0) and (aarecord_id_split[0] in ['md5', 'nexusstc_download']):
+        # additional['download_urls'].append((gettext('page.md5.box.download.ipfs_gateway', num=1), f"https://ipfs.eth.aragon.network/ipfs/{ipfs_infos[0]['ipfs_cid'].lower()}?filename={additional['filename_without_annas_archive']}", gettext('page.md5.box.download.ipfs_gateway_extra')))
 
-        for ipfs_info in aarecord['ipfs_infos']:
+        for ipfs_info in ipfs_infos:
             additional['ipfs_urls'].append({ "name": "w3s.link", "url": f"https://w3s.link/ipfs/{ipfs_info['ipfs_cid']}?filename={additional['filename_without_annas_archive']}", "from": ipfs_info['from'] })
             additional['ipfs_urls'].append({ "name": "cf-ipfs.com", "url": f"https://cf-ipfs.com/ipfs/{ipfs_info['ipfs_cid']}?filename={additional['filename_without_annas_archive']}", "from": ipfs_info['from'] })
             additional['ipfs_urls'].append({ "name": "ipfs.eth.aragon.network", "url": f"https://ipfs.eth.aragon.network/ipfs/{ipfs_info['ipfs_cid']}?filename={additional['filename_without_annas_archive']}", "from": ipfs_info['from'] })
