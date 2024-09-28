@@ -1502,7 +1502,7 @@ def get_ia_record_dicts(session, key, values):
         ia_record_dict['aa_ia_derived']['printdisabled_only'] = 'inlibrary' not in ia_collections
         ia_record_dict['file_unified_data']['extension_best'] = (ia_record_dict['aa_ia_file']['extension'] or '') if ia_record_dict['aa_ia_file'] is not None else ''
         ia_record_dict['file_unified_data']['filesize_best'] = (ia_record_dict['aa_ia_file']['filesize'] or 0) if ia_record_dict['aa_ia_file'] is not None else 0
-        ia_record_dict['file_unified_data']['original_filename_best'] = (ia_record_dict['ia_id'] + '.pdf') if ia_record_dict['aa_ia_file'] is not None else ''
+        ia_record_dict['file_unified_data']['original_filename_best'] = allthethings.utils.prefix_filepath('ia', ia_record_dict['ia_id'] + '.pdf') if ia_record_dict['aa_ia_file'] is not None else ''
         ia_record_dict['file_unified_data']['cover_url_best'] = f"https://archive.org/download/{ia_record_dict['ia_id']}/__ia_thumb.jpg"
         ia_record_dict['file_unified_data']['title_best'] = (' '.join(extract_list_from_ia_json_field(ia_record_dict, 'title'))).replace(' : ', ': ')
         ia_record_dict['file_unified_data']['author_best'] = ('; '.join(extract_list_from_ia_json_field(ia_record_dict, 'creator') + extract_list_from_ia_json_field(ia_record_dict, 'associated-names'))).replace(' : ', ': ')
@@ -1957,7 +1957,7 @@ def get_lgrsnf_book_dicts(session, key, values):
         lgrs_book_dict = dict((k.lower(), v) for k,v in dict(lgrsnf_book).items())
 
         lgrs_book_dict['file_unified_data'] = {}
-        lgrs_book_dict['file_unified_data']['original_filename_best'] = (lgrs_book_dict['locator'] or '').strip()
+        lgrs_book_dict['file_unified_data']['original_filename_best'] = allthethings.utils.prefix_filepath('lgrsnf', (lgrs_book_dict['locator'] or '').strip())
         lgrs_book_dict['file_unified_data']['extension_best'] = (lgrs_book_dict['extension'] or '').strip().lower()
         lgrs_book_dict['file_unified_data']['filesize_best'] = (lgrs_book_dict['filesize'] or 0)
         lgrs_book_dict['file_unified_data']['title_best'] = (lgrs_book_dict['title'] or '').strip()
@@ -2055,7 +2055,7 @@ def get_lgrsfic_book_dicts(session, key, values):
         lgrs_book_dict = dict((k.lower(), v) for k,v in dict(lgrsfic_book).items())
 
         lgrs_book_dict['file_unified_data'] = {}
-        lgrs_book_dict['file_unified_data']['original_filename_best'] = (lgrs_book_dict['locator'] or '').strip()
+        lgrs_book_dict['file_unified_data']['original_filename_best'] = allthethings.utils.prefix_filepath('lgrsfic', (lgrs_book_dict['locator'] or '').strip())
         lgrs_book_dict['file_unified_data']['extension_best'] = (lgrs_book_dict['extension'] or '').strip().lower()
         lgrs_book_dict['file_unified_data']['filesize_best'] = (lgrs_book_dict['filesize'] or 0)
         lgrs_book_dict['file_unified_data']['title_best'] = (lgrs_book_dict['title'] or '').strip()
@@ -2510,13 +2510,13 @@ def get_lgli_file_dicts(session, key, values):
         lgli_file_dict['file_unified_data']['filesize_best'] = lgli_file_dict.get('filesize') or 0
 
         lgli_file_dict['file_unified_data']['original_filename_additional'] = list(filter(len, [
-            *[(lgli_file_dict['locator'] or '').strip()],
-            *[filename.strip() for filename in ((lgli_file_dict['descriptions_mapped'] or {}).get('library_filename') or [])],
+            *[allthethings.utils.prefix_filepath('lgli', (lgli_file_dict['locator'] or '').strip())],
+            *[allthethings.utils.prefix_filepath('lgli', filename.strip()) for filename in ((lgli_file_dict['descriptions_mapped'] or {}).get('library_filename') or [])],
         ]))
         lgli_file_dict['file_unified_data']['original_filename_best'] = next(iter(lgli_file_dict['file_unified_data']['original_filename_additional']), '')
         lgli_file_dict['file_unified_data']['original_filename_additional'] = list(filter(len, [
             *lgli_file_dict['file_unified_data']['original_filename_additional'],
-            (lgli_file_dict['scimag_archive_path_decoded'] or '').strip(),
+            allthethings.utils.prefix_filepath('lgli', (lgli_file_dict['scimag_archive_path_decoded'] or '').strip()),
         ]))
 
         lgli_file_dict['file_unified_data']['title_best'] = (lgli_file_dict['editions'][0]['title'] or '').strip() if len(lgli_file_dict['editions']) == 1 else ''
@@ -2761,7 +2761,7 @@ def get_scihub_doi_dicts(session, key, values):
         scihub_doi_dict = { 
             "doi": scihub_doi["doi"], 
             "file_unified_data": {
-                "original_filename_best": f"{scihub_doi['doi'].strip()}.pdf",
+                "original_filename_best": allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].strip()}.pdf"),
                 "content_type": 'journal_article',
             },
         }
@@ -3399,7 +3399,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                     # for the primary (non-transitive) md5 record.
                     duxiu_dict['aa_duxiu_derived']['md5_multiple'] = [aac_record['generated_file_metadata']['md5'], aac_record['generated_file_metadata']['original_md5']] + duxiu_dict['aa_duxiu_derived']['md5_multiple']
                     duxiu_dict['aa_duxiu_derived']['filesize_additional'] = [int(aac_record['generated_file_metadata']['filesize'])] + duxiu_dict['aa_duxiu_derived']['filesize_additional']
-                    duxiu_dict['aa_duxiu_derived']['original_filename_additional'] = [aac_record['metadata']['record']['filename_decoded']] + duxiu_dict['aa_duxiu_derived']['original_filename_additional']
+                    duxiu_dict['aa_duxiu_derived']['original_filename_additional'] = [allthethings.utils.prefix_filepath('duxiu', aac_record['metadata']['record']['filename_decoded'])] + duxiu_dict['aa_duxiu_derived']['original_filename_additional']
 
                     duxiu_dict['aa_duxiu_derived']['added_date_unified']['date_duxiu_filegen'] = datetime.datetime.strptime(aac_record['generated_file_aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
 
@@ -3498,7 +3498,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                 if related_file['filesize'] is not None:
                     duxiu_dict['aa_duxiu_derived']['filesize_additional'].append(related_file['filesize'])
                 if related_file['filepath'] is not None:
-                    duxiu_dict['aa_duxiu_derived']['original_filename_additional'].append(related_file['filepath'])
+                    duxiu_dict['aa_duxiu_derived']['original_filename_additional'].append(allthethings.utils.prefix_filepath('duxiu', related_file['filepath']))
                 if related_file['aacid'] is not None:
                     duxiu_dict['aa_duxiu_derived']['aacid_multiple'].append(related_file['aacid'])
 
@@ -3691,7 +3691,7 @@ def get_aac_upload_book_dicts(session, key, values):
             allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'aacid', record['aacid'])
             subcollection = record['aacid'].split('__')[1].replace('upload_records_', '')
             aac_upload_book_dict['aa_upload_derived']['subcollection_multiple'].append(subcollection)
-            aac_upload_book_dict['file_unified_data']['original_filename_additional'].append(f"{subcollection}/{record['metadata']['filepath']}")
+            aac_upload_book_dict['file_unified_data']['original_filename_additional'].append(allthethings.utils.prefix_filepath('upload', f"{subcollection}/{record['metadata']['filepath']}"))
             aac_upload_book_dict['file_unified_data']['filesize_additional'].append(int(record['metadata']['filesize']))
 
             if '.' in record['metadata']['filepath']:
@@ -3981,7 +3981,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
                     aac_magzdb_book_dict['file_unified_data']['comments_multiple'].append(note_stripped)
 
             extension_with_dot = f".{upload['format']}" if upload['format'] != '' else ''
-            aac_magzdb_book_dict['file_unified_data']['original_filename_additional'].append(f"{publication_aac_record['metadata']['record']['title'].strip()}/{aac_record['metadata']['record']['year']}/{(aac_record['metadata']['record']['edition'] or '').strip()}/{upload['md5'].lower()}{extension_with_dot}")
+            aac_magzdb_book_dict['file_unified_data']['original_filename_additional'].append(allthethings.utils.prefix_filepath('magzdb', f"{publication_aac_record['metadata']['record']['title'].strip()}/{aac_record['metadata']['record']['year']}/{(aac_record['metadata']['record']['edition'] or '').strip()}/{upload['md5'].lower()}{extension_with_dot}"))
 
             if (upload['md5'] or '') != '':
                 allthethings.utils.add_identifier_unified(aac_magzdb_book_dict['file_unified_data'], 'md5', upload['md5'].lower())
@@ -4318,7 +4318,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
             if (link.get('md5') or '') != '':
                 allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['file_unified_data'], 'md5', link['md5'].lower())
                 extension_with_dot = f".{link['extension']}" if (link.get('extension') or '') != '' else ''
-                aac_nexusstc_book_dict['file_unified_data']['original_filename_additional'].append(f"{title_stripped + '/' if title_stripped != '' else ''}{link['md5'].lower()}{extension_with_dot}")
+                aac_nexusstc_book_dict['file_unified_data']['original_filename_additional'].append(allthethings.utils.prefix_filepath('nexusstc', f"{title_stripped + '/' if title_stripped != '' else ''}{link['md5'].lower()}{extension_with_dot}"))
             if (link.get('cid') or '') != '':
                 allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['file_unified_data'], 'ipfs_cid', link['cid'])
 
@@ -5016,26 +5016,26 @@ def get_aarecords_mysql(session, aarecord_ids):
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ipfs_cid', ipfs_info['ipfs_cid'])
 
         original_filename_multiple = [
-            *[allthethings.utils.prefix_filepath('lgrsnf', filepath) for filepath in filter(len, [(((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('lgrsfic', filepath) for filepath in filter(len, [(((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('lgli', filepath) for filepath in filter(len, [(((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in filter(len, [(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in filter(len, [(((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('upload', filepath) for filepath in filter(len, [(((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
-            *[allthethings.utils.prefix_filepath('nexusstc', filepath) for filepath in filter(len, [(((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['lgrsnf_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['lgrsfic_book'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
+            *[filepath for filepath in filter(len, [(((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('original_filename_best') or '').strip()])],
         ]
         original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
         aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('lgli', filepath) for filepath in (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('ia', filepath) for filepath in filter(len, [(ia_record['file_unified_data']['original_filename_best'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('scihub', scihub_doi['file_unified_data']['original_filename_best']) for scihub_doi in aarecord['scihub_doi']]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('upload', filepath) for filepath in (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('magzdb', filepath) for filepath in (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
-        original_filename_multiple += [allthethings.utils.prefix_filepath('nexusstc', filepath) for filepath in (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
+        original_filename_multiple += [filepath for filepath in (((aarecord['lgli_file'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
+        original_filename_multiple += [filepath for filepath in filter(len, [(ia_record['file_unified_data']['original_filename_best'] or '').strip() for ia_record in aarecord['ia_records_meta_only']])]
+        original_filename_multiple += [scihub_doi['file_unified_data']['original_filename_best'] for scihub_doi in aarecord['scihub_doi']]
+        original_filename_multiple += [filepath for filepath in (((aarecord['duxiu'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
+        original_filename_multiple += [filepath for filepath in (((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
+        original_filename_multiple += [filepath for filepath in (((aarecord['aac_magzdb'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
+        original_filename_multiple += [filepath for filepath in (((aarecord['aac_nexusstc'] or {}).get('file_unified_data') or {}).get('original_filename_additional') or [])]
         for duxiu_record in aarecord['duxius_nontransitive_meta_only']:
-            original_filename_multiple += [allthethings.utils.prefix_filepath('duxiu', filepath) for filepath in duxiu_record['file_unified_data']['original_filename_additional']]
+            original_filename_multiple += [filepath for filepath in duxiu_record['file_unified_data']['original_filename_additional']]
         if aarecord['file_unified_data']['original_filename_best'] == '':
             original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
             aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
