@@ -5040,7 +5040,6 @@ def get_aarecords_mysql(session, aarecord_ids):
             original_filename_multiple_processed = list(dict.fromkeys(filter(len, original_filename_multiple))) # Before selecting best, since the best might otherwise get filtered.
             aarecord['file_unified_data']['original_filename_best'] = (original_filename_multiple_processed + [''])[0]
         aarecord['file_unified_data']['original_filename_additional'] = [s for s in original_filename_multiple_processed if s != aarecord['file_unified_data']['original_filename_best']]
-        aarecord['file_unified_data']['original_filename_best_name_only'] = re.split(r'[\\/]', aarecord['file_unified_data']['original_filename_best'])[-1] if '/10.' not in aarecord['file_unified_data']['original_filename_best'] else aarecord['file_unified_data']['original_filename_best'][(aarecord['file_unified_data']['original_filename_best'].index('/10.') + 1):]
         for filepath in original_filename_multiple:
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'filepath', filepath.encode()[0:allthethings.utils.AARECORDS_CODES_CODE_LENGTH-len('filepath:')-5].decode(errors='replace'))
 
@@ -5721,6 +5720,8 @@ def get_additional_for_aarecord(aarecord):
         else:
             cover_url = ""
 
+    additional['original_filename_best_name_only'] = re.split(r'[\\/]', aarecord['file_unified_data']['original_filename_best'])[-1] if '/10.' not in aarecord['file_unified_data']['original_filename_best'] else aarecord['file_unified_data']['original_filename_best'][(aarecord['file_unified_data']['original_filename_best'].index('/10.') + 1):]
+
     additional['top_box'] = {
         'meta_information': [item for item in [
                 aarecord['file_unified_data'].get('title_best') or '',
@@ -5752,7 +5753,7 @@ def get_additional_for_aarecord(aarecord):
                 f"EBSCOhost edsebk {aarecord_id_split[1]}" if aarecord_id_split[0] == 'edsebk' else '',
                 (aarecord['file_unified_data'].get('original_filename_best') or ''),
             ] if item != '']),
-        'title': aarecord['file_unified_data'].get('title_best') or aarecord['file_unified_data'].get('original_filename_best_name_only') or '',
+        'title': aarecord['file_unified_data'].get('title_best') or additional['original_filename_best_name_only'],
         'publisher_and_edition': ", ".join([item for item in [
                 aarecord['file_unified_data'].get('publisher_best') or '',
                 aarecord['file_unified_data'].get('edition_varia_best') or '',
@@ -5773,7 +5774,7 @@ def get_additional_for_aarecord(aarecord):
     }
 
     filename_info = [item for item in [
-            max_length_with_word_boundary(aarecord['file_unified_data'].get('title_best') or aarecord['file_unified_data'].get('original_filename_best_name_only') or '', 60),
+            max_length_with_word_boundary(aarecord['file_unified_data'].get('title_best') or additional['original_filename_best_name_only'], 60),
             max_length_with_word_boundary(aarecord['file_unified_data'].get('author_best') or '', 60),
             max_length_with_word_boundary(aarecord['file_unified_data'].get('edition_varia_best') or '', 60),
             max_length_with_word_boundary(aarecord['file_unified_data'].get('publisher_best') or '', 60),
