@@ -129,6 +129,38 @@ def validate_year(year):
 def doi_is_isbn(doi):
     return doi.startswith('10.978.') or doi.startswith('10.979.')
 
+def make_file_unified_data():
+    output = {
+        "original_filename_best": '',
+        "original_filename_additional": [],
+        "cover_url_best": '',
+        "cover_url_additional": [],
+        "extension_best": '',
+        "extension_additional": [],
+        "filesize_best": '',
+        "filesize_additional": [],
+        "title_best": '',
+        "title_additional": [],
+        "author_best": '',
+        "author_additional": [],
+        "publisher_best": '',
+        "publisher_additional": [],
+        "edition_varia_best": '',
+        "edition_varia_additional": [],
+        "year_best": '',
+        "year_additional": [],
+        "comments_multiple": [],
+        "stripped_description_best": '',
+        "stripped_description_additional": [],
+        "language_codes": [],
+        "added_date_unified": {},
+        "problems": [],
+        "content_type": '',
+        "ipfs_infos": [],
+    }
+    init_identifiers_and_classification_unified(output)
+    return output
+
 def scidb_info(aarecord, additional=None):
     if additional is None:
         additional = aarecord['additional']
