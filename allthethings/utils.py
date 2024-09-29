@@ -137,7 +137,7 @@ def make_file_unified_data():
         "cover_url_additional": [],
         "extension_best": '',
         "extension_additional": [],
-        "filesize_best": '',
+        "filesize_best": 0,
         "filesize_additional": [],
         "title_best": '',
         "title_additional": [],
@@ -155,7 +155,7 @@ def make_file_unified_data():
         "language_codes": [],
         "added_date_unified": {},
         "problems": [],
-        "content_type": '',
+        "content_type_best": '',
         "ipfs_infos": [],
     }
     init_identifiers_and_classification_unified(output)
@@ -175,11 +175,14 @@ def scidb_info(aarecord, additional=None):
         return None
 
     scihub_link = None
-    scihub_doi = aarecord.get('scihub_doi') or []
-    if len(scihub_doi) > 0:
-        scihub_link = f"https://sci-hub.ru/{scihub_doi[0]['doi']}"
+    scihub_dois = [source_record['source_record'] for source_record in aarecord['source_records'] if source_record['source_type'] == 'scihub_doi']
+    if len(scihub_dois) > 0:
+        scihub_link = f"https://sci-hub.ru/{scihub_dois[0]['doi']}"
 
-    if (aarecord['file_unified_data']['content_type'] != "journal_article") and (scihub_link is None):
+    # TODO:SOURCE remove backwards compatibility.
+    content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
+    print(f"{content_type=}")
+    if (content_type != "journal_article") and (scihub_link is None):
         return None
 
     path_info = None
@@ -191,8 +194,9 @@ def scidb_info(aarecord, additional=None):
         ipfs_url = additional['ipfs_urls'][0]['url']
 
     nexusstc_id = None
-    if aarecord.get('aac_nexusstc') is not None:
-        nexusstc_id = aarecord['aac_nexusstc']['id']
+    aac_nexusstcs = [source_record['source_record'] for source_record in aarecord['source_records'] if source_record['source_type'] == 'aac_nexusstc']
+    if len(aac_nexusstcs) > 0:
+        nexusstc_id = aac_nexusstcs[0]['id']
 
     if path_info:
         priority = 1

@@ -1516,6 +1516,9 @@ def get_ia_record_dicts(session, key, values):
                 ia_record_dict['file_unified_data']['year_best'] = potential_year[0]
                 break
 
+        if (ia_record_dict['file_unified_data']['filesize_best'] == 0) and (len(ia_record_dict['json']['aa_shorter_files']) > 0):
+            ia_record_dict['file_unified_data']['filesize_additional'].append(max(int(file.get('size') or '0') for file in ia_record_dict['json']['aa_shorter_files']))
+
         publicdate = extract_list_from_ia_json_field(ia_record_dict, 'publicdate')
         if len(publicdate) > 0:
             if publicdate[0].encode('ascii', 'ignore').decode() != publicdate[0]:
@@ -1523,9 +1526,9 @@ def get_ia_record_dicts(session, key, values):
             else:
                 ia_record_dict['file_unified_data']['added_date_unified'] = { **added_date_unified_file, "date_ia_source": datetime.datetime.strptime(publicdate[0], "%Y-%m-%d %H:%M:%S").isoformat().split('T', 1)[0] }
 
-        ia_record_dict['file_unified_data']['content_type'] = 'book_unknown'
+        ia_record_dict['file_unified_data']['content_type_best'] = 'book_unknown'
         if ia_record_dict['ia_id'].split('_', 1)[0] in ['sim', 'per'] or extract_list_from_ia_json_field(ia_record_dict, 'pub_type') in ["Government Documents", "Historical Journals", "Law Journals", "Magazine", "Magazines", "Newspaper", "Scholarly Journals", "Trade Journals"]:
-            ia_record_dict['file_unified_data']['content_type'] = 'magazine'
+            ia_record_dict['file_unified_data']['content_type_best'] = 'magazine'
 
         ia_record_dict['file_unified_data']['edition_varia_best'] = ', '.join([
             *extract_list_from_ia_json_field(ia_record_dict, 'series'),
@@ -1596,7 +1599,7 @@ def get_ia_record_dicts(session, key, values):
             "all_dates": ("after", "All potential dates, combined from `metadata.year`, `metadata.date`, and `metadata.range`."),
             "longest_date_field": ("after", "The longest field in `all_dates`."),
             "year": ("after", "Found by applying a \d{4} regex to `longest_date_field`."),
-            "content_type": ("after", "Magazines determined by ia_id prefix (like 'sim_' and 'per_') and `metadata.pub_type` field."),
+            "content_type_best": ("after", "Magazines determined by ia_id prefix (like 'sim_' and 'per_') and `metadata.pub_type` field."),
             "edition_varia_normalized": ("after", "From `metadata.series`, `metadata.series_name`, `metadata.volume`, `metadata.issue`, `metadata.edition`, `metadata.city`, and `longest_date_field`."),
         }
         ia_record_dict['aa_ia_derived'] = add_comments_to_dict(ia_record_dict['aa_ia_derived'], aa_ia_derived_comments)
@@ -1901,7 +1904,6 @@ def get_ol_book_dicts(session, key, values):
                     ol_book_dict['file_unified_data']['added_date_unified'] = { 'date_ol_source': datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S').isoformat().split('T', 1)[0] }
 
             # TODO: pull non-fiction vs fiction from "subjects" in ol_book_dicts_primary_linked, and make that more leading?
-            ol_book_dict['file_unified_data']['content_type'] = 'unknown'
 
             # {% for source_record in ol_book_dict.json.source_records %}
             #   <div class="flex odd:bg-black/5 hover:bg-black/64">
@@ -1985,7 +1987,7 @@ def get_lgrsnf_book_dicts(session, key, values):
         if (lgrs_book_dict['visible'] or '') != '':
             lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsnf_visible', 'descr': lgrs_book_dict['visible'], 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
 
-        lgrs_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+        lgrs_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
 
         allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'lgrsnf', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
@@ -2075,7 +2077,7 @@ def get_lgrsfic_book_dicts(session, key, values):
         if (lgrs_book_dict['visible'] or '') != '':
             lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsfic_visible', 'descr': lgrs_book_dict['visible'], 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
 
-        lgrs_book_dict['file_unified_data']['content_type'] = 'book_fiction'
+        lgrs_book_dict['file_unified_data']['content_type_best'] = 'book_fiction'
 
         allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'lgrsfic', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
@@ -2578,19 +2580,19 @@ def get_lgli_file_dicts(session, key, values):
             lgli_file_dict['file_unified_data']['problems'].append({ 'type': 'lgli_broken', 'descr': (lgli_file_dict['broken'] or ''), 'better_md5': (lgli_file_dict['generic'] or '').lower() })
 
         if lgli_file_dict['libgen_topic'] == 'l':
-            lgli_file_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+            lgli_file_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
         if lgli_file_dict['libgen_topic'] == 'f':
-            lgli_file_dict['file_unified_data']['content_type'] = 'book_fiction'
+            lgli_file_dict['file_unified_data']['content_type_best'] = 'book_fiction'
         if lgli_file_dict['libgen_topic'] == 'r':
-            lgli_file_dict['file_unified_data']['content_type'] = 'book_fiction'
+            lgli_file_dict['file_unified_data']['content_type_best'] = 'book_fiction'
         if lgli_file_dict['libgen_topic'] == 'a':
-            lgli_file_dict['file_unified_data']['content_type'] = 'journal_article'
+            lgli_file_dict['file_unified_data']['content_type_best'] = 'journal_article'
         if lgli_file_dict['libgen_topic'] == 's':
-            lgli_file_dict['file_unified_data']['content_type'] = 'standards_document'
+            lgli_file_dict['file_unified_data']['content_type_best'] = 'standards_document'
         if lgli_file_dict['libgen_topic'] == 'm':
-            lgli_file_dict['file_unified_data']['content_type'] = 'magazine'
+            lgli_file_dict['file_unified_data']['content_type_best'] = 'magazine'
         if lgli_file_dict['libgen_topic'] == 'c':
-            lgli_file_dict['file_unified_data']['content_type'] = 'book_comic'
+            lgli_file_dict['file_unified_data']['content_type_best'] = 'book_comic'
 
         lgli_file_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
@@ -2738,7 +2740,7 @@ def get_scihub_doi_dicts(session, key, values):
             "file_unified_data": allthethings.utils.make_file_unified_data(),
         }
         scihub_doi_dict["file_unified_data"]["original_filename_best"] = allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].strip()}.pdf")
-        scihub_doi_dict["file_unified_data"]["content_type"] = 'journal_article'
+        scihub_doi_dict["file_unified_data"]["content_type_best"] = 'journal_article'
         allthethings.utils.add_identifier_unified(scihub_doi_dict['file_unified_data'], "doi", scihub_doi_dict["doi"])
         scihub_doi_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
@@ -2937,23 +2939,23 @@ def get_oclc_dicts(session, key, values):
             if potential_year is not None:
                 oclc_dict["file_unified_data"]["year_additional"].append(potential_year[0])
 
-        oclc_dict["file_unified_data"]["content_type"] = 'other'
+        oclc_dict["file_unified_data"]["content_type_best"] = 'other'
         if "thsis" in oclc_dict["aa_oclc_derived"]["specific_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'journal_article'
         elif "mss" in oclc_dict["aa_oclc_derived"]["specific_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'journal_article'
         elif "book" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'book_unknown'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'book_unknown'
         elif "artchap" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'journal_article'
         elif "artcl" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'journal_article'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'journal_article'
         elif "news" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'magazine'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'magazine'
         elif "jrnl" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'magazine'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'magazine'
         elif "msscr" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type"] = 'musical_score'
+            oclc_dict["file_unified_data"]["content_type_best"] = 'musical_score'
 
         oclc_dict["file_unified_data"]['edition_varia_best'] = ', '.join(list(dict.fromkeys(filter(len, [
             max(['', *oclc_dict["aa_oclc_derived"]["series_multiple"]], key=len),
@@ -3755,7 +3757,7 @@ def get_aac_upload_book_dicts(session, key, values):
             aac_upload_book_dict['file_unified_data']['title_additional'] = [title for title in aac_upload_book_dict['file_unified_data']['title_additional'] if title != 'Page not found']
 
         aac_upload_book_dict['file_unified_data']['original_filename_best'] = next(iter(aac_upload_book_dict['file_unified_data']['original_filename_additional']), '')
-        aac_upload_book_dict['file_unified_data']['filesize_best'] = next(iter(aac_upload_book_dict['file_unified_data']['filesize_additional']), '')
+        aac_upload_book_dict['file_unified_data']['filesize_best'] = next(iter(aac_upload_book_dict['file_unified_data']['filesize_additional']), 0)
         aac_upload_book_dict['file_unified_data']['extension_best'] = next(iter(aac_upload_book_dict['file_unified_data']['extension_additional']), '')
         aac_upload_book_dict['file_unified_data']['title_best'] = next(iter(aac_upload_book_dict['file_unified_data']['title_additional']), '')
         aac_upload_book_dict['file_unified_data']['author_best'] = next(iter(aac_upload_book_dict['file_unified_data']['author_additional']), '')
@@ -3774,20 +3776,20 @@ def get_aac_upload_book_dicts(session, key, values):
             allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'ocaid', ocaid)
 
         if 'acm' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
-            aac_upload_book_dict['file_unified_data']['content_type'] = 'journal_article'
+            aac_upload_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
         elif 'degruyter' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
             if 'DeGruyter Journals' in aac_upload_book_dict['file_unified_data']['original_filename_best']:
-                aac_upload_book_dict['file_unified_data']['content_type'] = 'journal_article'
+                aac_upload_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
             else:
-                aac_upload_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+                aac_upload_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
         elif 'japanese_manga' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
-            aac_upload_book_dict['file_unified_data']['content_type'] = 'book_comic'
+            aac_upload_book_dict['file_unified_data']['content_type_best'] = 'book_comic'
         elif 'magzdb' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
-            aac_upload_book_dict['file_unified_data']['content_type'] = 'magazine'
+            aac_upload_book_dict['file_unified_data']['content_type_best'] = 'magazine'
         elif 'longquan_archives' in aac_upload_book_dict['aa_upload_derived']['subcollection_multiple']:
-            aac_upload_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+            aac_upload_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
         elif any('misc/music_books' in filename for filename in aac_upload_book_dict['file_unified_data']['original_filename_additional']):
-            aac_upload_book_dict['file_unified_data']['content_type'] = 'musical_score'
+            aac_upload_book_dict['file_unified_data']['content_type_best'] = 'musical_score'
 
         aac_upload_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
@@ -3933,7 +3935,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
                 allthethings.utils.add_identifier_unified(aac_magzdb_book_dict['file_unified_data'], 'md5', upload['md5'].lower())
 
         aac_magzdb_book_dict['file_unified_data']['original_filename_best'] = next(iter(aac_magzdb_book_dict['file_unified_data']['original_filename_additional']), '')
-        aac_magzdb_book_dict['file_unified_data']['content_type'] = 'magazine'
+        aac_magzdb_book_dict['file_unified_data']['content_type_best'] = 'magazine'
         aac_magzdb_book_dicts.append(aac_magzdb_book_dict)
     return aac_magzdb_book_dicts
 
@@ -4152,77 +4154,77 @@ def get_aac_nexusstc_book_dicts(session, key, values):
         # 69 null
         if len(aac_record['metadata']['record']['type']) == 1:
             if aac_record['metadata']['record']['type'][0] == 'journal-article':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'journal_article'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
             elif aac_record['metadata']['record']['type'][0] == 'journal-issue':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'magazine'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'magazine'
             elif aac_record['metadata']['record']['type'][0] == 'journal-volume':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'magazine'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'magazine'
             elif aac_record['metadata']['record']['type'][0] == 'journal':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'magazine'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'magazine'
             elif aac_record['metadata']['record']['type'][0] == 'proceedings-article':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'journal_article'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
             elif aac_record['metadata']['record']['type'][0] == 'proceedings':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'magazine'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'magazine'
             elif aac_record['metadata']['record']['type'][0] == 'proceedings-series':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'magazine'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'magazine'
             elif aac_record['metadata']['record']['type'][0] == 'dataset':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'component':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'report':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'journal_article'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
             elif aac_record['metadata']['record']['type'][0] == 'report-component':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'journal_article'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
             elif aac_record['metadata']['record']['type'][0] == 'report-series':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
             elif aac_record['metadata']['record']['type'][0] == 'standard':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'standards_document'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'standards_document'
             elif aac_record['metadata']['record']['type'][0] == 'standard-series':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'standards_document'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'standards_document'
             elif aac_record['metadata']['record']['type'][0] == 'edited-book':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
             elif aac_record['metadata']['record']['type'][0] == 'monograph':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
             elif aac_record['metadata']['record']['type'][0] == 'reference-book':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
             elif aac_record['metadata']['record']['type'][0] == 'book':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
             elif aac_record['metadata']['record']['type'][0] == 'book-series':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
             elif aac_record['metadata']['record']['type'][0] == 'book-set':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
             elif aac_record['metadata']['record']['type'][0] == 'book-chapter':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'book-section':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'book-part':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'book-track':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'reference-entry':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'dissertation':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
             elif aac_record['metadata']['record']['type'][0] == 'posted-content':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'journal_article'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
             elif aac_record['metadata']['record']['type'][0] == 'peer-review':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'other':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'magazine':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'magazine'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'magazine'
             elif aac_record['metadata']['record']['type'][0] == 'chapter':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'manual':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'book_nonfiction'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
             elif aac_record['metadata']['record']['type'][0] == 'wiki':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'grant':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'database':
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] is None:
-                aac_nexusstc_book_dict['file_unified_data']['content_type'] = 'other'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             else:
                 raise Exception(f"Unexpected {aac_record['metadata']['record']['type'][0]=}")
         elif len(aac_record['metadata']['record']['type']) > 1:
@@ -4625,7 +4627,7 @@ def aarecord_score_base(aarecord):
     if len(aarecord['file_unified_data'].get('edition_varia_best') or '') > 0:
         score += 2.0
     score += min(8.0, 2.0*len(aarecord['file_unified_data'].get('identifiers_unified') or []))
-    if len(aarecord['file_unified_data'].get('content_type') or '') in ['journal_article', 'standards_document', 'book_comic', 'magazine']:
+    if len(aarecord['file_unified_data'].get('content_type_best') or '') in ['journal_article', 'standards_document', 'book_comic', 'magazine']:
         # For now demote non-books quite a bit, since they can drown out books.
         # People can filter for them directly.
         score -= 70.0
@@ -4702,36 +4704,6 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
             raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
         return dict(retval)
 
-def make_source_record(aarecord, source_type):
-    orig = aarecord.get(source_type)
-    if orig is None:
-        return []
-    elif type(orig) == list:
-        return [{"source_type": source_type, "source_record": record} for record in orig]
-    else:
-        return [{"source_type": source_type, "source_record": orig}]
-def make_source_records(aarecord):
-    return [
-        *make_source_record(aarecord, 'lgrsnf_book'),
-        *make_source_record(aarecord, 'lgrsfic_book'),
-        *make_source_record(aarecord, 'lgli_file'),
-        *make_source_record(aarecord, 'zlib_book'),
-        *make_source_record(aarecord, 'aac_zlib3_book'),
-        *make_source_record(aarecord, 'ia_record'),
-        *make_source_record(aarecord, 'ia_records_meta_only'),
-        *make_source_record(aarecord, 'isbndb'),
-        *make_source_record(aarecord, 'ol'),
-        *make_source_record(aarecord, 'scihub_doi'),
-        *make_source_record(aarecord, 'oclc'),
-        *make_source_record(aarecord, 'duxiu'),
-        *make_source_record(aarecord, 'aac_upload'),
-        *make_source_record(aarecord, 'aac_magzdb'),
-        *make_source_record(aarecord, 'aac_nexusstc'),
-        *make_source_record(aarecord, 'ol_book_dicts_primary_linked'),
-        *make_source_record(aarecord, 'duxius_nontransitive_meta_only'),
-        *make_source_record(aarecord, 'aac_edsebk'),
-    ]
-
 UNIFIED_DATA_MERGE_ALL = '___all'
 def UNIFIED_DATA_MERGE_EXCEPT(excluded):
     return { "___excluded": excluded }
@@ -4806,32 +4778,46 @@ def get_aarecords_mysql(session, aarecord_ids):
 
     # First pass, so we can fetch more dependencies.
     aarecords = []
+    source_records_full_by_aarecord_id = {}
     transitive_codes = collections.defaultdict(list)
     for aarecord_id in aarecord_ids:
         aarecord_id_split = aarecord_id.split(':', 1)
         aarecord = {}
         aarecord['id'] = aarecord_id
-        aarecord['lgrsnf_book'] = lgrsnf_book_dicts.get(aarecord_id)
-        aarecord['lgrsfic_book'] = lgrsfic_book_dicts.get(aarecord_id)
-        aarecord['lgli_file'] = lgli_file_dicts.get(aarecord_id)
-        aarecord['zlib_book'] = zlib_book_dicts1.get(aarecord_id) or zlib_book_dicts2.get(aarecord_id)
-        aarecord['aac_zlib3_book'] = aac_zlib3_book_dicts1.get(aarecord_id) or aac_zlib3_book_dicts2.get(aarecord_id)
-        aarecord['ia_record'] = ia_record_dicts.get(aarecord_id) or ia_record_dicts2.get(aarecord_id)
-        aarecord['ia_records_meta_only'] = []
-        aarecord['isbndb'] = list(isbndb_dicts.get(aarecord_id) or [])
-        aarecord['ol'] = list(ol_book_dicts.get(aarecord_id) or [])
-        aarecord['scihub_doi'] = list(scihub_doi_dicts.get(aarecord_id) or [])
-        aarecord['oclc'] = list(oclc_dicts.get(aarecord_id) or [])
-        aarecord['duxiu'] = duxiu_dicts.get(aarecord_id) or duxiu_dicts2.get(aarecord_id) or duxiu_dicts3.get(aarecord_id)
-        aarecord['aac_upload'] = aac_upload_md5_dicts.get(aarecord_id)
-        aarecord['aac_magzdb'] = aac_magzdb_book_dicts.get(aarecord_id) or aac_magzdb_book_dicts2.get(aarecord_id)
-        aarecord['aac_nexusstc'] = aac_nexusstc_book_dicts.get(aarecord_id) or aac_nexusstc_book_dicts2.get(aarecord_id) or aac_nexusstc_book_dicts3.get(aarecord_id)
-        aarecord['ol_book_dicts_primary_linked'] = list(ol_book_dicts_primary_linked.get(tuple(aarecord_id_split)) or [])
-        aarecord['duxius_nontransitive_meta_only'] = []
-        aarecord['aac_edsebk'] = aac_edsebk_book_dicts.get(aarecord_id)
+        source_records = []
 
-        # TODO:SOURCE Remove and use source_records directly.
-        source_records = make_source_records(aarecord)
+        if source_record := lgrsnf_book_dicts.get(aarecord_id):
+            source_records.append({'source_type': 'lgrsnf_book', 'source_record': source_record})
+        if source_record := lgrsfic_book_dicts.get(aarecord_id):
+            source_records.append({'source_type': 'lgrsfic_book', 'source_record': source_record})
+        if source_record := lgli_file_dicts.get(aarecord_id):
+            source_records.append({'source_type': 'lgli_file', 'source_record': source_record})
+        if source_record := (zlib_book_dicts1.get(aarecord_id) or zlib_book_dicts2.get(aarecord_id)):
+            source_records.append({'source_type': 'zlib_book', 'source_record': source_record})
+        if source_record := (aac_zlib3_book_dicts1.get(aarecord_id) or aac_zlib3_book_dicts2.get(aarecord_id)):
+            source_records.append({'source_type': 'aac_zlib3_book', 'source_record': source_record})
+        if source_record := (ia_record_dicts.get(aarecord_id) or ia_record_dicts2.get(aarecord_id)):
+            source_records.append({'source_type': 'ia_record', 'source_record': source_record})
+        for source_record in list(isbndb_dicts.get(aarecord_id) or []):
+            source_records.append({'source_type': 'isbndb', 'source_record': source_record})
+        for source_record in list(ol_book_dicts.get(aarecord_id) or []):
+            source_records.append({'source_type': 'ol', 'source_record': source_record})
+        for source_record in list(scihub_doi_dicts.get(aarecord_id) or []):
+            source_records.append({'source_type': 'scihub_doi', 'source_record': source_record})
+        for source_record in list(oclc_dicts.get(aarecord_id) or []):
+            source_records.append({'source_type': 'oclc', 'source_record': source_record})
+        if source_record := (duxiu_dicts.get(aarecord_id) or duxiu_dicts2.get(aarecord_id) or duxiu_dicts3.get(aarecord_id)):
+            source_records.append({'source_type': 'duxiu', 'source_record': source_record})
+        if source_record := aac_upload_md5_dicts.get(aarecord_id):
+            source_records.append({'source_type': 'aac_upload', 'source_record': source_record})
+        if source_record := (aac_magzdb_book_dicts.get(aarecord_id) or aac_magzdb_book_dicts2.get(aarecord_id)):
+            source_records.append({'source_type': 'aac_magzdb', 'source_record': source_record})
+        if source_record := (aac_nexusstc_book_dicts.get(aarecord_id) or aac_nexusstc_book_dicts2.get(aarecord_id) or aac_nexusstc_book_dicts3.get(aarecord_id)):
+            source_records.append({'source_type': 'aac_nexusstc', 'source_record': source_record})
+        for source_record in list(ol_book_dicts_primary_linked.get(tuple(aarecord_id_split)) or []):
+            source_records.append({'source_type': 'ol_book_dicts_primary_linked', 'source_record': source_record})
+        if source_record := aac_edsebk_book_dicts.get(aarecord_id):
+            source_records.append({'source_type': 'aac_edsebk', 'source_record': source_record})
 
         aarecord['file_unified_data'] = allthethings.utils.make_file_unified_data()
         # Duplicated below, with more fields
@@ -4848,70 +4834,64 @@ def get_aarecords_mysql(session, aarecord_ids):
                     continue
                 if code_name in ['isbn13', 'ol', 'doi', 'oclc', 'ocaid', 'duxiu_ssid', 'cadal_ssno']:
                     for code_value in code_values:
-                        transitive_codes[(code_name, code_value)].append(aarecord)
+                        transitive_codes[(code_name, code_value)].append(aarecord_id)
 
+        source_records_full_by_aarecord_id[aarecord_id] = source_records
         aarecords.append(aarecord)
 
     for isbndb_dict in get_isbndb_dicts(session, [code[1] for code in transitive_codes.keys() if code[0] == 'isbn13']):
-        for aarecord in transitive_codes[('isbn13', isbndb_dict['ean13'])]:
-            if any([existing_isbndb_dict['ean13'] == isbndb_dict['ean13'] for existing_isbndb_dict in aarecord['isbndb']]):
+        for aarecord_id in transitive_codes[('isbn13', isbndb_dict['ean13'])]:
+            if any([source_record['source_record']['ean13'] == isbndb_dict['ean13'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'isbndb']):
                 continue
-            aarecord['isbndb'].append(isbndb_dict)
+            source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'isbndb', 'source_record': isbndb_dict})
     for ol_book_dict in get_ol_book_dicts(session, 'ol_edition', [code[1] for code in transitive_codes.keys() if code[0] == 'ol' and allthethings.utils.validate_ol_editions([code[1]])]):
-        for aarecord in transitive_codes[('ol', ol_book_dict['ol_edition'])]:
-            if any([existing_ol_book_dict['ol_edition'] == ol_book_dict['ol_edition'] for existing_ol_book_dict in aarecord['ol']]):
+        for aarecord_id in transitive_codes[('ol', ol_book_dict['ol_edition'])]:
+            if any([source_record['source_record']['ol_edition'] == ol_book_dict['ol_edition'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'ol']):
                 continue
-            aarecord['ol'].append(ol_book_dict)
+            source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'ol', 'source_record': ol_book_dict})
     for code_full, ol_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13', 'ocaid']]).items():
-        for aarecord in transitive_codes[code_full]:
+        for aarecord_id in transitive_codes[code_full]:
             for ol_book_dict in ol_book_dicts:
-                if any([existing_ol_book_dict['ol_edition'] == ol_book_dict['ol_edition'] for existing_ol_book_dict in aarecord['ol']]):
+                if any([source_record['source_record']['ol_edition'] == ol_book_dict['ol_edition'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'ol']):
                     continue
-                aarecord['ol'].append(ol_book_dict)
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'ol', 'source_record': ol_book_dict})
     for oclc_dict in get_oclc_dicts(session, 'oclc', [code[1] for code in transitive_codes.keys() if code[0] == 'oclc']):
-        for aarecord in transitive_codes[('oclc', oclc_dict['oclc_id'])]:
-            if any([existing_oclc_dict['oclc_id'] == oclc_dict['oclc_id'] for existing_oclc_dict in aarecord['oclc']]):
+        for aarecord_id in transitive_codes[('oclc', oclc_dict['oclc_id'])]:
+            if any([source_record['source_record']['oclc_id'] == oclc_dict['oclc_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'oclc']):
                 continue
-            aarecord['oclc'].append(oclc_dict)
+            source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'oclc', 'source_record': oclc_dict})
     for code_full, oclc_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_oclc_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
-        for aarecord in transitive_codes[code_full]:
+        for aarecord_id in transitive_codes[code_full]:
             for oclc_dict in oclc_dicts:
-                if any([existing_oclc_dict['oclc_id'] == oclc_dict['oclc_id'] for existing_oclc_dict in aarecord['oclc']]):
+                if any([source_record['source_record']['oclc_id'] == oclc_dict['oclc_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'oclc']):
                     continue
-                aarecord['oclc'].append(oclc_dict)
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'oclc', 'source_record': oclc_dict})
     for code_full, edsebk_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_edsebk_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
-        for aarecord in transitive_codes[code_full]:
+        for aarecord_id in transitive_codes[code_full]:
             for edsebk_dict in edsebk_dicts:
-                # TODO: make consistent with other dicts
-                if aarecord['aac_edsebk'] is None:
-                    aarecord['aac_edsebk'] = edsebk_dict
-    for ia_record_dict in get_ia_record_dicts(session, 'ia_id', [code[1] for code, aarecords in transitive_codes.items() if code[0] == 'ocaid' and any((aarecord.get('aa_ia_file') is None) for aarecord in aarecords)]):
-        for aarecord in transitive_codes[('ocaid', ia_record_dict['ia_id'])]:
-            if aarecord.get('aa_ia_file') is not None:
-                continue
-            if any([existing_ia_record_dict['ia_id'] == ia_record_dict['ia_id'] for existing_ia_record_dict in ([aarecord['ia_record']] if aarecord['ia_record'] is not None else []) + aarecord['ia_records_meta_only']]):
-                continue
-            aarecord['ia_records_meta_only'].append(ia_record_dict)
+                if any([source_record['source_record']['edsebk_id'] == edsebk_dict['edsebk_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'edsebk']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_edsebk', 'source_record': edsebk_dict})
+    for ia_record_dict in get_ia_record_dicts(session, 'ia_id', [code[1] for code, aarecords in transitive_codes.items() if code[0] == 'ocaid']):
+        for aarecord_id in transitive_codes[('ocaid', ia_record_dict['ia_id'])]:
+            if any([((source_record['source_record']['ia_id'] == ia_record_dict['ia_id']) or (source_record['source_record']['aa_ia_file'] is not None)) for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] in ['ia_record', 'ia_records_meta_only']]):
+                    continue
+            source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'ia_records_meta_only', 'source_record': ia_record_dict})
     for scihub_doi_dict in get_scihub_doi_dicts(session, 'doi', [code[1] for code in transitive_codes.keys() if code[0] == 'doi']):
-        for aarecord in transitive_codes[('doi', scihub_doi_dict['doi'])]:
-            if any([existing_scihub_doi_dict['doi'] == scihub_doi_dict['doi'] for existing_scihub_doi_dict in aarecord['scihub_doi']]):
+        for aarecord_id in transitive_codes[('doi', scihub_doi_dict['doi'])]:
+            if any([source_record['source_record']['doi'] == scihub_doi_dict['doi'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'scihub_doi']):
                 continue
-            aarecord['scihub_doi'].append(scihub_doi_dict)
+            source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'scihub_doi', 'source_record': scihub_doi_dict})
     for duxiu_dict in get_duxiu_dicts(session, 'duxiu_ssid', [code[1] for code in transitive_codes.keys() if code[0] == 'duxiu_ssid'], include_deep_transitive_md5s_size_path=False):
-        for aarecord in transitive_codes[('duxiu_ssid', duxiu_dict['duxiu_ssid'])]:
-            if any([duxiu_dict['duxiu_ssid'] == duxiu_ssid for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for duxiu_ssid in (duxiu_record['file_unified_data']['identifiers_unified'].get('duxiu_ssid') or [])]):
-                continue
-            aarecord['duxius_nontransitive_meta_only'].append(duxiu_dict)
+        for aarecord_id in transitive_codes[('duxiu_ssid', duxiu_dict['duxiu_ssid'])]:
+            if any([duxiu_dict['duxiu_ssid'] == duxiu_ssid for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] in ['duxiu', 'duxius_nontransitive_meta_only'] for duxiu_ssid in (source_record['source_record']['file_unified_data']['identifiers_unified'].get('duxiu_ssid') or [])]):
+                    continue
+            source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'duxius_nontransitive_meta_only', 'source_record': duxiu_dict})
     for duxiu_dict in get_duxiu_dicts(session, 'cadal_ssno', [code[1] for code in transitive_codes.keys() if code[0] == 'cadal_ssno'], include_deep_transitive_md5s_size_path=False):
-        for aarecord in transitive_codes[('cadal_ssno', duxiu_dict['cadal_ssno'])]:
-            if any([duxiu_dict['cadal_ssno'] == cadal_ssno for duxiu_record in (aarecord['duxius_nontransitive_meta_only'] + [aarecord['duxiu']] if aarecord['duxiu'] is not None else []) for cadal_ssno in (duxiu_record['file_unified_data']['identifiers_unified'].get('cadal_ssno') or [])]):
-                continue
-            aarecord['duxius_nontransitive_meta_only'].append(duxiu_dict)
-
-    # TODO:SOURCE Remove and use source_records directly.
-    source_records_full_by_aarecord_id = {}
-    for aarecord in aarecords:
-        source_records_full_by_aarecord_id[aarecord['id']] = make_source_records(aarecord)
+        for aarecord_id in transitive_codes[('cadal_ssno', duxiu_dict['cadal_ssno'])]:
+            if any([duxiu_dict['cadal_ssno'] == cadal_ssno for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] in ['duxiu', 'duxius_nontransitive_meta_only'] for cadal_ssno in (source_record['source_record']['file_unified_data']['identifiers_unified'].get('cadal_ssno') or [])]):
+                    continue
+            source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'duxius_nontransitive_meta_only', 'source_record': duxiu_dict})
 
     # Second pass
     for aarecord in aarecords:
@@ -4943,7 +4923,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             [(UNIFIED_DATA_MERGE_ALL, 'cover_url_additional')]
         ])
 
-        extension_multiple = [(source_record['source_record']['file_unified_data'].get('extension_best') or '') for source_record in source_records]
+        extension_multiple = [(source_record['source_record']['file_unified_data']['extension_best']) for source_record in source_records]
         extension_multiple += ['pdf'] if aarecord_id_split[0] == 'doi' else []
         aarecord['file_unified_data']['extension_best'] = max(extension_multiple + [''], key=len)
         for preferred_extension in ['epub', 'pdf']:
@@ -4954,15 +4934,11 @@ def get_aarecords_mysql(session, aarecord_ids):
 
         filesize_multiple = [(source_record['source_record']['file_unified_data'].get('filesize_best') or 0) for source_record in source_records]
         aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
-        if aarecord['ia_record'] is not None and len(aarecord['ia_record']['json']['aa_shorter_files']) > 0:
-            filesize_multiple.append(max(int(file.get('size') or '0') for file in aarecord['ia_record']['json']['aa_shorter_files']))
-        for ia_record in aarecord['ia_records_meta_only']:
-            # TODO: move this into file_unified_data.
-            if len(ia_record['json']['aa_shorter_files']) > 0:
-                filesize_multiple.append(max(int(file.get('size') or '0') for file in ia_record['json']['aa_shorter_files']))
         if aarecord['file_unified_data']['filesize_best'] == 0:
             aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
-        filesize_multiple += [filesize for source_record in source_records for filesize in (source_record['source_record']['file_unified_data'].get('filesize_additional') or [])]
+        filesize_multiple += [filesize for source_record in source_records for filesize in (source_record['source_record']['file_unified_data']['filesize_additional'])]
+        if aarecord['file_unified_data']['filesize_best'] == 0:
+            aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
         aarecord['file_unified_data']['filesize_additional'] = [s for s in dict.fromkeys(filter(lambda fz: fz > 0, filesize_multiple)) if s != aarecord['file_unified_data']['filesize_best']]
 
         aarecord['file_unified_data']['title_best'], aarecord['file_unified_data']['title_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'title_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'title_best')], [(UNIFIED_DATA_MERGE_ALL, 'title_best'), (UNIFIED_DATA_MERGE_ALL, 'title_additional')]])
@@ -5093,39 +5069,31 @@ def get_aarecords_mysql(session, aarecord_ids):
             raise Exception(f"Unknown {aarecord_id_split[0]=}")
 
         aarecord['file_unified_data']['problems'] = [problem for source_record in source_records for problem in source_record['source_record']['file_unified_data'].get('problems') or []]
-        
-        aarecord['file_unified_data']['content_type'] = None
-        if (aarecord['file_unified_data']['content_type'] is None) and (aarecord['lgli_file'] is not None):
-            aarecord['file_unified_data']['content_type'] = aarecord['lgli_file']['file_unified_data']['content_type']
-        if (aarecord['file_unified_data']['content_type'] is None) and aarecord['aac_magzdb']:
-            aarecord['file_unified_data']['content_type'] = aarecord['aac_magzdb']['file_unified_data']['content_type']
-        if (aarecord['file_unified_data']['content_type'] is None) and aarecord['lgrsnf_book'] and (not aarecord['lgrsfic_book']):
-            aarecord['file_unified_data']['content_type'] = aarecord['lgrsnf_book']['file_unified_data']['content_type']
-        if (aarecord['file_unified_data']['content_type'] is None) and (not aarecord['lgrsnf_book']) and aarecord['lgrsfic_book']:
-            aarecord['file_unified_data']['content_type'] = aarecord['lgrsfic_book']['file_unified_data']['content_type']
-        if (aarecord['file_unified_data']['content_type'] is None) and aarecord['aac_nexusstc'] and (aarecord['aac_nexusstc']['file_unified_data']['content_type'] != ''):
-            aarecord['file_unified_data']['content_type'] = aarecord['aac_nexusstc']['file_unified_data']['content_type']
-        if aarecord['file_unified_data']['content_type'] is None:
-            ia_content_type = (((aarecord['ia_record'] or {}).get('file_unified_data') or {}).get('content_type') or 'book_unknown')
-            for ia_record in aarecord['ia_records_meta_only']:
-                if ia_content_type == 'book_unknown':
-                    ia_content_type = ia_record['file_unified_data']['content_type']
-            if (aarecord['file_unified_data']['content_type'] is None) and (ia_content_type != 'book_unknown'):
-                aarecord['file_unified_data']['content_type'] = ia_content_type
-        if (aarecord['file_unified_data']['content_type'] is None) and (len(aarecord['ol_book_dicts_primary_linked']) > 0):
-            aarecord['file_unified_data']['content_type'] = aarecord['ol_book_dicts_primary_linked'][0]['file_unified_data']['content_type']
-        if (aarecord['file_unified_data']['content_type'] is None) and (len(aarecord['scihub_doi']) > 0):
-            aarecord['file_unified_data']['content_type'] = aarecord['scihub_doi'][0]['file_unified_data']['content_type']
-        if (aarecord['file_unified_data']['content_type'] is None) and (len(aarecord['oclc']) > 0):
-            for oclc in aarecord['oclc']:
+
+        if (aarecord['file_unified_data']['content_type_best'] == '') and (len(source_records_by_type['lgrsnf_book']) > 0) and (len(source_records_by_type['lgrsfic_book']) == 0):
+            aarecord['file_unified_data']['content_type_best'] = source_records_by_type['lgrsnf_book'][0]['file_unified_data']['content_type_best']
+        if (aarecord['file_unified_data']['content_type_best'] == '') and (len(source_records_by_type['lgrsfic_book']) > 0) and (len(source_records_by_type['lgrsnf_book']) == 0):
+            aarecord['file_unified_data']['content_type_best'] = source_records_by_type['lgrsfic_book'][0]['file_unified_data']['content_type_best']
+        if aarecord['file_unified_data']['content_type_best'] == '':
+            aarecord['file_unified_data']['content_type_best'], content_type_additional = merge_file_unified_data_strings(source_records_by_type, [
+                [('lgli_file', 'content_type_best')],
+                [('aac_magzdb', 'content_type_best')],
+                [('aac_nexusstc', 'content_type_best')],
+                [('ia_record', 'content_type_best')],
+                [('ia_records_meta_only', 'content_type_best')],
+                [('ol_book_dicts_primary_linked', 'content_type_best')],
+                [('scihub_doi', 'content_type_best')],
+                [('aac_upload', 'content_type_best')],
+                [(UNIFIED_DATA_MERGE_EXCEPT(['oclc']), 'content_type_best')],
+            ])
+        if aarecord['file_unified_data']['content_type_best'] == '':
+            for oclc in source_records_by_type['oclc']:
                 # OCLC has a lot of books mis-tagged as journal article.
-                if (aarecord_id_split[0] == 'oclc') or (oclc['file_unified_data']['content_type'] != 'other' and oclc['file_unified_data']['content_type'] != 'journal_article'):
-                    aarecord['file_unified_data']['content_type'] = oclc['file_unified_data']['content_type']
+                if (aarecord_id_split[0] == 'oclc') or (oclc['file_unified_data']['content_type_best'] != 'other' and oclc['file_unified_data']['content_type_best'] != 'journal_article'):
+                    aarecord['file_unified_data']['content_type_best'] = oclc['file_unified_data']['content_type_best']
                     break
-        if (aarecord['file_unified_data']['content_type'] is None) and ((((aarecord['aac_upload'] or {}).get('file_unified_data') or {}).get('content_type') or '') != ''):
-            aarecord['file_unified_data']['content_type'] = aarecord['aac_upload']['file_unified_data']['content_type']
-        if aarecord['file_unified_data']['content_type'] is None:
-            aarecord['file_unified_data']['content_type'] = 'book_unknown'
+        if aarecord['file_unified_data']['content_type_best'] == '':
+            aarecord['file_unified_data']['content_type_best'] = 'book_unknown'
 
         aarecord['source_records'] = []
         for source_record in source_records_full_by_aarecord_id[aarecord_id]:
@@ -5312,7 +5280,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             else:
                 raise Exception(f"Unknown {source_record['source_type']=}")
 
-        search_content_type = aarecord['file_unified_data']['content_type']
+        search_content_type = aarecord['file_unified_data']['content_type_best']
         # Once we have the content type.
         aarecord['indexes'] = [allthethings.utils.get_aarecord_search_index(aarecord_id_split[0], search_content_type)]
 
@@ -5379,9 +5347,9 @@ def get_aarecords_mysql(session, aarecord_ids):
             'search_description_comments': ('\n'.join([aarecord['file_unified_data']['stripped_description_best']] + (aarecord['file_unified_data']['comments_multiple'])))[:10000],
             'search_text': search_text,
             'search_access_types': [
-                *(['external_download'] if (not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and any([((aarecord.get(field) is not None) and (type(aarecord[field]) is not list or len(aarecord[field]) > 0)) for field in ['lgrsnf_book', 'lgrsfic_book', 'lgli_file', 'zlib_book', 'aac_zlib3_book', 'scihub_doi', 'aac_magzdb', 'aac_nexusstc']]) else []),
-                *(['external_borrow'] if (not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and (aarecord.get('ia_record') and (not aarecord['ia_record']['aa_ia_derived']['printdisabled_only'])) else []),
-                *(['external_borrow_printdisabled'] if (not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and (aarecord.get('ia_record') and (aarecord['ia_record']['aa_ia_derived']['printdisabled_only'])) else []),
+                *(['external_download'] if (not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and any([(len(source_records_by_type[field]) > 0) for field in ['lgrsnf_book', 'lgrsfic_book', 'lgli_file', 'zlib_book', 'aac_zlib3_book', 'scihub_doi', 'aac_magzdb', 'aac_nexusstc']]) else []),
+                *(['external_borrow'] if ((not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and (len(source_records_by_type['ia_record']) > 0) and (not any(source_record['aa_ia_derived']['printdisabled_only'] for source_record in source_records_by_type['ia_record']))) else []),
+                *(['external_borrow_printdisabled'] if ((not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and (len(source_records_by_type['ia_record']) > 0) and (any(source_record['aa_ia_derived']['printdisabled_only'] for source_record in source_records_by_type['ia_record']))) else []),
                 *(['aa_download'] if (not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and aarecord['file_unified_data']['has_aa_downloads'] == 1 else []),
                 *(['aa_scidb'] if (not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and aarecord['file_unified_data']['has_scidb'] == 1 else []),
                 *(['torrents_available'] if (not allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0])) and aarecord['file_unified_data']['has_torrent_paths'] == 1 else []),
@@ -5412,27 +5380,6 @@ def get_aarecords_mysql(session, aarecord_ids):
     #     # We can simply cut the embedding for ES because of Matryoshka: https://openai.com/index/new-embedding-models-and-api-updates/
     #     aarecord['search_only_fields']['search_text_embedding_3_small_100_tokens_1024_dims'] = embedding['text_embedding_3_small_100_tokens'][0:1024]
 
-    # TODO:SOURCE Remove and use source_records directly.
-    for aarecord in aarecords:
-        del aarecord['lgrsnf_book']
-        del aarecord['lgrsfic_book']
-        del aarecord['lgli_file']
-        del aarecord['zlib_book']
-        del aarecord['aac_zlib3_book']
-        del aarecord['ia_record']
-        del aarecord['ia_records_meta_only']
-        del aarecord['isbndb']
-        del aarecord['ol']
-        del aarecord['scihub_doi']
-        del aarecord['oclc']
-        del aarecord['duxiu']
-        del aarecord['aac_upload']
-        del aarecord['aac_magzdb']
-        del aarecord['aac_nexusstc']
-        del aarecord['ol_book_dicts_primary_linked']
-        del aarecord['duxius_nontransitive_meta_only']
-        del aarecord['aac_edsebk']
-    
     return aarecords
 
 def get_md5_problem_type_mapping():
@@ -5551,6 +5498,37 @@ def max_length_with_word_boundary(sentence, max_len):
     else:
         return ' '.join(str_split[0:output_index]).strip()
 
+# TODO:SOURCE Remove backwards compatibility.
+def make_source_record(aarecord, source_type):
+    orig = aarecord.get(source_type)
+    if orig is None:
+        return []
+    elif type(orig) == list:
+        return [{"source_type": source_type, "source_record": record} for record in orig]
+    else:
+        return [{"source_type": source_type, "source_record": orig}]
+def make_source_records(aarecord):
+    return [
+        *make_source_record(aarecord, 'lgrsnf_book'),
+        *make_source_record(aarecord, 'lgrsfic_book'),
+        *make_source_record(aarecord, 'lgli_file'),
+        *make_source_record(aarecord, 'zlib_book'),
+        *make_source_record(aarecord, 'aac_zlib3_book'),
+        *make_source_record(aarecord, 'ia_record'),
+        *make_source_record(aarecord, 'ia_records_meta_only'),
+        *make_source_record(aarecord, 'isbndb'),
+        *make_source_record(aarecord, 'ol'),
+        *make_source_record(aarecord, 'scihub_doi'),
+        *make_source_record(aarecord, 'oclc'),
+        *make_source_record(aarecord, 'duxiu'),
+        *make_source_record(aarecord, 'aac_upload'),
+        *make_source_record(aarecord, 'aac_magzdb'),
+        *make_source_record(aarecord, 'aac_nexusstc'),
+        *make_source_record(aarecord, 'ol_book_dicts_primary_linked'),
+        *make_source_record(aarecord, 'duxius_nontransitive_meta_only'),
+        *make_source_record(aarecord, 'aac_edsebk'),
+    ]
+
 def get_additional_for_aarecord(aarecord):
     # TODO:SOURCE Remove backwards compatibility.
     if 'source_records' not in aarecord:
@@ -5595,6 +5573,9 @@ def get_additional_for_aarecord(aarecord):
 
     additional['original_filename_best_name_only'] = re.split(r'[\\/]', aarecord['file_unified_data']['original_filename_best'])[-1] if '/10.' not in aarecord['file_unified_data']['original_filename_best'] else aarecord['file_unified_data']['original_filename_best'][(aarecord['file_unified_data']['original_filename_best'].index('/10.') + 1):]
 
+    # TODO:SOURCE remove backwards compatibility.
+    content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
+
     additional['top_box'] = {
         'meta_information': [item for item in [
                 aarecord['file_unified_data'].get('title_best') or '',
@@ -5615,7 +5596,7 @@ def get_additional_for_aarecord(aarecord):
                     *aarecord_sources(aarecord)
                 ])),
                 format_filesize(aarecord['file_unified_data'].get('filesize_best') or 0) if aarecord['file_unified_data'].get('filesize_best') else '',
-                md5_content_type_mapping[aarecord['file_unified_data']['content_type']],
+                md5_content_type_mapping[content_type],
                 aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
                 # TODO:TRANSLATE
                 f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbndb' else '',
