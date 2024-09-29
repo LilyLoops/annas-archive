@@ -4590,44 +4590,44 @@ def get_aarecords_elasticsearch(aarecord_ids):
 
 
 def aarecord_score_base(aarecord):
-    if len(aarecord['file_unified_data'].get('problems') or []) > 0:
+    if len(aarecord['file_unified_data']['problems']) > 0:
         return 0.01
 
     score = 10000.0
     # Filesize of >0.2MB is overriding everything else.
-    if (aarecord['file_unified_data'].get('filesize_best') or 0) > 200000:
+    if (aarecord['file_unified_data']['filesize_best']) > 200000:
         score += 1000.0
-    if (aarecord['file_unified_data'].get('filesize_best') or 0) > 700000:
+    if (aarecord['file_unified_data']['filesize_best']) > 700000:
         score += 5.0
-    if (aarecord['file_unified_data'].get('filesize_best') or 0) > 1200000:
+    if (aarecord['file_unified_data']['filesize_best']) > 1200000:
         score += 5.0
     # If we're not confident about the language, demote.
-    if len(aarecord['file_unified_data'].get('language_codes') or []) == 0:
+    if len(aarecord['file_unified_data']['language_codes'] or []) == 0:
         score -= 2.0
     # Bump English a little bit regardless of the user's language
     if ('en' in aarecord['search_only_fields']['search_most_likely_language_code']):
         score += 5.0
-    if (aarecord['file_unified_data'].get('extension_best') or '') in ['epub', 'pdf']:
+    if (aarecord['file_unified_data']['extension_best']) in ['epub', 'pdf']:
         score += 15.0
-    if (aarecord['file_unified_data'].get('extension_best') or '') in ['cbr', 'mobi', 'fb2', 'cbz', 'azw3', 'djvu', 'fb2.zip']:
+    if (aarecord['file_unified_data']['extension_best']) in ['cbr', 'mobi', 'fb2', 'cbz', 'azw3', 'djvu', 'fb2.zip']:
         score += 5.0
-    if len(aarecord['file_unified_data'].get('cover_url_best') or '') > 0:
+    if len(aarecord['file_unified_data']['cover_url_best']) > 0:
         score += 3.0
-    if (aarecord['file_unified_data'].get('has_aa_downloads') or 0) > 0:
+    if (aarecord['file_unified_data']['has_aa_downloads'] or 0) > 0:
         score += 5.0
     # Don't bump IA too much.
-    if (aarecord['file_unified_data'].get('has_aa_exclusive_downloads') or 0) > 0:
+    if (aarecord['file_unified_data']['has_aa_exclusive_downloads'] or 0) > 0:
         score += 3.0
-    if len(aarecord['file_unified_data'].get('title_best') or '') > 0:
+    if len(aarecord['file_unified_data']['title_best']) > 0:
         score += 10.0
-    if len(aarecord['file_unified_data'].get('author_best') or '') > 0:
+    if len(aarecord['file_unified_data']['author_best']) > 0:
         score += 2.0
-    if len(aarecord['file_unified_data'].get('publisher_best') or '') > 0:
+    if len(aarecord['file_unified_data']['publisher_best']) > 0:
         score += 2.0
-    if len(aarecord['file_unified_data'].get('edition_varia_best') or '') > 0:
+    if len(aarecord['file_unified_data']['edition_varia_best'] or '') > 0:
         score += 2.0
-    score += min(8.0, 2.0*len(aarecord['file_unified_data'].get('identifiers_unified') or []))
-    if len(aarecord['file_unified_data'].get('content_type_best') or '') in ['journal_article', 'standards_document', 'book_comic', 'magazine']:
+    score += min(8.0, 2.0*len(aarecord['file_unified_data']['identifiers_unified']))
+    if len(aarecord['file_unified_data']['content_type_best']) in ['journal_article', 'standards_document', 'book_comic', 'magazine']:
         # For now demote non-books quite a bit, since they can drown out books.
         # People can filter for them directly.
         score -= 70.0
@@ -4637,7 +4637,7 @@ def aarecord_score_base(aarecord):
         # Similarly demote zlibzh since we don't have direct download for them, and Zlib downloads are annoying because the require login.
         # And Nexus/STC-only results are often missing downloadable files.
         score -= 100.0
-    if len(aarecord['file_unified_data'].get('stripped_description_best') or '') > 0:
+    if len(aarecord['file_unified_data']['stripped_description_best']) > 0:
         score += 3.0
     return score
 
@@ -4932,7 +4932,7 @@ def get_aarecords_mysql(session, aarecord_ids):
                 break
         aarecord['file_unified_data']['extension_additional'] = [s for s in dict.fromkeys(filter(len, extension_multiple)) if s != aarecord['file_unified_data']['extension_best']]
 
-        filesize_multiple = [(source_record['source_record']['file_unified_data'].get('filesize_best') or 0) for source_record in source_records]
+        filesize_multiple = [(source_record['source_record']['file_unified_data']['filesize_best']) for source_record in source_records]
         aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
         if aarecord['file_unified_data']['filesize_best'] == 0:
             aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
@@ -4963,15 +4963,15 @@ def get_aarecords_mysql(session, aarecord_ids):
         for year in year_multiple:
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], 'year', year)
 
-        aarecord['file_unified_data']['comments_multiple'] = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode([comment for source_record in source_records for comment in source_record['source_record']['file_unified_data'].get('comments_multiple') or []])
+        aarecord['file_unified_data']['comments_multiple'] = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode([comment for source_record in source_records for comment in source_record['source_record']['file_unified_data']['comments_multiple']])
 
         # Make ia_record's description a very last resort here, since it's usually not very good.
         aarecord['file_unified_data']['stripped_description_best'], aarecord['file_unified_data']['stripped_description_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'stripped_description_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'stripped_description_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['ia_record']), 'stripped_description_best'), (UNIFIED_DATA_MERGE_EXCEPT(['ia_record']), 'stripped_description_additional')], [('ia_record', 'stripped_description_best'), ('ia_record', 'stripped_description_additional')]])
 
         # Still lump in other language codes with ol_book_dicts_primary_linked. We use the
         # fact that combine_bcp47_lang_codes is stable (preserves order).
-        aarecord['file_unified_data']['most_likely_language_codes'] = combine_bcp47_lang_codes([(source_record['file_unified_data'].get('language_codes') or []) for source_type in ['ol_book_dicts_primary_linked','lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'] for source_record in source_records_by_type[source_type]])
-        aarecord['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([aarecord['file_unified_data']['most_likely_language_codes']] + [(source_record['source_record']['file_unified_data'].get('language_codes') or []) for source_record in source_records])
+        aarecord['file_unified_data']['most_likely_language_codes'] = combine_bcp47_lang_codes([(source_record['file_unified_data']['language_codes']) for source_type in ['ol_book_dicts_primary_linked','lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'] for source_record in source_records_by_type[source_type]])
+        aarecord['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([aarecord['file_unified_data']['most_likely_language_codes']] + [(source_record['source_record']['file_unified_data']['language_codes']) for source_record in source_records])
         if len(aarecord['file_unified_data']['language_codes']) == 0:
             identifiers_unified = allthethings.utils.merge_unified_fields([
                 aarecord['file_unified_data']['identifiers_unified'],
@@ -5007,7 +5007,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         #         detected_language_codes_probs.append(f"{code}: {item.prob}")
         # aarecord['file_unified_data']['detected_language_codes_probs'] = ", ".join(detected_language_codes_probs)
 
-        aarecord['file_unified_data']['added_date_unified'] = dict(collections.ChainMap(*[(source_record['source_record']['file_unified_data'].get('added_date_unified') or {}) for source_record in source_records]))
+        aarecord['file_unified_data']['added_date_unified'] = dict(collections.ChainMap(*[(source_record['source_record']['file_unified_data']['added_date_unified']) for source_record in source_records]))
         for prefix, date in aarecord['file_unified_data']['added_date_unified'].items():
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], prefix, date)
 
@@ -5068,7 +5068,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         else:
             raise Exception(f"Unknown {aarecord_id_split[0]=}")
 
-        aarecord['file_unified_data']['problems'] = [problem for source_record in source_records for problem in source_record['source_record']['file_unified_data'].get('problems') or []]
+        aarecord['file_unified_data']['problems'] = [problem for source_record in source_records for problem in source_record['source_record']['file_unified_data']['problems']]
 
         if (aarecord['file_unified_data']['content_type_best'] == '') and (len(source_records_by_type['lgrsnf_book']) > 0) and (len(source_records_by_type['lgrsfic_book']) == 0):
             aarecord['file_unified_data']['content_type_best'] = source_records_by_type['lgrsnf_book'][0]['file_unified_data']['content_type_best']
@@ -5540,32 +5540,26 @@ def get_additional_for_aarecord(aarecord):
     additional = {}
     additional['path'] = allthethings.utils.path_for_aarecord_id(aarecord['id'])
 
-    # TODO: remove backwards compatibility
-    most_likely_language_codes = aarecord['file_unified_data'].get('most_likely_language_codes', None) or []
-    if len(most_likely_language_codes) == 0:
-        most_likely_language_code_backwardscompatibility = aarecord['file_unified_data'].get('most_likely_language_code', None) or ''
-        if len(most_likely_language_code_backwardscompatibility) > 0:
-            most_likely_language_codes = [most_likely_language_code_backwardscompatibility]
-
+    most_likely_language_codes = aarecord['file_unified_data']['most_likely_language_codes']
     additional['most_likely_language_names'] = [get_display_name_for_lang(lang_code, allthethings.utils.get_base_lang_code(get_locale())) for lang_code in most_likely_language_codes]
 
     additional['codes'] = []
-    for key, values in aarecord['file_unified_data'].get('identifiers_unified', {}).items():
+    for key, values in aarecord['file_unified_data']['identifiers_unified'].items():
         for value in values:
             additional['codes'].append(allthethings.utils.make_code_for_display(key, value))
-    for key, values in aarecord['file_unified_data'].get('classifications_unified', {}).items():
+    for key, values in aarecord['file_unified_data']['classifications_unified'].items():
         for value in values:
             additional['codes'].append(allthethings.utils.make_code_for_display(key, value))
     additional['codes'].sort(key=lambda item: ((-1000+allthethings.utils.CODES_HIGHLIGHT.index(item['key'])) if item['highlight'] else 1, item['key'], item['value']))
 
     md5_content_type_mapping = get_md5_content_type_mapping(allthethings.utils.get_base_lang_code(get_locale()))
 
-    cover_url = (aarecord['file_unified_data'].get('cover_url_best', None) or '')
+    cover_url = aarecord['file_unified_data']['cover_url_best']
     zlib3_cover_path = ((next(iter(source_records_by_type['aac_zlib3_book']), {})).get('cover_path') or '')
     if '/collections/' in zlib3_cover_path:
         cover_url = f"https://s3proxy.cdn-zlib.se/{zlib3_cover_path}"
     elif 'zlib' in cover_url or '1lib' in cover_url: # Remove old zlib cover_urls.
-        non_zlib_covers = [url for url in (aarecord['file_unified_data'].get('cover_url_additional', None) or []) if ('zlib' not in url and '1lib' not in url)]
+        non_zlib_covers = [url for url in aarecord['file_unified_data']['cover_url_additional'] if ('zlib' not in url and '1lib' not in url)]
         if len(non_zlib_covers) > 0:
             cover_url = non_zlib_covers[0]
         else:
@@ -5573,70 +5567,16 @@ def get_additional_for_aarecord(aarecord):
 
     additional['original_filename_best_name_only'] = re.split(r'[\\/]', aarecord['file_unified_data']['original_filename_best'])[-1] if '/10.' not in aarecord['file_unified_data']['original_filename_best'] else aarecord['file_unified_data']['original_filename_best'][(aarecord['file_unified_data']['original_filename_best'].index('/10.') + 1):]
 
-    # TODO:SOURCE remove backwards compatibility.
-    content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
-
-    additional['top_box'] = {
-        'meta_information': [item for item in [
-                aarecord['file_unified_data'].get('title_best') or '',
-                aarecord['file_unified_data'].get('author_best') or '',
-                (aarecord['file_unified_data'].get('stripped_description_best') or '')[0:100],
-                aarecord['file_unified_data'].get('publisher_best') or '',
-                aarecord['file_unified_data'].get('edition_varia_best') or '',
-                aarecord['file_unified_data'].get('original_filename_best') or '',
-            ] if item != ''],
-        'cover_missing_hue_deg': int(hashlib.md5(aarecord['id'].encode()).hexdigest(), 16) % 360,
-        'cover_url': cover_url,
-        'top_row': ("✅ " if len(aarecord.get('ol_book_dicts_primary_linked') or []) > 0 else "") + ", ".join([item for item in [
-                *additional['most_likely_language_names'][0:3],
-                f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
-                "/".join(filter(len,[
-                    "🧬" if (aarecord['file_unified_data'].get('has_scidb') == 1) else "", 
-                    "🚀" if (aarecord['file_unified_data'].get('has_aa_downloads') == 1) else "", 
-                    *aarecord_sources(aarecord)
-                ])),
-                format_filesize(aarecord['file_unified_data'].get('filesize_best') or 0) if aarecord['file_unified_data'].get('filesize_best') else '',
-                md5_content_type_mapping[content_type],
-                aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
-                # TODO:TRANSLATE
-                f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbndb' else '',
-                f"OCLC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'oclc' else '',
-                f"DuXiu SSID {aarecord_id_split[1]}" if aarecord_id_split[0] == 'duxiu_ssid' else '',
-                f"MagzDB {aarecord_id_split[1]}" if aarecord_id_split[0] == 'magzdb' else '',
-                f"Nexus/STC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'nexusstc' else '',
-                f"EBSCOhost edsebk {aarecord_id_split[1]}" if aarecord_id_split[0] == 'edsebk' else '',
-                (aarecord['file_unified_data'].get('original_filename_best') or ''),
-            ] if item != '']),
-        'title': aarecord['file_unified_data'].get('title_best') or additional['original_filename_best_name_only'],
-        'publisher_and_edition': ", ".join([item for item in [
-                aarecord['file_unified_data'].get('publisher_best') or '',
-                aarecord['file_unified_data'].get('edition_varia_best') or '',
-            ] if item != '']),
-        'author': aarecord['file_unified_data'].get('author_best') or '',
-        'freeform_fields': [item for item in [
-            (gettext('page.md5.box.descr_title'), strip_description(aarecord['file_unified_data'].get('stripped_description_best') or '')),
-            *[(gettext('page.md5.box.alternative_filename'), row) for row in (aarecord['file_unified_data'].get('original_filename_additional') or '')],
-            *[(gettext('page.md5.box.alternative_title'), row) for row in (aarecord['file_unified_data'].get('title_additional') or '')],
-            *[(gettext('page.md5.box.alternative_author'), row) for row in (aarecord['file_unified_data'].get('author_additional') or '')],
-            *[(gettext('page.md5.box.alternative_publisher'), row) for row in (aarecord['file_unified_data'].get('publisher_additional') or '')],
-            *[(gettext('page.md5.box.alternative_edition'), row) for row in (aarecord['file_unified_data'].get('edition_varia_additional') or '')],
-            *[(gettext('page.md5.box.alternative_extension'), row) for row in (aarecord['file_unified_data'].get('extension_additional') or '')],
-            *[(gettext('page.md5.box.metadata_comments_title'), strip_description(comment)) for comment in (aarecord['file_unified_data'].get('comments_multiple') or [])],
-            *[(gettext('page.md5.box.alternative_description'), row) for row in (aarecord['file_unified_data'].get('stripped_description_additional') or '')],
-            (gettext('page.md5.box.date_open_sourced_title'), aarecord['file_unified_data'].get('added_date_best') or ''),
-        ] if item[1] != ''],
-    }
-
     filename_info = [item for item in [
-            max_length_with_word_boundary(aarecord['file_unified_data'].get('title_best') or additional['original_filename_best_name_only'], 60),
-            max_length_with_word_boundary(aarecord['file_unified_data'].get('author_best') or '', 60),
-            max_length_with_word_boundary(aarecord['file_unified_data'].get('edition_varia_best') or '', 60),
-            max_length_with_word_boundary(aarecord['file_unified_data'].get('publisher_best') or '', 60),
+            max_length_with_word_boundary(aarecord['file_unified_data']['title_best'] or additional['original_filename_best_name_only'], 60),
+            max_length_with_word_boundary(aarecord['file_unified_data']['author_best'], 60),
+            max_length_with_word_boundary(aarecord['file_unified_data']['edition_varia_best'], 60),
+            max_length_with_word_boundary(aarecord['file_unified_data']['publisher_best'], 60),
         ] if item != '']
     filename_slug = max_length_with_word_boundary(" -- ".join(filename_info), 150)
     if filename_slug.endswith(' --'):
         filename_slug = filename_slug[0:-len(' --')]
-    filename_extension = aarecord['file_unified_data'].get('extension_best', None) or ''    
+    filename_extension = aarecord['file_unified_data']['extension_best']
     filename_code = ''
     for code in additional['codes']:
         if code['key'] in allthethings.utils.CODES_HIGHLIGHT:
@@ -5934,6 +5874,60 @@ def get_additional_for_aarecord(aarecord):
         additional['fast_partner_urls'] = [(gettext('page.md5.box.download.scidb'), f"/scidb?doi={additional['scidb_info']['doi']}", gettext('common.md5.servers.no_browser_verification'))] + additional['fast_partner_urls']
         additional['slow_partner_urls'] = [(gettext('page.md5.box.download.scidb'), f"/scidb?doi={additional['scidb_info']['doi']}", gettext('common.md5.servers.no_browser_verification'))] + additional['slow_partner_urls']
         additional['has_scidb'] = 1
+
+    # TODO:SOURCE remove backwards compatibility.
+    content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
+
+    additional['top_box'] = {
+        'meta_information': [item for item in [
+                aarecord['file_unified_data']['title_best'],
+                aarecord['file_unified_data']['author_best'],
+                (aarecord['file_unified_data']['stripped_description_best'])[0:100],
+                aarecord['file_unified_data']['publisher_best'],
+                aarecord['file_unified_data']['edition_varia_best'],
+                aarecord['file_unified_data']['original_filename_best'],
+            ] if item != ''],
+        'cover_missing_hue_deg': int(hashlib.md5(aarecord['id'].encode()).hexdigest(), 16) % 360,
+        'cover_url': cover_url,
+        'top_row': ("✅ " if len(aarecord.get('ol_book_dicts_primary_linked') or []) > 0 else "") + ", ".join([item for item in [
+                *additional['most_likely_language_names'][0:3],
+                f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
+                "/".join(filter(len,[
+                    "🧬" if (additional['has_scidb'] == 1) else "", 
+                    "🚀" if (additional['has_aa_downloads'] == 1) else "", 
+                    *aarecord_sources(aarecord)
+                ])),
+                format_filesize(aarecord['file_unified_data']['filesize_best']) if aarecord['file_unified_data']['filesize_best'] > 0 else '',
+                md5_content_type_mapping[content_type],
+                aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
+                # TODO:TRANSLATE
+                f"ISBNdb {aarecord_id_split[1]}" if aarecord_id_split[0] == 'isbndb' else '',
+                f"OCLC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'oclc' else '',
+                f"DuXiu SSID {aarecord_id_split[1]}" if aarecord_id_split[0] == 'duxiu_ssid' else '',
+                f"MagzDB {aarecord_id_split[1]}" if aarecord_id_split[0] == 'magzdb' else '',
+                f"Nexus/STC {aarecord_id_split[1]}" if aarecord_id_split[0] == 'nexusstc' else '',
+                f"EBSCOhost edsebk {aarecord_id_split[1]}" if aarecord_id_split[0] == 'edsebk' else '',
+                (aarecord['file_unified_data']['original_filename_best']),
+            ] if item != '']),
+        'title': aarecord['file_unified_data']['title_best'] or additional['original_filename_best_name_only'],
+        'publisher_and_edition': ", ".join([item for item in [
+                aarecord['file_unified_data']['publisher_best'],
+                aarecord['file_unified_data']['edition_varia_best'],
+            ] if item != '']),
+        'author': aarecord['file_unified_data']['author_best'],
+        'freeform_fields': [item for item in [
+            (gettext('page.md5.box.descr_title'), strip_description(aarecord['file_unified_data']['stripped_description_best'])),
+            *[(gettext('page.md5.box.alternative_filename'), row) for row in (aarecord['file_unified_data']['original_filename_additional'])],
+            *[(gettext('page.md5.box.alternative_title'), row) for row in (aarecord['file_unified_data']['title_additional'])],
+            *[(gettext('page.md5.box.alternative_author'), row) for row in (aarecord['file_unified_data']['author_additional'])],
+            *[(gettext('page.md5.box.alternative_publisher'), row) for row in (aarecord['file_unified_data']['publisher_additional'])],
+            *[(gettext('page.md5.box.alternative_edition'), row) for row in (aarecord['file_unified_data']['edition_varia_additional'])],
+            *[(gettext('page.md5.box.alternative_extension'), row) for row in (aarecord['file_unified_data']['extension_additional'])],
+            *[(gettext('page.md5.box.metadata_comments_title'), strip_description(comment)) for comment in (aarecord['file_unified_data']['comments_multiple'])],
+            *[(gettext('page.md5.box.alternative_description'), row) for row in (aarecord['file_unified_data']['stripped_description_additional'])],
+            (gettext('page.md5.box.date_open_sourced_title'), aarecord['file_unified_data']['added_date_best']),
+        ] if item[1] != ''],
+    }
 
     return additional
 
