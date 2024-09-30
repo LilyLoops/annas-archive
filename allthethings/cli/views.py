@@ -80,10 +80,14 @@ def nonpersistent_dbreset_internal():
 
     torrents_json = pathlib.Path(os.path.join(__location__, 'torrents.json')).read_text()
     cursor.execute('DROP TABLE IF EXISTS torrents_json; CREATE TABLE torrents_json (json JSON NOT NULL, PRIMARY KEY(json(100))) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; INSERT INTO torrents_json (json) VALUES (%(json)s); COMMIT', {'json': torrents_json})
-    cursor.close()
 
     mysql_reset_aac_tables_internal()
     mysql_build_aac_tables_internal()
+
+    engine_multi.raw_connection().ping(reconnect=True)
+    check_after_imports = pathlib.Path(os.path.join(__location__, '../../data-imports/scripts/helpers/check_after_imports.sql')).read_text()
+    cursor.execute(mariadb_dump)
+    cursor.close()
 
     mysql_build_computed_all_md5s_internal()
 
