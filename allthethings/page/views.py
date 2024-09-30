@@ -1185,27 +1185,12 @@ def get_zlib_book_dicts(session, key, values):
     for zlib_book in zlib_books:
         zlib_book_dict = zlib_book
         zlib_book_dict['file_unified_data'] = allthethings.utils.make_file_unified_data()
-        zlib_book_dict['file_unified_data']['filesize_best'] = (zlib_book.get('filesize') or 0)
-        if zlib_book_dict['file_unified_data']['filesize_best'] == 0:
-            zlib_book_dict['file_unified_data']['filesize_best'] = (zlib_book.get('filesize_reported') or 0)
-        zlib_book_dict['file_unified_data']['extension_best'] = (zlib_book.get('extension') or '').strip().lower()
-        zlib_book_dict['file_unified_data']['title_best'] = (zlib_book.get('title') or '').strip()
-        zlib_book_dict['file_unified_data']['author_best'] = (zlib_book.get('author') or '').strip()
-        zlib_book_dict['file_unified_data']['publisher_best'] = (zlib_book.get('publisher') or '').strip()
-        zlib_book_dict['file_unified_data']['year_best'] = (zlib_book.get('year') or '').strip()
-        zlib_book_dict['file_unified_data']['stripped_description_best'] = strip_description(zlib_book_dict['description'])[0:5000]
-        zlib_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(zlib_book_dict['language'] or '')
         zlib_book_dict['file_unified_data']['added_date_unified']["date_zlib_source"] = zlib_book_dict['date_added'].split('T', 1)[0]
-        zlib_add_edition_varia_normalized(zlib_book_dict)
-
         allthethings.utils.add_identifier_unified(zlib_book_dict['file_unified_data'], 'zlib', zlib_book_dict['zlibrary_id'])
         if zlib_book_dict['md5'] is not None:
             allthethings.utils.add_identifier_unified(zlib_book_dict['file_unified_data'], 'md5', zlib_book_dict['md5'])
         if zlib_book_dict['md5_reported'] is not None:
             allthethings.utils.add_identifier_unified(zlib_book_dict['file_unified_data'], 'md5', zlib_book_dict['md5_reported'])
-        allthethings.utils.add_isbns_unified(zlib_book_dict['file_unified_data'], [record['isbn'] for record in zlib_book['isbns']])
-        allthethings.utils.add_isbns_unified(zlib_book_dict['file_unified_data'], allthethings.utils.get_isbnlike(zlib_book_dict['description']))
-
         zlib_book_dicts.append(add_comments_to_dict(zlib_book_dict, zlib_book_dict_comments))
     return zlib_book_dicts
 
