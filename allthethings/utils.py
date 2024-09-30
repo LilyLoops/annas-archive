@@ -1086,6 +1086,7 @@ LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
 
 UNIFIED_IDENTIFIERS = {
     "md5": { "shortenvalue": True, "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
+    "aarecord_id": { "shortenvalue": True, "label": "AA Record ID", "website": "", "description": "Anna’s Archive record ID." },
     "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },
@@ -1181,7 +1182,7 @@ UNIFIED_CLASSIFICATIONS = {
     "date_edsebk_meta_scrape": { "label": "EBSCOhost eBook Index Source Scrape Date", "website": "/datasets/edsebk", "description": "Date Anna’s Archive scraped the EBSCOhost metadata." },
     "edsebk_subject": { "label": "EBSCOhost eBook Index Subject", "url": "", "description": "Tag in EBSCOhost eBook Index.", "website": "/datasets/edsebk" },
     "file_problem": { "label": "File Problem", "url": "", "description": "Problem type indicated by a source library.", "website": "" },
-    "better_aarecord_id": { "label": "Better AA Record ID", "url": "", "description": "Source library has indicated this record to be better.", "website": "" },
+    "better_aarecord_id": { "label": "Better AA Record ID", "shortenvalue": True, "url": "", "description": "Source library has indicated this record to be better.", "website": "" },
     "content_type": { "label": "Content Type", "url": "", "description": "Content type, determined by Anna’s Archive.", "website": "" },
     **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
     # Plus more added below!

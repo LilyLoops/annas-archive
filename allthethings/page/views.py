@@ -4808,6 +4808,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             source_records.append({'source_type': 'aac_edsebk', 'source_record': source_record})
 
         aarecord['file_unified_data'] = allthethings.utils.make_file_unified_data()
+        allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'aarecord_id', aarecord_id)
         # Duplicated below, with more fields
         aarecord['file_unified_data']['identifiers_unified'] = allthethings.utils.merge_unified_fields([
             aarecord['file_unified_data']['identifiers_unified'],
