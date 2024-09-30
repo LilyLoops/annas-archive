@@ -181,7 +181,6 @@ def scidb_info(aarecord, additional=None):
 
     # TODO:SOURCE remove backwards compatibility.
     content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
-    print(f"{content_type=}")
     if (content_type != "journal_article") and (scihub_link is None):
         return None
 

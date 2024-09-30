@@ -4579,6 +4579,9 @@ def aarecord_score_base(aarecord):
         return 0.01
 
     score = 10000.0
+    # OL linking is overriding everything else.
+    if aarecord['file_unified_data']['ol_is_primary_linked']:
+        score += 3000.0
     # Filesize of >0.2MB is overriding everything else.
     if (aarecord['file_unified_data']['filesize_best']) > 200000:
         score += 1000.0
@@ -4587,7 +4590,7 @@ def aarecord_score_base(aarecord):
     if (aarecord['file_unified_data']['filesize_best']) > 1200000:
         score += 5.0
     # If we're not confident about the language, demote.
-    if len(aarecord['file_unified_data']['language_codes'] or []) == 0:
+    if len(aarecord['file_unified_data']['language_codes']) == 0:
         score -= 2.0
     # Bump English a little bit regardless of the user's language
     if ('en' in aarecord['search_only_fields']['search_most_likely_language_code']):
@@ -4596,23 +4599,23 @@ def aarecord_score_base(aarecord):
         score += 15.0
     if (aarecord['file_unified_data']['extension_best']) in ['cbr', 'mobi', 'fb2', 'cbz', 'azw3', 'djvu', 'fb2.zip']:
         score += 5.0
-    if len(aarecord['file_unified_data']['cover_url_best']) > 0:
+    if aarecord['file_unified_data']['cover_url_best'] != '':
         score += 3.0
-    if (aarecord['file_unified_data']['has_aa_downloads'] or 0) > 0:
+    if aarecord['file_unified_data']['has_aa_downloads']:
         score += 5.0
     # Don't bump IA too much.
     if (aarecord['file_unified_data']['has_aa_exclusive_downloads'] or 0) > 0:
         score += 3.0
-    if len(aarecord['file_unified_data']['title_best']) > 0:
+    if aarecord['file_unified_data']['title_best'] != '':
         score += 10.0
-    if len(aarecord['file_unified_data']['author_best']) > 0:
+    if aarecord['file_unified_data']['author_best'] != '':
         score += 2.0
-    if len(aarecord['file_unified_data']['publisher_best']) > 0:
+    if aarecord['file_unified_data']['publisher_best'] != '':
         score += 2.0
-    if len(aarecord['file_unified_data']['edition_varia_best'] or '') > 0:
+    if aarecord['file_unified_data']['edition_varia_best'] != '':
         score += 2.0
     score += min(8.0, 2.0*len(aarecord['file_unified_data']['identifiers_unified']))
-    if len(aarecord['file_unified_data']['content_type_best']) in ['journal_article', 'standards_document', 'book_comic', 'magazine']:
+    if aarecord['file_unified_data']['content_type_best'] not in ['book_unknown', 'book_nonfiction', 'book_fiction']:
         # For now demote non-books quite a bit, since they can drown out books.
         # People can filter for them directly.
         score -= 70.0
@@ -4622,7 +4625,7 @@ def aarecord_score_base(aarecord):
         # Similarly demote zlibzh since we don't have direct download for them, and Zlib downloads are annoying because the require login.
         # And Nexus/STC-only results are often missing downloadable files.
         score -= 100.0
-    if len(aarecord['file_unified_data']['stripped_description_best']) > 0:
+    if aarecord['file_unified_data']['stripped_description_best'] != '':
         score += 3.0
     return score
 
@@ -5283,6 +5286,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['has_torrent_paths'] = (1 if (len(additional['torrent_paths']) > 0) else 0)
             aarecord['file_unified_data']['has_scidb'] = additional['has_scidb']
             aarecord['file_unified_data']['has_meaningful_problems'] = 1 if len(aarecord['file_unified_data']['problems']) > 0 else 0
+            aarecord['file_unified_data']['ol_is_primary_linked'] = additional['ol_is_primary_linked']
             if additional['has_aa_downloads']:
                 # TODO:SOURCE remove backwards compatbility (`get`)
                 aarecord['file_unified_data']['has_meaningful_problems'] = 1 if any([not problem.get('only_if_no_partner_server') for problem in aarecord['file_unified_data']['problems']]) else 0
@@ -5872,6 +5876,8 @@ def get_additional_for_aarecord(aarecord):
     # TODO:SOURCE remove backwards compatibility.
     content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
 
+    additional['ol_is_primary_linked'] = any(source_record['source_type'] == 'ol_book_dicts_primary_linked' for source_record in aarecord['source_records'])
+
     additional['top_box'] = {
         'meta_information': [item for item in [
                 aarecord['file_unified_data']['title_best'],
@@ -5883,7 +5889,7 @@ def get_additional_for_aarecord(aarecord):
             ] if item != ''],
         'cover_missing_hue_deg': int(hashlib.md5(aarecord['id'].encode()).hexdigest(), 16) % 360,
         'cover_url': cover_url,
-        'top_row': ("✅ " if len(aarecord.get('ol_book_dicts_primary_linked') or []) > 0 else "") + ", ".join([item for item in [
+        'top_row': ("✅ " if additional['ol_is_primary_linked'] else "") + ", ".join([item for item in [
                 *additional['most_likely_language_names'][0:3],
                 f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
                 "/".join(filter(len,[
