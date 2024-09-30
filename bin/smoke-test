@@ -101,13 +101,13 @@ def main():
 
     print(f"testing {len(translations)} translations: {', '.join(translations)}")
 
-    to_test = (
+    to_test = [
         (f"http://{translation}.localtest.me:8000{page}", urllib.parse.quote_plus(f"{translation}--{page}.html"))
         for translation in translations
         for page in pages
-    )
+    ]
 
-    for url, filename in tqdm(to_test):
+    for url, filename in tqdm(to_test, bar_format='{l_bar}{bar}{r_bar} {eta}'):
         filepath = pathlib.Path(filename)
         response = requests.get(url)
         try:
