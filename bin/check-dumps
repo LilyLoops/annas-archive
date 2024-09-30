@@ -38,12 +38,6 @@ for file in args.files:
     with file.open(encoding='utf-8') as f:
         records = orjsonl.load(f)
 
-    for record in records:
-        if isinstance(record, dict):
-            if '_source' in record and 'search_only_fields' in record['_source']:
-                # search_text, in the aarecords__N.json files, is a field that includes some random data
-                del record['_source']['search_only_fields']['search_text']
-
     with file.open('w', encoding='utf-8') as f:
         json.dump(deep_sorted(records), f, sort_keys=True, indent='\t')
         f.write('\n')
