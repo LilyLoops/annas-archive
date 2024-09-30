@@ -200,9 +200,9 @@
   {% endif %}
 
   <div id="md5-panel-downloads" role="tabpanel" tabindex="0" aria-labelledby="md5-tab-downloads">
-    {% if (aarecord.file_unified_data.problems | length) > 0 %}
-      <p class="mb-4">{{ gettext('page.md5.box.issues.text1') }}</p>
-      <ul class="list-inside mb-4 ml-1">
+    {% if aarecord.file_unified_data.has_meaningful_problems %}
+      <p class="">{{ gettext('page.md5.box.issues.text1') }}</p>
+      <ul class="list-inside ml-1">
         {% for problem in aarecord.file_unified_data.problems %}
           <li class="list-disc">{{ md5_problem_type_mapping[problem.type] }}{% if problem.descr %} ("{{problem.descr}}"){% endif %}</li>
           {% if problem.better_md5 %}

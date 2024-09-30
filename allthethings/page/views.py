@@ -1308,11 +1308,11 @@ def get_aac_zlib3_book_dicts(session, key, values):
         if zlib_deleted_comment == '':
             pass
         elif zlib_deleted_comment == 'dmca':
-            aac_zlib3_book_dict['file_unified_data']['problems'].append({ 'type': 'zlib_missing', 'descr': '', 'better_md5': '' })
+            aac_zlib3_book_dict['file_unified_data']['problems'].append({ 'type': 'zlib_missing', 'descr': '', 'only_if_no_partner_server': True, 'better_md5': '' })
         elif zlib_deleted_comment == 'spam':
-            aac_zlib3_book_dict['file_unified_data']['problems'].append({ 'type': 'zlib_spam', 'descr': '', 'better_md5': '' })
+            aac_zlib3_book_dict['file_unified_data']['problems'].append({ 'type': 'zlib_spam', 'descr': '', 'only_if_no_partner_server': False, 'better_md5': '' })
         elif zlib_deleted_comment == 'bad file':
-            aac_zlib3_book_dict['file_unified_data']['problems'].append({ 'type': 'zlib_bad_file', 'descr': '', 'better_md5': '' })
+            aac_zlib3_book_dict['file_unified_data']['problems'].append({ 'type': 'zlib_bad_file', 'descr': '', 'only_if_no_partner_server': False, 'better_md5': '' })
         else:
             raise Exception(f"Unexpected {zlib_deleted_comment=} for {aarecord=}")
 
@@ -1970,7 +1970,7 @@ def get_lgrsnf_book_dicts(session, key, values):
             lgrs_book_dict['file_unified_data']['ipfs_infos'].append({ 'ipfs_cid': lgrs_book_dict['ipfs_cid'], 'from': 'lgrsnf' })
 
         if (lgrs_book_dict['visible'] or '') != '':
-            lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsnf_visible', 'descr': lgrs_book_dict['visible'], 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
+            lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsnf_visible', 'descr': lgrs_book_dict['visible'], 'only_if_no_partner_server': False, 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
 
         lgrs_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
 
@@ -2060,7 +2060,7 @@ def get_lgrsfic_book_dicts(session, key, values):
             lgrs_book_dict['file_unified_data']['ipfs_infos'].append({ 'ipfs_cid': lgrs_book_dict['ipfs_cid'], 'from': 'lgrsfic' })
 
         if (lgrs_book_dict['visible'] or '') != '':
-            lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsfic_visible', 'descr': lgrs_book_dict['visible'], 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
+            lgrs_book_dict['file_unified_data']['problems'].append({ 'type': 'lgrsfic_visible', 'descr': lgrs_book_dict['visible'], 'only_if_no_partner_server': False, 'better_md5': (lgrs_book_dict['generic'] or '').lower() })
 
         lgrs_book_dict['file_unified_data']['content_type_best'] = 'book_fiction'
 
@@ -2560,9 +2560,9 @@ def get_lgli_file_dicts(session, key, values):
             lgli_file_dict['file_unified_data']['added_date_unified'] = { 'date_lgli_source': lgli_file_dict['time_added'].isoformat().split('T', 1)[0] }
 
         if (lgli_file_dict['visible'] or '') != '':
-            lgli_file_dict['file_unified_data']['problems'].append({ 'type': 'lgli_visible', 'descr': (lgli_file_dict['visible'] or ''), 'better_md5': (lgli_file_dict['generic'] or '').lower() })
+            lgli_file_dict['file_unified_data']['problems'].append({ 'type': 'lgli_visible', 'descr': (lgli_file_dict['visible'] or ''), 'only_if_no_partner_server': ((lgli_file_dict['visible'] or '').strip().lower() == 'cpr'), 'better_md5': (lgli_file_dict['generic'] or '').lower() })
         if (lgli_file_dict['broken'] or '') in [1, "1", "y", "Y"]:
-            lgli_file_dict['file_unified_data']['problems'].append({ 'type': 'lgli_broken', 'descr': (lgli_file_dict['broken'] or ''), 'better_md5': (lgli_file_dict['generic'] or '').lower() })
+            lgli_file_dict['file_unified_data']['problems'].append({ 'type': 'lgli_broken', 'descr': (lgli_file_dict['broken'] or ''), 'only_if_no_partner_server': False, 'better_md5': (lgli_file_dict['generic'] or '').lower() })
 
         if lgli_file_dict['libgen_topic'] == 'l':
             lgli_file_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
@@ -3502,7 +3502,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                 # TODO:TRANSLATE bring back translation: dummy_translation_affected_files = gettext('page.md5.box.download.affected_files')
                 # but later when actually rendering the page.
                 # TODO: not covered by local fixtures.
-                duxiu_dict['file_unified_data']['problems'].append({ 'type': 'duxiu_pdg_broken_files', 'descr': f"{duxiu_problem_info['pdg_broken_files_len']} affected pages", 'better_md5': '' })
+                duxiu_dict['file_unified_data']['problems'].append({ 'type': 'duxiu_pdg_broken_files', 'descr': f"{duxiu_problem_info['pdg_broken_files_len']} affected pages", 'only_if_no_partner_server': False, 'better_md5': '' })
             else:
                 raise Exception(f"Unknown duxiu_problem_type: {duxiu_problem_info=}")
 
@@ -3675,7 +3675,7 @@ def get_aac_upload_book_dicts(session, key, values):
             upload_book_exiftool_append(aac_upload_book_dict['aa_upload_derived']['producer_multiple'], record, 'Producer')
 
             if (record['metadata'].get('exiftool_failed') or False) and ('Wide character in print' not in ((record['metadata'].get('exiftool_output') or {}).get('error') or '')):
-                aac_upload_book_dict['file_unified_data']['problems'].append({ 'type': 'upload_exiftool_failed', 'descr': '', 'better_md5': '' })
+                aac_upload_book_dict['file_unified_data']['problems'].append({ 'type': 'upload_exiftool_failed', 'descr': '', 'only_if_no_partner_server': False, 'better_md5': '' })
 
             potential_languages = []
             # Sadly metadata doesn’t often have reliable information about languages. Many tools seem to default to tagging with English when writing PDFs.
@@ -4575,7 +4575,7 @@ def get_aarecords_elasticsearch(aarecord_ids):
 
 
 def aarecord_score_base(aarecord):
-    if len(aarecord['file_unified_data']['problems']) > 0:
+    if aarecord['file_unified_data']['has_meaningful_problems'] > 0:
         return 0.01
 
     score = 10000.0
@@ -5277,6 +5277,10 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['has_aa_exclusive_downloads'] = additional['has_aa_exclusive_downloads']
             aarecord['file_unified_data']['has_torrent_paths'] = (1 if (len(additional['torrent_paths']) > 0) else 0)
             aarecord['file_unified_data']['has_scidb'] = additional['has_scidb']
+            aarecord['file_unified_data']['has_meaningful_problems'] = 1 if len(aarecord['file_unified_data']['problems']) > 0 else 0
+            if additional['has_aa_downloads']:
+                # TODO:SOURCE remove backwards compatbility (`get`)
+                aarecord['file_unified_data']['has_meaningful_problems'] = 1 if any([not problem.get('only_if_no_partner_server') for problem in aarecord['file_unified_data']['problems']]) else 0
             for torrent_path in additional['torrent_paths']:
                 allthethings.utils.add_classification_unified(aarecord['file_unified_data'], 'torrent', torrent_path['torrent_path'])
             for partner_url_path in additional['partner_url_paths']:

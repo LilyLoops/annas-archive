@@ -57,7 +57,7 @@
   {% for aarecord in aarecords %}
     <div class="h-[125px] flex flex-col justify-center {% if loop.index0 > max_show_immediately %}js-scroll-hidden{% endif %}">
       {% if loop.index0 > max_show_immediately %}<!--{% endif %}
-      <a href="{{ aarecord.additional.path }}" class="js-vim-focus custom-a flex items-center relative left-[-10px] w-[calc(100%+20px)] px-2.5 outline-offset-[-2px] outline-2 rounded-[3px] hover:bg-black/6.7 focus:outline {% if (aarecord.file_unified_data.problems | length) > 0 %}opacity-40{% endif %}">
+      <a href="{{ aarecord.additional.path }}" class="js-vim-focus custom-a flex items-center relative left-[-10px] w-[calc(100%+20px)] px-2.5 outline-offset-[-2px] outline-2 rounded-[3px] hover:bg-black/6.7 focus:outline {% if aarecord.file_unified_data.has_meaningful_problems %}opacity-40{% endif %}">
         <div class="flex-none">
           <div class="relative overflow-hidden w-[72px] h-[108px] flex flex-col justify-center">
             <div class="absolute w-full h-[90px]" style="background-color: hsl({{ aarecord.additional.top_box.cover_missing_hue_deg }}deg 43% 73%)"></div>
@@ -72,7 +72,7 @@
           <h3 class="max-lg:line-clamp-[2] lg:truncate leading-[1.2] lg:leading-[1.35] text-md lg:text-xl font-bold">{{aarecord.additional.top_box.title}}</h3>
           <div class="truncate leading-[1.2] lg:leading-[1.35] max-lg:text-xs">{{aarecord.additional.top_box.publisher_and_edition}}</div>
           <div class="max-lg:line-clamp-[2] lg:truncate leading-[1.2] lg:leading-[1.35] max-lg:text-sm italic">{{aarecord.additional.top_box.author}}</div>
-          {% if (aarecord.file_unified_data.problems | length) > 0 %}<div class="text-xs lg:text-sm">{{ gettext('page.search.results.issues') }}</div>{% endif %}
+          {% if aarecord.file_unified_data.has_meaningful_problems %}<div class="text-xs lg:text-sm">{{ gettext('page.search.results.issues') }}</div>{% endif %}
           <div class="hidden">base score: {{ aarecord.search_only_fields.search_score_base_rank }}, final score: {{ aarecord._score }}</div>
         </div>
       </a>
