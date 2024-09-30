@@ -41,13 +41,13 @@
           <div class="my-2 first:mt-0 last:mb-0">
             {{ gettext('page.datasets.sources.scihub.files1', icon='✅',
                 scihub1=(dict(href="https://sci-hub.ru/database") | xmlattr),
-                scihub2=(dict(href="https://libgen.rs/scimag/repository_torrent/") | xmlattr),
+                scihub2=(dict(href="https://libgen.is/scimag/repository_torrent/") | xmlattr),
                 libgenli=(dict(href="https://libgen.li/torrents/scimag/") | xmlattr),
             ) }}
           </div>
           <div class="my-2 first:mt-0 last:mb-0">
             {{ gettext('page.datasets.sources.scihub.files2', icon='❌',
-                libgenrs=(dict(href="https://libgen.rs/scimag/recent") | xmlattr),
+                libgenrs=(dict(href="https://libgen.is/scimag/recent") | xmlattr),
                 libgenli=(dict(href="https://libgen.li/index.php?req=fmode:last&topics%5B%5D=a") | xmlattr),
             ) }}
           </div>
@@ -96,7 +96,7 @@
     <li class="list-disc"><a href="/db/raw/scihub_doi/10.5822/978-1-61091-843-5_15.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
     <li class="list-disc"><a href="https://sci-hub.ru/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.scihub.title')) }}</a></li>
     <li class="list-disc"><a href="https://sci-hub.ru/database">{{ gettext('page.datasets.scihub.link_metadata') }}</a></li>
-    <li class="list-disc"><a href="https://libgen.rs/scimag/repository_torrent/">{{ gettext('page.datasets.scihub.link_libgen_rs_torrents') }}</a></li>
+    <li class="list-disc"><a href="https://libgen.is/scimag/repository_torrent/">{{ gettext('page.datasets.scihub.link_libgen_rs_torrents') }}</a></li>
     <li class="list-disc"><a href="https://libgen.li/torrents/scimag/">{{ gettext('page.datasets.scihub.link_libgen_li_torrents') }}</a></li>
     <li class="list-disc"><a href="https://www.reddit.com/r/scihub/comments/lofj0r/announcement_scihub_has_been_paused_no_new/">{{ gettext('page.datasets.scihub.link_paused') }}</a></li>
     <li class="list-disc"><a href="https://en.wikipedia.org/wiki/Sci-Hub">{{ gettext('page.datasets.scihub.link_wikipedia') }}</a></li>

@@ -12,5 +12,5 @@ cd /temp-dir
 # Delete everything so far, so we don't confuse old and new downloads.
 rm -f libgen.rar fiction.rar
 
-aria2c -c -x4 -s4 -j4 'http://libgen.rs/dbdumps/libgen.rar'
-aria2c -c -x4 -s4 -j4 'http://libgen.rs/dbdumps/fiction.rar'
+aria2c -c -x4 -s4 -j4 'http://libgen.is/dbdumps/libgen.rar'
+aria2c -c -x4 -s4 -j4 'http://libgen.is/dbdumps/fiction.rar'
