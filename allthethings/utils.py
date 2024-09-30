@@ -1177,10 +1177,13 @@ UNIFIED_CLASSIFICATIONS = {
     # TODO: Remove on index refresh.
     "nexusstc_source_update_date": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
-    "nexusstc_tag": { "label": "Nexus/STC tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
+    "nexusstc_tag": { "label": "Nexus/STC Tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
     "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },
     "date_edsebk_meta_scrape": { "label": "EBSCOhost eBook Index Source Scrape Date", "website": "/datasets/edsebk", "description": "Date Anna’s Archive scraped the EBSCOhost metadata." },
-    "edsebk_subject": { "label": "EBSCOhost eBook Index subject", "url": "", "description": "Tag in EBSCOhost eBook Index.", "website": "/datasets/edsebk" },
+    "edsebk_subject": { "label": "EBSCOhost eBook Index Subject", "url": "", "description": "Tag in EBSCOhost eBook Index.", "website": "/datasets/edsebk" },
+    "file_problem": { "label": "File Problem", "url": "", "description": "Problem type indicated by a source library.", "website": "" },
+    "better_aarecord_id": { "label": "Better AA Record ID", "url": "", "description": "Source library has indicated this record to be better.", "website": "" },
+    "content_type": { "label": "Content Type", "url": "", "description": "Content type, determined by Anna’s Archive.", "website": "" },
     **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
     # Plus more added below!
 }

@@ -205,8 +205,8 @@
       <ul class="list-inside ml-1">
         {% for problem in aarecord.file_unified_data.problems %}
           <li class="list-disc">{{ md5_problem_type_mapping[problem.type] }}{% if problem.descr %} ("{{problem.descr}}"){% endif %}</li>
-          {% if problem.better_md5 %}
-            <li class="list-disc">{{ gettext('page.md5.box.download.better_file', link=(('<a href="/md5/' + (problem.better_md5 | lower | urlencode) + '">/md5/' + (problem.better_md5 | lower) + '</a>') | safe)) }}</li>
+          {% if problem.better_aarecord_id %}
+            <li class="list-disc">{{ gettext('page.md5.box.download.better_file', link=(('<a href="/' + (problem.better_aarecord_id | replace(':', '/') | urlencode) + '">' + problem.better_aarecord_id + '</a>') | safe)) }}</li>
           {% endif %}
         {% endfor %}
       </ul>

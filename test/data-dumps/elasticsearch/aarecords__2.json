@@ -46,6 +46,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_fiction"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.rs Fiction published this file.",
 							"label": "Libgen.rs Fiction Date",
 							"website": "/datasets/lgrs"
@@ -291,6 +303,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_fiction"
+					],
 					"date_lgrsfic_source": [
 						"2011-06-11"
 					],
@@ -466,6 +481,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzacea5qmracf55x7nkkpqhq6y6qlvyuommymyqibonnysnoryrzokyho"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -802,6 +829,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -1008,6 +1038,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafk2bzaceb3whb6l3hgupzdjc75lkwkptttx7cbotjvogjzki5d2fdnebk4om"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_unknown"
 					},
 					{
 						"highlight": false,
@@ -1372,6 +1414,9 @@
 					"collection": [
 						"zlib"
 					],
+					"content_type": [
+						"book_unknown"
+					],
 					"date_zlib_source": [
 						"2011-07-10"
 					],
@@ -1550,6 +1595,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzaceapbxiusvuntpzof7d7gznvn564me5kzym5ipgku4m7n654srv6lu"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_fiction"
 					},
 					{
 						"highlight": false,
@@ -1799,6 +1856,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_fiction"
+					],
 					"date_lgrsfic_source": [
 						"2011-06-11"
 					],
@@ -1955,6 +2015,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "magazine"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Anna\u2019s Archive scraped the MagzDB metadata.",
 							"label": "MagzDB Source Scrape Date",
 							"website": "/datasets/magzdb"
@@ -2106,6 +2178,9 @@
 					"collection": [
 						"magzdb"
 					],
+					"content_type": [
+						"magazine"
+					],
 					"date_magzdb_meta_scrape": [
 						"2024-09-06"
 					],
@@ -2252,6 +2327,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -2269,6 +2356,30 @@
 						"key": "filepath",
 						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_0DAY\\new\\us\\com\\Image\\We Stand On Guard\\We Stand On Guard 001 (2015) (digital) (Minutemen-Spaztastic).cbr"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Problem type indicated by a source library.",
+							"label": "File Problem",
+							"url": "",
+							"website": ""
+						},
+						"key": "file_problem",
+						"masked_isbn": "",
+						"value": "lgli_visible"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Source library has indicated this record to be better.",
+							"label": "Better AA Record ID",
+							"url": "",
+							"website": ""
+						},
+						"key": "better_aarecord_id",
+						"masked_isbn": "",
+						"value": "md5:d90b5c1a67fc8446becd111e274df649"
 					}
 				],
 				"download_urls": [
@@ -2323,11 +2434,20 @@
 				"author_additional": [],
 				"author_best": "",
 				"classifications_unified": {
+					"better_aarecord_id": [
+						"md5:d90b5c1a67fc8446becd111e274df649"
+					],
 					"collection": [
 						"lgli"
 					],
+					"content_type": [
+						"book_comic"
+					],
 					"date_lgli_source": [
 						"2015-07-05"
+					],
+					"file_problem": [
+						"lgli_visible"
 					]
 				},
 				"comments_multiple": [],
@@ -2364,7 +2484,7 @@
 				"original_filename_best": "lgli/V:\\comics\\_0DAY\\new\\us\\com\\Image\\We Stand On Guard\\We Stand On Guard 001 (2015) (digital) (Minutemen-Spaztastic).cbr",
 				"problems": [
 					{
-						"better_md5": "d90b5c1a67fc8446becd111e274df649",
+						"better_aarecord_id": "md5:d90b5c1a67fc8446becd111e274df649",
 						"descr": "del",
 						"only_if_no_partner_server": false,
 						"type": "lgli_visible"
@@ -2492,6 +2612,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzaceb5aopa3h5mzj2qmdmpokxwh24sak2ltji33a3gxnxq4qjgvjgjou"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -2804,6 +2936,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -2981,6 +3116,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -3103,6 +3250,9 @@
 				"classifications_unified": {
 					"collection": [
 						"lgli"
+					],
+					"content_type": [
+						"book_comic"
 					],
 					"date_lgli_source": [
 						"2015-07-05"
@@ -3277,6 +3427,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafk2bzacea6bihsffwkcgjlzabeshiiqlandrshuqhbqjv4io2cd3xlewbon2"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_unknown"
 					},
 					{
 						"highlight": false,
@@ -3641,6 +3803,9 @@
 					"collection": [
 						"zlib"
 					],
+					"content_type": [
+						"book_unknown"
+					],
 					"date_zlib_source": [
 						"2011-07-10"
 					],
@@ -3844,6 +4009,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzaceavbn2taxfhfasrfsd65tjnbtqpr67b26yopvug3ps5a4gsxh7ljq"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_unknown"
 					},
 					{
 						"highlight": false,
@@ -4208,6 +4385,9 @@
 					"collection": [
 						"zlib"
 					],
+					"content_type": [
+						"book_unknown"
+					],
 					"date_zlib_source": [
 						"2011-07-10"
 					],
@@ -4388,6 +4568,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -4510,6 +4702,9 @@
 				"classifications_unified": {
 					"collection": [
 						"lgli"
+					],
+					"content_type": [
+						"book_comic"
 					],
 					"date_lgli_source": [
 						"2015-07-05"
@@ -4684,6 +4879,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafk2bzaceaymhp3fegnqbam4ckkhcppgwf546qcpyoh3dsmmdlmwoomodqqrw"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_unknown"
 					},
 					{
 						"highlight": false,
@@ -5048,6 +5255,9 @@
 					"collection": [
 						"zlib"
 					],
+					"content_type": [
+						"book_unknown"
+					],
 					"date_zlib_source": [
 						"2011-07-10"
 					],
@@ -5237,6 +5447,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzacec4gv4w7qimadaswd3xckoqzxaclmgyf5jwjrksits6gmr6six4nm"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -5525,6 +5747,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -5696,6 +5921,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -5818,6 +6055,9 @@
 				"classifications_unified": {
 					"collection": [
 						"lgli"
+					],
+					"content_type": [
+						"book_comic"
 					],
 					"date_lgli_source": [
 						"2015-07-05"
@@ -5989,6 +6229,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzaceabf6pjr7ppwrwtqccaje2g5qjwfsqfjtz45lcuyiumpyk5xso6kc"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -6301,6 +6553,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -6478,6 +6733,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -6600,6 +6867,9 @@
 				"classifications_unified": {
 					"collection": [
 						"lgli"
+					],
+					"content_type": [
+						"book_comic"
 					],
 					"date_lgli_source": [
 						"2015-07-05"
@@ -6766,6 +7036,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_unknown"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Z-Library published this file.",
 							"label": "Z-Library Source Date",
 							"website": "/datasets/zlib"
@@ -6796,6 +7078,18 @@
 						"key": "lang",
 						"masked_isbn": "",
 						"value": "en"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Problem type indicated by a source library.",
+							"label": "File Problem",
+							"url": "",
+							"website": ""
+						},
+						"key": "file_problem",
+						"masked_isbn": "",
+						"value": "zlib_missing"
 					},
 					{
 						"highlight": false,
@@ -7084,8 +7378,14 @@
 					"collection": [
 						"zlib"
 					],
+					"content_type": [
+						"book_unknown"
+					],
 					"date_zlib_source": [
 						"2024-04-22"
+					],
+					"file_problem": [
+						"zlib_missing"
 					],
 					"lang": [
 						"en"
@@ -7145,7 +7445,7 @@
 				"original_filename_best": "",
 				"problems": [
 					{
-						"better_md5": "",
+						"better_aarecord_id": "",
 						"descr": "",
 						"only_if_no_partner_server": true,
 						"type": "zlib_missing"
@@ -7262,6 +7562,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzaceckodwsv7xplxynylrsueswqzca3bpynwnvvax77ybcrb22vnszyc"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -7550,6 +7862,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -7719,6 +8034,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafk2bzaceb4mj42aazwc3mnl74kkzw7i7lh5ouh57yzxsxenk7vw4xppvhnwu"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_fiction"
 					},
 					{
 						"highlight": false,
@@ -7968,6 +8295,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_fiction"
+					],
 					"date_lgrsfic_source": [
 						"2011-06-11"
 					],
@@ -8121,6 +8451,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzacedwaxmrazi3djhmasyodjnombo7yqcbzk32rjyvaricnh4h4yy4n6"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_fiction"
 					},
 					{
 						"highlight": false,
@@ -8370,6 +8712,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_fiction"
+					],
 					"date_lgrsfic_source": [
 						"2011-06-11"
 					],
@@ -8525,6 +8870,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -8647,6 +9004,9 @@
 				"classifications_unified": {
 					"collection": [
 						"lgli"
+					],
+					"content_type": [
+						"book_comic"
 					],
 					"date_lgli_source": [
 						"2015-07-05"
@@ -8818,6 +9178,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzaceca5dajld6dg6k47xhgjxmglu5u4hl3pddqvcximr6cvr7vfta4bs"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -9130,6 +9502,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -9305,6 +9680,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzacedtfey4oeno4t47alsezhbixzwhuzlzjshffrqi3ku2dvdks3wtbq"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_fiction"
 					},
 					{
 						"highlight": false,
@@ -9554,6 +9941,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_fiction"
+					],
 					"date_lgrsfic_source": [
 						"2011-06-11"
 					],
@@ -9722,6 +10112,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.rs Non_Fiction published this file.",
 							"label": "Libgen.rs Non-Fiction Date",
 							"website": "/datasets/lgrs"
@@ -9778,12 +10180,36 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Problem type indicated by a source library.",
+							"label": "File Problem",
+							"url": "",
+							"website": ""
+						},
+						"key": "file_problem",
+						"masked_isbn": "",
+						"value": "lgrsnf_visible"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Publication year.",
 							"label": "Year"
 						},
 						"key": "year",
 						"masked_isbn": "",
 						"value": "2006"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Source library has indicated this record to be better.",
+							"label": "Better AA Record ID",
+							"url": "",
+							"website": ""
+						},
+						"key": "better_aarecord_id",
+						"masked_isbn": "",
+						"value": "md5:be65b1459c852fd985a368cfd9bba5ec"
 					},
 					{
 						"highlight": true,
@@ -10051,14 +10477,23 @@
 				"author_additional": [],
 				"author_best": "O'Shea Michael",
 				"classifications_unified": {
+					"better_aarecord_id": [
+						"md5:be65b1459c852fd985a368cfd9bba5ec"
+					],
 					"collection": [
 						"lgrs"
+					],
+					"content_type": [
+						"book_nonfiction"
 					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
 					"ddc": [
 						"612.8/2"
+					],
+					"file_problem": [
+						"lgrsnf_visible"
 					],
 					"lang": [
 						"en"
@@ -10135,7 +10570,7 @@
 				"original_filename_best": "lgrsnf/B_Biology/O Shea M. The brain.. a very short introduction (OUP, 2005)(ISBN 0192853929)(149s)_B_.pdf",
 				"problems": [
 					{
-						"better_md5": "be65b1459c852fd985a368cfd9bba5ec",
+						"better_aarecord_id": "md5:be65b1459c852fd985a368cfd9bba5ec",
 						"descr": "no",
 						"only_if_no_partner_server": false,
 						"type": "lgrsnf_visible"
@@ -10268,6 +10703,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_unknown"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Z-Library published this file.",
 							"label": "Z-Library Source Date",
 							"website": "/datasets/zlib"
@@ -10298,6 +10745,18 @@
 						"key": "lang",
 						"masked_isbn": "",
 						"value": "pl"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Problem type indicated by a source library.",
+							"label": "File Problem",
+							"url": "",
+							"website": ""
+						},
+						"key": "file_problem",
+						"masked_isbn": "",
+						"value": "zlib_missing"
 					}
 				],
 				"download_urls": [
@@ -10628,8 +11087,14 @@
 					"collection": [
 						"zlib"
 					],
+					"content_type": [
+						"book_unknown"
+					],
 					"date_zlib_source": [
 						"2011-07-10"
+					],
+					"file_problem": [
+						"zlib_missing"
 					],
 					"lang": [
 						"pl"
@@ -10693,7 +11158,7 @@
 				"original_filename_best": "",
 				"problems": [
 					{
-						"better_md5": "",
+						"better_aarecord_id": "",
 						"descr": "",
 						"only_if_no_partner_server": true,
 						"type": "zlib_missing"
@@ -10835,6 +11300,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzacebgena3765iicrcybwcmwt4olon52ol2dsg4zkbwyh735ba35bd6k"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -11123,6 +11600,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -11317,6 +11797,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzaceafk4ggrbnxxtfzmsmogrhz3vrogzghqfjliu4ow6bydkl7iibjco"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -11629,6 +12121,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -11832,6 +12327,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafk2bzaceacs3a4t6kfbjjpkgx562qeqzhkbslpdk7hmv5qozarqn2jid5sfg"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_unknown"
 					},
 					{
 						"highlight": false,
@@ -12197,6 +12704,9 @@
 					"collection": [
 						"zlib"
 					],
+					"content_type": [
+						"book_unknown"
+					],
 					"date_zlib_source": [
 						"2011-07-10"
 					],
@@ -12378,6 +12888,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "magazine"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Anna\u2019s Archive scraped the MagzDB metadata.",
 							"label": "MagzDB Source Scrape Date",
 							"website": "/datasets/magzdb"
@@ -12524,6 +13046,9 @@
 				"classifications_unified": {
 					"collection": [
 						"magzdb"
+					],
+					"content_type": [
+						"magazine"
 					],
 					"date_magzdb_meta_scrape": [
 						"2024-09-06"
@@ -12702,6 +13227,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzacebrzejv7itjgdmbkqe2rwmdl2pvl5gaknwp6qty6e7az2fs37fq52"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_nonfiction"
 					},
 					{
 						"highlight": false,
@@ -13014,6 +13551,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_nonfiction"
+					],
 					"date_lgrsnf_source": [
 						"2009-07-20"
 					],
@@ -13183,6 +13723,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -13256,6 +13808,9 @@
 				"classifications_unified": {
 					"collection": [
 						"lgli"
+					],
+					"content_type": [
+						"book_comic"
 					],
 					"date_lgli_source": [
 						"2015-07-05"
@@ -13385,6 +13940,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_comic"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Date Libgen.li published this file.",
 							"label": "Libgen.li Source Date",
 							"website": "/datasets/lgli"
@@ -13402,6 +13969,30 @@
 						"key": "filepath",
 						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_ENG_ORIG_PUBL\\_B\\Boom\\Broken World (2015)\\Broken World 02 (of 04) (2015) (digital) (Minutemen-Faessla).cbz"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Problem type indicated by a source library.",
+							"label": "File Problem",
+							"url": "",
+							"website": ""
+						},
+						"key": "file_problem",
+						"masked_isbn": "",
+						"value": "lgli_visible"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Source library has indicated this record to be better.",
+							"label": "Better AA Record ID",
+							"url": "",
+							"website": ""
+						},
+						"key": "better_aarecord_id",
+						"masked_isbn": "",
+						"value": "md5:bc6112085a157dd636570d707bd6efbe"
 					}
 				],
 				"download_urls": [
@@ -13456,11 +14047,20 @@
 				"author_additional": [],
 				"author_best": "",
 				"classifications_unified": {
+					"better_aarecord_id": [
+						"md5:bc6112085a157dd636570d707bd6efbe"
+					],
 					"collection": [
 						"lgli"
 					],
+					"content_type": [
+						"book_comic"
+					],
 					"date_lgli_source": [
 						"2015-07-05"
+					],
+					"file_problem": [
+						"lgli_visible"
 					]
 				},
 				"comments_multiple": [],
@@ -13497,7 +14097,7 @@
 				"original_filename_best": "lgli/V:\\comics\\_ENG_ORIG_PUBL\\_B\\Boom\\Broken World (2015)\\Broken World 02 (of 04) (2015) (digital) (Minutemen-Faessla).cbz",
 				"problems": [
 					{
-						"better_md5": "bc6112085a157dd636570d707bd6efbe",
+						"better_aarecord_id": "md5:bc6112085a157dd636570d707bd6efbe",
 						"descr": "del",
 						"only_if_no_partner_server": false,
 						"type": "lgli_visible"
@@ -13603,6 +14203,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafk2bzacedtoarbwtkljg2cug5ectc546wj7ay4y4a57uzlh7tfcdlr7mhrd6"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_fiction"
 					},
 					{
 						"highlight": false,
@@ -13852,6 +14464,9 @@
 					"collection": [
 						"lgrs"
 					],
+					"content_type": [
+						"book_fiction"
+					],
 					"date_lgrsfic_source": [
 						"2011-06-11"
 					],
@@ -13995,12 +14610,36 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "magazine"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Original filepath in source library.",
 							"label": "Filepath"
 						},
 						"key": "filepath",
 						"masked_isbn": "",
 						"value": "upload/magzdb/ul/5709/\u0423\u0440\u043e\u0436\u0430\u0439\u043d\u0430\u044f \u0433\u0440\u044f\u0434\u043a\u0430 2013'01.pdf"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Problem type indicated by a source library.",
+							"label": "File Problem",
+							"url": "",
+							"website": ""
+						},
+						"key": "file_problem",
+						"masked_isbn": "",
+						"value": "upload_exiftool_failed"
 					}
 				],
 				"download_urls": [
@@ -14102,8 +14741,14 @@
 					"collection": [
 						"upload"
 					],
+					"content_type": [
+						"magazine"
+					],
 					"date_upload_record": [
 						"2024-06-27"
+					],
+					"file_problem": [
+						"upload_exiftool_failed"
 					],
 					"torrent": [
 						"managed_by_aa/annas_archive_data__aacid/annas_archive_data__aacid__upload_files_magzdb__20240510T020105Z--20240510T020106Z.torrent"
@@ -14143,7 +14788,7 @@
 				"original_filename_best": "upload/magzdb/ul/5709/\u0423\u0440\u043e\u0436\u0430\u0439\u043d\u0430\u044f \u0433\u0440\u044f\u0434\u043a\u0430 2013'01.pdf",
 				"problems": [
 					{
-						"better_md5": "",
+						"better_aarecord_id": "",
 						"descr": "",
 						"only_if_no_partner_server": false,
 						"type": "upload_exiftool_failed"
@@ -14251,6 +14896,18 @@
 						"key": "ipfs_cid",
 						"masked_isbn": "",
 						"value": "bafykbzacec3osw76m2qjxh3srnr3dtdvluce3ftihge3ojrrd7bmzawvxc6fo"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Content type, determined by Anna\u2019s Archive.",
+							"label": "Content Type",
+							"url": "",
+							"website": ""
+						},
+						"key": "content_type",
+						"masked_isbn": "",
+						"value": "book_fiction"
 					},
 					{
 						"highlight": false,
@@ -14499,6 +15156,9 @@
 				"classifications_unified": {
 					"collection": [
 						"lgrs"
+					],
+					"content_type": [
+						"book_fiction"
 					],
 					"date_lgrsfic_source": [
 						"2011-06-11"
