@@ -18,7 +18,7 @@ cd /temp-dir/libgenli_db
 # rclone -vP --include 'libgen_new.*' --max-depth 1 --check-first --checkers 1 --transfers 1 --size-only copy --retries=100 --low-level-retries=1000 --http-url="https://libgen.li/dbdumps/" :http: /temp-dir/libgenli_db/
 
 for i in $(seq -w 1 5); do # retries
-    rclone copy :ftp:/upload/dbbackup/ /temp-dir/libgenli_db/ --ftp-host=ftp.libgen.lc --ftp-user=anonymous --ftp-pass=$(rclone obscure dummy) --size-only --progress --multi-thread-streams=1 --transfers=1
+    rclone copy :ftp:/upload/dbbackup/ /temp-dir/libgenli_db/ --ftp-host=ftp.libgen.lc --ftp-user=anonymous --ftp-pass=$(rclone obscure dummy) --size-only --multi-thread-streams=1 --transfers=1 -vv
 done
 
 # curl --fail -L -O "https://libgen.li/dbdumps/libgen_new.zip" || curl --fail -L -O "https://libgen.gs/dbdumps/libgen_new.zip" || curl --fail -L -O "https://libgen.vg/dbdumps/libgen_new.zip" || curl --fail -L -O "https://libgen.pm/dbdumps/libgen_new.zip"
