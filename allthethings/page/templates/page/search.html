@@ -200,7 +200,7 @@
             {% endfor %}
           </div>
           <div class="font-bold mb-1">{{ gettext('page.search.filters.order_by.header') }}</div>
-          <select class="pr-8 mb-4 bg-black/6.7 px-2 py-1 rounded" name="sort">
+          <select class="pr-8 mb-4 bg-black/6.7 px-2 py-1 rounded max-w-full" name="sort">
             <option value="">{{ gettext('page.search.filters.sorting.most_relevant') }}</option>
             <option value="newest" {% if search_dict.sort_value == 'newest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.newest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span></option>
             <option value="oldest" {% if search_dict.sort_value == 'oldest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span></option>
