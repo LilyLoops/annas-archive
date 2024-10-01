@@ -5018,8 +5018,8 @@ def get_aarecords_elasticsearch(aarecord_ids):
         return []
 
     # Uncomment the following lines to use MySQL directly; useful for local development.
-    with Session(engine) as session:
-        return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
+    # with Session(engine) as session:
+    #     return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
 
     docs_by_es_handle = collections.defaultdict(list)
     for aarecord_id in aarecord_ids:
