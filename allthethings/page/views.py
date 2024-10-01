@@ -1979,6 +1979,10 @@ def get_lgrsnf_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'lgrsnf', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
         allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'md5', lgrs_book_dict['md5'].lower())
+        if (sha1 := (lgrs_book_dict['sha1'] or '').strip().lower()) != '':
+            allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'sha1', sha1)
+        if (sha256 := (lgrs_book_dict['sha256'] or '').strip().lower()) != '':
+            allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'sha256', sha256)
         allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], lgrsnf_book['Identifier'].split(",") + lgrsnf_book['IdentifierWODash'].split(","))
         allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or '', lgrs_book_dict.get('toc') or ''])))
         allthethings.utils.add_classification_unified(lgrs_book_dict['file_unified_data'], 'lgrsnf_topic', lgrs_book_dict.get('topic_descr') or '')
@@ -2069,6 +2073,10 @@ def get_lgrsfic_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'lgrsfic', lgrs_book_dict['id'])
         # .lower() on md5 is okay here, we won't miss any fetches since collation is _ci.
         allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'md5', lgrs_book_dict['md5'].lower())
+        if (sha1 := (lgrs_book_dict['sha1'] or '').strip().lower()) != '':
+            allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'sha1', sha1)
+        if (sha256 := (lgrs_book_dict['sha256'] or '').strip().lower()) != '':
+            allthethings.utils.add_identifier_unified(lgrs_book_dict['file_unified_data'], 'sha256', sha256)
         allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], lgrsfic_book['Identifier'].split(","))
         allthethings.utils.add_isbns_unified(lgrs_book_dict['file_unified_data'], allthethings.utils.get_isbnlike('\n'.join([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('locator') or ''])))
         for name, unified_name in allthethings.utils.LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING.items():
@@ -3629,6 +3637,8 @@ def get_aac_upload_book_dicts(session, key, values):
         aac_upload_book_dict['aa_upload_derived']['description_cumulative'] = []
         aac_upload_book_dict['aa_upload_derived']['comments_cumulative'] = []
 
+        allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'md5', aac_upload_book_dict_raw['md5'])
+
         for record in aac_upload_book_dict['records']:
             if 'filesize' not in record['metadata']:
                 print(f"WARNING: filesize missing in aac_upload_record: {record=}")
@@ -3639,6 +3649,11 @@ def get_aac_upload_book_dicts(session, key, values):
             aac_upload_book_dict['aa_upload_derived']['subcollection_multiple'].append(subcollection)
             aac_upload_book_dict['file_unified_data']['original_filename_additional'].append(allthethings.utils.prefix_filepath('upload', f"{subcollection}/{record['metadata']['filepath']}"))
             aac_upload_book_dict['file_unified_data']['filesize_additional'].append(int(record['metadata']['filesize']))
+
+            if (sha1 := (record['metadata']['sha1'] or '').strip().lower()) != '':
+                allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'sha1', sha1)
+            if (sha256 := (record['metadata']['sha256'] or '').strip().lower()) != '':
+                allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'sha256', sha256)
 
             if '.' in record['metadata']['filepath']:
                 extension = record['metadata']['filepath'].rsplit('.', 1)[-1]

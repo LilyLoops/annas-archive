@@ -1094,6 +1094,8 @@ LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
 
 UNIFIED_IDENTIFIERS = {
     "md5": { "shortenvalue": True, "label": "MD5", "website": "https://en.wikipedia.org/wiki/MD5", "description": "" },
+    "sha1": { "shortenvalue": True, "label": "SHA-1", "website": "https://en.wikipedia.org/wiki/SHA-1", "description": "" },
+    "sha256": { "shortenvalue": True, "label": "SHA-256", "website": "https://en.wikipedia.org/wiki/SHA-2", "description": "" },
     "aarecord_id": { "shortenvalue": True, "label": "AA Record ID", "website": "", "description": "Anna’s Archive record ID." },
     "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
