@@ -577,7 +577,7 @@ def torrent_group_data_from_file_path(file_path):
         group = 'nexusstc'
     if 'ebscohost_records' in file_path:
         group = 'other_metadata'
-    if 'gbook_records' in file_path:
+    if 'gbooks_records' in file_path:
         group = 'other_metadata'
     if 'rgb_records' in file_path:
         group = 'other_metadata'
@@ -1511,7 +1511,7 @@ def get_ia_record_dicts(session, key, values):
             else:
                 ia_record_dict['file_unified_data']['added_date_unified'] = { **added_date_unified_file, "date_ia_source": datetime.datetime.strptime(publicdate[0], "%Y-%m-%d %H:%M:%S").isoformat().split('T', 1)[0] }
 
-        ia_record_dict['file_unified_data']['content_type_best'] = 'book_unknown'
+        ia_record_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
         if ia_record_dict['ia_id'].split('_', 1)[0] in ['sim', 'per'] or extract_list_from_ia_json_field(ia_record_dict, 'pub_type') in ["Government Documents", "Historical Journals", "Law Journals", "Magazine", "Magazines", "Newspaper", "Scholarly Journals", "Trade Journals"]:
             ia_record_dict['file_unified_data']['content_type_best'] = 'magazine'
 
@@ -2930,7 +2930,7 @@ def get_oclc_dicts(session, key, values):
         elif "mss" in oclc_dict["aa_oclc_derived"]["specific_format_multiple"]:
             oclc_dict["file_unified_data"]["content_type_best"] = 'journal_article'
         elif "book" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
-            oclc_dict["file_unified_data"]["content_type_best"] = 'book_unknown'
+            oclc_dict["file_unified_data"]["content_type_best"] = '' # So it defaults to book_unknown
         elif "artchap" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
             oclc_dict["file_unified_data"]["content_type_best"] = 'journal_article'
         elif "artcl" in oclc_dict["aa_oclc_derived"]["general_format_multiple"]:
@@ -4171,13 +4171,13 @@ def get_aac_nexusstc_book_dicts(session, key, values):
             elif aac_record['metadata']['record']['type'][0] == 'monograph':
                 aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
             elif aac_record['metadata']['record']['type'][0] == 'reference-book':
-                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
             elif aac_record['metadata']['record']['type'][0] == 'book':
-                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
             elif aac_record['metadata']['record']['type'][0] == 'book-series':
-                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
             elif aac_record['metadata']['record']['type'][0] == 'book-set':
-                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'book_unknown'
+                aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
             elif aac_record['metadata']['record']['type'][0] == 'book-chapter':
                 aac_nexusstc_book_dict['file_unified_data']['content_type_best'] = 'other'
             elif aac_record['metadata']['record']['type'][0] == 'book-section':
@@ -4530,6 +4530,53 @@ def get_aac_gbooks_book_dicts(session, key, values):
 
         allthethings.utils.add_identifier_unified(aac_gbooks_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_gbooks_book_dict['file_unified_data'], 'gbooks', primary_id)
+
+        # https://developers.google.com/books/docs/v1/reference/volumes
+
+        if (title_stripped := (aac_record['metadata'].get('title') or '').strip()) != '':
+            aac_gbooks_book_dict['file_unified_data']['title_best'] = title_stripped
+        if (subtitle_stripped := (aac_record['metadata'].get('subtitle') or '').strip()) != '':
+            aac_gbooks_book_dict['file_unified_data']['title_additional'] = [subtitle_stripped]
+        aac_gbooks_book_dict['file_unified_data']['author_best'] = '; '.join([author.strip() for author in (aac_record['metadata'].get('authors') or [])])
+        if (publisher_stripped := (aac_record['metadata'].get('publisher') or '').strip()) != '':
+            aac_gbooks_book_dict['file_unified_data']['publisher_best'] = publisher_stripped
+        if (published_date_stripped := (aac_record['metadata'].get('published_date') or '').strip()) != '':
+            aac_gbooks_book_dict['file_unified_data']['edition_varia_best'] = published_date_stripped
+            potential_year = re.search(r"(\d\d\d\d)", published_date_stripped)
+            if potential_year is not None:
+                aac_gbooks_book_dict['file_unified_data']['year_best'] = potential_year[0]
+        if (description_stripped := strip_description(aac_record['metadata'].get('description') or '')) != '':
+            aac_gbooks_book_dict['file_unified_data']['stripped_description_best'] = description_stripped
+
+        aac_gbooks_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(aac_record['metadata'].get('language') or '')
+
+        # TODO: check priority on this
+        print_type = aac_record['metadata'].get('printType') or ''
+        if print_type == 'BOOK':
+            aac_gbooks_book_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
+        elif print_type == 'MAGAZINE':
+            aac_gbooks_book_dict['file_unified_data']['content_type_best'] = 'magazine'
+        elif print_type == '':
+            continue
+        else:
+            raise Exception(f"Unexpected {print_type} in get_aac_gbooks_book_dicts for {aac_record=}")
+
+        for identifier in (aac_record['metadata'].get('industryIdentifiers') or []):
+            if identifier['type'] == 'ISBN_10':
+                allthethings.utils.add_isbns_unified(aac_gbooks_book_dict['file_unified_data'], [identifier['identifier']])
+            elif identifier['type'] == 'ISBN_13':
+                allthethings.utils.add_isbns_unified(aac_gbooks_book_dict['file_unified_data'], [identifier['identifier']])
+            elif identifier['type'] == 'ISSN':
+                allthethings.utils.add_issn_unified(aac_gbooks_book_dict['file_unified_data'], identifier['identifier'])
+            elif identifier['type'] == 'OTHER':
+                internal_type, value = identifier['identifier'].split(':', 1)
+                # 42399475 OCLC, 3414355 UOM, 2156710 STANFORD, 1972699 UCAL, 1528733 LCCN, 1209193 BSB, 808401 PKEY, 706554 HARVARD, 629718 UIUC, 627191 IND, 585869 MINN, 548735 ONB, 546117 BL, 545280 WISC, 457767 UVA, 453623 UTEXAS, 433478 KBNL, 398862 CORNELL, 363405 NYPL, 362982 UCSD, 311532 BML, 305042 OSU, 297715 PSU, 272807 OXFORD, 217194 CHI, 198333 PRNC, 176952 NKP, 173740 GENT, 167098 UCBK, 150845 NWU, 144428 UCLA, 143952 UCSC, 141379 IBNR, 114321 UCM, 112424 IOWA, 109638 UCR, 108098 EAN, 105571 SRLF, 104403 IBNF, 102856 LALL, 90388 COLUMBIA, 85301 IBNN, 85253 MSU, 83704 BCUL, 79141 EHC, 70334 NLI, 69415 UBBE, 67599 ZBZH, 62433 UBBS, 61822 UGA, 58923 PURD, 58218 ZHBL, 56507 WSULL, 55227 UILAW, 54136 CUB, 49629 UFL, 44791 BNC, 44158 LOC, 44037 RMS, 43242 IBSC, 42792 UCD, 42695 IBNT, 41419 RUTGERS, 39869 DMM, 39137 NLS, 35582 KEIO, 29323 LLMC, 25804 IBCR, 25372 NASA, 25011 KUL, 23655 IBSR, 22055 IBUR, 18259 BDM, 15900 UOMDLP, 15864 YALE, 12634 ERDC, 12168 IBSI, 10526 KBR, 10361 IBSS, 9574 UCI, 8714 MPM, 7400 SEM, 6585 TBRC, 6357 IBAR, 6115 BAB, 3868 UCSB, 3482 NAP, 1622 UCSF, 1506 YONSEI, 666 CEC, 345 RML, 256 PSUL, 93 ICDL, 39 GCCC, 4 LEGAL, 4 GEISBN, 4 GBC
+                if internal_type == 'OCLC':
+                    allthethings.utils.add_identifier_unified(aac_gbooks_book_dict['file_unified_data'], 'oclc', value)
+                elif internal_type == 'LCCN':
+                    allthethings.utils.add_identifier_unified(aac_gbooks_book_dict['file_unified_data'], 'lccn', value)
+            else:
+                raise Exception(f"Unexpected {identifier['type']} in get_aac_gbooks_book_dicts for {aac_record=}")
 
         aac_gbooks_book_dicts.append(aac_gbooks_book_dict)
     return aac_gbooks_book_dicts
@@ -4971,8 +5018,8 @@ def get_aarecords_elasticsearch(aarecord_ids):
         return []
 
     # Uncomment the following lines to use MySQL directly; useful for local development.
-    # with Session(engine) as session:
-    #     return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
+    with Session(engine) as session:
+        return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
 
     docs_by_es_handle = collections.defaultdict(list)
     for aarecord_id in aarecord_ids:

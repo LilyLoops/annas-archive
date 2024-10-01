@@ -8,4 +8,7 @@ INSERT INTO `aarecords_codes_gbooks` VALUES("aacid:aacid__gbooks_records__202409
 ,("content_type:book_unknown","gbooks:dNC07lyONssC")
 ,("date_gbooks_meta_scrape:2024-09-20","gbooks:dNC07lyONssC")
 ,("gbooks:dNC07lyONssC","gbooks:dNC07lyONssC")
+,("isbn10:1108026516","gbooks:dNC07lyONssC")
+,("isbn13:9781108026512","gbooks:dNC07lyONssC")
+,("lang:en","gbooks:dNC07lyONssC")
 ;
