@@ -1541,7 +1541,7 @@ def attempt_fix_chinese_uninterrupted_text(text):
 def attempt_fix_chinese_filepath(filepath):
     return '/'.join([attempt_fix_chinese_uninterrupted_text(part) for part in filepath.split('/')])
 
-FILEPATH_PREFIXES = ['duxiu', 'ia', 'lgli', 'lgrsfic', 'lgrsnf', 'scihub', 'scimag', 'upload', 'magzdb', 'nexusstc']
+FILEPATH_PREFIXES = ['duxiu', 'ia', 'lgli', 'lgrsfic', 'lgrsnf', 'scihub', 'scimag', 'upload', 'magzdb', 'nexusstc', 'trantor']
 def prefix_filepath(prefix, filepath):
     if prefix not in FILEPATH_PREFIXES:
         raise Exception(f"prefix_filepath: {prefix=} not in {FILEPATH_PREFIXES=}")

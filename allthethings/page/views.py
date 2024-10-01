@@ -4967,6 +4967,28 @@ def get_aac_trantor_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_trantor_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_trantor_book_dict['file_unified_data'], 'trantor', primary_id)
 
+        if (title_stripped := (aac_record['metadata'].get('Title') or '').strip()) != '':
+            aac_trantor_book_dict['file_unified_data']['title_best'] = title_stripped
+        aac_trantor_book_dict['file_unified_data']['author_best'] = '; '.join([author.strip() for author in (aac_record['metadata'].get('Authors') or [])])
+        if (publisher_stripped := (aac_record['metadata'].get('Publisher') or '').strip()) != '':
+            aac_trantor_book_dict['file_unified_data']['publisher_best'] = publisher_stripped
+        if (description_stripped := strip_description(aac_record['metadata'].get('Description') or '')) != '':
+            aac_trantor_book_dict['file_unified_data']['stripped_description_best'] = description_stripped
+
+        aac_trantor_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(aac_record['metadata'].get('Lang') or '')
+
+        if (isbn_stripped := (aac_record['metadata'].get('Isbn') or '').strip()) != '':
+            allthethings.utils.add_isbns_unified(aac_trantor_book_dict['file_unified_data'], [isbn_stripped])
+        if (sha256_stripped := (aac_record['metadata'].get('Sha256') or '').strip()) != '':
+            allthethings.utils.add_identifier_unified(aac_trantor_book_dict['file_unified_data'], 'sha256', base64.b64decode(sha256_stripped.encode()).hex())
+
+        if (local_file_path_stripped := (aac_record['metadata'].get('LocalFilePath') or '').strip()) != '':
+            aac_trantor_book_dict['file_unified_data']['original_filename_best'] = allthethings.utils.prefix_filepath('trantor', local_file_path_stripped.replace('\\', '/'))
+            aac_trantor_book_dict['file_unified_data']['extension_best'] = local_file_path_stripped.rsplit('.', 1)[-1] if ('.' in local_file_path_stripped) else ''
+
+        if (size_stripped := ((aac_record['metadata'].get('Size') or {}).get('$numberLong') or '').strip()) != '':
+            aac_trantor_book_dict['file_unified_data']['filesize_best'] = int(size_stripped)
+
         aac_trantor_book_dicts.append(aac_trantor_book_dict)
     return aac_trantor_book_dicts
 
