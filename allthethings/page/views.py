@@ -24,6 +24,7 @@ import unicodedata
 # import tiktoken
 # import openai
 import xmltodict
+import html
 
 from flask import g, Blueprint, render_template, make_response, redirect, request
 from allthethings.extensions import engine, es, es_aux, mariapersist_engine
@@ -156,7 +157,7 @@ def make_temp_anon_aac_path(prefix, file_aac_id, data_folder):
     return f"{prefix}/{date}/{data_folder}/{file_aac_id}"
 
 def strip_description(description):
-    first_pass = re.sub(r'<[^<]+?>', r' ', re.sub(r'<a.+?href="([^"]+)"[^>]*>', r'(\1) ', description.replace('</p>', '\n\n').replace('</P>', '\n\n').replace('<br>', '\n').replace('<BR>', '\n').replace('<br/>', '\n').replace('<br />', '\n').replace('<BR/>', '\n').replace('<BR />', '\n')))
+    first_pass = html.unescape(re.sub(r'<[^<]+?>', r' ', re.sub(r'<a.+?href="([^"]+)"[^>]*>', r'(\1) ', description.replace('</p>', '\n\n').replace('</P>', '\n\n').replace('<br>', '\n').replace('<BR>', '\n').replace('<br/>', '\n').replace('<br />', '\n').replace('<BR/>', '\n').replace('<BR />', '\n'))))
     return '\n'.join([row for row in [row.strip() for row in first_pass.split('\n')] if row != ''])
 
 
@@ -4651,7 +4652,7 @@ def get_aac_goodreads_book_dicts(session, key, values):
         if type(authors) is dict:
             authors = [authors]
         aac_goodreads_book_dict['file_unified_data']['author_best'] = '; '.join([author['name'].strip() for author in authors])
-        
+
 
         aac_goodreads_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(record['GoodreadsResponse']['book'].get('language_code') or '')
 
@@ -4780,6 +4781,68 @@ def get_aac_libby_book_dicts(session, key, values):
 
         allthethings.utils.add_identifier_unified(aac_libby_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_libby_book_dict['file_unified_data'], 'libby', primary_id)
+
+        if (title_stripped := (aac_record['metadata'].get('title') or '').strip()) != '':
+            aac_libby_book_dict['file_unified_data']['title_best'] = title_stripped
+        if (sort_title_stripped := (aac_record['metadata'].get('sort_title') or '').strip()) != '':
+            aac_libby_book_dict['file_unified_data']['title_additional'] = [sort_title_stripped]
+        aac_libby_book_dict['file_unified_data']['author_best'] = '; '.join([author['name'].strip() for author in (aac_record['metadata'].get('creators') or []) if author['role'].strip().lower() == 'author'])
+        aac_libby_book_dict['file_unified_data']['author_additional'] = [
+            '; '.join([author['name'].strip() for author in (aac_record['metadata'].get('creators') or [])]),
+            '; '.join([author['sortName'].strip() for author in (aac_record['metadata'].get('creators') or [])]),
+        ]
+        if (publisher_stripped := ((aac_record['metadata'].get('publisher') or {}).get('name') or '').strip()) != '':
+            aac_libby_book_dict['file_unified_data']['publisher_best'] = publisher_stripped
+        if (published_date_stripped := (aac_record['metadata'].get('publishDateText') or '').strip()) != '':
+            potential_year = re.search(r"(\d\d\d\d)", published_date_stripped)
+            if potential_year is not None:
+                aac_libby_book_dict['file_unified_data']['year_best'] = potential_year[0]
+        if (description_stripped := strip_description(aac_record['metadata'].get('fullDescription') or aac_record['metadata'].get('description') or aac_record['metadata'].get('shortDescription') or '')) != '':
+            aac_libby_book_dict['file_unified_data']['stripped_description_best'] = description_stripped
+
+        edition_varia_normalized = []
+        if (series_stripped := (aac_record['metadata'].get('series') or '').strip()) != '':
+            edition_varia_normalized.append(series_stripped)
+        if (edition_stripped := (aac_record['metadata'].get('edition') or '').strip()) != '':
+            edition_varia_normalized.append(edition_stripped)
+        if (year_best := aac_libby_book_dict['file_unified_data']['year_best']) != '':
+            edition_varia_normalized.append(year_best)
+        aac_libby_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
+
+        aac_libby_book_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(lang['id']) for lang in (aac_record['metadata'].get('languages') or [])])
+
+        if len(covers := list((aac_record['metadata'].get('covers') or {}).values())) > 0:
+            aac_libby_book_dict['file_unified_data']['cover_url_best'] = max(covers, key=lambda cover: int(cover['width']))['href']
+
+        # 7383764 ebook, 751587 audiobook, 165064 magazine, 94174 video, 79195 music, 1548 disney online ebook, 22 external service
+        book_type = ((aac_record['metadata'].get('type') or {}).get('id') or '').lower().strip()
+        if book_type == 'ebook':
+            aac_libby_book_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
+        elif book_type == 'magazine':
+            aac_libby_book_dict['file_unified_data']['content_type_best'] = 'magazine'
+        elif book_type == 'audiobook':
+            aac_libby_book_dict['file_unified_data']['content_type_best'] = 'audiobook'
+        elif book_type in ['video', 'music', 'disney online ebook', 'external service']:
+            aac_libby_book_dict['file_unified_data']['content_type_best'] = 'other'
+        elif book_type == '':
+            continue
+        else:
+            raise Exception(f"Unexpected {book_type=} in get_aac_libby_book_dicts for {aac_record=}")
+
+        for fmt in (aac_record['metadata'].get('formats') or []):
+            for identifier in (fmt.get('identifiers') or []):
+                # 10325731 ISBN, 3559932 KoboBookID, 1812854 PublisherCatalogNumber, 1139620 UPC, 1138006 ASIN, 270568 8, 190988 LibraryISBN, 16585 DOI, 267 ISSN, 21 9
+                if identifier['type'] in ['ISBN', 'LibraryISBN']:
+                    allthethings.utils.add_isbns_unified(aac_libby_book_dict['file_unified_data'], [identifier['value']])
+                elif identifier['type'] == 'ISSN':
+                    allthethings.utils.add_issn_unified(aac_libby_book_dict['file_unified_data'], identifier['value'])
+                elif identifier['type'] == 'ASIN':
+                    allthethings.utils.add_identifier_unified(aac_libby_book_dict['file_unified_data'], 'asin', identifier['value'])
+                elif identifier['type'] in ['KoboBookID', 'PublisherCatalogNumber', 'UPC', '8', '9', 'DOI']:
+                    # DOI values seem to be quite bad.
+                    pass
+                else:
+                    raise Exception(f"Unexpected {identifier['type']} in get_aac_libby_book_dicts for {aac_record=}")
 
         aac_libby_book_dicts.append(aac_libby_book_dict)
     return aac_libby_book_dicts
@@ -5059,8 +5122,8 @@ def get_aarecords_elasticsearch(aarecord_ids):
         return []
 
     # Uncomment the following lines to use MySQL directly; useful for local development.
-    # with Session(engine) as session:
-    #     return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
+    with Session(engine) as session:
+        return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
 
     docs_by_es_handle = collections.defaultdict(list)
     for aarecord_id in aarecord_ids:
@@ -5457,7 +5520,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             [('lgrsfic_book', 'cover_url_best')], 
             [('lgli_file', 'cover_url_best')], 
             [('ol', 'cover_url_best')], 
-            [('isbndb', 'cover_url_best')], 
+            [('isbndb', 'cover_url_best')],
+            [('libby', 'cover_url_best')],
             [(UNIFIED_DATA_MERGE_ALL, 'cover_url_best')], 
             [(UNIFIED_DATA_MERGE_ALL, 'cover_url_additional')]
         ])
@@ -5651,12 +5715,18 @@ def get_aarecords_mysql(session, aarecord_ids):
                 [('ol_book_dicts_primary_linked', 'content_type_best')],
                 [('scihub_doi', 'content_type_best')],
                 [('aac_upload', 'content_type_best')],
-                [(UNIFIED_DATA_MERGE_EXCEPT(['oclc']), 'content_type_best')],
+                [(UNIFIED_DATA_MERGE_EXCEPT(['oclc', 'libby']), 'content_type_best')],
             ])
+        if aarecord['file_unified_data']['content_type_best'] == '':
+            for libby in source_records_by_type['libby']:
+                # Only tag Libby as audiobook or other when it's a Libby metadata record
+                if (aarecord_id_split[0] == 'libby') or (libby['file_unified_data']['content_type_best'] not in ['other', 'audiobook']):
+                    aarecord['file_unified_data']['content_type_best'] = libby['file_unified_data']['content_type_best']
+                    break
         if aarecord['file_unified_data']['content_type_best'] == '':
             for oclc in source_records_by_type['oclc']:
                 # OCLC has a lot of books mis-tagged as journal article.
-                if (aarecord_id_split[0] == 'oclc') or (oclc['file_unified_data']['content_type_best'] != 'other' and oclc['file_unified_data']['content_type_best'] != 'journal_article'):
+                if (aarecord_id_split[0] == 'oclc') or (oclc['file_unified_data']['content_type_best'] not in ['other', 'journal_article']):
                     aarecord['file_unified_data']['content_type_best'] = oclc['file_unified_data']['content_type_best']
                     break
         if aarecord['file_unified_data']['content_type_best'] == '':
@@ -6035,6 +6105,7 @@ def get_md5_content_type_mapping(display_lang):
             "magazine":           "📰 " + gettext("common.md5_content_type_mapping.magazine"),
             "book_comic":         "💬 " + gettext("common.md5_content_type_mapping.book_comic"),
             "musical_score":      "🎶 " + gettext("common.md5_content_type_mapping.musical_score"),
+            "audiobook":          "🎧 " + "Audiobook", # TODO:TRANSLATE
             "other":              "🤨 " + gettext("common.md5_content_type_mapping.other"),
         }
 
