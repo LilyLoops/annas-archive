@@ -5320,8 +5320,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             *(aarecord['file_unified_data']['extension_additional']),
             # If we find REPLACE_PUNCTUATION in item, we need a separate standalone one in which punctionation is not replaced.
             # Otherwise we can rely on REPLACE_PUNCTUATION replacing the : and generating the standalone one.
-            *[f"{key}:{item} {key} {item}" if re.search(REPLACE_PUNCTUATION, item) else f"{key}:{item}" for key, items in aarecord['file_unified_data']['identifiers_unified'].items() for item in items],
-            *[f"{key}:{item} {key} {item}" if re.search(REPLACE_PUNCTUATION, item) else f"{key}:{item}" for key, items in aarecord['file_unified_data']['classifications_unified'].items() for item in items],
+            *[f"{key}:{item} {key} {item}" if re.search(REPLACE_PUNCTUATION, item) else f"{key}:{item}" for key, items in sorted(aarecord['file_unified_data']['identifiers_unified'].items()) for item in sorted(items)],
+            *[f"{key}:{item} {key} {item}" if re.search(REPLACE_PUNCTUATION, item) else f"{key}:{item}" for key, items in sorted(aarecord['file_unified_data']['classifications_unified'].items()) for item in sorted(items)],
         ])
         # Duplicate search terms that contain punctuation, in *addition* to the original search terms (so precise matches still work).
         split_search_text = set(initial_search_text.split())
