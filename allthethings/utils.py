@@ -112,6 +112,14 @@ def split_aarecord_ids(aarecord_ids):
         'nexusstc': [],
         'nexusstc_download': [],
         'edsebk': [],
+        'cerlalc': [],
+        'czech_oo42hcks': [],
+        'gbooks': [],
+        'goodreads': [],
+        'isbngrp': [],
+        'libby': [],
+        'rgb': [],
+        'trantor': [],
     }
     for aarecord_id in aarecord_ids:
         split_aarecord_id = aarecord_id.split(':', 1)
@@ -1018,8 +1026,8 @@ LGLI_IDENTIFIERS = {
     "dnb": { "label": "DNB", "url": "http://d-nb.info/%s", "description": "Deutsche Nationalbibliothek"},
     "fantlabeditionid": { "label": "FantLab Edition ID", "url": "https://fantlab.ru/edition%s", "description": "Лаболатория фантастики"},
     "flibustabookid": { "label": "Flibusta", "url": "https://flibusta.is/b/%s", "description":""},
-    "goodreads": { "label": "Goodreads", "url": "http://www.goodreads.com/book/show/%s", "description": "Goodreads social cataloging site"},
-    "googlebookid": { "label": "Google Books", "url": "https://books.google.com/books?id=%s", "description": ""},
+    "goodreads": { "label": "Goodreads", "url": "http://www.goodreads.com/book/show/%s", "description": "Goodreads social cataloging site", "website": "/datasets/goodreads" },
+    "googlebookid": { "label": "Google Books", "url": "https://books.google.com/books?id=%s", "description": "", "website": "/datasets/gbooks"},
     "isfdbpubideditions": { "label": "ISFDB (editions)", "url": "http://www.isfdb.org/cgi-bin/pl.cgi?%s", "description": ""},
     "issn": { "label": "ISSN", "url": "https://urn.issn.org/urn:issn:%s", "description": "International Standard Serial Number"},
     "jnbjpno": { "label": "JNB/JPNO", "url": "https://iss.ndl.go.jp/api/openurl?ndl_jpno=%s&amp;locale=en", "description": "The Japanese National Bibliography"},
@@ -1060,7 +1068,7 @@ LGLI_CLASSIFICATIONS = {
 LGLI_IDENTIFIERS_MAPPING = {
     "oclcworldcat": "oclc",
     "openlibrary": "ol",
-    "googlebookid": "gbook",
+    "googlebookid": "gbooks",
 }
 LGLI_CLASSIFICATIONS_MAPPING = {
     "classification": "class",
@@ -1072,7 +1080,7 @@ LGLI_CLASSIFICATIONS_MAPPING = {
 
 LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING = { 
     'asin': 'asin', 
-    'googlebookid': 'gbook', 
+    'googlebookid': 'gbooks', 
     'openlibraryid': 'ol',
     'doi': 'doi',
     'issn': 'issn',
@@ -1116,6 +1124,12 @@ UNIFIED_IDENTIFIERS = {
     "iso": { "label": "ISO", "url": "https://iso.org/standard/%s.html", "description": "ISO standard number.", "website": "https://iso.org/" },
     "british_standard": { "label": "British Standard", "url": "", "description": "British Standards (BS) are the standards produced by the BSI Group.", "website": "https://en.wikipedia.org/wiki/British_Standards" },
     "edsebk": { "label": "EBSCOhost eBook Index Accession Number", "url": "https://library.macewan.ca/full-record/edsebk/%s", "description": "ID in the EBSCOhost eBook Index (edsebk).", "website": "/datasets/edsebk" },
+    "cerlalc": { "label": "Cerlalc ID", "url": "", "description": "Cerlalc ID.", "website": "/datasets/cerlalc" },
+    "czech_oo42hcks": { "label": "Czech metadata ID", "url": "", "description": "Czech metadata ID.", "website": "/datasets/czech_oo42hcks" },
+    "isbngrp": { "label": "ISBN GRP ID", "url": "", "description": "ISBN GRP ID.", "website": "/datasets/isbngrp" },
+    "libby": { "label": "Libby ID", "url": "", "description": "Libby ID.", "website": "/datasets/libby" },
+    "rgb": { "label": "Russian State Library ID", "url": "", "description": "Russian State Library ID.", "website": "/datasets/rgb" },
+    "trantor": { "label": "Trantor ID", "url": "", "description": "Trantor ID.", "website": "/datasets/trantor" },
     **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
     # Plus more added below!
 }
@@ -1126,55 +1140,55 @@ UNIFIED_CLASSIFICATIONS = {
     "ia_collection": { "label": "IA Collection", "url": "https://archive.org/details/%s", "description": "Internet Archive collection which this file is part of.", "website": "https://help.archive.org/help/collections-a-basic-guide/" },
     "lang": { "label": "Language", "website": "https://en.wikipedia.org/wiki/IETF_language_tag", "description": "IETF language tag." },
     "year": { "label": "Year", "description": "Publication year." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
     "date_duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date Anna’s Archive scraped the DuXiu collection." },
     "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date Anna’s Archive scraped the DuXiu collection." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
     "date_file_created": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
     "date_ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
     "date_ia_record_scrape": { "label": "IA Record Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the record from the Internet Archive." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
     "date_ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
     "date_isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
     "date_lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
     "date_lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
     "date_lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
     "date_oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
     "date_ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "upload_record_date": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
     "date_upload_record": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
     "date_zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
     "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date Anna’s Archive scraped the MagzDB metadata." },
     "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date Anna’s Archive scraped the MagzDB metadata." },
     "magzdb_keyword": { "label": "MagzDB Keyword", "url": "", "description": "Publication keyword in MagzDB (in Russian).", "website": "/datasets/magzdb" },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "nexusstc_source_issued_at_date": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
     "date_nexusstc_source_issued_at": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
-    # TODO: Remove on index refresh.
+    # TODO:SOURCE Remove on index refresh.
     "nexusstc_source_update_date": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "nexusstc_tag": { "label": "Nexus/STC Tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
@@ -1184,6 +1198,14 @@ UNIFIED_CLASSIFICATIONS = {
     "file_problem": { "label": "File Problem", "url": "", "description": "Problem type indicated by a source library.", "website": "" },
     "better_aarecord_id": { "label": "Better AA Record ID", "shortenvalue": True, "url": "", "description": "Source library has indicated this record to be better.", "website": "" },
     "content_type": { "label": "Content Type", "url": "", "description": "Content type, determined by Anna’s Archive.", "website": "" },
+    "date_cerlalc_meta_scrape": { "label": "Cerlalc Source Scrape Date", "website": "/datasets/cerlalc", "description": "Date Anna’s Archive scraped the Cerlalc collection." },
+    "date_czech_oo42hcks_meta_scrape": { "label": "Czech Metadata Source Scrape Date", "website": "/datasets/czech_oo42hcks", "description": "Date Anna’s Archive scraped the Czech metadata collection." },
+    "date_gbooks_meta_scrape": { "label": "Google Books Source Scrape Date", "website": "/datasets/gbooks", "description": "Date Anna’s Archive scraped the Google Books collection." },
+    "date_goodreads_meta_scrape": { "label": "Goodreads Source Scrape Date", "website": "/datasets/goodreads", "description": "Date Anna’s Archive scraped the Goodreads collection." },
+    "date_isbngrp_meta_scrape": { "label": "ISBN GRP Source Scrape Date", "website": "/datasets/isbngrp", "description": "Date Anna’s Archive scraped the ISBN GRP collection." },
+    "date_libby_meta_scrape": { "label": "Libby Source Scrape Date", "website": "/datasets/libby", "description": "Date Anna’s Archive scraped the Libby collection." },
+    "date_rgb_meta_scrape": { "label": "Russian State Library Source Scrape Date", "website": "/datasets/rgb", "description": "Date Anna’s Archive scraped the Russian State Library collection." },
+    "date_trantor_meta_scrape": { "label": "Trantor Source Scrape Date", "website": "/datasets/trantor", "description": "Date Anna’s Archive scraped the Trantor collection." },
     **{LGLI_CLASSIFICATIONS_MAPPING.get(key, key): value for key, value in LGLI_CLASSIFICATIONS.items()},
     # Plus more added below!
 }
@@ -1204,7 +1226,7 @@ OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING = {
     'depósito_legal_n.a.': 'depósito_legal',
     'doi': 'doi', # TODO: Do reverse lookup based on this.
     'gallica_(bnf)': 'bibliothèque_nationale_de_france',
-    'google': 'gbook',
+    'google': 'gbooks',
     'harvard_university_library': 'harvard',
     'isbn_10': 'isbn10',
     'isbn_13': 'isbn13',
@@ -1469,7 +1491,8 @@ SEARCH_INDEX_SHORT_LONG_MAPPING = {
     'meta': 'aarecords_metadata',
 }
 def get_aarecord_id_prefix_is_metadata(id_prefix):
-    return (id_prefix in ['isbndb', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc', 'edsebk'])
+    return (id_prefix in ['isbndb', 'ol', 'oclc', 'duxiu_ssid', 'cadal_ssno', 'magzdb', 'nexusstc', 'edsebk', 'cerlalc', 'czech_oo42hcks', 'gbooks', 'goodreads', 'isbngrp', 'libby', 'rgb', 'trantor'])
+
 def get_aarecord_search_indexes_for_id_prefix(id_prefix):
     if get_aarecord_id_prefix_is_metadata(id_prefix):
         return ['aarecords_metadata']

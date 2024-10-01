@@ -2641,7 +2641,7 @@ INSERT INTO `aarecords_codes_main` VALUES("aacid:aacid__duxiu_records__20240130T
 ,("filepath:upload/trantor/en/Anonymous/The False Promise of Green Technology.epub","md5:9929aa8c28c49b22f3ffa3e0d4d15133")
 ,("filepath:upload/woz9ts_duxiu/读秀5.0/3/001/14648061.pdf","md5:bed1734fbf901360e98aba2c5234294d")
 ,("filepath:upload/woz9ts_duxiu/读秀5.0/3/001/14648431.pdf","md5:cf33c8cf5cf88a2bb0eb793db9434848")
-,("gbook:jITovbFEuO8C","md5:411b9300a2f2094800e0e30d439c30fd")
+,("gbooks:jITovbFEuO8C","md5:411b9300a2f2094800e0e30d439c30fd")
 ,("goodreads:1178398","md5:a50f2e8f2963888a976899e2c4675d70")
 ,("ia_collection:inlibrary","md5:73291db2b3f665aaa89c8eeecccacf92")
 ,("ia_collection:inlibrary","md5:74f3b80bbb292475043d13f21e5f5059")
