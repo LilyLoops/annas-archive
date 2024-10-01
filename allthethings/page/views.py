@@ -23,6 +23,7 @@ import natsort
 import unicodedata
 # import tiktoken
 # import openai
+import xmltodict
 
 from flask import g, Blueprint, render_template, make_response, redirect, request
 from allthethings.extensions import engine, es, es_aux, mariapersist_engine
@@ -4631,6 +4632,46 @@ def get_aac_goodreads_book_dicts(session, key, values):
 
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'goodreads', primary_id)
+
+        record = xmltodict.parse(aac_record['metadata']['record'])
+        # print(orjson.dumps(record, option=orjson.OPT_INDENT_2).decode())
+
+        if (title_stripped := (record['GoodreadsResponse']['book'].get('title') or '').strip()) != '':
+            aac_goodreads_book_dict['file_unified_data']['title_best'] = title_stripped
+        if (original_title_stripped := (record['GoodreadsResponse']['book'].get('original_title') or '').strip()) != '':
+            aac_goodreads_book_dict['file_unified_data']['title_additional'] = [original_title_stripped]
+        if (publisher_stripped := (record['GoodreadsResponse']['book'].get('publisher') or '').strip()) != '':
+            aac_goodreads_book_dict['file_unified_data']['publisher_best'] = publisher_stripped
+        if (publication_year_stripped := (record['GoodreadsResponse']['book'].get('publication_year') or '').strip()) != '':
+            aac_goodreads_book_dict['file_unified_data']['year_best'] = publication_year_stripped
+        if (description_stripped := strip_description(record['GoodreadsResponse']['book'].get('description') or '')) != '':
+            aac_goodreads_book_dict['file_unified_data']['stripped_description_best'] = description_stripped
+
+        authors = (record['GoodreadsResponse']['book'].get('authors') or {}).get('author') or []
+        if type(authors) is dict:
+            authors = [authors]
+        aac_goodreads_book_dict['file_unified_data']['author_best'] = '; '.join([author['name'].strip() for author in authors])
+        
+
+        aac_goodreads_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(record['GoodreadsResponse']['book'].get('language_code') or '')
+
+        edition_varia_normalized = []
+        if (edition_information_stripped := (record['GoodreadsResponse']['book'].get('edition_information') or '').strip()) != '':
+            edition_varia_normalized.append(edition_information_stripped)
+        if (country_code_stripped := (record['GoodreadsResponse']['book'].get('country_code') or '').strip()) != '':
+            edition_varia_normalized.append(country_code_stripped)
+        if (publication_year_stripped := (record['GoodreadsResponse']['book'].get('publication_year') or '').strip()) != '':
+            edition_varia_normalized.append(publication_year_stripped)
+        aac_goodreads_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
+
+        if (isbn_stripped := (record['GoodreadsResponse']['book'].get('isbn') or '').strip()) != '':
+            allthethings.utils.add_isbns_unified(aac_goodreads_book_dict['file_unified_data'], [isbn_stripped])
+        if (isbn13_stripped := (record['GoodreadsResponse']['book'].get('isbn13') or '').strip()) != '':
+            allthethings.utils.add_isbns_unified(aac_goodreads_book_dict['file_unified_data'], [isbn13_stripped])
+        if (asin_stripped := (record['GoodreadsResponse']['book'].get('asin') or '').strip()) != '':
+            allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'asin', asin_stripped)
+        if (kindle_asin_stripped := (record['GoodreadsResponse']['book'].get('kindle_asin') or '').strip()) != '':
+            allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'asin', kindle_asin_stripped)
 
         aac_goodreads_book_dicts.append(aac_goodreads_book_dict)
     return aac_goodreads_book_dicts
