@@ -215,4 +215,5 @@ INSERT INTO `annas_archive_meta__aacid__zlib3_records` VALUES("aacid__zlib3_reco
 ,("aacid__zlib3_records__20240809T233036Z__99__o5Qekn8JapVU3yZZSgVwtL","99","22e2d6aca34e3f1c29d82e03bc080271",186825,503)
 ,("aacid__zlib3_records__20240809T233036Z__9__e39SbhatprgrFLwbRkMada","9","f0ab4968ef425996a156963731540aee",188359,485)
 ,("aacid__zlib3_records__20240809T233036Z__9__Q3uMtdeLuH7PWuTtqcq54Z","9","f0ab4968ef425996a156963731540aee",187328,1031)
+,("aacid__zlib3_records__20240824T040725Z__29545078__ASMfze3MyphFoSdYbnbZ4v","29545078","efff6955e9b8b5e1ff0b605bba11ee8c",190024,4549)
 ;
