@@ -72,9 +72,9 @@ def create_app(settings_override=None):
         app.config.update(settings_override)
 
     if not app.debug and len(SECRET_KEY) < 30:
-        raise Exception("Use longer SECRET_KEY!")
+        raise Exception(f"Use longer SECRET_KEY! {SECRET_KEY=} {len(SECRET_KEY)=}")
     if not app.debug and len(DOWNLOADS_SECRET_KEY) < 30:
-        raise Exception("Use longer DOWNLOADS_SECRET_KEY!")
+        raise Exception(f"Use longer DOWNLOADS_SECRET_KEY! {DOWNLOADS_SECRET_KEY=} {len(DOWNLOADS_SECRET_KEY)=}")
 
     middleware(app)
 
