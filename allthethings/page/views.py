@@ -5561,7 +5561,13 @@ def get_aarecords_mysql(session, aarecord_ids):
                 if any([source_record['source_record']['trantor_id'] == trantor_book_dict['trantor_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_trantor']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_trantor', 'source_record': trantor_book_dict})
-    
+    for code_full, gbooks_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_gbooks_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13', 'oclc']]).items():
+        for aarecord_id in transitive_codes[code_full]:
+            for gbooks_book_dict in gbooks_book_dicts:
+                if any([source_record['source_record']['gbooks_id'] == gbooks_book_dict['gbooks_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_gbooks']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_gbooks', 'source_record': gbooks_book_dict})
+
     # Second pass
     for aarecord in aarecords:
         aarecord_id = aarecord['id']
