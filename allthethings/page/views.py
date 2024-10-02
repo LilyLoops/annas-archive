@@ -5543,7 +5543,8 @@ def get_aarecords_mysql(session, aarecord_ids):
         for ipfs_info in aarecord['file_unified_data']['ipfs_infos']:
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ipfs_cid', ipfs_info['ipfs_cid'])
 
-        aarecord['file_unified_data']['original_filename_best'], aarecord['file_unified_data']['original_filename_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'original_filename_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'original_filename_best')], [(UNIFIED_DATA_MERGE_ALL, 'original_filename_best')], [(UNIFIED_DATA_MERGE_ALL, 'original_filename_additional')]])
+        # Prioritize aac_upload, since we usually have meaningful directory structure there.
+        aarecord['file_unified_data']['original_filename_best'], aarecord['file_unified_data']['original_filename_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'original_filename_best')], [('aac_upload', 'original_filename_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_edsebk'], 'original_filename_best')], [(UNIFIED_DATA_MERGE_ALL, 'original_filename_best')], [(UNIFIED_DATA_MERGE_ALL, 'original_filename_additional')]])
         for filepath in ([aarecord['file_unified_data']['original_filename_best']] + aarecord['file_unified_data']['original_filename_additional']):
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'filepath', filepath.encode()[0:allthethings.utils.AARECORDS_CODES_CODE_LENGTH-len('filepath:')-5].decode(errors='replace'))
 
