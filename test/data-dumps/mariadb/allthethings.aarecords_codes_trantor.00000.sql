@@ -20,6 +20,7 @@ INSERT INTO `aarecords_codes_trantor` VALUES("aacid:aacid__trantor_records__2024
 ,("filepath:trantor/de/Montillon, Christian/[Perry Rhodan 3080] • Sternfinder.epub","trantor:mw1J0sHU4nPYlVkS")
 ,("filepath:trantor/de/Nasha Berend/Tränen in Steingrau (German Edition).epub","trantor:92ZE1rYYLhPNJN2w")
 ,("filepath:trantor/de/Sheffield, Jona/[Lumera Expedition 03] • Return.epub","trantor:bNLV-kcYo0NRxZUT")
+,("isbn13:9798671546828","trantor:bNLV-kcYo0NRxZUT")
 ,("lang:de","trantor:92ZE1rYYLhPNJN2w")
 ,("lang:de","trantor:bNLV-kcYo0NRxZUT")
 ,("lang:de","trantor:mw1J0sHU4nPYlVkS")

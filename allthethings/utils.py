@@ -1417,7 +1417,7 @@ def add_classification_unified(output_dict, name, value):
 def normalize_isbn(string):
     canonical_isbn13 = isbnlib.get_canonical_isbn(string, output='isbn13')
     try: 
-        if (not isbnlib.is_isbn10(isbnlib.to_isbn10(canonical_isbn13))) or len(canonical_isbn13) != 13 or len(isbnlib.info(canonical_isbn13)) == 0:
+        if len(canonical_isbn13) != 13 or len(isbnlib.info(canonical_isbn13)) == 0:
             return ''
     except Exception:
         return ''
