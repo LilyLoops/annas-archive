@@ -5573,6 +5573,12 @@ def get_aarecords_mysql(session, aarecord_ids):
                 if any([source_record['source_record']['goodreads_id'] == goodreads_book_dict['goodreads_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_goodreads']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_goodreads', 'source_record': goodreads_book_dict})
+    for code_full, libby_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_libby_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
+        for aarecord_id in transitive_codes[code_full]:
+            for libby_book_dict in libby_book_dicts:
+                if any([source_record['source_record']['libby_id'] == libby_book_dict['libby_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_libby']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_libby', 'source_record': libby_book_dict})
 
     # Second pass
     for aarecord in aarecords:
