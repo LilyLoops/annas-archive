@@ -245,7 +245,7 @@ def extensions(app):
         doc_counts['book_comic'] = doc_counts.get('book_comic') or 0
         doc_counts['magazine'] = doc_counts.get('magazine') or 0
         doc_counts['book_any'] = (doc_counts.get('book_unknown') or 0) + (doc_counts.get('book_fiction') or 0) + (doc_counts.get('book_nonfiction') or 0)
-        g.header_stats = {key: babel_numbers.format_number(value, locale=get_locale()) for key, value in doc_counts.items() }
+        g.header_stats = {key: babel_numbers.format_decimal(value, locale=get_locale()) for key, value in doc_counts.items() }
 
         new_header_tagline_scihub = gettext('layout.index.header.tagline_scihub')
         new_header_tagline_libgen = gettext('layout.index.header.tagline_libgen')
@@ -257,8 +257,8 @@ def extensions(app):
         new_header_tagline_and = gettext('layout.index.header.tagline_and')
         new_header_tagline_and_more = gettext('layout.index.header.tagline_and_more')
         new_stats = {
-            'book_count': babel_numbers.format_number((doc_counts.get('book_unknown') or 0) + (doc_counts.get('book_fiction') or 0) + (doc_counts.get('book_nonfiction') or 0) + (doc_counts.get('book_comic') or 0) + (doc_counts.get('musical_score') or 0), locale=get_locale()),
-            'paper_count': babel_numbers.format_number((doc_counts.get('journal_article') or 0) + (doc_counts.get('standards_document') or 0) + (doc_counts.get('magazine') or 0), locale=get_locale()),
+            'book_count': babel_numbers.format_decimal((doc_counts.get('book_unknown') or 0) + (doc_counts.get('book_fiction') or 0) + (doc_counts.get('book_nonfiction') or 0) + (doc_counts.get('book_comic') or 0) + (doc_counts.get('musical_score') or 0), locale=get_locale()),
+            'paper_count': babel_numbers.format_decimal((doc_counts.get('journal_article') or 0) + (doc_counts.get('standards_document') or 0) + (doc_counts.get('magazine') or 0), locale=get_locale()),
             # 'libraries': new_header_tagline_separator.join([new_header_tagline_scihub, new_header_tagline_libgen]),
             'libraries': "".join([new_header_tagline_scihub, new_header_tagline_and, new_header_tagline_libgen]),
             'scraped': new_header_tagline_separator.join([new_header_tagline_zlib, new_header_tagline_duxiu, new_header_tagline_and_more]),

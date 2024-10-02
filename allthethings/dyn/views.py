@@ -834,7 +834,7 @@ def search_counts_page():
             )
             for i, result in enumerate(total_all_indexes['responses']):
                 if 'hits' in result:
-                    result['hits']['total']['value_formatted'] = babel_numbers.format_number(result['hits']['total']['value'], locale=get_locale())
+                    result['hits']['total']['value_formatted'] = babel_numbers.format_decimal(result['hits']['total']['value'], locale=get_locale())
                     total_by_index_long[multi_searches[i*2]['index'][0].split('__', 1)[0]] = result['hits']['total']
                 if result['timed_out']:
                     total_by_index_long[multi_searches[i*2]['index'][0].split('__', 1)[0]]['timed_out'] = True
