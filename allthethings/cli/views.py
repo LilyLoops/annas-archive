@@ -593,6 +593,10 @@ AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
     'ol': { 'table_name': 'aarecords_codes_ol_for_lookup', 'code_names': ['isbn13', 'ocaid', 'md5'] },
     'oclc': { 'table_name': 'aarecords_codes_oclc_for_lookup', 'code_names': ['isbn13'] },
     'edsebk': { 'table_name': 'aarecords_codes_edsebk_for_lookup', 'code_names': ['isbn13'] },
+    'trantor': { 'table_name': 'aarecords_codes_trantor_for_lookup', 'code_names': ['isbn13', 'sha256'] },
+    'gbooks': { 'table_name': 'aarecords_codes_gbooks_for_lookup', 'code_names': ['isbn13'] },
+    'goodreads': { 'table_name': 'aarecords_codes_goodreads_for_lookup', 'code_names': ['isbn13'] },
+    'libby': { 'table_name': 'aarecords_codes_libby_for_lookup', 'code_names': ['isbn13'] },
 }
 
 def elastic_build_aarecords_job(aarecord_ids):
@@ -983,7 +987,7 @@ def elastic_build_aarecords_czech_oo42hcks_internal():
 def elastic_build_aarecords_gbooks():
     elastic_build_aarecords_gbooks_internal()
 def elastic_build_aarecords_gbooks_internal():
-    new_tables_internal('aarecords_codes_gbooks') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    new_tables_internal('aarecords_codes_gbooks', 'aarecords_codes_gbooks_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__gbooks_records', lambda batch: [f"gbooks:{row['primary_id']}" for row in batch])
 
 #################################################################################################
@@ -992,7 +996,7 @@ def elastic_build_aarecords_gbooks_internal():
 def elastic_build_aarecords_goodreads():
     elastic_build_aarecords_goodreads_internal()
 def elastic_build_aarecords_goodreads_internal():
-    new_tables_internal('aarecords_codes_goodreads') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    new_tables_internal('aarecords_codes_goodreads', 'aarecords_codes_goodreads_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__goodreads_records', lambda batch: [f"goodreads:{row['primary_id']}" for row in batch])
 
 #################################################################################################
@@ -1010,7 +1014,7 @@ def elastic_build_aarecords_isbngrp_internal():
 def elastic_build_aarecords_libby():
     elastic_build_aarecords_libby_internal()
 def elastic_build_aarecords_libby_internal():
-    new_tables_internal('aarecords_codes_libby') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    new_tables_internal('aarecords_codes_libby', 'aarecords_codes_libby_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__libby_records', lambda batch: [f"libby:{row['primary_id']}" for row in batch])
 
 #################################################################################################
@@ -1028,7 +1032,7 @@ def elastic_build_aarecords_rgb_internal():
 def elastic_build_aarecords_trantor():
     elastic_build_aarecords_trantor_internal()
 def elastic_build_aarecords_trantor_internal():
-    new_tables_internal('aarecords_codes_trantor') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    new_tables_internal('aarecords_codes_trantor', 'aarecords_codes_trantor_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__trantor_records', lambda batch: [f"trantor:{row['primary_id']}" for row in batch])
 
 
