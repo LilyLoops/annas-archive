@@ -577,6 +577,15 @@ AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME = {
     'md5': 'aarecords_codes_main',
     'doi': 'aarecords_codes_main',
     'nexusstc_download': 'aarecords_codes_main',
+
+    'cerlalc': 'aarecords_codes_cerlalc',
+    'czech_oo42hcks': 'aarecords_codes_czech_oo42hcks',
+    'gbooks': 'aarecords_codes_gbooks',
+    'goodreads': 'aarecords_codes_goodreads',
+    'isbngrp': 'aarecords_codes_isbngrp',
+    'libby': 'aarecords_codes_libby',
+    'rgb': 'aarecords_codes_rgb',
+    'trantor': 'aarecords_codes_trantor',
 }
 
 AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
@@ -584,6 +593,10 @@ AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
     'ol': { 'table_name': 'aarecords_codes_ol_for_lookup', 'code_names': ['isbn13', 'ocaid', 'md5'] },
     'oclc': { 'table_name': 'aarecords_codes_oclc_for_lookup', 'code_names': ['isbn13'] },
     'edsebk': { 'table_name': 'aarecords_codes_edsebk_for_lookup', 'code_names': ['isbn13'] },
+    'trantor': { 'table_name': 'aarecords_codes_trantor_for_lookup', 'code_names': ['isbn13', 'sha256'] },
+    'gbooks': { 'table_name': 'aarecords_codes_gbooks_for_lookup', 'code_names': ['isbn13'] },
+    'goodreads': { 'table_name': 'aarecords_codes_goodreads_for_lookup', 'code_names': ['isbn13'] },
+    'libby': { 'table_name': 'aarecords_codes_libby_for_lookup', 'code_names': ['isbn13'] },
 }
 
 def elastic_build_aarecords_job(aarecord_ids):
@@ -775,6 +788,14 @@ def elastic_build_aarecords_all():
 def elastic_build_aarecords_all_internal():
     elastic_build_aarecords_oclc_internal()
     elastic_build_aarecords_edsebk_internal()
+    elastic_build_aarecords_cerlalc_internal()
+    elastic_build_aarecords_czech_oo42hcks_internal()
+    elastic_build_aarecords_gbooks_internal()
+    elastic_build_aarecords_goodreads_internal()
+    elastic_build_aarecords_isbngrp_internal()
+    elastic_build_aarecords_libby_internal()
+    elastic_build_aarecords_rgb_internal()
+    elastic_build_aarecords_trantor_internal()
     elastic_build_aarecords_magzdb_internal()
     elastic_build_aarecords_nexusstc_internal()
     elastic_build_aarecords_isbndb_internal()
@@ -943,6 +964,79 @@ def elastic_build_aarecords_edsebk_internal():
     build_common('annas_archive_meta__aacid__ebscohost_records', lambda batch: [f"edsebk:{row['primary_id']}" for row in batch])
 
 #################################################################################################
+# ./run flask cli elastic_build_aarecords_cerlalc
+@cli.cli.command('elastic_build_aarecords_cerlalc')
+def elastic_build_aarecords_cerlalc():
+    elastic_build_aarecords_cerlalc_internal()
+def elastic_build_aarecords_cerlalc_internal():
+    new_tables_internal('aarecords_codes_cerlalc') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__cerlalc_records', lambda batch: [f"cerlalc:{row['primary_id']}" for row in batch])
+
+#################################################################################################
+# ./run flask cli elastic_build_aarecords_czech_oo42hcks
+@cli.cli.command('elastic_build_aarecords_czech_oo42hcks')
+def elastic_build_aarecords_czech_oo42hcks():
+    elastic_build_aarecords_czech_oo42hcks_internal()
+def elastic_build_aarecords_czech_oo42hcks_internal():
+    new_tables_internal('aarecords_codes_czech_oo42hcks') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__czech_oo42hcks_records', lambda batch: [f"czech_oo42hcks:{row['primary_id']}" for row in batch])
+
+#################################################################################################
+# ./run flask cli elastic_build_aarecords_gbooks
+@cli.cli.command('elastic_build_aarecords_gbooks')
+def elastic_build_aarecords_gbooks():
+    elastic_build_aarecords_gbooks_internal()
+def elastic_build_aarecords_gbooks_internal():
+    new_tables_internal('aarecords_codes_gbooks', 'aarecords_codes_gbooks_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__gbooks_records', lambda batch: [f"gbooks:{row['primary_id']}" for row in batch])
+
+#################################################################################################
+# ./run flask cli elastic_build_aarecords_goodreads
+@cli.cli.command('elastic_build_aarecords_goodreads')
+def elastic_build_aarecords_goodreads():
+    elastic_build_aarecords_goodreads_internal()
+def elastic_build_aarecords_goodreads_internal():
+    new_tables_internal('aarecords_codes_goodreads', 'aarecords_codes_goodreads_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__goodreads_records', lambda batch: [f"goodreads:{row['primary_id']}" for row in batch])
+
+#################################################################################################
+# ./run flask cli elastic_build_aarecords_isbngrp
+@cli.cli.command('elastic_build_aarecords_isbngrp')
+def elastic_build_aarecords_isbngrp():
+    elastic_build_aarecords_isbngrp_internal()
+def elastic_build_aarecords_isbngrp_internal():
+    new_tables_internal('aarecords_codes_isbngrp') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__isbngrp_records', lambda batch: [f"isbngrp:{row['primary_id']}" for row in batch])
+
+#################################################################################################
+# ./run flask cli elastic_build_aarecords_libby
+@cli.cli.command('elastic_build_aarecords_libby')
+def elastic_build_aarecords_libby():
+    elastic_build_aarecords_libby_internal()
+def elastic_build_aarecords_libby_internal():
+    new_tables_internal('aarecords_codes_libby', 'aarecords_codes_libby_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__libby_records', lambda batch: [f"libby:{row['primary_id']}" for row in batch])
+
+#################################################################################################
+# ./run flask cli elastic_build_aarecords_rgb
+@cli.cli.command('elastic_build_aarecords_rgb')
+def elastic_build_aarecords_rgb():
+    elastic_build_aarecords_rgb_internal()
+def elastic_build_aarecords_rgb_internal():
+    new_tables_internal('aarecords_codes_rgb') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__rgb_records', lambda batch: [f"rgb:{row['primary_id']}" for row in batch])
+
+#################################################################################################
+# ./run flask cli elastic_build_aarecords_trantor
+@cli.cli.command('elastic_build_aarecords_trantor')
+def elastic_build_aarecords_trantor():
+    elastic_build_aarecords_trantor_internal()
+def elastic_build_aarecords_trantor_internal():
+    new_tables_internal('aarecords_codes_trantor', 'aarecords_codes_trantor_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    build_common('annas_archive_meta__aacid__trantor_records', lambda batch: [f"trantor:{row['primary_id']}" for row in batch])
+
+
+#################################################################################################
 # ./run flask cli elastic_build_aarecords_magzdb
 @cli.cli.command('elastic_build_aarecords_magzdb')
 def elastic_build_aarecords_magzdb():
@@ -995,7 +1089,7 @@ def elastic_build_aarecords_main_internal():
         cursor.execute('DROP TABLE IF EXISTS aarecords_all_md5')
         cursor.execute('CREATE TABLE aarecords_all_md5 (md5 BINARY(16) NOT NULL, json_compressed LONGBLOB NOT NULL, PRIMARY KEY (md5)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
         cursor.execute('DROP TABLE IF EXISTS temp_md5_with_doi_seen')
-        cursor.execute('CREATE TABLE temp_md5_with_doi_seen (doi VARBINARY(1000), PRIMARY KEY (doi)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
+        cursor.execute('CREATE TABLE temp_md5_with_doi_seen (id BIGINT NOT NULL AUTO_INCREMENT, doi VARBINARY(1000), PRIMARY KEY (id), INDEX(doi)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
 
     build_common('computed_all_md5s', lambda batch: [f"md5:{row['primary_id'].hex()}" for row in batch], primary_id_column='md5')
     build_common('scihub_dois', lambda batch: [f"doi:{row['primary_id']}" for row in batch], primary_id_column='doi')
@@ -1038,7 +1132,7 @@ def mysql_build_aarecords_codes_numbers_internal():
             cursor.execute('DROP TABLE IF EXISTS aarecords_codes_prefixes_new')
 
         print("Creating fresh table aarecords_codes_new") # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
-        cursor.execute(f'CREATE TABLE aarecords_codes_new (code VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, aarecord_id VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_LENGTH}) NOT NULL, aarecord_id_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_PREFIX_LENGTH}) NOT NULL, row_number_order_by_code BIGINT NOT NULL, dense_rank_order_by_code BIGINT NOT NULL, row_number_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, dense_rank_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, PRIMARY KEY (code, aarecord_id), INDEX aarecord_id_prefix (aarecord_id_prefix, code, aarecord_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT code, aarecord_id, SUBSTRING_INDEX(aarecord_id, ":", 1) AS aarecord_id_prefix, (ROW_NUMBER() OVER (ORDER BY code, aarecord_id)) AS row_number_order_by_code, (DENSE_RANK() OVER (ORDER BY code)) AS dense_rank_order_by_code, (ROW_NUMBER() OVER (PARTITION BY aarecord_id_prefix ORDER BY code, aarecord_id)) AS row_number_partition_by_aarecord_id_prefix_order_by_code, (DENSE_RANK() OVER (PARTITION BY aarecord_id_prefix ORDER BY code)) AS dense_rank_partition_by_aarecord_id_prefix_order_by_code FROM (SELECT code, aarecord_id FROM aarecords_codes_ia UNION ALL SELECT code, aarecord_id FROM aarecords_codes_isbndb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_ol UNION ALL SELECT code, aarecord_id FROM aarecords_codes_duxiu UNION ALL SELECT code, aarecord_id FROM aarecords_codes_oclc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_magzdb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_edsebk UNION ALL SELECT code, aarecord_id FROM aarecords_codes_nexusstc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_main) x ORDER BY code, aarecord_id')
+        cursor.execute(f'CREATE TABLE aarecords_codes_new (code VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, aarecord_id VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_LENGTH}) NOT NULL, aarecord_id_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_AARECORD_ID_PREFIX_LENGTH}) NOT NULL, row_number_order_by_code BIGINT NOT NULL, dense_rank_order_by_code BIGINT NOT NULL, row_number_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, dense_rank_partition_by_aarecord_id_prefix_order_by_code BIGINT NOT NULL, PRIMARY KEY (code, aarecord_id), INDEX aarecord_id_prefix (aarecord_id_prefix, code, aarecord_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT code, aarecord_id, SUBSTRING_INDEX(aarecord_id, ":", 1) AS aarecord_id_prefix, (ROW_NUMBER() OVER (ORDER BY code, aarecord_id)) AS row_number_order_by_code, (DENSE_RANK() OVER (ORDER BY code)) AS dense_rank_order_by_code, (ROW_NUMBER() OVER (PARTITION BY aarecord_id_prefix ORDER BY code, aarecord_id)) AS row_number_partition_by_aarecord_id_prefix_order_by_code, (DENSE_RANK() OVER (PARTITION BY aarecord_id_prefix ORDER BY code)) AS dense_rank_partition_by_aarecord_id_prefix_order_by_code FROM (SELECT code, aarecord_id FROM aarecords_codes_ia UNION ALL SELECT code, aarecord_id FROM aarecords_codes_isbndb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_ol UNION ALL SELECT code, aarecord_id FROM aarecords_codes_duxiu UNION ALL SELECT code, aarecord_id FROM aarecords_codes_oclc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_magzdb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_edsebk UNION ALL SELECT code, aarecord_id FROM aarecords_codes_nexusstc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_cerlalc UNION ALL SELECT code, aarecord_id FROM aarecords_codes_czech_oo42hcks UNION ALL SELECT code, aarecord_id FROM aarecords_codes_gbooks UNION ALL SELECT code, aarecord_id FROM aarecords_codes_goodreads UNION ALL SELECT code, aarecord_id FROM aarecords_codes_isbngrp UNION ALL SELECT code, aarecord_id FROM aarecords_codes_libby UNION ALL SELECT code, aarecord_id FROM aarecords_codes_rgb UNION ALL SELECT code, aarecord_id FROM aarecords_codes_trantor UNION ALL SELECT code, aarecord_id FROM aarecords_codes_main) x ORDER BY code, aarecord_id')
         cursor.execute(f'CREATE TABLE aarecords_codes_prefixes_new (code_prefix VARBINARY({allthethings.utils.AARECORDS_CODES_CODE_LENGTH}) NOT NULL, PRIMARY KEY (code_prefix)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin SELECT DISTINCT SUBSTRING_INDEX(code, ":", 1) AS code_prefix FROM aarecords_codes_new')
 
         cursor.execute('SELECT table_rows FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = "allthethings" and TABLE_NAME = "aarecords_codes_new" LIMIT 1')

@@ -31,6 +31,8 @@ INSERT INTO `annas_archive_meta__aacid__upload_records` VALUES("aacid__upload_re
 ,("aacid__upload_records_shuge__20240627T213054Z__5980655__NFBNhnMArqWeyhAugSAHZc","5980655","66eb7a96e476713cc147febd57ab9e27",32936,8208)
 ,("aacid__upload_records_trantor__20240627T210851Z__4868969__L6o8ukyYCWj52AuC8ZTqNo"," 4868969","a423dcb1ded313c5156c83c43bb902c8",246275,1740)
 ,("aacid__upload_records_trantor__20240627T210851Z__4868971__h7aQzWb4WioYBVt24sasqn"," 4868971","9929aa8c28c49b22f3ffa3e0d4d15133",244522,1753)
+,("aacid__upload_records_trantor__20240627T211001Z__5349018__c4B2WLNDiqqX7pQEekWWN7","5349018","cf3483cce4289d08e9cbceebdbace885",250104,1970)
+,("aacid__upload_records_trantor__20240627T211020Z__5440538__JUjjYnXXWfTgEDvpQCjPE5","5440538","71e8ffe2485e135b1ae98673f6bcc8ce",248015,2089)
 ,("aacid__upload_records_woz9ts_duxiu__20240627T230829Z__12190448__G7BxAWxyvdwDsVhRsGWsGp"," 12190448","bed1734fbf901360e98aba2c5234294d",144491,2811)
 ,("aacid__upload_records_woz9ts_duxiu__20240627T230829Z__12190450__QxtJftkKioZq9ca3BqhyWe"," 12190450","cf33c8cf5cf88a2bb0eb793db9434848",147302,2812)
 ;
