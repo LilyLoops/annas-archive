@@ -1,7 +1,5 @@
+import os
 import pytest
-
-from config import settings
-from allthethings.app import create_app
 
 
 @pytest.fixture(scope="session")
@@ -11,14 +9,21 @@ def app():
 
     :return: Flask app
     """
-    db_uri = f"{settings.SQLALCHEMY_DATABASE_URI}_test"
     params = {
         "DEBUG": False,
         "TESTING": True,
         "WTF_CSRF_ENABLED": False,
-        "SQLALCHEMY_DATABASE_URI": db_uri,
+        "DATA_IMPORTS_MODE": "1",
+        "SERVER_NAME": "localhost:8000",
+        "PREFERRED_URL_SCHEME": "http",
     }
 
+    os.environ['SECRET_KEY'] = "a_very_insecure_key_for_test_padded"
+    os.environ['DOWNLOADS_SECRET_KEY'] = "a_very_insecure_key_for_test_padded"
+    os.environ['AA_EMAIL'] = "aa@example.com"
+
+    # import *after* setting the constants
+    from allthethings.app import create_app
     _app = create_app(settings_override=params)
 
     # Establish an application context before running the tests.
@@ -41,22 +46,9 @@ def client(app):
     yield app.test_client()
 
 
-# @pytest.fixture(scope="session")
-# def db(app):
-#     """
-#     Setup our database, this only gets executed once per session.
-
-#     :param app: Pytest fixture
-#     :return: SQLAlchemy database session
-#     """
-#     _db.drop_all()
-#     _db.create_all()
-
-#     return _db
-
 
 @pytest.fixture(scope="function")
-def session(db):
+def session():
     """
     Allow very fast tests by using rollbacks and nested sessions. This does
     require that your database supports SQL savepoints, and Postgres does.
@@ -67,8 +59,4 @@ def session(db):
     :param db: Pytest fixture
     :return: None
     """
-    db.session.begin_nested()
-
-    yield db.session
-
-    db.session.rollback()
+    pass
