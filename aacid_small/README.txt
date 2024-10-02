@@ -25,6 +25,7 @@ docker exec -it web bash -c 'for f in /app/aacid_small/*.jsonl; do echo "Process
 - aacid__upload_records_trantor__20240627T211020Z__5440538__JUjjYnXXWfTgEDvpQCjPE5 => sha256:6043d539cc9d2a964ca6c134de580350b3877c566c57a37709439c923dbb14b5 => aacid__trantor_records__20240911T134314Z__EJxjScczMk8vWf8jEzcjie (and matching zlib3_record and zlib3_files so it shows up as md5s)
 - aacid__upload_records_trantor__20240627T211001Z__5349018__c4B2WLNDiqqX7pQEekWWN7 => sha256:659162deb94ffcd0eb0c51169f43615b052d98ba8a8a8d0b05f7c3f2b7c848cc => aacid__trantor_records__20240911T134314Z__BAAHrjBHu943Ehof4Y3Wef (and matching zlib3_record and zlib3_files so it shows up as md5s)
 - aacid__nexusstc_records__20240516T162126Z__43iCjWXoMWbsC9FSJjNfoQ => isbn13:9781108026512 => aacid__gbooks_records__20240920T051416Z__GETzR5Zximcxw4kAvBisvM
+- aacid__nexusstc_records__20240516T152812Z__7ck1kAjKFPGL7hCYPT4ZPK => isbn13:9782130588252 => aacid__goodreads_records__20240913T115838Z__28223767__63Nx8yezHvKn6jPAEJCrfX
 
 
 112770562 annas_archive_meta__aacid__gbooks_records__20240920T051416Z--20240920T051416Z.jsonl  
