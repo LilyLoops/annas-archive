@@ -9,6 +9,7 @@ INSERT INTO `annas_archive_meta__aacid__nexusstc_records` VALUES("aacid__nexusst
 ,("aacid__nexusstc_records__20240516T132217Z__Er36V7LkejG926MjXDqD8F","bdo2ge1qu26j2fb5tpwxc7brr",NULL,24088,2281)
 ,("aacid__nexusstc_records__20240516T152626Z__4aFZVELBGMfpAxyCkthi9u","c5gl24ku8fp6l5vu3b3fafh5m",NULL,15923,1416)
 ,("aacid__nexusstc_records__20240516T154904Z__5rxxjYdzfxfunUAMLTRSMw","1040wjyuo9pwa31p5uquwt0wx",NULL,29249,2188)
+,("aacid__nexusstc_records__20240516T162126Z__43iCjWXoMWbsC9FSJjNfoQ","9ths4av175s0a5ddqx0o9l6gd",NULL,32344,1933)
 ,("aacid__nexusstc_records__20240516T173540Z__eRfYDiAsk9u9RsE1T4LRiq","eglkwlhzg4c1fvdy0ztljr46h",NULL,31437,907)
 ,("aacid__nexusstc_records__20240516T175020Z__6yo2WKtNNbBU7PXyZ7ETth","cn369b16y2p5udyu56ke4n4mi",NULL,9373,3715)
 ,("aacid__nexusstc_records__20240516T175026Z__7UpGThHbFhaLaQpngUx8y2","1aq6gcl3bo1yxavod8lpw1t7h",NULL,3182,6191)
