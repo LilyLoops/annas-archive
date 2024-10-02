@@ -594,7 +594,7 @@ AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
     'oclc': { 'table_name': 'aarecords_codes_oclc_for_lookup', 'code_names': ['isbn13'] },
     'edsebk': { 'table_name': 'aarecords_codes_edsebk_for_lookup', 'code_names': ['isbn13'] },
     'trantor': { 'table_name': 'aarecords_codes_trantor_for_lookup', 'code_names': ['isbn13', 'sha256'] },
-    'gbooks': { 'table_name': 'aarecords_codes_gbooks_for_lookup', 'code_names': ['isbn13'] },
+    'gbooks': { 'table_name': 'aarecords_codes_gbooks_for_lookup', 'code_names': ['isbn13', 'oclc'] },
     'goodreads': { 'table_name': 'aarecords_codes_goodreads_for_lookup', 'code_names': ['isbn13'] },
     'libby': { 'table_name': 'aarecords_codes_libby_for_lookup', 'code_names': ['isbn13'] },
 }
