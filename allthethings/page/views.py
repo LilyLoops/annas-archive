@@ -1583,7 +1583,7 @@ def get_ia_record_dicts(session, key, values):
             "stripped_description_and_references": ("after", "From `metadata.description` and `metadata.references`, stripped from HTML tags."),
             "all_dates": ("after", "All potential dates, combined from `metadata.year`, `metadata.date`, and `metadata.range`."),
             "longest_date_field": ("after", "The longest field in `all_dates`."),
-            "year": ("after", "Found by applying a \d{4} regex to `longest_date_field`."),
+            "year": ("after", "Found by applying a \\d{4} regex to `longest_date_field`."),
             "content_type_best": ("after", "Magazines determined by ia_id prefix (like 'sim_' and 'per_') and `metadata.pub_type` field."),
             "edition_varia_normalized": ("after", "From `metadata.series`, `metadata.series_name`, `metadata.volume`, `metadata.issue`, `metadata.edition`, `metadata.city`, and `longest_date_field`."),
         }
