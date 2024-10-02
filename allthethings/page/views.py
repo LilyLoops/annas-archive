@@ -5268,14 +5268,14 @@ def aarecord_sources(aarecord):
         *(['zlib']      if len(source_records_by_type['zlib_book']) > 0 else []),
         *(['zlibzh']    if (len(source_records_by_type['aac_zlib3_book']) > 0) and (any((source_record.get('storage') or '') == 'chinese' for source_record in source_records_by_type['aac_zlib3_book'])) else []),
 
-        *(['cerlalc']        if len(source_records_by_type['aac_cerlalc']) > 0 else []),
-        *(['czech_oo42hcks'] if len(source_records_by_type['aac_czech_oo42hcks']) > 0 else []),
-        *(['gbooks']         if len(source_records_by_type['aac_gbooks']) > 0 else []),
-        *(['goodreads']      if len(source_records_by_type['aac_goodreads']) > 0 else []),
-        *(['isbngrp']        if len(source_records_by_type['aac_isbngrp']) > 0 else []),
-        *(['libby']          if len(source_records_by_type['aac_libby']) > 0 else []),
-        *(['rgb']            if len(source_records_by_type['aac_rgb']) > 0 else []),
-        *(['trantor']        if len(source_records_by_type['aac_trantor']) > 0 else []),
+        *(['cerlalc']        if (aarecord_id_split[0] == 'cerlalc'        and len(source_records_by_type['aac_cerlalc'])        > 0) else []),
+        *(['czech_oo42hcks'] if (aarecord_id_split[0] == 'czech_oo42hcks' and len(source_records_by_type['aac_czech_oo42hcks']) > 0) else []),
+        *(['gbooks']         if (aarecord_id_split[0] == 'gbooks'         and len(source_records_by_type['aac_gbooks'])         > 0) else []),
+        *(['goodreads']      if (aarecord_id_split[0] == 'goodreads'      and len(source_records_by_type['aac_goodreads'])      > 0) else []),
+        *(['isbngrp']        if (aarecord_id_split[0] == 'isbngrp'        and len(source_records_by_type['aac_isbngrp'])        > 0) else []),
+        *(['libby']          if (aarecord_id_split[0] == 'libby'          and len(source_records_by_type['aac_libby'])          > 0) else []),
+        *(['rgb']            if (aarecord_id_split[0] == 'rgb'            and len(source_records_by_type['aac_rgb'])            > 0) else []),
+        *(['trantor']        if (aarecord_id_split[0] == 'trantor'        and len(source_records_by_type['aac_trantor'])        > 0) else []),
     ]))
 
 # Dummy translation to keep this msgid around. TODO: fix see below.
