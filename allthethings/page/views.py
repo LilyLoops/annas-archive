@@ -5314,6 +5314,30 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
             for return_dict in get_ol_book_dicts(session, 'ol_edition', split_ids['ol']):
                 for code in codes_by_aarecord_ids[f"ol:{return_dict['ol_edition']}"]:
                     retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_gbooks_for_lookup':
+            if len(split_ids['gbooks']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_gbooks_book_dicts(session, 'gbooks_id', split_ids['gbooks']):
+                for code in codes_by_aarecord_ids[f"gbooks:{return_dict['gbooks_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_goodreads_for_lookup':
+            if len(split_ids['goodreads']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_goodreads_book_dicts(session, 'goodreads_id', split_ids['goodreads']):
+                for code in codes_by_aarecord_ids[f"goodreads:{return_dict['goodreads_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_libby_for_lookup':
+            if len(split_ids['libby']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_libby_book_dicts(session, 'libby_id', split_ids['libby']):
+                for code in codes_by_aarecord_ids[f"libby:{return_dict['libby_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_trantor_for_lookup':
+            if len(split_ids['trantor']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_trantor_book_dicts(session, 'trantor_id', split_ids['trantor']):
+                for code in codes_by_aarecord_ids[f"trantor:{return_dict['trantor_id']}"]:
+                    retval[code].append(return_dict)
         else:
             raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
         return dict(retval)
@@ -5471,7 +5495,7 @@ def get_aarecords_mysql(session, aarecord_ids):
                 # Filter out obscenely long ISBN lists, e.g. https://archive.org/details/240524-CL-aa
                 if len(code_values) >= 10:
                     continue
-                if code_name in ['isbn13', 'ol', 'doi', 'oclc', 'ocaid', 'duxiu_ssid', 'cadal_ssno']:
+                if code_name in ['isbn13', 'ol', 'doi', 'oclc', 'ocaid', 'duxiu_ssid', 'cadal_ssno', 'sha256']:
                     for code_value in code_values:
                         transitive_codes[(code_name, code_value)].append(aarecord_id)
 
@@ -5508,7 +5532,7 @@ def get_aarecords_mysql(session, aarecord_ids):
     for code_full, edsebk_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_edsebk_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
             for edsebk_dict in edsebk_dicts:
-                if any([source_record['source_record']['edsebk_id'] == edsebk_dict['edsebk_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'edsebk']):
+                if any([source_record['source_record']['edsebk_id'] == edsebk_dict['edsebk_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_edsebk']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_edsebk', 'source_record': edsebk_dict})
     for ia_record_dict in get_ia_record_dicts(session, 'ia_id', [code[1] for code, aarecords in transitive_codes.items() if code[0] == 'ocaid']):
@@ -5531,7 +5555,13 @@ def get_aarecords_mysql(session, aarecord_ids):
             if any([duxiu_dict['cadal_ssno'] == cadal_ssno for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] in ['duxiu', 'duxius_nontransitive_meta_only'] for cadal_ssno in (source_record['source_record']['file_unified_data']['identifiers_unified'].get('cadal_ssno') or [])]):
                     continue
             source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'duxius_nontransitive_meta_only', 'source_record': duxiu_dict})
-
+    for code_full, trantor_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_trantor_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['sha256']]).items():
+        for aarecord_id in transitive_codes[code_full]:
+            for trantor_book_dict in trantor_book_dicts:
+                if any([source_record['source_record']['trantor_id'] == trantor_book_dict['trantor_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_trantor']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_trantor', 'source_record': trantor_book_dict})
+    
     # Second pass
     for aarecord in aarecords:
         aarecord_id = aarecord['id']
