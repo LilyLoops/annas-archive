@@ -1,19 +1,3 @@
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 18:34+0000\n"
-"PO-Revision-Date: 2024-10-03 18:34+0000\n"
-"Last-Translator: OpenAI <noreply-mt-openai@weblate.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: eo\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
-
 #: allthethings/app.py:185
 msgid "layout.index.invalid_request"
 msgstr "Nevalida Peto. Vizitu %(websites)s."
@@ -328,7 +312,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "kontaktu nin"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -359,516 +343,591 @@ msgstr "Ni bonvenigas grandajn donacojn de riĉaj individuoj aŭ institucioj. "
 msgid "page.donate.header.large_donations"
 msgstr "Por donacoj super $5000 bonvolu kontakti nin rekte ĉe %(email)s."
 
-#: allthethings/account/templates/account/donate.html:120
+#: allthethings/account/templates/account/donate.html:116
+msgid "page.donate.header.recurring"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:118
 #, fuzzy
 msgid "page.donate.without_membership"
 msgstr "Se vi ŝatus fari donacon (iu ajn sumo) sen membreco, bonvolu uzi ĉi tiun Monero (XMR) adreson: %(address)s."
 
-#: allthethings/account/templates/account/donate.html:125
+#: allthethings/account/templates/account/donate.html:123
 #, fuzzy
 msgid "page.donate.payment.select_method"
 msgstr "Bonvolu elekti pagmanieron."
 
-#: allthethings/account/templates/account/donate.html:134
-#: allthethings/account/templates/account/donate.html:420
+#: allthethings/account/templates/account/donate.html:132
+#: allthethings/account/templates/account/donate.html:421
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:140
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:138
+#: allthethings/account/templates/account/donate.html:359
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Amazon Donackarto"
 
-#: allthethings/account/templates/account/donate.html:143
-#: allthethings/account/templates/account/donate.html:153
-#: allthethings/account/templates/account/donate.html:154
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:139
+msgid "page.donate.payment.buttons.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:140
+#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:151
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Kripto %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:145
+#: allthethings/account/templates/account/donate.html:142
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit"
 msgstr "Kredit/debetkarto"
 
-#: allthethings/account/templates/account/donate.html:146
+#: allthethings/account/templates/account/donate.html:143
 msgid "page.donate.payment.buttons.paypal"
 msgstr "PayPal (US) %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:147
+#: allthethings/account/templates/account/donate.html:144
 #, fuzzy
 msgid "page.donate.payment.buttons.paypalreg"
 msgstr "PayPal (regula)"
 
-#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:145
 #, fuzzy
 msgid "page.donate.payment.buttons.givebutter"
 msgstr "Karto / PayPal / Venmo"
 
-#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:147
 #, fuzzy
 msgid "page.donate.payment.buttons.bmc"
 msgstr "Kreditkarto/debetkarto/Apple/Google (BMC)"
 
-#: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:168
-#: allthethings/account/templates/account/donate.html:178
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:362
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
-#: allthethings/account/templates/account/donate.html:152
+#: allthethings/account/templates/account/donate.html:149
 msgid "page.donate.payment.buttons.pix"
 msgstr "Pix(Brazilo)"
 
-#: allthethings/account/templates/account/donate.html:156
+#: allthethings/account/templates/account/donate.html:153
 #, fuzzy
 msgid "page.donate.payment.buttons.cashapp"
 msgstr "Cash App"
 
-#: allthethings/account/templates/account/donate.html:157
+#: allthethings/account/templates/account/donate.html:154
 #, fuzzy
 msgid "page.donate.payment.buttons.revolut"
 msgstr "Revolut"
 
-#: allthethings/account/templates/account/donate.html:158
+#: allthethings/account/templates/account/donate.html:155
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal_plain"
 msgstr "PayPal"
 
-#: allthethings/account/templates/account/donate.html:161
+#: allthethings/account/templates/account/donate.html:156
+msgid "page.donate.payment.buttons.bank_card"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:157
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit_backup"
 msgstr "Kredit/debetkarto (rezerva)"
 
-#: allthethings/account/templates/account/donate.html:162
+#: allthethings/account/templates/account/donate.html:158
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit2"
 msgstr "Kredit-/debeto-karto 2"
 
-#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:160
 #, fuzzy
 msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:169
-#: allthethings/account/templates/account/donate.html:180
-#: allthethings/account/templates/account/donate.html:189
-#: allthethings/account/templates/account/donate.html:196
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:165
+#: allthethings/account/templates/account/donate.html:176
+#: allthethings/account/templates/account/donate.html:185
+#: allthethings/account/templates/account/donate.html:192
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:171
-#: allthethings/account/templates/account/donate.html:179
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(provize ne disponebla)"
 
-#: allthethings/account/templates/account/donate.html:219
+#: allthethings/account/templates/account/donate.html:215
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "Kun kripto vi povas donaci uzante BTC, ETH, XMR, kaj SOL. Uzu ĉi tiun opcion se vi jam konas kriptovaluton."
 
-#: allthethings/account/templates/account/donate.html:223
+#: allthethings/account/templates/account/donate.html:219
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Kun kripto vi povas donaci uzante BTC, ETH, XMR, kaj pli."
 
-#: allthethings/account/templates/account/donate.html:226
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:222
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Se vi uzas kripton por la unua fojo, ni sugestas uzi %(options)s por aĉeti kaj donaci Bitcoin (la originala kaj plej uzata kriptovaluto)."
 
-#: allthethings/account/templates/account/donate.html:229
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:230
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:231
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:227
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:239
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "Por donaci uzante PayPal US, ni uzos PayPal Crypto, kiu permesas al ni resti anonimaj. Ni dankas vin pro preni la tempon por lerni kiel donaci uzante ĉi tiun metodon, ĉar ĝi multe helpas nin."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:236
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Donacu uzante PayPal."
 
-#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Donaci uzante Cash App."
 
-#: allthethings/account/templates/account/donate.html:247
+#: allthethings/account/templates/account/donate.html:243
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Se vi havas Cash App, ĉi tio estas la plej facila maniero donaci!"
 
-#: allthethings/account/templates/account/donate.html:250
-#: allthethings/account/templates/account/donate.html:260
+#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:256
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Notu, ke por transakcioj sub %(amount)s, Cash App povas ŝargi %(fee)s kotizon. Por %(amount)s aŭ pli, ĝi estas senpaga!"
 
-#: allthethings/account/templates/account/donate.html:256
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Donacu uzante Revolut."
 
-#: allthethings/account/templates/account/donate.html:257
+#: allthethings/account/templates/account/donate.html:253
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Se vi havas Revolut, ĉi tio estas la plej facila maniero donaci!"
 
-#: allthethings/account/templates/account/donate.html:266
-#: allthethings/account/templates/account/donate.html:320
+#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:316
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Donacu per kreditkarto aŭ debetkarto."
 
-#: allthethings/account/templates/account/donate.html:267
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay kaj Apple Pay ankaŭ povus funkcii."
 
-#: allthethings/account/templates/account/donate.html:268
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Notu, ke por malgrandaj donacoj la kreditkartaj kotizoj povas nuligi nian %(discount)s%% rabaton, do ni rekomendas pli longajn abonojn."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:265
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Notu, ke por malgrandaj donacoj la kotizoj estas altaj, do ni rekomendas pli longajn abonojn."
 
-#: allthethings/account/templates/account/donate.html:275
+#: allthethings/account/templates/account/donate.html:271
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Kun Binance, vi aĉetas Bitcoin per kredit-/debetkarto aŭ banka konto, kaj poste donacas tiun Bitcoin al ni. Tiel ni povas resti sekuraj kaj anonimaj kiam ni akceptas vian donacon."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:275
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance estas disponebla en preskaŭ ĉiu lando, kaj subtenas plej multajn bankojn kaj kredit/debetkartojn. Ĉi tio estas nuntempe nia ĉefa rekomendo. Ni dankas vin pro preni la tempon por lerni kiel donaci uzante ĉi tiun metodon, ĉar ĝi multe helpas nin."
 
-#: allthethings/account/templates/account/donate.html:285
+#: allthethings/account/templates/account/donate.html:281
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Donacu uzante vian regulan PayPal-konton."
 
-#: allthethings/account/templates/account/donate.html:291
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:287
+#: allthethings/account/templates/account/donate.html:293
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Donacu uzante Alipay aŭ WeChat. Vi povas elekti inter ĉi tiuj sur la sekva paĝo."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:299
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Donacu uzante kredit/debetkarton, PayPal, aŭ Venmo. Vi povas elekti inter ĉi tiuj sur la sekva paĝo."
 
-#: allthethings/account/templates/account/donate.html:309
+#: allthethings/account/templates/account/donate.html:305
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Donacu uzante Amazon donackarton."
 
-#: allthethings/account/templates/account/donate.html:310
+#: allthethings/account/templates/account/donate.html:306
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Notu, ke ni devas rondigi al kvantoj akceptitaj de niaj revendistoj (minimumo %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:310
 #: allthethings/account/templates/account/donation.html:371
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>GRAVE:</strong> Ni nur subtenas Amazon.com, ne aliajn Amazon-retejojn. Ekzemple, .de, .co.uk, .ca, NE estas subtenataj."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:317
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Ĉi tiu metodo uzas kriptomonan provizanton kiel mezan konvertiĝon. Ĉi tio povas esti iom konfuziga, do bonvolu uzi ĉi tiun metodon nur se aliaj pagmetodoj ne funkcias. Ĝi ankaŭ ne funkcias en ĉiuj landoj."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:323
+msgid "page.donate.payment.desc.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:327
+#: allthethings/account/templates/account/donation.html:508
+msgid "page.donate.payment.desc.bank_card_app.step1.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:331
+#: allthethings/account/templates/account/donation.html:512
+msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:335
+#: allthethings/account/templates/account/donation.html:516
+msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:517
+msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:521
+msgid "page.donate.payment.desc.bank_card_app.step2.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:348
+#: allthethings/account/templates/account/donation.html:529
+msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:349
+#: allthethings/account/templates/account/donation.html:530
+msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:355
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Ni ne povas subteni kredit-/debetkartojn rekte, ĉar bankoj ne volas kunlabori kun ni. ☹ Tamen, ekzistas pluraj manieroj uzi kredit-/debetkartojn, uzante aliajn pagmetodojn:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Sendu al ni donackartojn de Amazon.com uzante vian kredit-/debetkarton."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:363
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay subtenas internaciajn kredit-/debetkartojn. Vidu <a %(a_alipay)s>ĉi tiun gvidilon</a> por pli da informoj."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:366
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) subtenas internaciajn kredit-/debetkartojn. En la WeChat-aplikaĵo, iru al “Mi => Servoj => Monujo => Aldoni Karton”. Se vi ne vidas tion, ebligu ĝin uzante “Mi => Agordoj => Ĝenerala => Iloj => Weixin Pay => Ebligi”."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:369
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "Vi povas aĉeti kripton uzante kredit/debetkartojn."
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:379
+msgid "page.donate.payment.desc.crypto_express_services"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:381
+msgid "page.donation.ccexp.crypto_express_services.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:382
+msgid "page.donation.ccexp.crypto_express_services.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:385
+msgid "page.donation.ccexp.crypto_express_services.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:386
+msgid "page.donation.ccexp.crypto_express_services.4"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:389
 #: allthethings/account/templates/account/donation.html:302
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(minimumo: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:390
 #: allthethings/account/templates/account/donation.html:303
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(minimumo: %(minimum)s depende de lando, neniu kontrolo por la unua transakcio)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:391
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(minimumo: %(minimum)s, neniu kontrolo por la unua transakcio)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:392
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(minimumo: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:393
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(minimumo: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:393
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(minimumo: %(minimum)s, neniu kontrolo por la unua transakcio)"
 
-#: allthethings/account/templates/account/donate.html:395
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Se iu el ĉi tiu informo estas malaktuala, bonvolu retpoŝti al ni por sciigi nin."
 
-#: allthethings/account/templates/account/donate.html:402
+#: allthethings/account/templates/account/donate.html:403
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "Por kreditkartoj, debetkartoj, Apple Pay, kaj Google Pay, ni uzas “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). En ilia sistemo, unu “kafo” egalas al $5, do via donaco estos rondigita al la plej proksima multoblo de 5."
 
-#: allthethings/account/templates/account/donate.html:409
+#: allthethings/account/templates/account/donate.html:410
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "Elektu kiom longe vi volas aboni."
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:427
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 monato"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:428
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 monatoj"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:429
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 monatoj"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:430
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 monatoj"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:431
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 monatoj"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 monatoj"
 
-#: allthethings/account/templates/account/donate.html:432
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 monatoj"
 
-#: allthethings/account/templates/account/donate.html:435
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>post <span %(span_discount)s></span> rabatoj</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:442
+#: allthethings/account/templates/account/donate.html:443
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "Ĉi tiu pagmaniero postulas minimumon de %(amount)s. Bonvolu elekti alian daŭron aŭ pagmanieron."
 
-#: allthethings/account/templates/account/donate.html:443
-#: allthethings/account/templates/account/donate.html:447
+#: allthethings/account/templates/account/donate.html:444
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Donaci"
 
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:447
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "Ĉi tiu pagmaniero permesas nur maksimumon de %(amount)s. Bonvolu elekti alian daŭron aŭ pagmanieron."
 
-#: allthethings/account/templates/account/donate.html:453
+#: allthethings/account/templates/account/donate.html:454
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "Por fariĝi membro, bonvolu <a %(a_login)s>Ensaluti aŭ Registriĝi</a>. Dankon pro via subteno!"
 
-#: allthethings/account/templates/account/donate.html:460
+#: allthethings/account/templates/account/donate.html:461
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "Elektu vian preferatan kriptomonon:"
 
-#: allthethings/account/templates/account/donate.html:465
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(plej malalta minimuma kvanto)"
 
-#: allthethings/account/templates/account/donate.html:480
+#: allthethings/account/templates/account/donate.html:469
+msgid "page.donate.coinbase_eth"
+msgstr ""
+
 #: allthethings/account/templates/account/donate.html:481
-#: allthethings/account/templates/account/donate.html:485
-#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:482
+#: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:488
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(averto: alta minimuma kvanto)"
 
-#: allthethings/account/templates/account/donate.html:496
+#: allthethings/account/templates/account/donate.html:497
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "Alklaku la donacbutonon por konfirmi ĉi tiun donacon."
 
-#: allthethings/account/templates/account/donate.html:504
+#: allthethings/account/templates/account/donate.html:505
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "Donacu <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:509
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "Vi ankoraŭ povas nuligi la donacon dum la pago."
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:514
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ Redirektante al la donacpaĝo…"
 
-#: allthethings/account/templates/account/donate.html:514
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ Io fuŝiĝis. Bonvolu reŝargi la paĝon kaj reprovi."
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:569
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:569
+#: allthethings/account/templates/account/donate.html:570
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / monato"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:573
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "por 1 monato"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "por 3 monatoj"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "por 6 monatoj"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:576
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "por 12 monatoj"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:577
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "dum 24 monatoj"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "dum 48 monatoj"
 
-#: allthethings/account/templates/account/donate.html:578
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "dum 96 monatoj"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "por 1 monato “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "dum 3 monatoj “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:585
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "por 6 monatoj “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:586
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "por 12 monatoj “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:587
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "dum 24 monatoj “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "dum 48 monatoj “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:588
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "dum 96 monatoj “%(tier_name)s”"
@@ -989,8 +1048,8 @@ msgstr "<strong>Grava noto:</strong> Kriptaj prezoj povas fluktuadi sovaĝe, foj
 #: allthethings/account/templates/account/donation.html:450
 #: allthethings/account/templates/account/donation.html:467
 #: allthethings/account/templates/account/donation.html:502
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:600
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "Ĉi tiu donaco eksvalidiĝis. Bonvolu nuligi kaj krei novan."
@@ -1070,8 +1129,8 @@ msgstr "Vidu la paŝon post paŝo gvidilon sube."
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:381
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "Statuso:"
@@ -1083,8 +1142,8 @@ msgstr "Statuso:"
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Atendante konfirmon (refreŝigu la paĝon por kontroli)…"
@@ -1096,8 +1155,8 @@ msgstr "Atendante konfirmon (refreŝigu la paĝon por kontroli)…"
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Atendante translokigon (refreŝigu la paĝon por kontroli)…"
@@ -1109,8 +1168,8 @@ msgstr "Atendante translokigon (refreŝigu la paĝon por kontroli)…"
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "Restanta tempo:"
@@ -1122,8 +1181,8 @@ msgstr "Restanta tempo:"
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(vi eble volas nuligi kaj krei novan donacon)"
@@ -1135,8 +1194,8 @@ msgstr "(vi eble volas nuligi kaj krei novan donacon)"
 #: allthethings/account/templates/account/donation.html:326
 #: allthethings/account/templates/account/donation.html:355
 #: allthethings/account/templates/account/donation.html:492
-#: allthethings/account/templates/account/donation.html:552
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:564
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "Por restarigi la tempigilon, simple kreu novan donacon."
@@ -1149,14 +1208,14 @@ msgstr "Por restarigi la tempigilon, simple kreu novan donacon."
 #: allthethings/account/templates/account/donation.html:359
 #: allthethings/account/templates/account/donation.html:385
 #: allthethings/account/templates/account/donation.html:496
-#: allthethings/account/templates/account/donation.html:556
-#: allthethings/account/templates/account/donation.html:583
+#: allthethings/account/templates/account/donation.html:568
+#: allthethings/account/templates/account/donation.html:595
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "Ĝisdatigi statuson"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:683
+#: allthethings/account/templates/account/donation.html:695
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "Se vi renkontas ajnajn problemojn, bonvolu kontakti nin ĉe %(email)s kaj inkluzivi kiel eble plej multe da informoj (kiel ekrankopiojn)."
@@ -1352,8 +1411,8 @@ msgstr "Ekzemplo:"
 #: allthethings/account/templates/account/donation.html:446
 #: allthethings/account/templates/account/donation.html:462
 #: allthethings/account/templates/account/donation.html:483
-#: allthethings/account/templates/account/donation.html:543
-#: allthethings/account/templates/account/donation.html:600
+#: allthethings/account/templates/account/donation.html:555
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "Notu, ke la konta nomo aŭ bildo eble aspektas strange. Ne necesas zorgi! Ĉi tiuj kontoj estas administrataj de niaj donacaj partneroj. Niaj kontoj ne estis hakitaj."
@@ -1378,127 +1437,143 @@ msgid "page.donation.payment.alipay.text1_new"
 msgstr "Donacu la tutan sumon de %(total)s uzante <a %(a_account)s>ĉi tiun Alipay-konton</a>"
 
 #: allthethings/account/templates/account/donation.html:479
-#: allthethings/account/templates/account/donation.html:539
+#: allthethings/account/templates/account/donation.html:551
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Bedaŭrinde, la Alipay-paĝo ofte estas alirebla nur el <strong>ĉeftero Ĉinio</strong>. Vi eble devos provizore malŝalti vian VPN, aŭ uzi VPN al ĉeftero Ĉinio (aŭ foje ankaŭ funkcias Honkongo)."
 
-#: allthethings/account/templates/account/donation.html:565
+#: allthethings/account/templates/account/donation.html:534
+msgid "page.donation.bank_card_app.step3.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:538
+msgid "page.donation.bank_card_app.step3.desc.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:542
+msgid "page.donation.bank_card_app.step3.desc.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:543
+msgid "page.donation.bank_card_app.step3.desc.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:577
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Instrukcioj por WeChat"
 
-#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:579
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Donaci per WeChat"
 
-#: allthethings/account/templates/account/donation.html:570
+#: allthethings/account/templates/account/donation.html:582
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Donacu la tutan sumon de %(total)s uzante <a %(a_account)s>ĉi tiun WeChat-konton</a>"
 
-#: allthethings/account/templates/account/donation.html:591
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Instrukcioj por Pix"
 
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:605
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Donaci per Pix"
 
-#: allthethings/account/templates/account/donation.html:596
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "Donacu la tutan sumon de %(total)s uzante <a %(a_account)s>ĉi tiun Pix-konton"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Retpoŝtu al ni la kvitancon"
 
-#: allthethings/account/templates/account/donation.html:609
+#: allthethings/account/templates/account/donation.html:621
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Sendu kvitancon aŭ ekrankopion al via persona kontroladreso. NE uzu ĉi tiun retpoŝtadreson por via PayPal-donaco."
 
-#: allthethings/account/templates/account/donation.html:611
+#: allthethings/account/templates/account/donation.html:623
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "Sendu kvitancon aŭ ekrankopion al via persona kontroladreso:"
 
-#: allthethings/account/templates/account/donation.html:621
+#: allthethings/account/templates/account/donation.html:633
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "Se la kripta kurzo ŝanĝiĝis dum la transakcio, certigu inkluzivi la kvitancon montrantan la originalan kurzon. Ni vere dankas vin pro la peno uzi kripton, ĝi multe helpas nin!"
 
-#: allthethings/account/templates/account/donation.html:626
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "Kiam vi sendis vian kvitancon per retpoŝto, alklaku ĉi tiun butonon, por ke Anna mane reviziu ĝin (tio povas daŭri kelkajn tagojn):"
 
-#: allthethings/account/templates/account/donation.html:636
+#: allthethings/account/templates/account/donation.html:648
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "Jes, mi sendis mian kvitancon per retpoŝto"
 
-#: allthethings/account/templates/account/donation.html:639
+#: allthethings/account/templates/account/donation.html:651
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ Dankon pro via donaco! Anna mane aktivigos vian membrecon ene de kelkaj tagoj."
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:652
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ Io fuŝiĝis. Bonvolu reŝargi la paĝon kaj reprovi."
 
-#: allthethings/account/templates/account/donation.html:645
+#: allthethings/account/templates/account/donation.html:657
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Paŝo-post-paŝa gvidilo"
 
-#: allthethings/account/templates/account/donation.html:647
+#: allthethings/account/templates/account/donation.html:659
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Kelkaj el la paŝoj mencias kriptomonedajn monujojn, sed ne zorgu, vi ne devas lerni ion ajn pri kripto por ĉi tio."
 
-#: allthethings/account/templates/account/donation.html:649
+#: allthethings/account/templates/account/donation.html:661
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Enigu vian retpoŝton."
 
-#: allthethings/account/templates/account/donation.html:655
+#: allthethings/account/templates/account/donation.html:667
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Elektu vian pagmanieron."
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:673
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Elektu vian pagmanieron denove."
 
-#: allthethings/account/templates/account/donation.html:667
+#: allthethings/account/templates/account/donation.html:679
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Elektu “Mem-gastigita” monujo."
 
-#: allthethings/account/templates/account/donation.html:673
+#: allthethings/account/templates/account/donation.html:685
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Alklaku “Mi konfirmas posedon”."
 
-#: allthethings/account/templates/account/donation.html:679
+#: allthethings/account/templates/account/donation.html:691
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Vi devus ricevi retpoŝtan kvitancon. Bonvolu sendi tion al ni, kaj ni konfirmos vian donacon kiel eble plej baldaŭ."
 
-#: allthethings/account/templates/account/donation.html:684
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donate.wait"
 msgstr "Bonvolu atendi almenaŭ <span %(span_hours)s>du horojn</span> (kaj refreŝigi ĉi tiun paĝon) antaŭ ol kontakti nin."
 
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Se vi faris eraron dum pago, ni ne povas fari repagojn, sed ni provos ripari ĝin."
@@ -1974,6 +2049,10 @@ msgstr "Komikso"
 msgid "common.md5_content_type_mapping.musical_score"
 msgstr "Muzika partituro"
 
+#: allthethings/page/views.py:6192
+msgid "common.md5_content_type_mapping.audiobook"
+msgstr ""
+
 #: allthethings/page/views.py:6193
 #, fuzzy
 msgid "common.md5_content_type_mapping.other"
@@ -2015,7 +2094,7 @@ msgid "common.access_types_mapping.torrents_available"
 msgstr "Enhavita en torentoj"
 
 #: allthethings/page/templates/page/datasets.html:43
-#: allthethings/page/templates/page/datasets.html:256
+#: allthethings/page/templates/page/datasets.html:254
 #: allthethings/page/templates/page/datasets_lgrs.html:25
 #: allthethings/page/views.py:6211
 #, fuzzy
@@ -2023,7 +2102,7 @@ msgid "common.record_sources_mapping.lgrs"
 msgstr "Libgen.rs"
 
 #: allthethings/page/templates/page/datasets.html:80
-#: allthethings/page/templates/page/datasets.html:319
+#: allthethings/page/templates/page/datasets.html:317
 #: allthethings/page/templates/page/datasets_lgli.html:29
 #: allthethings/page/views.py:6212
 #, fuzzy
@@ -2031,7 +2110,7 @@ msgid "common.record_sources_mapping.lgli"
 msgstr "Libgen.li"
 
 #: allthethings/page/templates/page/datasets.html:98
-#: allthethings/page/templates/page/datasets.html:355
+#: allthethings/page/templates/page/datasets.html:353
 #: allthethings/page/templates/page/datasets_zlib.html:25
 #: allthethings/page/views.py:6213
 #, fuzzy
@@ -2049,13 +2128,13 @@ msgstr "Z-Library Ĉina"
 msgid "common.record_sources_mapping.ia"
 msgstr "IA"
 
-#: allthethings/page/templates/page/datasets.html:544
+#: allthethings/page/templates/page/datasets.html:542
 #: allthethings/page/templates/page/datasets_isbndb.html:25
 #: allthethings/page/views.py:6216
 msgid "common.record_sources_mapping.isbndb"
 msgstr "ISBNdb"
 
-#: allthethings/page/templates/page/datasets.html:528
+#: allthethings/page/templates/page/datasets.html:526
 #: allthethings/page/templates/page/datasets_ol.html:25
 #: allthethings/page/views.py:6217
 msgid "common.record_sources_mapping.ol"
@@ -2066,7 +2145,7 @@ msgstr "OpenLibrary"
 msgid "common.record_sources_mapping.scihub"
 msgstr "Sci-Hub"
 
-#: allthethings/page/templates/page/datasets.html:563
+#: allthethings/page/templates/page/datasets.html:561
 #: allthethings/page/templates/page/datasets_oclc.html:25
 #: allthethings/page/views.py:6219
 #, fuzzy
@@ -2074,7 +2153,7 @@ msgid "common.record_sources_mapping.oclc"
 msgstr "OCLC (WorldCat)"
 
 #: allthethings/page/templates/page/datasets.html:148
-#: allthethings/page/templates/page/datasets.html:402
+#: allthethings/page/templates/page/datasets.html:400
 #: allthethings/page/templates/page/datasets_duxiu.html:25
 #: allthethings/page/views.py:6220
 #, fuzzy
@@ -2082,22 +2161,60 @@ msgid "common.record_sources_mapping.duxiu"
 msgstr "DuXiu 读秀"
 
 #: allthethings/page/templates/page/datasets.html:164
-#: allthethings/page/templates/page/datasets.html:436
+#: allthethings/page/templates/page/datasets.html:434
 #: allthethings/page/templates/page/datasets_upload.html:25
 #: allthethings/page/views.py:6221
 #, fuzzy
 msgid "common.record_sources_mapping.uploads"
 msgstr "Alŝutoj al AA"
 
+#: allthethings/page/templates/page/datasets.html:180
 #: allthethings/page/views.py:6222
 #, fuzzy
 msgid "common.record_sources_mapping.magzdb"
 msgstr "MagzDB"
 
+#: allthethings/page/templates/page/datasets.html:196
 #: allthethings/page/views.py:6223
-#, fuzzy
-msgid "common.record_soruces_mapping.nexusstc"
-msgstr "Nexus/STC"
+msgid "common.record_sources_mapping.nexusstc"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets.html:580
+#: allthethings/page/views.py:6224
+msgid "common.record_sources_mapping.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6225
+msgid "common.record_sources_mapping.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6226
+msgid "common.record_sources_mapping.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6227
+msgid "common.record_sources_mapping.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6228
+msgid "common.record_sources_mapping.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6229
+msgid "common.record_sources_mapping.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6230
+msgid "common.record_sources_mapping.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6231
+msgid "common.record_sources_mapping.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6232
+msgid "common.record_sources_mapping.trantor"
+msgstr ""
 
 #: allthethings/page/views.py:6238
 #, fuzzy
@@ -2164,7 +2281,7 @@ msgstr "(sen atendolisto, sed povas esti tre malrapida)"
 msgid "page.md5.box.download.temporarily_unavailable"
 msgstr "Elŝutoj de Partnera Servilo provizore ne disponeblas por ĉi tiu dosiero."
 
-#: allthethings/page/views.py:6398 allthethings/page/views.py:6616
+#: allthethings/page/views.py:6398 allthethings/page/views.py:6614
 msgid "page.md5.box.download.scihub"
 msgstr "Sci-Hub: %(doi)s"
 
@@ -2200,407 +2317,471 @@ msgstr "Libgen.li"
 msgid "page.md5.box.download.libgen_ads"
 msgstr "iliaj reklamoj estas konataj enhavi malican programaron, do uzu reklaman blokilon aŭ ne alklaku reklamojn"
 
-#: allthethings/page/views.py:6546
+#: allthethings/page/views.py:6545
 #, fuzzy
 msgid "page.md5.box.download.nexusstc"
 msgstr "Nexus/STC"
 
-#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
+#: allthethings/page/views.py:6545
+msgid "page.md5.box.download.nexusstc_unreliable"
+msgstr ""
+
+#: allthethings/page/views.py:6594 allthethings/page/views.py:6598
 #, fuzzy
 msgid "page.md5.box.download.zlib"
 msgstr "Z-Library"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor"
 msgstr "Z-Biblioteko en Tor"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor_extra"
 msgstr "(postulas la Tor-Retumilon)"
 
-#: allthethings/page/views.py:6603
+#: allthethings/page/views.py:6602
 #, fuzzy
 msgid "page.md5.box.download.magzdb"
 msgstr "MagzDB"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6605
+msgid "page.md5.box.download.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.ia_borrow"
 msgstr "Pruntepreni de la Internet Archive"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.print_disabled_only"
 msgstr "(nur por patronoj kun malebligita presado)"
 
-#: allthethings/page/views.py:6616
+#: allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub_maybe"
 msgstr "(asociita DOI eble ne disponeblas en Sci-Hub)"
 
-#: allthethings/page/views.py:6619
+#: allthethings/page/views.py:6617
 #, fuzzy
 msgid "page.md5.box.download.manualslib"
 msgstr "ManualsLib"
 
-#: allthethings/page/views.py:6622
+#: allthethings/page/views.py:6620
 #, fuzzy
 msgid "page.md5.box.download.pubmed"
 msgstr "PubMed"
 
-#: allthethings/page/views.py:6629
+#: allthethings/page/views.py:6627
 #, fuzzy
 msgid "page.md5.box.download.collection"
 msgstr "kolekto"
 
-#: allthethings/page/views.py:6630
+#: allthethings/page/views.py:6628
 #, fuzzy
 msgid "page.md5.box.download.torrent"
 msgstr "torento"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.bulk_torrents"
 msgstr "Amasaj torentaj elŝutoj"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.experts_only"
 msgstr "(spertuloj nur)"
 
-#: allthethings/page/views.py:6643
+#: allthethings/page/views.py:6641
 #, fuzzy
 msgid "page.md5.box.download.aa_isbn"
 msgstr "Serĉu en la Arkivo de Anna per ISBN"
 
-#: allthethings/page/views.py:6644
+#: allthethings/page/views.py:6642
 #, fuzzy
 msgid "page.md5.box.download.other_isbn"
 msgstr "Serĉu diversajn aliajn datumbazojn por ISBN"
 
-#: allthethings/page/views.py:6645
+#: allthethings/page/views.py:6643
 #, fuzzy
 msgid "page.md5.box.download.original_isbndb"
 msgstr "Trovu originalan rekordon en ISBNdb"
 
-#: allthethings/page/views.py:6647
+#: allthethings/page/views.py:6645
 #, fuzzy
 msgid "page.md5.box.download.aa_openlib"
 msgstr "Serĉu en la Arkivo de Anna por Open Library ID"
 
-#: allthethings/page/views.py:6648
+#: allthethings/page/views.py:6646
 #, fuzzy
 msgid "page.md5.box.download.original_openlib"
 msgstr "Trovu originalan registron en Open Library"
 
-#: allthethings/page/views.py:6650
+#: allthethings/page/views.py:6648
 #, fuzzy
 msgid "page.md5.box.download.aa_oclc"
 msgstr "Serĉu en la Arkivo de Anna per OCLC (WorldCat) numero"
 
-#: allthethings/page/views.py:6651
+#: allthethings/page/views.py:6649
 #, fuzzy
 msgid "page.md5.box.download.original_oclc"
 msgstr "Trovu originalan rekordon en WorldCat"
 
-#: allthethings/page/views.py:6653
+#: allthethings/page/views.py:6651
 #, fuzzy
 msgid "page.md5.box.download.aa_duxiu"
 msgstr "Serĉu en la Arkivo de Anna por DuXiu SSID-nombro"
 
-#: allthethings/page/views.py:6654
+#: allthethings/page/views.py:6652
 #, fuzzy
 msgid "page.md5.box.download.original_duxiu"
 msgstr "Serĉu permane en DuXiu"
 
-#: allthethings/page/views.py:6656
+#: allthethings/page/views.py:6654
 #, fuzzy
 msgid "page.md5.box.download.aa_cadal"
 msgstr "Serĉu en la Arkivo de Anna por CADAL SSNO-nombro"
 
-#: allthethings/page/views.py:6657
+#: allthethings/page/views.py:6655
 #, fuzzy
 msgid "page.md5.box.download.original_cadal"
 msgstr "Trovu originalan rekordon en CADAL"
 
-#: allthethings/page/views.py:6661
+#: allthethings/page/views.py:6659
 #, fuzzy
 msgid "page.md5.box.download.aa_dxid"
 msgstr "Serĉu en la Arkivo de Anna por DuXiu DXID-nombro"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "page.md5.box.download.scidb"
 msgstr "La Arkivo de Anna 🧬 SciDB"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "common.md5.servers.no_browser_verification"
 msgstr "(sen retumila kontrolo postulata)"
 
-#: allthethings/page/views.py:6721
+#: allthethings/page/views.py:6695
+msgid "page.md5.top_row.isbndb"
+msgstr ""
+
+#: allthethings/page/views.py:6696
+msgid "page.md5.top_row.oclc"
+msgstr ""
+
+#: allthethings/page/views.py:6697
+msgid "page.md5.top_row.duxiu_ssid"
+msgstr ""
+
+#: allthethings/page/views.py:6698
+msgid "page.md5.top_row.magzdb"
+msgstr ""
+
+#: allthethings/page/views.py:6699
+msgid "page.md5.top_row.nexusstc"
+msgstr ""
+
+#: allthethings/page/views.py:6700
+msgid "page.md5.top_row.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6701
+msgid "page.md5.top_row.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6702
+msgid "page.md5.top_row.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6703
+msgid "page.md5.top_row.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6704
+msgid "page.md5.top_row.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6705
+msgid "page.md5.top_row.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6706
+msgid "page.md5.top_row.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6707
+msgid "page.md5.top_row.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6708
+msgid "page.md5.top_row.trantor"
+msgstr ""
+
+#: allthethings/page/views.py:6718
 #, fuzzy
 msgid "page.md5.box.descr_title"
 msgstr "priskribo"
 
-#: allthethings/page/views.py:6722
+#: allthethings/page/views.py:6719
 #, fuzzy
 msgid "page.md5.box.alternative_filename"
 msgstr "Alternativa dosiernomo"
 
-#: allthethings/page/views.py:6723
+#: allthethings/page/views.py:6720
 #, fuzzy
 msgid "page.md5.box.alternative_title"
 msgstr "Alternativa titolo"
 
-#: allthethings/page/views.py:6724
+#: allthethings/page/views.py:6721
 #, fuzzy
 msgid "page.md5.box.alternative_author"
 msgstr "Alternativa aŭtoro"
 
-#: allthethings/page/views.py:6725
+#: allthethings/page/views.py:6722
 #, fuzzy
 msgid "page.md5.box.alternative_publisher"
 msgstr "Alternativa eldonejo"
 
-#: allthethings/page/views.py:6726
+#: allthethings/page/views.py:6723
 #, fuzzy
 msgid "page.md5.box.alternative_edition"
 msgstr "Alternativa eldono"
 
-#: allthethings/page/views.py:6727
+#: allthethings/page/views.py:6724
 #, fuzzy
 msgid "page.md5.box.alternative_extension"
 msgstr "Alternativa etendo"
 
-#: allthethings/page/views.py:6728
+#: allthethings/page/views.py:6725
 #, fuzzy
 msgid "page.md5.box.metadata_comments_title"
 msgstr "metadatenaj komentoj"
 
-#: allthethings/page/views.py:6729
+#: allthethings/page/views.py:6726
 #, fuzzy
 msgid "page.md5.box.alternative_description"
 msgstr "Alternativa priskribo"
 
-#: allthethings/page/views.py:6730
+#: allthethings/page/views.py:6727
 #, fuzzy
 msgid "page.md5.box.date_open_sourced_title"
 msgstr "dato malfermita fonto"
 
-#: allthethings/page/templates/page/aarecord.html:14
+#: allthethings/page/templates/page/aarecord.html:15
 #, fuzzy
 msgid "page.md5.header.scihub"
 msgstr "Sci-Hub dosiero “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:18
+#: allthethings/page/templates/page/aarecord.html:19
 #, fuzzy
 msgid "page.md5.header.ia"
 msgstr "Internet Archive Kontrolita Cifereca Pruntado dosiero “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:21
+#: allthethings/page/templates/page/aarecord.html:22
 #, fuzzy
 msgid "page.md5.header.ia_desc"
 msgstr "Ĉi tio estas registro de dosiero el la Internet Archive, ne rekte elŝutebla dosiero. Vi povas provi pruntepreni la libron (ligilo sube), aŭ uzi ĉi tiun URL-on kiam <a %(a_request)s>petante dosieron</a>."
 
-#: allthethings/page/templates/page/aarecord.html:22
-#: allthethings/page/templates/page/aarecord.html:46
+#: allthethings/page/templates/page/aarecord.html:23
+#: allthethings/page/templates/page/aarecord.html:47
 #, fuzzy
 msgid "page.md5.header.consider_upload"
 msgstr "Se vi havas ĉi tiun dosieron kaj ĝi ankoraŭ ne estas disponebla en la Arkivo de Anna, konsideru <a %(a_request)s>alŝuti ĝin</a>."
 
-#: allthethings/page/templates/page/aarecord.html:27
+#: allthethings/page/templates/page/aarecord.html:28
 #, fuzzy
 msgid "page.md5.header.meta_isbn"
 msgstr "ISBNdb %(id)s metadatenregistro"
 
-#: allthethings/page/templates/page/aarecord.html:29
+#: allthethings/page/templates/page/aarecord.html:30
 #, fuzzy
 msgid "page.md5.header.meta_openlib"
 msgstr "Open Library %(id)s metadatenregistro"
 
-#: allthethings/page/templates/page/aarecord.html:31
+#: allthethings/page/templates/page/aarecord.html:32
 #, fuzzy
 msgid "page.md5.header.meta_oclc"
 msgstr "OCLC (WorldCat) numero %(id)s metadatenregistro"
 
-#: allthethings/page/templates/page/aarecord.html:33
+#: allthethings/page/templates/page/aarecord.html:34
 #, fuzzy
 msgid "page.md5.header.meta_duxiu_ssid"
 msgstr "DuXiu SSID %(id)s metadatenregistro"
 
-#: allthethings/page/templates/page/aarecord.html:35
+#: allthethings/page/templates/page/aarecord.html:36
 #, fuzzy
 msgid "page.md5.header.meta_cadal_ssno"
 msgstr "CADAL SSNO %(id)s metadatenregistro"
 
-#: allthethings/page/templates/page/aarecord.html:37
+#: allthethings/page/templates/page/aarecord.html:38
 #, fuzzy
 msgid "page.md5.header.meta_magzdb_id"
 msgstr "MagzDB ID %(id)s metadatenoto"
 
-#: allthethings/page/templates/page/aarecord.html:39
+#: allthethings/page/templates/page/aarecord.html:40
 #, fuzzy
 msgid "page.md5.header.meta_nexus_stc_id"
 msgstr "Nexus/STC ID %(id)s metadatenoto"
 
-#: allthethings/page/templates/page/aarecord.html:45
+#: allthethings/page/templates/page/aarecord.html:46
 #, fuzzy
 msgid "page.md5.header.meta_desc"
 msgstr "Ĉi tio estas metadateno-rekordo, ne elŝutebla dosiero. Vi povas uzi ĉi tiun URL-on kiam <a %(a_request)s>petante dosieron</a>."
 
-#: allthethings/page/templates/page/aarecord.html:56
+#: allthethings/page/templates/page/aarecord.html:57
 #, fuzzy
 msgid "page.md5.text.linked_metadata"
 msgstr "Metadaten de ligita registro"
 
-#: allthethings/page/templates/page/aarecord.html:57
+#: allthethings/page/templates/page/aarecord.html:58
 #, fuzzy
 msgid "page.md5.text.linked_metadata_openlib"
 msgstr "Plibonigi metadaten en Open Library"
 
-#: allthethings/page/templates/page/aarecord.html:60
+#: allthethings/page/templates/page/aarecord.html:61
 #, fuzzy
 msgid "page.md5.warning.multiple_links"
 msgstr "Averto: multoblaj ligitaj registroj:"
 
-#: allthethings/page/templates/page/aarecord.html:68
+#: allthethings/page/templates/page/aarecord.html:69
 #, fuzzy
 msgid "page.md5.header.improve_metadata"
 msgstr "Plibonigi metadatenojn"
 
-#: allthethings/page/templates/page/aarecord.html:70
+#: allthethings/page/templates/page/aarecord.html:71
 #, fuzzy
 msgid "page.md5.text.report_quality"
 msgstr "Raporti dosieran kvaliton"
 
-#: allthethings/page/templates/page/aarecord.html:92
+#: allthethings/page/templates/page/aarecord.html:93
 #, fuzzy
 msgid "page.md5.codes.url"
 msgstr "URL:"
 
-#: allthethings/page/templates/page/aarecord.html:93
+#: allthethings/page/templates/page/aarecord.html:94
 #, fuzzy
 msgid "page.md5.codes.website"
 msgstr "Retejo:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_abbr"
 msgstr "AA:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_search"
 msgstr "Serĉu en la Arkivo de Anna por “%(name)s”"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_explorer"
 msgstr "Koda Esplorilo:"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_search"
 msgstr "Vidi en Koda Esplorilo “%(name)s”"
 
-#: allthethings/page/templates/page/aarecord.html:114
+#: allthethings/page/templates/page/aarecord.html:115
 #, fuzzy
 msgid "page.md5.box.descr_read_more"
 msgstr "Legu pli…"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.downloads"
 msgstr "Elŝutoj (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.borrow"
 msgstr "Pruntepreni (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.explore_metadata"
 msgstr "Esploru metadatenojn (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:132
+#: allthethings/page/templates/page/aarecord.html:133
 #, fuzzy
 msgid "page.md5.tabs.lists"
 msgstr "Listoj (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:133
+#: allthethings/page/templates/page/aarecord.html:134
 #, fuzzy
 msgid "page.md5.tabs.stats"
 msgstr "Statistikoj (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:135
+#: allthethings/page/templates/page/aarecord.html:136
 #, fuzzy
 msgid "common.tech_details"
 msgstr "Teknikaj detaloj"
 
-#: allthethings/page/templates/page/aarecord.html:204
+#: allthethings/page/templates/page/aarecord.html:205
 #, fuzzy
 msgid "page.md5.box.issues.text1"
 msgstr "<span class=\"font-bold\">❌ Ĉi tiu dosiero eble havas problemojn, kaj estis kaŝita de fonta biblioteko.</span> Foje tio estas laŭ peto de kopirajta posedanto, foje ĉar pli bona alternativo estas disponebla, sed foje pro problemo kun la dosiero mem. Ĝi eble ankoraŭ estas bona por elŝuti, sed ni rekomendas unue serĉi alternativan dosieron. Pli da detaloj:"
 
-#: allthethings/page/templates/page/aarecord.html:209
+#: allthethings/page/templates/page/aarecord.html:210
 #, fuzzy
 msgid "page.md5.box.download.better_file"
 msgstr "Pli bona versio de ĉi tiu dosiero eble disponeblas ĉe %(link)s"
 
-#: allthethings/page/templates/page/aarecord.html:214
+#: allthethings/page/templates/page/aarecord.html:215
 #, fuzzy
 msgid "page.md5.box.issues.text2"
 msgstr "Se vi ankoraŭ volas elŝuti ĉi tiun dosieron, certigu uzi nur fidindan, ĝisdatigitan programaron por malfermi ĝin."
 
-#: allthethings/page/templates/page/aarecord.html:219
+#: allthethings/page/templates/page/aarecord.html:220
 #, fuzzy
 msgid "page.md5.box.download.header_fast_only"
 msgstr "🚀 Rapidaj elŝutoj"
 
-#: allthethings/page/templates/page/aarecord.html:221
+#: allthethings/page/templates/page/aarecord.html:222
 #, fuzzy
 msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Rapidaj elŝutoj</strong> Fariĝu <a %(a_membership)s>membro</a> por subteni la longdaŭran konservadon de libroj, artikoloj, kaj pli. Por montri nian dankemon pro via subteno, vi ricevas rapidajn elŝutojn. ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:222
+#: allthethings/page/templates/page/aarecord.html:223
 #: allthethings/templates/layouts/index.html:215
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Se vi donacas ĉi-monate, vi ricevas <strong>duoble</strong> la nombron de rapidaj elŝutoj."
 
-#: allthethings/page/templates/page/aarecord.html:224
+#: allthethings/page/templates/page/aarecord.html:225
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member"
 msgstr "<strong>🚀 Rapidaj elŝutoj</strong> Vi havas %(remaining)s hodiaŭ. Dankon pro esti membro! ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:225
+#: allthethings/page/templates/page/aarecord.html:226
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_no_remaining_new"
 msgstr "<strong>🚀 Rapidaj elŝutoj</strong> Vi elĉerpis viajn rapidajn elŝutojn por hodiaŭ."
 
-#: allthethings/page/templates/page/aarecord.html:226
+#: allthethings/page/templates/page/aarecord.html:227
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_valid_for"
 msgstr "<strong>🚀 Rapidaj elŝutoj</strong> Vi elŝutis ĉi tiun dosieron lastatempe. Ligiloj restas validaj dum iom da tempo."
 
-#: allthethings/page/templates/page/aarecord.html:230
-#: allthethings/page/templates/page/aarecord.html:244
-#: allthethings/page/templates/page/aarecord.html:278
+#: allthethings/page/templates/page/aarecord.html:231
+#: allthethings/page/templates/page/aarecord.html:245
+#: allthethings/page/templates/page/aarecord.html:279
 #, fuzzy
 msgid "page.md5.box.download.option"
 msgstr "Opcio #%(num)d: %(link)s %(extra)s"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/templates/layouts/index.html:258
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Referu amikon, kaj ambaŭ vi kaj via amiko ricevos %(percentage)s%% bonusajn rapidajn elŝutojn!"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/page/templates/page/home.html:25
 #: allthethings/page/templates/page/home.html:34
 #: allthethings/page/templates/page/home.html:71
@@ -2616,205 +2797,239 @@ msgstr "Referu amikon, kaj ambaŭ vi kaj via amiko ricevos %(percentage)s%% bonu
 msgid "layout.index.header.learn_more"
 msgstr "Lerni pli…"
 
-#: allthethings/page/templates/page/aarecord.html:239
+#: allthethings/page/templates/page/aarecord.html:240
 #, fuzzy
 msgid "page.md5.box.download.header_slow_only"
 msgstr "🐢 Malrapidaj elŝutoj"
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.trusted_partners"
 msgstr "De fidindaj partneroj."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.slow_faq"
 msgstr "Pli da informoj en la <a %(a_slow)s>Oftaj Demandoj</a>."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "common.md5.servers.browser_verification_unlimited"
 msgstr "(povas postuli <a %(a_browser)s>retumilan konfirmon</a> — senlimaj elŝutoj!)"
 
-#: allthethings/page/templates/page/aarecord.html:256
+#: allthethings/page/templates/page/aarecord.html:257
 #, fuzzy
 msgid "page.md5.box.external_downloads"
 msgstr "montri eksterajn elŝutojn"
 
-#: allthethings/page/templates/page/aarecord.html:257
+#: allthethings/page/templates/page/aarecord.html:258
 #, fuzzy
 msgid "page.md5.box.download.header_external"
 msgstr "Eksteraj elŝutoj"
 
-#: allthethings/page/templates/page/aarecord.html:283
+#: allthethings/page/templates/page/aarecord.html:284
 #, fuzzy
 msgid "page.md5.box.download.no_found"
 msgstr "Neniuj elŝutoj trovitaj."
 
-#: allthethings/page/templates/page/aarecord.html:289
+#: allthethings/page/templates/page/aarecord.html:290
 #, fuzzy
 msgid "page.md5.box.download.no_issues_notice"
 msgstr "Ĉiuj elŝuteblaj opcioj havas la saman dosieron, kaj devus esti sekuraj por uzi. Tamen, ĉiam estu singarda kiam elŝutante dosierojn de la interreto, precipe de retejoj ekster la Arkivo de Anna. Ekzemple, certigu ke viaj aparatoj estas ĝisdatigitaj."
 
-#: allthethings/page/templates/page/aarecord.html:301
-#, fuzzy
-msgid "page.md5.box.download.convert"
-msgstr "Uzu interretajn ilojn por konverti inter formatoj. Ekzemple, por konverti inter epub kaj pdf, uzu <a %(a_cloudconvert)s>CloudConvert</a>."
+#: allthethings/page/templates/page/aarecord.html:296
+#: allthethings/page/templates/page/partner_download.html:71
+msgid "page.md5.box.download.dl_managers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:302
-#, fuzzy
-msgid "page.md5.box.download.kindle"
-msgstr "Kindle: elŝutu la dosieron (pdf aŭ epub estas subtenataj), poste <a %(a_kindle)s>sendu ĝin al Kindle</a> uzante reton, aplikaĵon aŭ retpoŝton. Utilaj iloj: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+#: allthethings/page/templates/page/aarecord.html:297
+#: allthethings/page/templates/page/partner_download.html:72
+msgid "page.md5.box.download.dl_managers.links"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:303
-#, fuzzy
-msgid "page.md5.box.download.support_authors"
-msgstr "Subtenu aŭtorojn: Se vi ŝatas ĉi tion kaj povas permesi ĝin, konsideru aĉeti la originalon, aŭ subteni la aŭtorojn rekte."
+#: allthethings/page/templates/page/aarecord.html:305
+msgid "page.md5.box.download.readers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:304
-#, fuzzy
-msgid "page.md5.box.download.support_libraries"
-msgstr "Subtenu bibliotekojn: Se ĉi tio estas disponebla en via loka biblioteko, konsideru pruntepreni ĝin senpage tie."
+#: allthethings/page/templates/page/aarecord.html:306
+msgid "page.md5.box.download.readers.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:315
+msgid "page.md5.box.download.conversion"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:316
+msgid "page.md5.box.download.conversion.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:324
+msgid "page.md5.box.download.sendtokindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:325
+msgid "page.md5.box.download.sendtokindle.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:328
+msgid "page.md5.box.download.link.send_to_kindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:329
+msgid "page.md5.box.download.link.send_to_kobokindle"
+msgstr ""
 
 #: allthethings/page/templates/page/aarecord.html:334
+msgid "page.md5.box.download.support"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:335
+msgid "page.md5.box.download.support.authors"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:336
+msgid "page.md5.box.download.support.libraries"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:367
 #, fuzzy
 msgid "page.md5.quality.header"
 msgstr "Dosiera kvalito"
 
-#: allthethings/page/templates/page/aarecord.html:337
+#: allthethings/page/templates/page/aarecord.html:370
 #, fuzzy
 msgid "page.md5.quality.report"
 msgstr "Helpu la komunumon raportante la kvaliton de ĉi tiu dosiero! 🙌"
 
-#: allthethings/page/templates/page/aarecord.html:341
+#: allthethings/page/templates/page/aarecord.html:374
 #, fuzzy
 msgid "page.md5.quality.report_issue"
 msgstr "Raporti dosieran problemon (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.great_quality"
 msgstr "Bona dosiera kvalito (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.add_comment"
 msgstr "Aldoni komenton (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:346
+#: allthethings/page/templates/page/aarecord.html:379
 #, fuzzy
 msgid "page.md5.quality.logged_out_login"
 msgstr "Bonvolu <a %(a_login)s>ensaluti</a>."
 
-#: allthethings/page/templates/page/aarecord.html:350
+#: allthethings/page/templates/page/aarecord.html:383
 #, fuzzy
 msgid "page.md5.quality.what_is_wrong"
 msgstr "Kio estas malĝusta kun ĉi tiu dosiero?"
 
-#: allthethings/page/templates/page/aarecord.html:360
+#: allthethings/page/templates/page/aarecord.html:393
 #, fuzzy
 msgid "page.md5.quality.copyright"
 msgstr "Bonvolu uzi la <a %(a_copyright)s>DMCA / Kopirajta plendoformularo</a>."
 
-#: allthethings/page/templates/page/aarecord.html:365
+#: allthethings/page/templates/page/aarecord.html:398
 #, fuzzy
 msgid "page.md5.quality.describe_the_issue"
 msgstr "Priskribu la problemon (deviga)"
 
-#: allthethings/page/templates/page/aarecord.html:366
+#: allthethings/page/templates/page/aarecord.html:399
 #, fuzzy
 msgid "page.md5.quality.issue_description"
 msgstr "Problema priskribo"
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text1"
 msgstr "MD5 de pli bona versio de ĉi tiu dosiero (se aplikebla)."
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text2"
 msgstr "Plenigu ĉi tion se estas alia dosiero kiu proksime kongruas kun ĉi tiu dosiero (sama eldono, sama dosiera etendo se vi povas trovi unu), kiun homoj devus uzi anstataŭ ĉi tiu dosiero. Se vi scias pri pli bona versio de ĉi tiu dosiero ekster la Arkivo de Anna, tiam bonvolu <a %(a_upload)s>alŝuti ĝin</a>."
 
-#: allthethings/page/templates/page/aarecord.html:373
+#: allthethings/page/templates/page/aarecord.html:406
 #, fuzzy
 msgid "page.md5.quality.better_md5.line1"
 msgstr "Vi povas akiri la md5 de la URL, ekz."
 
-#: allthethings/page/templates/page/aarecord.html:380
+#: allthethings/page/templates/page/aarecord.html:413
 #, fuzzy
 msgid "page.md5.quality.submit_report"
 msgstr "Sendi raporton"
 
-#: allthethings/page/templates/page/aarecord.html:385
+#: allthethings/page/templates/page/aarecord.html:418
 #, fuzzy
 msgid "page.md5.quality.improve_the_metadata"
 msgstr "Lernu kiel <a %(a_metadata)s>plibonigi la metadatenojn</a> por ĉi tiu dosiero mem."
 
-#: allthethings/page/templates/page/aarecord.html:389
+#: allthethings/page/templates/page/aarecord.html:422
 #, fuzzy
 msgid "page.md5.quality.report_thanks"
 msgstr "Dankon pro sendi vian raporton. Ĝi estos montrata sur ĉi tiu paĝo, kaj ankaŭ reviziita mane de Anna (ĝis ni havos taŭgan moderan sistemon)."
 
-#: allthethings/page/templates/page/aarecord.html:390
+#: allthethings/page/templates/page/aarecord.html:423
 #, fuzzy
 msgid "page.md5.quality.report_error"
 msgstr "Io misfunkciis. Bonvolu reŝargi la paĝon kaj reprovi."
 
-#: allthethings/page/templates/page/aarecord.html:396
+#: allthethings/page/templates/page/aarecord.html:429
 #, fuzzy
 msgid "page.md5.quality.great.summary"
 msgstr "Se ĉi tiu dosiero havas bonegan kvaliton, vi povas diskuti pri ĝi ĉi tie! Se ne, bonvolu uzi la butonon “Raporti dosierproblemon”."
 
-#: allthethings/page/templates/page/aarecord.html:398
+#: allthethings/page/templates/page/aarecord.html:431
 #, fuzzy
 msgid "page.md5.quality.loved_the_book"
 msgstr "Mi amis ĉi tiun libron!"
 
-#: allthethings/page/templates/page/aarecord.html:400
+#: allthethings/page/templates/page/aarecord.html:433
 #, fuzzy
 msgid "page.md5.quality.submit_comment"
 msgstr "Lasu komenton"
 
-#: allthethings/page/templates/page/aarecord.html:404
+#: allthethings/page/templates/page/aarecord.html:437
 #, fuzzy
 msgid "page.md5.quality.comment_thanks"
 msgstr "Vi lasis komenton. Eble daŭros minuton por ĝi aperi."
 
-#: allthethings/page/templates/page/aarecord.html:405
+#: allthethings/page/templates/page/aarecord.html:438
 #, fuzzy
 msgid "page.md5.quality.comment_error"
 msgstr "Io misfunkciis. Bonvolu reŝargi la paĝon kaj reprovi."
 
-#: allthethings/page/templates/page/aarecord.html:415
-#: allthethings/page/templates/page/aarecord.html:416
+#: allthethings/page/templates/page/aarecord.html:448
+#: allthethings/page/templates/page/aarecord.html:449
 #: allthethings/page/templates/page/torrents.html:26
 #: allthethings/page/templates/page/torrents.html:27
 #, fuzzy
 msgid "common.english_only"
 msgstr "La teksto sube daŭras en la angla."
 
-#: allthethings/page/templates/page/aarecord.html:437
+#: allthethings/page/templates/page/aarecord.html:470
 #, fuzzy
 msgid "page.md5.text.stats.total_downloads"
 msgstr "Totalaj elŝutoj: %(total)s"
 
-#: allthethings/page/templates/page/aarecord.html:469
+#: allthethings/page/templates/page/aarecord.html:502
 #, fuzzy
 msgid "page.md5.text.md5_info.text1"
 msgstr "“Dosiera MD5” estas haketo kiu estas kalkulita el la enhavo de la dosiero, kaj estas sufiĉe unika bazita sur tiu enhavo. Ĉiuj ombro-bibliotekoj kiujn ni indeksis ĉi tie ĉefe uzas MD5-ojn por identigi dosierojn."
 
-#: allthethings/page/templates/page/aarecord.html:473
+#: allthethings/page/templates/page/aarecord.html:506
 #, fuzzy
 msgid "page.md5.text.md5_info.text2"
 msgstr "Dosiero povas aperi en pluraj ombro-bibliotekoj. Por informoj pri la diversaj datasets kiujn ni kompilis, vidu la <a %(a_datasets)s>paĝon pri datasets</a>."
 
-#: allthethings/page/templates/page/aarecord.html:477
+#: allthethings/page/templates/page/aarecord.html:510
 #, fuzzy
 msgid "page.md5.text.ia_info.text1"
 msgstr "Ĉi tiu estas dosiero administrata de la <a %(a_ia)s>IA’s Controlled Digital Lending</a> biblioteko, kaj indeksita de la Arkivo de Anna por serĉado. Por informoj pri la diversaj datasets kiujn ni kompilis, vidu la <a %(a_datasets)s>paĝon pri datasets</a>."
 
-#: allthethings/page/templates/page/aarecord.html:482
+#: allthethings/page/templates/page/aarecord.html:515
 #, fuzzy
 msgid "page.md5.text.file_info.text1"
 msgstr "Por informoj pri ĉi tiu specifa dosiero, kontrolu ĝian <a %(a_href)s>JSON-dosieron</a>."
@@ -3223,9 +3438,9 @@ msgstr "Nefikcio kaj Fikcio"
 #: allthethings/page/templates/page/datasets.html:134
 #: allthethings/page/templates/page/datasets.html:151
 #: allthethings/page/templates/page/datasets.html:167
-#: allthethings/page/templates/page/datasets.html:184
-#: allthethings/page/templates/page/datasets.html:201
-#: allthethings/page/templates/page/datasets.html:218
+#: allthethings/page/templates/page/datasets.html:183
+#: allthethings/page/templates/page/datasets.html:199
+#: allthethings/page/templates/page/datasets.html:216
 #, fuzzy
 msgid "page.datasets.file"
 msgid_plural "page.datasets.files"
@@ -3264,7 +3479,7 @@ msgid "page.datasets.zlibzh.searchable"
 msgstr "La “Ĉina” kolekto en Z-Library ŝajnas esti la sama kiel nia DuXiu kolekto, sed kun malsamaj MD5-oj. Ni ekskludas ĉi tiujn dosierojn el torentoj por eviti duobligon, sed ankoraŭ montras ilin en nia serĉindekso."
 
 #: allthethings/page/templates/page/datasets.html:131
-#: allthethings/page/templates/page/datasets.html:371
+#: allthethings/page/templates/page/datasets.html:369
 #: allthethings/page/templates/page/datasets_ia.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.iacdl"
@@ -3275,43 +3490,43 @@ msgstr "IA Kontrolita Cifereca Pruntepreno"
 msgid "page.datasets.iacdl.searchable"
 msgstr "98%%+ de dosieroj estas serĉeblaj."
 
-#: allthethings/page/templates/page/datasets.html:214
+#: allthethings/page/templates/page/datasets.html:212
 #, fuzzy
 msgid "page.datasets.overview.total"
 msgstr "Sume"
 
-#: allthethings/page/templates/page/datasets.html:215
+#: allthethings/page/templates/page/datasets.html:213
 #, fuzzy
 msgid "page.datasets.overview.excluding_duplicates"
 msgstr "Ekskludante duplikatojn"
 
-#: allthethings/page/templates/page/datasets.html:229
+#: allthethings/page/templates/page/datasets.html:227
 #, fuzzy
 msgid "page.datasets.overview.text4"
 msgstr "Ĉar la ombro-bibliotekoj ofte sinkronigas datumojn unu de la alia, estas konsiderinda koincido inter la bibliotekoj. Tial la nombroj ne sumiĝas al la tuto."
 
-#: allthethings/page/templates/page/datasets.html:233
+#: allthethings/page/templates/page/datasets.html:231
 #, fuzzy
 msgid "page.datasets.overview.text5"
 msgstr "La “spegulita kaj semita de la Arkivo de Anna” procento montras kiom da dosieroj ni spegulas mem. Ni semas tiujn dosierojn amase per torentoj, kaj faras ilin disponeblaj por rekta elŝuto per partneraj retejoj."
 
-#: allthethings/page/templates/page/datasets.html:236
+#: allthethings/page/templates/page/datasets.html:234
 #, fuzzy
 msgid "page.datasets.source_libraries.title"
 msgstr "Fontaj bibliotekoj"
 
-#: allthethings/page/templates/page/datasets.html:239
+#: allthethings/page/templates/page/datasets.html:237
 #, fuzzy
 msgid "page.datasets.source_libraries.text1"
 msgstr "Iuj fontaj bibliotekoj antaŭenigas la amasan kundividon de siaj datumoj per torentoj, dum aliaj ne facile kundividas sian kolekton. En la lasta kazo, la Arkivo de Anna provas skrapi iliajn kolektojn kaj fari ilin disponeblaj (vidu nian <a %(a_torrents)s>paĝon pri Torentoj</a>). Estas ankaŭ interaj situacioj, ekzemple, kie fontaj bibliotekoj volas kundividi, sed ne havas la rimedojn por fari tion. En tiuj kazoj, ni ankaŭ provas helpi."
 
-#: allthethings/page/templates/page/datasets.html:243
+#: allthethings/page/templates/page/datasets.html:241
 #, fuzzy
 msgid "page.datasets.source_libraries.text2"
 msgstr "Sube estas superrigardo pri kiel ni interagas kun la diversaj fontaj bibliotekoj."
 
-#: allthethings/page/templates/page/datasets.html:248
-#: allthethings/page/templates/page/datasets.html:520
+#: allthethings/page/templates/page/datasets.html:246
+#: allthethings/page/templates/page/datasets.html:518
 #: allthethings/page/templates/page/datasets_duxiu.html:17
 #: allthethings/page/templates/page/datasets_edsebk.html:17
 #: allthethings/page/templates/page/datasets_ia.html:17
@@ -3330,8 +3545,8 @@ msgstr "Sube estas superrigardo pri kiel ni interagas kun la diversaj fontaj bib
 msgid "page.datasets.sources.source.header"
 msgstr "Fonto"
 
-#: allthethings/page/templates/page/datasets.html:249
-#: allthethings/page/templates/page/datasets.html:521
+#: allthethings/page/templates/page/datasets.html:247
+#: allthethings/page/templates/page/datasets.html:519
 #: allthethings/page/templates/page/datasets_duxiu.html:18
 #: allthethings/page/templates/page/datasets_edsebk.html:18
 #: allthethings/page/templates/page/datasets_ia.html:18
@@ -3350,7 +3565,7 @@ msgstr "Fonto"
 msgid "page.datasets.sources.metadata.header"
 msgstr "Metadatumoj"
 
-#: allthethings/page/templates/page/datasets.html:250
+#: allthethings/page/templates/page/datasets.html:248
 #: allthethings/page/templates/page/datasets_duxiu.html:19
 #: allthethings/page/templates/page/datasets_ia.html:19
 #: allthethings/page/templates/page/datasets_isbn_ranges.html:18
@@ -3365,185 +3580,185 @@ msgstr "Metadatumoj"
 msgid "page.datasets.sources.files.header"
 msgstr "Dosieroj"
 
-#: allthethings/page/templates/page/datasets.html:261
+#: allthethings/page/templates/page/datasets.html:259
 #: allthethings/page/templates/page/datasets_lgrs.html:30
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.metadata1"
 msgstr "%(icon)s Ĉiutagaj <a %(dbdumps)s>HTTP-datumbazaj elŝutoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:268
+#: allthethings/page/templates/page/datasets.html:266
 #: allthethings/page/templates/page/datasets_lgrs.html:37
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files1"
 msgstr "%(icon)s Aŭtomatigitaj torentoj por <a %(nonfiction)s>Ne-fikcio</a> kaj <a %(fiction)s>Fikcio</a>"
 
-#: allthethings/page/templates/page/datasets.html:274
+#: allthethings/page/templates/page/datasets.html:272
 #: allthethings/page/templates/page/datasets_lgrs.html:43
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files2"
 msgstr "%(icon)s Arkivo de Anna administras kolekton de <a %(covers)s>librokovrilaj torentoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:284
+#: allthethings/page/templates/page/datasets.html:282
 #: allthethings/page/templates/page/datasets_scihub.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.scihub_scimag"
 msgstr "Sci-Hub / Libgen “scimag”"
 
-#: allthethings/page/templates/page/datasets.html:289
+#: allthethings/page/templates/page/datasets.html:287
 #: allthethings/page/templates/page/datasets_scihub.html:30
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata1"
 msgstr "%(icon)s Sci-Hub frostigis novajn dosierojn ekde 2021."
 
-#: allthethings/page/templates/page/datasets.html:292
+#: allthethings/page/templates/page/datasets.html:290
 #: allthethings/page/templates/page/datasets_scihub.html:33
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata2"
 msgstr "%(icon)s Metadatenbazaj elŝutoj disponeblaj <a %(scihub1)s>ĉi tie</a> kaj <a %(scihub2)s>ĉi tie</a>, same kiel parto de la <a %(libgenli)s>Libgen.li-datumbazo</a> (kiun ni uzas)"
 
-#: allthethings/page/templates/page/datasets.html:301
+#: allthethings/page/templates/page/datasets.html:299
 #: allthethings/page/templates/page/datasets_scihub.html:42
 #, fuzzy
 msgid "page.datasets.sources.scihub.files1"
 msgstr "%(icon)s Datumtorentoj disponeblaj <a %(scihub1)s>ĉi tie</a>, <a %(scihub2)s>ĉi tie</a>, kaj <a %(libgenli)s>ĉi tie</a>"
 
-#: allthethings/page/templates/page/datasets.html:308
+#: allthethings/page/templates/page/datasets.html:306
 #: allthethings/page/templates/page/datasets_scihub.html:49
 #, fuzzy
 msgid "page.datasets.sources.scihub.files2"
 msgstr "%(icon)s Iuj novaj dosieroj estas <a %(libgenrs)s>aldonataj</a> al “scimag” de Libgen, sed ne sufiĉe por pravigi novajn torentojn"
 
-#: allthethings/page/templates/page/datasets.html:324
+#: allthethings/page/templates/page/datasets.html:322
 #: allthethings/page/templates/page/datasets_lgli.html:34
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.metadata1"
 msgstr "%(icon)s Trimonataj <a %(dbdumps)s>HTTP-datumbazaj elŝutoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:331
+#: allthethings/page/templates/page/datasets.html:329
 #: allthethings/page/templates/page/datasets_lgli.html:41
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files1"
 msgstr "%(icon)s Ne-fikciaj torentoj estas dividitaj kun Libgen.rs (kaj spegulitaj <a %(libgenli)s>ĉi tie</a>)."
 
-#: allthethings/page/templates/page/datasets.html:336
+#: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files2"
 msgstr "%(icon)s Fikcia kolekto diverĝis sed ankoraŭ havas <a %(libgenli)s>torentojn</a>, kvankam ne ĝisdatigitaj ekde 2022 (ni ja havas rektajn elŝutojn)."
 
-#: allthethings/page/templates/page/datasets.html:341
+#: allthethings/page/templates/page/datasets.html:339
 #: allthethings/page/templates/page/datasets_lgli.html:51
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files3"
 msgstr "%(icon)s Arkivo de Anna kaj Libgen.li kunlabore administras kolektojn de <a %(comics)s>bildstrioj</a> kaj <a %(magazines)s>revuoj</a>."
 
-#: allthethings/page/templates/page/datasets.html:347
+#: allthethings/page/templates/page/datasets.html:345
 #: allthethings/page/templates/page/datasets_lgli.html:57
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files4"
 msgstr "%(icon)s Neniuj torentoj por rusaj fikciaj kaj normaj dokumentaj kolektoj."
 
-#: allthethings/page/templates/page/datasets.html:360
+#: allthethings/page/templates/page/datasets.html:358
 #: allthethings/page/templates/page/datasets_zlib.html:30
 #, fuzzy
 msgid "page.datasets.sources.zlib.metadata_and_files"
 msgstr "%(icon)s La Arkivo de Anna kaj Z-Library kunlabore administras kolekton de <a %(metadata)s>Z-Library metadatenoj</a> kaj <a %(files)s>Z-Library dosieroj</a>"
 
-#: allthethings/page/templates/page/datasets.html:376
+#: allthethings/page/templates/page/datasets.html:374
 #: allthethings/page/templates/page/datasets_ia.html:30
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata1"
 msgstr "%(icon)s Iuj metadatenoj disponeblaj tra <a %(openlib)s>Open Library-datumbazaj elŝutoj</a>, sed tiuj ne kovras la tutan IA-kolekton"
 
-#: allthethings/page/templates/page/datasets.html:381
+#: allthethings/page/templates/page/datasets.html:379
 #: allthethings/page/templates/page/datasets_ia.html:35
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata2"
 msgstr "%(icon)s Neniuj facile alireblaj metadatenbazaj elŝutoj disponeblaj por ilia tuta kolekto"
 
-#: allthethings/page/templates/page/datasets.html:384
+#: allthethings/page/templates/page/datasets.html:382
 #: allthethings/page/templates/page/datasets_ia.html:38
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata3"
 msgstr "%(icon)s La Arkivo de Anna administras kolekton de <a %(ia)s>IA metadatenoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:390
+#: allthethings/page/templates/page/datasets.html:388
 #: allthethings/page/templates/page/datasets_ia.html:44
 #, fuzzy
 msgid "page.datasets.sources.ia.files1"
 msgstr "%(icon)s Dosieroj disponeblaj nur por pruntepreno laŭ limigita bazo, kun diversaj alirlimigoj"
 
-#: allthethings/page/templates/page/datasets.html:392
+#: allthethings/page/templates/page/datasets.html:390
 #: allthethings/page/templates/page/datasets_ia.html:46
 #, fuzzy
 msgid "page.datasets.sources.ia.files2"
 msgstr "%(icon)s Arkivo de Anna administras kolekton de <a %(ia)s>IA-dosieroj</a>"
 
-#: allthethings/page/templates/page/datasets.html:407
+#: allthethings/page/templates/page/datasets.html:405
 #: allthethings/page/templates/page/datasets_duxiu.html:30
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata1"
 msgstr "%(icon)s Diversaj metadatenbazoj disigitaj tra la ĉina interreto; kvankam ofte pagitaj datumbazoj"
 
-#: allthethings/page/templates/page/datasets.html:410
+#: allthethings/page/templates/page/datasets.html:408
 #: allthethings/page/templates/page/datasets_duxiu.html:33
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata2"
 msgstr "%(icon)s Neniu facile alirebla metadatenaj elŝutoj disponeblaj por ilia tuta kolekto."
 
-#: allthethings/page/templates/page/datasets.html:413
+#: allthethings/page/templates/page/datasets.html:411
 #: allthethings/page/templates/page/datasets_duxiu.html:36
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata3"
 msgstr "%(icon)s La Arkivo de Anna administras kolekton de <a %(duxiu)s>DuXiu-metadatenoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:420
+#: allthethings/page/templates/page/datasets.html:418
 #: allthethings/page/templates/page/datasets_duxiu.html:43
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files1"
 msgstr "%(icon)s Diversaj dosieraj datumbazoj disigitaj tra la ĉina interreto; kvankam ofte pagitaj datumbazoj"
 
-#: allthethings/page/templates/page/datasets.html:423
+#: allthethings/page/templates/page/datasets.html:421
 #: allthethings/page/templates/page/datasets_duxiu.html:46
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files2"
 msgstr "%(icon)s Plej multaj dosieroj estas alireblaj nur uzante premiumajn BaiduYun-kontojn; malrapidaj elŝutaj rapidoj."
 
-#: allthethings/page/templates/page/datasets.html:426
+#: allthethings/page/templates/page/datasets.html:424
 #: allthethings/page/templates/page/datasets_duxiu.html:49
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files3"
 msgstr "%(icon)s La Arkivo de Anna administras kolekton de <a %(duxiu)s>DuXiu-dosieroj</a>"
 
-#: allthethings/page/templates/page/datasets.html:441
+#: allthethings/page/templates/page/datasets.html:439
 #: allthethings/page/templates/page/datasets_upload.html:30
 #, fuzzy
 msgid "page.datasets.sources.uploads.metadata_and_files"
 msgstr "%(icon)s Diversaj pli malgrandaj aŭ unufojaj fontoj. Ni kuraĝigas homojn unue alŝuti al aliaj ombrobibliotekoj, sed foje homoj havas kolektojn tro grandajn por aliaj por trarigardi, kvankam ne sufiĉe grandajn por meriti sian propran kategorion."
 
-#: allthethings/page/templates/page/datasets.html:501
+#: allthethings/page/templates/page/datasets.html:499
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.title"
 msgstr "Nur-metadatumaj fontoj"
 
-#: allthethings/page/templates/page/datasets.html:504
+#: allthethings/page/templates/page/datasets.html:502
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Ni ankaŭ riĉigas nian kolekton per nur-metadatumaj fontoj, kiujn ni povas kongrui kun dosieroj, ekz. uzante ISBN-numerojn aŭ aliajn kampojn. Sube estas superrigardo de tiuj. Denove, iuj el ĉi tiuj fontoj estas tute malfermaj, dum por aliaj ni devas skrapi ilin."
 
-#: allthethings/page/templates/page/datasets.html:508
+#: allthethings/page/templates/page/datasets.html:506
 #: allthethings/page/templates/page/faq.html:187
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
 msgstr "Nia inspiro por kolekti metadatenojn estas la celo de Aaron Swartz \"unu retpaĝo por ĉiu libro iam ajn publikigita\", por kiu li kreis <a %(a_openlib)s>Open Library</a>. Tiu projekto bone sukcesis, sed nia unika pozicio permesas al ni akiri metadatenojn, kiujn ili ne povas. Alia inspiro estis nia deziro scii <a %(a_blog)s>kiom da libroj ekzistas en la mondo</a>, por ke ni povu kalkuli kiom da libroj ni ankoraŭ devas savi."
 
-#: allthethings/page/templates/page/datasets.html:515
+#: allthethings/page/templates/page/datasets.html:513
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text2"
 msgstr "Notu, ke en metadatumserĉo, ni montras la originalajn rekordojn. Ni ne faras ajnan kunfandiĝon de rekordoj."
 
-#: allthethings/page/templates/page/datasets.html:522
+#: allthethings/page/templates/page/datasets.html:520
 #: allthethings/page/templates/page/datasets_edsebk.html:19
 #: allthethings/page/templates/page/datasets_isbndb.html:19
 #: allthethings/page/templates/page/datasets_oclc.html:19
@@ -3552,49 +3767,49 @@ msgstr "Notu, ke en metadatumserĉo, ni montras la originalajn rekordojn. Ni ne 
 msgid "page.datasets.sources.last_updated.header"
 msgstr "Laste ĝisdatigita"
 
-#: allthethings/page/templates/page/datasets.html:533
+#: allthethings/page/templates/page/datasets.html:531
 #: allthethings/page/templates/page/datasets_ol.html:30
 #, fuzzy
 msgid "page.datasets.sources.openlib.metadata1"
 msgstr "%(icon)s Monataj <a %(dbdumps)s>datumbazaj elŝutoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:549
-#: allthethings/page/templates/page/datasets.html:588
+#: allthethings/page/templates/page/datasets.html:547
+#: allthethings/page/templates/page/datasets.html:585
 #: allthethings/page/templates/page/datasets_edsebk.html:30
 #: allthethings/page/templates/page/datasets_isbndb.html:30
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata1"
 msgstr "%(icon)s Ne disponebla rekte en amaso, nur en duonamaso malantaŭ pagmuro"
 
-#: allthethings/page/templates/page/datasets.html:552
+#: allthethings/page/templates/page/datasets.html:550
 #: allthethings/page/templates/page/datasets_isbndb.html:33
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata2"
 msgstr "%(icon)s La Arkivo de Anna administras kolekton de <a %(isbndb)s>ISBNdb-metadatenoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:568
+#: allthethings/page/templates/page/datasets.html:566
 #: allthethings/page/templates/page/datasets_oclc.html:30
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata1"
 msgstr "%(icon)s Ne disponebla rekte en amaso, protektita kontraŭ skrapado"
 
-#: allthethings/page/templates/page/datasets.html:571
+#: allthethings/page/templates/page/datasets.html:569
 #: allthethings/page/templates/page/datasets_oclc.html:33
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata2"
 msgstr "%(icon)s La Arkivo de Anna administras kolekton de <a %(worldcat)s>OCLC (WorldCat) metadatenoj</a>"
 
-#: allthethings/page/templates/page/datasets.html:606
+#: allthethings/page/templates/page/datasets.html:603
 #, fuzzy
 msgid "page.datasets.unified_database.title"
 msgstr "Unuigita datumbazo"
 
-#: allthethings/page/templates/page/datasets.html:609
+#: allthethings/page/templates/page/datasets.html:606
 #, fuzzy
 msgid "page.datasets.unified_database.text1"
 msgstr "Ni kombinas ĉiujn supre menciitajn fontojn en unu unuigitan datumbazon, kiun ni uzas por servi ĉi tiun retejon. Ĉi tiu unuigita datumbazo ne estas rekte disponebla, sed ĉar la Arkivo de Anna estas tute malfermfonta, ĝi povas esti sufiĉe facile <a %(a_generated)s>generita</a> aŭ <a %(a_downloaded)s>elŝutita</a> kiel ElasticSearch kaj MariaDB datumbazoj. La skriptoj en tiu paĝo aŭtomate elŝutos ĉiujn necesajn metadatumojn de la supre menciitaj fontoj."
 
-#: allthethings/page/templates/page/datasets.html:617
+#: allthethings/page/templates/page/datasets.html:614
 #, fuzzy
 msgid "page.datasets.unified_database.text2"
 msgstr "Se vi ŝatus esplori niajn datumojn antaŭ ol ruli tiujn skriptojn loke, vi povas rigardi niajn JSON-dosierojn, kiuj ligas plu al aliaj JSON-dosieroj. <a %(a_json)s>Ĉi tiu dosiero</a> estas bona deirpunkto."
@@ -3999,15 +4214,23 @@ msgstr "La rapida historio de la malsamaj forkigoj de Library Genesis (aŭ “Li
 msgid "page.datasets.libgen_rs.story.dot_fun"
 msgstr "La “.fun” versio estis kreita de la originala fondinto. Ĝi estas renovigata favore al nova, pli distribuita versio."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:58
+#: allthethings/page/templates/page/datasets_lgrs.html:59
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_rs"
 msgstr "La “.rs” versio havas tre similajn datumojn, kaj plej konstante publikigas sian kolekton en amasaj torentoj. Ĝi estas proksimume dividita en “fikcia” kaj “nefikcia” sekcio."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:62
+#: allthethings/page/templates/page/datasets_lgrs.html:60
+msgid "page.datasets.libgen_rs.story.rus_dot_ec"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets_lgrs.html:63
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_li"
 msgstr "La <a %(a_li)s>“.li” versio</a> havas grandegan kolekton de komiksoj, same kiel aliajn enhavojn, kiuj ankoraŭ ne estas disponeblaj por amasa elŝuto per torentoj. Ĝi havas apartan torentan kolekton de fikciaj libroj, kaj ĝi enhavas la metadatenojn de <a %(a_scihub)s>Sci-Hub</a> en sia datumbazo."
+
+#: allthethings/page/templates/page/datasets_lgrs.html:64
+msgid "page.datasets.libgen_rs.story.dontexist"
+msgstr ""
 
 #: allthethings/page/templates/page/datasets_lgrs.html:66
 #, fuzzy
@@ -5043,12 +5266,28 @@ msgstr "Mi malamas kiel vi administras ĉi tiun projekton!"
 msgid "page.faq.hate.text1"
 msgstr "Ni ankaŭ ŝatus rememori ĉiujn, ke nia tuta kodo kaj datumoj estas tute malfermfontaj. Ĉi tio estas unika por projektoj kiel la nia — ni ne konas iun ajn alian projekton kun simile masiva katalogo kiu estas ankaŭ tute malfermfonta. Ni tre bonvenigas iun ajn, kiu pensas ke ni malbone administras nian projekton, preni nian kodon kaj datumojn kaj starigi sian propran ombran bibliotekon! Ni ne diras ĉi tion el malbonvolo aŭ io simila — ni vere pensas ke ĉi tio estus mirinda ĉar ĝi levus la nivelon por ĉiuj, kaj pli bone konservus la heredaĵon de la homaro."
 
-#: allthethings/page/templates/page/faq.html:323
+#: allthethings/page/templates/page/faq.html:310
+msgid "page.faq.uptime.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:313
+msgid "page.faq.uptime.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:316
+msgid "page.faq.anna.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:320
+msgid "page.faq.anna.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:324
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Kiaj estas viaj plej ŝatataj libroj?"
 
-#: allthethings/page/templates/page/faq.html:326
+#: allthethings/page/templates/page/faq.html:327
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Jen kelkaj libroj kiuj havas specialan signifon por la mondo de ombraj bibliotekoj kaj cifereca konservado:"
@@ -5617,17 +5856,17 @@ msgstr "Bonvolu atendi ĝis pluraj elŝutpaĝoj ŝarĝiĝas samtempe (sed bonvol
 msgid "page.partner_download.li3"
 msgstr "Post kiam vi ricevas elŝutligilon, ĝi validas dum pluraj horoj."
 
-#: allthethings/page/templates/page/partner_download.html:105
+#: allthethings/page/templates/page/partner_download.html:108
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Averto: estis multaj elŝutoj de via IP-adreso en la lastaj 24 horoj. Elŝutoj povus esti pli malrapidaj ol kutime."
 
-#: allthethings/page/templates/page/partner_download.html:106
+#: allthethings/page/templates/page/partner_download.html:109
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Elŝutoj de via IP-adreso en la lastaj 24 horoj: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:107
+#: allthethings/page/templates/page/partner_download.html:110
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Se vi uzas VPN, komunan interretan konekton, aŭ via ISP dividas IP-ojn, ĉi tiu averto eble estas pro tio."
@@ -6822,3 +7061,19 @@ msgstr "Sekva"
 
 #~ msgid "page.partner_download.download_now"
 #~ msgstr "Elŝuti nun"
+
+#~ msgid "common.record_soruces_mapping.nexusstc"
+#~ msgstr "Nexus/STC"
+
+#~ msgid "page.md5.box.download.convert"
+#~ msgstr "Uzu interretajn ilojn por konverti inter formatoj. Ekzemple, por konverti inter epub kaj pdf, uzu <a %(a_cloudconvert)s>CloudConvert</a>."
+
+#~ msgid "page.md5.box.download.kindle"
+#~ msgstr "Kindle: elŝutu la dosieron (pdf aŭ epub estas subtenataj), poste <a %(a_kindle)s>sendu ĝin al Kindle</a> uzante reton, aplikaĵon aŭ retpoŝton. Utilaj iloj: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+
+#~ msgid "page.md5.box.download.support_authors"
+#~ msgstr "Subtenu aŭtorojn: Se vi ŝatas ĉi tion kaj povas permesi ĝin, konsideru aĉeti la originalon, aŭ subteni la aŭtorojn rekte."
+
+#~ msgid "page.md5.box.download.support_libraries"
+#~ msgstr "Subtenu bibliotekojn: Se ĉi tio estas disponebla en via loka biblioteko, konsideru pruntepreni ĝin senpage tie."
+

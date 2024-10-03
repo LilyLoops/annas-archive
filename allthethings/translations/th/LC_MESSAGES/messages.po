@@ -1,19 +1,3 @@
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 18:34+0000\n"
-"PO-Revision-Date: 2024-10-03 18:34+0000\n"
-"Last-Translator: OpenAI <noreply-mt-openai@weblate.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: th\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.2\n"
-
 #: allthethings/app.py:185
 #, fuzzy
 msgid "layout.index.invalid_request"
@@ -341,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "ติดต่อเรา"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,520 +356,595 @@ msgstr "เรายินดีรับบริจาคจำนวนมา
 msgid "page.donate.header.large_donations"
 msgstr "สำหรับการบริจาคเกิน $5000 กรุณาติดต่อเราที่ %(email)s โดยตรง"
 
-#: allthethings/account/templates/account/donate.html:120
+#: allthethings/account/templates/account/donate.html:116
+msgid "page.donate.header.recurring"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:118
 #, fuzzy
 msgid "page.donate.without_membership"
 msgstr "หากคุณต้องการบริจาค (จำนวนเท่าใดก็ได้) โดยไม่ต้องเป็นสมาชิก โปรดใช้ที่อยู่ Monero (XMR) นี้: %(address)s"
 
-#: allthethings/account/templates/account/donate.html:125
+#: allthethings/account/templates/account/donate.html:123
 #, fuzzy
 msgid "page.donate.payment.select_method"
 msgstr "กรุณาเลือกวิธีการชำระเงิน"
 
-#: allthethings/account/templates/account/donate.html:134
-#: allthethings/account/templates/account/donate.html:420
+#: allthethings/account/templates/account/donate.html:132
+#: allthethings/account/templates/account/donate.html:421
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:140
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:138
+#: allthethings/account/templates/account/donate.html:359
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "บัตรของขวัญ Amazon"
 
-#: allthethings/account/templates/account/donate.html:143
-#: allthethings/account/templates/account/donate.html:153
-#: allthethings/account/templates/account/donate.html:154
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:139
+msgid "page.donate.payment.buttons.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:140
+#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:151
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "คริปโต %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:145
+#: allthethings/account/templates/account/donate.html:142
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit"
 msgstr "บัตรเครดิต/บัตรเดบิต"
 
-#: allthethings/account/templates/account/donate.html:146
+#: allthethings/account/templates/account/donate.html:143
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal"
 msgstr "PayPal (US) %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:147
+#: allthethings/account/templates/account/donate.html:144
 #, fuzzy
 msgid "page.donate.payment.buttons.paypalreg"
 msgstr "PayPal (ปกติ)"
 
-#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:145
 #, fuzzy
 msgid "page.donate.payment.buttons.givebutter"
 msgstr "บัตร / PayPal / Venmo"
 
-#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:147
 #, fuzzy
 msgid "page.donate.payment.buttons.bmc"
 msgstr "เครดิต/เดบิต/Apple/Google (BMC)"
 
-#: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:168
-#: allthethings/account/templates/account/donate.html:178
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:362
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
-#: allthethings/account/templates/account/donate.html:152
+#: allthethings/account/templates/account/donate.html:149
 #, fuzzy
 msgid "page.donate.payment.buttons.pix"
 msgstr "Pix (Brazil)"
 
-#: allthethings/account/templates/account/donate.html:156
+#: allthethings/account/templates/account/donate.html:153
 #, fuzzy
 msgid "page.donate.payment.buttons.cashapp"
 msgstr "Cash App"
 
-#: allthethings/account/templates/account/donate.html:157
+#: allthethings/account/templates/account/donate.html:154
 #, fuzzy
 msgid "page.donate.payment.buttons.revolut"
 msgstr "Revolut"
 
-#: allthethings/account/templates/account/donate.html:158
+#: allthethings/account/templates/account/donate.html:155
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal_plain"
 msgstr "PayPal"
 
-#: allthethings/account/templates/account/donate.html:161
+#: allthethings/account/templates/account/donate.html:156
+msgid "page.donate.payment.buttons.bank_card"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:157
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit_backup"
 msgstr "บัตรเครดิต/เดบิต (สำรอง)"
 
-#: allthethings/account/templates/account/donate.html:162
+#: allthethings/account/templates/account/donate.html:158
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit2"
 msgstr "บัตรเครดิต/เดบิต 2"
 
-#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:160
 #, fuzzy
 msgid "page.donate.payment.buttons.binance"
 msgstr "ไบแนนซ์"
 
-#: allthethings/account/templates/account/donate.html:169
-#: allthethings/account/templates/account/donate.html:180
-#: allthethings/account/templates/account/donate.html:189
-#: allthethings/account/templates/account/donate.html:196
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:165
+#: allthethings/account/templates/account/donate.html:176
+#: allthethings/account/templates/account/donate.html:185
+#: allthethings/account/templates/account/donate.html:192
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:171
-#: allthethings/account/templates/account/donate.html:179
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(ไม่สามารถใช้งานได้ชั่วคราว)"
 
-#: allthethings/account/templates/account/donate.html:219
+#: allthethings/account/templates/account/donate.html:215
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "ด้วยคริปโต คุณสามารถบริจาคโดยใช้ BTC, ETH, XMR และ SOL ใช้ตัวเลือกนี้หากคุณคุ้นเคยกับสกุลเงินดิจิทัลแล้ว"
 
-#: allthethings/account/templates/account/donate.html:223
+#: allthethings/account/templates/account/donate.html:219
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "คุณสามารถบริจาคด้วยคริปโตโดยใช้ BTC, ETH, XMR และอื่น ๆ"
 
-#: allthethings/account/templates/account/donate.html:226
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:222
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "หากคุณใช้คริปโตเป็นครั้งแรก เราแนะนำให้ใช้ %(options)s เพื่อซื้อและบริจาค Bitcoin (คริปโตเคอเรนซีดั้งเดิมและที่ใช้มากที่สุด)"
 
-#: allthethings/account/templates/account/donate.html:229
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "ไบแนนซ์"
 
-#: allthethings/account/templates/account/donate.html:230
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:231
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:227
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:239
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "ในการบริจาคโดยใช้ PayPal US เราจะใช้ PayPal Crypto ซึ่งช่วยให้เรายังคงไม่เปิดเผยตัวตน เราขอขอบคุณที่คุณสละเวลาเรียนรู้วิธีการบริจาคโดยใช้วิธีนี้ เนื่องจากมันช่วยเราได้มาก"
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:236
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "บริจาคโดยใช้ PayPal"
 
-#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "บริจาคโดยใช้ Cash App."
 
-#: allthethings/account/templates/account/donate.html:247
+#: allthethings/account/templates/account/donate.html:243
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "หากคุณมี Cash App นี่เป็นวิธีที่ง่ายที่สุดในการบริจาค!"
 
-#: allthethings/account/templates/account/donate.html:250
-#: allthethings/account/templates/account/donate.html:260
+#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:256
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "โปรดทราบว่าสำหรับธุรกรรมที่ต่ำกว่า %(amount)s Cash App อาจเรียกเก็บค่าธรรมเนียม %(fee)s สำหรับ %(amount)s ขึ้นไป ฟรี!"
 
-#: allthethings/account/templates/account/donate.html:256
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "บริจาคโดยใช้ Revolut"
 
-#: allthethings/account/templates/account/donate.html:257
+#: allthethings/account/templates/account/donate.html:253
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "หากคุณมี Revolut นี่เป็นวิธีที่ง่ายที่สุดในการบริจาค!"
 
-#: allthethings/account/templates/account/donate.html:266
-#: allthethings/account/templates/account/donate.html:320
+#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:316
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "บริจาคด้วยบัตรเครดิตหรือบัตรเดบิต"
 
-#: allthethings/account/templates/account/donate.html:267
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay และ Apple Pay อาจใช้งานได้เช่นกัน"
 
-#: allthethings/account/templates/account/donate.html:268
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "โปรดทราบว่าสำหรับการบริจาคขนาดเล็ก ค่าธรรมเนียมบัตรเครดิตอาจทำให้ส่วนลด %(discount)s%% ของเราหายไป ดังนั้นเราขอแนะนำให้สมัครสมาชิกในระยะยาว"
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:265
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "โปรดทราบว่าสำหรับการบริจาคขนาดเล็ก ค่าธรรมเนียมจะสูง ดังนั้นเราขอแนะนำให้สมัครสมาชิกในระยะยาว"
 
-#: allthethings/account/templates/account/donate.html:275
+#: allthethings/account/templates/account/donate.html:271
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "ด้วย Binance คุณสามารถซื้อ Bitcoin ด้วยบัตรเครดิต/เดบิตหรือบัญชีธนาคาร แล้วบริจาค Bitcoin นั้นให้เรา ด้วยวิธีนี้เราสามารถรักษาความปลอดภัยและความเป็นนิรนามเมื่อรับการบริจาคของคุณ"
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:275
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance มีให้บริการในเกือบทุกประเทศ และรองรับธนาคารและบัตรเครดิต/เดบิตส่วนใหญ่ นี่คือคำแนะนำหลักของเราในขณะนี้ เราขอขอบคุณที่สละเวลาเรียนรู้วิธีการบริจาคด้วยวิธีนี้ เนื่องจากมันช่วยเราได้มาก"
 
-#: allthethings/account/templates/account/donate.html:285
+#: allthethings/account/templates/account/donate.html:281
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "บริจาคโดยใช้บัญชี PayPal ปกติของคุณ"
 
-#: allthethings/account/templates/account/donate.html:291
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:287
+#: allthethings/account/templates/account/donate.html:293
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "บริจาคโดยใช้ Alipay หรือ WeChat คุณสามารถเลือกได้ในหน้าถัดไป"
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:299
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "บริจาคโดยใช้บัตรเครดิต/เดบิต, PayPal, หรือ Venmo คุณสามารถเลือกได้ในหน้าถัดไป"
 
-#: allthethings/account/templates/account/donate.html:309
+#: allthethings/account/templates/account/donate.html:305
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "บริจาคโดยใช้บัตรของขวัญ Amazon"
 
-#: allthethings/account/templates/account/donate.html:310
+#: allthethings/account/templates/account/donate.html:306
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "โปรดทราบว่าเราจำเป็นต้องปัดเศษเป็นจำนวนที่ผู้ค้าปลีกของเรายอมรับ (ขั้นต่ำ %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:310
 #: allthethings/account/templates/account/donation.html:371
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>สำคัญ:</strong> เรารองรับเฉพาะ Amazon.com เท่านั้น ไม่รองรับเว็บไซต์ Amazon อื่น ๆ เช่น .de, .co.uk, .ca"
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:317
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "วิธีนี้ใช้ผู้ให้บริการสกุลเงินดิจิทัลเป็นตัวกลางในการแปลง ซึ่งอาจทำให้สับสนได้ ดังนั้นโปรดใช้วิธีนี้เฉพาะเมื่อวิธีการชำระเงินอื่นๆ ใช้ไม่ได้ นอกจากนี้ยังไม่สามารถใช้ได้ในทุกประเทศ"
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:323
+msgid "page.donate.payment.desc.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:327
+#: allthethings/account/templates/account/donation.html:508
+msgid "page.donate.payment.desc.bank_card_app.step1.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:331
+#: allthethings/account/templates/account/donation.html:512
+msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:335
+#: allthethings/account/templates/account/donation.html:516
+msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:517
+msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:521
+msgid "page.donate.payment.desc.bank_card_app.step2.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:348
+#: allthethings/account/templates/account/donation.html:529
+msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:349
+#: allthethings/account/templates/account/donation.html:530
+msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:355
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "เราไม่สามารถรองรับบัตรเครดิต/เดบิตโดยตรงได้ เนื่องจากธนาคารไม่ต้องการทำงานกับเรา ☹ อย่างไรก็ตาม ยังมีหลายวิธีในการใช้บัตรเครดิต/เดบิตผ่านวิธีการชำระเงินอื่น:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "ส่งบัตรของขวัญ Amazon.com ให้เราด้วยบัตรเครดิต/เดบิตของคุณ"
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:363
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay รองรับบัตรเครดิต/เดบิตระหว่างประเทศ ดู <a %(a_alipay)s>คู่มือนี้</a> สำหรับข้อมูลเพิ่มเติม"
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:366
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) รองรับบัตรเครดิต/เดบิตระหว่างประเทศ ในแอป WeChat ไปที่ “Me => Services => Wallet => Add a Card” หากคุณไม่เห็น ให้เปิดใช้งานโดยใช้ “Me => Settings => General => Tools => Weixin Pay => Enable”"
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:369
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "คุณสามารถซื้อคริปโตโดยใช้บัตรเครดิต/เดบิต"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:379
+msgid "page.donate.payment.desc.crypto_express_services"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:381
+msgid "page.donation.ccexp.crypto_express_services.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:382
+msgid "page.donation.ccexp.crypto_express_services.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:385
+msgid "page.donation.ccexp.crypto_express_services.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:386
+msgid "page.donation.ccexp.crypto_express_services.4"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:389
 #: allthethings/account/templates/account/donation.html:302
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(ขั้นต่ำ: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:390
 #: allthethings/account/templates/account/donation.html:303
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(ขั้นต่ำ: %(minimum)s ขึ้นอยู่กับประเทศ ไม่ต้องยืนยันสำหรับการทำธุรกรรมครั้งแรก)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:391
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(ขั้นต่ำ: %(minimum)s ไม่ต้องยืนยันสำหรับการทำธุรกรรมครั้งแรก)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:392
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(ขั้นต่ำ: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:393
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(ขั้นต่ำ: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:393
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(ขั้นต่ำ: %(minimum)s ไม่ต้องยืนยันสำหรับการทำธุรกรรมครั้งแรก)"
 
-#: allthethings/account/templates/account/donate.html:395
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "หากข้อมูลใดล้าสมัย โปรดส่งอีเมลแจ้งให้เราทราบ"
 
-#: allthethings/account/templates/account/donate.html:402
+#: allthethings/account/templates/account/donate.html:403
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "สำหรับบัตรเครดิต บัตรเดบิต Apple Pay และ Google Pay เราใช้ “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>) ในระบบของพวกเขา หนึ่ง “กาแฟ” เท่ากับ $5 ดังนั้นการบริจาคของคุณจะถูกปัดเศษเป็นทวีคูณของ 5"
 
-#: allthethings/account/templates/account/donate.html:409
+#: allthethings/account/templates/account/donate.html:410
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "เลือกระยะเวลาที่คุณต้องการสมัครสมาชิก"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:427
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 เดือน"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:428
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 เดือน"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:429
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 เดือน"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:430
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 เดือน"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:431
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 เดือน"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 เดือน"
 
-#: allthethings/account/templates/account/donate.html:432
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 เดือน"
 
-#: allthethings/account/templates/account/donate.html:435
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>หลังจาก <span %(span_discount)s></span> ส่วนลด</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:442
+#: allthethings/account/templates/account/donate.html:443
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "วิธีการชำระเงินนี้ต้องการขั้นต่ำ %(amount)s กรุณาเลือกระยะเวลาหรือวิธีการชำระเงินอื่น"
 
-#: allthethings/account/templates/account/donate.html:443
-#: allthethings/account/templates/account/donate.html:447
+#: allthethings/account/templates/account/donate.html:444
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "บริจาค"
 
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:447
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "วิธีการชำระเงินนี้อนุญาตให้ชำระเงินได้สูงสุดเพียง %(amount)s โปรดเลือกระยะเวลาหรือวิธีการชำระเงินอื่น"
 
-#: allthethings/account/templates/account/donate.html:453
+#: allthethings/account/templates/account/donate.html:454
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "ในการเป็นสมาชิก โปรด <a %(a_login)s>เข้าสู่ระบบหรือสมัครสมาชิก</a> ขอบคุณสำหรับการสนับสนุนของคุณ!"
 
-#: allthethings/account/templates/account/donate.html:460
+#: allthethings/account/templates/account/donate.html:461
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "เลือกเหรียญคริปโตที่คุณต้องการ:"
 
-#: allthethings/account/templates/account/donate.html:465
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(จำนวนขั้นต่ำต่ำสุด)"
 
-#: allthethings/account/templates/account/donate.html:480
+#: allthethings/account/templates/account/donate.html:469
+msgid "page.donate.coinbase_eth"
+msgstr ""
+
 #: allthethings/account/templates/account/donate.html:481
-#: allthethings/account/templates/account/donate.html:485
-#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:482
+#: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:488
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(คำเตือน: จำนวนขั้นต่ำสูง)"
 
-#: allthethings/account/templates/account/donate.html:496
+#: allthethings/account/templates/account/donate.html:497
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "คลิกปุ่มบริจาคเพื่อยืนยันการบริจาคนี้"
 
-#: allthethings/account/templates/account/donate.html:504
+#: allthethings/account/templates/account/donate.html:505
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "บริจาค <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:509
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "คุณยังสามารถยกเลิกการบริจาคระหว่างการชำระเงินได้"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:514
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ กำลังเปลี่ยนเส้นทางไปยังหน้าบริจาค…"
 
-#: allthethings/account/templates/account/donate.html:514
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ เกิดข้อผิดพลาด กรุณาโหลดหน้าใหม่และลองอีกครั้ง"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:569
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:569
+#: allthethings/account/templates/account/donate.html:570
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / เดือน"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:573
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "เป็นเวลา 1 เดือน"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "เป็นเวลา 3 เดือน"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "เป็นเวลา 6 เดือน"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:576
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "เป็นเวลา 12 เดือน"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:577
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "เป็นเวลา 24 เดือน"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "เป็นเวลา 48 เดือน"
 
-#: allthethings/account/templates/account/donate.html:578
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "เป็นเวลา 96 เดือน"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "สำหรับ 1 เดือน “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "เป็นเวลา 3 เดือน “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:585
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "เป็นเวลา 6 เดือน “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:586
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "เป็นเวลา 12 เดือน “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:587
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "เป็นเวลา 24 เดือน “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "เป็นเวลา 48 เดือน “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:588
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "เป็นเวลา 96 เดือน “%(tier_name)s”"
@@ -1006,8 +1065,8 @@ msgstr "<strong>หมายเหตุสำคัญ:</strong> ราคา�
 #: allthethings/account/templates/account/donation.html:450
 #: allthethings/account/templates/account/donation.html:467
 #: allthethings/account/templates/account/donation.html:502
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:600
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "การบริจาคนี้หมดอายุแล้ว กรุณายกเลิกและสร้างใหม่"
@@ -1087,8 +1146,8 @@ msgstr "ดูคำแนะนำทีละขั้นตอนด้าน
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:381
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "สถานะ:"
@@ -1100,8 +1159,8 @@ msgstr "สถานะ:"
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "รอการยืนยัน (รีเฟรชหน้าเพื่อตรวจสอบ)…"
@@ -1113,8 +1172,8 @@ msgstr "รอการยืนยัน (รีเฟรชหน้าเพ�
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "กำลังรอการโอน (รีเฟรชหน้าเพื่อเช็ค)…"
@@ -1126,8 +1185,8 @@ msgstr "กำลังรอการโอน (รีเฟรชหน้า�
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "เวลาที่เหลือ:"
@@ -1139,8 +1198,8 @@ msgstr "เวลาที่เหลือ:"
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(คุณอาจต้องการยกเลิกและสร้างการบริจาคใหม่)"
@@ -1152,8 +1211,8 @@ msgstr "(คุณอาจต้องการยกเลิกและส�
 #: allthethings/account/templates/account/donation.html:326
 #: allthethings/account/templates/account/donation.html:355
 #: allthethings/account/templates/account/donation.html:492
-#: allthethings/account/templates/account/donation.html:552
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:564
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "ในการรีเซ็ตตัวจับเวลา เพียงแค่สร้างการบริจาคใหม่"
@@ -1166,14 +1225,14 @@ msgstr "ในการรีเซ็ตตัวจับเวลา เพ�
 #: allthethings/account/templates/account/donation.html:359
 #: allthethings/account/templates/account/donation.html:385
 #: allthethings/account/templates/account/donation.html:496
-#: allthethings/account/templates/account/donation.html:556
-#: allthethings/account/templates/account/donation.html:583
+#: allthethings/account/templates/account/donation.html:568
+#: allthethings/account/templates/account/donation.html:595
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "อัปเดตสถานะ"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:683
+#: allthethings/account/templates/account/donation.html:695
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "หากคุณพบปัญหาใด ๆ กรุณาติดต่อเราที่ %(email)s และรวมข้อมูลให้มากที่สุด (เช่น ภาพหน้าจอ)"
@@ -1369,8 +1428,8 @@ msgstr "ตัวอย่าง:"
 #: allthethings/account/templates/account/donation.html:446
 #: allthethings/account/templates/account/donation.html:462
 #: allthethings/account/templates/account/donation.html:483
-#: allthethings/account/templates/account/donation.html:543
-#: allthethings/account/templates/account/donation.html:600
+#: allthethings/account/templates/account/donation.html:555
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "โปรดทราบว่าชื่อบัญชีหรือรูปภาพอาจดูแปลกไป ไม่ต้องกังวล! บัญชีเหล่านี้ถูกจัดการโดยพันธมิตรการบริจาคของเรา บัญชีของเราไม่ได้ถูกแฮ็ก"
@@ -1395,127 +1454,143 @@ msgid "page.donation.payment.alipay.text1_new"
 msgstr "บริจาคจำนวนเงินทั้งหมด %(total)s โดยใช้ <a %(a_account)s>บัญชี Alipay นี้</a>"
 
 #: allthethings/account/templates/account/donation.html:479
-#: allthethings/account/templates/account/donation.html:539
+#: allthethings/account/templates/account/donation.html:551
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "น่าเสียดายที่หน้าของ Alipay มักจะเข้าถึงได้เฉพาะจาก <strong>จีนแผ่นดินใหญ่</strong> คุณอาจต้องปิดการใช้งาน VPN ชั่วคราว หรือใช้ VPN ไปยังจีนแผ่นดินใหญ่ (หรือฮ่องกงก็ใช้ได้บางครั้ง)"
 
-#: allthethings/account/templates/account/donation.html:565
+#: allthethings/account/templates/account/donation.html:534
+msgid "page.donation.bank_card_app.step3.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:538
+msgid "page.donation.bank_card_app.step3.desc.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:542
+msgid "page.donation.bank_card_app.step3.desc.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:543
+msgid "page.donation.bank_card_app.step3.desc.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:577
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "คำแนะนำ WeChat"
 
-#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:579
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>บริจาคผ่าน WeChat"
 
-#: allthethings/account/templates/account/donation.html:570
+#: allthethings/account/templates/account/donation.html:582
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "บริจาคจำนวนทั้งหมด %(total)s โดยใช้ <a %(a_account)s>บัญชี WeChat นี้</a>"
 
-#: allthethings/account/templates/account/donation.html:591
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "คำแนะนำ Pix"
 
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:605
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>บริจาคผ่าน Pix"
 
-#: allthethings/account/templates/account/donation.html:596
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "บริจาคจำนวนเงินทั้งหมด %(total)s โดยใช้ <a %(a_account)s>บัญชี Pix นี้</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>ส่งอีเมลใบเสร็จให้เรา"
 
-#: allthethings/account/templates/account/donation.html:609
+#: allthethings/account/templates/account/donation.html:621
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "ส่งใบเสร็จหรือภาพหน้าจอไปยังที่อยู่ยืนยันส่วนตัวของคุณ ห้ามใช้ที่อยู่อีเมลนี้สำหรับการบริจาคผ่าน PayPal ของคุณ"
 
-#: allthethings/account/templates/account/donation.html:611
+#: allthethings/account/templates/account/donation.html:623
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "ส่งใบเสร็จหรือภาพหน้าจอไปยังที่อยู่การยืนยันส่วนตัวของคุณ:"
 
-#: allthethings/account/templates/account/donation.html:621
+#: allthethings/account/templates/account/donation.html:633
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "หากอัตราแลกเปลี่ยนสกุลเงินดิจิทัลผันผวนระหว่างการทำธุรกรรม โปรดแนบใบเสร็จที่แสดงอัตราแลกเปลี่ยนเดิม เราขอขอบคุณที่คุณใช้สกุลเงินดิจิทัล มันช่วยเราได้มาก!"
 
-#: allthethings/account/templates/account/donation.html:626
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "เมื่อคุณส่งอีเมลใบเสร็จของคุณแล้ว ให้คลิกปุ่มนี้ เพื่อให้ Anna ตรวจสอบด้วยตนเอง (อาจใช้เวลาสองสามวัน):"
 
-#: allthethings/account/templates/account/donation.html:636
+#: allthethings/account/templates/account/donation.html:648
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "ใช่ ฉันได้ส่งอีเมลใบเสร็จของฉันแล้ว"
 
-#: allthethings/account/templates/account/donation.html:639
+#: allthethings/account/templates/account/donation.html:651
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ ขอบคุณสำหรับการบริจาค! แอนนาจะเปิดใช้งานสมาชิกของคุณด้วยตนเองภายในไม่กี่วัน"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:652
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ มีบางอย่างผิดพลาด โปรดรีเฟรชหน้าและลองอีกครั้ง"
 
-#: allthethings/account/templates/account/donation.html:645
+#: allthethings/account/templates/account/donation.html:657
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "คู่มือทีละขั้นตอน"
 
-#: allthethings/account/templates/account/donation.html:647
+#: allthethings/account/templates/account/donation.html:659
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "บางขั้นตอนกล่าวถึงกระเป๋าสตางค์คริปโต แต่ไม่ต้องกังวล คุณไม่จำเป็นต้องเรียนรู้อะไรเกี่ยวกับคริปโตสำหรับสิ่งนี้"
 
-#: allthethings/account/templates/account/donation.html:649
+#: allthethings/account/templates/account/donation.html:661
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. ป้อนอีเมลของคุณ"
 
-#: allthethings/account/templates/account/donation.html:655
+#: allthethings/account/templates/account/donation.html:667
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. เลือกวิธีการชำระเงินของคุณ"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:673
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. เลือกวิธีการชำระเงินของคุณอีกครั้ง"
 
-#: allthethings/account/templates/account/donation.html:667
+#: allthethings/account/templates/account/donation.html:679
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. เลือกกระเป๋าเงิน “โฮสต์ด้วยตนเอง”"
 
-#: allthethings/account/templates/account/donation.html:673
+#: allthethings/account/templates/account/donation.html:685
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. คลิก “ฉันยืนยันความเป็นเจ้าของ”"
 
-#: allthethings/account/templates/account/donation.html:679
+#: allthethings/account/templates/account/donation.html:691
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. คุณควรได้รับใบเสร็จทางอีเมล โปรดส่งให้เรา และเราจะยืนยันการบริจาคของคุณโดยเร็วที่สุด"
 
-#: allthethings/account/templates/account/donation.html:684
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donate.wait"
 msgstr "กรุณารออย่างน้อย <span %(span_hours)s>สองชั่วโมง</span> (และรีเฟรชหน้านี้) ก่อนติดต่อเรา"
 
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "หากคุณทำผิดพลาดระหว่างการชำระเงิน เราไม่สามารถคืนเงินได้ แต่เราจะพยายามแก้ไขให้ถูกต้อง"
@@ -1992,6 +2067,10 @@ msgstr "หนังสือการ์ตูน"
 msgid "common.md5_content_type_mapping.musical_score"
 msgstr "โน้ตเพลง"
 
+#: allthethings/page/views.py:6192
+msgid "common.md5_content_type_mapping.audiobook"
+msgstr ""
+
 #: allthethings/page/views.py:6193
 #, fuzzy
 msgid "common.md5_content_type_mapping.other"
@@ -2033,7 +2112,7 @@ msgid "common.access_types_mapping.torrents_available"
 msgstr "มีอยู่ในทอร์เรนต์"
 
 #: allthethings/page/templates/page/datasets.html:43
-#: allthethings/page/templates/page/datasets.html:256
+#: allthethings/page/templates/page/datasets.html:254
 #: allthethings/page/templates/page/datasets_lgrs.html:25
 #: allthethings/page/views.py:6211
 #, fuzzy
@@ -2041,7 +2120,7 @@ msgid "common.record_sources_mapping.lgrs"
 msgstr "Libgen.rs"
 
 #: allthethings/page/templates/page/datasets.html:80
-#: allthethings/page/templates/page/datasets.html:319
+#: allthethings/page/templates/page/datasets.html:317
 #: allthethings/page/templates/page/datasets_lgli.html:29
 #: allthethings/page/views.py:6212
 #, fuzzy
@@ -2049,7 +2128,7 @@ msgid "common.record_sources_mapping.lgli"
 msgstr "Libgen.li"
 
 #: allthethings/page/templates/page/datasets.html:98
-#: allthethings/page/templates/page/datasets.html:355
+#: allthethings/page/templates/page/datasets.html:353
 #: allthethings/page/templates/page/datasets_zlib.html:25
 #: allthethings/page/views.py:6213
 #, fuzzy
@@ -2067,14 +2146,14 @@ msgstr "Z-Library 中文"
 msgid "common.record_sources_mapping.ia"
 msgstr "IA"
 
-#: allthethings/page/templates/page/datasets.html:544
+#: allthethings/page/templates/page/datasets.html:542
 #: allthethings/page/templates/page/datasets_isbndb.html:25
 #: allthethings/page/views.py:6216
 #, fuzzy
 msgid "common.record_sources_mapping.isbndb"
 msgstr "ISBNdb"
 
-#: allthethings/page/templates/page/datasets.html:528
+#: allthethings/page/templates/page/datasets.html:526
 #: allthethings/page/templates/page/datasets_ol.html:25
 #: allthethings/page/views.py:6217
 #, fuzzy
@@ -2087,7 +2166,7 @@ msgstr "OpenLibrary"
 msgid "common.record_sources_mapping.scihub"
 msgstr "Sci-Hub"
 
-#: allthethings/page/templates/page/datasets.html:563
+#: allthethings/page/templates/page/datasets.html:561
 #: allthethings/page/templates/page/datasets_oclc.html:25
 #: allthethings/page/views.py:6219
 #, fuzzy
@@ -2095,7 +2174,7 @@ msgid "common.record_sources_mapping.oclc"
 msgstr "OCLC (WorldCat)"
 
 #: allthethings/page/templates/page/datasets.html:148
-#: allthethings/page/templates/page/datasets.html:402
+#: allthethings/page/templates/page/datasets.html:400
 #: allthethings/page/templates/page/datasets_duxiu.html:25
 #: allthethings/page/views.py:6220
 #, fuzzy
@@ -2103,22 +2182,60 @@ msgid "common.record_sources_mapping.duxiu"
 msgstr "DuXiu 读秀"
 
 #: allthethings/page/templates/page/datasets.html:164
-#: allthethings/page/templates/page/datasets.html:436
+#: allthethings/page/templates/page/datasets.html:434
 #: allthethings/page/templates/page/datasets_upload.html:25
 #: allthethings/page/views.py:6221
 #, fuzzy
 msgid "common.record_sources_mapping.uploads"
 msgstr "อัปโหลดไปยัง AA"
 
+#: allthethings/page/templates/page/datasets.html:180
 #: allthethings/page/views.py:6222
 #, fuzzy
 msgid "common.record_sources_mapping.magzdb"
 msgstr "MagzDB"
 
+#: allthethings/page/templates/page/datasets.html:196
 #: allthethings/page/views.py:6223
-#, fuzzy
-msgid "common.record_soruces_mapping.nexusstc"
-msgstr "Nexus/STC"
+msgid "common.record_sources_mapping.nexusstc"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets.html:580
+#: allthethings/page/views.py:6224
+msgid "common.record_sources_mapping.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6225
+msgid "common.record_sources_mapping.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6226
+msgid "common.record_sources_mapping.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6227
+msgid "common.record_sources_mapping.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6228
+msgid "common.record_sources_mapping.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6229
+msgid "common.record_sources_mapping.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6230
+msgid "common.record_sources_mapping.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6231
+msgid "common.record_sources_mapping.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6232
+msgid "common.record_sources_mapping.trantor"
+msgstr ""
 
 #: allthethings/page/views.py:6238
 #, fuzzy
@@ -2186,7 +2303,7 @@ msgstr "(ไม่มีรายชื่อรอ แต่สามารถ�
 msgid "page.md5.box.download.temporarily_unavailable"
 msgstr "การดาวน์โหลดจากเซิร์ฟเวอร์พันธมิตรไม่สามารถใช้งานได้ชั่วคราวสำหรับไฟล์นี้"
 
-#: allthethings/page/views.py:6398 allthethings/page/views.py:6616
+#: allthethings/page/views.py:6398 allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub"
 msgstr "Sci-Hub: %(doi)s"
@@ -2223,407 +2340,471 @@ msgstr "Libgen.li"
 msgid "page.md5.box.download.libgen_ads"
 msgstr "โฆษณาของพวกเขามักมีซอฟต์แวร์ที่เป็นอันตราย ดังนั้นควรใช้ตัวบล็อกโฆษณาหรือไม่คลิกที่โฆษณา"
 
-#: allthethings/page/views.py:6546
+#: allthethings/page/views.py:6545
 #, fuzzy
 msgid "page.md5.box.download.nexusstc"
 msgstr "Nexus/STC"
 
-#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
+#: allthethings/page/views.py:6545
+msgid "page.md5.box.download.nexusstc_unreliable"
+msgstr ""
+
+#: allthethings/page/views.py:6594 allthethings/page/views.py:6598
 #, fuzzy
 msgid "page.md5.box.download.zlib"
 msgstr "Z-Library"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor"
 msgstr "Z-Library บน Tor"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor_extra"
 msgstr "(ต้องใช้ Tor Browser)"
 
-#: allthethings/page/views.py:6603
+#: allthethings/page/views.py:6602
 #, fuzzy
 msgid "page.md5.box.download.magzdb"
 msgstr "MagzDB"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6605
+msgid "page.md5.box.download.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.ia_borrow"
 msgstr "ยืมจาก Internet Archive"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.print_disabled_only"
 msgstr "(สำหรับผู้ใช้ที่ไม่สามารถพิมพ์ได้เท่านั้น)"
 
-#: allthethings/page/views.py:6616
+#: allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub_maybe"
 msgstr "(DOI ที่เกี่ยวข้องอาจไม่มีใน Sci-Hub)"
 
-#: allthethings/page/views.py:6619
+#: allthethings/page/views.py:6617
 #, fuzzy
 msgid "page.md5.box.download.manualslib"
 msgstr "ManualsLib"
 
-#: allthethings/page/views.py:6622
+#: allthethings/page/views.py:6620
 #, fuzzy
 msgid "page.md5.box.download.pubmed"
 msgstr "PubMed"
 
-#: allthethings/page/views.py:6629
+#: allthethings/page/views.py:6627
 #, fuzzy
 msgid "page.md5.box.download.collection"
 msgstr "คอลเลกชัน"
 
-#: allthethings/page/views.py:6630
+#: allthethings/page/views.py:6628
 #, fuzzy
 msgid "page.md5.box.download.torrent"
 msgstr "ทอร์เรนต์"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.bulk_torrents"
 msgstr "ดาวน์โหลด Torrent จำนวนมาก"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.experts_only"
 msgstr "(สำหรับผู้เชี่ยวชาญเท่านั้น)"
 
-#: allthethings/page/views.py:6643
+#: allthethings/page/views.py:6641
 #, fuzzy
 msgid "page.md5.box.download.aa_isbn"
 msgstr "ค้นหา ISBN ใน Anna’s Archive"
 
-#: allthethings/page/views.py:6644
+#: allthethings/page/views.py:6642
 #, fuzzy
 msgid "page.md5.box.download.other_isbn"
 msgstr "ค้นหาฐานข้อมูลอื่น ๆ สำหรับ ISBN"
 
-#: allthethings/page/views.py:6645
+#: allthethings/page/views.py:6643
 #, fuzzy
 msgid "page.md5.box.download.original_isbndb"
 msgstr "ค้นหาบันทึกต้นฉบับใน ISBNdb"
 
-#: allthethings/page/views.py:6647
+#: allthethings/page/views.py:6645
 #, fuzzy
 msgid "page.md5.box.download.aa_openlib"
 msgstr "ค้นหา Anna’s Archive สำหรับ Open Library ID"
 
-#: allthethings/page/views.py:6648
+#: allthethings/page/views.py:6646
 #, fuzzy
 msgid "page.md5.box.download.original_openlib"
 msgstr "ค้นหาข้อมูลต้นฉบับใน Open Library"
 
-#: allthethings/page/views.py:6650
+#: allthethings/page/views.py:6648
 #, fuzzy
 msgid "page.md5.box.download.aa_oclc"
 msgstr "ค้นหา Anna’s Archive สำหรับหมายเลข OCLC (WorldCat)"
 
-#: allthethings/page/views.py:6651
+#: allthethings/page/views.py:6649
 #, fuzzy
 msgid "page.md5.box.download.original_oclc"
 msgstr "ค้นหาบันทึกต้นฉบับใน WorldCat"
 
-#: allthethings/page/views.py:6653
+#: allthethings/page/views.py:6651
 #, fuzzy
 msgid "page.md5.box.download.aa_duxiu"
 msgstr "ค้นหา Anna’s Archive สำหรับหมายเลข SSID ของ DuXiu"
 
-#: allthethings/page/views.py:6654
+#: allthethings/page/views.py:6652
 #, fuzzy
 msgid "page.md5.box.download.original_duxiu"
 msgstr "ค้นหาด้วยตนเองใน DuXiu"
 
-#: allthethings/page/views.py:6656
+#: allthethings/page/views.py:6654
 #, fuzzy
 msgid "page.md5.box.download.aa_cadal"
 msgstr "ค้นหา Anna’s Archive สำหรับหมายเลข CADAL SSNO"
 
-#: allthethings/page/views.py:6657
+#: allthethings/page/views.py:6655
 #, fuzzy
 msgid "page.md5.box.download.original_cadal"
 msgstr "ค้นหาบันทึกต้นฉบับใน CADAL"
 
-#: allthethings/page/views.py:6661
+#: allthethings/page/views.py:6659
 #, fuzzy
 msgid "page.md5.box.download.aa_dxid"
 msgstr "ค้นหา Anna’s Archive สำหรับหมายเลข DuXiu DXID"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "page.md5.box.download.scidb"
 msgstr "Anna’s Archive 🧬 SciDB"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "common.md5.servers.no_browser_verification"
 msgstr "(ไม่ต้องยืนยันผ่านเบราว์เซอร์)"
 
-#: allthethings/page/views.py:6721
+#: allthethings/page/views.py:6695
+msgid "page.md5.top_row.isbndb"
+msgstr ""
+
+#: allthethings/page/views.py:6696
+msgid "page.md5.top_row.oclc"
+msgstr ""
+
+#: allthethings/page/views.py:6697
+msgid "page.md5.top_row.duxiu_ssid"
+msgstr ""
+
+#: allthethings/page/views.py:6698
+msgid "page.md5.top_row.magzdb"
+msgstr ""
+
+#: allthethings/page/views.py:6699
+msgid "page.md5.top_row.nexusstc"
+msgstr ""
+
+#: allthethings/page/views.py:6700
+msgid "page.md5.top_row.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6701
+msgid "page.md5.top_row.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6702
+msgid "page.md5.top_row.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6703
+msgid "page.md5.top_row.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6704
+msgid "page.md5.top_row.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6705
+msgid "page.md5.top_row.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6706
+msgid "page.md5.top_row.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6707
+msgid "page.md5.top_row.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6708
+msgid "page.md5.top_row.trantor"
+msgstr ""
+
+#: allthethings/page/views.py:6718
 #, fuzzy
 msgid "page.md5.box.descr_title"
 msgstr "คำอธิบาย"
 
-#: allthethings/page/views.py:6722
+#: allthethings/page/views.py:6719
 #, fuzzy
 msgid "page.md5.box.alternative_filename"
 msgstr "ชื่อไฟล์ทางเลือก"
 
-#: allthethings/page/views.py:6723
+#: allthethings/page/views.py:6720
 #, fuzzy
 msgid "page.md5.box.alternative_title"
 msgstr "ชื่อทางเลือก"
 
-#: allthethings/page/views.py:6724
+#: allthethings/page/views.py:6721
 #, fuzzy
 msgid "page.md5.box.alternative_author"
 msgstr "ผู้แต่งทางเลือก"
 
-#: allthethings/page/views.py:6725
+#: allthethings/page/views.py:6722
 #, fuzzy
 msgid "page.md5.box.alternative_publisher"
 msgstr "ผู้จัดพิมพ์ทางเลือก"
 
-#: allthethings/page/views.py:6726
+#: allthethings/page/views.py:6723
 #, fuzzy
 msgid "page.md5.box.alternative_edition"
 msgstr "ฉบับทางเลือก"
 
-#: allthethings/page/views.py:6727
+#: allthethings/page/views.py:6724
 #, fuzzy
 msgid "page.md5.box.alternative_extension"
 msgstr "นามสกุลทางเลือก"
 
-#: allthethings/page/views.py:6728
+#: allthethings/page/views.py:6725
 #, fuzzy
 msgid "page.md5.box.metadata_comments_title"
 msgstr "ความคิดเห็นเมตาดาต้า"
 
-#: allthethings/page/views.py:6729
+#: allthethings/page/views.py:6726
 #, fuzzy
 msgid "page.md5.box.alternative_description"
 msgstr "คำอธิบายทางเลือก"
 
-#: allthethings/page/views.py:6730
+#: allthethings/page/views.py:6727
 #, fuzzy
 msgid "page.md5.box.date_open_sourced_title"
 msgstr "วันที่เปิดซอร์ส"
 
-#: allthethings/page/templates/page/aarecord.html:14
+#: allthethings/page/templates/page/aarecord.html:15
 #, fuzzy
 msgid "page.md5.header.scihub"
 msgstr "ไฟล์ Sci-Hub “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:18
+#: allthethings/page/templates/page/aarecord.html:19
 #, fuzzy
 msgid "page.md5.header.ia"
 msgstr "ไฟล์การให้ยืมดิจิทัลที่ควบคุมโดย Internet Archive “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:21
+#: allthethings/page/templates/page/aarecord.html:22
 #, fuzzy
 msgid "page.md5.header.ia_desc"
 msgstr "นี่คือบันทึกของไฟล์จาก Internet Archive ไม่ใช่ไฟล์ที่สามารถดาวน์โหลดได้โดยตรง คุณสามารถลองยืมหนังสือ (ลิงก์ด้านล่าง) หรือใช้ URL นี้เมื่อ <a %(a_request)s>ขอไฟล์</a>"
 
-#: allthethings/page/templates/page/aarecord.html:22
-#: allthethings/page/templates/page/aarecord.html:46
+#: allthethings/page/templates/page/aarecord.html:23
+#: allthethings/page/templates/page/aarecord.html:47
 #, fuzzy
 msgid "page.md5.header.consider_upload"
 msgstr "หากคุณมีไฟล์นี้และยังไม่พร้อมใช้งานใน Anna’s Archive โปรดพิจารณา <a %(a_request)s>อัปโหลด</a>"
 
-#: allthethings/page/templates/page/aarecord.html:27
+#: allthethings/page/templates/page/aarecord.html:28
 #, fuzzy
 msgid "page.md5.header.meta_isbn"
 msgstr "บันทึกข้อมูล ISBNdb %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:29
+#: allthethings/page/templates/page/aarecord.html:30
 #, fuzzy
 msgid "page.md5.header.meta_openlib"
 msgstr "บันทึกข้อมูลเมทาดาทาของ Open Library %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:31
+#: allthethings/page/templates/page/aarecord.html:32
 #, fuzzy
 msgid "page.md5.header.meta_oclc"
 msgstr "หมายเลข OCLC (WorldCat) %(id)s บันทึกข้อมูลเมตา"
 
-#: allthethings/page/templates/page/aarecord.html:33
+#: allthethings/page/templates/page/aarecord.html:34
 #, fuzzy
 msgid "page.md5.header.meta_duxiu_ssid"
 msgstr "บันทึกข้อมูลเมทาดาทาของ DuXiu SSID %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:35
+#: allthethings/page/templates/page/aarecord.html:36
 #, fuzzy
 msgid "page.md5.header.meta_cadal_ssno"
 msgstr "หมายเลข CADAL SSNO %(id)s บันทึกข้อมูลเมตา"
 
-#: allthethings/page/templates/page/aarecord.html:37
+#: allthethings/page/templates/page/aarecord.html:38
 #, fuzzy
 msgid "page.md5.header.meta_magzdb_id"
 msgstr "บันทึกข้อมูล MagzDB ID %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:39
+#: allthethings/page/templates/page/aarecord.html:40
 #, fuzzy
 msgid "page.md5.header.meta_nexus_stc_id"
 msgstr "บันทึกข้อมูล Nexus/STC ID %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:45
+#: allthethings/page/templates/page/aarecord.html:46
 #, fuzzy
 msgid "page.md5.header.meta_desc"
 msgstr "นี่คือบันทึกข้อมูลเมตา ไม่ใช่ไฟล์ที่สามารถดาวน์โหลดได้ คุณสามารถใช้ URL นี้เมื่อ <a %(a_request)s>ขอไฟล์</a>."
 
-#: allthethings/page/templates/page/aarecord.html:56
+#: allthethings/page/templates/page/aarecord.html:57
 #, fuzzy
 msgid "page.md5.text.linked_metadata"
 msgstr "ข้อมูลเมตาจากบันทึกที่เชื่อมโยง"
 
-#: allthethings/page/templates/page/aarecord.html:57
+#: allthethings/page/templates/page/aarecord.html:58
 #, fuzzy
 msgid "page.md5.text.linked_metadata_openlib"
 msgstr "ปรับปรุงข้อมูลเมตาบน Open Library"
 
-#: allthethings/page/templates/page/aarecord.html:60
+#: allthethings/page/templates/page/aarecord.html:61
 #, fuzzy
 msgid "page.md5.warning.multiple_links"
 msgstr "คำเตือน: บันทึกที่เชื่อมโยงหลายรายการ:"
 
-#: allthethings/page/templates/page/aarecord.html:68
+#: allthethings/page/templates/page/aarecord.html:69
 #, fuzzy
 msgid "page.md5.header.improve_metadata"
 msgstr "ปรับปรุงข้อมูลเมตา"
 
-#: allthethings/page/templates/page/aarecord.html:70
+#: allthethings/page/templates/page/aarecord.html:71
 #, fuzzy
 msgid "page.md5.text.report_quality"
 msgstr "รายงานคุณภาพไฟล์"
 
-#: allthethings/page/templates/page/aarecord.html:92
+#: allthethings/page/templates/page/aarecord.html:93
 #, fuzzy
 msgid "page.md5.codes.url"
 msgstr "URL:"
 
-#: allthethings/page/templates/page/aarecord.html:93
+#: allthethings/page/templates/page/aarecord.html:94
 #, fuzzy
 msgid "page.md5.codes.website"
 msgstr "เว็บไซต์:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_abbr"
 msgstr "AA:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_search"
 msgstr "ค้นหา Anna’s Archive สำหรับ “%(name)s”"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_explorer"
 msgstr "สำรวจรหัส:"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_search"
 msgstr "ดูในสำรวจรหัส “%(name)s”"
 
-#: allthethings/page/templates/page/aarecord.html:114
+#: allthethings/page/templates/page/aarecord.html:115
 #, fuzzy
 msgid "page.md5.box.descr_read_more"
 msgstr "อ่านเพิ่มเติม…"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.downloads"
 msgstr "ดาวน์โหลด (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.borrow"
 msgstr "ยืม (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.explore_metadata"
 msgstr "สำรวจเมทาดาทา (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:132
+#: allthethings/page/templates/page/aarecord.html:133
 #, fuzzy
 msgid "page.md5.tabs.lists"
 msgstr "รายการ (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:133
+#: allthethings/page/templates/page/aarecord.html:134
 #, fuzzy
 msgid "page.md5.tabs.stats"
 msgstr "สถิติ (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:135
+#: allthethings/page/templates/page/aarecord.html:136
 #, fuzzy
 msgid "common.tech_details"
 msgstr "รายละเอียดทางเทคนิค"
 
-#: allthethings/page/templates/page/aarecord.html:204
+#: allthethings/page/templates/page/aarecord.html:205
 #, fuzzy
 msgid "page.md5.box.issues.text1"
 msgstr "<span class=\"font-bold\">❌ ไฟล์นี้อาจมีปัญหา และถูกซ่อนจากห้องสมุดต้นทาง</span> บางครั้งเป็นการร้องขอจากผู้ถือสิทธิ์ บางครั้งเป็นเพราะมีทางเลือกที่ดีกว่า แต่บางครั้งเป็นเพราะปัญหาของไฟล์เอง อาจยังสามารถดาวน์โหลดได้ แต่เราแนะนำให้ค้นหาไฟล์ทางเลือกก่อน รายละเอียดเพิ่มเติม:"
 
-#: allthethings/page/templates/page/aarecord.html:209
+#: allthethings/page/templates/page/aarecord.html:210
 #, fuzzy
 msgid "page.md5.box.download.better_file"
 msgstr "อาจมีเวอร์ชันที่ดีกว่าของไฟล์นี้ที่ %(link)s"
 
-#: allthethings/page/templates/page/aarecord.html:214
+#: allthethings/page/templates/page/aarecord.html:215
 #, fuzzy
 msgid "page.md5.box.issues.text2"
 msgstr "หากคุณยังต้องการดาวน์โหลดไฟล์นี้ โปรดใช้ซอฟต์แวร์ที่เชื่อถือได้และอัปเดตเพื่อเปิดไฟล์เท่านั้น"
 
-#: allthethings/page/templates/page/aarecord.html:219
+#: allthethings/page/templates/page/aarecord.html:220
 #, fuzzy
 msgid "page.md5.box.download.header_fast_only"
 msgstr "🚀 ดาวน์โหลดรวดเร็ว"
 
-#: allthethings/page/templates/page/aarecord.html:221
+#: allthethings/page/templates/page/aarecord.html:222
 #, fuzzy
 msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 ดาวน์โหลดรวดเร็ว</strong> เป็น <a %(a_membership)s>สมาชิก</a> เพื่อสนับสนุนการเก็บรักษาหนังสือ เอกสาร และอื่น ๆ ในระยะยาว เพื่อแสดงความขอบคุณสำหรับการสนับสนุนของคุณ คุณจะได้รับการดาวน์โหลดที่รวดเร็ว ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:222
+#: allthethings/page/templates/page/aarecord.html:223
 #: allthethings/templates/layouts/index.html:215
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "หากคุณบริจาคในเดือนนี้ คุณจะได้รับจำนวนการดาวน์โหลดที่รวดเร็ว <strong>สองเท่า</strong>"
 
-#: allthethings/page/templates/page/aarecord.html:224
+#: allthethings/page/templates/page/aarecord.html:225
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member"
 msgstr "<strong>🚀 ดาวน์โหลดรวดเร็ว</strong> คุณมี %(remaining)s เหลือในวันนี้ ขอบคุณที่เป็นสมาชิก! ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:225
+#: allthethings/page/templates/page/aarecord.html:226
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_no_remaining_new"
 msgstr "<strong>🚀 ดาวน์โหลดเร็ว</strong> คุณใช้การดาวน์โหลดเร็วหมดแล้วสำหรับวันนี้"
 
-#: allthethings/page/templates/page/aarecord.html:226
+#: allthethings/page/templates/page/aarecord.html:227
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_valid_for"
 msgstr "<strong>🚀 ดาวน์โหลดรวดเร็ว</strong> คุณดาวน์โหลดไฟล์นี้เมื่อเร็วๆ นี้ ลิงก์ยังคงใช้งานได้สักระยะหนึ่ง"
 
-#: allthethings/page/templates/page/aarecord.html:230
-#: allthethings/page/templates/page/aarecord.html:244
-#: allthethings/page/templates/page/aarecord.html:278
+#: allthethings/page/templates/page/aarecord.html:231
+#: allthethings/page/templates/page/aarecord.html:245
+#: allthethings/page/templates/page/aarecord.html:279
 #, fuzzy
 msgid "page.md5.box.download.option"
 msgstr "ตัวเลือก #%(num)d: %(link)s %(extra)s"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/templates/layouts/index.html:258
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "แนะนำเพื่อน และคุณและเพื่อนของคุณจะได้รับการดาวน์โหลดด่วนโบนัส %(percentage)s%%!"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/page/templates/page/home.html:25
 #: allthethings/page/templates/page/home.html:34
 #: allthethings/page/templates/page/home.html:71
@@ -2639,205 +2820,239 @@ msgstr "แนะนำเพื่อน และคุณและเพื�
 msgid "layout.index.header.learn_more"
 msgstr "เรียนรู้เพิ่มเติม…"
 
-#: allthethings/page/templates/page/aarecord.html:239
+#: allthethings/page/templates/page/aarecord.html:240
 #, fuzzy
 msgid "page.md5.box.download.header_slow_only"
 msgstr "🐢 ดาวน์โหลดช้า"
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.trusted_partners"
 msgstr "จากพันธมิตรที่เชื่อถือได้"
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.slow_faq"
 msgstr "ข้อมูลเพิ่มเติมใน <a %(a_slow)s>คำถามที่พบบ่อย</a>"
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "common.md5.servers.browser_verification_unlimited"
 msgstr "(อาจต้องการ <a %(a_browser)s>การยืนยันเบราว์เซอร์</a> — ดาวน์โหลดไม่จำกัด!)"
 
-#: allthethings/page/templates/page/aarecord.html:256
+#: allthethings/page/templates/page/aarecord.html:257
 #, fuzzy
 msgid "page.md5.box.external_downloads"
 msgstr "แสดงการดาวน์โหลดภายนอก"
 
-#: allthethings/page/templates/page/aarecord.html:257
+#: allthethings/page/templates/page/aarecord.html:258
 #, fuzzy
 msgid "page.md5.box.download.header_external"
 msgstr "การดาวน์โหลดภายนอก"
 
-#: allthethings/page/templates/page/aarecord.html:283
+#: allthethings/page/templates/page/aarecord.html:284
 #, fuzzy
 msgid "page.md5.box.download.no_found"
 msgstr "ไม่พบการดาวน์โหลด"
 
-#: allthethings/page/templates/page/aarecord.html:289
+#: allthethings/page/templates/page/aarecord.html:290
 #, fuzzy
 msgid "page.md5.box.download.no_issues_notice"
 msgstr "ตัวเลือกการดาวน์โหลดทั้งหมดมีไฟล์เดียวกัน และควรปลอดภัยในการใช้งาน อย่างไรก็ตาม ควรระมัดระวังเสมอเมื่อดาวน์โหลดไฟล์จากอินเทอร์เน็ต โดยเฉพาะจากเว็บไซต์ภายนอก Anna’s Archive ตัวอย่างเช่น ควรอัปเดตอุปกรณ์ของคุณเสมอ"
 
-#: allthethings/page/templates/page/aarecord.html:301
-#, fuzzy
-msgid "page.md5.box.download.convert"
-msgstr "แปลง: ใช้เครื่องมือออนไลน์เพื่อแปลงระหว่างรูปแบบต่างๆ ตัวอย่างเช่น เพื่อแปลงระหว่าง epub และ pdf ใช้ <a %(a_cloudconvert)s>CloudConvert</a>"
+#: allthethings/page/templates/page/aarecord.html:296
+#: allthethings/page/templates/page/partner_download.html:71
+msgid "page.md5.box.download.dl_managers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:302
-#, fuzzy
-msgid "page.md5.box.download.kindle"
-msgstr "Kindle: ดาวน์โหลดไฟล์ (รองรับ pdf หรือ epub) จากนั้น <a %(a_kindle)s>ส่งไปยัง Kindle</a> โดยใช้เว็บ แอป หรืออีเมล เครื่องมือที่มีประโยชน์: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>"
+#: allthethings/page/templates/page/aarecord.html:297
+#: allthethings/page/templates/page/partner_download.html:72
+msgid "page.md5.box.download.dl_managers.links"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:303
-#, fuzzy
-msgid "page.md5.box.download.support_authors"
-msgstr "สนับสนุนนักเขียน: หากคุณชอบสิ่งนี้และสามารถจ่ายได้ โปรดพิจารณาซื้อของต้นฉบับ หรือสนับสนุนนักเขียนโดยตรง"
+#: allthethings/page/templates/page/aarecord.html:305
+msgid "page.md5.box.download.readers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:304
-#, fuzzy
-msgid "page.md5.box.download.support_libraries"
-msgstr "สนับสนุนห้องสมุด: หากมีหนังสือเล่มนี้ในห้องสมุดท้องถิ่นของคุณ โปรดพิจารณายืมฟรีที่นั่น"
+#: allthethings/page/templates/page/aarecord.html:306
+msgid "page.md5.box.download.readers.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:315
+msgid "page.md5.box.download.conversion"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:316
+msgid "page.md5.box.download.conversion.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:324
+msgid "page.md5.box.download.sendtokindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:325
+msgid "page.md5.box.download.sendtokindle.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:328
+msgid "page.md5.box.download.link.send_to_kindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:329
+msgid "page.md5.box.download.link.send_to_kobokindle"
+msgstr ""
 
 #: allthethings/page/templates/page/aarecord.html:334
+msgid "page.md5.box.download.support"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:335
+msgid "page.md5.box.download.support.authors"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:336
+msgid "page.md5.box.download.support.libraries"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:367
 #, fuzzy
 msgid "page.md5.quality.header"
 msgstr "คุณภาพไฟล์"
 
-#: allthethings/page/templates/page/aarecord.html:337
+#: allthethings/page/templates/page/aarecord.html:370
 #, fuzzy
 msgid "page.md5.quality.report"
 msgstr "ช่วยเหลือชุมชนโดยการรายงานคุณภาพของไฟล์นี้! 🙌"
 
-#: allthethings/page/templates/page/aarecord.html:341
+#: allthethings/page/templates/page/aarecord.html:374
 #, fuzzy
 msgid "page.md5.quality.report_issue"
 msgstr "รายงานปัญหาไฟล์ (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.great_quality"
 msgstr "คุณภาพไฟล์ยอดเยี่ยม (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.add_comment"
 msgstr "เพิ่มความคิดเห็น (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:346
+#: allthethings/page/templates/page/aarecord.html:379
 #, fuzzy
 msgid "page.md5.quality.logged_out_login"
 msgstr "กรุณา <a %(a_login)s>เข้าสู่ระบบ</a>."
 
-#: allthethings/page/templates/page/aarecord.html:350
+#: allthethings/page/templates/page/aarecord.html:383
 #, fuzzy
 msgid "page.md5.quality.what_is_wrong"
 msgstr "มีอะไรผิดปกติกับไฟล์นี้?"
 
-#: allthethings/page/templates/page/aarecord.html:360
+#: allthethings/page/templates/page/aarecord.html:393
 #, fuzzy
 msgid "page.md5.quality.copyright"
 msgstr "กรุณาใช้ <a %(a_copyright)s>แบบฟอร์มการเรียกร้อง DMCA / ลิขสิทธิ์</a>."
 
-#: allthethings/page/templates/page/aarecord.html:365
+#: allthethings/page/templates/page/aarecord.html:398
 #, fuzzy
 msgid "page.md5.quality.describe_the_issue"
 msgstr "อธิบายปัญหา (จำเป็น)"
 
-#: allthethings/page/templates/page/aarecord.html:366
+#: allthethings/page/templates/page/aarecord.html:399
 #, fuzzy
 msgid "page.md5.quality.issue_description"
 msgstr "คำอธิบายปัญหา"
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text1"
 msgstr "MD5 ของเวอร์ชันที่ดีกว่าของไฟล์นี้ (ถ้ามี)"
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text2"
 msgstr "กรอกข้อมูลนี้หากมีไฟล์อื่นที่ใกล้เคียงกับไฟล์นี้ (ฉบับเดียวกัน, นามสกุลไฟล์เดียวกันถ้าหาได้) ซึ่งผู้คนควรใช้แทนไฟล์นี้ หากคุณรู้จักเวอร์ชันที่ดีกว่าของไฟล์นี้นอก Anna’s Archive กรุณา <a %(a_upload)s>อัปโหลด</a>."
 
-#: allthethings/page/templates/page/aarecord.html:373
+#: allthethings/page/templates/page/aarecord.html:406
 #, fuzzy
 msgid "page.md5.quality.better_md5.line1"
 msgstr "คุณสามารถรับ md5 จาก URL เช่น"
 
-#: allthethings/page/templates/page/aarecord.html:380
+#: allthethings/page/templates/page/aarecord.html:413
 #, fuzzy
 msgid "page.md5.quality.submit_report"
 msgstr "ส่งรายงาน"
 
-#: allthethings/page/templates/page/aarecord.html:385
+#: allthethings/page/templates/page/aarecord.html:418
 #, fuzzy
 msgid "page.md5.quality.improve_the_metadata"
 msgstr "เรียนรู้วิธี <a %(a_metadata)s>ปรับปรุงข้อมูลเมตา</a> สำหรับไฟล์นี้ด้วยตัวคุณเอง"
 
-#: allthethings/page/templates/page/aarecord.html:389
+#: allthethings/page/templates/page/aarecord.html:422
 #, fuzzy
 msgid "page.md5.quality.report_thanks"
 msgstr "ขอบคุณสำหรับการส่งรายงานของคุณ รายงานจะปรากฏในหน้านี้และจะได้รับการตรวจสอบโดย Anna (จนกว่าเราจะมีระบบการตรวจสอบที่เหมาะสม)"
 
-#: allthethings/page/templates/page/aarecord.html:390
+#: allthethings/page/templates/page/aarecord.html:423
 #, fuzzy
 msgid "page.md5.quality.report_error"
 msgstr "เกิดข้อผิดพลาดบางอย่าง กรุณาโหลดหน้าใหม่และลองอีกครั้ง"
 
-#: allthethings/page/templates/page/aarecord.html:396
+#: allthethings/page/templates/page/aarecord.html:429
 #, fuzzy
 msgid "page.md5.quality.great.summary"
 msgstr "หากไฟล์นี้มีคุณภาพดีเยี่ยม คุณสามารถพูดคุยเกี่ยวกับไฟล์นี้ได้ที่นี่! หากไม่ กรุณาใช้ปุ่ม “รายงานปัญหาไฟล์”"
 
-#: allthethings/page/templates/page/aarecord.html:398
+#: allthethings/page/templates/page/aarecord.html:431
 #, fuzzy
 msgid "page.md5.quality.loved_the_book"
 msgstr "ฉันชอบหนังสือเล่มนี้มาก!"
 
-#: allthethings/page/templates/page/aarecord.html:400
+#: allthethings/page/templates/page/aarecord.html:433
 #, fuzzy
 msgid "page.md5.quality.submit_comment"
 msgstr "แสดงความคิดเห็น"
 
-#: allthethings/page/templates/page/aarecord.html:404
+#: allthethings/page/templates/page/aarecord.html:437
 #, fuzzy
 msgid "page.md5.quality.comment_thanks"
 msgstr "คุณได้แสดงความคิดเห็นแล้ว อาจใช้เวลาสักครู่เพื่อให้ความคิดเห็นปรากฏขึ้น"
 
-#: allthethings/page/templates/page/aarecord.html:405
+#: allthethings/page/templates/page/aarecord.html:438
 #, fuzzy
 msgid "page.md5.quality.comment_error"
 msgstr "เกิดข้อผิดพลาดบางอย่าง กรุณาโหลดหน้าใหม่และลองอีกครั้ง"
 
-#: allthethings/page/templates/page/aarecord.html:415
-#: allthethings/page/templates/page/aarecord.html:416
+#: allthethings/page/templates/page/aarecord.html:448
+#: allthethings/page/templates/page/aarecord.html:449
 #: allthethings/page/templates/page/torrents.html:26
 #: allthethings/page/templates/page/torrents.html:27
 #, fuzzy
 msgid "common.english_only"
 msgstr "ข้อความด้านล่างต่อไปนี้เป็นภาษาอังกฤษ"
 
-#: allthethings/page/templates/page/aarecord.html:437
+#: allthethings/page/templates/page/aarecord.html:470
 #, fuzzy
 msgid "page.md5.text.stats.total_downloads"
 msgstr "ยอดดาวน์โหลดทั้งหมด: %(total)s"
 
-#: allthethings/page/templates/page/aarecord.html:469
+#: allthethings/page/templates/page/aarecord.html:502
 #, fuzzy
 msgid "page.md5.text.md5_info.text1"
 msgstr "“file MD5” คือแฮชที่คำนวณจากเนื้อหาของไฟล์ และมีความเป็นเอกลักษณ์ตามเนื้อหานั้นๆ ห้องสมุดเงาทั้งหมดที่เราได้จัดทำดัชนีที่นี่ใช้ MD5 เป็นหลักในการระบุไฟล์"
 
-#: allthethings/page/templates/page/aarecord.html:473
+#: allthethings/page/templates/page/aarecord.html:506
 #, fuzzy
 msgid "page.md5.text.md5_info.text2"
 msgstr "ไฟล์อาจปรากฏในห้องสมุดเงาหลายแห่ง สำหรับข้อมูลเกี่ยวกับ datasets ต่างๆ ที่เราได้รวบรวมไว้ ดูที่ <a %(a_datasets)s>หน้าข้อมูล datasets</a>"
 
-#: allthethings/page/templates/page/aarecord.html:477
+#: allthethings/page/templates/page/aarecord.html:510
 #, fuzzy
 msgid "page.md5.text.ia_info.text1"
 msgstr "นี่คือไฟล์ที่จัดการโดย <a %(a_ia)s>ห้องสมุดการให้ยืมดิจิทัลที่ควบคุมโดย IA</a> และจัดทำดัชนีโดย Anna’s Archive เพื่อการค้นหา สำหรับข้อมูลเกี่ยวกับ datasets ต่างๆ ที่เราได้รวบรวมไว้ ดูที่ <a %(a_datasets)s>หน้าข้อมูล datasets</a>"
 
-#: allthethings/page/templates/page/aarecord.html:482
+#: allthethings/page/templates/page/aarecord.html:515
 #, fuzzy
 msgid "page.md5.text.file_info.text1"
 msgstr "สำหรับข้อมูลเกี่ยวกับไฟล์นี้โดยเฉพาะ ดูที่ <a %(a_href)s>ไฟล์ JSON</a> ของมัน"
@@ -3245,9 +3460,9 @@ msgstr "สารคดีและนิยาย"
 #: allthethings/page/templates/page/datasets.html:134
 #: allthethings/page/templates/page/datasets.html:151
 #: allthethings/page/templates/page/datasets.html:167
-#: allthethings/page/templates/page/datasets.html:184
-#: allthethings/page/templates/page/datasets.html:201
-#: allthethings/page/templates/page/datasets.html:218
+#: allthethings/page/templates/page/datasets.html:183
+#: allthethings/page/templates/page/datasets.html:199
+#: allthethings/page/templates/page/datasets.html:216
 #, fuzzy
 msgid "page.datasets.file"
 msgid_plural "page.datasets.files"
@@ -3285,7 +3500,7 @@ msgid "page.datasets.zlibzh.searchable"
 msgstr "คอลเลกชัน “ภาษาจีน” ใน Z-Library ดูเหมือนจะเหมือนกับคอลเลกชัน DuXiu ของเรา แต่มี MD5 ที่ต่างกัน เราไม่รวมไฟล์เหล่านี้ในทอร์เรนต์เพื่อหลีกเลี่ยงการซ้ำซ้อน แต่ยังคงแสดงในดัชนีการค้นหาของเรา"
 
 #: allthethings/page/templates/page/datasets.html:131
-#: allthethings/page/templates/page/datasets.html:371
+#: allthethings/page/templates/page/datasets.html:369
 #: allthethings/page/templates/page/datasets_ia.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.iacdl"
@@ -3296,43 +3511,43 @@ msgstr "การให้ยืมดิจิทัลที่ควบคุ
 msgid "page.datasets.iacdl.searchable"
 msgstr "98%%+ ไฟล์สามารถค้นหาได้"
 
-#: allthethings/page/templates/page/datasets.html:214
+#: allthethings/page/templates/page/datasets.html:212
 #, fuzzy
 msgid "page.datasets.overview.total"
 msgstr "ทั้งหมด"
 
-#: allthethings/page/templates/page/datasets.html:215
+#: allthethings/page/templates/page/datasets.html:213
 #, fuzzy
 msgid "page.datasets.overview.excluding_duplicates"
 msgstr "ไม่รวมรายการซ้ำ"
 
-#: allthethings/page/templates/page/datasets.html:229
+#: allthethings/page/templates/page/datasets.html:227
 #, fuzzy
 msgid "page.datasets.overview.text4"
 msgstr "เนื่องจากห้องสมุดเงามักจะซิงค์ข้อมูลจากกันและกัน มีการซ้อนทับกันระหว่างห้องสมุดมาก นั่นคือเหตุผลที่ตัวเลขไม่รวมกันเป็นยอดรวม"
 
-#: allthethings/page/templates/page/datasets.html:233
+#: allthethings/page/templates/page/datasets.html:231
 #, fuzzy
 msgid "page.datasets.overview.text5"
 msgstr "เปอร์เซ็นต์ “สะท้อนและปล่อยโดย Anna’s Archive” แสดงจำนวนไฟล์ที่เราสะท้อนเอง เราปล่อยไฟล์เหล่านั้นเป็นกลุ่มผ่านทอร์เรนต์ และทำให้สามารถดาวน์โหลดได้โดยตรงผ่านเว็บไซต์พันธมิตร"
 
-#: allthethings/page/templates/page/datasets.html:236
+#: allthethings/page/templates/page/datasets.html:234
 #, fuzzy
 msgid "page.datasets.source_libraries.title"
 msgstr "ห้องสมุดแหล่งที่มา"
 
-#: allthethings/page/templates/page/datasets.html:239
+#: allthethings/page/templates/page/datasets.html:237
 #, fuzzy
 msgid "page.datasets.source_libraries.text1"
 msgstr "ห้องสมุดบางแห่งส่งเสริมการแบ่งปันข้อมูลจำนวนมากผ่านทางทอร์เรนต์ ในขณะที่ห้องสมุดอื่น ๆ ไม่แบ่งปันคอลเลกชันของพวกเขาอย่างง่ายดาย ในกรณีหลังนี้ Anna’s Archive พยายามดึงข้อมูลจากคอลเลกชันของพวกเขาและทำให้สามารถเข้าถึงได้ (ดูหน้า <a %(a_torrents)s>Torrents</a> ของเรา) นอกจากนี้ยังมีสถานการณ์ที่อยู่ระหว่างกลาง เช่น ห้องสมุดที่ยินดีแบ่งปันแต่ไม่มีทรัพยากรเพียงพอ ในกรณีเหล่านี้เราก็พยายามช่วยเหลือเช่นกัน"
 
-#: allthethings/page/templates/page/datasets.html:243
+#: allthethings/page/templates/page/datasets.html:241
 #, fuzzy
 msgid "page.datasets.source_libraries.text2"
 msgstr "ด้านล่างนี้เป็นภาพรวมของวิธีที่เราติดต่อกับห้องสมุดต้นทางต่าง ๆ"
 
-#: allthethings/page/templates/page/datasets.html:248
-#: allthethings/page/templates/page/datasets.html:520
+#: allthethings/page/templates/page/datasets.html:246
+#: allthethings/page/templates/page/datasets.html:518
 #: allthethings/page/templates/page/datasets_duxiu.html:17
 #: allthethings/page/templates/page/datasets_edsebk.html:17
 #: allthethings/page/templates/page/datasets_ia.html:17
@@ -3351,8 +3566,8 @@ msgstr "ด้านล่างนี้เป็นภาพรวมของ
 msgid "page.datasets.sources.source.header"
 msgstr "แหล่งที่มา"
 
-#: allthethings/page/templates/page/datasets.html:249
-#: allthethings/page/templates/page/datasets.html:521
+#: allthethings/page/templates/page/datasets.html:247
+#: allthethings/page/templates/page/datasets.html:519
 #: allthethings/page/templates/page/datasets_duxiu.html:18
 #: allthethings/page/templates/page/datasets_edsebk.html:18
 #: allthethings/page/templates/page/datasets_ia.html:18
@@ -3371,7 +3586,7 @@ msgstr "แหล่งที่มา"
 msgid "page.datasets.sources.metadata.header"
 msgstr "ข้อมูลเมตา"
 
-#: allthethings/page/templates/page/datasets.html:250
+#: allthethings/page/templates/page/datasets.html:248
 #: allthethings/page/templates/page/datasets_duxiu.html:19
 #: allthethings/page/templates/page/datasets_ia.html:19
 #: allthethings/page/templates/page/datasets_isbn_ranges.html:18
@@ -3386,185 +3601,185 @@ msgstr "ข้อมูลเมตา"
 msgid "page.datasets.sources.files.header"
 msgstr "ไฟล์"
 
-#: allthethings/page/templates/page/datasets.html:261
+#: allthethings/page/templates/page/datasets.html:259
 #: allthethings/page/templates/page/datasets_lgrs.html:30
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.metadata1"
 msgstr "%(icon)s ฐานข้อมูล HTTP รายวัน <a %(dbdumps)s>ดัมพ์</a>"
 
-#: allthethings/page/templates/page/datasets.html:268
+#: allthethings/page/templates/page/datasets.html:266
 #: allthethings/page/templates/page/datasets_lgrs.html:37
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files1"
 msgstr "%(icon)s ทอร์เรนต์อัตโนมัติสำหรับ <a %(nonfiction)s>หนังสือสารคดี</a> และ <a %(fiction)s>นิยาย</a>"
 
-#: allthethings/page/templates/page/datasets.html:274
+#: allthethings/page/templates/page/datasets.html:272
 #: allthethings/page/templates/page/datasets_lgrs.html:43
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files2"
 msgstr "%(icon)s Anna’s Archive จัดการคอลเลกชันของ <a %(covers)s>ทอร์เรนต์ปกหนังสือ</a>"
 
-#: allthethings/page/templates/page/datasets.html:284
+#: allthethings/page/templates/page/datasets.html:282
 #: allthethings/page/templates/page/datasets_scihub.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.scihub_scimag"
 msgstr "Sci-Hub / Libgen “scimag”"
 
-#: allthethings/page/templates/page/datasets.html:289
+#: allthethings/page/templates/page/datasets.html:287
 #: allthethings/page/templates/page/datasets_scihub.html:30
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata1"
 msgstr "%(icon)s Sci-Hub หยุดเพิ่มไฟล์ใหม่ตั้งแต่ปี 2021"
 
-#: allthethings/page/templates/page/datasets.html:292
+#: allthethings/page/templates/page/datasets.html:290
 #: allthethings/page/templates/page/datasets_scihub.html:33
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata2"
 msgstr "%(icon)s ดัมพ์เมทาดาต้าพร้อมใช้งาน <a %(scihub1)s>ที่นี่</a> และ <a %(scihub2)s>ที่นี่</a> รวมถึงเป็นส่วนหนึ่งของ <a %(libgenli)s>ฐานข้อมูล Libgen.li</a> (ที่เราใช้)"
 
-#: allthethings/page/templates/page/datasets.html:301
+#: allthethings/page/templates/page/datasets.html:299
 #: allthethings/page/templates/page/datasets_scihub.html:42
 #, fuzzy
 msgid "page.datasets.sources.scihub.files1"
 msgstr "%(icon)s ทอร์เรนต์ข้อมูลพร้อมใช้งาน <a %(scihub1)s>ที่นี่</a>, <a %(scihub2)s>ที่นี่</a>, และ <a %(libgenli)s>ที่นี่</a>"
 
-#: allthethings/page/templates/page/datasets.html:308
+#: allthethings/page/templates/page/datasets.html:306
 #: allthethings/page/templates/page/datasets_scihub.html:49
 #, fuzzy
 msgid "page.datasets.sources.scihub.files2"
 msgstr "%(icon)s ไฟล์ใหม่บางไฟล์กำลัง <a %(libgenrs)s>ถูก</a> <a %(libgenli)s>เพิ่ม</a> ใน “scimag” ของ Libgen แต่ไม่เพียงพอที่จะสร้างทอร์เรนต์ใหม่"
 
-#: allthethings/page/templates/page/datasets.html:324
+#: allthethings/page/templates/page/datasets.html:322
 #: allthethings/page/templates/page/datasets_lgli.html:34
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.metadata1"
 msgstr "%(icon)s ฐานข้อมูล HTTP รายไตรมาส <a %(dbdumps)s>ดัมพ์</a>"
 
-#: allthethings/page/templates/page/datasets.html:331
+#: allthethings/page/templates/page/datasets.html:329
 #: allthethings/page/templates/page/datasets_lgli.html:41
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files1"
 msgstr "%(icon)s ทอร์เรนต์หนังสือสารคดีถูกแชร์กับ Libgen.rs (และมีการสำรองข้อมูล <a %(libgenli)s>ที่นี่</a>)"
 
-#: allthethings/page/templates/page/datasets.html:336
+#: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files2"
 msgstr "%(icon)s คอลเลกชันนิยายมีการแยกออก แต่ยังมี <a %(libgenli)s>ทอร์เรนต์</a> แม้จะไม่ได้อัปเดตตั้งแต่ปี 2022 (เรามีการดาวน์โหลดโดยตรง)"
 
-#: allthethings/page/templates/page/datasets.html:341
+#: allthethings/page/templates/page/datasets.html:339
 #: allthethings/page/templates/page/datasets_lgli.html:51
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files3"
 msgstr "%(icon)s Anna’s Archive และ Libgen.li ร่วมกันจัดการคอลเลกชันของ <a %(comics)s>หนังสือการ์ตูน</a> และ <a %(magazines)s>นิตยสาร</a>"
 
-#: allthethings/page/templates/page/datasets.html:347
+#: allthethings/page/templates/page/datasets.html:345
 #: allthethings/page/templates/page/datasets_lgli.html:57
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files4"
 msgstr "%(icon)s ไม่มีทอร์เรนต์สำหรับคอลเลกชันนิยายรัสเซียและเอกสารมาตรฐาน"
 
-#: allthethings/page/templates/page/datasets.html:360
+#: allthethings/page/templates/page/datasets.html:358
 #: allthethings/page/templates/page/datasets_zlib.html:30
 #, fuzzy
 msgid "page.datasets.sources.zlib.metadata_and_files"
 msgstr "%(icon)s Anna’s Archive และ Z-Library ร่วมกันจัดการคอลเลกชันของ <a %(metadata)s>เมทาดาต้า Z-Library</a> และ <a %(files)s>ไฟล์ Z-Library</a>"
 
-#: allthethings/page/templates/page/datasets.html:376
+#: allthethings/page/templates/page/datasets.html:374
 #: allthethings/page/templates/page/datasets_ia.html:30
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata1"
 msgstr "%(icon)s เมทาดาต้าบางส่วนสามารถเข้าถึงได้ผ่าน <a %(openlib)s>ดัมพ์ฐานข้อมูล Open Library</a> แต่ไม่ครอบคลุมคอลเลกชัน IA ทั้งหมด"
 
-#: allthethings/page/templates/page/datasets.html:381
+#: allthethings/page/templates/page/datasets.html:379
 #: allthethings/page/templates/page/datasets_ia.html:35
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata2"
 msgstr "%(icon)s ไม่มีดัมพ์เมทาดาต้าที่เข้าถึงได้ง่ายสำหรับคอลเลกชันทั้งหมดของพวกเขา"
 
-#: allthethings/page/templates/page/datasets.html:384
+#: allthethings/page/templates/page/datasets.html:382
 #: allthethings/page/templates/page/datasets_ia.html:38
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata3"
 msgstr "%(icon)s Anna’s Archive จัดการคอลเลกชันของ <a %(ia)s>เมทาดาต้า IA</a>"
 
-#: allthethings/page/templates/page/datasets.html:390
+#: allthethings/page/templates/page/datasets.html:388
 #: allthethings/page/templates/page/datasets_ia.html:44
 #, fuzzy
 msgid "page.datasets.sources.ia.files1"
 msgstr "%(icon)s ไฟล์สามารถยืมได้ในจำนวนจำกัดเท่านั้น โดยมีข้อจำกัดในการเข้าถึงต่างๆ"
 
-#: allthethings/page/templates/page/datasets.html:392
+#: allthethings/page/templates/page/datasets.html:390
 #: allthethings/page/templates/page/datasets_ia.html:46
 #, fuzzy
 msgid "page.datasets.sources.ia.files2"
 msgstr "%(icon)s Anna’s Archive จัดการคอลเลกชันของ <a %(ia)s>ไฟล์ IA</a>"
 
-#: allthethings/page/templates/page/datasets.html:407
+#: allthethings/page/templates/page/datasets.html:405
 #: allthethings/page/templates/page/datasets_duxiu.html:30
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata1"
 msgstr "%(icon)s ฐานข้อมูลเมทาดาต้าต่างๆ กระจายอยู่ทั่วอินเทอร์เน็ตจีน; แม้มักจะเป็นฐานข้อมูลที่ต้องจ่ายเงิน"
 
-#: allthethings/page/templates/page/datasets.html:410
+#: allthethings/page/templates/page/datasets.html:408
 #: allthethings/page/templates/page/datasets_duxiu.html:33
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata2"
 msgstr "%(icon)s ไม่มีการถ่ายโอนข้อมูลเมตาที่เข้าถึงได้ง่ายสำหรับคอลเลกชันทั้งหมดของพวกเขา"
 
-#: allthethings/page/templates/page/datasets.html:413
+#: allthethings/page/templates/page/datasets.html:411
 #: allthethings/page/templates/page/datasets_duxiu.html:36
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata3"
 msgstr "%(icon)s Anna’s Archive จัดการคอลเลกชันของ <a %(duxiu)s>ข้อมูลเมตาของ DuXiu</a>"
 
-#: allthethings/page/templates/page/datasets.html:420
+#: allthethings/page/templates/page/datasets.html:418
 #: allthethings/page/templates/page/datasets_duxiu.html:43
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files1"
 msgstr "%(icon)s ฐานข้อมูลไฟล์ต่างๆ ที่กระจายอยู่ทั่วอินเทอร์เน็ตจีน; มักจะเป็นฐานข้อมูลที่ต้องเสียเงิน"
 
-#: allthethings/page/templates/page/datasets.html:423
+#: allthethings/page/templates/page/datasets.html:421
 #: allthethings/page/templates/page/datasets_duxiu.html:46
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files2"
 msgstr "%(icon)s ไฟล์ส่วนใหญ่สามารถเข้าถึงได้เฉพาะบัญชี BaiduYun แบบพรีเมียม; ความเร็วในการดาวน์โหลดช้า"
 
-#: allthethings/page/templates/page/datasets.html:426
+#: allthethings/page/templates/page/datasets.html:424
 #: allthethings/page/templates/page/datasets_duxiu.html:49
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files3"
 msgstr "%(icon)s Anna’s Archive จัดการคอลเลกชันของ <a %(duxiu)s>ไฟล์ของ DuXiu</a>"
 
-#: allthethings/page/templates/page/datasets.html:441
+#: allthethings/page/templates/page/datasets.html:439
 #: allthethings/page/templates/page/datasets_upload.html:30
 #, fuzzy
 msgid "page.datasets.sources.uploads.metadata_and_files"
 msgstr "%(icon)s แหล่งข้อมูลขนาดเล็กหรือแหล่งข้อมูลที่มีเพียงครั้งเดียว เราสนับสนุนให้ผู้คนอัปโหลดไปยังห้องสมุดเงาอื่นๆ ก่อน แต่บางครั้งผู้คนมีคอลเลกชันที่ใหญ่เกินกว่าที่คนอื่นจะจัดการได้ แต่ไม่ใหญ่พอที่จะมีหมวดหมู่ของตัวเอง"
 
-#: allthethings/page/templates/page/datasets.html:501
+#: allthethings/page/templates/page/datasets.html:499
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.title"
 msgstr "แหล่งที่มาที่มีเฉพาะข้อมูลเมตา"
 
-#: allthethings/page/templates/page/datasets.html:504
+#: allthethings/page/templates/page/datasets.html:502
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text1"
 msgstr "เรายังเพิ่มข้อมูลในคอลเลกชันของเราด้วยแหล่งที่มาที่มีเฉพาะข้อมูลเมตา ซึ่งเราสามารถจับคู่กับไฟล์ได้ เช่น โดยใช้หมายเลข ISBN หรือฟิลด์อื่น ๆ ด้านล่างนี้เป็นภาพรวมของแหล่งที่มาเหล่านั้น อีกครั้ง บางแหล่งที่มาเหล่านี้เปิดให้เข้าถึงได้อย่างสมบูรณ์ ในขณะที่บางแหล่งที่มาเราต้องดึงข้อมูล"
 
-#: allthethings/page/templates/page/datasets.html:508
+#: allthethings/page/templates/page/datasets.html:506
 #: allthethings/page/templates/page/faq.html:187
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
 msgstr "แรงบันดาลใจของเราสำหรับการรวบรวมข้อมูลเมตาคือเป้าหมายของ Aaron Swartz ที่ว่า “หนึ่งหน้าเว็บสำหรับหนังสือทุกเล่มที่เคยตีพิมพ์” ซึ่งเขาได้สร้าง <a %(a_openlib)s>Open Library</a> ขึ้นมา โครงการนั้นทำได้ดี แต่ตำแหน่งที่ไม่เหมือนใครของเราช่วยให้เราได้รับข้อมูลเมตาที่พวกเขาไม่สามารถทำได้ แรงบันดาลใจอีกอย่างหนึ่งคือความปรารถนาของเราที่จะรู้ว่า <a %(a_blog)s>มีหนังสือกี่เล่มในโลก</a> เพื่อที่เราจะได้คำนวณว่ามีหนังสืออีกกี่เล่มที่เรายังต้องช่วยเหลือ"
 
-#: allthethings/page/templates/page/datasets.html:515
+#: allthethings/page/templates/page/datasets.html:513
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text2"
 msgstr "โปรดทราบว่าในการค้นหาข้อมูลเมตา เราจะแสดงบันทึกต้นฉบับ เราไม่ทำการรวมบันทึกใด ๆ"
 
-#: allthethings/page/templates/page/datasets.html:522
+#: allthethings/page/templates/page/datasets.html:520
 #: allthethings/page/templates/page/datasets_edsebk.html:19
 #: allthethings/page/templates/page/datasets_isbndb.html:19
 #: allthethings/page/templates/page/datasets_oclc.html:19
@@ -3573,49 +3788,49 @@ msgstr "โปรดทราบว่าในการค้นหาข้อ
 msgid "page.datasets.sources.last_updated.header"
 msgstr "อัปเดตล่าสุด"
 
-#: allthethings/page/templates/page/datasets.html:533
+#: allthethings/page/templates/page/datasets.html:531
 #: allthethings/page/templates/page/datasets_ol.html:30
 #, fuzzy
 msgid "page.datasets.sources.openlib.metadata1"
 msgstr "%(icon)s การถ่ายโอนข้อมูลฐานข้อมูล <a %(dbdumps)s>รายเดือน</a>"
 
-#: allthethings/page/templates/page/datasets.html:549
-#: allthethings/page/templates/page/datasets.html:588
+#: allthethings/page/templates/page/datasets.html:547
+#: allthethings/page/templates/page/datasets.html:585
 #: allthethings/page/templates/page/datasets_edsebk.html:30
 #: allthethings/page/templates/page/datasets_isbndb.html:30
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata1"
 msgstr "%(icon)s ไม่สามารถใช้ได้โดยตรงในปริมาณมาก มีเฉพาะในปริมาณกึ่งใหญ่หลังเพย์วอลล์"
 
-#: allthethings/page/templates/page/datasets.html:552
+#: allthethings/page/templates/page/datasets.html:550
 #: allthethings/page/templates/page/datasets_isbndb.html:33
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata2"
 msgstr "%(icon)s Anna’s Archive จัดการคอลเลกชันของ <a %(isbndb)s>ข้อมูลเมตาของ ISBNdb</a>"
 
-#: allthethings/page/templates/page/datasets.html:568
+#: allthethings/page/templates/page/datasets.html:566
 #: allthethings/page/templates/page/datasets_oclc.html:30
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata1"
 msgstr "%(icon)s ไม่สามารถใช้ได้โดยตรงในปริมาณมาก ป้องกันการขูดข้อมูล"
 
-#: allthethings/page/templates/page/datasets.html:571
+#: allthethings/page/templates/page/datasets.html:569
 #: allthethings/page/templates/page/datasets_oclc.html:33
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata2"
 msgstr "%(icon)s Anna’s Archive จัดการคอลเลกชันของ <a %(worldcat)s>ข้อมูลเมตาของ OCLC (WorldCat)</a>"
 
-#: allthethings/page/templates/page/datasets.html:606
+#: allthethings/page/templates/page/datasets.html:603
 #, fuzzy
 msgid "page.datasets.unified_database.title"
 msgstr "ฐานข้อมูลรวม"
 
-#: allthethings/page/templates/page/datasets.html:609
+#: allthethings/page/templates/page/datasets.html:606
 #, fuzzy
 msgid "page.datasets.unified_database.text1"
 msgstr "เรารวมแหล่งที่มาทั้งหมดข้างต้นเป็นฐานข้อมูลรวมหนึ่งเดียวที่เราใช้ในการให้บริการเว็บไซต์นี้ ฐานข้อมูลรวมนี้ไม่สามารถเข้าถึงได้โดยตรง แต่เนื่องจาก Anna’s Archive เป็นโอเพ่นซอร์สทั้งหมด จึงสามารถ <a %(a_generated)s>สร้าง</a> หรือ <a %(a_downloaded)s>ดาวน์โหลด</a> ได้อย่างง่ายดายเป็นฐานข้อมูล ElasticSearch และ MariaDB สคริปต์ในหน้านั้นจะดาวน์โหลดข้อมูลเมตาที่จำเป็นทั้งหมดจากแหล่งที่มากล่าวถึงข้างต้นโดยอัตโนมัติ"
 
-#: allthethings/page/templates/page/datasets.html:617
+#: allthethings/page/templates/page/datasets.html:614
 #, fuzzy
 msgid "page.datasets.unified_database.text2"
 msgstr "หากคุณต้องการสำรวจข้อมูลของเราก่อนที่จะรันสคริปต์เหล่านั้นในเครื่องของคุณ คุณสามารถดูไฟล์ JSON ของเรา ซึ่งลิงก์ไปยังไฟล์ JSON อื่น ๆ <a %(a_json)s>ไฟล์นี้</a> เป็นจุดเริ่มต้นที่ดี"
@@ -4020,15 +4235,23 @@ msgstr "เรื่องราวสั้น ๆ ของการแยก�
 msgid "page.datasets.libgen_rs.story.dot_fun"
 msgstr "เวอร์ชัน “.fun” ถูกสร้างขึ้นโดยผู้ก่อตั้งดั้งเดิม กำลังถูกปรับปรุงใหม่เพื่อเป็นเวอร์ชันที่กระจายมากขึ้น"
 
-#: allthethings/page/templates/page/datasets_lgrs.html:58
+#: allthethings/page/templates/page/datasets_lgrs.html:59
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_rs"
 msgstr "เวอร์ชัน “.rs” มีข้อมูลที่คล้ายกันมาก และมักจะปล่อยคอลเลกชันของพวกเขาในทอร์เรนต์ขนาดใหญ่ แบ่งออกเป็นส่วน “นิยาย” และ “ไม่ใช่นิยาย”"
 
-#: allthethings/page/templates/page/datasets_lgrs.html:62
+#: allthethings/page/templates/page/datasets_lgrs.html:60
+msgid "page.datasets.libgen_rs.story.rus_dot_ec"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets_lgrs.html:63
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_li"
 msgstr "<a %(a_li)s>เวอร์ชัน “.li”</a> มีคอลเลกชันการ์ตูนขนาดใหญ่ รวมถึงเนื้อหาอื่น ๆ ที่ยังไม่สามารถดาวน์โหลดได้ในรูปแบบทอร์เรนต์ นอกจากนี้ยังมีคอลเลกชันทอร์เรนต์ของหนังสือนิยายแยกต่างหาก และมีเมทาดาทาของ <a %(a_scihub)s>Sci-Hub</a> ในฐานข้อมูลของมัน"
+
+#: allthethings/page/templates/page/datasets_lgrs.html:64
+msgid "page.datasets.libgen_rs.story.dontexist"
+msgstr ""
 
 #: allthethings/page/templates/page/datasets_lgrs.html:66
 #, fuzzy
@@ -5064,12 +5287,28 @@ msgstr "ฉันเกลียดวิธีที่คุณดำเนิ
 msgid "page.faq.hate.text1"
 msgstr "เรายังอยากเตือนทุกคนว่าโค้ดและข้อมูลทั้งหมดของเราเป็นโอเพ่นซอร์สอย่างสมบูรณ์ นี่เป็นสิ่งที่ไม่เหมือนใครสำหรับโครงการเช่นของเรา — เราไม่ทราบว่าโครงการอื่นใดที่มีแคตตาล็อกขนาดใหญ่เช่นนี้ที่เป็นโอเพ่นซอร์สอย่างสมบูรณ์เช่นกัน เราขอต้อนรับทุกคนที่คิดว่าเราดำเนินโครงการของเราไม่ดีให้นำโค้ดและข้อมูลของเราไปตั้งห้องสมุดเงาของตัวเอง! เราไม่ได้พูดด้วยความโกรธหรืออะไร — เราคิดว่านี่จะเป็นสิ่งที่ยอดเยี่ยมจริง ๆ เพราะมันจะยกระดับสำหรับทุกคน และอนุรักษ์มรดกของมนุษยชาติได้ดียิ่งขึ้น"
 
-#: allthethings/page/templates/page/faq.html:323
+#: allthethings/page/templates/page/faq.html:310
+msgid "page.faq.uptime.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:313
+msgid "page.faq.uptime.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:316
+msgid "page.faq.anna.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:320
+msgid "page.faq.anna.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:324
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "หนังสือเล่มโปรดของคุณคืออะไร?"
 
-#: allthethings/page/templates/page/faq.html:326
+#: allthethings/page/templates/page/faq.html:327
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "นี่คือหนังสือบางเล่มที่มีความสำคัญพิเศษต่อโลกของห้องสมุดเงาและการอนุรักษ์ดิจิทัล:"
@@ -5638,17 +5877,17 @@ msgstr "สามารถรอให้หน้าดาวน์โหลด
 msgid "page.partner_download.li3"
 msgstr "เมื่อคุณได้รับลิงก์ดาวน์โหลดแล้ว ลิงก์จะมีอายุการใช้งานหลายชั่วโมง"
 
-#: allthethings/page/templates/page/partner_download.html:105
+#: allthethings/page/templates/page/partner_download.html:108
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "คำเตือน: มีการดาวน์โหลดจำนวนมากจากที่อยู่ IP ของคุณใน 24 ชั่วโมงที่ผ่านมา การดาวน์โหลดอาจช้ากว่าปกติ"
 
-#: allthethings/page/templates/page/partner_download.html:106
+#: allthethings/page/templates/page/partner_download.html:109
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "การดาวน์โหลดจากที่อยู่ IP ของคุณใน 24 ชั่วโมงที่ผ่านมา: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:107
+#: allthethings/page/templates/page/partner_download.html:110
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "หากคุณใช้ VPN การเชื่อมต่ออินเทอร์เน็ตร่วมกัน หรือ ISP ของคุณแชร์ IP คำเตือนนี้อาจเกิดจากสิ่งนั้น"
@@ -6559,3 +6798,19 @@ msgstr "ถัดไป"
 
 #~ msgid "page.partner_download.download_now"
 #~ msgstr "ดาวน์โหลดตอนนี้"
+
+#~ msgid "common.record_soruces_mapping.nexusstc"
+#~ msgstr "Nexus/STC"
+
+#~ msgid "page.md5.box.download.convert"
+#~ msgstr "แปลง: ใช้เครื่องมือออนไลน์เพื่อแปลงระหว่างรูปแบบต่างๆ ตัวอย่างเช่น เพื่อแปลงระหว่าง epub และ pdf ใช้ <a %(a_cloudconvert)s>CloudConvert</a>"
+
+#~ msgid "page.md5.box.download.kindle"
+#~ msgstr "Kindle: ดาวน์โหลดไฟล์ (รองรับ pdf หรือ epub) จากนั้น <a %(a_kindle)s>ส่งไปยัง Kindle</a> โดยใช้เว็บ แอป หรืออีเมล เครื่องมือที่มีประโยชน์: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>"
+
+#~ msgid "page.md5.box.download.support_authors"
+#~ msgstr "สนับสนุนนักเขียน: หากคุณชอบสิ่งนี้และสามารถจ่ายได้ โปรดพิจารณาซื้อของต้นฉบับ หรือสนับสนุนนักเขียนโดยตรง"
+
+#~ msgid "page.md5.box.download.support_libraries"
+#~ msgstr "สนับสนุนห้องสมุด: หากมีหนังสือเล่มนี้ในห้องสมุดท้องถิ่นของคุณ โปรดพิจารณายืมฟรีที่นั่น"
+

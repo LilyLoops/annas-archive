@@ -1,19 +1,3 @@
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 18:35+0000\n"
-"PO-Revision-Date: 2024-10-03 18:35+0000\n"
-"Last-Translator: OpenAI <noreply-mt-openai@weblate.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: tg\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.7.2\n"
-
 #: allthethings/app.py:185
 #, fuzzy
 msgid "layout.index.invalid_request"
@@ -341,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "бо мо тамос гиред"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,520 +356,595 @@ msgstr "Мо хайрияҳои калонро аз шахсони сарват�
 msgid "page.donate.header.large_donations"
 msgstr "Барои хайрияҳои зиёда аз $5000 лутфан мустақиман бо мо тамос гиред дар %(email)s."
 
-#: allthethings/account/templates/account/donate.html:120
+#: allthethings/account/templates/account/donate.html:116
+msgid "page.donate.header.recurring"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:118
 #, fuzzy
 msgid "page.donate.without_membership"
 msgstr "Агар шумо хоҳед, ки хайрия кунед (ҳар миқдор) бе узвият, лутфан ин суроғаи Monero (XMR)-ро истифода баред: %(address)s."
 
-#: allthethings/account/templates/account/donate.html:125
+#: allthethings/account/templates/account/donate.html:123
 #, fuzzy
 msgid "page.donate.payment.select_method"
 msgstr "Лутфан усули пардохтро интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:134
-#: allthethings/account/templates/account/donate.html:420
+#: allthethings/account/templates/account/donate.html:132
+#: allthethings/account/templates/account/donate.html:421
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:140
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:138
+#: allthethings/account/templates/account/donate.html:359
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Корти тӯҳфавии Amazon"
 
-#: allthethings/account/templates/account/donate.html:143
-#: allthethings/account/templates/account/donate.html:153
-#: allthethings/account/templates/account/donate.html:154
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:139
+msgid "page.donate.payment.buttons.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:140
+#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:151
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Крипто %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:145
+#: allthethings/account/templates/account/donate.html:142
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit"
 msgstr "Корти кредитӣ/дебетӣ"
 
-#: allthethings/account/templates/account/donate.html:146
+#: allthethings/account/templates/account/donate.html:143
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal"
 msgstr "PayPal (ИМА) %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:147
+#: allthethings/account/templates/account/donate.html:144
 #, fuzzy
 msgid "page.donate.payment.buttons.paypalreg"
 msgstr "PayPal (муқаррарӣ)"
 
-#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:145
 #, fuzzy
 msgid "page.donate.payment.buttons.givebutter"
 msgstr "Корт / PayPal / Venmo"
 
-#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:147
 #, fuzzy
 msgid "page.donate.payment.buttons.bmc"
 msgstr "Кредит/дебет/Apple/Google (BMC)"
 
-#: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:168
-#: allthethings/account/templates/account/donate.html:178
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:362
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
-#: allthethings/account/templates/account/donate.html:152
+#: allthethings/account/templates/account/donate.html:149
 #, fuzzy
 msgid "page.donate.payment.buttons.pix"
 msgstr "Pix (Бразилия)"
 
-#: allthethings/account/templates/account/donate.html:156
+#: allthethings/account/templates/account/donate.html:153
 #, fuzzy
 msgid "page.donate.payment.buttons.cashapp"
 msgstr "Cash App"
 
-#: allthethings/account/templates/account/donate.html:157
+#: allthethings/account/templates/account/donate.html:154
 #, fuzzy
 msgid "page.donate.payment.buttons.revolut"
 msgstr "Revolut"
 
-#: allthethings/account/templates/account/donate.html:158
+#: allthethings/account/templates/account/donate.html:155
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal_plain"
 msgstr "PayPal"
 
-#: allthethings/account/templates/account/donate.html:161
+#: allthethings/account/templates/account/donate.html:156
+msgid "page.donate.payment.buttons.bank_card"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:157
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit_backup"
 msgstr "Корти кредитӣ/дебетӣ (захиравӣ)"
 
-#: allthethings/account/templates/account/donate.html:162
+#: allthethings/account/templates/account/donate.html:158
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit2"
 msgstr "Корти кредитӣ/дебетӣ 2"
 
-#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:160
 #, fuzzy
 msgid "page.donate.payment.buttons.binance"
 msgstr "Бинанс"
 
-#: allthethings/account/templates/account/donate.html:169
-#: allthethings/account/templates/account/donate.html:180
-#: allthethings/account/templates/account/donate.html:189
-#: allthethings/account/templates/account/donate.html:196
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:165
+#: allthethings/account/templates/account/donate.html:176
+#: allthethings/account/templates/account/donate.html:185
+#: allthethings/account/templates/account/donate.html:192
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:171
-#: allthethings/account/templates/account/donate.html:179
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(муваққатан дастнорас)"
 
-#: allthethings/account/templates/account/donate.html:219
+#: allthethings/account/templates/account/donate.html:215
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "Бо крипто шумо метавонед бо истифода аз BTC, ETH, XMR ва SOL хайрия кунед. Аз ин имконот истифода баред, агар шумо аллакай бо криптовалют шинос бошед."
 
-#: allthethings/account/templates/account/donate.html:223
+#: allthethings/account/templates/account/donate.html:219
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Бо крипто шумо метавонед бо истифода аз BTC, ETH, XMR ва бештар хайрия кунед."
 
-#: allthethings/account/templates/account/donate.html:226
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:222
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Агар шумо бори аввал крипторо истифода баред, мо тавсия медиҳем, ки %(options)s-ро барои харид ва хайрия кардани Bitcoin (асъори рақамии аслӣ ва бештар истифодашаванда) истифода баред."
 
-#: allthethings/account/templates/account/donate.html:229
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Бинанс"
 
-#: allthethings/account/templates/account/donate.html:230
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:231
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:227
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:239
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "Барои хайрия бо истифода аз PayPal ИМА, мо PayPal Crypto-ро истифода мебарем, ки ба мо имкон медиҳад, ки аноним бимонем. Мо аз шумо миннатдорем, ки вақт ҷудо кардаед, то омӯзед, ки чӣ гуна бо ин усул хайрия кунед, зеро ин ба мо хеле кӯмак мекунад."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:236
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Донат кунед бо истифода аз PayPal."
 
-#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Донат кунед бо истифода аз Cash App."
 
-#: allthethings/account/templates/account/donate.html:247
+#: allthethings/account/templates/account/donate.html:243
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Агар шумо Cash App дошта бошед, ин осонтарин роҳи донат кардан аст!"
 
-#: allthethings/account/templates/account/donate.html:250
-#: allthethings/account/templates/account/donate.html:260
+#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:256
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Лутфан қайд кунед, ки барои транзаксияҳои камтар аз %(amount)s, Cash App метавонад %(fee)s ҳаққи хизматро талаб кунад. Барои %(amount)s ё бештар, он ройгон аст!"
 
-#: allthethings/account/templates/account/donate.html:256
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Бо истифода аз Revolut хайрия кунед."
 
-#: allthethings/account/templates/account/donate.html:257
+#: allthethings/account/templates/account/donate.html:253
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Агар шумо Revolut дошта бошед, ин осонтарин роҳи хайрия кардан аст!"
 
-#: allthethings/account/templates/account/donate.html:266
-#: allthethings/account/templates/account/donate.html:320
+#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:316
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Донат кунед бо истифода аз корти кредитӣ ё дебетӣ."
 
-#: allthethings/account/templates/account/donate.html:267
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay ва Apple Pay низ метавонанд кор кунанд."
 
-#: allthethings/account/templates/account/donate.html:268
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Лутфан қайд кунед, ки барои донатҳои хурд ҳаққи хизматҳои корти кредитӣ метавонад тахфифи %(discount)s%%-и моро аз байн барад, бинобар ин мо тавсия медиҳем, ки обунаҳои дарозтарро интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:265
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Лутфан қайд кунед, ки барои донатҳои хурд ҳаққи хизмат баланд аст, бинобар ин мо тавсия медиҳем, ки обунаҳои дарозтарро интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:275
+#: allthethings/account/templates/account/donate.html:271
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Бо Binance, шумо метавонед Bitcoin-ро бо корти кредитӣ/дебетӣ ё ҳисоби бонкӣ харидорӣ кунед ва сипас он Bitcoin-ро ба мо донат кунед. Бо ин роҳ мо метавонем ҳангоми қабул кардани донати шумо бехатар ва номаълум бимонем."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:275
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance дар қариб ҳар як кишвар дастрас аст ва аксари бонкҳо ва кортҳои кредитӣ/дебетиро дастгирӣ мекунад. Ин ҳоло тавсияи асосии мост. Мо аз шумо миннатдорем, ки вақт ҷудо кардаед, то омӯзед, ки чӣ гуна бо ин усул донат кунед, зеро ин ба мо хеле кӯмак мекунад."
 
-#: allthethings/account/templates/account/donate.html:285
+#: allthethings/account/templates/account/donate.html:281
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Бо истифода аз ҳисоби муқаррарии PayPal хайрия кунед."
 
-#: allthethings/account/templates/account/donate.html:291
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:287
+#: allthethings/account/templates/account/donate.html:293
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Донат кунед бо истифода аз Alipay ё WeChat. Шумо метавонед дар саҳифаи оянда байни инҳо интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:299
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Донат кунед бо истифода аз корти кредитӣ/дебетӣ, PayPal ё Venmo. Шумо метавонед дар саҳифаи оянда байни инҳо интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:309
+#: allthethings/account/templates/account/donate.html:305
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Донат кунед бо истифода аз корти тӯҳфавии Amazon."
 
-#: allthethings/account/templates/account/donate.html:310
+#: allthethings/account/templates/account/donate.html:306
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Лутфан қайд кунед, ки мо бояд ба маблағҳои қабулшуда аз ҷониби фурӯшандагони мо (ҳадди ақал %(minimum)s) мувофиқ кунем."
 
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:310
 #: allthethings/account/templates/account/donation.html:371
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>МУҲИМ:</strong> Мо танҳо Amazon.com-ро дастгирӣ мекунем, на дигар вебсайтҳои Amazon. Масалан, .de, .co.uk, .ca, ДАСТГИРӢ НАМЕШАВАНД."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:317
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Ин усул провайдери криптовалютаро ҳамчун табдилдиҳандаи миёнарав истифода мебарад. Ин метавонад каме печида бошад, бинобар ин лутфан танҳо аз ин усул истифода баред, агар дигар усулҳои пардохт кор накунанд. Инчунин, он дар ҳама кишварҳо кор намекунад."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:323
+msgid "page.donate.payment.desc.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:327
+#: allthethings/account/templates/account/donation.html:508
+msgid "page.donate.payment.desc.bank_card_app.step1.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:331
+#: allthethings/account/templates/account/donation.html:512
+msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:335
+#: allthethings/account/templates/account/donation.html:516
+msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:517
+msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:521
+msgid "page.donate.payment.desc.bank_card_app.step2.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:348
+#: allthethings/account/templates/account/donation.html:529
+msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:349
+#: allthethings/account/templates/account/donation.html:530
+msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:355
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Мо наметавонем кортҳои кредитӣ/дебетиро мустақиман дастгирӣ кунем, зеро бонкҳо намехоҳанд бо мо кор кунанд. ☹ Аммо, якчанд роҳҳо барои истифодаи кортҳои кредитӣ/дебетӣ вуҷуд доранд, бо истифода аз дигар усулҳои пардохт:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Ба мо корти тӯҳфавии Amazon.com фиристед бо истифода аз корти кредитӣ/дебетии худ."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:363
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay кортҳои кредитӣ/дебетии байналмилалиро дастгирӣ мекунад. Барои маълумоти бештар <a %(a_alipay)s>ин дастурро</a> бинед."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:366
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) кортҳои кредитӣ/дебетии байналмилалиро дастгирӣ мекунад. Дар барномаи WeChat, ба “Ман => Хизматҳо => Ҳамён => Илова кардани корти нав” равед. Агар шумо инро набинед, онро бо истифода аз “Ман => Танзимот => Умумӣ => Асбобҳо => Weixin Pay => Фаъол кардан” фаъол кунед."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:369
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "Шумо метавонед крипторо бо истифода аз корти кредитӣ/дебетӣ харед."
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:379
+msgid "page.donate.payment.desc.crypto_express_services"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:381
+msgid "page.donation.ccexp.crypto_express_services.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:382
+msgid "page.donation.ccexp.crypto_express_services.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:385
+msgid "page.donation.ccexp.crypto_express_services.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:386
+msgid "page.donation.ccexp.crypto_express_services.4"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:389
 #: allthethings/account/templates/account/donation.html:302
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(минимум: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:390
 #: allthethings/account/templates/account/donation.html:303
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(минимум: %(minimum)s вобаста ба кишвар, бе тасдиқ барои транзаксияи аввал)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:391
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(минимум: %(minimum)s, бе тасдиқ барои транзаксияи аввал)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:392
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(минимум: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:393
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(минимум: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:393
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(минимум: %(minimum)s, бе тасдиқ барои транзаксияи аввал)"
 
-#: allthethings/account/templates/account/donate.html:395
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Агар ягон маълумот кӯҳна бошад, лутфан ба мо паём фиристед, то моро огоҳ кунед."
 
-#: allthethings/account/templates/account/donate.html:402
+#: allthethings/account/templates/account/donate.html:403
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "Барои кортҳои кредитӣ, кортҳои дебетӣ, Apple Pay ва Google Pay, мо \"Buy Me a Coffee\" (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>)-ро истифода мебарем. Дар системаи онҳо, як \"қаҳва\" ба $5 баробар аст, бинобар ин хайрияҳои шумо ба наздиктарин чандкаратаи 5 мудаввар карда мешаванд."
 
-#: allthethings/account/templates/account/donate.html:409
+#: allthethings/account/templates/account/donate.html:410
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "Мӯҳлати обуна шуданро интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:427
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 моҳ"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:428
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 моҳ"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:429
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 моҳ"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:430
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 моҳ"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:431
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 моҳ"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 моҳ"
 
-#: allthethings/account/templates/account/donate.html:432
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 моҳ"
 
-#: allthethings/account/templates/account/donate.html:435
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>пас аз <span %(span_discount)s></span> тахфифҳо</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:442
+#: allthethings/account/templates/account/donate.html:443
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "Ин усули пардохт ҳадди ақал %(amount)s-ро талаб мекунад. Лутфан мӯҳлати дигар ё усули пардохти дигарро интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:443
-#: allthethings/account/templates/account/donate.html:447
+#: allthethings/account/templates/account/donate.html:444
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Хайрия кунед"
 
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:447
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "Ин усули пардохт танҳо ҳадди аксар %(amount)s-ро иҷозат медиҳад. Лутфан мӯҳлати дигар ё усули пардохти дигарро интихоб кунед."
 
-#: allthethings/account/templates/account/donate.html:453
+#: allthethings/account/templates/account/donate.html:454
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "Барои узв шудан, лутфан <a %(a_login)s>Ворид шавед ё Сабти ном кунед</a>. Ташаккур барои дастгирии шумо!"
 
-#: allthethings/account/templates/account/donate.html:460
+#: allthethings/account/templates/account/donate.html:461
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "Асъори криптои дилхоҳатонро интихоб кунед:"
 
-#: allthethings/account/templates/account/donate.html:465
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(ҳадди ақали камтарин)"
 
-#: allthethings/account/templates/account/donate.html:480
+#: allthethings/account/templates/account/donate.html:469
+msgid "page.donate.coinbase_eth"
+msgstr ""
+
 #: allthethings/account/templates/account/donate.html:481
-#: allthethings/account/templates/account/donate.html:485
-#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:482
+#: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:488
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(огоҳӣ: ҳадди ақали баланд)"
 
-#: allthethings/account/templates/account/donate.html:496
+#: allthethings/account/templates/account/donate.html:497
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "Барои тасдиқи ин хайрия тугмаи хайрияро пахш кунед."
 
-#: allthethings/account/templates/account/donate.html:504
+#: allthethings/account/templates/account/donate.html:505
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "Хайрия кунед <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:509
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "Шумо метавонед ҳангоми пардохт хайрияро бекор кунед."
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:514
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ Ба саҳифаи хайрия равона карда мешавад…"
 
-#: allthethings/account/templates/account/donate.html:514
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ Хатое рух дод. Лутфан саҳифаро аз нав бор кунед ва дубора кӯшиш кунед."
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:569
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:569
+#: allthethings/account/templates/account/donate.html:570
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / моҳ"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:573
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "барои 1 моҳ"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "барои 3 моҳ"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "барои 6 моҳ"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:576
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "барои 12 моҳ"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:577
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "барои 24 моҳ"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "барои 48 моҳ"
 
-#: allthethings/account/templates/account/donate.html:578
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "барои 96 моҳ"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "барои 1 моҳ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "барои 3 моҳ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:585
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "барои 6 моҳ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:586
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "барои 12 моҳ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:587
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "барои 24 моҳ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "барои 48 моҳ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:588
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "барои 96 моҳ “%(tier_name)s”"
@@ -1006,8 +1065,8 @@ msgstr "<strong>Эзоҳи муҳим:</strong> Нархи крипто мета
 #: allthethings/account/templates/account/donation.html:450
 #: allthethings/account/templates/account/donation.html:467
 #: allthethings/account/templates/account/donation.html:502
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:600
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "Ин хайрия ба охир расидааст. Лутфан онро бекор кунед ва як хайрия нав эҷод кунед."
@@ -1087,8 +1146,8 @@ msgstr "Дастури қадам ба қадамро дар зер бинед."
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:381
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "Вазъият:"
@@ -1100,8 +1159,8 @@ msgstr "Вазъият:"
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Интизорӣ барои тасдиқ (саҳифаро навсозӣ кунед, то санҷед)…"
@@ -1113,8 +1172,8 @@ msgstr "Интизорӣ барои тасдиқ (саҳифаро навсоз�
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Интизорӣ барои интиқол (саҳифаро навсозӣ кунед, то санҷед)…"
@@ -1126,8 +1185,8 @@ msgstr "Интизорӣ барои интиқол (саҳифаро навсо�
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "Вақти боқимонда:"
@@ -1139,8 +1198,8 @@ msgstr "Вақти боқимонда:"
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(шумо метавонед бекор кунед ва як хайрия нав эҷод кунед)"
@@ -1152,8 +1211,8 @@ msgstr "(шумо метавонед бекор кунед ва як хайри�
 #: allthethings/account/templates/account/donation.html:326
 #: allthethings/account/templates/account/donation.html:355
 #: allthethings/account/templates/account/donation.html:492
-#: allthethings/account/templates/account/donation.html:552
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:564
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "Барои аз нав танзим кардани вақтсанҷ, танҳо хайрия кунед."
@@ -1166,14 +1225,14 @@ msgstr "Барои аз нав танзим кардани вақтсанҷ, т�
 #: allthethings/account/templates/account/donation.html:359
 #: allthethings/account/templates/account/donation.html:385
 #: allthethings/account/templates/account/donation.html:496
-#: allthethings/account/templates/account/donation.html:556
-#: allthethings/account/templates/account/donation.html:583
+#: allthethings/account/templates/account/donation.html:568
+#: allthethings/account/templates/account/donation.html:595
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "Навсозии ҳолат"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:683
+#: allthethings/account/templates/account/donation.html:695
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "Агар шумо ба ягон мушкилот дучор шавед, лутфан бо мо дар тамос шавед дар %(email)s ва ҳарчи бештар маълумот (масалан, скриншотҳо) дохил кунед."
@@ -1369,8 +1428,8 @@ msgstr "Мисол:"
 #: allthethings/account/templates/account/donation.html:446
 #: allthethings/account/templates/account/donation.html:462
 #: allthethings/account/templates/account/donation.html:483
-#: allthethings/account/templates/account/donation.html:543
-#: allthethings/account/templates/account/donation.html:600
+#: allthethings/account/templates/account/donation.html:555
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "Дар назар дошта бошед, ки номи ҳисоб ё тасвир метавонад аҷиб ба назар расад. Ҳоҷат ба ташвиш нест! Ин ҳисобҳо аз ҷониби шарикони хайрияии мо идора карда мешаванд. Ҳисобҳои мо ҳак нашудаанд."
@@ -1395,127 +1454,143 @@ msgid "page.donation.payment.alipay.text1_new"
 msgstr "Ҳамагӣ маблағи %(total)s-ро бо истифода аз <a %(a_account)s>ин ҳисоби Alipay</a> пардохт кунед"
 
 #: allthethings/account/templates/account/donation.html:479
-#: allthethings/account/templates/account/donation.html:539
+#: allthethings/account/templates/account/donation.html:551
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Мутаассифона, саҳифаи Alipay аксар вақт танҳо аз <strong>Чини континенталӣ</strong> дастрас аст. Шумо метавонед муваққатан VPN-и худро хомӯш кунед ё VPN-ро ба Чини континенталӣ (ё баъзан Ҳонг Конг низ кор мекунад) истифода баред."
 
-#: allthethings/account/templates/account/donation.html:565
+#: allthethings/account/templates/account/donation.html:534
+msgid "page.donation.bank_card_app.step3.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:538
+msgid "page.donation.bank_card_app.step3.desc.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:542
+msgid "page.donation.bank_card_app.step3.desc.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:543
+msgid "page.donation.bank_card_app.step3.desc.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:577
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Дастурҳои WeChat"
 
-#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:579
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Дар WeChat хайрия кунед"
 
-#: allthethings/account/templates/account/donation.html:570
+#: allthethings/account/templates/account/donation.html:582
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Маблағи умумии %(total)s-ро бо истифода аз <a %(a_account)s>ин ҳисоби WeChat</a> хайрия кунед"
 
-#: allthethings/account/templates/account/donation.html:591
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Дастурҳои Pix"
 
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:605
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Дар Pix хайрия кунед"
 
-#: allthethings/account/templates/account/donation.html:596
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "Маблағи умумии %(total)s-ро бо истифода аз <a %(a_account)s>ин ҳисоби Pix</a> хайрия кунед"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Расидро ба мо тавассути почтаи электронӣ фиристед"
 
-#: allthethings/account/templates/account/donation.html:609
+#: allthethings/account/templates/account/donation.html:621
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Расид ё скриншотро ба суроғаи тасдиқи шахсии худ фиристед. Аз ин суроғаи почтаи электронӣ барои хайрия тавассути PayPal истифода набаред."
 
-#: allthethings/account/templates/account/donation.html:611
+#: allthethings/account/templates/account/donation.html:623
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "Расид ё скриншотро ба суроғаи шахсии тасдиқи худ фиристед:"
 
-#: allthethings/account/templates/account/donation.html:621
+#: allthethings/account/templates/account/donation.html:633
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "Агар қурби крипто ҳангоми транзаксия тағйир ёбад, боварӣ ҳосил кунед, ки расидро бо нишон додани қурби аслӣ дохил кунед. Мо воқеан қадр мекунем, ки шумо барои истифодаи крипто заҳмат мекашед, ин ба мо хеле кӯмак мекунад!"
 
-#: allthethings/account/templates/account/donation.html:626
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "Вақте ки шумо расидро тавассути почтаи электронӣ фиристодед, ин тугмаро клик кунед, то Анна онро дастӣ баррасӣ кунад (ин метавонад якчанд рӯзро гирад):"
 
-#: allthethings/account/templates/account/donation.html:636
+#: allthethings/account/templates/account/donation.html:648
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "Бале, ман расидро тавассути почтаи электронӣ фиристодам"
 
-#: allthethings/account/templates/account/donation.html:639
+#: allthethings/account/templates/account/donation.html:651
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ Ташаккур барои хайрияатон! Анна узвияти шуморо дар давоми якчанд рӯз дастӣ фаъол мекунад."
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:652
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ Чизе нодуруст рафт. Лутфан саҳифаро аз нав бор кунед ва дубора кӯшиш кунед."
 
-#: allthethings/account/templates/account/donation.html:645
+#: allthethings/account/templates/account/donation.html:657
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Дастури қадам ба қадам"
 
-#: allthethings/account/templates/account/donation.html:647
+#: allthethings/account/templates/account/donation.html:659
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Баъзе аз қадамҳо ҳамёнҳои крипторо зикр мекунанд, аммо хавотир нашавед, шумо набояд чизе дар бораи крипто омӯзед."
 
-#: allthethings/account/templates/account/donation.html:649
+#: allthethings/account/templates/account/donation.html:661
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Почтаи электронии худро ворид кунед."
 
-#: allthethings/account/templates/account/donation.html:655
+#: allthethings/account/templates/account/donation.html:667
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Усули пардохти худро интихоб кунед."
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:673
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Усули пардохти худро боз интихоб кунед."
 
-#: allthethings/account/templates/account/donation.html:667
+#: allthethings/account/templates/account/donation.html:679
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Ҳамёни “Худидорашаванда”-ро интихоб кунед."
 
-#: allthethings/account/templates/account/donation.html:673
+#: allthethings/account/templates/account/donation.html:685
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. “Ман соҳиби онро тасдиқ мекунам”-ро клик кунед."
 
-#: allthethings/account/templates/account/donation.html:679
+#: allthethings/account/templates/account/donation.html:691
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Шумо бояд расиди почтаи электронӣ гиред. Лутфан онро ба мо фиристед, ва мо ҳарчи зудтар хайрияатонро тасдиқ мекунем."
 
-#: allthethings/account/templates/account/donation.html:684
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donate.wait"
 msgstr "Лутфан ҳадди ақал <span %(span_hours)s>ду соат</span> интизор шавед (ва ин саҳифаро навсозӣ кунед) пеш аз он ки бо мо тамос гиред."
 
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Агар шумо ҳангоми пардохт хато карда бошед, мо наметавонем баргардонидани маблағро анҷом диҳем, аммо кӯшиш мекунем онро дуруст кунем."
@@ -1992,6 +2067,10 @@ msgstr "Китоби комикс"
 msgid "common.md5_content_type_mapping.musical_score"
 msgstr "Нотаи мусиқӣ"
 
+#: allthethings/page/views.py:6192
+msgid "common.md5_content_type_mapping.audiobook"
+msgstr ""
+
 #: allthethings/page/views.py:6193
 #, fuzzy
 msgid "common.md5_content_type_mapping.other"
@@ -2033,7 +2112,7 @@ msgid "common.access_types_mapping.torrents_available"
 msgstr "Дар торентҳо мавҷуд аст"
 
 #: allthethings/page/templates/page/datasets.html:43
-#: allthethings/page/templates/page/datasets.html:256
+#: allthethings/page/templates/page/datasets.html:254
 #: allthethings/page/templates/page/datasets_lgrs.html:25
 #: allthethings/page/views.py:6211
 #, fuzzy
@@ -2041,7 +2120,7 @@ msgid "common.record_sources_mapping.lgrs"
 msgstr "Libgen.rs"
 
 #: allthethings/page/templates/page/datasets.html:80
-#: allthethings/page/templates/page/datasets.html:319
+#: allthethings/page/templates/page/datasets.html:317
 #: allthethings/page/templates/page/datasets_lgli.html:29
 #: allthethings/page/views.py:6212
 #, fuzzy
@@ -2049,7 +2128,7 @@ msgid "common.record_sources_mapping.lgli"
 msgstr "Libgen.li"
 
 #: allthethings/page/templates/page/datasets.html:98
-#: allthethings/page/templates/page/datasets.html:355
+#: allthethings/page/templates/page/datasets.html:353
 #: allthethings/page/templates/page/datasets_zlib.html:25
 #: allthethings/page/views.py:6213
 #, fuzzy
@@ -2067,14 +2146,14 @@ msgstr "Z-Library Chinese"
 msgid "common.record_sources_mapping.ia"
 msgstr "IA"
 
-#: allthethings/page/templates/page/datasets.html:544
+#: allthethings/page/templates/page/datasets.html:542
 #: allthethings/page/templates/page/datasets_isbndb.html:25
 #: allthethings/page/views.py:6216
 #, fuzzy
 msgid "common.record_sources_mapping.isbndb"
 msgstr "ISBNdb"
 
-#: allthethings/page/templates/page/datasets.html:528
+#: allthethings/page/templates/page/datasets.html:526
 #: allthethings/page/templates/page/datasets_ol.html:25
 #: allthethings/page/views.py:6217
 #, fuzzy
@@ -2087,7 +2166,7 @@ msgstr "OpenLibrary"
 msgid "common.record_sources_mapping.scihub"
 msgstr "Sci-Hub"
 
-#: allthethings/page/templates/page/datasets.html:563
+#: allthethings/page/templates/page/datasets.html:561
 #: allthethings/page/templates/page/datasets_oclc.html:25
 #: allthethings/page/views.py:6219
 #, fuzzy
@@ -2095,7 +2174,7 @@ msgid "common.record_sources_mapping.oclc"
 msgstr "OCLC (WorldCat)"
 
 #: allthethings/page/templates/page/datasets.html:148
-#: allthethings/page/templates/page/datasets.html:402
+#: allthethings/page/templates/page/datasets.html:400
 #: allthethings/page/templates/page/datasets_duxiu.html:25
 #: allthethings/page/views.py:6220
 #, fuzzy
@@ -2103,22 +2182,60 @@ msgid "common.record_sources_mapping.duxiu"
 msgstr "DuXiu 读秀"
 
 #: allthethings/page/templates/page/datasets.html:164
-#: allthethings/page/templates/page/datasets.html:436
+#: allthethings/page/templates/page/datasets.html:434
 #: allthethings/page/templates/page/datasets_upload.html:25
 #: allthethings/page/views.py:6221
 #, fuzzy
 msgid "common.record_sources_mapping.uploads"
 msgstr "Боркашҳо ба AA"
 
+#: allthethings/page/templates/page/datasets.html:180
 #: allthethings/page/views.py:6222
 #, fuzzy
 msgid "common.record_sources_mapping.magzdb"
 msgstr "MagzDB"
 
+#: allthethings/page/templates/page/datasets.html:196
 #: allthethings/page/views.py:6223
-#, fuzzy
-msgid "common.record_soruces_mapping.nexusstc"
-msgstr "Nexus/STC"
+msgid "common.record_sources_mapping.nexusstc"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets.html:580
+#: allthethings/page/views.py:6224
+msgid "common.record_sources_mapping.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6225
+msgid "common.record_sources_mapping.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6226
+msgid "common.record_sources_mapping.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6227
+msgid "common.record_sources_mapping.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6228
+msgid "common.record_sources_mapping.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6229
+msgid "common.record_sources_mapping.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6230
+msgid "common.record_sources_mapping.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6231
+msgid "common.record_sources_mapping.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6232
+msgid "common.record_sources_mapping.trantor"
+msgstr ""
 
 #: allthethings/page/views.py:6238
 #, fuzzy
@@ -2186,7 +2303,7 @@ msgstr "(бе рӯйхати интизорӣ, аммо метавонад хе�
 msgid "page.md5.box.download.temporarily_unavailable"
 msgstr "Зеркашии файл аз сервери шарик муваққатан дастрас нест."
 
-#: allthethings/page/views.py:6398 allthethings/page/views.py:6616
+#: allthethings/page/views.py:6398 allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub"
 msgstr "Sci-Hub: %(doi)s"
@@ -2223,407 +2340,471 @@ msgstr "Libgen.li"
 msgid "page.md5.box.download.libgen_ads"
 msgstr "рекламаҳои онҳо маълуманд, ки нармафзори зараровар доранд, бинобар ин аз блоки реклама истифода баред ё рекламаҳоро клик накунед"
 
-#: allthethings/page/views.py:6546
+#: allthethings/page/views.py:6545
 #, fuzzy
 msgid "page.md5.box.download.nexusstc"
 msgstr "Nexus/STC"
 
-#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
+#: allthethings/page/views.py:6545
+msgid "page.md5.box.download.nexusstc_unreliable"
+msgstr ""
+
+#: allthethings/page/views.py:6594 allthethings/page/views.py:6598
 #, fuzzy
 msgid "page.md5.box.download.zlib"
 msgstr "Z-Library"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor"
 msgstr "Z-Library дар Tor"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor_extra"
 msgstr "(ба браузери Tor лозим аст)"
 
-#: allthethings/page/views.py:6603
+#: allthethings/page/views.py:6602
 #, fuzzy
 msgid "page.md5.box.download.magzdb"
 msgstr "MagzDB"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6605
+msgid "page.md5.box.download.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.ia_borrow"
 msgstr "Қарз гирифтан аз Internet Archive"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.print_disabled_only"
 msgstr "(танҳо барои шахсони маъюб)"
 
-#: allthethings/page/views.py:6616
+#: allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub_maybe"
 msgstr "(DOI-и алоқаманд шояд дар Sci-Hub дастрас набошад)"
 
-#: allthethings/page/views.py:6619
+#: allthethings/page/views.py:6617
 #, fuzzy
 msgid "page.md5.box.download.manualslib"
 msgstr "ManualsLib"
 
-#: allthethings/page/views.py:6622
+#: allthethings/page/views.py:6620
 #, fuzzy
 msgid "page.md5.box.download.pubmed"
 msgstr "PubMed"
 
-#: allthethings/page/views.py:6629
+#: allthethings/page/views.py:6627
 #, fuzzy
 msgid "page.md5.box.download.collection"
 msgstr "маҷмӯа"
 
-#: allthethings/page/views.py:6630
+#: allthethings/page/views.py:6628
 #, fuzzy
 msgid "page.md5.box.download.torrent"
 msgstr "торрент"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.bulk_torrents"
 msgstr "Зеркашии яклухти торентҳо"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.experts_only"
 msgstr "(танҳо барои коршиносон)"
 
-#: allthethings/page/views.py:6643
+#: allthethings/page/views.py:6641
 #, fuzzy
 msgid "page.md5.box.download.aa_isbn"
 msgstr "Ҷустуҷӯ дар Архиви Анна барои ISBN"
 
-#: allthethings/page/views.py:6644
+#: allthethings/page/views.py:6642
 #, fuzzy
 msgid "page.md5.box.download.other_isbn"
 msgstr "Ҷустуҷӯ дар пойгоҳҳои дигари маълумот барои ISBN"
 
-#: allthethings/page/views.py:6645
+#: allthethings/page/views.py:6643
 #, fuzzy
 msgid "page.md5.box.download.original_isbndb"
 msgstr "Ёфтани сабти аслӣ дар ISBNdb"
 
-#: allthethings/page/views.py:6647
+#: allthethings/page/views.py:6645
 #, fuzzy
 msgid "page.md5.box.download.aa_openlib"
 msgstr "Ҷустуҷӯ дар Архиви Анна барои ID-и Open Library"
 
-#: allthethings/page/views.py:6648
+#: allthethings/page/views.py:6646
 #, fuzzy
 msgid "page.md5.box.download.original_openlib"
 msgstr "Ёфтани сабти аслӣ дар Open Library"
 
-#: allthethings/page/views.py:6650
+#: allthethings/page/views.py:6648
 #, fuzzy
 msgid "page.md5.box.download.aa_oclc"
 msgstr "Ҷустуҷӯ дар Архиви Анна барои рақами OCLC (WorldCat)"
 
-#: allthethings/page/views.py:6651
+#: allthethings/page/views.py:6649
 #, fuzzy
 msgid "page.md5.box.download.original_oclc"
 msgstr "Ёфтани сабти аслӣ дар WorldCat"
 
-#: allthethings/page/views.py:6653
+#: allthethings/page/views.py:6651
 #, fuzzy
 msgid "page.md5.box.download.aa_duxiu"
 msgstr "Ҷустуҷӯ дар Архиви Анна барои рақами SSID-и DuXiu"
 
-#: allthethings/page/views.py:6654
+#: allthethings/page/views.py:6652
 #, fuzzy
 msgid "page.md5.box.download.original_duxiu"
 msgstr "Ҷустуҷӯи дастӣ дар DuXiu"
 
-#: allthethings/page/views.py:6656
+#: allthethings/page/views.py:6654
 #, fuzzy
 msgid "page.md5.box.download.aa_cadal"
 msgstr "Ҷустуҷӯ дар Архиви Анна барои рақами SSNO-и CADAL"
 
-#: allthethings/page/views.py:6657
+#: allthethings/page/views.py:6655
 #, fuzzy
 msgid "page.md5.box.download.original_cadal"
 msgstr "Ёфтани сабти аслӣ дар CADAL"
 
-#: allthethings/page/views.py:6661
+#: allthethings/page/views.py:6659
 #, fuzzy
 msgid "page.md5.box.download.aa_dxid"
 msgstr "Ҷустуҷӯ дар Архиви Анна барои рақами DXID-и DuXiu"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "page.md5.box.download.scidb"
 msgstr "Архиви Анна 🧬 SciDB"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "common.md5.servers.no_browser_verification"
 msgstr "(тасдиқи браузер лозим нест)"
 
-#: allthethings/page/views.py:6721
+#: allthethings/page/views.py:6695
+msgid "page.md5.top_row.isbndb"
+msgstr ""
+
+#: allthethings/page/views.py:6696
+msgid "page.md5.top_row.oclc"
+msgstr ""
+
+#: allthethings/page/views.py:6697
+msgid "page.md5.top_row.duxiu_ssid"
+msgstr ""
+
+#: allthethings/page/views.py:6698
+msgid "page.md5.top_row.magzdb"
+msgstr ""
+
+#: allthethings/page/views.py:6699
+msgid "page.md5.top_row.nexusstc"
+msgstr ""
+
+#: allthethings/page/views.py:6700
+msgid "page.md5.top_row.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6701
+msgid "page.md5.top_row.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6702
+msgid "page.md5.top_row.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6703
+msgid "page.md5.top_row.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6704
+msgid "page.md5.top_row.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6705
+msgid "page.md5.top_row.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6706
+msgid "page.md5.top_row.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6707
+msgid "page.md5.top_row.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6708
+msgid "page.md5.top_row.trantor"
+msgstr ""
+
+#: allthethings/page/views.py:6718
 #, fuzzy
 msgid "page.md5.box.descr_title"
 msgstr "тавсиф"
 
-#: allthethings/page/views.py:6722
+#: allthethings/page/views.py:6719
 #, fuzzy
 msgid "page.md5.box.alternative_filename"
 msgstr "Номи файли алтернативӣ"
 
-#: allthethings/page/views.py:6723
+#: allthethings/page/views.py:6720
 #, fuzzy
 msgid "page.md5.box.alternative_title"
 msgstr "Унвони алтернативӣ"
 
-#: allthethings/page/views.py:6724
+#: allthethings/page/views.py:6721
 #, fuzzy
 msgid "page.md5.box.alternative_author"
 msgstr "Муаллифи алтернативӣ"
 
-#: allthethings/page/views.py:6725
+#: allthethings/page/views.py:6722
 #, fuzzy
 msgid "page.md5.box.alternative_publisher"
 msgstr "Нашркунандаи алтернативӣ"
 
-#: allthethings/page/views.py:6726
+#: allthethings/page/views.py:6723
 #, fuzzy
 msgid "page.md5.box.alternative_edition"
 msgstr "Нашри алтернативӣ"
 
-#: allthethings/page/views.py:6727
+#: allthethings/page/views.py:6724
 #, fuzzy
 msgid "page.md5.box.alternative_extension"
 msgstr "Тавсифи алтернативӣ"
 
-#: allthethings/page/views.py:6728
+#: allthethings/page/views.py:6725
 #, fuzzy
 msgid "page.md5.box.metadata_comments_title"
 msgstr "шарҳҳои метамаълумот"
 
-#: allthethings/page/views.py:6729
+#: allthethings/page/views.py:6726
 #, fuzzy
 msgid "page.md5.box.alternative_description"
 msgstr "Тавсифи алтернативӣ"
 
-#: allthethings/page/views.py:6730
+#: allthethings/page/views.py:6727
 #, fuzzy
 msgid "page.md5.box.date_open_sourced_title"
 msgstr "таърихи кушодашуда"
 
-#: allthethings/page/templates/page/aarecord.html:14
+#: allthethings/page/templates/page/aarecord.html:15
 #, fuzzy
 msgid "page.md5.header.scihub"
 msgstr "Файли Sci-Hub “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:18
+#: allthethings/page/templates/page/aarecord.html:19
 #, fuzzy
 msgid "page.md5.header.ia"
 msgstr "Файли Internet Archive Controlled Digital Lending “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:21
+#: allthethings/page/templates/page/aarecord.html:22
 #, fuzzy
 msgid "page.md5.header.ia_desc"
 msgstr "Ин сабти файли аз Internet Archive аст, на файли мустақиман зеркашишаванда. Шумо метавонед кӯшиш кунед, ки китобро қарз гиред (пайванди поён), ё ин URL-ро ҳангоми <a %(a_request)s>дархости файл</a> истифода баред."
 
-#: allthethings/page/templates/page/aarecord.html:22
-#: allthethings/page/templates/page/aarecord.html:46
+#: allthethings/page/templates/page/aarecord.html:23
+#: allthethings/page/templates/page/aarecord.html:47
 #, fuzzy
 msgid "page.md5.header.consider_upload"
 msgstr "Агар шумо ин файлро дошта бошед ва он ҳанӯз дар Архиви Анна дастрас нест, баррасӣ кунед <a %(a_request)s>боргузорӣ кардани онро</a>."
 
-#: allthethings/page/templates/page/aarecord.html:27
+#: allthethings/page/templates/page/aarecord.html:28
 #, fuzzy
 msgid "page.md5.header.meta_isbn"
 msgstr "Сабти метамаълумоти ISBNdb %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:29
+#: allthethings/page/templates/page/aarecord.html:30
 #, fuzzy
 msgid "page.md5.header.meta_openlib"
 msgstr "Сабти метамаълумоти Open Library %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:31
+#: allthethings/page/templates/page/aarecord.html:32
 #, fuzzy
 msgid "page.md5.header.meta_oclc"
 msgstr "Сабти метамаълумоти рақами OCLC (WorldCat) %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:33
+#: allthethings/page/templates/page/aarecord.html:34
 #, fuzzy
 msgid "page.md5.header.meta_duxiu_ssid"
 msgstr "Сабти метамаълумоти SSID DuXiu %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:35
+#: allthethings/page/templates/page/aarecord.html:36
 #, fuzzy
 msgid "page.md5.header.meta_cadal_ssno"
 msgstr "Сабти метамаълумоти SSNO CADAL %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:37
+#: allthethings/page/templates/page/aarecord.html:38
 #, fuzzy
 msgid "page.md5.header.meta_magzdb_id"
 msgstr "Сабти метамаълумоти MagzDB ID %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:39
+#: allthethings/page/templates/page/aarecord.html:40
 #, fuzzy
 msgid "page.md5.header.meta_nexus_stc_id"
 msgstr "Сабти метамаълумоти Nexus/STC ID %(id)s"
 
-#: allthethings/page/templates/page/aarecord.html:45
+#: allthethings/page/templates/page/aarecord.html:46
 #, fuzzy
 msgid "page.md5.header.meta_desc"
 msgstr "Ин сабти метамаълумот аст, на файли зеркашишаванда. Шумо метавонед ин URL-ро ҳангоми <a %(a_request)s>дархости файл</a> истифода баред."
 
-#: allthethings/page/templates/page/aarecord.html:56
+#: allthethings/page/templates/page/aarecord.html:57
 #, fuzzy
 msgid "page.md5.text.linked_metadata"
 msgstr "Маълумоти мета аз сабти пайвастшуда"
 
-#: allthethings/page/templates/page/aarecord.html:57
+#: allthethings/page/templates/page/aarecord.html:58
 #, fuzzy
 msgid "page.md5.text.linked_metadata_openlib"
 msgstr "Беҳтар кардани маълумоти мета дар Open Library"
 
-#: allthethings/page/templates/page/aarecord.html:60
+#: allthethings/page/templates/page/aarecord.html:61
 #, fuzzy
 msgid "page.md5.warning.multiple_links"
 msgstr "Огоҳӣ: сабтҳои пайвастшудаи бисёр:"
 
-#: allthethings/page/templates/page/aarecord.html:68
+#: allthethings/page/templates/page/aarecord.html:69
 #, fuzzy
 msgid "page.md5.header.improve_metadata"
 msgstr "Беҳтар кардани метамаълумот"
 
-#: allthethings/page/templates/page/aarecord.html:70
+#: allthethings/page/templates/page/aarecord.html:71
 #, fuzzy
 msgid "page.md5.text.report_quality"
 msgstr "Ҳисобот дар бораи сифати файл"
 
-#: allthethings/page/templates/page/aarecord.html:92
+#: allthethings/page/templates/page/aarecord.html:93
 #, fuzzy
 msgid "page.md5.codes.url"
 msgstr "URL:"
 
-#: allthethings/page/templates/page/aarecord.html:93
+#: allthethings/page/templates/page/aarecord.html:94
 #, fuzzy
 msgid "page.md5.codes.website"
 msgstr "Вебсайт:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_abbr"
 msgstr "AA:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_search"
 msgstr "Ҷустуҷӯи Архиви Анна барои “%(name)s”"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_explorer"
 msgstr "Кодҳои Explorer:"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_search"
 msgstr "Намоиш дар Кодҳои Explorer “%(name)s”"
 
-#: allthethings/page/templates/page/aarecord.html:114
+#: allthethings/page/templates/page/aarecord.html:115
 #, fuzzy
 msgid "page.md5.box.descr_read_more"
 msgstr "Бештар хонед…"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.downloads"
 msgstr "Зеркашиҳо (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.borrow"
 msgstr "Қарз гирифтан (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.explore_metadata"
 msgstr "Таҳқиқи метамаълумот (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:132
+#: allthethings/page/templates/page/aarecord.html:133
 #, fuzzy
 msgid "page.md5.tabs.lists"
 msgstr "Рӯйхатҳо (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:133
+#: allthethings/page/templates/page/aarecord.html:134
 #, fuzzy
 msgid "page.md5.tabs.stats"
 msgstr "Омор (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:135
+#: allthethings/page/templates/page/aarecord.html:136
 #, fuzzy
 msgid "common.tech_details"
 msgstr "Тафсилоти техникӣ"
 
-#: allthethings/page/templates/page/aarecord.html:204
+#: allthethings/page/templates/page/aarecord.html:205
 #, fuzzy
 msgid "page.md5.box.issues.text1"
 msgstr "<span class=\"font-bold\">❌ Ин файл метавонад мушкилот дошта бошад ва аз китобхонаи манбаъ пинҳон карда шудааст.</span> Баъзан ин бо дархости соҳиби ҳуқуқи муаллиф аст, баъзан аз сабаби мавҷуд будани алтернативаи беҳтар, аммо баъзан аз сабаби мушкилоти худи файл аст. Шояд зеркашӣ кардан хуб бошад, аммо мо тавсия медиҳем, ки аввал файли алтернативиро ҷустуҷӯ кунед. Тафсилоти бештар:"
 
-#: allthethings/page/templates/page/aarecord.html:209
+#: allthethings/page/templates/page/aarecord.html:210
 #, fuzzy
 msgid "page.md5.box.download.better_file"
 msgstr "Шояд версияи беҳтари ин файл дар %(link)s дастрас бошад"
 
-#: allthethings/page/templates/page/aarecord.html:214
+#: allthethings/page/templates/page/aarecord.html:215
 #, fuzzy
 msgid "page.md5.box.issues.text2"
 msgstr "Агар шумо ҳанӯз ҳам хоҳед, ки ин файлро зеркашӣ кунед, боварӣ ҳосил кунед, ки танҳо нармафзори боэътимод ва навсозишударо барои кушодани он истифода баред."
 
-#: allthethings/page/templates/page/aarecord.html:219
+#: allthethings/page/templates/page/aarecord.html:220
 #, fuzzy
 msgid "page.md5.box.download.header_fast_only"
 msgstr "🚀 Боргириҳои зуд"
 
-#: allthethings/page/templates/page/aarecord.html:221
+#: allthethings/page/templates/page/aarecord.html:222
 #, fuzzy
 msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Зеркашиҳои зуд</strong> Аъзо шавед <a %(a_membership)s>то дастгирии ҳифзи дарозмуддати китобҳо, мақолаҳо ва ғайра.</a> Барои нишон додани миннатдории мо барои дастгирии шумо, шумо зеркашиҳои зуд мегиред. ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:222
+#: allthethings/page/templates/page/aarecord.html:223
 #: allthethings/templates/layouts/index.html:215
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Агар шумо дар ин моҳ хайрия кунед, шумо <strong>ду баробар</strong> шумораи зеркашиҳои зудро мегиред."
 
-#: allthethings/page/templates/page/aarecord.html:224
+#: allthethings/page/templates/page/aarecord.html:225
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member"
 msgstr "<strong>🚀 Зеркашиҳои зуд</strong> Шумо имрӯз %(remaining)s доред. Ташаккур барои аъзо будан! ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:225
+#: allthethings/page/templates/page/aarecord.html:226
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_no_remaining_new"
 msgstr "<strong>🚀 Зеркашиҳои зуд</strong> Шумо имрӯз аз зеркашиҳои зуд тамом шудед."
 
-#: allthethings/page/templates/page/aarecord.html:226
+#: allthethings/page/templates/page/aarecord.html:227
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_valid_for"
 msgstr "<strong>🚀 Зеркашиҳои зуд</strong> Шумо ин файлро ба наздикӣ зеркашӣ кардед. Пайвандҳо барои муддате эътибор доранд."
 
-#: allthethings/page/templates/page/aarecord.html:230
-#: allthethings/page/templates/page/aarecord.html:244
-#: allthethings/page/templates/page/aarecord.html:278
+#: allthethings/page/templates/page/aarecord.html:231
+#: allthethings/page/templates/page/aarecord.html:245
+#: allthethings/page/templates/page/aarecord.html:279
 #, fuzzy
 msgid "page.md5.box.download.option"
 msgstr "Имконият #%(num)d: %(link)s %(extra)s"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/templates/layouts/index.html:258
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Дӯстро даъват кунед, ва ҳам шумо ва ҳам дӯсти шумо %(percentage)s%% бонуси зеркашиҳои зуд мегиред!"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/page/templates/page/home.html:25
 #: allthethings/page/templates/page/home.html:34
 #: allthethings/page/templates/page/home.html:71
@@ -2639,205 +2820,239 @@ msgstr "Дӯстро даъват кунед, ва ҳам шумо ва ҳам �
 msgid "layout.index.header.learn_more"
 msgstr "Маълумоти бештар…"
 
-#: allthethings/page/templates/page/aarecord.html:239
+#: allthethings/page/templates/page/aarecord.html:240
 #, fuzzy
 msgid "page.md5.box.download.header_slow_only"
 msgstr "🐢 Зеркашиҳои суст"
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.trusted_partners"
 msgstr "Аз шарикони боэътимод."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.slow_faq"
 msgstr "Маълумоти бештар дар <a %(a_slow)s>Саволҳои маъмул</a>."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "common.md5.servers.browser_verification_unlimited"
 msgstr "(шояд талаб кунад <a %(a_browser)s>тасдиқи браузер</a> — зеркашиҳои номаҳдуд!)"
 
-#: allthethings/page/templates/page/aarecord.html:256
+#: allthethings/page/templates/page/aarecord.html:257
 #, fuzzy
 msgid "page.md5.box.external_downloads"
 msgstr "нишон додани боргириҳои беруна"
 
-#: allthethings/page/templates/page/aarecord.html:257
+#: allthethings/page/templates/page/aarecord.html:258
 #, fuzzy
 msgid "page.md5.box.download.header_external"
 msgstr "Зеркашии беруна"
 
-#: allthethings/page/templates/page/aarecord.html:283
+#: allthethings/page/templates/page/aarecord.html:284
 #, fuzzy
 msgid "page.md5.box.download.no_found"
 msgstr "Зеркашиҳо ёфт нашуданд."
 
-#: allthethings/page/templates/page/aarecord.html:289
+#: allthethings/page/templates/page/aarecord.html:290
 #, fuzzy
 msgid "page.md5.box.download.no_issues_notice"
 msgstr "Ҳамаи имконоти зеркашӣ як файли якхела доранд ва бояд бехатар бошанд. Бо вуҷуди ин, ҳамеша ҳангоми зеркашии файлҳо аз интернет эҳтиёт бошед, махсусан аз сайтҳои беруна ба Анна’s Archive. Масалан, боварӣ ҳосил кунед, ки дастгоҳҳои шумо навсозӣ шудаанд."
 
-#: allthethings/page/templates/page/aarecord.html:301
-#, fuzzy
-msgid "page.md5.box.download.convert"
-msgstr "Табдил: истифодаи асбобҳои онлайнӣ барои табдил додани форматҳо. Масалан, барои табдил додани epub ба pdf, истифода баред <a %(a_cloudconvert)s>CloudConvert</a>."
+#: allthethings/page/templates/page/aarecord.html:296
+#: allthethings/page/templates/page/partner_download.html:71
+msgid "page.md5.box.download.dl_managers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:302
-#, fuzzy
-msgid "page.md5.box.download.kindle"
-msgstr "Kindle: файлро зеркашӣ кунед (pdf ё epub дастгирӣ мешаванд), пас <a %(a_kindle)s>онро ба Kindle фиристед</a> бо истифода аз веб, барнома ё почтаи электронӣ. Асбобҳои муфид: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+#: allthethings/page/templates/page/aarecord.html:297
+#: allthethings/page/templates/page/partner_download.html:72
+msgid "page.md5.box.download.dl_managers.links"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:303
-#, fuzzy
-msgid "page.md5.box.download.support_authors"
-msgstr "Муаллифонро дастгирӣ кунед: Агар ин ба шумо писанд ояд ва шумо метавонед онро харидорӣ кунед, аслиро харидорӣ кунед ё муаллифонро мустақиман дастгирӣ кунед."
+#: allthethings/page/templates/page/aarecord.html:305
+msgid "page.md5.box.download.readers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:304
-#, fuzzy
-msgid "page.md5.box.download.support_libraries"
-msgstr "Китобхонаҳоро дастгирӣ кунед: Агар ин дар китобхонаи маҳаллии шумо дастрас бошад, онро ройгон аз он ҷо қарз гиред."
+#: allthethings/page/templates/page/aarecord.html:306
+msgid "page.md5.box.download.readers.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:315
+msgid "page.md5.box.download.conversion"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:316
+msgid "page.md5.box.download.conversion.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:324
+msgid "page.md5.box.download.sendtokindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:325
+msgid "page.md5.box.download.sendtokindle.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:328
+msgid "page.md5.box.download.link.send_to_kindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:329
+msgid "page.md5.box.download.link.send_to_kobokindle"
+msgstr ""
 
 #: allthethings/page/templates/page/aarecord.html:334
+msgid "page.md5.box.download.support"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:335
+msgid "page.md5.box.download.support.authors"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:336
+msgid "page.md5.box.download.support.libraries"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:367
 #, fuzzy
 msgid "page.md5.quality.header"
 msgstr "Сифати файл"
 
-#: allthethings/page/templates/page/aarecord.html:337
+#: allthethings/page/templates/page/aarecord.html:370
 #, fuzzy
 msgid "page.md5.quality.report"
 msgstr "Ба ҷомеа кӯмак кунед ва дар бораи сифати ин файл хабар диҳед! 🙌"
 
-#: allthethings/page/templates/page/aarecord.html:341
+#: allthethings/page/templates/page/aarecord.html:374
 #, fuzzy
 msgid "page.md5.quality.report_issue"
 msgstr "Ҳисобот дар бораи мушкили файл (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.great_quality"
 msgstr "Сифати олиҷаноби файл (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.add_comment"
 msgstr "Илова кардани шарҳ (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:346
+#: allthethings/page/templates/page/aarecord.html:379
 #, fuzzy
 msgid "page.md5.quality.logged_out_login"
 msgstr "Лутфан <a %(a_login)s>ворид шавед</a>."
 
-#: allthethings/page/templates/page/aarecord.html:350
+#: allthethings/page/templates/page/aarecord.html:383
 #, fuzzy
 msgid "page.md5.quality.what_is_wrong"
 msgstr "Мушкилот бо ин файл чист?"
 
-#: allthethings/page/templates/page/aarecord.html:360
+#: allthethings/page/templates/page/aarecord.html:393
 #, fuzzy
 msgid "page.md5.quality.copyright"
 msgstr "Лутфан аз <a %(a_copyright)s>шакли даъвои DMCA / ҳуқуқи муаллиф</a> истифода баред."
 
-#: allthethings/page/templates/page/aarecord.html:365
+#: allthethings/page/templates/page/aarecord.html:398
 #, fuzzy
 msgid "page.md5.quality.describe_the_issue"
 msgstr "Тавсифи мушкилот (зарурӣ)"
 
-#: allthethings/page/templates/page/aarecord.html:366
+#: allthethings/page/templates/page/aarecord.html:399
 #, fuzzy
 msgid "page.md5.quality.issue_description"
 msgstr "Тавсифи мушкилот"
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text1"
 msgstr "MD5-и версияи беҳтари ин файл (агар мавҷуд бошад)."
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text2"
 msgstr "Инро пур кунед, агар файли дигаре мавҷуд бошад, ки ба ин файл наздик аст (ҳамон нашр, ҳамон тавсеаи файл агар ёфта тавонед), ки одамон бояд ба ҷои ин файл истифода баранд. Агар шумо версияи беҳтари ин файлро берун аз Архиви Анна донед, пас лутфан <a %(a_upload)s>онро бор кунед</a>."
 
-#: allthethings/page/templates/page/aarecord.html:373
+#: allthethings/page/templates/page/aarecord.html:406
 #, fuzzy
 msgid "page.md5.quality.better_md5.line1"
 msgstr "Шумо метавонед md5-ро аз URL гиред, масалан"
 
-#: allthethings/page/templates/page/aarecord.html:380
+#: allthethings/page/templates/page/aarecord.html:413
 #, fuzzy
 msgid "page.md5.quality.submit_report"
 msgstr "Ирсоли ҳисобот"
 
-#: allthethings/page/templates/page/aarecord.html:385
+#: allthethings/page/templates/page/aarecord.html:418
 #, fuzzy
 msgid "page.md5.quality.improve_the_metadata"
 msgstr "Омӯзед, ки чӣ тавр <a %(a_metadata)s>метамаълумотро барои ин файл худатон беҳтар кунед</a>."
 
-#: allthethings/page/templates/page/aarecord.html:389
+#: allthethings/page/templates/page/aarecord.html:422
 #, fuzzy
 msgid "page.md5.quality.report_thanks"
 msgstr "Ташаккур барои ирсоли гузориши шумо. Он дар ин саҳифа нишон дода мешавад ва инчунин аз ҷониби Анна дастӣ баррасӣ мешавад (то вақте ки мо системаи дурусти модератсия дошта бошем)."
 
-#: allthethings/page/templates/page/aarecord.html:390
+#: allthethings/page/templates/page/aarecord.html:423
 #, fuzzy
 msgid "page.md5.quality.report_error"
 msgstr "Чизе нодуруст рафт. Лутфан саҳифаро аз нав бор кунед ва боз кӯшиш кунед."
 
-#: allthethings/page/templates/page/aarecord.html:396
+#: allthethings/page/templates/page/aarecord.html:429
 #, fuzzy
 msgid "page.md5.quality.great.summary"
 msgstr "Агар ин файл сифати хуб дошта бошад, шумо метавонед дар бораи он дар ин ҷо ҳар чизе муҳокима кунед! Агар не, лутфан тугмаи “Мушкилоти файлро гузориш диҳед”-ро истифода баред."
 
-#: allthethings/page/templates/page/aarecord.html:398
+#: allthethings/page/templates/page/aarecord.html:431
 #, fuzzy
 msgid "page.md5.quality.loved_the_book"
 msgstr "Ман ин китобро дӯст доштам!"
 
-#: allthethings/page/templates/page/aarecord.html:400
+#: allthethings/page/templates/page/aarecord.html:433
 #, fuzzy
 msgid "page.md5.quality.submit_comment"
 msgstr "Шарҳ гузоред"
 
-#: allthethings/page/templates/page/aarecord.html:404
+#: allthethings/page/templates/page/aarecord.html:437
 #, fuzzy
 msgid "page.md5.quality.comment_thanks"
 msgstr "Шумо шарҳ гузоштед. Шояд як дақиқа лозим шавад, ки он нишон дода шавад."
 
-#: allthethings/page/templates/page/aarecord.html:405
+#: allthethings/page/templates/page/aarecord.html:438
 #, fuzzy
 msgid "page.md5.quality.comment_error"
 msgstr "Чизе нодуруст рафт. Лутфан саҳифаро аз нав бор кунед ва боз кӯшиш кунед."
 
-#: allthethings/page/templates/page/aarecord.html:415
-#: allthethings/page/templates/page/aarecord.html:416
+#: allthethings/page/templates/page/aarecord.html:448
+#: allthethings/page/templates/page/aarecord.html:449
 #: allthethings/page/templates/page/torrents.html:26
 #: allthethings/page/templates/page/torrents.html:27
 #, fuzzy
 msgid "common.english_only"
 msgstr "Матни поён дар забони англисӣ идома меёбад."
 
-#: allthethings/page/templates/page/aarecord.html:437
+#: allthethings/page/templates/page/aarecord.html:470
 #, fuzzy
 msgid "page.md5.text.stats.total_downloads"
 msgstr "Ҳамагӣ боргириҳо: %(total)s"
 
-#: allthethings/page/templates/page/aarecord.html:469
+#: allthethings/page/templates/page/aarecord.html:502
 #, fuzzy
 msgid "page.md5.text.md5_info.text1"
 msgstr "“Файли MD5” як ҳеш аст, ки аз мундариҷаи файл ҳисоб карда мешавад ва дар асоси он мундариҷа ба таври оқилона беназир аст. Ҳамаи китобхонаҳои сояафкан, ки мо дар ин ҷо индекс кардаем, асосан MD5-ҳоро барои муайян кардани файлҳо истифода мебаранд."
 
-#: allthethings/page/templates/page/aarecord.html:473
+#: allthethings/page/templates/page/aarecord.html:506
 #, fuzzy
 msgid "page.md5.text.md5_info.text2"
 msgstr "Файл метавонад дар якчанд китобхонаҳои сояафкан пайдо шавад. Барои маълумот дар бораи маҷмӯаҳои гуногуни маълумот, ки мо ҷамъоварӣ кардаем, ба <a %(a_datasets)s>саҳифаи Маҷмӯаҳои маълумот</a> нигаред."
 
-#: allthethings/page/templates/page/aarecord.html:477
+#: allthethings/page/templates/page/aarecord.html:510
 #, fuzzy
 msgid "page.md5.text.ia_info.text1"
 msgstr "Ин як файлест, ки аз ҷониби китобхонаи <a %(a_ia)s>Қарздиҳии рақамии назоратшавандаи IA</a> идора карда мешавад ва барои ҷустуҷӯ аз ҷониби Архиви Анна индекс карда шудааст. Барои маълумот дар бораи маҷмӯаҳои гуногуни маълумот, ки мо ҷамъоварӣ кардаем, ба <a %(a_datasets)s>саҳифаи Маҷмӯаҳои маълумот</a> нигаред."
 
-#: allthethings/page/templates/page/aarecord.html:482
+#: allthethings/page/templates/page/aarecord.html:515
 #, fuzzy
 msgid "page.md5.text.file_info.text1"
 msgstr "Барои маълумот дар бораи ин файли мушаххас, ба файли <a %(a_href)s>JSON</a> он нигаред."
@@ -3246,9 +3461,9 @@ msgstr "Бадеӣ ва ғайрибадеӣ"
 #: allthethings/page/templates/page/datasets.html:134
 #: allthethings/page/templates/page/datasets.html:151
 #: allthethings/page/templates/page/datasets.html:167
-#: allthethings/page/templates/page/datasets.html:184
-#: allthethings/page/templates/page/datasets.html:201
-#: allthethings/page/templates/page/datasets.html:218
+#: allthethings/page/templates/page/datasets.html:183
+#: allthethings/page/templates/page/datasets.html:199
+#: allthethings/page/templates/page/datasets.html:216
 #, fuzzy
 msgid "page.datasets.file"
 msgid_plural "page.datasets.files"
@@ -3287,7 +3502,7 @@ msgid "page.datasets.zlibzh.searchable"
 msgstr "Маҷмӯаи “Чинӣ” дар Z-Library ба назар мерасад, ки ҳамон маҷмӯаи DuXiu-и мост, аммо бо MD5-ҳои гуногун. Мо ин файлҳоро аз торентҳо хориҷ мекунем, то такрор нашаванд, аммо ҳанӯз ҳам онҳоро дар индекси ҷустуҷӯии худ нишон медиҳем."
 
 #: allthethings/page/templates/page/datasets.html:131
-#: allthethings/page/templates/page/datasets.html:371
+#: allthethings/page/templates/page/datasets.html:369
 #: allthethings/page/templates/page/datasets_ia.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.iacdl"
@@ -3298,43 +3513,43 @@ msgstr "Қарзгирии рақамии назоратшавандаи IA"
 msgid "page.datasets.iacdl.searchable"
 msgstr "98%%+ аз файлҳо ҷустуҷӯшавандаанд."
 
-#: allthethings/page/templates/page/datasets.html:214
+#: allthethings/page/templates/page/datasets.html:212
 #, fuzzy
 msgid "page.datasets.overview.total"
 msgstr "Ҳамагӣ"
 
-#: allthethings/page/templates/page/datasets.html:215
+#: allthethings/page/templates/page/datasets.html:213
 #, fuzzy
 msgid "page.datasets.overview.excluding_duplicates"
 msgstr "Исключая дубликатҳо"
 
-#: allthethings/page/templates/page/datasets.html:229
+#: allthethings/page/templates/page/datasets.html:227
 #, fuzzy
 msgid "page.datasets.overview.text4"
 msgstr "Азбаски китобхонаҳои сояӣ аксар вақт маълумотро аз якдигар ҳамоҳанг мекунанд, байни китобхонаҳо ҳамоҳангии зиёд вуҷуд дорад. Аз ин рӯ, рақамҳо ба ҳамагӣ мувофиқат намекунанд."
 
-#: allthethings/page/templates/page/datasets.html:233
+#: allthethings/page/templates/page/datasets.html:231
 #, fuzzy
 msgid "page.datasets.overview.text5"
 msgstr "Фоизи “оина ва тухмӣ аз ҷониби Архиви Анна” нишон медиҳад, ки чанд файлро мо худ оина мекунем. Мо ин файлҳоро ба таври оммавӣ тавассути торентҳо тухмӣ мекунем ва онҳоро тавассути вебсайтҳои шарик барои зеркашии мустақим дастрас мекунем."
 
-#: allthethings/page/templates/page/datasets.html:236
+#: allthethings/page/templates/page/datasets.html:234
 #, fuzzy
 msgid "page.datasets.source_libraries.title"
 msgstr "Китобхонаҳои манбаъ"
 
-#: allthethings/page/templates/page/datasets.html:239
+#: allthethings/page/templates/page/datasets.html:237
 #, fuzzy
 msgid "page.datasets.source_libraries.text1"
 msgstr "Баъзе китобхонаҳои манбаъ паҳнкунии оммавии маълумоти худро тавассути торентҳо тарғиб мекунанд, дар ҳоле ки дигарон маҷмӯаи худро ба осонӣ намедиҳанд. Дар ҳолати охирин, Архиви Анна кӯшиш мекунад, ки маҷмӯаҳои онҳоро ҷамъоварӣ кунад ва дастрас намояд (нигаред ба саҳифаи <a %(a_torrents)s>Торентҳо</a> мо). Ҳамчунин ҳолатҳои миёна вуҷуд доранд, масалан, вақте ки китобхонаҳои манбаъ омодаанд, ки маълумотро тақсим кунанд, аммо захираҳои кофӣ надоранд. Дар ин ҳолатҳо, мо низ кӯшиш мекунем, ки кӯмак расонем."
 
-#: allthethings/page/templates/page/datasets.html:243
+#: allthethings/page/templates/page/datasets.html:241
 #, fuzzy
 msgid "page.datasets.source_libraries.text2"
 msgstr "Дар зер шарҳи мухтасари тарзи ҳамкорӣ бо китобхонаҳои гуногуни манбаъ оварда шудааст."
 
-#: allthethings/page/templates/page/datasets.html:248
-#: allthethings/page/templates/page/datasets.html:520
+#: allthethings/page/templates/page/datasets.html:246
+#: allthethings/page/templates/page/datasets.html:518
 #: allthethings/page/templates/page/datasets_duxiu.html:17
 #: allthethings/page/templates/page/datasets_edsebk.html:17
 #: allthethings/page/templates/page/datasets_ia.html:17
@@ -3353,8 +3568,8 @@ msgstr "Дар зер шарҳи мухтасари тарзи ҳамкорӣ б
 msgid "page.datasets.sources.source.header"
 msgstr "Манбаъ"
 
-#: allthethings/page/templates/page/datasets.html:249
-#: allthethings/page/templates/page/datasets.html:521
+#: allthethings/page/templates/page/datasets.html:247
+#: allthethings/page/templates/page/datasets.html:519
 #: allthethings/page/templates/page/datasets_duxiu.html:18
 #: allthethings/page/templates/page/datasets_edsebk.html:18
 #: allthethings/page/templates/page/datasets_ia.html:18
@@ -3373,7 +3588,7 @@ msgstr "Манбаъ"
 msgid "page.datasets.sources.metadata.header"
 msgstr "Метамаълумот"
 
-#: allthethings/page/templates/page/datasets.html:250
+#: allthethings/page/templates/page/datasets.html:248
 #: allthethings/page/templates/page/datasets_duxiu.html:19
 #: allthethings/page/templates/page/datasets_ia.html:19
 #: allthethings/page/templates/page/datasets_isbn_ranges.html:18
@@ -3388,185 +3603,185 @@ msgstr "Метамаълумот"
 msgid "page.datasets.sources.files.header"
 msgstr "Файлҳо"
 
-#: allthethings/page/templates/page/datasets.html:261
+#: allthethings/page/templates/page/datasets.html:259
 #: allthethings/page/templates/page/datasets_lgrs.html:30
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.metadata1"
 msgstr "%(icon)s Боргирии ҳаррӯзаи <a %(dbdumps)s>маълумотҳои HTTP</a>"
 
-#: allthethings/page/templates/page/datasets.html:268
+#: allthethings/page/templates/page/datasets.html:266
 #: allthethings/page/templates/page/datasets_lgrs.html:37
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files1"
 msgstr "%(icon)s Торрентҳои автоматӣ барои <a %(nonfiction)s>ғайриадабӣ</a> ва <a %(fiction)s>адабӣ</a>"
 
-#: allthethings/page/templates/page/datasets.html:274
+#: allthethings/page/templates/page/datasets.html:272
 #: allthethings/page/templates/page/datasets_lgrs.html:43
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files2"
 msgstr "%(icon)s Бойгонии Анна коллексияи <a %(covers)s>торрентҳои муқоваи китоб</a>-ро идора мекунад"
 
-#: allthethings/page/templates/page/datasets.html:284
+#: allthethings/page/templates/page/datasets.html:282
 #: allthethings/page/templates/page/datasets_scihub.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.scihub_scimag"
 msgstr "Sci-Hub / Libgen “scimag”"
 
-#: allthethings/page/templates/page/datasets.html:289
+#: allthethings/page/templates/page/datasets.html:287
 #: allthethings/page/templates/page/datasets_scihub.html:30
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata1"
 msgstr "%(icon)s Sci-Hub аз соли 2021 файлҳои навро ях кардааст."
 
-#: allthethings/page/templates/page/datasets.html:292
+#: allthethings/page/templates/page/datasets.html:290
 #: allthethings/page/templates/page/datasets_scihub.html:33
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata2"
 msgstr "%(icon)s Маълумотҳои метамаълумот дастрас <a %(scihub1)s>ин ҷо</a> ва <a %(scihub2)s>ин ҷо</a>, инчунин ҳамчун қисми <a %(libgenli)s>базаи Libgen.li</a> (ки мо истифода мебарем)"
 
-#: allthethings/page/templates/page/datasets.html:301
+#: allthethings/page/templates/page/datasets.html:299
 #: allthethings/page/templates/page/datasets_scihub.html:42
 #, fuzzy
 msgid "page.datasets.sources.scihub.files1"
 msgstr "%(icon)s Торрентҳои маълумот дастрас <a %(scihub1)s>ин ҷо</a>, <a %(scihub2)s>ин ҷо</a>, ва <a %(libgenli)s>ин ҷо</a>"
 
-#: allthethings/page/templates/page/datasets.html:308
+#: allthethings/page/templates/page/datasets.html:306
 #: allthethings/page/templates/page/datasets_scihub.html:49
 #, fuzzy
 msgid "page.datasets.sources.scihub.files2"
 msgstr "%(icon)s Баъзе файлҳои нав ба “scimag”-и Libgen <a %(libgenrs)s>илова мешаванд</a>, аммо на он қадар зиёд, ки барои торентҳои нав кофӣ бошад"
 
-#: allthethings/page/templates/page/datasets.html:324
+#: allthethings/page/templates/page/datasets.html:322
 #: allthethings/page/templates/page/datasets_lgli.html:34
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.metadata1"
 msgstr "%(icon)s Дампҳои базаи HTTP ҳар семоҳа <a %(dbdumps)s>"
 
-#: allthethings/page/templates/page/datasets.html:331
+#: allthethings/page/templates/page/datasets.html:329
 #: allthethings/page/templates/page/datasets_lgli.html:41
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files1"
 msgstr "%(icon)s Торрентҳои ғайриадабӣ бо Libgen.rs тақсим карда мешаванд (ва дар <a %(libgenli)s>ин ҷо</a> оина карда мешаванд)."
 
-#: allthethings/page/templates/page/datasets.html:336
+#: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files2"
 msgstr "%(icon)s Коллексияи адабӣ фарқ кардааст, аммо ҳанӯз ҳам <a %(libgenli)s>торрентҳо</a> дорад, гарчанде ки аз соли 2022 навсозӣ нашудааст (мо зеркашиҳои мустақим дорем)."
 
-#: allthethings/page/templates/page/datasets.html:341
+#: allthethings/page/templates/page/datasets.html:339
 #: allthethings/page/templates/page/datasets_lgli.html:51
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files3"
 msgstr "%(icon)s Бойгонии Анна ва Libgen.li якҷоя коллексияҳои <a %(comics)s>китобҳои комикс</a> ва <a %(magazines)s>маҷаллаҳо</a>-ро идора мекунанд."
 
-#: allthethings/page/templates/page/datasets.html:347
+#: allthethings/page/templates/page/datasets.html:345
 #: allthethings/page/templates/page/datasets_lgli.html:57
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files4"
 msgstr "%(icon)s Барои коллексияҳои адабиёти русӣ ва ҳуҷҷатҳои стандартӣ торрентҳо нестанд."
 
-#: allthethings/page/templates/page/datasets.html:360
+#: allthethings/page/templates/page/datasets.html:358
 #: allthethings/page/templates/page/datasets_zlib.html:30
 #, fuzzy
 msgid "page.datasets.sources.zlib.metadata_and_files"
 msgstr "%(icon)s Бойгонии Анна ва Z-Library якҷоя коллексияи <a %(metadata)s>метамаълумоти Z-Library</a> ва <a %(files)s>файлҳои Z-Library</a>-ро идора мекунанд"
 
-#: allthethings/page/templates/page/datasets.html:376
+#: allthethings/page/templates/page/datasets.html:374
 #: allthethings/page/templates/page/datasets_ia.html:30
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata1"
 msgstr "%(icon)s Баъзе метамаълумот тавассути <a %(openlib)s>дампҳои базаи Open Library</a> дастрас аст, аммо онҳо тамоми коллексияи IA-ро фаро намегиранд"
 
-#: allthethings/page/templates/page/datasets.html:381
+#: allthethings/page/templates/page/datasets.html:379
 #: allthethings/page/templates/page/datasets_ia.html:35
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata2"
 msgstr "%(icon)s Дампҳои метамаълумоти осон дастрас барои тамоми коллексияи онҳо нестанд"
 
-#: allthethings/page/templates/page/datasets.html:384
+#: allthethings/page/templates/page/datasets.html:382
 #: allthethings/page/templates/page/datasets_ia.html:38
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata3"
 msgstr "%(icon)s Бойгонии Анна коллексияи <a %(ia)s>метамаълумоти IA</a>-ро идора мекунад"
 
-#: allthethings/page/templates/page/datasets.html:390
+#: allthethings/page/templates/page/datasets.html:388
 #: allthethings/page/templates/page/datasets_ia.html:44
 #, fuzzy
 msgid "page.datasets.sources.ia.files1"
 msgstr "%(icon)s Файлҳо танҳо барои қарзгирӣ дар асоси маҳдуд дастрасанд, бо маҳдудиятҳои гуногуни дастрасӣ"
 
-#: allthethings/page/templates/page/datasets.html:392
+#: allthethings/page/templates/page/datasets.html:390
 #: allthethings/page/templates/page/datasets_ia.html:46
 #, fuzzy
 msgid "page.datasets.sources.ia.files2"
 msgstr "%(icon)s Бойгонии Анна коллексияи <a %(ia)s>файлҳои IA</a>-ро идора мекунад"
 
-#: allthethings/page/templates/page/datasets.html:407
+#: allthethings/page/templates/page/datasets.html:405
 #: allthethings/page/templates/page/datasets_duxiu.html:30
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata1"
 msgstr "%(icon)s Базаҳои гуногуни метамаълумот дар интернети Чин пароканда шудаанд; гарчанде ки аксар вақт базаҳои пулакӣ мебошанд"
 
-#: allthethings/page/templates/page/datasets.html:410
+#: allthethings/page/templates/page/datasets.html:408
 #: allthethings/page/templates/page/datasets_duxiu.html:33
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata2"
 msgstr "%(icon)s Дампҳои метамаълумоти осон дастрас барои тамоми коллексияи онҳо нестанд."
 
-#: allthethings/page/templates/page/datasets.html:413
+#: allthethings/page/templates/page/datasets.html:411
 #: allthethings/page/templates/page/datasets_duxiu.html:36
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata3"
 msgstr "%(icon)s Бойгонии Анна коллексияи <a %(duxiu)s>метамаълумоти DuXiu</a>-ро идора мекунад"
 
-#: allthethings/page/templates/page/datasets.html:420
+#: allthethings/page/templates/page/datasets.html:418
 #: allthethings/page/templates/page/datasets_duxiu.html:43
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files1"
 msgstr "%(icon)s Базаҳои гуногуни файлҳо дар интернети Чин пароканда шудаанд; гарчанде ки аксар вақт базаҳои пулакӣ мебошанд."
 
-#: allthethings/page/templates/page/datasets.html:423
+#: allthethings/page/templates/page/datasets.html:421
 #: allthethings/page/templates/page/datasets_duxiu.html:46
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files2"
 msgstr "%(icon)s Аксари файлҳо танҳо бо ҳисоби премиум BaiduYun дастрасанд; суръати зеркашии суст."
 
-#: allthethings/page/templates/page/datasets.html:426
+#: allthethings/page/templates/page/datasets.html:424
 #: allthethings/page/templates/page/datasets_duxiu.html:49
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files3"
 msgstr "%(icon)s Бойгонии Анна маҷмӯаи <a %(duxiu)s>файлҳои DuXiu</a>-ро идора мекунад"
 
-#: allthethings/page/templates/page/datasets.html:441
+#: allthethings/page/templates/page/datasets.html:439
 #: allthethings/page/templates/page/datasets_upload.html:30
 #, fuzzy
 msgid "page.datasets.sources.uploads.metadata_and_files"
 msgstr "%(icon)s Манбаъҳои хурд ё якдафъаинаи гуногун. Мо одамонро ташвиқ мекунем, ки аввал ба дигар китобхонаҳои сояафкан бор кунанд, аммо баъзан одамон коллексияҳое доранд, ки барои дигарон хеле калонанд, ки онҳоро ҷудо кунанд, гарчанде ки он қадар калон нестанд, ки категорияи худро талаб кунанд."
 
-#: allthethings/page/templates/page/datasets.html:501
+#: allthethings/page/templates/page/datasets.html:499
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.title"
 msgstr "Манбаъҳои танҳо метамаълумот"
 
-#: allthethings/page/templates/page/datasets.html:504
+#: allthethings/page/templates/page/datasets.html:502
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Мо инчунин маҷмӯаи худро бо манбаъҳои танҳо метамаълумот ғанӣ мегардонем, ки онҳоро метавонем бо файлҳо мувофиқ кунем, масалан, бо истифода аз рақамҳои ISBN ё дигар майдонҳо. Дар зер шарҳи мухтасари онҳо оварда шудааст. Боз ҳам, баъзе аз ин манбаъҳо комилан кушодаанд, дар ҳоле ки барои дигарон мо бояд онҳоро ҷамъоварӣ кунем."
 
-#: allthethings/page/templates/page/datasets.html:508
+#: allthethings/page/templates/page/datasets.html:506
 #: allthethings/page/templates/page/faq.html:187
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
 msgstr "Илҳоми мо барои ҷамъоварии метамаълумот ҳадафи Аарон Сварц \"як саҳифаи веб барои ҳар як китобе, ки то ҳол нашр шудааст\" мебошад, ки барои он <a %(a_openlib)s>Open Library</a>-ро офарид. Ин лоиҳа хуб пеш рафтааст, аммо мавқеи беназири мо ба мо имкон медиҳад, ки метамаълумотеро ба даст орем, ки онҳо наметавонанд. Илҳоми дигар хоҳиши мо буд, ки <a %(a_blog)s>чанд китоб дар ҷаҳон вуҷуд дорад</a> донем, то мо ҳисоб кунем, ки чанд китобро ҳанӯз бояд наҷот диҳем."
 
-#: allthethings/page/templates/page/datasets.html:515
+#: allthethings/page/templates/page/datasets.html:513
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text2"
 msgstr "Дар ҷустуҷӯи метамаълумот, мо сабтҳои аслиро нишон медиҳем. Мо ягон муттаҳидсозии сабтҳоро анҷом намедиҳем."
 
-#: allthethings/page/templates/page/datasets.html:522
+#: allthethings/page/templates/page/datasets.html:520
 #: allthethings/page/templates/page/datasets_edsebk.html:19
 #: allthethings/page/templates/page/datasets_isbndb.html:19
 #: allthethings/page/templates/page/datasets_oclc.html:19
@@ -3575,49 +3790,49 @@ msgstr "Дар ҷустуҷӯи метамаълумот, мо сабтҳои а
 msgid "page.datasets.sources.last_updated.header"
 msgstr "Охирин навсозӣ"
 
-#: allthethings/page/templates/page/datasets.html:533
+#: allthethings/page/templates/page/datasets.html:531
 #: allthethings/page/templates/page/datasets_ol.html:30
 #, fuzzy
 msgid "page.datasets.sources.openlib.metadata1"
 msgstr "%(icon)s Боргирии ҳармоҳаи <a %(dbdumps)s>маълумотҳо</a>"
 
-#: allthethings/page/templates/page/datasets.html:549
-#: allthethings/page/templates/page/datasets.html:588
+#: allthethings/page/templates/page/datasets.html:547
+#: allthethings/page/templates/page/datasets.html:585
 #: allthethings/page/templates/page/datasets_edsebk.html:30
 #: allthethings/page/templates/page/datasets_isbndb.html:30
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata1"
 msgstr "%(icon)s Мустақиман дар ҳаҷми калон дастрас нест, танҳо дар ҳаҷми нимкалон паси пардохт"
 
-#: allthethings/page/templates/page/datasets.html:552
+#: allthethings/page/templates/page/datasets.html:550
 #: allthethings/page/templates/page/datasets_isbndb.html:33
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata2"
 msgstr "%(icon)s Архиви Анна маҷмӯаи <a %(isbndb)s>метамаълумоти ISBNdb</a>-ро идора мекунад"
 
-#: allthethings/page/templates/page/datasets.html:568
+#: allthethings/page/templates/page/datasets.html:566
 #: allthethings/page/templates/page/datasets_oclc.html:30
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata1"
 msgstr "%(icon)s Мустақиман дар ҳаҷми калон дастрас нест, аз скрапинг муҳофизат карда шудааст"
 
-#: allthethings/page/templates/page/datasets.html:571
+#: allthethings/page/templates/page/datasets.html:569
 #: allthethings/page/templates/page/datasets_oclc.html:33
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata2"
 msgstr "%(icon)s Архиви Анна маҷмӯаи <a %(worldcat)s>метамаълумоти OCLC (WorldCat)</a>-ро идора мекунад"
 
-#: allthethings/page/templates/page/datasets.html:606
+#: allthethings/page/templates/page/datasets.html:603
 #, fuzzy
 msgid "page.datasets.unified_database.title"
 msgstr "Базаи ягона"
 
-#: allthethings/page/templates/page/datasets.html:609
+#: allthethings/page/templates/page/datasets.html:606
 #, fuzzy
 msgid "page.datasets.unified_database.text1"
 msgstr "Мо ҳамаи манбаъҳои дар боло зикршударо ба як базаи ягона муттаҳид мекунем, ки барои хидматрасонии ин вебсайт истифода мебарем. Ин базаи ягона мустақиман дастрас нест, аммо азбаски Архиви Анна комилан манбаи кушода аст, онро ба осонӣ <a %(a_generated)s>эҷод</a> ё ҳамчун базаҳои ElasticSearch ва MariaDB <a %(a_downloaded)s>боргирӣ</a> кардан мумкин аст. Скриптҳои дар он саҳифа худкорона ҳамаи метамаълумоти заруриро аз манбаъҳои дар боло зикршуда боргирӣ мекунанд."
 
-#: allthethings/page/templates/page/datasets.html:617
+#: allthethings/page/templates/page/datasets.html:614
 #, fuzzy
 msgid "page.datasets.unified_database.text2"
 msgstr "Агар хоҳед, ки маълумоти моро пеш аз иҷрои ин скриптҳо дар маҳаллӣ омӯзед, метавонед ба файлҳои JSON-и мо назар кунед, ки ба файлҳои дигари JSON пайванд медиҳанд. <a %(a_json)s>Ин файл</a> нуқтаи ибтидоии хуб аст."
@@ -4022,15 +4237,23 @@ msgstr "Ҳикояи кӯтоҳи шохаҳои гуногуни Library Genesi
 msgid "page.datasets.libgen_rs.story.dot_fun"
 msgstr "Версияи “.fun” аз ҷониби асосгузори аслӣ сохта шудааст. Он ба фоидаи як версияи нав ва бештар тақсимшуда навсозӣ мешавад."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:58
+#: allthethings/page/templates/page/datasets_lgrs.html:59
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_rs"
 msgstr "Версияи “.rs” маълумоти хеле монанд дорад ва мунтазам коллексияи худро дар торентҳои яклухт нашр мекунад. Он тақрибан ба ду қисм тақсим шудааст: “адабиёт” ва “ғайриадабиёт”."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:62
+#: allthethings/page/templates/page/datasets_lgrs.html:60
+msgid "page.datasets.libgen_rs.story.rus_dot_ec"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets_lgrs.html:63
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_li"
 msgstr "<a %(a_li)s>Версияи “.li”</a> коллексияи бузурги комиксҳо, инчунин мундариҷаи дигарро дорад, ки ҳанӯз барои зеркашии яклухт тавассути торентҳо дастрас нест. Он коллексияи алоҳидаи торентҳои китобҳои адабиётӣ дорад ва метамаълумоти <a %(a_scihub)s>Sci-Hub</a>-ро дар пойгоҳи додаҳои худ дар бар мегирад."
+
+#: allthethings/page/templates/page/datasets_lgrs.html:64
+msgid "page.datasets.libgen_rs.story.dontexist"
+msgstr ""
 
 #: allthethings/page/templates/page/datasets_lgrs.html:66
 #, fuzzy
@@ -5066,12 +5289,28 @@ msgstr "Ман аз тарзи идоракунии ин лоиҳа нафрат
 msgid "page.faq.hate.text1"
 msgstr "Мо инчунин мехоҳем ба ҳама ёдрас кунем, ки тамоми коди мо ва маълумот комилан кушода аст. Ин барои лоиҳаҳои монанди мо беназир аст — мо аз ягон лоиҳаи дигаре, ки дорои каталоги васеъ ва комилан кушода бошад, огоҳ нестем. Мо ҳар касеро, ки фикр мекунад, ки лоиҳаи моро нодуруст идора мекунем, хуш омадед мегӯем, ки коди мо ва маълумотро гирифта, китобхонаи сояи худро таъсис диҳад! Мо инро аз рӯи кина ё чизе намегӯем — мо воқеан фикр мекунем, ки ин аҷиб мебуд, зеро он сатҳи ҳама чизро баланд мебардошт ва мероси инсониятро беҳтар ҳифз мекард."
 
-#: allthethings/page/templates/page/faq.html:323
+#: allthethings/page/templates/page/faq.html:310
+msgid "page.faq.uptime.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:313
+msgid "page.faq.uptime.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:316
+msgid "page.faq.anna.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:320
+msgid "page.faq.anna.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:324
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Кадом китобҳои дӯстдоштаи шумо ҳастанд?"
 
-#: allthethings/page/templates/page/faq.html:326
+#: allthethings/page/templates/page/faq.html:327
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Инҳоянд баъзе китобҳое, ки барои ҷаҳони китобхонаҳои соя ва ҳифзи рақамӣ аҳамияти махсус доранд:"
@@ -5640,17 +5879,17 @@ msgstr "Шумо метавонед интизор шавед, ки якчанд
 msgid "page.partner_download.li3"
 msgstr "Пас аз гирифтани пайванди зеркашӣ, он барои якчанд соат эътибор дорад."
 
-#: allthethings/page/templates/page/partner_download.html:105
+#: allthethings/page/templates/page/partner_download.html:108
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Огоҳӣ: дар 24 соати охир аз суроғаи IP-и шумо зеркашиҳои зиёде анҷом дода шудаанд. Зеркашиҳо метавонанд аз одат сусттар бошанд."
 
-#: allthethings/page/templates/page/partner_download.html:106
+#: allthethings/page/templates/page/partner_download.html:109
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Зеркашиҳо аз суроғаи IP-и шумо дар 24 соати охир: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:107
+#: allthethings/page/templates/page/partner_download.html:110
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Агар шумо VPN, пайвасти интернети муштарак ё ISP-и шумо IP-ҳоро тақсим кунад, ин огоҳӣ метавонад аз он сабаб бошад."
@@ -6561,3 +6800,19 @@ msgstr "Баъдӣ"
 
 #~ msgid "page.partner_download.download_now"
 #~ msgstr "Ҳозир зеркашӣ кунед"
+
+#~ msgid "common.record_soruces_mapping.nexusstc"
+#~ msgstr "Nexus/STC"
+
+#~ msgid "page.md5.box.download.convert"
+#~ msgstr "Табдил: истифодаи асбобҳои онлайнӣ барои табдил додани форматҳо. Масалан, барои табдил додани epub ба pdf, истифода баред <a %(a_cloudconvert)s>CloudConvert</a>."
+
+#~ msgid "page.md5.box.download.kindle"
+#~ msgstr "Kindle: файлро зеркашӣ кунед (pdf ё epub дастгирӣ мешаванд), пас <a %(a_kindle)s>онро ба Kindle фиристед</a> бо истифода аз веб, барнома ё почтаи электронӣ. Асбобҳои муфид: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+
+#~ msgid "page.md5.box.download.support_authors"
+#~ msgstr "Муаллифонро дастгирӣ кунед: Агар ин ба шумо писанд ояд ва шумо метавонед онро харидорӣ кунед, аслиро харидорӣ кунед ё муаллифонро мустақиман дастгирӣ кунед."
+
+#~ msgid "page.md5.box.download.support_libraries"
+#~ msgstr "Китобхонаҳоро дастгирӣ кунед: Агар ин дар китобхонаи маҳаллии шумо дастрас бошад, онро ройгон аз он ҷо қарз гиред."
+

@@ -1,19 +1,3 @@
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 18:35+0000\n"
-"PO-Revision-Date: 2024-10-03 18:35+0000\n"
-"Last-Translator: OpenAI <noreply-mt-openai@weblate.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: te\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
-
 #: allthethings/app.py:185
 #, fuzzy
 msgid "layout.index.invalid_request"
@@ -341,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "మమ్మల్ని సంప్రదించండి"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,520 +356,595 @@ msgstr "ధనిక వ్యక్తులు లేదా సంస్థల
 msgid "page.donate.header.large_donations"
 msgstr "$5000 కంటే ఎక్కువ విరాళాల కోసం దయచేసి మమ్మల్ని నేరుగా %(email)sలో సంప్రదించండి."
 
-#: allthethings/account/templates/account/donate.html:120
+#: allthethings/account/templates/account/donate.html:116
+msgid "page.donate.header.recurring"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:118
 #, fuzzy
 msgid "page.donate.without_membership"
 msgstr "సభ్యత్వం లేకుండా విరాళం (ఏదైనా మొత్తం) ఇవ్వాలనుకుంటే, ఈ Monero (XMR) చిరునామాను ఉపయోగించండి: %(address)s."
 
-#: allthethings/account/templates/account/donate.html:125
+#: allthethings/account/templates/account/donate.html:123
 #, fuzzy
 msgid "page.donate.payment.select_method"
 msgstr "దయచేసి చెల్లింపు పద్ధతిని ఎంచుకోండి."
 
-#: allthethings/account/templates/account/donate.html:134
-#: allthethings/account/templates/account/donate.html:420
+#: allthethings/account/templates/account/donate.html:132
+#: allthethings/account/templates/account/donate.html:421
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:140
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:138
+#: allthethings/account/templates/account/donate.html:359
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "అమెజాన్ గిఫ్ట్ కార్డ్"
 
-#: allthethings/account/templates/account/donate.html:143
-#: allthethings/account/templates/account/donate.html:153
-#: allthethings/account/templates/account/donate.html:154
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:139
+msgid "page.donate.payment.buttons.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:140
+#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:151
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "క్రిప్టో %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:145
+#: allthethings/account/templates/account/donate.html:142
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit"
 msgstr "క్రెడిట్/డెబిట్ కార్డ్"
 
-#: allthethings/account/templates/account/donate.html:146
+#: allthethings/account/templates/account/donate.html:143
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal"
 msgstr "PayPal (US) %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:147
+#: allthethings/account/templates/account/donate.html:144
 #, fuzzy
 msgid "page.donate.payment.buttons.paypalreg"
 msgstr "పేపాల్ (సాధారణ)"
 
-#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:145
 #, fuzzy
 msgid "page.donate.payment.buttons.givebutter"
 msgstr "కార్డ్ / పేపాల్ / వెన్మో"
 
-#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:147
 #, fuzzy
 msgid "page.donate.payment.buttons.bmc"
 msgstr "క్రెడిట్/డెబిట్/ఆపిల్/గూగుల్ (BMC)"
 
-#: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:168
-#: allthethings/account/templates/account/donate.html:178
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:362
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "అలిపే"
 
-#: allthethings/account/templates/account/donate.html:152
+#: allthethings/account/templates/account/donate.html:149
 #, fuzzy
 msgid "page.donate.payment.buttons.pix"
 msgstr "Pix (Brazil)"
 
-#: allthethings/account/templates/account/donate.html:156
+#: allthethings/account/templates/account/donate.html:153
 #, fuzzy
 msgid "page.donate.payment.buttons.cashapp"
 msgstr "క్యాష్ యాప్"
 
-#: allthethings/account/templates/account/donate.html:157
+#: allthethings/account/templates/account/donate.html:154
 #, fuzzy
 msgid "page.donate.payment.buttons.revolut"
 msgstr "రెవోలుట్"
 
-#: allthethings/account/templates/account/donate.html:158
+#: allthethings/account/templates/account/donate.html:155
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal_plain"
 msgstr "పేపాల్"
 
-#: allthethings/account/templates/account/donate.html:161
+#: allthethings/account/templates/account/donate.html:156
+msgid "page.donate.payment.buttons.bank_card"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:157
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit_backup"
 msgstr "క్రెడిట్/డెబిట్ కార్డ్ (బ్యాకప్)"
 
-#: allthethings/account/templates/account/donate.html:162
+#: allthethings/account/templates/account/donate.html:158
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit2"
 msgstr "క్రెడిట్/డెబిట్ కార్డ్ 2"
 
-#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:160
 #, fuzzy
 msgid "page.donate.payment.buttons.binance"
 msgstr "బైనాన్స్"
 
-#: allthethings/account/templates/account/donate.html:169
-#: allthethings/account/templates/account/donate.html:180
-#: allthethings/account/templates/account/donate.html:189
-#: allthethings/account/templates/account/donate.html:196
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:165
+#: allthethings/account/templates/account/donate.html:176
+#: allthethings/account/templates/account/donate.html:185
+#: allthethings/account/templates/account/donate.html:192
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "అలిపే 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:171
-#: allthethings/account/templates/account/donate.html:179
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "వీచాట్"
 
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(తాత్కాలికంగా అందుబాటులో లేదు)"
 
-#: allthethings/account/templates/account/donate.html:219
+#: allthethings/account/templates/account/donate.html:215
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "క్రిప్టోతో మీరు BTC, ETH, XMR, మరియు SOL ఉపయోగించి విరాళం ఇవ్వవచ్చు. మీరు ఇప్పటికే క్రిప్టోకరెన్సీతో పరిచయం ఉన్నట్లయితే ఈ ఎంపికను ఉపయోగించండి."
 
-#: allthethings/account/templates/account/donate.html:223
+#: allthethings/account/templates/account/donate.html:219
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "క్రిప్టోతో మీరు BTC, ETH, XMR, మరియు మరిన్ని ఉపయోగించి విరాళం ఇవ్వవచ్చు."
 
-#: allthethings/account/templates/account/donate.html:226
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:222
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "మీరు మొదటిసారి క్రిప్టో ఉపయోగిస్తుంటే, బిట్‌కాయిన్ (మూల మరియు ఎక్కువగా ఉపయోగించే క్రిప్టోకరెన్సీ) కొనుగోలు చేయడానికి మరియు విరాళం ఇవ్వడానికి %(options)s ఉపయోగించాలని మేము సూచిస్తున్నాము."
 
-#: allthethings/account/templates/account/donate.html:229
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "బైనాన్స్"
 
-#: allthethings/account/templates/account/donate.html:230
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "కోయిన్‌బేస్"
 
-#: allthethings/account/templates/account/donate.html:231
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:227
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "క్రాకెన్"
 
-#: allthethings/account/templates/account/donate.html:239
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "PayPal US ఉపయోగించి విరాళం ఇవ్వడానికి, మేము PayPal క్రిప్టోను ఉపయోగించబోతున్నాము, ఇది మాకు అనామకంగా ఉండటానికి అనుమతిస్తుంది. ఈ పద్ధతిని ఉపయోగించి విరాళం ఇవ్వడం ఎలా చేయాలో నేర్చుకోవడానికి మీరు సమయం కేటాయించినందుకు మేము కృతజ్ఞతలు తెలుపుతున్నాము, ఎందుకంటే ఇది మాకు చాలా సహాయపడుతుంది."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:236
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "PayPal ఉపయోగించి విరాళం ఇవ్వండి."
 
-#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "క్యాష్ యాప్ ఉపయోగించి విరాళం ఇవ్వండి."
 
-#: allthethings/account/templates/account/donate.html:247
+#: allthethings/account/templates/account/donate.html:243
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "మీ వద్ద క్యాష్ యాప్ ఉంటే, ఇది విరాళం ఇవ్వడానికి సులభమైన మార్గం!"
 
-#: allthethings/account/templates/account/donate.html:250
-#: allthethings/account/templates/account/donate.html:260
+#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:256
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "%(amount)s కంటే తక్కువ లావాదేవీలకు, క్యాష్ యాప్ %(fee)s ఫీజు వసూలు చేయవచ్చు. %(amount)s లేదా అంతకంటే ఎక్కువకు, ఇది ఉచితం!"
 
-#: allthethings/account/templates/account/donate.html:256
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "రెవోలుట్ ఉపయోగించి విరాళం ఇవ్వండి."
 
-#: allthethings/account/templates/account/donate.html:257
+#: allthethings/account/templates/account/donate.html:253
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "మీ వద్ద రెవోలుట్ ఉంటే, విరాళం ఇవ్వడానికి ఇది సులభమైన మార్గం!"
 
-#: allthethings/account/templates/account/donate.html:266
-#: allthethings/account/templates/account/donate.html:320
+#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:316
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "క్రెడిట్ లేదా డెబిట్ కార్డ్‌తో విరాళం ఇవ్వండి."
 
-#: allthethings/account/templates/account/donate.html:267
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "గూగుల్ పే మరియు ఆపిల్ పే కూడా పనిచేయవచ్చు."
 
-#: allthethings/account/templates/account/donate.html:268
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "చిన్న విరాళాల కోసం క్రెడిట్ కార్డ్ ఫీజులు మా %(discount)s%% డిస్కౌంట్‌ను తొలగించవచ్చు, కాబట్టి మేము పొడవైన సభ్యత్వాలను సిఫారసు చేస్తున్నాము."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:265
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "చిన్న విరాళాల కోసం ఫీజులు ఎక్కువగా ఉంటాయి, కాబట్టి మేము పొడవైన సభ్యత్వాలను సిఫారసు చేస్తున్నాము."
 
-#: allthethings/account/templates/account/donate.html:275
+#: allthethings/account/templates/account/donate.html:271
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Binance తో, మీరు క్రెడిట్/డెబిట్ కార్డ్ లేదా బ్యాంక్ ఖాతాతో Bitcoin కొనుగోలు చేసి, ఆ Bitcoin ను మాకు విరాళంగా ఇవ్వవచ్చు. ఈ విధంగా మేము మీ విరాళాన్ని స్వీకరించేటప్పుడు సురక్షితంగా మరియు గోప్యంగా ఉండవచ్చు."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:275
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance దాదాపు ప్రతి దేశంలో అందుబాటులో ఉంది మరియు ఎక్కువ బ్యాంకులు మరియు క్రెడిట్/డెబిట్ కార్డులను మద్దతు ఇస్తుంది. ఇది ప్రస్తుతం మా ప్రధాన సిఫారసు. ఈ పద్ధతిని ఉపయోగించి విరాళం ఇవ్వడం ఎలా చేయాలో నేర్చుకోవడానికి మీరు సమయం కేటాయించినందుకు మేము కృతజ్ఞతలు తెలుపుతున్నాము, ఎందుకంటే ఇది మాకు చాలా సహాయపడుతుంది."
 
-#: allthethings/account/templates/account/donate.html:285
+#: allthethings/account/templates/account/donate.html:281
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "మీ సాధారణ పేపాల్ ఖాతా ఉపయోగించి విరాళం ఇవ్వండి."
 
-#: allthethings/account/templates/account/donate.html:291
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:287
+#: allthethings/account/templates/account/donate.html:293
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Alipay లేదా WeChat ఉపయోగించి విరాళం ఇవ్వండి. మీరు తదుపరి పేజీలో వీటిలో ఎంచుకోవచ్చు."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:299
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "క్రెడిట్/డెబిట్ కార్డ్, PayPal, లేదా Venmo ఉపయోగించి విరాళం ఇవ్వండి. మీరు తదుపరి పేజీలో వీటిలో ఎంచుకోవచ్చు."
 
-#: allthethings/account/templates/account/donate.html:309
+#: allthethings/account/templates/account/donate.html:305
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Amazon గిఫ్ట్ కార్డ్ ఉపయోగించి విరాళం ఇవ్వండి."
 
-#: allthethings/account/templates/account/donate.html:310
+#: allthethings/account/templates/account/donate.html:306
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "మా రిసెల్లర్లు అంగీకరించిన మొత్తాలకు మేము రౌండ్ చేయాల్సిన అవసరం ఉందని గమనించండి (కనీసం %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:310
 #: allthethings/account/templates/account/donation.html:371
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>ముఖ్యం:</strong> మేము కేవలం Amazon.com ను మాత్రమే మద్దతు ఇస్తాము, ఇతర Amazon వెబ్‌సైట్‌లను కాదు. ఉదాహరణకు, .de, .co.uk, .ca, మద్దతు ఇవ్వబడవు."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:317
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "ఈ పద్ధతి మధ్యవర్తి మార్పిడి కోసం క్రిప్టోకరెన్సీ ప్రొవైడర్‌ను ఉపయోగిస్తుంది. ఇది కొంచెం గందరగోళంగా ఉండవచ్చు, కాబట్టి ఇతర చెల్లింపు పద్ధతులు పనిచేయకపోతే మాత్రమే ఈ పద్ధతిని ఉపయోగించండి. ఇది అన్ని దేశాలలో కూడా పనిచేయదు."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:323
+msgid "page.donate.payment.desc.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:327
+#: allthethings/account/templates/account/donation.html:508
+msgid "page.donate.payment.desc.bank_card_app.step1.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:331
+#: allthethings/account/templates/account/donation.html:512
+msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:335
+#: allthethings/account/templates/account/donation.html:516
+msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:517
+msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:521
+msgid "page.donate.payment.desc.bank_card_app.step2.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:348
+#: allthethings/account/templates/account/donation.html:529
+msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:349
+#: allthethings/account/templates/account/donation.html:530
+msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:355
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "బ్యాంకులు మాతో పని చేయడానికి ఇష్టపడకపోవడంతో, మేము క్రెడిట్/డెబిట్ కార్డులను నేరుగా మద్దతు ఇవ్వలేము. ☹ అయితే, ఇతర చెల్లింపు పద్ధతులను ఉపయోగించి క్రెడిట్/డెబిట్ కార్డులను ఉపయోగించడానికి అనేక మార్గాలు ఉన్నాయి:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "మీ క్రెడిట్/డెబిట్ కార్డ్ ఉపయోగించి మాకు Amazon.com గిఫ్ట్ కార్డులను పంపండి."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:363
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "అలిపే అంతర్జాతీయ క్రెడిట్/డెబిట్ కార్డులను మద్దతు ఇస్తుంది. మరిన్ని వివరాల కోసం <a %(a_alipay)s>ఈ గైడ్</a> చూడండి."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:366
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) అంతర్జాతీయ క్రెడిట్/డెబిట్ కార్డులను మద్దతు ఇస్తుంది. WeChat యాప్‌లో, “Me => Services => Wallet => Add a Card” కు వెళ్లండి. మీరు అది చూడకపోతే, “Me => Settings => General => Tools => Weixin Pay => Enable” ఉపయోగించి దాన్ని ప్రారంభించండి."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:369
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "మీరు క్రెడిట్/డెబిట్ కార్డులను ఉపయోగించి క్రిప్టో కొనవచ్చు."
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:379
+msgid "page.donate.payment.desc.crypto_express_services"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:381
+msgid "page.donation.ccexp.crypto_express_services.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:382
+msgid "page.donation.ccexp.crypto_express_services.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:385
+msgid "page.donation.ccexp.crypto_express_services.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:386
+msgid "page.donation.ccexp.crypto_express_services.4"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:389
 #: allthethings/account/templates/account/donation.html:302
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(కనీసం: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:390
 #: allthethings/account/templates/account/donation.html:303
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(కనీసం: %(minimum)s దేశాన్ని బట్టి, మొదటి లావాదేవీకి ఎలాంటి ధృవీకరణ అవసరం లేదు)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:391
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(కనీసం: %(minimum)s, మొదటి లావాదేవీకి ఎలాంటి ధృవీకరణ అవసరం లేదు)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:392
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(కనీసం: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:393
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(కనీసం: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:393
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(కనీసం: %(minimum)s, మొదటి లావాదేవీకి ఎలాంటి ధృవీకరణ అవసరం లేదు)"
 
-#: allthethings/account/templates/account/donate.html:395
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "ఈ సమాచారం ఏదైనా పాతదైతే, దయచేసి మాకు ఇమెయిల్ చేయండి."
 
-#: allthethings/account/templates/account/donate.html:402
+#: allthethings/account/templates/account/donate.html:403
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "క్రెడిట్ కార్డులు, డెబిట్ కార్డులు, Apple Pay, మరియు Google Pay కోసం, మేము “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>) ను ఉపయోగిస్తాము. వారి వ్యవస్థలో, ఒక “coffee” $5 కు సమానం, కాబట్టి మీ విరాళం 5 యొక్క సమీప గుణకానికి రౌండ్ చేయబడుతుంది."
 
-#: allthethings/account/templates/account/donate.html:409
+#: allthethings/account/templates/account/donate.html:410
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "మీరు ఎంత కాలం సభ్యత్వాన్ని కొనసాగించాలనుకుంటున్నారో ఎంచుకోండి."
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:427
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 నెల"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:428
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 నెలలు"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:429
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 నెలలు"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:430
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 నెలలు"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:431
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 నెలలు"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 నెలలు"
 
-#: allthethings/account/templates/account/donate.html:432
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 నెలలు"
 
-#: allthethings/account/templates/account/donate.html:435
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>తగ్గింపుల తర్వాత <span %(span_discount)s></span></div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:442
+#: allthethings/account/templates/account/donate.html:443
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "ఈ చెల్లింపు విధానం కనీసం %(amount)s అవసరం. దయచేసి వేరే వ్యవధి లేదా చెల్లింపు విధానాన్ని ఎంచుకోండి."
 
-#: allthethings/account/templates/account/donate.html:443
-#: allthethings/account/templates/account/donate.html:447
+#: allthethings/account/templates/account/donate.html:444
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "దానం చేయండి"
 
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:447
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "ఈ చెల్లింపు విధానం గరిష్టంగా %(amount)s మాత్రమే అనుమతిస్తుంది. దయచేసి వేరే వ్యవధి లేదా చెల్లింపు విధానాన్ని ఎంచుకోండి."
 
-#: allthethings/account/templates/account/donate.html:453
+#: allthethings/account/templates/account/donate.html:454
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "సభ్యుడిగా మారడానికి, దయచేసి <a %(a_login)s>లాగిన్ చేయండి లేదా నమోదు చేసుకోండి</a>. మీ మద్దతుకు ధన్యవాదాలు!"
 
-#: allthethings/account/templates/account/donate.html:460
+#: allthethings/account/templates/account/donate.html:461
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "మీకు ఇష్టమైన క్రిప్టో కాయిన్ ఎంచుకోండి:"
 
-#: allthethings/account/templates/account/donate.html:465
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(తక్కువ కనీస మొత్తం)"
 
-#: allthethings/account/templates/account/donate.html:480
+#: allthethings/account/templates/account/donate.html:469
+msgid "page.donate.coinbase_eth"
+msgstr ""
+
 #: allthethings/account/templates/account/donate.html:481
-#: allthethings/account/templates/account/donate.html:485
-#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:482
+#: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:488
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(హెచ్చరిక: అధిక కనీస మొత్తం)"
 
-#: allthethings/account/templates/account/donate.html:496
+#: allthethings/account/templates/account/donate.html:497
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "ఈ విరాళాన్ని నిర్ధారించడానికి దానం బటన్‌ను క్లిక్ చేయండి."
 
-#: allthethings/account/templates/account/donate.html:504
+#: allthethings/account/templates/account/donate.html:505
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "దానం చేయండి <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:509
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "మీరు చెకౌట్ సమయంలో విరాళాన్ని ఇంకా రద్దు చేయవచ్చు."
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:514
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ విరాళం పేజీకి మళ్లించబడుతోంది…"
 
-#: allthethings/account/templates/account/donate.html:514
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ ఏదో తప్పు జరిగింది. దయచేసి పేజీని రీలోడ్ చేసి మళ్లీ ప్రయత్నించండి."
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:569
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:569
+#: allthethings/account/templates/account/donate.html:570
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / నెల"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:573
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "1 నెల కోసం"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "3 నెలల"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "6 నెలల"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:576
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "12 నెలల"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:577
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "24 నెలల"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "48 నెలల"
 
-#: allthethings/account/templates/account/donate.html:578
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "96 నెలల"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "1 నెల “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "3 నెలల “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:585
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "6 నెలల “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:586
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "12 నెలల “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:587
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "24 నెలల “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "48 నెలల “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:588
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "96 నెలల “%(tier_name)s”"
@@ -1006,8 +1065,8 @@ msgstr "<strong>ముఖ్యమైన గమనిక:</strong> క్రి�
 #: allthethings/account/templates/account/donation.html:450
 #: allthethings/account/templates/account/donation.html:467
 #: allthethings/account/templates/account/donation.html:502
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:600
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "ఈ విరాళం గడువు ముగిసింది. దయచేసి రద్దు చేసి కొత్తదాన్ని సృష్టించండి."
@@ -1087,8 +1146,8 @@ msgstr "క్రింది దశల వారీ మార్గదర్శ
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:381
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "స్థితి:"
@@ -1100,8 +1159,8 @@ msgstr "స్థితి:"
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "నిర్ధారణ కోసం వేచి ఉంది (తాజా చేయడానికి పేజీని రిఫ్రెష్ చేయండి)…"
@@ -1113,8 +1172,8 @@ msgstr "నిర్ధారణ కోసం వేచి ఉంది (తా�
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "బదిలీ కోసం వేచి ఉంది (తాజా చేయడానికి పేజీని రిఫ్రెష్ చేయండి)…"
@@ -1126,8 +1185,8 @@ msgstr "బదిలీ కోసం వేచి ఉంది (తాజా చ
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "మిగిలిన సమయం:"
@@ -1139,8 +1198,8 @@ msgstr "మిగిలిన సమయం:"
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(మీరు రద్దు చేసి కొత్త విరాళం సృష్టించాలనుకోవచ్చు)"
@@ -1152,8 +1211,8 @@ msgstr "(మీరు రద్దు చేసి కొత్త విరా�
 #: allthethings/account/templates/account/donation.html:326
 #: allthethings/account/templates/account/donation.html:355
 #: allthethings/account/templates/account/donation.html:492
-#: allthethings/account/templates/account/donation.html:552
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:564
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "టైమర్‌ను రీసెట్ చేయడానికి, కేవలం కొత్త విరాళం సృష్టించండి."
@@ -1166,14 +1225,14 @@ msgstr "టైమర్‌ను రీసెట్ చేయడానికి,
 #: allthethings/account/templates/account/donation.html:359
 #: allthethings/account/templates/account/donation.html:385
 #: allthethings/account/templates/account/donation.html:496
-#: allthethings/account/templates/account/donation.html:556
-#: allthethings/account/templates/account/donation.html:583
+#: allthethings/account/templates/account/donation.html:568
+#: allthethings/account/templates/account/donation.html:595
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "స్థితిని నవీకరించండి"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:683
+#: allthethings/account/templates/account/donation.html:695
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "మీరు ఏదైనా సమస్యలను ఎదుర్కొంటే, దయచేసి %(email)s వద్ద మమ్మల్ని సంప్రదించండి మరియు వీలైనంత సమాచారం (స్క్రీన్‌షాట్లు వంటి) చేర్చండి."
@@ -1369,8 +1428,8 @@ msgstr "ఉదాహరణ:"
 #: allthethings/account/templates/account/donation.html:446
 #: allthethings/account/templates/account/donation.html:462
 #: allthethings/account/templates/account/donation.html:483
-#: allthethings/account/templates/account/donation.html:543
-#: allthethings/account/templates/account/donation.html:600
+#: allthethings/account/templates/account/donation.html:555
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "ఖాతా పేరు లేదా చిత్రం వింతగా కనిపించవచ్చు. ఆందోళన చెందాల్సిన అవసరం లేదు! ఈ ఖాతాలను మా విరాళ భాగస్వాములు నిర్వహిస్తున్నారు. మా ఖాతాలు హ్యాక్ చేయబడలేదు."
@@ -1395,127 +1454,143 @@ msgid "page.donation.payment.alipay.text1_new"
 msgstr "<a %(a_account)s>ఈ అలిపే ఖాతా</a>ను ఉపయోగించి మొత్తం %(total)s విరాళం ఇవ్వండి"
 
 #: allthethings/account/templates/account/donation.html:479
-#: allthethings/account/templates/account/donation.html:539
+#: allthethings/account/templates/account/donation.html:551
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "దురదృష్టవశాత్తు, అలిపే పేజీ తరచుగా <strong>చైనా ప్రధాన భూభాగం</strong> నుండి మాత్రమే యాక్సెస్ చేయగలరు. మీరు తాత్కాలికంగా మీ VPNని నిలిపివేయవలసి రావచ్చు, లేదా చైనా ప్రధాన భూభాగం (లేదా హాంకాంగ్ కూడా కొన్నిసార్లు పనిచేస్తుంది)కి VPN ఉపయోగించవలసి రావచ్చు."
 
-#: allthethings/account/templates/account/donation.html:565
+#: allthethings/account/templates/account/donation.html:534
+msgid "page.donation.bank_card_app.step3.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:538
+msgid "page.donation.bank_card_app.step3.desc.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:542
+msgid "page.donation.bank_card_app.step3.desc.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:543
+msgid "page.donation.bank_card_app.step3.desc.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:577
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "వీచాట్ సూచనలు"
 
-#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:579
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>వీచాట్‌లో విరాళం ఇవ్వండి"
 
-#: allthethings/account/templates/account/donation.html:570
+#: allthethings/account/templates/account/donation.html:582
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "మొత్తం %(total)s మొత్తాన్ని <a %(a_account)s>ఈ WeChat ఖాతా</a> ఉపయోగించి విరాళంగా ఇవ్వండి"
 
-#: allthethings/account/templates/account/donation.html:591
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Pix సూచనలు"
 
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:605
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Pix ద్వారా విరాళం ఇవ్వండి"
 
-#: allthethings/account/templates/account/donation.html:596
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "మొత్తం %(total)s మొత్తాన్ని <a %(a_account)s>ఈ Pix ఖాతా</a> ఉపయోగించి విరాళంగా ఇవ్వండి"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>మీ రసీదును మాకు ఇమెయిల్ చేయండి"
 
-#: allthethings/account/templates/account/donation.html:609
+#: allthethings/account/templates/account/donation.html:621
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "మీ వ్యక్తిగత ధృవీకరణ చిరునామాకు రసీదు లేదా స్క్రీన్‌షాట్‌ను పంపండి. మీ PayPal విరాళం కోసం ఈ ఇమెయిల్ చిరునామాను ఉపయోగించవద్దు."
 
-#: allthethings/account/templates/account/donation.html:611
+#: allthethings/account/templates/account/donation.html:623
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "మీ వ్యక్తిగత ధృవీకరణ చిరునామాకు రసీదు లేదా స్క్రీన్‌షాట్‌ను పంపండి:"
 
-#: allthethings/account/templates/account/donation.html:621
+#: allthethings/account/templates/account/donation.html:633
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "లావాదేవీ సమయంలో క్రిప్టో మారకం రేటు మారినట్లయితే, అసలు మారకం రేటును చూపించే రసీదును చేర్చడం ఖచ్చితంగా చేయండి. క్రిప్టో ఉపయోగించడానికి మీరు తీసుకున్న కష్టాన్ని మేము నిజంగా అభినందిస్తున్నాము, ఇది మాకు చాలా సహాయపడుతుంది!"
 
-#: allthethings/account/templates/account/donation.html:626
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "మీ రసీదును ఇమెయిల్ చేసిన తర్వాత, ఈ బటన్‌ను క్లిక్ చేయండి, తద్వారా అన్నా దానిని మాన్యువల్‌గా సమీక్షించగలదు (ఇది కొన్ని రోజులు పట్టవచ్చు):"
 
-#: allthethings/account/templates/account/donation.html:636
+#: allthethings/account/templates/account/donation.html:648
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "అవును, నేను నా రసీదును ఇమెయిల్ చేశాను"
 
-#: allthethings/account/templates/account/donation.html:639
+#: allthethings/account/templates/account/donation.html:651
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ మీ విరాళానికి ధన్యవాదాలు! అన్నా మీ సభ్యత్వాన్ని కొన్ని రోజుల్లో మాన్యువల్‌గా సక్రియం చేస్తుంది."
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:652
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ ఏదో తప్పు జరిగింది. దయచేసి పేజీని రీలోడ్ చేసి మళ్లీ ప్రయత్నించండి."
 
-#: allthethings/account/templates/account/donation.html:645
+#: allthethings/account/templates/account/donation.html:657
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "దశల వారీ మార్గదర్శకము"
 
-#: allthethings/account/templates/account/donation.html:647
+#: allthethings/account/templates/account/donation.html:659
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "కొన్ని దశలు క్రిప్టో వాలెట్లను ప్రస్తావిస్తాయి, కానీ ఆందోళన చెందకండి, క్రిప్టో గురించి మీరు ఏమీ నేర్చుకోవలసిన అవసరం లేదు."
 
-#: allthethings/account/templates/account/donation.html:649
+#: allthethings/account/templates/account/donation.html:661
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. మీ ఇమెయిల్‌ను నమోదు చేయండి."
 
-#: allthethings/account/templates/account/donation.html:655
+#: allthethings/account/templates/account/donation.html:667
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. మీ చెల్లింపు పద్ధతిని ఎంచుకోండి."
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:673
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. మీ చెల్లింపు పద్ధతిని మళ్లీ ఎంచుకోండి."
 
-#: allthethings/account/templates/account/donation.html:667
+#: allthethings/account/templates/account/donation.html:679
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. “స్వీయ-హోస్టెడ్” వాలెట్‌ను ఎంచుకోండి."
 
-#: allthethings/account/templates/account/donation.html:673
+#: allthethings/account/templates/account/donation.html:685
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. “నేను యాజమాన్యాన్ని నిర్ధారిస్తున్నాను” క్లిక్ చేయండి."
 
-#: allthethings/account/templates/account/donation.html:679
+#: allthethings/account/templates/account/donation.html:691
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. మీరు ఒక ఇమెయిల్ రసీదును అందుకోవాలి. దయచేసి దానిని మాకు పంపండి, మరియు మేము మీ విరాళాన్ని వీలైనంత త్వరగా ధృవీకరిస్తాము."
 
-#: allthethings/account/templates/account/donation.html:684
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donate.wait"
 msgstr "దయచేసి కనీసం <span %(span_hours)s>రెండు గంటలు</span> వేచి ఉండండి (మరియు ఈ పేజీని రిఫ్రెష్ చేయండి) మమ్మల్ని సంప్రదించే ముందు."
 
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "మీరు చెల్లింపు సమయంలో పొరపాటు చేసినట్లయితే, మేము రిఫండ్లు చేయలేము, కానీ మేము దానిని సరిచేయడానికి ప్రయత్నిస్తాము."
@@ -1992,6 +2067,10 @@ msgstr "కామిక్ పుస్తకం"
 msgid "common.md5_content_type_mapping.musical_score"
 msgstr "సంగీత స్కోర్"
 
+#: allthethings/page/views.py:6192
+msgid "common.md5_content_type_mapping.audiobook"
+msgstr ""
+
 #: allthethings/page/views.py:6193
 #, fuzzy
 msgid "common.md5_content_type_mapping.other"
@@ -2033,7 +2112,7 @@ msgid "common.access_types_mapping.torrents_available"
 msgstr "టోరెంట్లలో కలిగి ఉంది"
 
 #: allthethings/page/templates/page/datasets.html:43
-#: allthethings/page/templates/page/datasets.html:256
+#: allthethings/page/templates/page/datasets.html:254
 #: allthethings/page/templates/page/datasets_lgrs.html:25
 #: allthethings/page/views.py:6211
 #, fuzzy
@@ -2041,7 +2120,7 @@ msgid "common.record_sources_mapping.lgrs"
 msgstr "Libgen.rs"
 
 #: allthethings/page/templates/page/datasets.html:80
-#: allthethings/page/templates/page/datasets.html:319
+#: allthethings/page/templates/page/datasets.html:317
 #: allthethings/page/templates/page/datasets_lgli.html:29
 #: allthethings/page/views.py:6212
 #, fuzzy
@@ -2049,7 +2128,7 @@ msgid "common.record_sources_mapping.lgli"
 msgstr "Libgen.li"
 
 #: allthethings/page/templates/page/datasets.html:98
-#: allthethings/page/templates/page/datasets.html:355
+#: allthethings/page/templates/page/datasets.html:353
 #: allthethings/page/templates/page/datasets_zlib.html:25
 #: allthethings/page/views.py:6213
 #, fuzzy
@@ -2067,14 +2146,14 @@ msgstr "Z-Library చైనీస్"
 msgid "common.record_sources_mapping.ia"
 msgstr "IA"
 
-#: allthethings/page/templates/page/datasets.html:544
+#: allthethings/page/templates/page/datasets.html:542
 #: allthethings/page/templates/page/datasets_isbndb.html:25
 #: allthethings/page/views.py:6216
 #, fuzzy
 msgid "common.record_sources_mapping.isbndb"
 msgstr "ISBNdb"
 
-#: allthethings/page/templates/page/datasets.html:528
+#: allthethings/page/templates/page/datasets.html:526
 #: allthethings/page/templates/page/datasets_ol.html:25
 #: allthethings/page/views.py:6217
 #, fuzzy
@@ -2087,7 +2166,7 @@ msgstr "OpenLibrary"
 msgid "common.record_sources_mapping.scihub"
 msgstr "Sci-Hub"
 
-#: allthethings/page/templates/page/datasets.html:563
+#: allthethings/page/templates/page/datasets.html:561
 #: allthethings/page/templates/page/datasets_oclc.html:25
 #: allthethings/page/views.py:6219
 #, fuzzy
@@ -2095,7 +2174,7 @@ msgid "common.record_sources_mapping.oclc"
 msgstr "OCLC (WorldCat)"
 
 #: allthethings/page/templates/page/datasets.html:148
-#: allthethings/page/templates/page/datasets.html:402
+#: allthethings/page/templates/page/datasets.html:400
 #: allthethings/page/templates/page/datasets_duxiu.html:25
 #: allthethings/page/views.py:6220
 #, fuzzy
@@ -2103,22 +2182,60 @@ msgid "common.record_sources_mapping.duxiu"
 msgstr "DuXiu 读秀"
 
 #: allthethings/page/templates/page/datasets.html:164
-#: allthethings/page/templates/page/datasets.html:436
+#: allthethings/page/templates/page/datasets.html:434
 #: allthethings/page/templates/page/datasets_upload.html:25
 #: allthethings/page/views.py:6221
 #, fuzzy
 msgid "common.record_sources_mapping.uploads"
 msgstr "AAకి అప్‌లోడ్లు"
 
+#: allthethings/page/templates/page/datasets.html:180
 #: allthethings/page/views.py:6222
 #, fuzzy
 msgid "common.record_sources_mapping.magzdb"
 msgstr "MagzDB"
 
+#: allthethings/page/templates/page/datasets.html:196
 #: allthethings/page/views.py:6223
-#, fuzzy
-msgid "common.record_soruces_mapping.nexusstc"
-msgstr "Nexus/STC"
+msgid "common.record_sources_mapping.nexusstc"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets.html:580
+#: allthethings/page/views.py:6224
+msgid "common.record_sources_mapping.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6225
+msgid "common.record_sources_mapping.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6226
+msgid "common.record_sources_mapping.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6227
+msgid "common.record_sources_mapping.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6228
+msgid "common.record_sources_mapping.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6229
+msgid "common.record_sources_mapping.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6230
+msgid "common.record_sources_mapping.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6231
+msgid "common.record_sources_mapping.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6232
+msgid "common.record_sources_mapping.trantor"
+msgstr ""
 
 #: allthethings/page/views.py:6238
 #, fuzzy
@@ -2186,7 +2303,7 @@ msgstr "(వేచివుండే జాబితా లేదు, కాన�
 msgid "page.md5.box.download.temporarily_unavailable"
 msgstr "ఈ ఫైల్ కోసం భాగస్వామి సర్వర్ డౌన్‌లోడ్లు తాత్కాలికంగా అందుబాటులో లేవు."
 
-#: allthethings/page/views.py:6398 allthethings/page/views.py:6616
+#: allthethings/page/views.py:6398 allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub"
 msgstr "Sci-Hub: %(doi)s"
@@ -2223,407 +2340,471 @@ msgstr "Libgen.li"
 msgid "page.md5.box.download.libgen_ads"
 msgstr "వారి ప్రకటనలు హానికరమైన సాఫ్ట్‌వేర్‌ను కలిగి ఉండే అవకాశం ఉంది, కాబట్టి ప్రకటనలను క్లిక్ చేయకండి లేదా యాడ్ బ్లాకర్‌ను ఉపయోగించండి"
 
-#: allthethings/page/views.py:6546
+#: allthethings/page/views.py:6545
 #, fuzzy
 msgid "page.md5.box.download.nexusstc"
 msgstr "Nexus/STC"
 
-#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
+#: allthethings/page/views.py:6545
+msgid "page.md5.box.download.nexusstc_unreliable"
+msgstr ""
+
+#: allthethings/page/views.py:6594 allthethings/page/views.py:6598
 #, fuzzy
 msgid "page.md5.box.download.zlib"
 msgstr "Z-Library"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor"
 msgstr "టోర్‌లో Z-లైబ్రరీ"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor_extra"
 msgstr "(టోర్ బ్రౌజర్ అవసరం)"
 
-#: allthethings/page/views.py:6603
+#: allthethings/page/views.py:6602
 #, fuzzy
 msgid "page.md5.box.download.magzdb"
 msgstr "MagzDB"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6605
+msgid "page.md5.box.download.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.ia_borrow"
 msgstr "ఇంటర్నెట్ ఆర్కైవ్ నుండి అద్దెకు తీసుకోండి"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.print_disabled_only"
 msgstr "(ముద్రణ నిలిపివేసిన పాఠకులు మాత్రమే)"
 
-#: allthethings/page/views.py:6616
+#: allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub_maybe"
 msgstr "(DOI Sci-Hubలో అందుబాటులో ఉండకపోవచ్చు)"
 
-#: allthethings/page/views.py:6619
+#: allthethings/page/views.py:6617
 #, fuzzy
 msgid "page.md5.box.download.manualslib"
 msgstr "ManualsLib"
 
-#: allthethings/page/views.py:6622
+#: allthethings/page/views.py:6620
 #, fuzzy
 msgid "page.md5.box.download.pubmed"
 msgstr "PubMed"
 
-#: allthethings/page/views.py:6629
+#: allthethings/page/views.py:6627
 #, fuzzy
 msgid "page.md5.box.download.collection"
 msgstr "సేకరణ"
 
-#: allthethings/page/views.py:6630
+#: allthethings/page/views.py:6628
 #, fuzzy
 msgid "page.md5.box.download.torrent"
 msgstr "టోరెంట్"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.bulk_torrents"
 msgstr "బల్క్ టోరెంట్ డౌన్‌లోడ్లు"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.experts_only"
 msgstr "(నిపుణులకు మాత్రమే)"
 
-#: allthethings/page/views.py:6643
+#: allthethings/page/views.py:6641
 #, fuzzy
 msgid "page.md5.box.download.aa_isbn"
 msgstr "ISBN కోసం అన్నా యొక్క ఆర్కైవ్‌లో శోధించండి"
 
-#: allthethings/page/views.py:6644
+#: allthethings/page/views.py:6642
 #, fuzzy
 msgid "page.md5.box.download.other_isbn"
 msgstr "ISBN కోసం వివిధ ఇతర డేటాబేస్‌లలో శోధించండి"
 
-#: allthethings/page/views.py:6645
+#: allthethings/page/views.py:6643
 #, fuzzy
 msgid "page.md5.box.download.original_isbndb"
 msgstr "ISBNdbలో అసలు రికార్డును కనుగొనండి"
 
-#: allthethings/page/views.py:6647
+#: allthethings/page/views.py:6645
 #, fuzzy
 msgid "page.md5.box.download.aa_openlib"
 msgstr "ఓపెన్ లైబ్రరీ ID కోసం అన్నా యొక్క ఆర్కైవ్‌లో శోధించండి"
 
-#: allthethings/page/views.py:6648
+#: allthethings/page/views.py:6646
 #, fuzzy
 msgid "page.md5.box.download.original_openlib"
 msgstr "ఓపెన్ లైబ్రరీలో అసలు రికార్డును కనుగొనండి"
 
-#: allthethings/page/views.py:6650
+#: allthethings/page/views.py:6648
 #, fuzzy
 msgid "page.md5.box.download.aa_oclc"
 msgstr "OCLC (WorldCat) నంబర్ కోసం అన్నా యొక్క ఆర్కైవ్‌లో శోధించండి"
 
-#: allthethings/page/views.py:6651
+#: allthethings/page/views.py:6649
 #, fuzzy
 msgid "page.md5.box.download.original_oclc"
 msgstr "WorldCatలో అసలు రికార్డును కనుగొనండి"
 
-#: allthethings/page/views.py:6653
+#: allthethings/page/views.py:6651
 #, fuzzy
 msgid "page.md5.box.download.aa_duxiu"
 msgstr "DuXiu SSID నంబర్ కోసం అన్నా యొక్క ఆర్కైవ్‌లో శోధించండి"
 
-#: allthethings/page/views.py:6654
+#: allthethings/page/views.py:6652
 #, fuzzy
 msgid "page.md5.box.download.original_duxiu"
 msgstr "DuXiuలో మాన్యువల్‌గా శోధించండి"
 
-#: allthethings/page/views.py:6656
+#: allthethings/page/views.py:6654
 #, fuzzy
 msgid "page.md5.box.download.aa_cadal"
 msgstr "CADAL SSNO నంబర్ కోసం అన్నా యొక్క ఆర్కైవ్‌లో శోధించండి"
 
-#: allthethings/page/views.py:6657
+#: allthethings/page/views.py:6655
 #, fuzzy
 msgid "page.md5.box.download.original_cadal"
 msgstr "CADALలో అసలు రికార్డును కనుగొనండి"
 
-#: allthethings/page/views.py:6661
+#: allthethings/page/views.py:6659
 #, fuzzy
 msgid "page.md5.box.download.aa_dxid"
 msgstr "DuXiu DXID నంబర్ కోసం అన్నా యొక్క ఆర్కైవ్‌లో శోధించండి"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "page.md5.box.download.scidb"
 msgstr "అన్నా యొక్క ఆర్కైవ్ 🧬 SciDB"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "common.md5.servers.no_browser_verification"
 msgstr "(బ్రౌజర్ ధృవీకరణ అవసరం లేదు)"
 
-#: allthethings/page/views.py:6721
+#: allthethings/page/views.py:6695
+msgid "page.md5.top_row.isbndb"
+msgstr ""
+
+#: allthethings/page/views.py:6696
+msgid "page.md5.top_row.oclc"
+msgstr ""
+
+#: allthethings/page/views.py:6697
+msgid "page.md5.top_row.duxiu_ssid"
+msgstr ""
+
+#: allthethings/page/views.py:6698
+msgid "page.md5.top_row.magzdb"
+msgstr ""
+
+#: allthethings/page/views.py:6699
+msgid "page.md5.top_row.nexusstc"
+msgstr ""
+
+#: allthethings/page/views.py:6700
+msgid "page.md5.top_row.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6701
+msgid "page.md5.top_row.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6702
+msgid "page.md5.top_row.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6703
+msgid "page.md5.top_row.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6704
+msgid "page.md5.top_row.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6705
+msgid "page.md5.top_row.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6706
+msgid "page.md5.top_row.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6707
+msgid "page.md5.top_row.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6708
+msgid "page.md5.top_row.trantor"
+msgstr ""
+
+#: allthethings/page/views.py:6718
 #, fuzzy
 msgid "page.md5.box.descr_title"
 msgstr "వివరణ"
 
-#: allthethings/page/views.py:6722
+#: allthethings/page/views.py:6719
 #, fuzzy
 msgid "page.md5.box.alternative_filename"
 msgstr "ప్రత్యామ్నాయ ఫైల్ పేరు"
 
-#: allthethings/page/views.py:6723
+#: allthethings/page/views.py:6720
 #, fuzzy
 msgid "page.md5.box.alternative_title"
 msgstr "ప్రత్యామ్నాయ శీర్షిక"
 
-#: allthethings/page/views.py:6724
+#: allthethings/page/views.py:6721
 #, fuzzy
 msgid "page.md5.box.alternative_author"
 msgstr "ప్రత్యామ్నాయ రచయిత"
 
-#: allthethings/page/views.py:6725
+#: allthethings/page/views.py:6722
 #, fuzzy
 msgid "page.md5.box.alternative_publisher"
 msgstr "ప్రత్యామ్నాయ ప్రచురణకర్త"
 
-#: allthethings/page/views.py:6726
+#: allthethings/page/views.py:6723
 #, fuzzy
 msgid "page.md5.box.alternative_edition"
 msgstr "ప్రత్యామ్నాయ ఎడిషన్"
 
-#: allthethings/page/views.py:6727
+#: allthethings/page/views.py:6724
 #, fuzzy
 msgid "page.md5.box.alternative_extension"
 msgstr "ప్రత్యామ్నాయ విస్తరణ"
 
-#: allthethings/page/views.py:6728
+#: allthethings/page/views.py:6725
 #, fuzzy
 msgid "page.md5.box.metadata_comments_title"
 msgstr "మెటాడేటా వ్యాఖ్యలు"
 
-#: allthethings/page/views.py:6729
+#: allthethings/page/views.py:6726
 #, fuzzy
 msgid "page.md5.box.alternative_description"
 msgstr "ప్రత్యామ్నాయ వివరణ"
 
-#: allthethings/page/views.py:6730
+#: allthethings/page/views.py:6727
 #, fuzzy
 msgid "page.md5.box.date_open_sourced_title"
 msgstr "తేదీ ఓపెన్ సోర్స్ చేయబడింది"
 
-#: allthethings/page/templates/page/aarecord.html:14
+#: allthethings/page/templates/page/aarecord.html:15
 #, fuzzy
 msgid "page.md5.header.scihub"
 msgstr "Sci-Hub ఫైల్ \"%(id)s\""
 
-#: allthethings/page/templates/page/aarecord.html:18
+#: allthethings/page/templates/page/aarecord.html:19
 #, fuzzy
 msgid "page.md5.header.ia"
 msgstr "Internet Archive నియంత్రిత డిజిటల్ లెండింగ్ ఫైల్ \"%(id)s\""
 
-#: allthethings/page/templates/page/aarecord.html:21
+#: allthethings/page/templates/page/aarecord.html:22
 #, fuzzy
 msgid "page.md5.header.ia_desc"
 msgstr "ఇది Internet Archive నుండి ఫైల్ రికార్డ్, నేరుగా డౌన్‌లోడ్ చేయదగిన ఫైల్ కాదు. మీరు పుస్తకాన్ని అద్దెకు తీసుకోవడానికి ప్రయత్నించవచ్చు (క్రింద లింక్), లేదా <a %(a_request)s>ఫైల్‌ను అభ్యర్థించేటప్పుడు</a> ఈ URLని ఉపయోగించండి."
 
-#: allthethings/page/templates/page/aarecord.html:22
-#: allthethings/page/templates/page/aarecord.html:46
+#: allthethings/page/templates/page/aarecord.html:23
+#: allthethings/page/templates/page/aarecord.html:47
 #, fuzzy
 msgid "page.md5.header.consider_upload"
 msgstr "మీ వద్ద ఈ ఫైల్ ఉంటే మరియు ఇది ఇంకా Anna’s Archive లో అందుబాటులో లేకపోతే, దయచేసి <a %(a_request)s>అప్‌లోడ్ చేయడం</a> పరిగణించండి."
 
-#: allthethings/page/templates/page/aarecord.html:27
+#: allthethings/page/templates/page/aarecord.html:28
 #, fuzzy
 msgid "page.md5.header.meta_isbn"
 msgstr "ISBNdb %(id)s మెటాడేటా రికార్డ్"
 
-#: allthethings/page/templates/page/aarecord.html:29
+#: allthethings/page/templates/page/aarecord.html:30
 #, fuzzy
 msgid "page.md5.header.meta_openlib"
 msgstr "Open Library %(id)s మెటాడేటా రికార్డ్"
 
-#: allthethings/page/templates/page/aarecord.html:31
+#: allthethings/page/templates/page/aarecord.html:32
 #, fuzzy
 msgid "page.md5.header.meta_oclc"
 msgstr "OCLC (WorldCat) సంఖ్య %(id)s మెటాడేటా రికార్డ్"
 
-#: allthethings/page/templates/page/aarecord.html:33
+#: allthethings/page/templates/page/aarecord.html:34
 #, fuzzy
 msgid "page.md5.header.meta_duxiu_ssid"
 msgstr "DuXiu SSID %(id)s మెటాడేటా రికార్డ్"
 
-#: allthethings/page/templates/page/aarecord.html:35
+#: allthethings/page/templates/page/aarecord.html:36
 #, fuzzy
 msgid "page.md5.header.meta_cadal_ssno"
 msgstr "CADAL SSNO %(id)s మెటాడేటా రికార్డ్"
 
-#: allthethings/page/templates/page/aarecord.html:37
+#: allthethings/page/templates/page/aarecord.html:38
 #, fuzzy
 msgid "page.md5.header.meta_magzdb_id"
 msgstr "MagzDB ID %(id)s మెటాడేటా రికార్డు"
 
-#: allthethings/page/templates/page/aarecord.html:39
+#: allthethings/page/templates/page/aarecord.html:40
 #, fuzzy
 msgid "page.md5.header.meta_nexus_stc_id"
 msgstr "Nexus/STC ID %(id)s మెటాడేటా రికార్డు"
 
-#: allthethings/page/templates/page/aarecord.html:45
+#: allthethings/page/templates/page/aarecord.html:46
 #, fuzzy
 msgid "page.md5.header.meta_desc"
 msgstr "ఇది మెటాడేటా రికార్డ్, డౌన్‌లోడ్ చేయదగిన ఫైల్ కాదు. మీరు <a %(a_request)s>ఫైల్‌ను అభ్యర్థించేటప్పుడు</a> ఈ URLని ఉపయోగించవచ్చు."
 
-#: allthethings/page/templates/page/aarecord.html:56
+#: allthethings/page/templates/page/aarecord.html:57
 #, fuzzy
 msgid "page.md5.text.linked_metadata"
 msgstr "లింక్ చేయబడిన రికార్డ్ నుండి మెటాడేటా"
 
-#: allthethings/page/templates/page/aarecord.html:57
+#: allthethings/page/templates/page/aarecord.html:58
 #, fuzzy
 msgid "page.md5.text.linked_metadata_openlib"
 msgstr "Open Library లో మెటాడేటాను మెరుగుపరచండి"
 
-#: allthethings/page/templates/page/aarecord.html:60
+#: allthethings/page/templates/page/aarecord.html:61
 #, fuzzy
 msgid "page.md5.warning.multiple_links"
 msgstr "హెచ్చరిక: బహుళ లింక్ చేయబడిన రికార్డులు:"
 
-#: allthethings/page/templates/page/aarecord.html:68
+#: allthethings/page/templates/page/aarecord.html:69
 #, fuzzy
 msgid "page.md5.header.improve_metadata"
 msgstr "మెటాడేటాను మెరుగుపరచండి"
 
-#: allthethings/page/templates/page/aarecord.html:70
+#: allthethings/page/templates/page/aarecord.html:71
 #, fuzzy
 msgid "page.md5.text.report_quality"
 msgstr "ఫైల్ నాణ్యతను నివేదించండి"
 
-#: allthethings/page/templates/page/aarecord.html:92
+#: allthethings/page/templates/page/aarecord.html:93
 #, fuzzy
 msgid "page.md5.codes.url"
 msgstr "URL:"
 
-#: allthethings/page/templates/page/aarecord.html:93
+#: allthethings/page/templates/page/aarecord.html:94
 #, fuzzy
 msgid "page.md5.codes.website"
 msgstr "వెబ్‌సైట్:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_abbr"
 msgstr "AA:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_search"
 msgstr "“%(name)s” కోసం Anna’s Archive లో శోధించండి"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_explorer"
 msgstr "కోడ్‌లు ఎక్స్ప్లోరర్:"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_search"
 msgstr "“%(name)s” ను కోడ్‌లు ఎక్స్ప్లోరర్ లో చూడండి"
 
-#: allthethings/page/templates/page/aarecord.html:114
+#: allthethings/page/templates/page/aarecord.html:115
 #, fuzzy
 msgid "page.md5.box.descr_read_more"
 msgstr "మరింత చదవండి…"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.downloads"
 msgstr "డౌన్‌లోడ్లు (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.borrow"
 msgstr "ఉపయోగించుకోండి (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.explore_metadata"
 msgstr "మెటాడేటా అన్వేషించండి (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:132
+#: allthethings/page/templates/page/aarecord.html:133
 #, fuzzy
 msgid "page.md5.tabs.lists"
 msgstr "జాబితాలు (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:133
+#: allthethings/page/templates/page/aarecord.html:134
 #, fuzzy
 msgid "page.md5.tabs.stats"
 msgstr "గణాంకాలు (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:135
+#: allthethings/page/templates/page/aarecord.html:136
 #, fuzzy
 msgid "common.tech_details"
 msgstr "సాంకేతిక వివరాలు"
 
-#: allthethings/page/templates/page/aarecord.html:204
+#: allthethings/page/templates/page/aarecord.html:205
 #, fuzzy
 msgid "page.md5.box.issues.text1"
 msgstr "<span class=\"font-bold\">❌ ఈ ఫైల్‌లో సమస్యలు ఉండవచ్చు, మరియు మూల గ్రంథాలయం నుండి దాచబడింది.</span> కొన్నిసార్లు ఇది కాపీరైట్ హోల్డర్ అభ్యర్థన మేరకు ఉంటుంది, కొన్నిసార్లు మంచి ప్రత్యామ్నాయం అందుబాటులో ఉండటం వల్ల, కానీ కొన్నిసార్లు ఫైల్‌లో సమస్య ఉండటం వల్ల. డౌన్‌లోడ్ చేయడానికి బాగానే ఉండవచ్చు, కానీ మేము మొదట ప్రత్యామ్నాయ ఫైల్ కోసం శోధించమని సిఫార్సు చేస్తున్నాము. మరిన్ని వివరాలు:"
 
-#: allthethings/page/templates/page/aarecord.html:209
+#: allthethings/page/templates/page/aarecord.html:210
 #, fuzzy
 msgid "page.md5.box.download.better_file"
 msgstr "ఈ ఫైల్ యొక్క మంచి వెర్షన్ %(link)s వద్ద అందుబాటులో ఉండవచ్చు"
 
-#: allthethings/page/templates/page/aarecord.html:214
+#: allthethings/page/templates/page/aarecord.html:215
 #, fuzzy
 msgid "page.md5.box.issues.text2"
 msgstr "మీరు ఇంకా ఈ ఫైల్‌ను డౌన్‌లోడ్ చేయాలనుకుంటే, దయచేసి నమ్మకమైన, నవీకరించబడిన సాఫ్ట్‌వేర్‌ను మాత్రమే ఉపయోగించండి."
 
-#: allthethings/page/templates/page/aarecord.html:219
+#: allthethings/page/templates/page/aarecord.html:220
 #, fuzzy
 msgid "page.md5.box.download.header_fast_only"
 msgstr "🚀 వేగవంతమైన డౌన్‌లోడ్లు"
 
-#: allthethings/page/templates/page/aarecord.html:221
+#: allthethings/page/templates/page/aarecord.html:222
 #, fuzzy
 msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 వేగవంతమైన డౌన్‌లోడ్లు</strong> పుస్తకాలు, పేపర్లు మరియు మరిన్నింటి దీర్ఘకాల సంరక్షణకు మద్దతు ఇవ్వడానికి <a %(a_membership)s>సభ్యుడు</a> అవ్వండి. మీ మద్దతుకు కృతజ్ఞతగా, మీరు వేగవంతమైన డౌన్‌లోడ్లను పొందుతారు. ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:222
+#: allthethings/page/templates/page/aarecord.html:223
 #: allthethings/templates/layouts/index.html:215
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "మీరు ఈ నెలలో విరాళం ఇస్తే, మీరు <strong>రెట్టింపు</strong> వేగవంతమైన డౌన్‌లోడ్‌ల సంఖ్యను పొందుతారు."
 
-#: allthethings/page/templates/page/aarecord.html:224
+#: allthethings/page/templates/page/aarecord.html:225
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member"
 msgstr "<strong>🚀 వేగవంతమైన డౌన్‌లోడ్లు</strong> మీరు ఈ రోజు %(remaining)s మిగిలి ఉన్నాయి. సభ్యుడిగా ఉన్నందుకు ధన్యవాదాలు! ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:225
+#: allthethings/page/templates/page/aarecord.html:226
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_no_remaining_new"
 msgstr "<strong>🚀 వేగవంతమైన డౌన్‌లోడ్లు</strong> మీరు ఈ రోజు వేగవంతమైన డౌన్‌లోడ్లను ముగించారు."
 
-#: allthethings/page/templates/page/aarecord.html:226
+#: allthethings/page/templates/page/aarecord.html:227
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_valid_for"
 msgstr "<strong>🚀 వేగవంతమైన డౌన్‌లోడ్లు</strong> మీరు ఈ ఫైల్‌ను ఇటీవల డౌన్‌లోడ్ చేసారు. లింకులు కొంతకాలం చెల్లుబాటు అవుతాయి."
 
-#: allthethings/page/templates/page/aarecord.html:230
-#: allthethings/page/templates/page/aarecord.html:244
-#: allthethings/page/templates/page/aarecord.html:278
+#: allthethings/page/templates/page/aarecord.html:231
+#: allthethings/page/templates/page/aarecord.html:245
+#: allthethings/page/templates/page/aarecord.html:279
 #, fuzzy
 msgid "page.md5.box.download.option"
 msgstr "ఎంపిక #%(num)d: %(link)s %(extra)s"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/templates/layouts/index.html:258
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "మిత్రుని సూచించండి, మీరు మరియు మీ మిత్రుడు %(percentage)s%% బోనస్ ఫాస్ట్ డౌన్‌లోడ్స్ పొందండి!"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/page/templates/page/home.html:25
 #: allthethings/page/templates/page/home.html:34
 #: allthethings/page/templates/page/home.html:71
@@ -2639,205 +2820,239 @@ msgstr "మిత్రుని సూచించండి, మీరు మ�
 msgid "layout.index.header.learn_more"
 msgstr "మరింత తెలుసుకోండి…"
 
-#: allthethings/page/templates/page/aarecord.html:239
+#: allthethings/page/templates/page/aarecord.html:240
 #, fuzzy
 msgid "page.md5.box.download.header_slow_only"
 msgstr "🐢 నెమ్మదిగా డౌన్‌లోడ్స్"
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.trusted_partners"
 msgstr "నమ్మకమైన భాగస్వాముల నుండి."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.slow_faq"
 msgstr "మరింత సమాచారం <a %(a_slow)s>తరచుగా అడిగే ప్రశ్నలు</a> లో."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "common.md5.servers.browser_verification_unlimited"
 msgstr "(బ్రౌజర్ ధృవీకరణ అవసరం కావచ్చు <a %(a_browser)s> — పరిమిత లేని డౌన్‌లోడ్స్!)"
 
-#: allthethings/page/templates/page/aarecord.html:256
+#: allthethings/page/templates/page/aarecord.html:257
 #, fuzzy
 msgid "page.md5.box.external_downloads"
 msgstr "బాహ్య డౌన్‌లోడ్లను చూపించు"
 
-#: allthethings/page/templates/page/aarecord.html:257
+#: allthethings/page/templates/page/aarecord.html:258
 #, fuzzy
 msgid "page.md5.box.download.header_external"
 msgstr "బాహ్య డౌన్‌లోడ్స్"
 
-#: allthethings/page/templates/page/aarecord.html:283
+#: allthethings/page/templates/page/aarecord.html:284
 #, fuzzy
 msgid "page.md5.box.download.no_found"
 msgstr "డౌన్‌లోడ్స్ కనుగొనబడలేదు."
 
-#: allthethings/page/templates/page/aarecord.html:289
+#: allthethings/page/templates/page/aarecord.html:290
 #, fuzzy
 msgid "page.md5.box.download.no_issues_notice"
 msgstr "అన్ని డౌన్‌లోడ్ ఎంపికలు ఒకే ఫైల్ కలిగి ఉంటాయి మరియు ఉపయోగించడానికి సురక్షితం కావాలి. అయినప్పటికీ, ఇంటర్నెట్ నుండి ఫైళ్లను డౌన్‌లోడ్ చేయేటప్పుడు ఎల్లప్పుడూ జాగ్రత్తగా ఉండండి, ముఖ్యంగా అన్నా యొక్క ఆర్కైవ్‌కు బాహ్యమైన సైట్ల నుండి. ఉదాహరణకు, మీ పరికరాలను నవీకరించడంలో జాగ్రత్త వహించండి."
 
-#: allthethings/page/templates/page/aarecord.html:301
-#, fuzzy
-msgid "page.md5.box.download.convert"
-msgstr "మార్చండి: ఫార్మాట్ల మధ్య మార్చడానికి ఆన్‌లైన్ టూల్స్ ఉపయోగించండి. ఉదాహరణకు, epub మరియు pdf మధ్య మార్చడానికి, <a %(a_cloudconvert)s>క్లౌడ్ కన్వర్ట్</a> ఉపయోగించండి."
+#: allthethings/page/templates/page/aarecord.html:296
+#: allthethings/page/templates/page/partner_download.html:71
+msgid "page.md5.box.download.dl_managers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:302
-#, fuzzy
-msgid "page.md5.box.download.kindle"
-msgstr "కిండిల్: ఫైల్‌ను డౌన్‌లోడ్ చేయండి (pdf లేదా epub మద్దతు ఉంది), తరువాత <a %(a_kindle)s>కిండిల్‌కు పంపండి</a> వెబ్, యాప్ లేదా ఇమెయిల్ ఉపయోగించి. సహాయక టూల్స్: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+#: allthethings/page/templates/page/aarecord.html:297
+#: allthethings/page/templates/page/partner_download.html:72
+msgid "page.md5.box.download.dl_managers.links"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:303
-#, fuzzy
-msgid "page.md5.box.download.support_authors"
-msgstr "రచయితలను మద్దతు ఇవ్వండి: మీరు దీన్ని ఇష్టపడితే మరియు మీకు సామర్థ్యం ఉంటే, అసలు కొనుగోలు చేయడం లేదా రచయితలను నేరుగా మద్దతు ఇవ్వడం పరిగణించండి."
+#: allthethings/page/templates/page/aarecord.html:305
+msgid "page.md5.box.download.readers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:304
-#, fuzzy
-msgid "page.md5.box.download.support_libraries"
-msgstr "గ్రంథాలయాలను మద్దతు ఇవ్వండి: ఇది మీ స్థానిక గ్రంథాలయంలో అందుబాటులో ఉంటే, అక్కడ ఉచితంగా అద్దెకు తీసుకోవడం పరిగణించండి."
+#: allthethings/page/templates/page/aarecord.html:306
+msgid "page.md5.box.download.readers.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:315
+msgid "page.md5.box.download.conversion"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:316
+msgid "page.md5.box.download.conversion.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:324
+msgid "page.md5.box.download.sendtokindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:325
+msgid "page.md5.box.download.sendtokindle.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:328
+msgid "page.md5.box.download.link.send_to_kindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:329
+msgid "page.md5.box.download.link.send_to_kobokindle"
+msgstr ""
 
 #: allthethings/page/templates/page/aarecord.html:334
+msgid "page.md5.box.download.support"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:335
+msgid "page.md5.box.download.support.authors"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:336
+msgid "page.md5.box.download.support.libraries"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:367
 #, fuzzy
 msgid "page.md5.quality.header"
 msgstr "ఫైల్ నాణ్యత"
 
-#: allthethings/page/templates/page/aarecord.html:337
+#: allthethings/page/templates/page/aarecord.html:370
 #, fuzzy
 msgid "page.md5.quality.report"
 msgstr "ఈ ఫైల్ నాణ్యతను నివేదించడం ద్వారా సమాజానికి సహాయం చేయండి! 🙌"
 
-#: allthethings/page/templates/page/aarecord.html:341
+#: allthethings/page/templates/page/aarecord.html:374
 #, fuzzy
 msgid "page.md5.quality.report_issue"
 msgstr "ఫైల్ సమస్యను నివేదించండి (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.great_quality"
 msgstr "అద్భుతమైన ఫైల్ నాణ్యత (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.add_comment"
 msgstr "వ్యాఖ్యను జోడించండి (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:346
+#: allthethings/page/templates/page/aarecord.html:379
 #, fuzzy
 msgid "page.md5.quality.logged_out_login"
 msgstr "దయచేసి <a %(a_login)s>లాగిన్</a> చేయండి."
 
-#: allthethings/page/templates/page/aarecord.html:350
+#: allthethings/page/templates/page/aarecord.html:383
 #, fuzzy
 msgid "page.md5.quality.what_is_wrong"
 msgstr "ఈ ఫైల్‌లో ఏమి తప్పు?"
 
-#: allthethings/page/templates/page/aarecord.html:360
+#: allthethings/page/templates/page/aarecord.html:393
 #, fuzzy
 msgid "page.md5.quality.copyright"
 msgstr "దయచేసి <a %(a_copyright)s>DMCA / కాపీరైట్ క్లెయిమ్ ఫారమ్</a> ఉపయోగించండి."
 
-#: allthethings/page/templates/page/aarecord.html:365
+#: allthethings/page/templates/page/aarecord.html:398
 #, fuzzy
 msgid "page.md5.quality.describe_the_issue"
 msgstr "సమస్యను వివరించండి (అవసరం)"
 
-#: allthethings/page/templates/page/aarecord.html:366
+#: allthethings/page/templates/page/aarecord.html:399
 #, fuzzy
 msgid "page.md5.quality.issue_description"
 msgstr "సమస్య వివరణ"
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text1"
 msgstr "ఈ ఫైల్ యొక్క మెరుగైన వెర్షన్ యొక్క MD5 (అన్వయించదగినది)."
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text2"
 msgstr "ఈ ఫైల్‌కు దగ్గరగా సరిపోలే మరో ఫైల్ (అదే ఎడిషన్, అదే ఫైల్ ఎక్స్టెన్షన్ ఉంటే) ఉంటే, దయచేసి దీని బదులు ప్రజలు ఉపయోగించవలసిన ఫైల్‌ను పూరించండి. మీరు Anna’s Archive వెలుపల ఈ ఫైల్ యొక్క మెరుగైన వెర్షన్‌ను తెలుసుకుంటే, దయచేసి <a %(a_upload)s>అప్‌లోడ్ చేయండి</a>."
 
-#: allthethings/page/templates/page/aarecord.html:373
+#: allthethings/page/templates/page/aarecord.html:406
 #, fuzzy
 msgid "page.md5.quality.better_md5.line1"
 msgstr "మీరు URL నుండి md5 పొందవచ్చు, ఉదా."
 
-#: allthethings/page/templates/page/aarecord.html:380
+#: allthethings/page/templates/page/aarecord.html:413
 #, fuzzy
 msgid "page.md5.quality.submit_report"
 msgstr "నివేదికను సమర్పించండి"
 
-#: allthethings/page/templates/page/aarecord.html:385
+#: allthethings/page/templates/page/aarecord.html:418
 #, fuzzy
 msgid "page.md5.quality.improve_the_metadata"
 msgstr "ఈ ఫైల్‌కు మీరే <a %(a_metadata)s>మెటాడేటాను మెరుగుపరచడం</a> ఎలా చేయాలో తెలుసుకోండి."
 
-#: allthethings/page/templates/page/aarecord.html:389
+#: allthethings/page/templates/page/aarecord.html:422
 #, fuzzy
 msgid "page.md5.quality.report_thanks"
 msgstr "మీ నివేదికను సమర్పించినందుకు ధన్యవాదాలు. ఇది ఈ పేజీలో చూపబడుతుంది, అలాగే సరైన మోడరేషన్ సిస్టమ్ ఉన్నంతవరకు అన్నా చేత మాన్యువల్‌గా సమీక్షించబడుతుంది."
 
-#: allthethings/page/templates/page/aarecord.html:390
+#: allthethings/page/templates/page/aarecord.html:423
 #, fuzzy
 msgid "page.md5.quality.report_error"
 msgstr "ఏదో తప్పు జరిగింది. దయచేసి పేజీని రీలోడ్ చేసి మళ్లీ ప్రయత్నించండి."
 
-#: allthethings/page/templates/page/aarecord.html:396
+#: allthethings/page/templates/page/aarecord.html:429
 #, fuzzy
 msgid "page.md5.quality.great.summary"
 msgstr "ఈ ఫైల్‌కు అద్భుతమైన నాణ్యత ఉంటే, మీరు దీని గురించి ఏదైనా ఇక్కడ చర్చించవచ్చు! లేకపోతే, దయచేసి “ఫైల్ సమస్య నివేదించు” బటన్‌ను ఉపయోగించండి."
 
-#: allthethings/page/templates/page/aarecord.html:398
+#: allthethings/page/templates/page/aarecord.html:431
 #, fuzzy
 msgid "page.md5.quality.loved_the_book"
 msgstr "నేను ఈ పుస్తకాన్ని ప్రేమించాను!"
 
-#: allthethings/page/templates/page/aarecord.html:400
+#: allthethings/page/templates/page/aarecord.html:433
 #, fuzzy
 msgid "page.md5.quality.submit_comment"
 msgstr "వ్యాఖ్యను వదలండి"
 
-#: allthethings/page/templates/page/aarecord.html:404
+#: allthethings/page/templates/page/aarecord.html:437
 #, fuzzy
 msgid "page.md5.quality.comment_thanks"
 msgstr "మీరు ఒక వ్యాఖ్యను వదిలారు. ఇది చూపించడానికి ఒక నిమిషం పట్టవచ్చు."
 
-#: allthethings/page/templates/page/aarecord.html:405
+#: allthethings/page/templates/page/aarecord.html:438
 #, fuzzy
 msgid "page.md5.quality.comment_error"
 msgstr "ఏదో తప్పు జరిగింది. దయచేసి పేజీని రీలోడ్ చేసి మళ్లీ ప్రయత్నించండి."
 
-#: allthethings/page/templates/page/aarecord.html:415
-#: allthethings/page/templates/page/aarecord.html:416
+#: allthethings/page/templates/page/aarecord.html:448
+#: allthethings/page/templates/page/aarecord.html:449
 #: allthethings/page/templates/page/torrents.html:26
 #: allthethings/page/templates/page/torrents.html:27
 #, fuzzy
 msgid "common.english_only"
 msgstr "కింద ఉన్న పాఠ్యం ఇంగ్లీష్‌లో కొనసాగుతుంది."
 
-#: allthethings/page/templates/page/aarecord.html:437
+#: allthethings/page/templates/page/aarecord.html:470
 #, fuzzy
 msgid "page.md5.text.stats.total_downloads"
 msgstr "మొత్తం డౌన్‌లోడ్లు: %(total)s"
 
-#: allthethings/page/templates/page/aarecord.html:469
+#: allthethings/page/templates/page/aarecord.html:502
 #, fuzzy
 msgid "page.md5.text.md5_info.text1"
 msgstr "“ఫైల్ MD5” అనేది ఫైల్ కంటెంట్ నుండి లెక్కించబడే హాష్, మరియు ఆ కంటెంట్ ఆధారంగా తగినంత ప్రత్యేకంగా ఉంటుంది. మేము ఇక్కడ సూచించిన అన్ని షాడో లైబ్రరీలు ప్రధానంగా ఫైళ్లను గుర్తించడానికి MD5లను ఉపయోగిస్తాయి."
 
-#: allthethings/page/templates/page/aarecord.html:473
+#: allthethings/page/templates/page/aarecord.html:506
 #, fuzzy
 msgid "page.md5.text.md5_info.text2"
 msgstr "ఒక ఫైల్ బహుళ షాడో లైబ్రరీలలో కనిపించవచ్చు. మేము సంకలనం చేసిన వివిధ డేటాసెట్ల గురించి సమాచారం కోసం, <a %(a_datasets)s>డేటాసెట్లు పేజీ</a>ని చూడండి."
 
-#: allthethings/page/templates/page/aarecord.html:477
+#: allthethings/page/templates/page/aarecord.html:510
 #, fuzzy
 msgid "page.md5.text.ia_info.text1"
 msgstr "ఇది <a %(a_ia)s>IA యొక్క కంట్రోల్డ్ డిజిటల్ లెండింగ్</a> లైబ్రరీ ద్వారా నిర్వహించబడే ఫైల్, మరియు శోధన కోసం అన్నా యొక్క ఆర్కైవ్ ద్వారా సూచించబడింది. మేము సంకలనం చేసిన వివిధ డేటాసెట్ల గురించి సమాచారం కోసం, <a %(a_datasets)s>డేటాసెట్లు పేజీ</a>ని చూడండి."
 
-#: allthethings/page/templates/page/aarecord.html:482
+#: allthethings/page/templates/page/aarecord.html:515
 #, fuzzy
 msgid "page.md5.text.file_info.text1"
 msgstr "ఈ ప్రత్యేక ఫైల్ గురించి సమాచారం కోసం, దాని <a %(a_href)s>JSON ఫైల్</a>ని చూడండి."
@@ -3246,9 +3461,9 @@ msgstr "నాన్-ఫిక్షన్ మరియు ఫిక్షన్
 #: allthethings/page/templates/page/datasets.html:134
 #: allthethings/page/templates/page/datasets.html:151
 #: allthethings/page/templates/page/datasets.html:167
-#: allthethings/page/templates/page/datasets.html:184
-#: allthethings/page/templates/page/datasets.html:201
-#: allthethings/page/templates/page/datasets.html:218
+#: allthethings/page/templates/page/datasets.html:183
+#: allthethings/page/templates/page/datasets.html:199
+#: allthethings/page/templates/page/datasets.html:216
 #, fuzzy
 msgid "page.datasets.file"
 msgid_plural "page.datasets.files"
@@ -3287,7 +3502,7 @@ msgid "page.datasets.zlibzh.searchable"
 msgstr "“చైనీస్” సేకరణ Z-లైబ్రరీలో మా DuXiu సేకరణతో సమానంగా కనిపిస్తుంది, కానీ వేర్వేరు MD5లతో. డూప్లికేషన్ నివారించడానికి మేము ఈ ఫైళ్లను టోరెంట్ల నుండి మినహాయిస్తాము, కానీ మా శోధన సూచీలో వాటిని చూపిస్తాము."
 
 #: allthethings/page/templates/page/datasets.html:131
-#: allthethings/page/templates/page/datasets.html:371
+#: allthethings/page/templates/page/datasets.html:369
 #: allthethings/page/templates/page/datasets_ia.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.iacdl"
@@ -3298,43 +3513,43 @@ msgstr "IA నియంత్రిత డిజిటల్ లెండిం�
 msgid "page.datasets.iacdl.searchable"
 msgstr "98%%+ ఫైళ్లు శోధించగలవు."
 
-#: allthethings/page/templates/page/datasets.html:214
+#: allthethings/page/templates/page/datasets.html:212
 #, fuzzy
 msgid "page.datasets.overview.total"
 msgstr "మొత్తం"
 
-#: allthethings/page/templates/page/datasets.html:215
+#: allthethings/page/templates/page/datasets.html:213
 #, fuzzy
 msgid "page.datasets.overview.excluding_duplicates"
 msgstr "డూప్లికేట్లను మినహాయించడం"
 
-#: allthethings/page/templates/page/datasets.html:229
+#: allthethings/page/templates/page/datasets.html:227
 #, fuzzy
 msgid "page.datasets.overview.text4"
 msgstr "షాడో లైబ్రరీలు తరచుగా ఒకదానితో ఒకటి డేటాను సమకాలీకరించుకుంటాయి కాబట్టి, లైబ్రరీల మధ్య గణనీయమైన ఓవర్లాప్ ఉంది. అందుకే సంఖ్యలు మొత్తం వరకు చేరవు."
 
-#: allthethings/page/templates/page/datasets.html:233
+#: allthethings/page/templates/page/datasets.html:231
 #, fuzzy
 msgid "page.datasets.overview.text5"
 msgstr "“Anna’s Archive ద్వారా మిర్రర్ చేయబడిన మరియు సీడ్ చేయబడిన” శాతం మేము స్వయంగా మిర్రర్ చేసే ఫైళ్లను చూపిస్తుంది. మేము ఆ ఫైళ్లను టోరెంట్ల ద్వారా బల్క్‌గా సీడ్ చేస్తాము మరియు భాగస్వామి వెబ్‌సైట్‌ల ద్వారా ప్రత్యక్ష డౌన్‌లోడ్ కోసం అందుబాటులో ఉంచుతాము."
 
-#: allthethings/page/templates/page/datasets.html:236
+#: allthethings/page/templates/page/datasets.html:234
 #, fuzzy
 msgid "page.datasets.source_libraries.title"
 msgstr "మూల లైబ్రరీలు"
 
-#: allthethings/page/templates/page/datasets.html:239
+#: allthethings/page/templates/page/datasets.html:237
 #, fuzzy
 msgid "page.datasets.source_libraries.text1"
 msgstr "కొన్ని మూల గ్రంథాలయాలు తమ డేటాను టోరెంట్ల ద్వారా విస్తృతంగా పంచుకోవడాన్ని ప్రోత్సహిస్తాయి, అయితే మరికొన్ని తమ సేకరణను సులభంగా పంచుకోవు. ఈ రెండవ సందర్భంలో, అన్నా యొక్క ఆర్కైవ్ వారి సేకరణలను స్క్రాప్ చేసి, అందుబాటులో ఉంచడానికి ప్రయత్నిస్తుంది (మా <a %(a_torrents)s>టోరెంట్లు</a> పేజీని చూడండి). మధ్యలో ఉన్న పరిస్థితులు కూడా ఉన్నాయి, ఉదాహరణకు, మూల గ్రంథాలయాలు పంచుకోవడానికి సిద్ధంగా ఉన్నప్పటికీ, దానికి అవసరమైన వనరులు లేవు. అటువంటి సందర్భాల్లో, మేము కూడా సహాయం చేయడానికి ప్రయత్నిస్తాము."
 
-#: allthethings/page/templates/page/datasets.html:243
+#: allthethings/page/templates/page/datasets.html:241
 #, fuzzy
 msgid "page.datasets.source_libraries.text2"
 msgstr "క్రింద వివిధ మూల గ్రంథాలయాలతో మేము ఎలా ఇంటర్‌ఫేస్ చేస్తామో ఒక అవలోకనం ఉంది."
 
-#: allthethings/page/templates/page/datasets.html:248
-#: allthethings/page/templates/page/datasets.html:520
+#: allthethings/page/templates/page/datasets.html:246
+#: allthethings/page/templates/page/datasets.html:518
 #: allthethings/page/templates/page/datasets_duxiu.html:17
 #: allthethings/page/templates/page/datasets_edsebk.html:17
 #: allthethings/page/templates/page/datasets_ia.html:17
@@ -3353,8 +3568,8 @@ msgstr "క్రింద వివిధ మూల గ్రంథాలయా
 msgid "page.datasets.sources.source.header"
 msgstr "మూలం"
 
-#: allthethings/page/templates/page/datasets.html:249
-#: allthethings/page/templates/page/datasets.html:521
+#: allthethings/page/templates/page/datasets.html:247
+#: allthethings/page/templates/page/datasets.html:519
 #: allthethings/page/templates/page/datasets_duxiu.html:18
 #: allthethings/page/templates/page/datasets_edsebk.html:18
 #: allthethings/page/templates/page/datasets_ia.html:18
@@ -3373,7 +3588,7 @@ msgstr "మూలం"
 msgid "page.datasets.sources.metadata.header"
 msgstr "మెటాడేటా"
 
-#: allthethings/page/templates/page/datasets.html:250
+#: allthethings/page/templates/page/datasets.html:248
 #: allthethings/page/templates/page/datasets_duxiu.html:19
 #: allthethings/page/templates/page/datasets_ia.html:19
 #: allthethings/page/templates/page/datasets_isbn_ranges.html:18
@@ -3388,185 +3603,185 @@ msgstr "మెటాడేటా"
 msgid "page.datasets.sources.files.header"
 msgstr "ఫైళ్లు"
 
-#: allthethings/page/templates/page/datasets.html:261
+#: allthethings/page/templates/page/datasets.html:259
 #: allthethings/page/templates/page/datasets_lgrs.html:30
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.metadata1"
 msgstr "%(icon)s రోజువారీ <a %(dbdumps)s>HTTP డేటాబేస్ డంప్స్</a>"
 
-#: allthethings/page/templates/page/datasets.html:268
+#: allthethings/page/templates/page/datasets.html:266
 #: allthethings/page/templates/page/datasets_lgrs.html:37
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files1"
 msgstr "%(icon)s <a %(nonfiction)s>నాన్-ఫిక్షన్</a> మరియు <a %(fiction)s>ఫిక్షన్</a> కోసం ఆటోమేటెడ్ టోరెంట్స్"
 
-#: allthethings/page/templates/page/datasets.html:274
+#: allthethings/page/templates/page/datasets.html:272
 #: allthethings/page/templates/page/datasets_lgrs.html:43
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files2"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ <a %(covers)s>పుస్తక కవర్ టోరెంట్స్</a> సేకరణను నిర్వహిస్తుంది"
 
-#: allthethings/page/templates/page/datasets.html:284
+#: allthethings/page/templates/page/datasets.html:282
 #: allthethings/page/templates/page/datasets_scihub.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.scihub_scimag"
 msgstr "సై-హబ్ / లిబ్జెన్ “స్కిమాగ్”"
 
-#: allthethings/page/templates/page/datasets.html:289
+#: allthethings/page/templates/page/datasets.html:287
 #: allthethings/page/templates/page/datasets_scihub.html:30
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata1"
 msgstr "%(icon)s Sci-Hub 2021 నుండి కొత్త ఫైళ్లను నిలిపివేసింది."
 
-#: allthethings/page/templates/page/datasets.html:292
+#: allthethings/page/templates/page/datasets.html:290
 #: allthethings/page/templates/page/datasets_scihub.html:33
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata2"
 msgstr "%(icon)s మెటాడేటా డంప్‌లు <a %(scihub1)s>ఇక్కడ</a> మరియు <a %(scihub2)s>ఇక్కడ</a> అందుబాటులో ఉన్నాయి, అలాగే <a %(libgenli)s>Libgen.li డేటాబేస్</a> (మేము ఉపయోగిస్తున్నది) లో భాగంగా ఉన్నాయి"
 
-#: allthethings/page/templates/page/datasets.html:301
+#: allthethings/page/templates/page/datasets.html:299
 #: allthethings/page/templates/page/datasets_scihub.html:42
 #, fuzzy
 msgid "page.datasets.sources.scihub.files1"
 msgstr "%(icon)s డేటా టోరెంట్లు <a %(scihub1)s>ఇక్కడ</a>, <a %(scihub2)s>ఇక్కడ</a>, మరియు <a %(libgenli)s>ఇక్కడ</a> అందుబాటులో ఉన్నాయి"
 
-#: allthethings/page/templates/page/datasets.html:308
+#: allthethings/page/templates/page/datasets.html:306
 #: allthethings/page/templates/page/datasets_scihub.html:49
 #, fuzzy
 msgid "page.datasets.sources.scihub.files2"
 msgstr "%(icon)s కొన్ని కొత్త ఫైళ్లు <a %(libgenrs)s>ఉండడం</a> <a %(libgenli)s>జోడించబడినవి</a> Libgen యొక్క “scimag” కు, కానీ కొత్త టోరెంట్లను warrant చేయడానికి సరిపోలడం లేదు"
 
-#: allthethings/page/templates/page/datasets.html:324
+#: allthethings/page/templates/page/datasets.html:322
 #: allthethings/page/templates/page/datasets_lgli.html:34
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.metadata1"
 msgstr "%(icon)s త్రైమాసిక <a %(dbdumps)s>HTTP డేటాబేస్ డంప్స్</a>"
 
-#: allthethings/page/templates/page/datasets.html:331
+#: allthethings/page/templates/page/datasets.html:329
 #: allthethings/page/templates/page/datasets_lgli.html:41
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files1"
 msgstr "%(icon)s నాన్-ఫిక్షన్ టోరెంట్స్ Libgen.rs తో పంచుకుంటారు (మరియు <a %(libgenli)s>ఇక్కడ</a> ప్రతిబింబించబడతాయి)."
 
-#: allthethings/page/templates/page/datasets.html:336
+#: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files2"
 msgstr "%(icon)s ఫిక్షన్ సేకరణ విభిన్నంగా ఉంది కానీ ఇంకా <a %(libgenli)s>టోరెంట్స్</a> ఉన్నాయి, అయితే 2022 నుండి నవీకరించబడలేదు (మాకు ప్రత్యక్ష డౌన్‌లోడ్లు ఉన్నాయి)."
 
-#: allthethings/page/templates/page/datasets.html:341
+#: allthethings/page/templates/page/datasets.html:339
 #: allthethings/page/templates/page/datasets_lgli.html:51
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files3"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ మరియు Libgen.li కలిసి <a %(comics)s>కామిక్ పుస్తకాలు</a> మరియు <a %(magazines)s>మాసపత్రికలు</a> సేకరణలను నిర్వహిస్తాయి."
 
-#: allthethings/page/templates/page/datasets.html:347
+#: allthethings/page/templates/page/datasets.html:345
 #: allthethings/page/templates/page/datasets_lgli.html:57
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files4"
 msgstr "%(icon)s రష్యన్ ఫిక్షన్ మరియు ప్రామాణిక పత్రాల సేకరణలకు టోరెంట్లు లేవు."
 
-#: allthethings/page/templates/page/datasets.html:360
+#: allthethings/page/templates/page/datasets.html:358
 #: allthethings/page/templates/page/datasets_zlib.html:30
 #, fuzzy
 msgid "page.datasets.sources.zlib.metadata_and_files"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ మరియు Z-లైబ్రరీ కలిసి <a %(metadata)s>Z-లైబ్రరీ మెటాడేటా</a> మరియు <a %(files)s>Z-లైబ్రరీ ఫైళ్లు</a> సేకరణను నిర్వహిస్తాయి"
 
-#: allthethings/page/templates/page/datasets.html:376
+#: allthethings/page/templates/page/datasets.html:374
 #: allthethings/page/templates/page/datasets_ia.html:30
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata1"
 msgstr "%(icon)s కొంత మెటాడేటా <a %(openlib)s>ఓపెన్ లైబ్రరీ డేటాబేస్ డంప్స్</a> ద్వారా అందుబాటులో ఉంది, కానీ అవి మొత్తం IA సేకరణను కవర్ చేయవు"
 
-#: allthethings/page/templates/page/datasets.html:381
+#: allthethings/page/templates/page/datasets.html:379
 #: allthethings/page/templates/page/datasets_ia.html:35
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata2"
 msgstr "%(icon)s వారి మొత్తం సేకరణకు సులభంగా అందుబాటులో ఉండే మెటాడేటా డంప్‌లు లేవు"
 
-#: allthethings/page/templates/page/datasets.html:384
+#: allthethings/page/templates/page/datasets.html:382
 #: allthethings/page/templates/page/datasets_ia.html:38
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata3"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ <a %(ia)s>IA మెటాడేటా</a> సేకరణను నిర్వహిస్తుంది"
 
-#: allthethings/page/templates/page/datasets.html:390
+#: allthethings/page/templates/page/datasets.html:388
 #: allthethings/page/templates/page/datasets_ia.html:44
 #, fuzzy
 msgid "page.datasets.sources.ia.files1"
 msgstr "%(icon)s ఫైళ్లు పరిమిత ప్రాతిపదికన మాత్రమే అద్దెకు అందుబాటులో ఉన్నాయి, వివిధ యాక్సెస్ పరిమితులతో"
 
-#: allthethings/page/templates/page/datasets.html:392
+#: allthethings/page/templates/page/datasets.html:390
 #: allthethings/page/templates/page/datasets_ia.html:46
 #, fuzzy
 msgid "page.datasets.sources.ia.files2"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ <a %(ia)s>IA ఫైళ్లు</a> సేకరణను నిర్వహిస్తుంది"
 
-#: allthethings/page/templates/page/datasets.html:407
+#: allthethings/page/templates/page/datasets.html:405
 #: allthethings/page/templates/page/datasets_duxiu.html:30
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata1"
 msgstr "%(icon)s చైనీస్ ఇంటర్నెట్ చుట్టూ చెల్లిపోయిన వివిధ మెటాడేటా డేటాబేస్‌లు; అయితే తరచుగా చెల్లించాల్సిన డేటాబేస్‌లు"
 
-#: allthethings/page/templates/page/datasets.html:410
+#: allthethings/page/templates/page/datasets.html:408
 #: allthethings/page/templates/page/datasets_duxiu.html:33
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata2"
 msgstr "%(icon)s వారి మొత్తం సేకరణకు సులభంగా అందుబాటులో ఉండే మెటాడేటా డంప్స్ లభ్యం కావు."
 
-#: allthethings/page/templates/page/datasets.html:413
+#: allthethings/page/templates/page/datasets.html:411
 #: allthethings/page/templates/page/datasets_duxiu.html:36
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata3"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ <a %(duxiu)s>DuXiu మెటాడేటా</a> సేకరణను నిర్వహిస్తుంది"
 
-#: allthethings/page/templates/page/datasets.html:420
+#: allthethings/page/templates/page/datasets.html:418
 #: allthethings/page/templates/page/datasets_duxiu.html:43
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files1"
 msgstr "%(icon)s చైనా ఇంటర్నెట్‌లో చెల్లిపోయిన వివిధ ఫైల్ డేటాబేస్‌లు; అయితే తరచుగా చెల్లింపు డేటాబేస్‌లు"
 
-#: allthethings/page/templates/page/datasets.html:423
+#: allthethings/page/templates/page/datasets.html:421
 #: allthethings/page/templates/page/datasets_duxiu.html:46
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files2"
 msgstr "%(icon)s ఎక్కువ ఫైళ్లు ప్రీమియం BaiduYun ఖాతాల ద్వారా మాత్రమే అందుబాటులో ఉంటాయి; డౌన్‌లోడ్ వేగం నెమ్మదిగా ఉంటుంది."
 
-#: allthethings/page/templates/page/datasets.html:426
+#: allthethings/page/templates/page/datasets.html:424
 #: allthethings/page/templates/page/datasets_duxiu.html:49
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files3"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ <a %(duxiu)s>DuXiu ఫైళ్లు</a> సేకరణను నిర్వహిస్తుంది"
 
-#: allthethings/page/templates/page/datasets.html:441
+#: allthethings/page/templates/page/datasets.html:439
 #: allthethings/page/templates/page/datasets_upload.html:30
 #, fuzzy
 msgid "page.datasets.sources.uploads.metadata_and_files"
 msgstr "%(icon)s వివిధ చిన్న లేదా ఒకే సారి వనరులు. మేము ప్రజలను మొదట ఇతర షాడో లైబ్రరీలకు అప్‌లోడ్ చేయమని ప్రోత్సహిస్తున్నాము, కానీ కొన్నిసార్లు ప్రజలు ఇతరులు క్రమబద్ధీకరించడానికి చాలా పెద్దవి అయినా, వారి స్వంత వర్గానికి తగినంత పెద్దవి కాని సేకరణలను కలిగి ఉంటారు."
 
-#: allthethings/page/templates/page/datasets.html:501
+#: allthethings/page/templates/page/datasets.html:499
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.title"
 msgstr "మెటాడేటా-మాత్రం మూలాలు"
 
-#: allthethings/page/templates/page/datasets.html:504
+#: allthethings/page/templates/page/datasets.html:502
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text1"
 msgstr "మేము మా సేకరణను మెటాడేటా-మాత్రం మూలాలతో కూడా సంపూర్ణం చేస్తాము, వీటిని ఫైళ్లకు సరిపోల్చవచ్చు, ఉదాహరణకు ISBN నంబర్లు లేదా ఇతర ఫీల్డ్స్ ఉపయోగించి. క్రింద వాటి అవలోకనం ఉంది. మళ్లీ, ఈ మూలాలలో కొన్ని పూర్తిగా తెరవబడ్డాయి, మరికొన్ని మేము స్క్రాప్ చేయవలసి ఉంటుంది."
 
-#: allthethings/page/templates/page/datasets.html:508
+#: allthethings/page/templates/page/datasets.html:506
 #: allthethings/page/templates/page/faq.html:187
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
 msgstr "మా మెటాడేటా సేకరణకు ప్రేరణ ఆరన్ స్వార్ట్జ్ యొక్క “ప్రతి పుస్తకానికి ఒక వెబ్ పేజీ” లక్ష్యం, దీనికి అతను <a %(a_openlib)s>ఓపెన్ లైబ్రరీ</a>ని సృష్టించాడు. ఆ ప్రాజెక్ట్ బాగా చేసిందని, కానీ మా ప్రత్యేక స్థానం వారికి లభించని మెటాడేటాను పొందడానికి మాకు అనుమతిస్తుంది. మరో ప్రేరణ ప్రపంచంలో ఎంతమంది పుస్తకాలు ఉన్నాయో తెలుసుకోవాలనే మా కోరిక, తద్వారా మేము ఇంకా ఎంతమంది పుస్తకాలను సేవ్ చేయాల్సి ఉందో లెక్కించవచ్చు."
 
-#: allthethings/page/templates/page/datasets.html:515
+#: allthethings/page/templates/page/datasets.html:513
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text2"
 msgstr "మెటాడేటా శోధనలో, మేము అసలు రికార్డులను చూపుతామని గమనించండి. మేము రికార్డులను ఏకీకృతం చేయము."
 
-#: allthethings/page/templates/page/datasets.html:522
+#: allthethings/page/templates/page/datasets.html:520
 #: allthethings/page/templates/page/datasets_edsebk.html:19
 #: allthethings/page/templates/page/datasets_isbndb.html:19
 #: allthethings/page/templates/page/datasets_oclc.html:19
@@ -3575,49 +3790,49 @@ msgstr "మెటాడేటా శోధనలో, మేము అసలు �
 msgid "page.datasets.sources.last_updated.header"
 msgstr "చివరిగా నవీకరించబడింది"
 
-#: allthethings/page/templates/page/datasets.html:533
+#: allthethings/page/templates/page/datasets.html:531
 #: allthethings/page/templates/page/datasets_ol.html:30
 #, fuzzy
 msgid "page.datasets.sources.openlib.metadata1"
 msgstr "%(icon)s నెలవారీ <a %(dbdumps)s>డేటాబేస్ డంప్స్</a>"
 
-#: allthethings/page/templates/page/datasets.html:549
-#: allthethings/page/templates/page/datasets.html:588
+#: allthethings/page/templates/page/datasets.html:547
+#: allthethings/page/templates/page/datasets.html:585
 #: allthethings/page/templates/page/datasets_edsebk.html:30
 #: allthethings/page/templates/page/datasets_isbndb.html:30
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata1"
 msgstr "%(icon)s నేరుగా బల్క్‌లో అందుబాటులో లేదు, కేవలం చెల్లింపు గోడ వెనుక సగం-బల్క్‌లో మాత్రమే అందుబాటులో ఉంది"
 
-#: allthethings/page/templates/page/datasets.html:552
+#: allthethings/page/templates/page/datasets.html:550
 #: allthethings/page/templates/page/datasets_isbndb.html:33
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata2"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ <a %(isbndb)s>ISBNdb మెటాడేటా</a> సేకరణను నిర్వహిస్తుంది"
 
-#: allthethings/page/templates/page/datasets.html:568
+#: allthethings/page/templates/page/datasets.html:566
 #: allthethings/page/templates/page/datasets_oclc.html:30
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata1"
 msgstr "%(icon)s నేరుగా బల్క్‌లో అందుబాటులో లేదు, స్క్రాపింగ్‌కు వ్యతిరేకంగా రక్షించబడింది"
 
-#: allthethings/page/templates/page/datasets.html:571
+#: allthethings/page/templates/page/datasets.html:569
 #: allthethings/page/templates/page/datasets_oclc.html:33
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata2"
 msgstr "%(icon)s అన్నా యొక్క ఆర్కైవ్ <a %(worldcat)s>OCLC (WorldCat) మెటాడేటా</a> సేకరణను నిర్వహిస్తుంది"
 
-#: allthethings/page/templates/page/datasets.html:606
+#: allthethings/page/templates/page/datasets.html:603
 #, fuzzy
 msgid "page.datasets.unified_database.title"
 msgstr "ఏకీకృత డేటాబేస్"
 
-#: allthethings/page/templates/page/datasets.html:609
+#: allthethings/page/templates/page/datasets.html:606
 #, fuzzy
 msgid "page.datasets.unified_database.text1"
 msgstr "మేము పై మూలాలను ఒక ఏకీకృత డేటాబేస్‌లో కలిపి ఈ వెబ్‌సైట్‌కు సేవ చేయడానికి ఉపయోగిస్తాము. ఈ ఏకీకృత డేటాబేస్ నేరుగా అందుబాటులో లేదు, కానీ అన్నా యొక్క ఆర్కైవ్ పూర్తిగా ఓపెన్ సోర్స్ కాబట్టి, దాన్ని సులభంగా <a %(a_generated)s>ఉత్పత్తి</a> చేయవచ్చు లేదా <a %(a_downloaded)s>డౌన్‌లోడ్</a> చేయవచ్చు ఎలాస్టిక్‌సెర్చ్ మరియు మారియాడిబి డేటాబేస్‌లుగా. ఆ పేజీలోని స్క్రిప్ట్‌లు పై పేర్కొన్న మూలాల నుండి అవసరమైన అన్ని మెటాడేటాను ఆటోమేటిక్‌గా డౌన్‌లోడ్ చేస్తాయి."
 
-#: allthethings/page/templates/page/datasets.html:617
+#: allthethings/page/templates/page/datasets.html:614
 #, fuzzy
 msgid "page.datasets.unified_database.text2"
 msgstr "ఆ స్క్రిప్ట్‌లను స్థానికంగా నడపడానికి ముందు మా డేటాను అన్వేషించాలనుకుంటే, మా JSON ఫైళ్లను చూడవచ్చు, ఇవి మరింత JSON ఫైళ్లకు లింక్ చేస్తాయి. <a %(a_json)s>ఈ ఫైల్</a> ఒక మంచి ప్రారంభ బిందువు."
@@ -4022,15 +4237,23 @@ msgstr "వివిధ లైబ్రరీ జెనెసిస్ (లే�
 msgid "page.datasets.libgen_rs.story.dot_fun"
 msgstr "“.fun” వెర్షన్‌ను అసలు వ్యవస్థాపకుడు సృష్టించారు. ఇది కొత్త, మరింత పంపిణీ చేయబడిన వెర్షన్‌కు అనుకూలంగా పునర్నిర్మించబడుతోంది."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:58
+#: allthethings/page/templates/page/datasets_lgrs.html:59
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_rs"
 msgstr "“.rs” వెర్షన్‌లో చాలా సమానమైన డేటా ఉంది మరియు ఎక్కువగా వారి సేకరణను బల్క్ టోరెంట్లలో విడుదల చేస్తుంది. ఇది సుమారు “ఫిక్షన్” మరియు “నాన్-ఫిక్షన్” విభాగంగా విభజించబడింది."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:62
+#: allthethings/page/templates/page/datasets_lgrs.html:60
+msgid "page.datasets.libgen_rs.story.rus_dot_ec"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets_lgrs.html:63
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_li"
 msgstr "<a %(a_li)s>“.li” వెర్షన్</a>లో భారీ కామిక్స్ సేకరణతో పాటు, ఇతర కంటెంట్ కూడా ఉంది, ఇది టోరెంట్ల ద్వారా బల్క్ డౌన్‌లోడ్ కోసం (ఇంకా) అందుబాటులో లేదు. దీనికి ఫిక్షన్ పుస్తకాల వేరు టోరెంట్ సేకరణ ఉంది మరియు <a %(a_scihub)s>Sci-Hub</a> యొక్క మెటాడేటాను దాని డేటాబేస్‌లో కలిగి ఉంది."
+
+#: allthethings/page/templates/page/datasets_lgrs.html:64
+msgid "page.datasets.libgen_rs.story.dontexist"
+msgstr ""
 
 #: allthethings/page/templates/page/datasets_lgrs.html:66
 #, fuzzy
@@ -5066,12 +5289,28 @@ msgstr "మీరు ఈ ప్రాజెక్ట్‌ను ఎలా న�
 msgid "page.faq.hate.text1"
 msgstr "మా కోడ్ మరియు డేటా పూర్తిగా ఓపెన్ సోర్స్ అని అందరికీ గుర్తుచేయాలనుకుంటున్నాము. మా వంటి ప్రాజెక్టులకు ఇది ప్రత్యేకం — ఇంత భారీ క్యాటలాగ్‌తో పూర్తిగా ఓపెన్ సోర్స్ ప్రాజెక్ట్ మరెక్కడా లేదని మాకు తెలుసు. మా ప్రాజెక్ట్‌ను మేము చెడుగా నడుపుతున్నామని భావించే ఎవరైనా మా కోడ్ మరియు డేటాను తీసుకుని వారి సొంత షాడో లైబ్రరీని ఏర్పాటు చేయాలని మేము చాలా స్వాగతిస్తున్నాము! మేము ఇది spiteతో చెబుతున్నాము కాదు — ఇది అందరికీ ప్రమాణాన్ని పెంచుతుంది మరియు మానవత్వం యొక్క వారసత్వాన్ని మెరుగ్గా కాపాడుతుంది అని మేము నిజంగా భావిస్తున్నాము."
 
-#: allthethings/page/templates/page/faq.html:323
+#: allthethings/page/templates/page/faq.html:310
+msgid "page.faq.uptime.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:313
+msgid "page.faq.uptime.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:316
+msgid "page.faq.anna.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:320
+msgid "page.faq.anna.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:324
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "మీకు ఇష్టమైన పుస్తకాలు ఏమిటి?"
 
-#: allthethings/page/templates/page/faq.html:326
+#: allthethings/page/templates/page/faq.html:327
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "షాడో లైబ్రరీలు మరియు డిజిటల్ ప్రిజర్వేషన్ ప్రపంచానికి ప్రత్యేకమైన ప్రాముఖ్యత కలిగిన కొన్ని పుస్తకాలు ఇక్కడ ఉన్నాయి:"
@@ -5640,17 +5879,17 @@ msgstr "ఒకేసారి బహుళ డౌన్‌లోడ్ పేజ
 msgid "page.partner_download.li3"
 msgstr "మీకు డౌన్‌లోడ్ లింక్ లభించిన తర్వాత అది కొన్ని గంటల పాటు చెల్లుబాటు అవుతుంది."
 
-#: allthethings/page/templates/page/partner_download.html:105
+#: allthethings/page/templates/page/partner_download.html:108
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "హెచ్చరిక: గత 24 గంటల్లో మీ IP చిరునామా నుండి అనేక డౌన్‌లోడ్‌లు జరిగాయి. డౌన్‌లోడ్‌లు సాధారణంగా కంటే నెమ్మదిగా ఉండవచ్చు."
 
-#: allthethings/page/templates/page/partner_download.html:106
+#: allthethings/page/templates/page/partner_download.html:109
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "గత 24 గంటల్లో మీ IP చిరునామా నుండి డౌన్‌లోడ్‌లు: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:107
+#: allthethings/page/templates/page/partner_download.html:110
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "మీరు VPN, షేర్డ్ ఇంటర్నెట్ కనెక్షన్ లేదా మీ ISP IPలను షేర్ చేస్తే, ఈ హెచ్చరిక దానికి కారణం కావచ్చు."
@@ -6561,3 +6800,19 @@ msgstr "తదుపరి"
 
 #~ msgid "page.partner_download.download_now"
 #~ msgstr "ఇప్పుడు డౌన్‌లోడ్ చేయండి"
+
+#~ msgid "common.record_soruces_mapping.nexusstc"
+#~ msgstr "Nexus/STC"
+
+#~ msgid "page.md5.box.download.convert"
+#~ msgstr "మార్చండి: ఫార్మాట్ల మధ్య మార్చడానికి ఆన్‌లైన్ టూల్స్ ఉపయోగించండి. ఉదాహరణకు, epub మరియు pdf మధ్య మార్చడానికి, <a %(a_cloudconvert)s>క్లౌడ్ కన్వర్ట్</a> ఉపయోగించండి."
+
+#~ msgid "page.md5.box.download.kindle"
+#~ msgstr "కిండిల్: ఫైల్‌ను డౌన్‌లోడ్ చేయండి (pdf లేదా epub మద్దతు ఉంది), తరువాత <a %(a_kindle)s>కిండిల్‌కు పంపండి</a> వెబ్, యాప్ లేదా ఇమెయిల్ ఉపయోగించి. సహాయక టూల్స్: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+
+#~ msgid "page.md5.box.download.support_authors"
+#~ msgstr "రచయితలను మద్దతు ఇవ్వండి: మీరు దీన్ని ఇష్టపడితే మరియు మీకు సామర్థ్యం ఉంటే, అసలు కొనుగోలు చేయడం లేదా రచయితలను నేరుగా మద్దతు ఇవ్వడం పరిగణించండి."
+
+#~ msgid "page.md5.box.download.support_libraries"
+#~ msgstr "గ్రంథాలయాలను మద్దతు ఇవ్వండి: ఇది మీ స్థానిక గ్రంథాలయంలో అందుబాటులో ఉంటే, అక్కడ ఉచితంగా అద్దెకు తీసుకోవడం పరిగణించండి."
+

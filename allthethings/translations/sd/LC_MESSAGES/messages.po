@@ -1,19 +1,3 @@
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 18:35+0000\n"
-"PO-Revision-Date: 2024-10-03 18:35+0000\n"
-"Last-Translator: OpenAI <noreply-mt-openai@weblate.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: sd\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
-
 #: allthethings/app.py:185
 #, fuzzy
 msgid "layout.index.invalid_request"
@@ -341,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "اسان سان رابطو ڪريو"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,520 +356,595 @@ msgstr "اسان امير فردن يا ادارن کان وڏيون عطيا ڀ
 msgid "page.donate.header.large_donations"
 msgstr "$5000 کان وڌيڪ عطيا لاءِ مهرباني ڪري سڌو اسان سان رابطو ڪريو %(email)s."
 
-#: allthethings/account/templates/account/donate.html:120
+#: allthethings/account/templates/account/donate.html:116
+msgid "page.donate.header.recurring"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:118
 #, fuzzy
 msgid "page.donate.without_membership"
 msgstr "جيڪڏهن توهان بغير ميمبرشپ جي (ڪنهن به رقم) عطيو ڏيڻ چاهيو ٿا، ته مهرباني ڪري هي Monero (XMR) پتو استعمال ڪريو: %(address)s."
 
-#: allthethings/account/templates/account/donate.html:125
+#: allthethings/account/templates/account/donate.html:123
 #, fuzzy
 msgid "page.donate.payment.select_method"
 msgstr "مهرباني ڪري ادائگي جو طريقو چونڊيو."
 
-#: allthethings/account/templates/account/donate.html:134
-#: allthethings/account/templates/account/donate.html:420
+#: allthethings/account/templates/account/donate.html:132
+#: allthethings/account/templates/account/donate.html:421
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:140
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:138
+#: allthethings/account/templates/account/donate.html:359
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "ايميزون گفٽ ڪارڊ"
 
-#: allthethings/account/templates/account/donate.html:143
-#: allthethings/account/templates/account/donate.html:153
-#: allthethings/account/templates/account/donate.html:154
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:139
+msgid "page.donate.payment.buttons.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:140
+#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:151
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "ڪرپٽو %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:145
+#: allthethings/account/templates/account/donate.html:142
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit"
 msgstr "ڪريڊٽ/ڊيبٽ ڪارڊ"
 
-#: allthethings/account/templates/account/donate.html:146
+#: allthethings/account/templates/account/donate.html:143
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal"
 msgstr "پي پال (آمريڪا) %(bitcoin_icon)s"
 
-#: allthethings/account/templates/account/donate.html:147
+#: allthethings/account/templates/account/donate.html:144
 #, fuzzy
 msgid "page.donate.payment.buttons.paypalreg"
 msgstr "پے پال (عام)"
 
-#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:145
 #, fuzzy
 msgid "page.donate.payment.buttons.givebutter"
 msgstr "ڪارڊ / پے پال / وينمو"
 
-#: allthethings/account/templates/account/donate.html:150
+#: allthethings/account/templates/account/donate.html:147
 #, fuzzy
 msgid "page.donate.payment.buttons.bmc"
 msgstr "ڪريڊٽ/ڊيبٽ/ايپل/گوگل (BMC)"
 
-#: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:168
-#: allthethings/account/templates/account/donate.html:178
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:148
+#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:362
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "علي پے"
 
-#: allthethings/account/templates/account/donate.html:152
+#: allthethings/account/templates/account/donate.html:149
 #, fuzzy
 msgid "page.donate.payment.buttons.pix"
 msgstr "Pix (Brazil)"
 
-#: allthethings/account/templates/account/donate.html:156
+#: allthethings/account/templates/account/donate.html:153
 #, fuzzy
 msgid "page.donate.payment.buttons.cashapp"
 msgstr "ڪيش ايپ"
 
-#: allthethings/account/templates/account/donate.html:157
+#: allthethings/account/templates/account/donate.html:154
 #, fuzzy
 msgid "page.donate.payment.buttons.revolut"
 msgstr "ريوولٽ"
 
-#: allthethings/account/templates/account/donate.html:158
+#: allthethings/account/templates/account/donate.html:155
 #, fuzzy
 msgid "page.donate.payment.buttons.paypal_plain"
 msgstr "پي پال"
 
-#: allthethings/account/templates/account/donate.html:161
+#: allthethings/account/templates/account/donate.html:156
+msgid "page.donate.payment.buttons.bank_card"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:157
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit_backup"
 msgstr "ڪريڊٽ/ڊيبٽ ڪارڊ (بيڪ اپ)"
 
-#: allthethings/account/templates/account/donate.html:162
+#: allthethings/account/templates/account/donate.html:158
 #, fuzzy
 msgid "page.donate.payment.buttons.credit_debit2"
 msgstr "ڪريڊٽ/ڊيبٽ ڪارڊ 2"
 
-#: allthethings/account/templates/account/donate.html:164
+#: allthethings/account/templates/account/donate.html:160
 #, fuzzy
 msgid "page.donate.payment.buttons.binance"
 msgstr "بائنانس"
 
-#: allthethings/account/templates/account/donate.html:169
-#: allthethings/account/templates/account/donate.html:180
-#: allthethings/account/templates/account/donate.html:189
-#: allthethings/account/templates/account/donate.html:196
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:165
+#: allthethings/account/templates/account/donate.html:176
+#: allthethings/account/templates/account/donate.html:185
+#: allthethings/account/templates/account/donate.html:192
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:171
-#: allthethings/account/templates/account/donate.html:179
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "وي چيٽ"
 
-#: allthethings/account/templates/account/donate.html:201
+#: allthethings/account/templates/account/donate.html:197
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(عارضي طور تي دستياب ناهي)"
 
-#: allthethings/account/templates/account/donate.html:219
+#: allthethings/account/templates/account/donate.html:215
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "ڪرپٽو سان توهان BTC، ETH، XMR، ۽ SOL استعمال ڪندي عطيو ڪري سگهو ٿا. هي آپشن استعمال ڪريو جيڪڏهن توهان اڳ ۾ ئي ڪرپٽو ڪرنسي سان واقف آهيو."
 
-#: allthethings/account/templates/account/donate.html:223
+#: allthethings/account/templates/account/donate.html:219
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "ڪرپٽو سان توهان BTC، ETH، XMR، ۽ وڌيڪ استعمال ڪندي عطيو ڪري سگهو ٿا."
 
-#: allthethings/account/templates/account/donate.html:226
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:222
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "جيڪڏهن توهان پهريون ڀيرو ڪرپٽو استعمال ڪري رهيا آهيو، اسان صلاح ڏيون ٿا ته %(options)s استعمال ڪريو Bitcoin (اصل ۽ سڀ کان وڌيڪ استعمال ٿيندڙ ڪرپٽو ڪرنسي) خريد ڪرڻ ۽ عطيو ڪرڻ لاءِ۔"
 
-#: allthethings/account/templates/account/donate.html:229
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "بائنانس"
 
-#: allthethings/account/templates/account/donate.html:230
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "ڪائن بيس"
 
-#: allthethings/account/templates/account/donate.html:231
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:227
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "ڪريڪن"
 
-#: allthethings/account/templates/account/donate.html:239
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "PayPal US استعمال ڪندي عطيو ڪرڻ لاءِ، اسان PayPal Crypto استعمال ڪرڻ وارا آهيون، جيڪو اسان کي گمنام رهڻ جي اجازت ڏئي ٿو. اسان توهان جي وقت جي تعريف ڪريون ٿا ته توهان هن طريقي سان عطيو ڪرڻ بابت سکڻ لاءِ، ڇو ته اهو اسان جي مدد ڪري ٿو."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:236
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "پي پال استعمال ڪندي عطيو ڪريو."
 
-#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "ڪيش ايپ استعمال ڪندي عطيو ڪريو."
 
-#: allthethings/account/templates/account/donate.html:247
+#: allthethings/account/templates/account/donate.html:243
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "جيڪڏهن توهان وٽ ڪيش ايپ آهي، ته هي عطيو ڪرڻ جو آسان طريقو آهي!"
 
-#: allthethings/account/templates/account/donate.html:250
-#: allthethings/account/templates/account/donate.html:260
+#: allthethings/account/templates/account/donate.html:246
+#: allthethings/account/templates/account/donate.html:256
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "نوٽ ڪريو ته %(amount)s کان گهٽ ٽرانزيڪشن لاءِ، ڪيش ايپ شايد %(fee)s فيس چارج ڪري. %(amount)s يا ان کان وڌيڪ لاءِ، اهو مفت آهي!"
 
-#: allthethings/account/templates/account/donate.html:256
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "ريوولٽ استعمال ڪندي عطيو ڪريو."
 
-#: allthethings/account/templates/account/donate.html:257
+#: allthethings/account/templates/account/donate.html:253
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "جيڪڏهن توهان وٽ ريوولٽ آهي، ته هي عطيو ڏيڻ جو سڀ کان آسان طريقو آهي!"
 
-#: allthethings/account/templates/account/donate.html:266
-#: allthethings/account/templates/account/donate.html:320
+#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:316
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "ڪريڊٽ يا ڊيبٽ ڪارڊ سان عطيو ڪريو."
 
-#: allthethings/account/templates/account/donate.html:267
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "گوگل پي ۽ ايپل پي شايد پڻ ڪم ڪن."
 
-#: allthethings/account/templates/account/donate.html:268
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "نوٽ ڪريو ته ننڍن عطين لاءِ ڪريڊٽ ڪارڊ فيس اسان جي %(discount)s%% رعايت کي ختم ڪري سگهن ٿيون، تنهنڪري اسان ڊگهي سبسڪرپشن جي سفارش ڪريون ٿا."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:265
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "نوٽ ڪريو ته ننڍن عطين لاءِ فيس وڌيڪ آهن، تنهنڪري اسان ڊگهي سبسڪرپشن جي سفارش ڪريون ٿا."
 
-#: allthethings/account/templates/account/donate.html:275
+#: allthethings/account/templates/account/donate.html:271
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Binance سان، توهان ڪريڊٽ/ڊيبٽ ڪارڊ يا بئنڪ اڪائونٽ سان Bitcoin خريد ڪري سگهو ٿا، ۽ پوءِ اهو Bitcoin اسان کي عطيو ڪري سگهو ٿا. اهڙي طرح اسان توهان جي عطئي کي قبول ڪرڻ وقت محفوظ ۽ گمنام رهي سگهون ٿا."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:275
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance تقريباً هر ملڪ ۾ موجود آهي، ۽ اڪثر بئنڪن ۽ ڪريڊٽ/ڊيبٽ ڪارڊن کي سپورٽ ڪري ٿو. هي هن وقت اسان جي مکيه سفارش آهي. اسان توهان جي وقت جي قدر ڪريون ٿا جيڪو توهان هن طريقي سان عطيو ڪرڻ سکڻ ۾ لڳايو، ڇو ته اهو اسان جي مدد ڪري ٿو."
 
-#: allthethings/account/templates/account/donate.html:285
+#: allthethings/account/templates/account/donate.html:281
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "پنهنجي عام پے پال اڪائونٽ استعمال ڪندي عطيو ڪريو."
 
-#: allthethings/account/templates/account/donate.html:291
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:287
+#: allthethings/account/templates/account/donate.html:293
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Alipay يا WeChat استعمال ڪندي عطيو ڪريو. توهان ايندڙ صفحي تي انهن مان چونڊ ڪري سگهو ٿا."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:299
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "ڪريڊٽ/ڊيبٽ ڪارڊ، PayPal، يا Venmo استعمال ڪندي عطيو ڪريو. توهان ايندڙ صفحي تي انهن مان چونڊ ڪري سگهو ٿا."
 
-#: allthethings/account/templates/account/donate.html:309
+#: allthethings/account/templates/account/donate.html:305
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Amazon گفٽ ڪارڊ استعمال ڪندي عطيو ڪريو."
 
-#: allthethings/account/templates/account/donate.html:310
+#: allthethings/account/templates/account/donate.html:306
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "نوٽ ڪريو ته اسان کي پنهنجي ري سيلرز طرفان قبول ڪيل رقم ڏانهن گول ڪرڻو پوندو (گهٽ ۾ گهٽ %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:310
 #: allthethings/account/templates/account/donation.html:371
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>اهم: </strong> اسان صرف Amazon.com کي سپورٽ ڪريون ٿا، ٻيا Amazon ويب سائيٽون نه. مثال طور، .de، .co.uk، .ca، سپورٽ ٿيل نه آهن."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:317
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "هي طريقو هڪ cryptocurrency فراهم ڪندڙ کي وچولي تبديلي طور استعمال ڪري ٿو. هي ٿورو پيچيده ٿي سگهي ٿو، تنهن ڪري مهرباني ڪري صرف هن طريقي کي استعمال ڪريو جيڪڏهن ٻيا ادائيگي جا طريقا ڪم نٿا ڪن. اهو پڻ سڀني ملڪن ۾ ڪم نٿو ڪري."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:323
+msgid "page.donate.payment.desc.bank_card_app"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:327
+#: allthethings/account/templates/account/donation.html:508
+msgid "page.donate.payment.desc.bank_card_app.step1.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:331
+#: allthethings/account/templates/account/donation.html:512
+msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:335
+#: allthethings/account/templates/account/donation.html:516
+msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:517
+msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:521
+msgid "page.donate.payment.desc.bank_card_app.step2.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:348
+#: allthethings/account/templates/account/donation.html:529
+msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:349
+#: allthethings/account/templates/account/donation.html:530
+msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:355
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "اسان سڌو سنئون ڪريڊٽ/ڊيبٽ ڪارڊن جي حمايت نٿا ڪري سگهون، ڇو ته بئنڪون اسان سان ڪم ڪرڻ نٿيون چاهين. ☹ بهرحال، ڪريڊٽ/ڊيبٽ ڪارڊ استعمال ڪرڻ جا ڪيترائي طريقا آهن، ٻين ادائيگي جي طريقن کي استعمال ڪندي:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "اسان کي Amazon.com گفٽ ڪارڊ موڪليو پنهنجي ڪريڊٽ/ڊيبٽ ڪارڊ استعمال ڪندي."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:363
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "علي پے بين الاقوامي ڪريڊٽ/ڊيبٽ ڪارڊن جي حمايت ڪري ٿو. وڌيڪ معلومات لاءِ <a %(a_alipay)s>هن گائيڊ</a> کي ڏسو."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:366
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) بين الاقوامي ڪريڊٽ/ڊيبٽ ڪارڊن کي سپورٽ ڪري ٿو. WeChat ايپ ۾، \"Me => Services => Wallet => Add a Card\" ڏانهن وڃو. جيڪڏهن توهان کي اهو نظر نٿو اچي، ته \"Me => Settings => General => Tools => Weixin Pay => Enable\" استعمال ڪندي ان کي فعال ڪريو."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:369
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "توهان ڪريڊٽ/ڊيبٽ ڪارڊن کي استعمال ڪندي crypto خريد ڪري سگهو ٿا."
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:379
+msgid "page.donate.payment.desc.crypto_express_services"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:381
+msgid "page.donation.ccexp.crypto_express_services.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:382
+msgid "page.donation.ccexp.crypto_express_services.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:385
+msgid "page.donation.ccexp.crypto_express_services.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:386
+msgid "page.donation.ccexp.crypto_express_services.4"
+msgstr ""
+
+#: allthethings/account/templates/account/donate.html:389
 #: allthethings/account/templates/account/donation.html:302
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(گهٽ ۾ گهٽ: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:390
 #: allthethings/account/templates/account/donation.html:303
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(گهٽ ۾ گهٽ: %(minimum)s ملڪ تي منحصر، پهرين ٽرانزيڪشن لاءِ ڪا تصديق نه)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:391
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(گهٽ ۾ گهٽ: %(minimum)s, پهرين ٽرانزيڪشن لاءِ ڪا تصديق نه)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:392
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(گهٽ ۾ گهٽ: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:393
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(گهٽ ۾ گهٽ: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:393
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(گهٽ ۾ گهٽ: %(minimum)s, پهرين ٽرانزيڪشن لاءِ ڪا تصديق نه)"
 
-#: allthethings/account/templates/account/donate.html:395
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "جيڪڏهن ڪا به ڄاڻ پراڻي آهي، مهرباني ڪري اسان کي اي ميل ڪريو ته جيئن اسان کي خبر پوي."
 
-#: allthethings/account/templates/account/donate.html:402
+#: allthethings/account/templates/account/donate.html:403
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "ڪريڊٽ ڪارڊ، ڊيبٽ ڪارڊ، Apple Pay، ۽ Google Pay لاءِ، اسان \"Buy Me a Coffee\" (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>) استعمال ڪريون ٿا. انهن جي سسٽم ۾، هڪ \"ڪافي\" $5 جي برابر آهي، تنهن ڪري توهان جو عطيو 5 جي ويجھي گھڻا ڏانهن گول ڪيو ويندو."
 
-#: allthethings/account/templates/account/donate.html:409
+#: allthethings/account/templates/account/donate.html:410
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "چونڊيو ته توهان ڪيتري دير لاءِ سبسڪرائب ڪرڻ چاهيو ٿا."
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:427
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 مهينو"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:428
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 مهينا"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:429
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 مهينا"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:430
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 مهينا"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:431
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 مهينا"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 مهينا"
 
-#: allthethings/account/templates/account/donate.html:432
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 مهينا"
 
-#: allthethings/account/templates/account/donate.html:435
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>رعايتن کان پوءِ <span %(span_discount)s></span></div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:442
+#: allthethings/account/templates/account/donate.html:443
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "هن ادائيگي جي طريقي لاءِ گهٽ ۾ گهٽ %(amount)s جي ضرورت آهي. مهرباني ڪري مختلف مدت يا ادائيگي جو طريقو چونڊيو."
 
-#: allthethings/account/templates/account/donate.html:443
-#: allthethings/account/templates/account/donate.html:447
+#: allthethings/account/templates/account/donate.html:444
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "عطيو ڪريو"
 
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:447
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "هن ادائيگي جي طريقي سان وڌ ۾ وڌ %(amount)s جي اجازت آهي. مهرباني ڪري مختلف مدت يا ادائيگي جو طريقو چونڊيو."
 
-#: allthethings/account/templates/account/donate.html:453
+#: allthethings/account/templates/account/donate.html:454
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "ممبر ٿيڻ لاءِ، مهرباني ڪري <a %(a_login)s>لاگ ان يا رجسٽر ٿيو</a>. توهان جي حمايت لاءِ مهرباني!"
 
-#: allthethings/account/templates/account/donate.html:460
+#: allthethings/account/templates/account/donate.html:461
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "پنهنجي پسنديده ڪرپٽو ڪوائن چونڊيو:"
 
-#: allthethings/account/templates/account/donate.html:465
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(گهٽ ۾ گهٽ رقم)"
 
-#: allthethings/account/templates/account/donate.html:480
+#: allthethings/account/templates/account/donate.html:469
+msgid "page.donate.coinbase_eth"
+msgstr ""
+
 #: allthethings/account/templates/account/donate.html:481
-#: allthethings/account/templates/account/donate.html:485
-#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:482
+#: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:488
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(خبردار: وڌيڪ ۾ وڌيڪ رقم)"
 
-#: allthethings/account/templates/account/donate.html:496
+#: allthethings/account/templates/account/donate.html:497
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "هن عطئي جي تصديق لاءِ ڊونيٽ بٽڻ تي ڪلڪ ڪريو."
 
-#: allthethings/account/templates/account/donate.html:504
+#: allthethings/account/templates/account/donate.html:505
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "ڊونيٽ ڪريو <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:509
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "توهان چيڪ آئوٽ دوران اڃا تائين عطيو منسوخ ڪري سگهو ٿا."
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:514
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ عطئي واري صفحي ڏانهن رهنمائي ڪئي پئي وڃي…"
 
-#: allthethings/account/templates/account/donate.html:514
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ ڪجهه غلط ٿي ويو. مهرباني ڪري صفحو ٻيهر لوڊ ڪريو ۽ ٻيهر ڪوشش ڪريو."
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:569
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:569
+#: allthethings/account/templates/account/donate.html:570
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / مهينو"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:573
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "1 مهيني لاءِ"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "3 مهينن لاءِ"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "6 مهينن لاءِ"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:576
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "12 مهينن لاءِ"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:577
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "24 مهينن لاءِ"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "48 مهينن لاءِ"
 
-#: allthethings/account/templates/account/donate.html:578
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "96 مهينن لاءِ"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "1 مهيني لاءِ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "3 مهينن لاءِ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:585
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "6 مهينن لاءِ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:586
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "12 مهينن لاءِ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:587
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "24 مهينن لاءِ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "48 مهينن لاءِ “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:588
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "96 مهينن لاءِ “%(tier_name)s”"
@@ -1006,8 +1065,8 @@ msgstr "<strong>اهم نوٽ:</strong> ڪرپٽو قيمتون وڏي حد تا
 #: allthethings/account/templates/account/donation.html:450
 #: allthethings/account/templates/account/donation.html:467
 #: allthethings/account/templates/account/donation.html:502
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:600
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "هي عطيو ختم ٿي چڪو آهي. مهرباني ڪري منسوخ ڪريو ۽ نئون ٺاهيو."
@@ -1087,8 +1146,8 @@ msgstr "هيٺ ڏنل مرحليوار گائيڊ ڏسو."
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:381
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "حالت:"
@@ -1100,8 +1159,8 @@ msgstr "حالت:"
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "تصديق جي انتظار ۾ (چيڪ ڪرڻ لاءِ صفحو ريفريش ڪريو)…"
@@ -1113,8 +1172,8 @@ msgstr "تصديق جي انتظار ۾ (چيڪ ڪرڻ لاءِ صفحو ريف�
 #: allthethings/account/templates/account/donation.html:321
 #: allthethings/account/templates/account/donation.html:350
 #: allthethings/account/templates/account/donation.html:487
-#: allthethings/account/templates/account/donation.html:547
-#: allthethings/account/templates/account/donation.html:574
+#: allthethings/account/templates/account/donation.html:559
+#: allthethings/account/templates/account/donation.html:586
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "منتقلي جي انتظار ۾ (چيڪ ڪرڻ لاءِ صفحو ريفريش ڪريو)…"
@@ -1126,8 +1185,8 @@ msgstr "منتقلي جي انتظار ۾ (چيڪ ڪرڻ لاءِ صفحو ري�
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "باقي وقت:"
@@ -1139,8 +1198,8 @@ msgstr "باقي وقت:"
 #: allthethings/account/templates/account/donation.html:322
 #: allthethings/account/templates/account/donation.html:351
 #: allthethings/account/templates/account/donation.html:488
-#: allthethings/account/templates/account/donation.html:548
-#: allthethings/account/templates/account/donation.html:575
+#: allthethings/account/templates/account/donation.html:560
+#: allthethings/account/templates/account/donation.html:587
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(توهان منسوخ ڪرڻ ۽ نئون عطيو ٺاهڻ چاهيو ٿا)"
@@ -1152,8 +1211,8 @@ msgstr "(توهان منسوخ ڪرڻ ۽ نئون عطيو ٺاهڻ چاهيو �
 #: allthethings/account/templates/account/donation.html:326
 #: allthethings/account/templates/account/donation.html:355
 #: allthethings/account/templates/account/donation.html:492
-#: allthethings/account/templates/account/donation.html:552
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:564
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "ٽائمر کي ري سيٽ ڪرڻ لاءِ، صرف نئون عطيو ٺاهيو."
@@ -1166,14 +1225,14 @@ msgstr "ٽائمر کي ري سيٽ ڪرڻ لاءِ، صرف نئون عطيو �
 #: allthethings/account/templates/account/donation.html:359
 #: allthethings/account/templates/account/donation.html:385
 #: allthethings/account/templates/account/donation.html:496
-#: allthethings/account/templates/account/donation.html:556
-#: allthethings/account/templates/account/donation.html:583
+#: allthethings/account/templates/account/donation.html:568
+#: allthethings/account/templates/account/donation.html:595
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "حالت تازه ڪريو"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:683
+#: allthethings/account/templates/account/donation.html:695
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "جيڪڏهن توهان کي ڪنهن مسئلي جو سامنا ٿئي، مهرباني ڪري اسان سان %(email)s تي رابطو ڪريو ۽ جيترو ممڪن ٿي سگهي معلومات شامل ڪريو (جهڙوڪ اسڪرين شاٽس)."
@@ -1369,8 +1428,8 @@ msgstr "مثال:"
 #: allthethings/account/templates/account/donation.html:446
 #: allthethings/account/templates/account/donation.html:462
 #: allthethings/account/templates/account/donation.html:483
-#: allthethings/account/templates/account/donation.html:543
-#: allthethings/account/templates/account/donation.html:600
+#: allthethings/account/templates/account/donation.html:555
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "نوٽ ڪريو ته اڪائونٽ جو نالو يا تصوير عجيب لڳي سگهي ٿي. پريشان ٿيڻ جي ضرورت ناهي! اهي اڪائونٽ اسان جي عطيا پارٽنرز طرفان منظم ڪيا ويا آهن. اسان جا اڪائونٽ هيڪ نه ٿيا آهن."
@@ -1395,127 +1454,143 @@ msgid "page.donation.payment.alipay.text1_new"
 msgstr "%(total)s جي ڪل رقم <a %(a_account)s>هن Alipay اڪائونٽ</a> تي عطيو ڪريو"
 
 #: allthethings/account/templates/account/donation.html:479
-#: allthethings/account/templates/account/donation.html:539
+#: allthethings/account/templates/account/donation.html:551
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "بدقسمتي سان، Alipay صفحو اڪثر ڪري رڳو <strong>مين لينڊ چين</strong> مان رسائي لائق آهي. توهان کي عارضي طور تي پنهنجو VPN غير فعال ڪرڻو پوندو، يا مين لينڊ چين (يا ڪڏهن ڪڏهن هانگ ڪانگ به ڪم ڪري ٿو) ڏانهن VPN استعمال ڪرڻو پوندو."
 
-#: allthethings/account/templates/account/donation.html:565
+#: allthethings/account/templates/account/donation.html:534
+msgid "page.donation.bank_card_app.step3.header"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:538
+msgid "page.donation.bank_card_app.step3.desc.1"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:542
+msgid "page.donation.bank_card_app.step3.desc.2"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:543
+msgid "page.donation.bank_card_app.step3.desc.3"
+msgstr ""
+
+#: allthethings/account/templates/account/donation.html:577
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "WeChat جون هدايتون"
 
-#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:579
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>WeChat تي عطيو ڪريو"
 
-#: allthethings/account/templates/account/donation.html:570
+#: allthethings/account/templates/account/donation.html:582
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "%(total)s جي ڪل رقم <a %(a_account)s>هن WeChat اڪائونٽ</a> تي عطيو ڪريو"
 
-#: allthethings/account/templates/account/donation.html:591
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Pix جون ھدايتون"
 
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:605
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Pix تي چندو ڏيو"
 
-#: allthethings/account/templates/account/donation.html:596
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "<a %(a_account)s>هن Pix اڪائونٽ</a> کي استعمال ڪندي %(total)s جي ڪل رقم چندو ڏيو"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>رسيد اسان کي اي ميل ڪريو"
 
-#: allthethings/account/templates/account/donation.html:609
+#: allthethings/account/templates/account/donation.html:621
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "رسيد يا اسڪرين شاٽ پنهنجي ذاتي تصديق واري پتي تي موڪليو. مهرباني ڪري هن اي ميل پتي کي پنهنجي PayPal عطئي لاءِ استعمال نه ڪريو."
 
-#: allthethings/account/templates/account/donation.html:611
+#: allthethings/account/templates/account/donation.html:623
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "پنهنجي ذاتي تصديق واري پتي تي رسيد يا اسڪرين شاٽ موڪليو:"
 
-#: allthethings/account/templates/account/donation.html:621
+#: allthethings/account/templates/account/donation.html:633
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "جيڪڏهن ٽرانزيڪشن دوران ڪرپٽو جي شرح مٽا سٽا ۾ تبديلي آئي، ته مهرباني ڪري اصل شرح ڏيکاريندڙ رسيد شامل ڪريو. اسان واقعي توهان جي ڪرپٽو استعمال ڪرڻ جي تڪليف کي ساراهيون ٿا، اهو اسان لاءِ تمام گهڻو مددگار آهي!"
 
-#: allthethings/account/templates/account/donation.html:626
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "جڏهن توهان پنهنجي رسيد اي ميل ڪئي آهي، ته هي بٽڻ ڪلڪ ڪريو، جيئن انا ان کي دستي طور تي جائزو وٺي سگهي (اهو ڪجهه ڏينهن وٺي سگهي ٿو):"
 
-#: allthethings/account/templates/account/donation.html:636
+#: allthethings/account/templates/account/donation.html:648
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "ها، مون پنهنجي رسيد اي ميل ڪئي"
 
-#: allthethings/account/templates/account/donation.html:639
+#: allthethings/account/templates/account/donation.html:651
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ توهان جي چندي جي مهرباني! انا ڪجهه ڏينهن اندر توهان جي ميمبرشپ کي دستي طور تي فعال ڪندي."
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:652
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ ڪجهه غلط ٿي ويو. مهرباني ڪري صفحو ٻيهر لوڊ ڪريو ۽ ٻيهر ڪوشش ڪريو."
 
-#: allthethings/account/templates/account/donation.html:645
+#: allthethings/account/templates/account/donation.html:657
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "قدم بہ قدم گائيڊ"
 
-#: allthethings/account/templates/account/donation.html:647
+#: allthethings/account/templates/account/donation.html:659
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "ڪجهه قدمن ۾ ڪرپٽو والٽ جو ذڪر آهي، پر پريشان نه ٿيو، توهان کي ڪرپٽو بابت ڪجهه سکڻ جي ضرورت ناهي."
 
-#: allthethings/account/templates/account/donation.html:649
+#: allthethings/account/templates/account/donation.html:661
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. پنهنجو اي ميل داخل ڪريو."
 
-#: allthethings/account/templates/account/donation.html:655
+#: allthethings/account/templates/account/donation.html:667
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. پنهنجو ادائيگي جو طريقو چونڊيو."
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:673
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. پنهنجو ادائيگي جو طريقو ٻيهر چونڊيو."
 
-#: allthethings/account/templates/account/donation.html:667
+#: allthethings/account/templates/account/donation.html:679
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. \"سيلف-هوسٽڊ\" والٽ چونڊيو."
 
-#: allthethings/account/templates/account/donation.html:673
+#: allthethings/account/templates/account/donation.html:685
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. \"مان ملڪيت جي تصديق ڪريان ٿو\" تي ڪلڪ ڪريو."
 
-#: allthethings/account/templates/account/donation.html:679
+#: allthethings/account/templates/account/donation.html:691
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. توهان کي اي ميل رسيد ملڻ گهرجي. مهرباني ڪري اهو اسان ڏانهن موڪليو، ۽ اسان توهان جي چندي جي تصديق جلد کان جلد ڪنداسين."
 
-#: allthethings/account/templates/account/donation.html:684
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donate.wait"
 msgstr "اسان سان رابطو ڪرڻ کان پهريان مهرباني ڪري گهٽ ۾ گهٽ <span %(span_hours)s>ٻه ڪلاڪ</span> انتظار ڪريو (۽ هن صفحي کي ريفريش ڪريو)."
 
-#: allthethings/account/templates/account/donation.html:685
+#: allthethings/account/templates/account/donation.html:697
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "جيڪڏهن توهان ادائيگي دوران ڪا غلطي ڪئي، اسان واپسي نٿا ڪري سگهون، پر اسان ان کي درست ڪرڻ جي ڪوشش ڪنداسين."
@@ -1992,6 +2067,10 @@ msgstr "ڪامڪ ڪتاب"
 msgid "common.md5_content_type_mapping.musical_score"
 msgstr "ميوزڪ اسڪور"
 
+#: allthethings/page/views.py:6192
+msgid "common.md5_content_type_mapping.audiobook"
+msgstr ""
+
 #: allthethings/page/views.py:6193
 #, fuzzy
 msgid "common.md5_content_type_mapping.other"
@@ -2033,7 +2112,7 @@ msgid "common.access_types_mapping.torrents_available"
 msgstr "ٽورينٽس ۾ شامل"
 
 #: allthethings/page/templates/page/datasets.html:43
-#: allthethings/page/templates/page/datasets.html:256
+#: allthethings/page/templates/page/datasets.html:254
 #: allthethings/page/templates/page/datasets_lgrs.html:25
 #: allthethings/page/views.py:6211
 #, fuzzy
@@ -2041,7 +2120,7 @@ msgid "common.record_sources_mapping.lgrs"
 msgstr "Libgen.rs"
 
 #: allthethings/page/templates/page/datasets.html:80
-#: allthethings/page/templates/page/datasets.html:319
+#: allthethings/page/templates/page/datasets.html:317
 #: allthethings/page/templates/page/datasets_lgli.html:29
 #: allthethings/page/views.py:6212
 #, fuzzy
@@ -2049,7 +2128,7 @@ msgid "common.record_sources_mapping.lgli"
 msgstr "Libgen.li"
 
 #: allthethings/page/templates/page/datasets.html:98
-#: allthethings/page/templates/page/datasets.html:355
+#: allthethings/page/templates/page/datasets.html:353
 #: allthethings/page/templates/page/datasets_zlib.html:25
 #: allthethings/page/views.py:6213
 #, fuzzy
@@ -2067,14 +2146,14 @@ msgstr "Z-Library چيني"
 msgid "common.record_sources_mapping.ia"
 msgstr "IA"
 
-#: allthethings/page/templates/page/datasets.html:544
+#: allthethings/page/templates/page/datasets.html:542
 #: allthethings/page/templates/page/datasets_isbndb.html:25
 #: allthethings/page/views.py:6216
 #, fuzzy
 msgid "common.record_sources_mapping.isbndb"
 msgstr "ISBNdb"
 
-#: allthethings/page/templates/page/datasets.html:528
+#: allthethings/page/templates/page/datasets.html:526
 #: allthethings/page/templates/page/datasets_ol.html:25
 #: allthethings/page/views.py:6217
 #, fuzzy
@@ -2087,7 +2166,7 @@ msgstr "OpenLibrary"
 msgid "common.record_sources_mapping.scihub"
 msgstr "Sci-Hub"
 
-#: allthethings/page/templates/page/datasets.html:563
+#: allthethings/page/templates/page/datasets.html:561
 #: allthethings/page/templates/page/datasets_oclc.html:25
 #: allthethings/page/views.py:6219
 #, fuzzy
@@ -2095,7 +2174,7 @@ msgid "common.record_sources_mapping.oclc"
 msgstr "OCLC (WorldCat)"
 
 #: allthethings/page/templates/page/datasets.html:148
-#: allthethings/page/templates/page/datasets.html:402
+#: allthethings/page/templates/page/datasets.html:400
 #: allthethings/page/templates/page/datasets_duxiu.html:25
 #: allthethings/page/views.py:6220
 #, fuzzy
@@ -2103,22 +2182,60 @@ msgid "common.record_sources_mapping.duxiu"
 msgstr "DuXiu 读秀"
 
 #: allthethings/page/templates/page/datasets.html:164
-#: allthethings/page/templates/page/datasets.html:436
+#: allthethings/page/templates/page/datasets.html:434
 #: allthethings/page/templates/page/datasets_upload.html:25
 #: allthethings/page/views.py:6221
 #, fuzzy
 msgid "common.record_sources_mapping.uploads"
 msgstr "AA ڏانهن اپلوڊز"
 
+#: allthethings/page/templates/page/datasets.html:180
 #: allthethings/page/views.py:6222
 #, fuzzy
 msgid "common.record_sources_mapping.magzdb"
 msgstr "MagzDB"
 
+#: allthethings/page/templates/page/datasets.html:196
 #: allthethings/page/views.py:6223
-#, fuzzy
-msgid "common.record_soruces_mapping.nexusstc"
-msgstr "Nexus/STC"
+msgid "common.record_sources_mapping.nexusstc"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets.html:580
+#: allthethings/page/views.py:6224
+msgid "common.record_sources_mapping.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6225
+msgid "common.record_sources_mapping.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6226
+msgid "common.record_sources_mapping.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6227
+msgid "common.record_sources_mapping.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6228
+msgid "common.record_sources_mapping.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6229
+msgid "common.record_sources_mapping.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6230
+msgid "common.record_sources_mapping.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6231
+msgid "common.record_sources_mapping.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6232
+msgid "common.record_sources_mapping.trantor"
+msgstr ""
 
 #: allthethings/page/views.py:6238
 #, fuzzy
@@ -2186,7 +2303,7 @@ msgstr "(ڪو به انتظار جي فهرست ناهي، پر تمام سست 
 msgid "page.md5.box.download.temporarily_unavailable"
 msgstr "پارٽنر سرور ڊائون لوڊز عارضي طور تي هن فائل لاءِ دستياب نه آهن."
 
-#: allthethings/page/views.py:6398 allthethings/page/views.py:6616
+#: allthethings/page/views.py:6398 allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub"
 msgstr "Sci-Hub: %(doi)s"
@@ -2223,407 +2340,471 @@ msgstr "Libgen.li"
 msgid "page.md5.box.download.libgen_ads"
 msgstr "انهن جي اشتهارن ۾ نقصانڪار سافٽ ويئر شامل هجڻ جي خبر آهي، تنهنڪري هڪ اشتهار بلاڪر استعمال ڪريو يا اشتهارن تي ڪلڪ نه ڪريو"
 
-#: allthethings/page/views.py:6546
+#: allthethings/page/views.py:6545
 #, fuzzy
 msgid "page.md5.box.download.nexusstc"
 msgstr "Nexus/STC"
 
-#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
+#: allthethings/page/views.py:6545
+msgid "page.md5.box.download.nexusstc_unreliable"
+msgstr ""
+
+#: allthethings/page/views.py:6594 allthethings/page/views.py:6598
 #, fuzzy
 msgid "page.md5.box.download.zlib"
 msgstr "Z-Library"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor"
 msgstr "Z-لائبريري ٽور تي"
 
-#: allthethings/page/views.py:6596 allthethings/page/views.py:6600
+#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
 #, fuzzy
 msgid "page.md5.box.download.zlib_tor_extra"
 msgstr "(ٽور برائوزر جي ضرورت آهي)"
 
-#: allthethings/page/views.py:6603
+#: allthethings/page/views.py:6602
 #, fuzzy
 msgid "page.md5.box.download.magzdb"
 msgstr "MagzDB"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6605
+msgid "page.md5.box.download.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.ia_borrow"
 msgstr "انٽرنيٽ آرڪائيو مان ادھار وٺو"
 
-#: allthethings/page/views.py:6612
+#: allthethings/page/views.py:6610
 #, fuzzy
 msgid "page.md5.box.download.print_disabled_only"
 msgstr "(صرف پرنٽ معذور سرپرست)"
 
-#: allthethings/page/views.py:6616
+#: allthethings/page/views.py:6614
 #, fuzzy
 msgid "page.md5.box.download.scihub_maybe"
 msgstr "(وابسته DOI شايد Sci-Hub ۾ دستياب نه هجي)"
 
-#: allthethings/page/views.py:6619
+#: allthethings/page/views.py:6617
 #, fuzzy
 msgid "page.md5.box.download.manualslib"
 msgstr "ManualsLib"
 
-#: allthethings/page/views.py:6622
+#: allthethings/page/views.py:6620
 #, fuzzy
 msgid "page.md5.box.download.pubmed"
 msgstr "PubMed"
 
-#: allthethings/page/views.py:6629
+#: allthethings/page/views.py:6627
 #, fuzzy
 msgid "page.md5.box.download.collection"
 msgstr "مجموعو"
 
-#: allthethings/page/views.py:6630
+#: allthethings/page/views.py:6628
 #, fuzzy
 msgid "page.md5.box.download.torrent"
 msgstr "ٽورينٽ"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.bulk_torrents"
 msgstr "بلڪ ٽورينٽ ڊائون لوڊز"
 
-#: allthethings/page/views.py:6636
+#: allthethings/page/views.py:6634
 #, fuzzy
 msgid "page.md5.box.download.experts_only"
 msgstr "(صرف ماهرن لاءِ)"
 
-#: allthethings/page/views.py:6643
+#: allthethings/page/views.py:6641
 #, fuzzy
 msgid "page.md5.box.download.aa_isbn"
 msgstr "ISBN لاءِ Anna’s Archive ڳوليو"
 
-#: allthethings/page/views.py:6644
+#: allthethings/page/views.py:6642
 #, fuzzy
 msgid "page.md5.box.download.other_isbn"
 msgstr "ISBN لاءِ مختلف ٻين ڊيٽابيسن ۾ ڳوليو"
 
-#: allthethings/page/views.py:6645
+#: allthethings/page/views.py:6643
 #, fuzzy
 msgid "page.md5.box.download.original_isbndb"
 msgstr "ISBNdb ۾ اصل رڪارڊ ڳوليو"
 
-#: allthethings/page/views.py:6647
+#: allthethings/page/views.py:6645
 #, fuzzy
 msgid "page.md5.box.download.aa_openlib"
 msgstr "انا جي آرڪائيو ۾ اوپن لائبريري آءِ ڊي لاءِ ڳولا ڪريو"
 
-#: allthethings/page/views.py:6648
+#: allthethings/page/views.py:6646
 #, fuzzy
 msgid "page.md5.box.download.original_openlib"
 msgstr "اوپن لائبريري ۾ اصل رڪارڊ ڳوليو"
 
-#: allthethings/page/views.py:6650
+#: allthethings/page/views.py:6648
 #, fuzzy
 msgid "page.md5.box.download.aa_oclc"
 msgstr "انا جي آرڪائيو ۾ او سي ايل سي (ورلڊ ڪيٽ) نمبر لاءِ ڳولا ڪريو"
 
-#: allthethings/page/views.py:6651
+#: allthethings/page/views.py:6649
 #, fuzzy
 msgid "page.md5.box.download.original_oclc"
 msgstr "ورلڊ ڪيٽ ۾ اصل رڪارڊ ڳوليو"
 
-#: allthethings/page/views.py:6653
+#: allthethings/page/views.py:6651
 #, fuzzy
 msgid "page.md5.box.download.aa_duxiu"
 msgstr "انا جي آرڪائيو ۾ DuXiu SSID نمبر لاءِ ڳولا ڪريو"
 
-#: allthethings/page/views.py:6654
+#: allthethings/page/views.py:6652
 #, fuzzy
 msgid "page.md5.box.download.original_duxiu"
 msgstr "DuXiu تي دستي ڳولا ڪريو"
 
-#: allthethings/page/views.py:6656
+#: allthethings/page/views.py:6654
 #, fuzzy
 msgid "page.md5.box.download.aa_cadal"
 msgstr "انا جي آرڪائيو ۾ CADAL SSNO نمبر لاءِ ڳولا ڪريو"
 
-#: allthethings/page/views.py:6657
+#: allthethings/page/views.py:6655
 #, fuzzy
 msgid "page.md5.box.download.original_cadal"
 msgstr "CADAL ۾ اصل رڪارڊ ڳوليو"
 
-#: allthethings/page/views.py:6661
+#: allthethings/page/views.py:6659
 #, fuzzy
 msgid "page.md5.box.download.aa_dxid"
 msgstr "انا جي آرڪائيو ۾ DuXiu DXID نمبر لاءِ ڳولا ڪريو"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "page.md5.box.download.scidb"
 msgstr "انا جي آرڪائيو 🧬 SciDB"
 
-#: allthethings/page/views.py:6666 allthethings/page/views.py:6667
+#: allthethings/page/views.py:6664 allthethings/page/views.py:6665
 #, fuzzy
 msgid "common.md5.servers.no_browser_verification"
 msgstr "(ڪو برائوزر تصديق گهربل ناهي)"
 
-#: allthethings/page/views.py:6721
+#: allthethings/page/views.py:6695
+msgid "page.md5.top_row.isbndb"
+msgstr ""
+
+#: allthethings/page/views.py:6696
+msgid "page.md5.top_row.oclc"
+msgstr ""
+
+#: allthethings/page/views.py:6697
+msgid "page.md5.top_row.duxiu_ssid"
+msgstr ""
+
+#: allthethings/page/views.py:6698
+msgid "page.md5.top_row.magzdb"
+msgstr ""
+
+#: allthethings/page/views.py:6699
+msgid "page.md5.top_row.nexusstc"
+msgstr ""
+
+#: allthethings/page/views.py:6700
+msgid "page.md5.top_row.edsebk"
+msgstr ""
+
+#: allthethings/page/views.py:6701
+msgid "page.md5.top_row.cerlalc"
+msgstr ""
+
+#: allthethings/page/views.py:6702
+msgid "page.md5.top_row.czech_oo42hcks"
+msgstr ""
+
+#: allthethings/page/views.py:6703
+msgid "page.md5.top_row.gbooks"
+msgstr ""
+
+#: allthethings/page/views.py:6704
+msgid "page.md5.top_row.goodreads"
+msgstr ""
+
+#: allthethings/page/views.py:6705
+msgid "page.md5.top_row.isbngrp"
+msgstr ""
+
+#: allthethings/page/views.py:6706
+msgid "page.md5.top_row.libby"
+msgstr ""
+
+#: allthethings/page/views.py:6707
+msgid "page.md5.top_row.rgb"
+msgstr ""
+
+#: allthethings/page/views.py:6708
+msgid "page.md5.top_row.trantor"
+msgstr ""
+
+#: allthethings/page/views.py:6718
 #, fuzzy
 msgid "page.md5.box.descr_title"
 msgstr "وضاحت"
 
-#: allthethings/page/views.py:6722
+#: allthethings/page/views.py:6719
 #, fuzzy
 msgid "page.md5.box.alternative_filename"
 msgstr "متبادل فائل جو نالو"
 
-#: allthethings/page/views.py:6723
+#: allthethings/page/views.py:6720
 #, fuzzy
 msgid "page.md5.box.alternative_title"
 msgstr "متبادل عنوان"
 
-#: allthethings/page/views.py:6724
+#: allthethings/page/views.py:6721
 #, fuzzy
 msgid "page.md5.box.alternative_author"
 msgstr "متبادل ليکڪ"
 
-#: allthethings/page/views.py:6725
+#: allthethings/page/views.py:6722
 #, fuzzy
 msgid "page.md5.box.alternative_publisher"
 msgstr "متبادل پبلشر"
 
-#: allthethings/page/views.py:6726
+#: allthethings/page/views.py:6723
 #, fuzzy
 msgid "page.md5.box.alternative_edition"
 msgstr "متبادل ايڊيشن"
 
-#: allthethings/page/views.py:6727
+#: allthethings/page/views.py:6724
 #, fuzzy
 msgid "page.md5.box.alternative_extension"
 msgstr "متبادل توسيع"
 
-#: allthethings/page/views.py:6728
+#: allthethings/page/views.py:6725
 #, fuzzy
 msgid "page.md5.box.metadata_comments_title"
 msgstr "ميٽا ڊيٽا تبصرا"
 
-#: allthethings/page/views.py:6729
+#: allthethings/page/views.py:6726
 #, fuzzy
 msgid "page.md5.box.alternative_description"
 msgstr "متبادل وضاحت"
 
-#: allthethings/page/views.py:6730
+#: allthethings/page/views.py:6727
 #, fuzzy
 msgid "page.md5.box.date_open_sourced_title"
 msgstr "تاريخ اوپن سورس ڪيو ويو"
 
-#: allthethings/page/templates/page/aarecord.html:14
+#: allthethings/page/templates/page/aarecord.html:15
 #, fuzzy
 msgid "page.md5.header.scihub"
 msgstr "Sci-Hub فائل “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:18
+#: allthethings/page/templates/page/aarecord.html:19
 #, fuzzy
 msgid "page.md5.header.ia"
 msgstr "انٽرنيٽ آرڪائيو ڪنٽرولڊ ڊجيٽل لينڊنگ فائل “%(id)s”"
 
-#: allthethings/page/templates/page/aarecord.html:21
+#: allthethings/page/templates/page/aarecord.html:22
 #, fuzzy
 msgid "page.md5.header.ia_desc"
 msgstr "هي انٽرنيٽ آرڪائيو مان فائل جو رڪارڊ آهي، سڌو ڊائون لوڊ ڪرڻ جي فائل ناهي. توهان ڪتاب کي ادھار وٺڻ جي ڪوشش ڪري سگهو ٿا (هيٺ ڏنل لنڪ)، يا جڏهن <a %(a_request)s>فائل جي درخواست</a> ڪري رهيا آهيو ته هن URL کي استعمال ڪريو."
 
-#: allthethings/page/templates/page/aarecord.html:22
-#: allthethings/page/templates/page/aarecord.html:46
+#: allthethings/page/templates/page/aarecord.html:23
+#: allthethings/page/templates/page/aarecord.html:47
 #, fuzzy
 msgid "page.md5.header.consider_upload"
 msgstr "جيڪڏهن توهان وٽ هي فائل آهي ۽ اها اڃا تائين انا جي آرڪائيو ۾ موجود ناهي، ته غور ڪريو <a %(a_request)s>ان کي اپلوڊ ڪرڻ</a>."
 
-#: allthethings/page/templates/page/aarecord.html:27
+#: allthethings/page/templates/page/aarecord.html:28
 #, fuzzy
 msgid "page.md5.header.meta_isbn"
 msgstr "ISBNdb %(id)s ميٽاڊاٽا رڪارڊ"
 
-#: allthethings/page/templates/page/aarecord.html:29
+#: allthethings/page/templates/page/aarecord.html:30
 #, fuzzy
 msgid "page.md5.header.meta_openlib"
 msgstr "اوپن لائبريري %(id)s ميٽاڊاٽا رڪارڊ"
 
-#: allthethings/page/templates/page/aarecord.html:31
+#: allthethings/page/templates/page/aarecord.html:32
 #, fuzzy
 msgid "page.md5.header.meta_oclc"
 msgstr "OCLC (ورلڊ ڪيٽ) نمبر %(id)s ميٽاڊاٽا رڪارڊ"
 
-#: allthethings/page/templates/page/aarecord.html:33
+#: allthethings/page/templates/page/aarecord.html:34
 #, fuzzy
 msgid "page.md5.header.meta_duxiu_ssid"
 msgstr "DuXiu SSID %(id)s ميٽاڊاٽا رڪارڊ"
 
-#: allthethings/page/templates/page/aarecord.html:35
+#: allthethings/page/templates/page/aarecord.html:36
 #, fuzzy
 msgid "page.md5.header.meta_cadal_ssno"
 msgstr "CADAL SSNO %(id)s ميٽاڊاٽا رڪارڊ"
 
-#: allthethings/page/templates/page/aarecord.html:37
+#: allthethings/page/templates/page/aarecord.html:38
 #, fuzzy
 msgid "page.md5.header.meta_magzdb_id"
 msgstr "MagzDB ID %(id)s ميٽا ڊيٽا رڪارڊ"
 
-#: allthethings/page/templates/page/aarecord.html:39
+#: allthethings/page/templates/page/aarecord.html:40
 #, fuzzy
 msgid "page.md5.header.meta_nexus_stc_id"
 msgstr "Nexus/STC ID %(id)s ميٽا ڊيٽا رڪارڊ"
 
-#: allthethings/page/templates/page/aarecord.html:45
+#: allthethings/page/templates/page/aarecord.html:46
 #, fuzzy
 msgid "page.md5.header.meta_desc"
 msgstr "ھي ميٽا ڊيٽا ريڪارڊ آھي، ڊائون لوڊ ڪرڻ جو فائيل ناھي. توھان ھي URL استعمال ڪري سگھو ٿا <a %(a_request)s>فائيل جي درخواست ڪندي</a>."
 
-#: allthethings/page/templates/page/aarecord.html:56
+#: allthethings/page/templates/page/aarecord.html:57
 #, fuzzy
 msgid "page.md5.text.linked_metadata"
 msgstr "ڳنڍيل ريڪارڊ مان ميٽا ڊيٽا"
 
-#: allthethings/page/templates/page/aarecord.html:57
+#: allthethings/page/templates/page/aarecord.html:58
 #, fuzzy
 msgid "page.md5.text.linked_metadata_openlib"
 msgstr "اوپن لائبريري تي ميٽا ڊيٽا بهتر ڪريو"
 
-#: allthethings/page/templates/page/aarecord.html:60
+#: allthethings/page/templates/page/aarecord.html:61
 #, fuzzy
 msgid "page.md5.warning.multiple_links"
 msgstr "خبردار: گهڻا ڳنڍيل ريڪارڊ:"
 
-#: allthethings/page/templates/page/aarecord.html:68
+#: allthethings/page/templates/page/aarecord.html:69
 #, fuzzy
 msgid "page.md5.header.improve_metadata"
 msgstr "ميٽا ڊيٽا بھتر ڪريو"
 
-#: allthethings/page/templates/page/aarecord.html:70
+#: allthethings/page/templates/page/aarecord.html:71
 #, fuzzy
 msgid "page.md5.text.report_quality"
 msgstr "فائل جي معيار جي رپورٽ ڪريو"
 
-#: allthethings/page/templates/page/aarecord.html:92
+#: allthethings/page/templates/page/aarecord.html:93
 #, fuzzy
 msgid "page.md5.codes.url"
 msgstr "URL:"
 
-#: allthethings/page/templates/page/aarecord.html:93
+#: allthethings/page/templates/page/aarecord.html:94
 #, fuzzy
 msgid "page.md5.codes.website"
 msgstr "ويب سائيٽ:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_abbr"
 msgstr "AA:"
 
-#: allthethings/page/templates/page/aarecord.html:94
+#: allthethings/page/templates/page/aarecord.html:95
 #, fuzzy
 msgid "page.md5.codes.aa_search"
 msgstr "“%(name)s” لاءِ Anna’s Archive ڳوليو"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_explorer"
 msgstr "ڪوڊز ايڪسپلورر:"
 
-#: allthethings/page/templates/page/aarecord.html:95
+#: allthethings/page/templates/page/aarecord.html:96
 #, fuzzy
 msgid "page.md5.codes.code_search"
 msgstr "ڪوڊز ايڪسپلورر ۾ ڏسو “%(name)s”"
 
-#: allthethings/page/templates/page/aarecord.html:114
+#: allthethings/page/templates/page/aarecord.html:115
 #, fuzzy
 msgid "page.md5.box.descr_read_more"
 msgstr "وڌيڪ پڙھو…"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.downloads"
 msgstr "ڊائون لوڊز (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.borrow"
 msgstr "ادھار (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:130
+#: allthethings/page/templates/page/aarecord.html:131
 #, fuzzy
 msgid "page.md5.tabs.explore_metadata"
 msgstr "ميٽا ڊيٽا ڳوليو (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:132
+#: allthethings/page/templates/page/aarecord.html:133
 #, fuzzy
 msgid "page.md5.tabs.lists"
 msgstr "لسٽون (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:133
+#: allthethings/page/templates/page/aarecord.html:134
 #, fuzzy
 msgid "page.md5.tabs.stats"
 msgstr "اسٽاٽس (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:135
+#: allthethings/page/templates/page/aarecord.html:136
 #, fuzzy
 msgid "common.tech_details"
 msgstr "ٽيڪنيڪل تفصيل"
 
-#: allthethings/page/templates/page/aarecord.html:204
+#: allthethings/page/templates/page/aarecord.html:205
 #, fuzzy
 msgid "page.md5.box.issues.text1"
 msgstr "<span class=\"font-bold\">❌ ھي فائيل مسئلن سان ٿي سگھي ٿو، ۽ ھڪ ذريعو لائبريري کان لڪايو ويو آھي.</span> ڪڏهن ڪڏهن اھو ڪاپي رائيٽ ھولڊر جي درخواست تي ھوندو آھي، ڪڏهن ڪڏهن اھو بھتر متبادل جي موجودگي جي ڪري ھوندو آھي، پر ڪڏهن ڪڏهن اھو فائيل جي مسئلي جي ڪري ھوندو آھي. اھو اڃا تائين ڊائون لوڊ ڪرڻ لاءِ ٺيڪ ٿي سگھي ٿو، پر اسان صلاح ڏيون ٿا ته پھريائين متبادل فائيل ڳوليو. وڌيڪ تفصيل:"
 
-#: allthethings/page/templates/page/aarecord.html:209
+#: allthethings/page/templates/page/aarecord.html:210
 #, fuzzy
 msgid "page.md5.box.download.better_file"
 msgstr "ھن فائيل جو بھتر ورزن ھيٺين تي موجود ٿي سگھي ٿو %(link)s"
 
-#: allthethings/page/templates/page/aarecord.html:214
+#: allthethings/page/templates/page/aarecord.html:215
 #, fuzzy
 msgid "page.md5.box.issues.text2"
 msgstr "جيڪڏھن توھان اڃا تائين ھي فائيل ڊائون لوڊ ڪرڻ چاھيو ٿا، ته پڪ ڪريو ته صرف قابل اعتماد، اپڊيٽ ٿيل سافٽ ويئر استعمال ڪريو ان کي کولڻ لاءِ."
 
-#: allthethings/page/templates/page/aarecord.html:219
+#: allthethings/page/templates/page/aarecord.html:220
 #, fuzzy
 msgid "page.md5.box.download.header_fast_only"
 msgstr "🚀 تيز ڊائون لوڊ"
 
-#: allthethings/page/templates/page/aarecord.html:221
+#: allthethings/page/templates/page/aarecord.html:222
 #, fuzzy
 msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 تيز ڊائون لوڊز</strong> ڪتابن، پيپرز، ۽ وڌيڪ جي ڊگھي مدي واري حفاظت جي حمايت ڪرڻ لاءِ <a %(a_membership)s>ممبر</a> بڻجو. توھان جي حمايت جي شڪريي ۾، توھان کي تيز ڊائون لوڊز ملندا. ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:222
+#: allthethings/page/templates/page/aarecord.html:223
 #: allthethings/templates/layouts/index.html:215
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "جيڪڏهن توهان هن مهيني چندو ڪيو، توهان کي <strong>ٻيڻو</strong> تيز ڊائون لوڊ جو تعداد ملندو."
 
-#: allthethings/page/templates/page/aarecord.html:224
+#: allthethings/page/templates/page/aarecord.html:225
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member"
 msgstr "<strong>🚀 تيز ڊائون لوڊز</strong> توھان وٽ اڄ %(remaining)s باقي آھن. ميمبر ٿيڻ جي مهرباني! ❤️"
 
-#: allthethings/page/templates/page/aarecord.html:225
+#: allthethings/page/templates/page/aarecord.html:226
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_no_remaining_new"
 msgstr "<strong>🚀 تيز ڊائون لوڊ</strong> توهان اڄ لاءِ تيز ڊائون لوڊ ختم ڪري ڇڏيا آهن."
 
-#: allthethings/page/templates/page/aarecord.html:226
+#: allthethings/page/templates/page/aarecord.html:227
 #, fuzzy
 msgid "page.md5.box.download.header_fast_member_valid_for"
 msgstr "<strong>🚀 تيز ڊائون لوڊ</strong> توهان تازو ئي هي فائل ڊائون لوڊ ڪئي آهي. لنڪس ڪجهه وقت لاءِ صحيح رهندا."
 
-#: allthethings/page/templates/page/aarecord.html:230
-#: allthethings/page/templates/page/aarecord.html:244
-#: allthethings/page/templates/page/aarecord.html:278
+#: allthethings/page/templates/page/aarecord.html:231
+#: allthethings/page/templates/page/aarecord.html:245
+#: allthethings/page/templates/page/aarecord.html:279
 #, fuzzy
 msgid "page.md5.box.download.option"
 msgstr "آپشن #%(num)d: %(link)s %(extra)s"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/templates/layouts/index.html:258
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "هڪ دوست کي ريفر ڪريو، ۽ توهان ۽ توهان جو دوست ٻئي حاصل ڪندا %(percentage)s%% بونس تيز ڊائون لوڊ!"
 
-#: allthethings/page/templates/page/aarecord.html:232
+#: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/page/templates/page/home.html:25
 #: allthethings/page/templates/page/home.html:34
 #: allthethings/page/templates/page/home.html:71
@@ -2639,205 +2820,239 @@ msgstr "هڪ دوست کي ريفر ڪريو، ۽ توهان ۽ توهان جو 
 msgid "layout.index.header.learn_more"
 msgstr "وڌيڪ سکو…"
 
-#: allthethings/page/templates/page/aarecord.html:239
+#: allthethings/page/templates/page/aarecord.html:240
 #, fuzzy
 msgid "page.md5.box.download.header_slow_only"
 msgstr "🐢 سست ڊائون لوڊ"
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.trusted_partners"
 msgstr "قابل اعتماد پارٽنرز کان."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "page.md5.box.download.slow_faq"
 msgstr "وڌيڪ معلومات <a %(a_slow)s>FAQ</a> ۾."
 
-#: allthethings/page/templates/page/aarecord.html:240
+#: allthethings/page/templates/page/aarecord.html:241
 #, fuzzy
 msgid "common.md5.servers.browser_verification_unlimited"
 msgstr "(شايد گهربل <a %(a_browser)s>برائوزر جي تصديق</a> — لامحدود ڊائون لوڊ!)"
 
-#: allthethings/page/templates/page/aarecord.html:256
+#: allthethings/page/templates/page/aarecord.html:257
 #, fuzzy
 msgid "page.md5.box.external_downloads"
 msgstr "ٻاهرين ڊائون لوڊ ڏيکاريو"
 
-#: allthethings/page/templates/page/aarecord.html:257
+#: allthethings/page/templates/page/aarecord.html:258
 #, fuzzy
 msgid "page.md5.box.download.header_external"
 msgstr "ٻاهريون ڊائون لوڊ"
 
-#: allthethings/page/templates/page/aarecord.html:283
+#: allthethings/page/templates/page/aarecord.html:284
 #, fuzzy
 msgid "page.md5.box.download.no_found"
 msgstr "ڪو به ڊائون لوڊ نه مليو."
 
-#: allthethings/page/templates/page/aarecord.html:289
+#: allthethings/page/templates/page/aarecord.html:290
 #, fuzzy
 msgid "page.md5.box.download.no_issues_notice"
 msgstr "سڀ ڊائون لوڊ آپشنز ۾ ساڳي فائل آهي، ۽ استعمال ڪرڻ لاءِ محفوظ هجڻ گهرجي. اهو چيو، انٽرنيٽ تان فائلون ڊائون لوڊ ڪرڻ وقت هميشه محتاط رهو، خاص طور تي اينا جي آرڪائيو کان ٻاهرين سائيٽن کان. مثال طور، پنهنجي ڊوائيسز کي اپڊيٽ رکڻ کي يقيني بڻايو."
 
-#: allthethings/page/templates/page/aarecord.html:301
-#, fuzzy
-msgid "page.md5.box.download.convert"
-msgstr "تبديل ڪريو: آن لائن اوزار استعمال ڪريو فارميٽس جي وچ ۾ تبديل ڪرڻ لاءِ. مثال طور، epub ۽ pdf جي وچ ۾ تبديل ڪرڻ لاءِ، استعمال ڪريو <a %(a_cloudconvert)s>CloudConvert</a>."
+#: allthethings/page/templates/page/aarecord.html:296
+#: allthethings/page/templates/page/partner_download.html:71
+msgid "page.md5.box.download.dl_managers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:302
-#, fuzzy
-msgid "page.md5.box.download.kindle"
-msgstr "ڪنڊل: فائل ڊائون لوڊ ڪريو (pdf يا epub سپورٽ ٿيل آهن)، پوءِ <a %(a_kindle)s>ڪنڊل ڏانهن موڪليو</a> ويب، ايپ، يا اي ميل استعمال ڪندي. مددگار اوزار: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+#: allthethings/page/templates/page/aarecord.html:297
+#: allthethings/page/templates/page/partner_download.html:72
+msgid "page.md5.box.download.dl_managers.links"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:303
-#, fuzzy
-msgid "page.md5.box.download.support_authors"
-msgstr "مصنفن جي مدد ڪريو: جيڪڏهن توهان کي هي پسند آهي ۽ توهان ان کي برداشت ڪري سگهو ٿا، ته اصل خريد ڪرڻ تي غور ڪريو، يا سڌو سنئون مصنفن جي مدد ڪريو."
+#: allthethings/page/templates/page/aarecord.html:305
+msgid "page.md5.box.download.readers"
+msgstr ""
 
-#: allthethings/page/templates/page/aarecord.html:304
-#, fuzzy
-msgid "page.md5.box.download.support_libraries"
-msgstr "لائبريرين جي مدد ڪريو: جيڪڏهن هي توهان جي مقامي لائبريري ۾ موجود آهي، ته اتي مفت ۾ ادھار وٺڻ تي غور ڪريو."
+#: allthethings/page/templates/page/aarecord.html:306
+msgid "page.md5.box.download.readers.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:315
+msgid "page.md5.box.download.conversion"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:316
+msgid "page.md5.box.download.conversion.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:324
+msgid "page.md5.box.download.sendtokindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:325
+msgid "page.md5.box.download.sendtokindle.links"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:328
+msgid "page.md5.box.download.link.send_to_kindle"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:329
+msgid "page.md5.box.download.link.send_to_kobokindle"
+msgstr ""
 
 #: allthethings/page/templates/page/aarecord.html:334
+msgid "page.md5.box.download.support"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:335
+msgid "page.md5.box.download.support.authors"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:336
+msgid "page.md5.box.download.support.libraries"
+msgstr ""
+
+#: allthethings/page/templates/page/aarecord.html:367
 #, fuzzy
 msgid "page.md5.quality.header"
 msgstr "فائل جي معيار"
 
-#: allthethings/page/templates/page/aarecord.html:337
+#: allthethings/page/templates/page/aarecord.html:370
 #, fuzzy
 msgid "page.md5.quality.report"
 msgstr "هن فائل جي معيار جي رپورٽ ڪري ڪميونٽي جي مدد ڪريو! 🙌"
 
-#: allthethings/page/templates/page/aarecord.html:341
+#: allthethings/page/templates/page/aarecord.html:374
 #, fuzzy
 msgid "page.md5.quality.report_issue"
 msgstr "فائل جي مسئلي جي رپورٽ ڪريو (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.great_quality"
 msgstr "عظيم فائل جي معيار (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:343
+#: allthethings/page/templates/page/aarecord.html:376
 #, fuzzy
 msgid "page.md5.quality.add_comment"
 msgstr "تبصرو شامل ڪريو (%(count)s)"
 
-#: allthethings/page/templates/page/aarecord.html:346
+#: allthethings/page/templates/page/aarecord.html:379
 #, fuzzy
 msgid "page.md5.quality.logged_out_login"
 msgstr "مهرباني ڪري <a %(a_login)s>لاگ ان</a> ڪريو."
 
-#: allthethings/page/templates/page/aarecord.html:350
+#: allthethings/page/templates/page/aarecord.html:383
 #, fuzzy
 msgid "page.md5.quality.what_is_wrong"
 msgstr "هن فائل سان ڇا غلط آهي؟"
 
-#: allthethings/page/templates/page/aarecord.html:360
+#: allthethings/page/templates/page/aarecord.html:393
 #, fuzzy
 msgid "page.md5.quality.copyright"
 msgstr "مهرباني ڪري <a %(a_copyright)s>DMCA / ڪاپي رائيٽ دعويٰ فارم</a> استعمال ڪريو."
 
-#: allthethings/page/templates/page/aarecord.html:365
+#: allthethings/page/templates/page/aarecord.html:398
 #, fuzzy
 msgid "page.md5.quality.describe_the_issue"
 msgstr "مسئلي کي بيان ڪريو (ضروري)"
 
-#: allthethings/page/templates/page/aarecord.html:366
+#: allthethings/page/templates/page/aarecord.html:399
 #, fuzzy
 msgid "page.md5.quality.issue_description"
 msgstr "مسئلي جي وضاحت"
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text1"
 msgstr "هن فائل جي بهتر ورزن جو MD5 (جيڪڏهن لاڳو ٿئي)."
 
-#: allthethings/page/templates/page/aarecord.html:370
+#: allthethings/page/templates/page/aarecord.html:403
 #, fuzzy
 msgid "page.md5.quality.better_md5.text2"
 msgstr "هن کي ڀريو جيڪڏهن ڪا ٻي فائل آهي جيڪا هن فائل سان ويجهي ميچ ڪري ٿي (ساڳي ايڊيشن، ساڳي فائل ايڪسٽينشن جيڪڏهن توهان ڳولي سگهو ٿا)، جنهن کي ماڻهن کي هن فائل جي بدران استعمال ڪرڻ گهرجي. جيڪڏهن توهان کي انا جي آرڪائيو کان ٻاهر هن فائل جو بهتر ورزن معلوم آهي، ته مهرباني ڪري <a %(a_upload)s>ان کي اپلوڊ ڪريو</a>."
 
-#: allthethings/page/templates/page/aarecord.html:373
+#: allthethings/page/templates/page/aarecord.html:406
 #, fuzzy
 msgid "page.md5.quality.better_md5.line1"
 msgstr "توهان URL مان md5 حاصل ڪري سگهو ٿا، مثال طور"
 
-#: allthethings/page/templates/page/aarecord.html:380
+#: allthethings/page/templates/page/aarecord.html:413
 #, fuzzy
 msgid "page.md5.quality.submit_report"
 msgstr "رپورٽ جمع ڪريو"
 
-#: allthethings/page/templates/page/aarecord.html:385
+#: allthethings/page/templates/page/aarecord.html:418
 #, fuzzy
 msgid "page.md5.quality.improve_the_metadata"
 msgstr "سکو پاڻمرادو هن فائل لاءِ <a %(a_metadata)s>ميٽا ڊيٽا کي بهتر ڪرڻ</a> بابت سکو."
 
-#: allthethings/page/templates/page/aarecord.html:389
+#: allthethings/page/templates/page/aarecord.html:422
 #, fuzzy
 msgid "page.md5.quality.report_thanks"
 msgstr "توهان جي رپورٽ جمع ڪرائڻ جي مهرباني. اها هن صفحي تي ڏيکاري ويندي، ۽ ان کي دستي طور تي انا پاران جائزو ورتو ويندو (جيستائين اسان وٽ مناسب ماڊريشن سسٽم نه هجي)."
 
-#: allthethings/page/templates/page/aarecord.html:390
+#: allthethings/page/templates/page/aarecord.html:423
 #, fuzzy
 msgid "page.md5.quality.report_error"
 msgstr "ڪجهه غلط ٿي ويو. مهرباني ڪري صفحو ٻيهر لوڊ ڪريو ۽ ٻيهر ڪوشش ڪريو."
 
-#: allthethings/page/templates/page/aarecord.html:396
+#: allthethings/page/templates/page/aarecord.html:429
 #, fuzzy
 msgid "page.md5.quality.great.summary"
 msgstr "جيڪڏهن هن فائل جي معيار بهترين آهي، توهان هتي ان بابت ڪجهه به بحث ڪري سگهو ٿا! جيڪڏهن نه، مهرباني ڪري \"فائل مسئلي جي رپورٽ\" بٽڻ استعمال ڪريو."
 
-#: allthethings/page/templates/page/aarecord.html:398
+#: allthethings/page/templates/page/aarecord.html:431
 #, fuzzy
 msgid "page.md5.quality.loved_the_book"
 msgstr "مون کي هي ڪتاب پسند آيو!"
 
-#: allthethings/page/templates/page/aarecord.html:400
+#: allthethings/page/templates/page/aarecord.html:433
 #, fuzzy
 msgid "page.md5.quality.submit_comment"
 msgstr "تبصرو ڇڏي ڏيو"
 
-#: allthethings/page/templates/page/aarecord.html:404
+#: allthethings/page/templates/page/aarecord.html:437
 #, fuzzy
 msgid "page.md5.quality.comment_thanks"
 msgstr "توهان هڪ تبصرو ڇڏيو. ان کي ڏيکارڻ ۾ هڪ منٽ لڳي سگهي ٿو."
 
-#: allthethings/page/templates/page/aarecord.html:405
+#: allthethings/page/templates/page/aarecord.html:438
 #, fuzzy
 msgid "page.md5.quality.comment_error"
 msgstr "ڪجهه غلط ٿي ويو. مهرباني ڪري صفحو ٻيهر لوڊ ڪريو ۽ ٻيهر ڪوشش ڪريو."
 
-#: allthethings/page/templates/page/aarecord.html:415
-#: allthethings/page/templates/page/aarecord.html:416
+#: allthethings/page/templates/page/aarecord.html:448
+#: allthethings/page/templates/page/aarecord.html:449
 #: allthethings/page/templates/page/torrents.html:26
 #: allthethings/page/templates/page/torrents.html:27
 #, fuzzy
 msgid "common.english_only"
 msgstr "هيٺ ڏنل متن انگريزي ۾ جاري آهي."
 
-#: allthethings/page/templates/page/aarecord.html:437
+#: allthethings/page/templates/page/aarecord.html:470
 #, fuzzy
 msgid "page.md5.text.stats.total_downloads"
 msgstr "ڪل ڊائون لوڊ: %(total)s"
 
-#: allthethings/page/templates/page/aarecord.html:469
+#: allthethings/page/templates/page/aarecord.html:502
 #, fuzzy
 msgid "page.md5.text.md5_info.text1"
 msgstr "\"فائل MD5\" هڪ هاش آهي جيڪو فائل جي مواد مان ڳڻپيو ويندو آهي، ۽ ان مواد جي بنياد تي مناسب طور تي منفرد آهي. سڀني شيڊو لائبريريون جيڪي اسان هتي انڊيڪس ڪيون آهن، بنيادي طور تي فائلن کي سڃاڻڻ لاءِ MD5s استعمال ڪن ٿيون."
 
-#: allthethings/page/templates/page/aarecord.html:473
+#: allthethings/page/templates/page/aarecord.html:506
 #, fuzzy
 msgid "page.md5.text.md5_info.text2"
 msgstr "هڪ فائل ڪيترن ئي شيڊو لائبريرين ۾ ظاهر ٿي سگهي ٿي. انهن مختلف ڊيٽا سيٽن بابت معلومات لاءِ جيڪي اسان گڏ ڪيا آهن، ڏسو <a %(a_datasets)s>Datasets صفحو</a>."
 
-#: allthethings/page/templates/page/aarecord.html:477
+#: allthethings/page/templates/page/aarecord.html:510
 #, fuzzy
 msgid "page.md5.text.ia_info.text1"
 msgstr "هي هڪ فائل آهي جيڪا <a %(a_ia)s>IA جي ڪنٽرولڊ ڊجيٽل لينڊنگ</a> لائبريري پاران منظم ڪئي وئي آهي، ۽ انا جي آرڪائيو پاران ڳولا لاءِ انڊيڪس ڪئي وئي آهي. انهن مختلف ڊيٽا سيٽن بابت معلومات لاءِ جيڪي اسان گڏ ڪيا آهن، ڏسو <a %(a_datasets)s>Datasets صفحو</a>."
 
-#: allthethings/page/templates/page/aarecord.html:482
+#: allthethings/page/templates/page/aarecord.html:515
 #, fuzzy
 msgid "page.md5.text.file_info.text1"
 msgstr "هن خاص فائل بابت معلومات لاءِ، ان جي <a %(a_href)s>JSON فائل</a> چيڪ ڪريو."
@@ -3246,9 +3461,9 @@ msgstr "غير افسانوي ۽ افسانوي"
 #: allthethings/page/templates/page/datasets.html:134
 #: allthethings/page/templates/page/datasets.html:151
 #: allthethings/page/templates/page/datasets.html:167
-#: allthethings/page/templates/page/datasets.html:184
-#: allthethings/page/templates/page/datasets.html:201
-#: allthethings/page/templates/page/datasets.html:218
+#: allthethings/page/templates/page/datasets.html:183
+#: allthethings/page/templates/page/datasets.html:199
+#: allthethings/page/templates/page/datasets.html:216
 #, fuzzy
 msgid "page.datasets.file"
 msgid_plural "page.datasets.files"
@@ -3287,7 +3502,7 @@ msgid "page.datasets.zlibzh.searchable"
 msgstr "Z-Library ۾ \"چيني\" مجموعو اسان جي DuXiu مجموعي سان ساڳيو لڳي ٿو، پر مختلف MD5s سان. اسان نقل کان بچڻ لاءِ انهن فائلن کي ٽورنٽس مان خارج ڪريون ٿا، پر اڃا تائين انهن کي اسان جي ڳولا انڊيڪس ۾ ڏيکاريون ٿا."
 
 #: allthethings/page/templates/page/datasets.html:131
-#: allthethings/page/templates/page/datasets.html:371
+#: allthethings/page/templates/page/datasets.html:369
 #: allthethings/page/templates/page/datasets_ia.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.iacdl"
@@ -3298,43 +3513,43 @@ msgstr "IA ڪنٽرول ٿيل ڊجيٽل قرض ڏيڻ"
 msgid "page.datasets.iacdl.searchable"
 msgstr "98%%+ فائلون ڳولڻ لائق آهن."
 
-#: allthethings/page/templates/page/datasets.html:214
+#: allthethings/page/templates/page/datasets.html:212
 #, fuzzy
 msgid "page.datasets.overview.total"
 msgstr "ڪل"
 
-#: allthethings/page/templates/page/datasets.html:215
+#: allthethings/page/templates/page/datasets.html:213
 #, fuzzy
 msgid "page.datasets.overview.excluding_duplicates"
 msgstr "نقل کي خارج ڪندي"
 
-#: allthethings/page/templates/page/datasets.html:229
+#: allthethings/page/templates/page/datasets.html:227
 #, fuzzy
 msgid "page.datasets.overview.text4"
 msgstr "ڇاڪاڻ ته شيڊو لائبريريون اڪثر هڪ ٻئي کان ڊيٽا هم وقت سازي ڪن ٿيون، لائبريرين جي وچ ۾ ڪافي اوورليپ آهي. ان ڪري انگ اکر ڪل ۾ شامل نٿا ٿين."
 
-#: allthethings/page/templates/page/datasets.html:233
+#: allthethings/page/templates/page/datasets.html:231
 #, fuzzy
 msgid "page.datasets.overview.text5"
 msgstr "“Anna’s Archive پاران mirrored ۽ seeded” سيڪڙو ڏيکاري ٿو ته اسان ڪيتريون فائلون پاڻ mirror ڪريون ٿا. اسان اهي فائلون وڏي پيماني تي torrents ذريعي seed ڪريون ٿا، ۽ انهن کي سڌو ڊائون لوڊ لاءِ پارٽنر ويب سائيٽن ذريعي دستياب ڪريون ٿا."
 
-#: allthethings/page/templates/page/datasets.html:236
+#: allthethings/page/templates/page/datasets.html:234
 #, fuzzy
 msgid "page.datasets.source_libraries.title"
 msgstr "ذريعو لائبريريون"
 
-#: allthethings/page/templates/page/datasets.html:239
+#: allthethings/page/templates/page/datasets.html:237
 #, fuzzy
 msgid "page.datasets.source_libraries.text1"
 msgstr "ڪجهه ذريعو لائبريريون پنهنجا ڊيٽا ٽورينٽس ذريعي وڏي پيماني تي شيئر ڪرڻ کي فروغ ڏين ٿيون، جڏهن ته ٻيا پنهنجو مجموعو آساني سان شيئر نٿا ڪن. اهڙي صورت ۾، Anna’s Archive انهن جي مجموعن کي اسڪراپ ڪرڻ جي ڪوشش ڪري ٿو، ۽ انهن کي دستياب ڪري ٿو (اسان جي <a %(a_torrents)s>Torrents</a> صفحي ڏسو). وچ ۾ حالتون به آهن، مثال طور، جتي ذريعو لائبريريون شيئر ڪرڻ لاءِ تيار آهن، پر انهن وٽ وسيلن جي کوٽ آهي. اهڙين حالتن ۾، اسان پڻ مدد ڪرڻ جي ڪوشش ڪندا آهيون."
 
-#: allthethings/page/templates/page/datasets.html:243
+#: allthethings/page/templates/page/datasets.html:241
 #, fuzzy
 msgid "page.datasets.source_libraries.text2"
 msgstr "هيٺ مختلف ذريعو لائبريرين سان اسان جي انٽرفيس جو جائزو آهي."
 
-#: allthethings/page/templates/page/datasets.html:248
-#: allthethings/page/templates/page/datasets.html:520
+#: allthethings/page/templates/page/datasets.html:246
+#: allthethings/page/templates/page/datasets.html:518
 #: allthethings/page/templates/page/datasets_duxiu.html:17
 #: allthethings/page/templates/page/datasets_edsebk.html:17
 #: allthethings/page/templates/page/datasets_ia.html:17
@@ -3353,8 +3568,8 @@ msgstr "هيٺ مختلف ذريعو لائبريرين سان اسان جي ا�
 msgid "page.datasets.sources.source.header"
 msgstr "ذريعو"
 
-#: allthethings/page/templates/page/datasets.html:249
-#: allthethings/page/templates/page/datasets.html:521
+#: allthethings/page/templates/page/datasets.html:247
+#: allthethings/page/templates/page/datasets.html:519
 #: allthethings/page/templates/page/datasets_duxiu.html:18
 #: allthethings/page/templates/page/datasets_edsebk.html:18
 #: allthethings/page/templates/page/datasets_ia.html:18
@@ -3373,7 +3588,7 @@ msgstr "ذريعو"
 msgid "page.datasets.sources.metadata.header"
 msgstr "ميٽا ڊيٽا"
 
-#: allthethings/page/templates/page/datasets.html:250
+#: allthethings/page/templates/page/datasets.html:248
 #: allthethings/page/templates/page/datasets_duxiu.html:19
 #: allthethings/page/templates/page/datasets_ia.html:19
 #: allthethings/page/templates/page/datasets_isbn_ranges.html:18
@@ -3388,185 +3603,185 @@ msgstr "ميٽا ڊيٽا"
 msgid "page.datasets.sources.files.header"
 msgstr "فائلون"
 
-#: allthethings/page/templates/page/datasets.html:261
+#: allthethings/page/templates/page/datasets.html:259
 #: allthethings/page/templates/page/datasets_lgrs.html:30
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.metadata1"
 msgstr "%(icon)s روزاني <a %(dbdumps)s>HTTP ڊيٽابيس ڊمپ</a>"
 
-#: allthethings/page/templates/page/datasets.html:268
+#: allthethings/page/templates/page/datasets.html:266
 #: allthethings/page/templates/page/datasets_lgrs.html:37
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files1"
 msgstr "%(icon)s <a %(nonfiction)s>غير افسانوي</a> ۽ <a %(fiction)s>افسانوي</a> لاءِ خودڪار ٽورنٽ"
 
-#: allthethings/page/templates/page/datasets.html:274
+#: allthethings/page/templates/page/datasets.html:272
 #: allthethings/page/templates/page/datasets_lgrs.html:43
 #, fuzzy
 msgid "page.datasets.sources.libgen_rs.files2"
 msgstr "%(icon)s انا جو آرڪائيو <a %(covers)s>ڪتاب جي ڪور ٽورنٽس</a> جو مجموعو منظم ڪري ٿو"
 
-#: allthethings/page/templates/page/datasets.html:284
+#: allthethings/page/templates/page/datasets.html:282
 #: allthethings/page/templates/page/datasets_scihub.html:25
 #, fuzzy
 msgid "common.record_sources_mapping.scihub_scimag"
 msgstr "Sci-Hub / Libgen “scimag”"
 
-#: allthethings/page/templates/page/datasets.html:289
+#: allthethings/page/templates/page/datasets.html:287
 #: allthethings/page/templates/page/datasets_scihub.html:30
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata1"
 msgstr "%(icon)s Sci-Hub 2021 کان نيون فائلون منجمند ڪري ڇڏيون آهن."
 
-#: allthethings/page/templates/page/datasets.html:292
+#: allthethings/page/templates/page/datasets.html:290
 #: allthethings/page/templates/page/datasets_scihub.html:33
 #, fuzzy
 msgid "page.datasets.sources.scihub.metadata2"
 msgstr "%(icon)s ميٽا ڊيٽا ڊمپ <a %(scihub1)s>هتي</a> ۽ <a %(scihub2)s>هتي</a> موجود آهن، ۽ <a %(libgenli)s>Libgen.li ڊيٽابيس</a> جو حصو پڻ (جنهن کي اسان استعمال ڪريون ٿا)"
 
-#: allthethings/page/templates/page/datasets.html:301
+#: allthethings/page/templates/page/datasets.html:299
 #: allthethings/page/templates/page/datasets_scihub.html:42
 #, fuzzy
 msgid "page.datasets.sources.scihub.files1"
 msgstr "%(icon)s ڊيٽا ٽورنٽ <a %(scihub1)s>هتي</a>, <a %(scihub2)s>هتي</a>, ۽ <a %(libgenli)s>هتي</a> موجود آهن"
 
-#: allthethings/page/templates/page/datasets.html:308
+#: allthethings/page/templates/page/datasets.html:306
 #: allthethings/page/templates/page/datasets_scihub.html:49
 #, fuzzy
 msgid "page.datasets.sources.scihub.files2"
 msgstr "%(icon)s ڪجهه نوان فائلون <a %(libgenrs)s>شامل</a> <a %(libgenli)s>ڪيون</a> پيون وڃن Libgen جي “scimag” ۾، پر نوان ٽورنٽ ٺاهڻ لاءِ ڪافي نه آهن"
 
-#: allthethings/page/templates/page/datasets.html:324
+#: allthethings/page/templates/page/datasets.html:322
 #: allthethings/page/templates/page/datasets_lgli.html:34
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.metadata1"
 msgstr "%(icon)s هر ٽه ماهي <a %(dbdumps)s>HTTP ڊيٽابيس ڊمپ</a>"
 
-#: allthethings/page/templates/page/datasets.html:331
+#: allthethings/page/templates/page/datasets.html:329
 #: allthethings/page/templates/page/datasets_lgli.html:41
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files1"
 msgstr "%(icon)s غير افسانوي ٽورنٽ Libgen.rs سان شيئر ڪيا ويا آهن (۽ <a %(libgenli)s>هتي</a> عڪس ٿيل)."
 
-#: allthethings/page/templates/page/datasets.html:336
+#: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files2"
 msgstr "%(icon)s افسانوي مجموعو الڳ ٿي چڪو آهي پر اڃا تائين <a %(libgenli)s>ٽورنٽ</a> آهن، جيتوڻيڪ 2022 کان اپڊيٽ نه ٿيو آهي (اسان وٽ سڌو ڊائونلوڊ موجود آهن)."
 
-#: allthethings/page/templates/page/datasets.html:341
+#: allthethings/page/templates/page/datasets.html:339
 #: allthethings/page/templates/page/datasets_lgli.html:51
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files3"
 msgstr "%(icon)s انا جو آرڪائيو ۽ Libgen.li گڏجي <a %(comics)s>ڪامڪ ڪتاب</a> ۽ <a %(magazines)s>ميگزين</a> جي مجموعن کي منظم ڪن ٿا."
 
-#: allthethings/page/templates/page/datasets.html:347
+#: allthethings/page/templates/page/datasets.html:345
 #: allthethings/page/templates/page/datasets_lgli.html:57
 #, fuzzy
 msgid "page.datasets.sources.libgen_li.files4"
 msgstr "%(icon)s روسي افسانوي ۽ معياري دستاويزن جي مجموعن لاءِ ڪو ٽورنٽ نه آهي."
 
-#: allthethings/page/templates/page/datasets.html:360
+#: allthethings/page/templates/page/datasets.html:358
 #: allthethings/page/templates/page/datasets_zlib.html:30
 #, fuzzy
 msgid "page.datasets.sources.zlib.metadata_and_files"
 msgstr "%(icon)s انا جو آرڪائيو ۽ Z-Library گڏجي <a %(metadata)s>Z-Library ميٽا ڊيٽا</a> ۽ <a %(files)s>Z-Library فائلون</a> جو مجموعو منظم ڪن ٿا"
 
-#: allthethings/page/templates/page/datasets.html:376
+#: allthethings/page/templates/page/datasets.html:374
 #: allthethings/page/templates/page/datasets_ia.html:30
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata1"
 msgstr "%(icon)s ڪجهه ميٽا ڊيٽا <a %(openlib)s>Open Library ڊيٽابيس ڊمپ</a> ذريعي موجود آهي، پر اهي سڄي IA مجموعي کي ڍڪيندا نه آهن"
 
-#: allthethings/page/templates/page/datasets.html:381
+#: allthethings/page/templates/page/datasets.html:379
 #: allthethings/page/templates/page/datasets_ia.html:35
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata2"
 msgstr "%(icon)s انهن جي سڄي مجموعي لاءِ ڪو به آساني سان رسائي لائق ميٽا ڊيٽا ڊمپ موجود نه آهي"
 
-#: allthethings/page/templates/page/datasets.html:384
+#: allthethings/page/templates/page/datasets.html:382
 #: allthethings/page/templates/page/datasets_ia.html:38
 #, fuzzy
 msgid "page.datasets.sources.ia.metadata3"
 msgstr "%(icon)s انا جو آرڪائيو <a %(ia)s>IA ميٽا ڊيٽا</a> جو مجموعو منظم ڪري ٿو"
 
-#: allthethings/page/templates/page/datasets.html:390
+#: allthethings/page/templates/page/datasets.html:388
 #: allthethings/page/templates/page/datasets_ia.html:44
 #, fuzzy
 msgid "page.datasets.sources.ia.files1"
 msgstr "%(icon)s فائلون صرف محدود بنيادن تي ادھار لاءِ موجود آهن، مختلف رسائي پابندين سان"
 
-#: allthethings/page/templates/page/datasets.html:392
+#: allthethings/page/templates/page/datasets.html:390
 #: allthethings/page/templates/page/datasets_ia.html:46
 #, fuzzy
 msgid "page.datasets.sources.ia.files2"
 msgstr "%(icon)s اينا جو آرڪائيو <a %(ia)s>IA فائلن</a> جو مجموعو منظم ڪري ٿو"
 
-#: allthethings/page/templates/page/datasets.html:407
+#: allthethings/page/templates/page/datasets.html:405
 #: allthethings/page/templates/page/datasets_duxiu.html:30
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata1"
 msgstr "%(icon)s چيني انٽرنيٽ تي مختلف ميٽا ڊيٽا ڊيٽابيس منتشر آهن؛ جيتوڻيڪ اڪثر ادا ڪيل ڊيٽابيس"
 
-#: allthethings/page/templates/page/datasets.html:410
+#: allthethings/page/templates/page/datasets.html:408
 #: allthethings/page/templates/page/datasets_duxiu.html:33
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata2"
 msgstr "%(icon)s انهن جي سڄي مجموعي لاءِ آساني سان رسائي لائق ميٽا ڊيٽا ڊمپ موجود نه آهن."
 
-#: allthethings/page/templates/page/datasets.html:413
+#: allthethings/page/templates/page/datasets.html:411
 #: allthethings/page/templates/page/datasets_duxiu.html:36
 #, fuzzy
 msgid "page.datasets.sources.duxiu.metadata3"
 msgstr "%(icon)s انا جي آرڪائيو <a %(duxiu)s>DuXiu ميٽا ڊيٽا</a> جو مجموعو منظم ڪري ٿو"
 
-#: allthethings/page/templates/page/datasets.html:420
+#: allthethings/page/templates/page/datasets.html:418
 #: allthethings/page/templates/page/datasets_duxiu.html:43
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files1"
 msgstr "%(icon)s چيني انٽرنيٽ تي پکڙيل مختلف فائل ڊيٽابيس؛ جيتوڻيڪ اڪثر ادا ڪيل ڊيٽابيس"
 
-#: allthethings/page/templates/page/datasets.html:423
+#: allthethings/page/templates/page/datasets.html:421
 #: allthethings/page/templates/page/datasets_duxiu.html:46
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files2"
 msgstr "%(icon)s اڪثر فائلون صرف پريميئم BaiduYun اڪائونٽس استعمال ڪندي رسائي لائق آهن؛ سست ڊائون لوڊنگ رفتار."
 
-#: allthethings/page/templates/page/datasets.html:426
+#: allthethings/page/templates/page/datasets.html:424
 #: allthethings/page/templates/page/datasets_duxiu.html:49
 #, fuzzy
 msgid "page.datasets.sources.duxiu.files3"
 msgstr "%(icon)s انا جي آرڪائيو <a %(duxiu)s>DuXiu فائلون</a> جو مجموعو منظم ڪري ٿو"
 
-#: allthethings/page/templates/page/datasets.html:441
+#: allthethings/page/templates/page/datasets.html:439
 #: allthethings/page/templates/page/datasets_upload.html:30
 #, fuzzy
 msgid "page.datasets.sources.uploads.metadata_and_files"
 msgstr "%(icon)s مختلف ننڍا يا هڪ دفعا استعمال ٿيندڙ ذريعا. اسان ماڻهن کي پهرين ٻين شيڊو لائبريرين ۾ اپلوڊ ڪرڻ جي ترغيب ڏيون ٿا، پر ڪڏهن ڪڏهن ماڻهن وٽ اهڙا مجموعا هوندا آهن جيڪي ٻين لاءِ ترتيب ڏيڻ لاءِ تمام وڏا هوندا آهن، جيتوڻيڪ ايترا وڏا نه هوندا آهن جو انهن جي پنهنجي ڪيٽيگري جي ضرورت هجي."
 
-#: allthethings/page/templates/page/datasets.html:501
+#: allthethings/page/templates/page/datasets.html:499
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.title"
 msgstr "صرف ميٽا ڊيٽا ذريعا"
 
-#: allthethings/page/templates/page/datasets.html:504
+#: allthethings/page/templates/page/datasets.html:502
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text1"
 msgstr "اسان پڻ پنهنجي مجموعي کي صرف ميٽا ڊيٽا ذريعن سان مالا مال ڪندا آهيون، جن کي اسان فائلن سان ملائي سگهون ٿا، مثال طور ISBN نمبر يا ٻين فيلڊن کي استعمال ڪندي. هيٺ انهن جو جائزو آهي. ٻيهر، انهن مان ڪجهه ذريعا مڪمل طور تي کليل آهن، جڏهن ته ٻين لاءِ اسان کي انهن کي اسڪراپ ڪرڻو پوندو."
 
-#: allthethings/page/templates/page/datasets.html:508
+#: allthethings/page/templates/page/datasets.html:506
 #: allthethings/page/templates/page/faq.html:187
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
 msgstr "اسان جي ميٽا ڊيٽا گڏ ڪرڻ جي ترغيب آرون سوارتز جو مقصد آهي \"هر ڪڏهن به شايع ٿيل ڪتاب لاءِ هڪ ويب پيج\"، جنهن لاءِ هن <a %(a_openlib)s>Open Library</a> ٺاهي. اهو منصوبو سٺو ڪيو آهي، پر اسان جي منفرد پوزيشن اسان کي ميٽا ڊيٽا حاصل ڪرڻ جي اجازت ڏئي ٿي جيڪا اهي نٿا ڪري سگهن. هڪ ٻيو ترغيب اسان جي خواهش هئي ته اسان ڄاڻون <a %(a_blog)s>دنيا ۾ ڪيترا ڪتاب آهن</a>, ته جيئن اسان حساب ڪري سگهون ته اسان وٽ ڪيترا ڪتاب بچائڻ لاءِ باقي آهن."
 
-#: allthethings/page/templates/page/datasets.html:515
+#: allthethings/page/templates/page/datasets.html:513
 #, fuzzy
 msgid "page.datasets.metadata_only_sources.text2"
 msgstr "نوٽ ڪريو ته ميٽا ڊيٽا ڳولا ۾، اسان اصل رڪارڊ ڏيکاريندا آهيون. اسان رڪارڊن جو ڪو به مرجنگ نٿا ڪندا."
 
-#: allthethings/page/templates/page/datasets.html:522
+#: allthethings/page/templates/page/datasets.html:520
 #: allthethings/page/templates/page/datasets_edsebk.html:19
 #: allthethings/page/templates/page/datasets_isbndb.html:19
 #: allthethings/page/templates/page/datasets_oclc.html:19
@@ -3575,49 +3790,49 @@ msgstr "نوٽ ڪريو ته ميٽا ڊيٽا ڳولا ۾، اسان اصل ر�
 msgid "page.datasets.sources.last_updated.header"
 msgstr "آخري اپڊيٽ"
 
-#: allthethings/page/templates/page/datasets.html:533
+#: allthethings/page/templates/page/datasets.html:531
 #: allthethings/page/templates/page/datasets_ol.html:30
 #, fuzzy
 msgid "page.datasets.sources.openlib.metadata1"
 msgstr "%(icon)s ماهوار <a %(dbdumps)s>ڊيٽابيس ڊمپ</a>"
 
-#: allthethings/page/templates/page/datasets.html:549
-#: allthethings/page/templates/page/datasets.html:588
+#: allthethings/page/templates/page/datasets.html:547
+#: allthethings/page/templates/page/datasets.html:585
 #: allthethings/page/templates/page/datasets_edsebk.html:30
 #: allthethings/page/templates/page/datasets_isbndb.html:30
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata1"
 msgstr "%(icon)s سڌو سنئون وڏي مقدار ۾ دستياب نه آهي، صرف نيم-وڏي مقدار ۾ پيوال جي پويان"
 
-#: allthethings/page/templates/page/datasets.html:552
+#: allthethings/page/templates/page/datasets.html:550
 #: allthethings/page/templates/page/datasets_isbndb.html:33
 #, fuzzy
 msgid "page.datasets.sources.isbndb.metadata2"
 msgstr "%(icon)s انا جي آرڪائيو <a %(isbndb)s>ISBNdb ميٽا ڊيٽا</a> جو مجموعو منظم ڪري ٿو"
 
-#: allthethings/page/templates/page/datasets.html:568
+#: allthethings/page/templates/page/datasets.html:566
 #: allthethings/page/templates/page/datasets_oclc.html:30
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata1"
 msgstr "%(icon)s سڌو سنئون وڏي مقدار ۾ دستياب نه آهي، اسڪريپنگ کان محفوظ ٿيل"
 
-#: allthethings/page/templates/page/datasets.html:571
+#: allthethings/page/templates/page/datasets.html:569
 #: allthethings/page/templates/page/datasets_oclc.html:33
 #, fuzzy
 msgid "page.datasets.sources.worldcat.metadata2"
 msgstr "%(icon)s انا جي آرڪائيو <a %(worldcat)s>OCLC (WorldCat) ميٽا ڊيٽا</a> جو مجموعو منظم ڪري ٿو"
 
-#: allthethings/page/templates/page/datasets.html:606
+#: allthethings/page/templates/page/datasets.html:603
 #, fuzzy
 msgid "page.datasets.unified_database.title"
 msgstr "متحده ڊيٽابيس"
 
-#: allthethings/page/templates/page/datasets.html:609
+#: allthethings/page/templates/page/datasets.html:606
 #, fuzzy
 msgid "page.datasets.unified_database.text1"
 msgstr "اسان مٿي ڄاڻايل سڀني ذريعن کي هڪ متحد ڊيٽابيس ۾ گڏ ڪندا آهيون جيڪو اسان هن ويب سائيٽ کي خدمت ڪرڻ لاءِ استعمال ڪندا آهيون. هي متحد ڊيٽابيس سڌو سنئون دستياب ناهي، پر جيئن ته Anna’s Archive مڪمل طور تي اوپن سورس آهي، ان کي آساني سان <a %(a_generated)s>جنريٽ</a> يا <a %(a_downloaded)s>ڊائونلوڊ</a> ڪري سگھجي ٿو جيئن ElasticSearch ۽ MariaDB ڊيٽابيس. ان صفحي تي اسڪرپٽ پاڻمرادو مٿي ڄاڻايل ذريعن مان سڀ ضروري ميٽا ڊيٽا ڊائونلوڊ ڪندا."
 
-#: allthethings/page/templates/page/datasets.html:617
+#: allthethings/page/templates/page/datasets.html:614
 #, fuzzy
 msgid "page.datasets.unified_database.text2"
 msgstr "جيڪڏهن توهان مقامي طور تي اهي اسڪرپٽ هلائڻ کان اڳ اسان جي ڊيٽا کي ڳولڻ چاهيو ٿا، توهان اسان جي JSON فائلن کي ڏسي سگهو ٿا، جيڪي وڌيڪ ٻين JSON فائلن سان ڳنڍيل آهن. <a %(a_json)s>هي فائل</a> هڪ سٺو شروعاتي نقطو آهي."
@@ -4022,15 +4237,23 @@ msgstr "Library Genesis (يا “Libgen”) جي مختلف فورڪز جي جل
 msgid "page.datasets.libgen_rs.story.dot_fun"
 msgstr "“.fun” ورزن اصل باني طرفان ٺاهيو ويو هو. اهو هڪ نئين، وڌيڪ ورهايل ورزن جي حق ۾ ٻيهر ترتيب ڏنو پيو وڃي."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:58
+#: allthethings/page/templates/page/datasets_lgrs.html:59
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_rs"
 msgstr "“.rs” ورزن ۾ تمام گهڻو ساڳيو ڊيٽا آهي، ۽ سڀ کان وڌيڪ مسلسل پنهنجي مجموعي کي بلڪ ٽورينٽ ۾ جاري ڪري ٿو. اهو تقريباً “افسانوي” ۽ “غير افسانوي” سيڪشن ۾ ورهايل آهي."
 
-#: allthethings/page/templates/page/datasets_lgrs.html:62
+#: allthethings/page/templates/page/datasets_lgrs.html:60
+msgid "page.datasets.libgen_rs.story.rus_dot_ec"
+msgstr ""
+
+#: allthethings/page/templates/page/datasets_lgrs.html:63
 #, fuzzy
 msgid "page.datasets.libgen_rs.story.dot_li"
 msgstr "<a %(a_li)s>“.li” ورزن</a> وٽ ڪامڪس جو وڏو مجموعو آهي، گڏوگڏ ٻيو مواد، جيڪو (اڃا تائين) ٽورينٽ ذريعي بلڪ ڊائون لوڊ لاءِ موجود ناهي. ان وٽ افسانوي ڪتابن جو الڳ ٽورينٽ مجموعو آهي، ۽ ان جي ڊيٽابيس ۾ <a %(a_scihub)s>Sci-Hub</a> جو ميٽا ڊيٽا شامل آهي."
+
+#: allthethings/page/templates/page/datasets_lgrs.html:64
+msgid "page.datasets.libgen_rs.story.dontexist"
+msgstr ""
 
 #: allthethings/page/templates/page/datasets_lgrs.html:66
 #, fuzzy
@@ -5066,12 +5289,28 @@ msgstr "مان نفرت ڪريان ٿو ته توهان هي منصوبو ڪيئ
 msgid "page.faq.hate.text1"
 msgstr "اسان پڻ هر ڪنهن کي ياد ڏيارڻ چاهيون ٿا ته اسان جو سڄو ڪوڊ ۽ ڊيٽا مڪمل طور تي اوپن سورس آهي. هي اسان جي منصوبن لاءِ منفرد آهي — اسان کي ڪنهن ٻئي منصوبي جي ڄاڻ ناهي جنهن وٽ اهڙي وڏي ڪيٽلاگ آهي جيڪو مڪمل طور تي اوپن سورس پڻ آهي. اسان ڪنهن به ماڻهوءَ کي ڀليڪار ڪيون ٿا جيڪو سوچيندو آهي ته اسان پنهنجو منصوبو خراب هلائي رهيا آهيون ته اسان جو ڪوڊ ۽ ڊيٽا وٺي پنهنجو شيڊو لائبريري قائم ڪري! اسان اهو ڪاوڙ مان نٿا چئون — اسان واقعي سوچيون ٿا ته هي شاندار هوندو ڇاڪاڻ ته اهو هر ڪنهن لاءِ معيار کي وڌائيندو، ۽ انسانيت جي ورثي کي بهتر محفوظ ڪندو."
 
-#: allthethings/page/templates/page/faq.html:323
+#: allthethings/page/templates/page/faq.html:310
+msgid "page.faq.uptime.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:313
+msgid "page.faq.uptime.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:316
+msgid "page.faq.anna.title"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:320
+msgid "page.faq.anna.text1"
+msgstr ""
+
+#: allthethings/page/templates/page/faq.html:324
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "توهان جا پسنديده ڪتاب ڪهڙا آهن؟"
 
-#: allthethings/page/templates/page/faq.html:326
+#: allthethings/page/templates/page/faq.html:327
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "هتي ڪجهه ڪتاب آهن جيڪي شيڊو لائبريرين ۽ ڊجيٽل تحفظ جي دنيا لاءِ خاص اهميت رکن ٿا:"
@@ -5640,17 +5879,17 @@ msgstr "مهرباني ڪري ڪيترن ئي ڊائون لوڊ صفحن کي ه
 msgid "page.partner_download.li3"
 msgstr "هڪ دفعو توهان کي ڊائون لوڊ لنڪ ملي ٿي ته اها ڪيترن ئي ڪلاڪن لاءِ صحيح آهي."
 
-#: allthethings/page/templates/page/partner_download.html:105
+#: allthethings/page/templates/page/partner_download.html:108
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "خبردار: گذريل 24 ڪلاڪن ۾ توهان جي IP پتي مان ڪيترائي ڊائون لوڊ ٿي چڪا آهن. ڊائون لوڊ عام کان سست ٿي سگهن ٿا."
 
-#: allthethings/page/templates/page/partner_download.html:106
+#: allthethings/page/templates/page/partner_download.html:109
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "گذريل 24 ڪلاڪن ۾ توهان جي IP پتي مان ڊائون لوڊ: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:107
+#: allthethings/page/templates/page/partner_download.html:110
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "جيڪڏهن توهان VPN، شيئر ٿيل انٽرنيٽ ڪنيڪشن استعمال ڪري رهيا آهيو، يا توهان جو ISP IPs شيئر ڪري ٿو، ته هي خبردار ان جي ڪري ٿي سگهي ٿو."
@@ -6561,3 +6800,19 @@ msgstr "اڳيون"
 
 #~ msgid "page.partner_download.download_now"
 #~ msgstr "هاڻي ڊائون لوڊ ڪريو"
+
+#~ msgid "common.record_soruces_mapping.nexusstc"
+#~ msgstr "Nexus/STC"
+
+#~ msgid "page.md5.box.download.convert"
+#~ msgstr "تبديل ڪريو: آن لائن اوزار استعمال ڪريو فارميٽس جي وچ ۾ تبديل ڪرڻ لاءِ. مثال طور، epub ۽ pdf جي وچ ۾ تبديل ڪرڻ لاءِ، استعمال ڪريو <a %(a_cloudconvert)s>CloudConvert</a>."
+
+#~ msgid "page.md5.box.download.kindle"
+#~ msgstr "ڪنڊل: فائل ڊائون لوڊ ڪريو (pdf يا epub سپورٽ ٿيل آهن)، پوءِ <a %(a_kindle)s>ڪنڊل ڏانهن موڪليو</a> ويب، ايپ، يا اي ميل استعمال ڪندي. مددگار اوزار: <a %(a_kobosend)s rel=\"noopener noreferrer nofollow\">1</a>."
+
+#~ msgid "page.md5.box.download.support_authors"
+#~ msgstr "مصنفن جي مدد ڪريو: جيڪڏهن توهان کي هي پسند آهي ۽ توهان ان کي برداشت ڪري سگهو ٿا، ته اصل خريد ڪرڻ تي غور ڪريو، يا سڌو سنئون مصنفن جي مدد ڪريو."
+
+#~ msgid "page.md5.box.download.support_libraries"
+#~ msgstr "لائبريرين جي مدد ڪريو: جيڪڏهن هي توهان جي مقامي لائبريري ۾ موجود آهي، ته اتي مفت ۾ ادھار وٺڻ تي غور ڪريو."
+
