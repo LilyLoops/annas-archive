@@ -198,27 +198,57 @@ country_lang_mapping = { "Albania": "Albanian", "Algeria": "Arabic", "Andorra": 
 def get_bcp47_lang_codes_parse_substr(substr):
     lang = ''
     debug_from = []
+    if substr.lower() in ['china', 'chinese', 'han', 'hant', 'hans', 'mandarin']:
+        debug_from.append('ZH special case')
+        return 'zh'
+    if substr.lower() in ['esl']:
+        debug_from.append('ES special case')
+        return 'es'
+    if substr.lower() in ['us']:
+        debug_from.append('EN special case')
+        return 'en'
+    if substr.lower() in ['ndl']:
+        debug_from.append('NL special case')
+        return 'nl'
+    if substr.lower() in ['esp', 'esperanto', 'eo']:
+        debug_from.append('EO special case')
+        return 'eo'
+    if substr.lower() in ['la', 'lat', 'latin']:
+        debug_from.append('LA special case')
+        return 'la'
     try:
-        lang = str(langcodes.standardize_tag(langcodes.get(substr), macro=True))
+        langcode = langcodes.get(substr)
+        if langcode.writing_population() < 1000000:
+            raise langcodes.tag_parser.LanguageTagError()
+        lang = str(langcodes.standardize_tag(langcode, macro=True))
         debug_from.append('langcodes.get')
     except langcodes.tag_parser.LanguageTagError:
         for country_name, language_name in country_lang_mapping.items():
             # Be careful not to use `in` here, or if we do then watch out for overlap, e.g. "Oman" in "Romania".
             if country_name.lower() == substr.lower():
                 try:
-                    lang = str(langcodes.standardize_tag(langcodes.find(language_name), macro=True))
+                    langcode = langcodes.find(language_name)
+                    if langcode.writing_population() < 1000000:
+                        raise LookupError()
+                    lang = str(langcodes.standardize_tag(langcode, macro=True))
                     debug_from.append(f"langcodes.find with country_lang_mapping {country_name.lower()=} == {substr.lower()=}")
                 except LookupError:
                     pass
                 break
         if lang == '':
             try:
-                lang = str(langcodes.standardize_tag(langcodes.find(substr), macro=True))
+                langcode = langcodes.find(substr)
+                if langcode.writing_population() < 1000000:
+                    raise LookupError()
+                lang = str(langcodes.standardize_tag(langcode, macro=True))
                 debug_from.append('langcodes.find WITHOUT country_lang_mapping')
             except LookupError:
                 # In rare cases, disambiguate by saying that `substr` is written in English
                 try:
-                    lang = str(langcodes.standardize_tag(langcodes.find(substr, language='en'), macro=True))
+                    langcode = langcodes.find(substr, language='en')
+                    if langcode.writing_population() < 1000000:
+                        raise LookupError()
+                    lang = str(langcodes.standardize_tag(langcode, macro=True))
                     debug_from.append('langcodes.find with language=en')
                 except LookupError:
                     lang = ''
@@ -226,31 +256,14 @@ def get_bcp47_lang_codes_parse_substr(substr):
     if ('-' in lang) and (lang != 'zh-Hant'):
         lang = lang.split('-', 1)[0]
         debug_from.append('split on dash')
-    # We have a bunch of weird data that gets interpreted as "Egyptian Sign Language" when it's
-    # clearly all just Spanish..
-    if lang == 'esl':
-        lang = 'es'
-        debug_from.append('esl to es')
-    # Seems present within ISBNdb, and just means "en".
-    if lang == 'us':
-        lang = 'en'
-        debug_from.append('us to en')
     # "urdu" not being converted to "ur" seems to be a bug in langcodes?
     if lang == 'urdu':
         lang = 'ur'
         debug_from.append('urdu to ur')
     # Same
     if lang == 'thai':
-        lang = 'ur'
-        debug_from.append('thai to ur')
-    # Same
-    if lang == 'esp':
-        lang = 'eo'
-        debug_from.append('esp to eo')
-    # Same
-    if lang == 'ndl':
-        lang = 'nl'
-        debug_from.append('ndl to nl')
+        lang = 'th'
+        debug_from.append('thai to th')
     if lang in ['und', 'mul', 'mis']:
         lang = ''
         debug_from.append('delete und/mul/mis')
