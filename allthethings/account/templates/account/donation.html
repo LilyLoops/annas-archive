@@ -504,31 +504,43 @@
       {% else %}
         <h2 class="mt-4 mb-4 text-xl font-bold">{{ gettext('page.donation.payment.alipay.top_header') }}</h2>
 
-        <!-- TODO:TRANSLATE -->
-        <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>Set up Alipay app</p>
-
-        <!-- TODO:TRANSLATE -->
-        <p class="mb-4">
-          Install the Alipay app from the <a href="https://apps.apple.com/us/app/alipay-simplify-your-life/id333206289" rel="noopener noreferrer nofollow">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" rel="noopener noreferrer nofollow">Google Play Store</a>.
-          Register using your phone number. No further personal details are required.
+        <p class="mb-4 font-bold">
+          {{ gettext('page.donate.payment.desc.bank_card_app.step1.header', style=(dict(class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5") | xmlattr)) }}
         </p>
 
-        <!-- TODO:TRANSLATE -->
         <p class="mb-4">
-          Then add your bank card. See <a {{ a.alipay_pdf | xmlattr }}>this guide</a> for more information.
+          {{ gettext('page.donate.payment.desc.bank_card_app.step1.desc1',
+              a_app_store=(dict(href="https://apps.apple.com/us/app/alipay-simplify-your-life/id333206289", **a.external_link) | xmlattr),
+              a_play_store=(dict(href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone", **a.external_link) | xmlattr),
+          ) }}
+          {{ gettext('page.donate.payment.desc.bank_card_app.step1.desc2') }}
+          {{ gettext('page.donate.payment.desc.bank_card_app.step1.desc3') }}
         </p>
 
-        <!-- TODO:TRANSLATE -->
-        <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">2</span>Make donation (scan QR code or press button)</p>
-
-        <!-- TODO:TRANSLATE -->
+        <p class="mb-4 font-bold">
+          {{ gettext('page.donate.payment.desc.bank_card_app.step2.header', style=(dict(class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5") | xmlattr)) }}
+        </p>
+  
         <p class="mb-4">
-          Open this page: <a href="{{ donation_dict.json.payment3_request.data.url | safe }}" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank">QR-code donation page</a>.
+          <img class="w-full max-w-[400px]" src="/images/alipay_cc.png">
+        </p>
+  
+        <p class="mb-4 text-sm text-gray-500">
+          {{ gettext('page.donate.payment.desc.bank_card_app.step2.desc1') }}
+          {{ gettext('page.donate.payment.desc.bank_card_app.step2.desc2', a_alipay=(a.alipay_pdf | xmlattr)) }}
+        </p>
+        
+        <p class="mb-4 font-bold">
+          {{ gettext('page.donation.bank_card_app.step3.header', style=(dict(class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5") | xmlattr)) }}
         </p>
 
-        <!-- TODO:TRANSLATE -->
         <p class="mb-4">
-          Scan the QR code with the Alipay app, or press the button to open the Alipay app. Please be patient, the page might take a while to load since it’s in China.
+          {{ gettext('page.donation.bank_card_app.step3.desc.1', a_href=(dict(href=donation_dict.json.payment3_request.data.url, class="font-bold", style="color: #0095ff", rel="noopener noreferrer nofollow", target="_blank") | xmlattr)) }}
+        </p>
+
+        <p class="mb-4">
+          {{ gettext('page.donation.bank_card_app.step3.desc.2') }}
+          {{ gettext('page.donation.bank_card_app.step3.desc.3') }}
         </p>
 
         <p class="mb-4">
