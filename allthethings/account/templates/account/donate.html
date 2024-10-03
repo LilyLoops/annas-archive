@@ -136,8 +136,7 @@
 
     <div class="flex flex-wrap items-end">
       {{ donate_button('amazon', gettext('page.donate.payment.buttons.amazon'), discount_percent=0, large=True) }}
-      <!-- TODO:TRANSLATE -->
-      {{ donate_button('payment3a_cc', "Bank card (using app)", discount_percent=0, large=True) }}
+      {{ donate_button('payment3a_cc', gettext('page.donate.payment.buttons.bank_card_app'), discount_percent=0, large=True) }}
       {{ donate_button('payment2', gettext('page.donate.payment.buttons.crypto', bitcoin_icon=''), discount_percent=10, large=True) }}
 
       <!-- {{ donate_button('cc', gettext('page.donate.payment.buttons.credit_debit', bitcoin_icon=''), discount_percent=10) }} -->
@@ -154,8 +153,7 @@
       {{ donate_button('payment2cashapp', gettext('page.donate.payment.buttons.cashapp', bitcoin_icon=''), discount_percent=10) }}
       {{ donate_button('payment2revolut', gettext('page.donate.payment.buttons.revolut', bitcoin_icon=''), discount_percent=10) }}
       <!-- {{ donate_button('payment2paypal', gettext('page.donate.payment.buttons.paypal_plain', bitcoin_icon=''), discount_percent=10) }} -->
-      <!-- TODO:TRANSLATE -->
-      {{ donate_button('ccexp', 'Bank card', discount_percent=0) }}
+      {{ donate_button('ccexp', gettext('page.donate.payment.buttons.bank_card'), discount_percent=0) }}
       <!-- {{ donate_button('hoodpay', gettext('page.donate.payment.buttons.credit_debit_backup', bitcoin_icon=''), discount_percent=0) }} -->
       <!-- {{ donate_button('payment2cc', gettext('page.donate.payment.buttons.credit_debit2', bitcoin_icon=''), discount_percent=0) }} -->
 
@@ -322,27 +320,33 @@
 
     <div class="js-membership-descr js-membership-descr-payment3a_cc">
       <p class="mb-4">
-        Donate using a credit/debit card, through the Alipay app (super easy to set up).
+        {{ gettext('page.donate.payment.desc.bank_card_app') }}
       </p>
 
-      <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>Install Alipay app</p>
+      <p class="mb-4 font-bold">
+        {{ gettext('page.donate.payment.desc.bank_card_app.step1.header', style=(dict(class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5") | xmlattr)) }}
+      </p>
 
-      <!-- TODO:TRANSLATE -->
       <p class="mb-4">
-        Install the Alipay app from the <a href="https://apps.apple.com/us/app/alipay-simplify-your-life/id333206289" rel="noopener noreferrer nofollow">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" rel="noopener noreferrer nofollow">Google Play Store</a>.
-        Register using your phone number. No further personal details are required.
+        {{ gettext('page.donate.payment.desc.bank_card_app.step1.desc1',
+            a_app_store=(dict(href="https://apps.apple.com/us/app/alipay-simplify-your-life/id333206289", **a.external_link) | xmlattr),
+            a_play_store=(dict(href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone", **a.external_link) | xmlattr),
+        ) }}
+        {{ gettext('page.donate.payment.desc.bank_card_app.step1.desc2') }}
+        {{ gettext('page.donate.payment.desc.bank_card_app.step1.desc3') }}
       </p>
 
-      <!-- TODO:TRANSLATE -->
-      <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">2</span>Add bank card</p>
+      <p class="mb-4 font-bold">
+        {{ gettext('page.donate.payment.desc.bank_card_app.step2.header', style=(dict(class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5") | xmlattr)) }}
+      </p>
 
       <p class="mb-4">
         <img class="w-full max-w-[400px]" src="/images/alipay_cc.png">
       </p>
 
-      <!-- TODO:TRANSLATE -->
       <p class="mb-4 text-sm text-gray-500">
-        Supported: Visa, MasterCard, JCB, Diners Club and Discover. See <a {{ a.alipay_pdf | xmlattr }}>this guide</a> for more information.
+        {{ gettext('page.donate.payment.desc.bank_card_app.step2.desc1') }}
+        {{ gettext('page.donate.payment.desc.bank_card_app.step2.desc2', a_alipay=(a.alipay_pdf | xmlattr)) }}
       </p>
     </div>
 
@@ -372,15 +376,14 @@
             ], style='or') | safe),
           ) | safe }}
         {% endcall %}
-        <!-- TODO:TRANSLATE -->
-        {% call definition_item('Crypto express services') %}
+        {% call definition_item(gettext('page.donate.payment.desc.crypto_express_services')) %}
           <p class="mb-2">
-            <!-- TODO:TRANSLATE -->
-            Express services are convenient, but charge higher fees. You can use this instead of a crypto exchange if you’re looking to quickly make a larger donation and don’t mind a fee of $5-10.
+            {{ gettext('page.donation.ccexp.crypto_express_services.1') }}
+            {{ gettext('page.donation.ccexp.crypto_express_services.2') }}
           </p>
           <p class="mb-2">
-            <!-- TODO:TRANSLATE -->
-            Be sure to send the exact crypto amount shown on the donation page, not the amount in $USD. Otherwise the fee will be subtracted and we can’t automatically process your membership.
+            {{ gettext('page.donation.ccexp.crypto_express_services.3') }}
+            {{ gettext('page.donation.ccexp.crypto_express_services.4') }}
           </p>
           <ul class="list-inside mb-2 ml-1">
             <li class="list-disc"><a href="https://paybis.com/" rel="noopener noreferrer nofollow" target="_blank">Paybis</a> {{ gettext('page.donation.payment2cc.method.paybis', minimum="$5") }}</li>
