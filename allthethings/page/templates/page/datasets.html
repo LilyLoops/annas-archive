@@ -177,8 +177,7 @@
 
     <tr class="even:bg-[#f2f2f2]">
       <td class="p-2 align-top">
-        <!-- TODO:TRANSLATE -->
-        <a class="custom-a underline hover:opacity-60" href="/datasets/magzdb">MagzDB [magzdb]</a>
+        <a class="custom-a underline hover:opacity-60" href="/datasets/magzdb">{{ gettext('common.record_sources_mapping.magzdb') }} [magzdb]</a>
       </td>
       <td class="p-2 align-top">
         {{ ngettext('page.datasets.file', 'page.datasets.files', stats_data.stats_by_group.magzdb.count, count=(stats_data.stats_by_group.magzdb.count|numberformat)) }}<br>
@@ -194,8 +193,7 @@
 
     <tr class="even:bg-[#f2f2f2]">
       <td class="p-2 align-top">
-        <!-- TODO:TRANSLATE -->
-        <a class="custom-a underline hover:opacity-60" href="/datasets/nexusstc">Nexus/STC [nexusstc]</a>
+        <a class="custom-a underline hover:opacity-60" href="/datasets/nexusstc">{{ gettext('common.record_sources_mapping.nexusstc') }} [nexusstc]</a>
       </td>
       <td class="p-2 align-top">
         {{ ngettext('page.datasets.file', 'page.datasets.files', stats_data.stats_by_group.nexusstc.count, count=(stats_data.stats_by_group.nexusstc.count|numberformat)) }}<br>
@@ -579,8 +577,7 @@
     <tr class="even:bg-[#f2f2f2]">
       <td class="p-2 align-top">
         <a class="custom-a underline hover:opacity-60" href="/datasets/edsebk">
-          <!-- TODO:TRANSLATE -->
-          EBSCOhost eBook Index [edsebk]
+          {{ gettext("common.record_sources_mapping.edsebk") }} [edsebk]
         </a>
       </td>
       <td class="p-2 align-top">

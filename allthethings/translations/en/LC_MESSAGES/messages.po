@@ -284,7 +284,7 @@ msgstr "We welcome large donations from wealthy individuals or institutions. "
 
 #: allthethings/account/templates/account/donate.html:114
 msgid "page.donate.header.large_donations"
-msgstr "For donations over $5000 please contact us directly at %(email)s."
+msgstr "For donations over $5,000, please contact us directly at %(email)s."
 
 #: allthethings/account/templates/account/donate.html:120
 msgid "page.donate.header.recurring"
@@ -1618,7 +1618,9 @@ msgstr "Comic book"
 msgid "common.md5_content_type_mapping.musical_score"
 msgstr "Musical score"
 
-#: allthethings/page/views.py:6193
+msgid "common.md5_content_type_mapping.audiobook"
+msgstr "Audiobook"
+
 msgid "common.md5_content_type_mapping.other"
 msgstr "Other"
 
@@ -1721,9 +1723,35 @@ msgstr "Uploads to AA"
 msgid "common.record_sources_mapping.magzdb"
 msgstr "MagzDB"
 
-#: allthethings/page/views.py:6223
-msgid "common.record_soruces_mapping.nexusstc"
+msgid "common.record_sources_mapping.nexusstc"
 msgstr "Nexus/STC"
+
+msgid "common.record_sources_mapping.edsebk"
+msgstr "EBSCOhost eBook Index"
+
+msgid "common.record_sources_mapping.cerlalc"
+msgstr "Cerlalc"
+
+msgid "common.record_sources_mapping.czech_oo42hcks"
+msgstr "Czech metadata"
+
+msgid "common.record_sources_mapping.gbooks"
+msgstr "Google Books"
+
+msgid "common.record_sources_mapping.goodreads"
+msgstr "Goodreads"
+
+msgid "common.record_sources_mapping.isbngrp"
+msgstr "ISBN GRP"
+
+msgid "common.record_sources_mapping.libby"
+msgstr "Libby"
+
+msgid "common.record_sources_mapping.rgb"
+msgstr "Russian State Library"
+
+msgid "common.record_sources_mapping.trantor"
+msgstr "Trantor"
 
 #: allthethings/page/views.py:6238
 msgid "common.specific_search_fields.title"
@@ -1812,7 +1840,9 @@ msgstr "their ads are known to contain malicious software, so use an ad blocker 
 msgid "page.md5.box.download.nexusstc"
 msgstr "Nexus/STC"
 
-#: allthethings/page/views.py:6595 allthethings/page/views.py:6599
+msgid "page.md5.box.download.nexusstc_unreliable"
+msgstr "(Nexus/STC files can be unreliable to download)"
+
 msgid "page.md5.box.download.zlib"
 msgstr "Z-Library"
 
@@ -1828,7 +1858,9 @@ msgstr "(requires the Tor Browser)"
 msgid "page.md5.box.download.magzdb"
 msgstr "MagzDB"
 
-#: allthethings/page/views.py:6612
+msgid "page.md5.box.download.edsebk"
+msgstr "EBSCOhost eBook Index"
+
 msgid "page.md5.box.download.ia_borrow"
 msgstr "Borrow from the Internet Archive"
 
@@ -3339,8 +3371,14 @@ msgid "page.datasets.libgen_rs.story.dot_rs"
 msgstr "The “.rs” version has very similar data, and most consistently releases their collection in bulk torrents. It is roughly split into a “fiction” and a “non-fiction” section."
 
 #: allthethings/page/templates/page/datasets_lgrs.html:62
+msgid "page.datasets.libgen_rs.story.rus_dot_ec"
+msgstr "Originally at “http://gen.lib.rus.ec”."
+
 msgid "page.datasets.libgen_rs.story.dot_li"
 msgstr "The <a %(a_li)s>“.li” version</a> has a massive collection of comics, as well as other content, that is not (yet) available for bulk download through torrents. It does have a separate torrent collection of fiction books, and it contains the metadata of <a %(a_scihub)s>Sci-Hub</a> in its database."
+
+msgid "page.datasets.libgen_rs.story.dontexist"
+msgstr "According to this <a %(a_mhut)s>forum post</a>, Libgen.li was originally hosted at “http://free-books.dontexist.com”."
 
 #: allthethings/page/templates/page/datasets_lgrs.html:66
 msgid "page.datasets.libgen_rs.story.zlib"
@@ -4180,6 +4218,18 @@ msgid "page.faq.hate.text1"
 msgstr "We would also like to remind everyone that all our code and data is completely open source. This is unique for projects like ours — we're not aware of any other project with a similarly massive catalog that is fully open source as well. We very much welcome anyone who thinks we run our project poorly to take our code and data and set up their own shadow library! We're not saying this out of spite or something — we genuinely think this would be awesome since it would raise the bar for everyone, and better preserve humanity's legacy."
 
 #: allthethings/page/templates/page/faq.html:323
+msgid "page.faq.uptime.title"
+msgstr "Do you have an uptime monitor?"
+
+msgid "page.faq.uptime.text1"
+msgstr "Please see <a %(a_href)s>this excellent project</a>."
+
+msgid "page.faq.anna.title"
+msgstr "Who is Anna?"
+
+msgid "page.faq.anna.text1"
+msgstr "You are Anna!"
+
 msgid "page.faq.favorite.title"
 msgstr "What are your favorite books?"
 

@@ -68,10 +68,13 @@
           <li class="list-disc">{{ gettext('page.partner_download.li2') }}</li>
           <li class="list-disc">{{ gettext('page.partner_download.li3') }}</li>
           <li class="list-disc">
-            <!-- TODO:TRANSLATE please use different strings for the different sentences -->
-            For large files we recommend using a download manager, to prevent interruptions.
-            Recommended:
-            <a href="https://jdownloader.org/" rel="noopener noreferrer nofollow" target="_blank">JDownloader</a>.
+            {{ gettext('page.md5.box.download.dl_managers') }}<br>
+            {{ gettext(
+                'page.md5.box.download.dl_managers.links',
+                links=(format_list([
+                  (a.html_a('JDownloader', href="https://jdownloader.org/", **a.external_link) | safe),
+                ], style='standard') | safe),
+            ) }}
           </li>
       </ul>
     </div>

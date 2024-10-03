@@ -85,7 +85,7 @@
   <p class="mb-4">
     {{ gettext('page.about.text3', email=(a.contact_page_link | safe)) }}
   </p>
-  
+
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="help">{{ gettext('page.faq.help.title') }} <a href="#help" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
   <ol class="list-inside mb-4">
@@ -263,7 +263,7 @@
     <br>
     {{ gettext('page.faq.torrents.a6.li1', a_libgen_nonfic=(' href="/torrents#libgen_rs_non_fic"' | safe), a_download=(' href="/torrents#aa_derived_mirror_metadata"' | safe), a_datasets=(' href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md"' | safe)) }}
     <br>
-    {{ gettext('page.faq.torrents.a6.li2', a_generate=(' href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md"' | safe), a_download=(' href="/datasets"' | safe)) }}    
+    {{ gettext('page.faq.torrents.a6.li2', a_generate=(' href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md"' | safe), a_download=(' href="/datasets"' | safe)) }}
   </p>
 
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="security">{{ gettext('page.faq.security.title') }} <a href="#security" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
@@ -307,17 +307,18 @@
     {{ gettext('page.faq.hate.text1') }}
   </p>
 
-  <!-- TODO:TRANSLATE -->
-  <h3 class="group mt-4 mb-1 text-xl font-bold" id="uptime">Do you have an uptime monitor? <a href="#uptime" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
+  <h3 class="group mt-4 mb-1 text-xl font-bold" id="uptime">{{ gettext('page.faq.uptime.title') }} <a href="#uptime" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
   <p class="mb-4">
-    Please see <a rel="noopener noreferrer" target="_blank" href="https://open-slum.org/">this excellent project</a>.
+    {{ gettext('page.faq.uptime.text1', a_href=(dict(href="https://open-slum.org/", **a.external_link) | xmlattr)) }}
   </p>
 
-  <h3 class="group mt-4 mb-1 text-xl font-bold" id="anna">Who is Anna? <a href="#anna" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
+  <h3 class="group mt-4 mb-1 text-xl font-bold" id="anna">{{ gettext('page.faq.anna.title') }} <a href="#anna" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
   <p class="mb-4">
-    <a rel="noopener noreferrer" target="_blank" href="https://www.reddit.com/r/Annas_Archive/comments/1f6h74r/im_curious_actually_who_is_anna/">You are Anna!</a>
+    <a rel="noopener noreferrer" target="_blank" href="https://www.reddit.com/r/Annas_Archive/comments/1f6h74r/im_curious_actually_who_is_anna/">
+      {{ gettext('page.faq.anna.text1') }}
+    </a>
   </p>
 
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="favorite">{{ gettext('page.faq.favorite.title') }} <a href="#favorite" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>

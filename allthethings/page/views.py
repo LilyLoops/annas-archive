@@ -6189,7 +6189,7 @@ def get_md5_content_type_mapping(display_lang):
             "magazine":           "📰 " + gettext("common.md5_content_type_mapping.magazine"),
             "book_comic":         "💬 " + gettext("common.md5_content_type_mapping.book_comic"),
             "musical_score":      "🎶 " + gettext("common.md5_content_type_mapping.musical_score"),
-            "audiobook":          "🎧 " + "Audiobook", # TODO:TRANSLATE
+            "audiobook":          "🎧 " + gettext("common.md5_content_type_mapping.audiobook"),
             "other":              "🤨 " + gettext("common.md5_content_type_mapping.other"),
         }
 
@@ -6220,16 +6220,16 @@ def get_record_sources_mapping(display_lang):
             "duxiu": gettext("common.record_sources_mapping.duxiu"),
             "upload": gettext("common.record_sources_mapping.uploads"),
             "magzdb": gettext("common.record_sources_mapping.magzdb"),
-            "nexusstc": gettext("common.record_soruces_mapping.nexusstc"),
-            "edsebk": "EBSCOhost", # TODO:TRANSLATE
-            "cerlalc": "Cerlalc", # TODO:TRANSLATE
-            "czech_oo42hcks": "Czech metadata", # TODO:TRANSLATE
-            "gbooks": "Google Books", # TODO:TRANSLATE
-            "goodreads": "Goodreads", # TODO:TRANSLATE
-            "isbngrp": "ISBN GRP", # TODO:TRANSLATE
-            "libby": "Libby", # TODO:TRANSLATE
-            "rgb": "Russian State Library", # TODO:TRANSLATE
-            "trantor": "Trantor", # TODO:TRANSLATE
+            "nexusstc": gettext("common.record_sources_mapping.nexusstc"),
+            "edsebk": gettext("common.record_sources_mapping.edsebk"),
+            "cerlalc": gettext("common.record_sources_mapping.cerlalc"),
+            "czech_oo42hcks": gettext("common.record_sources_mapping.czech_oo42hcks"),
+            "gbooks": gettext("common.record_sources_mapping.gbooks"),
+            "goodreads": gettext("common.record_sources_mapping.goodreads"),
+            "isbngrp": gettext("common.record_sources_mapping.isbngrp"),
+            "libby": gettext("common.record_sources_mapping.libby"),
+            "rgb": gettext("common.record_sources_mapping.rgb"),
+            "trantor": gettext("common.record_sources_mapping.trantor"),
         }
 
 def get_specific_search_fields_mapping(display_lang):
@@ -6542,8 +6542,7 @@ def get_additional_for_aarecord(aarecord):
         shown_click_get = True
 
     for source_record in source_records_by_type['aac_nexusstc']:
-        # TODO:TRANSLATE
-        additional['download_urls'].append((gettext('page.md5.box.download.nexusstc'), f"https://libstc.cc/#/stc/nid:{source_record['id']}", "(Nexus/STC files can be unreliable to download)"))
+        additional['download_urls'].append((gettext('page.md5.box.download.nexusstc'), f"https://libstc.cc/#/stc/nid:{source_record['id']}", gettext('page.md5.box.download.nexusstc_unreliable')))
 
     # TODO:SOURCE remove backwards compatibility.
     ipfs_infos = aarecord['file_unified_data'].get('ipfs_infos') or aarecord.get('ipfs_infos') or []
@@ -6603,8 +6602,7 @@ def get_additional_for_aarecord(aarecord):
         additional['download_urls'].append((gettext('page.md5.box.download.magzdb'), f"http://magzdb.org/num/{source_record['id']}", ""))
 
     for source_record in source_records_by_type['aac_edsebk']:
-        # TODO:TRANSLATE
-        additional['download_urls'].append(("EBSCOhost", f"https://library.macewan.ca/full-record/edsebk/{source_record['edsebk_id']}", ""))
+        additional['download_urls'].append((gettext('page.md5.box.download.edsebk'), f"https://library.macewan.ca/full-record/edsebk/{source_record['edsebk_id']}", ""))
 
     for source_record in source_records_by_type['ia_record']:
         ia_id = source_record['ia_id']
@@ -6683,7 +6681,7 @@ def get_additional_for_aarecord(aarecord):
             ] if item != ''],
         'cover_missing_hue_deg': int(hashlib.md5(aarecord['id'].encode()).hexdigest(), 16) % 360,
         'cover_url': cover_url,
-        'top_row': ("✅ " if additional['ol_is_primary_linked'] else "") + ", ".join([item for item in [
+        'top_row': ("✅ " if additional['ol_is_primary_linked'] else "") + ", ".join(item for item in [
                 *additional['most_likely_language_names'][0:3],
                 f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
                 "/".join(filter(len,[
@@ -6710,7 +6708,7 @@ def get_additional_for_aarecord(aarecord):
                 f"RSL {aarecord_id_split[1]}" if aarecord_id_split[0] == 'rgb' else '',
                 f"Trantor {aarecord_id_split[1]}" if aarecord_id_split[0] == 'trantor' else '',
                 (aarecord['file_unified_data']['original_filename_best']),
-            ] if item != '']),
+            ] if item != ''),
         'title': aarecord['file_unified_data']['title_best'] or additional['original_filename_best_name_only'],
         'publisher_and_edition': ", ".join([item for item in [
                 aarecord['file_unified_data']['publisher_best'],
