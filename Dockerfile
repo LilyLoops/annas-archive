@@ -6,11 +6,11 @@ ARG UID=1000
 ARG GID=1000
 
 RUN apt-get update \
-  && apt-get install -y build-essential \
-  && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
-  && apt-get clean \
-  && groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node \
-  && mkdir -p /node_modules && chown node:node -R /node_modules /app
+    && apt-get install -y build-essential \
+    && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
+    && apt-get clean \
+    && groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node \
+    && mkdir -p /node_modules && chown node:node -R /node_modules /app
 
 USER node
 
@@ -26,7 +26,7 @@ ENV NODE_ENV="${NODE_ENV}" \
 COPY --chown=node:node . ..
 
 RUN if [ "${NODE_ENV}" != "development" ]; then \
-  ../run yarn:build:js && ../run yarn:build:css; else mkdir -p /app/public; fi
+    ../run yarn:build:js && ../run yarn:build:css; else mkdir -p /app/public; fi
 
 CMD ["bash"]
 
