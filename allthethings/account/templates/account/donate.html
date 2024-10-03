@@ -325,10 +325,10 @@
       </p>
 
       <dl class="grid grid-cols-1 text-base/6 sm:grid-cols-[min(50%,theme(spacing.80))_auto] sm:text-sm/6">
-        {% call definition_item(gettext('page.donate.payment.buttons.amazon')) %}
+        {% call definition_item(gettext('page.donate.payment.buttons.amazon') + ' ⭐️') %}
           {{ gettext('page.donate.ccexp.amazon_com') }}
         {% endcall %}
-        {% call definition_item(gettext('page.donate.payment.buttons.alipay')) %}
+        {% call definition_item(gettext('page.donate.payment.buttons.alipay') + ' ⭐️') %}
           {{ gettext('page.donate.ccexp.alipay', a_alipay=(a.alipay_pdf | xmlattr)) }}
         {% endcall %}
         {% call definition_item(gettext('page.donate.payment.buttons.wechat')) %}
