@@ -47,12 +47,12 @@ function lint:dockerfile {
 
 function lint {
   # Lint Python code
-  cmd flake8 "${@}"
+  cmd ruff check "$@"
 }
 
 function format {
   # Format Python code
-  cmd black . "${@}"
+  cmd ruff format . "$@"
 }
 
 function test {
@@ -96,14 +96,14 @@ function mariapersistreplica {
 #   _dc redis redis-cli "$@"
 # }
 
-function pip3:install {
-  # Install pip3 dependencies and write lock file
-  _build_run_down web bin/pip3-install
+function uv:lock {
+  # Install python dependencies and write lock file
+  _build_run_down web uv sync
 }
 
 function pip3:outdated {
   # List any installed packages that are outdated
-  cmd pip3 list --outdated
+  cmd uv run pip3 list --outdated
 }
 
 function yarn:install {
