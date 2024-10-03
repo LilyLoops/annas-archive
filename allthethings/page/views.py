@@ -3658,6 +3658,9 @@ def get_aac_upload_book_dicts(session, key, values):
                 continue
 
             allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'aacid', record['aacid'])
+            for file in aac_upload_book_dict['files']:
+                allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'aacid', file['aacid'])
+
             subcollection = record['aacid'].split('__')[1].replace('upload_records_', '')
             aac_upload_book_dict['aa_upload_derived']['subcollection_multiple'].append(subcollection)
             aac_upload_book_dict['file_unified_data']['original_filename_additional'].append(allthethings.utils.prefix_filepath('upload', f"{subcollection}/{record['metadata']['filepath']}"))
