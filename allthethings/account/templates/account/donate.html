@@ -112,10 +112,8 @@
     <div class="mb-4 text-sm text-gray-500 text-center">
       {{ gettext('page.donate.header.large_donations_wealthy') }}
       {{ gettext('page.donate.header.large_donations', email=(a.contact_page_link | safe)) }}
-      <!-- TODO:TRANSLATE -->
       <div class="mt-1">
-        Be aware that while the memberships on this page are “per month”, they are one-time donations (non-recurring).
-        See the <a href="/donation_faq">Donation FAQ</a>.
+        {{ gettext('page.donate.header.recurring', faq=(dict(href="/donation_faq") | xmlattr)) }}
       </div>
       <div class="hidden">{{ gettext('page.donate.without_membership', address=(a.xmr_address | safe)) }}</div>
     </div>
