@@ -3461,7 +3461,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
         for cadal_ssno in duxiu_dict['aa_duxiu_derived']['cadal_ssno_multiple']:
             allthethings.utils.add_identifier_unified(duxiu_dict['file_unified_data'], 'cadal_ssno', cadal_ssno)
         for issn in duxiu_dict['aa_duxiu_derived']['issn_multiple']:
-            allthethings.utils.add_issn_unified(duxiu_dict['aa_duxiu_derived'], issn)
+            allthethings.utils.add_issn_unified(duxiu_dict['file_unified_data'], issn)
         for ean13 in duxiu_dict['aa_duxiu_derived']['ean13_multiple']:
             allthethings.utils.add_identifier_unified(duxiu_dict['file_unified_data'], 'ean13', ean13)
         for dxid in duxiu_dict['aa_duxiu_derived']['dxid_multiple']:
