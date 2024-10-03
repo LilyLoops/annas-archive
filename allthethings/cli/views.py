@@ -904,7 +904,7 @@ def elastic_build_aarecords_ol():
 def elastic_build_aarecords_ol_internal():
     new_tables_internal('aarecords_codes_ol', 'aarecords_codes_ol_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('ol_base', lambda batch: [f"ol:{row['primary_id'].replace('/books/','')}" for row in batch],
-        primary_id_column='ol_key', additional_where='ol_key LIKE "/books/OL%%"')
+        primary_id_column='ol_key', additional_where='ol_key LIKE "/books/OL%%" AND ol_key LIKE "%%M"')
 
 #################################################################################################
 # ./run flask cli elastic_build_aarecords_duxiu
