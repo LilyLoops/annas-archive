@@ -18,12 +18,12 @@ fi
 # -----------------------------------------------------------------------------
 
 function _dc {
-  docker compose "${DC}" ${TTY} "${@}"
+  docker compose "${DC}" ${TTY} "$@"
 }
 
 function _build_run_down {
   docker compose build
-  docker compose run ${TTY} "${@}"
+  docker compose run ${TTY} "$@"
   docker compose down
 }
 
@@ -31,38 +31,38 @@ function _build_run_down {
 
 function cmd {
   # Run any command you want in the web container
-  _dc web "${@}"
+  _dc web "$@"
 }
 
 function flask {
   # Run any Flask commands
-  cmd flask "${@}"
+  cmd flask "$@"
 }
 
 function lint:dockerfile {
   # Lint Dockerfile
   docker container run --rm -i \
-    hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
+    hadolint/hadolint hadolint --ignore DL3008 "$@" - < Dockerfile
 }
 
 function lint {
   # Lint Python code
-  cmd flake8 "${@}"
+  cmd ruff check "$@"
 }
 
 function format {
   # Format Python code
-  cmd black . "${@}"
+  cmd ruff format . "$@"
 }
 
 function test {
   # Run test suite
-  cmd pytest test/ "${@}"
+  cmd pytest test/ "$@"
 }
 
 function test:coverage {
   # Get test coverage
-  cmd pytest --cov test/ --cov-report term-missing "${@}"
+  cmd pytest --cov test/ --cov-report term-missing "$@"
 }
 
 function shell {
@@ -93,17 +93,17 @@ function mariapersistreplica {
 
 # function redis-cli {
 #   # Connect to Redis
-#   _dc redis redis-cli "${@}"
+#   _dc redis redis-cli "$@"
 # }
 
-function pip3:install {
-  # Install pip3 dependencies and write lock file
-  _build_run_down web bin/pip3-install
+function uv:lock {
+  # Install python dependencies and write lock file
+  _build_run_down web uv sync
 }
 
 function pip3:outdated {
   # List any installed packages that are outdated
-  cmd pip3 list --outdated
+  cmd uv run pip3 list --outdated
 }
 
 function yarn:install {
@@ -159,7 +159,7 @@ function ci:test {
   #   - https://github.com/koalaman/shellcheck
   #   - https://github.com/nickjj/wait-until
   shellcheck run bin/*
-  lint:dockerfile "${@}"
+  lint:dockerfile "$@"
 
   cp --no-clobber .env.example .env
 
@@ -172,10 +172,10 @@ function ci:test {
     -e MYSQL_PWD=password mariadb \
     mysql -u allthethings allthethings -c 'SELECT 1'"
 
-  lint "${@}"
+  lint "$@"
   format --check
   flask db reset --with-testdb
-  test "${@}"
+  test "$@"
 }
 
 function help {
