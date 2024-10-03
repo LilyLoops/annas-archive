@@ -37,7 +37,7 @@ FROM --platform=linux/amd64 python:3.10.5-slim-bullseye AS app
 WORKDIR /app
 
 RUN sed -i -e's/ main/ main contrib non-free archive stretch /g' /etc/apt/sources.list
-RUN apt-get update && apt-get install -y build-essential curl libpq-dev python3-dev default-libmysqlclient-dev aria2 unrar unzip p7zip curl python3 python3-pip ctorrent mariadb-client pv rclone gcc g++ make wget git cmake ca-certificates curl gnupg sshpass p7zip-full p7zip-rar libatomic1 libglib2.0-0 pigz parallel
+RUN apt-get update && apt-get install -y build-essential curl libpq-dev python3-dev default-libmysqlclient-dev aria2 unrar unzip p7zip curl python3 python3-pip ctorrent mariadb-client pv rclone gcc g++ make wget git cmake ca-certificates curl gnupg sshpass p7zip-full p7zip-rar libatomic1 libglib2.0-0 pigz parallel shellcheck
 
 # https://github.com/nodesource/distributions
 RUN mkdir -p /etc/apt/keyrings
