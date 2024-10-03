@@ -88,7 +88,6 @@ RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
     pigz \
     pv \
     rclone \
-    shellcheck \
     sshpass \
     unrar \
     unzip \
