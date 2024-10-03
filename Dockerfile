@@ -116,7 +116,6 @@ FROM zstd AS t2sz
 ADD https://github.com/martinellimarco/t2sz.git#v1.1.2 /t2sz
 WORKDIR /t2sz/build
 RUN cmake .. -DCMAKE_BUILD_TYPE="Release"
-# hadolint ignore=DL3059
 RUN make
 RUN checkinstall --install=no --default --pkgname t2sz && mv t2sz_*.deb /t2sz.deb
 
