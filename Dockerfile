@@ -65,10 +65,17 @@ RUN dpkg -i mydumper_*.deb
 RUN rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
 RUN apt-get clean
 
-COPY requirements*.txt ./
-COPY bin/ ./bin
+COPY --from=ghcr.io/astral-sh/uv:0.4 /uv /bin/uv
+ENV UV_PROJECT_ENVIRONMENT=/venv
+ENV PATH="/venv/bin:/root/.local/bin:$PATH"
 
-RUN chmod 0755 bin/* && bin/pip3-install
+# Changing the default UV_LINK_MODE silences warnings about not being able to use hard links since the cache and sync target are on separate file systems.
+ENV UV_LINK_MODE=copy
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project
 
 # Download models
 RUN echo 'import fast_langdetect; fast_langdetect.detect("dummy")' | python3
@@ -95,6 +102,10 @@ RUN sed -i -e '/if (fileOrigin !== viewerOrigin) {/,+2d' /public/pdfjs/web/viewe
 COPY --from=assets /app/public /public
 
 COPY . .
+
+# Sync the project
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen
 
 # RUN if [ "${FLASK_DEBUG}" != "true" ]; then \
 #   ln -s /public /app/public && flask digest compile && rm -rf /app/public; fi
