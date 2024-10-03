@@ -345,6 +345,26 @@
             ], style='or') | safe),
           ) | safe }}
         {% endcall %}
+        <!-- TODO:TRANSLATE -->
+        {% call definition_item('Crypto express services') %}
+          <p class="mb-2">
+            <!-- TODO:TRANSLATE -->
+            Express services are convenient, but charge higher fees. You can use this instead of a crypto exchange if you’re looking to quickly make a larger donation and don’t mind a fee of $5-10.
+          </p>
+          <p class="mb-2">
+            <!-- TODO:TRANSLATE -->
+            Be sure to send the exact crypto amount shown on the donation page, not the amount in $USD. Otherwise the fee will be subtracted and we can’t automatically process your membership.
+          </p>
+          <ul class="list-inside mb-2 ml-1">
+            <li class="list-disc"><a href="https://paybis.com/" rel="noopener noreferrer nofollow" target="_blank">Paybis</a> {{ gettext('page.donation.payment2cc.method.paybis', minimum="$5") }}</li>
+            <li class="list-disc"><a href="https://switchere.com/exchange/buy-bitcoin" rel="noopener noreferrer nofollow" target="_blank">Switchere</a> {{ gettext('page.donation.payment2cc.method.switchere', minimum="$10-$20") }}</li>
+            <li class="list-disc"><a href="https://munzen.io/buy/bitcoin-btc" rel="noopener noreferrer nofollow" target="_blank">Münzen</a> {{ gettext('page.donation.payment2cc.method.munzen', minimum="$15") }}</li>
+            <li class="list-disc"><a href="https://exchange.mercuryo.io/" rel="noopener noreferrer nofollow" target="_blank">Mercuryo.io</a> {{ gettext('page.donation.payment2cc.method.mercuryo', minimum="$30") }}</li>
+            <li class="list-disc"><a href="https://www.moonpay.com/buy" rel="noopener noreferrer nofollow" target="_blank">Moonpay</a> {{ gettext('page.donation.payment2cc.method.moonpay', minimum="$35") }}</li>
+            <li class="list-disc"><a href="https://buy.coingate.com/" rel="noopener noreferrer nofollow" target="_blank">Coingate</a> {{ gettext('page.donation.payment2cc.method.coingate', minimum="$45") }}</li>
+          </ul>
+          <p class="text-sm text-gray-500">{{ gettext('page.donation.payment2cc.cc2btc.outdated') }}</p>
+        {% endcall %}
       </dl>
     </div>
 
