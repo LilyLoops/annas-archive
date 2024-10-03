@@ -167,6 +167,8 @@ The script will output .html files in the current directory named `<language>--<
 
 You can also do `./run check-dumps` to check that the database is still working.
 
+If you are changing any translations, you should also run `./run check-translations` to check that *all* translations work.
+
 ## License
 
 >>>>>>> README.md

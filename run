@@ -97,9 +97,9 @@ function mariapersistreplica {
  _dc mariapersistreplica mysql -u "${MARIAPERSIST_USER}" "-p${MARIAPERSIST_PASSWORD}" "${MARIAPERSIST_DATABASE}"
 }
 
-function smoke-test {
+function check-translations {
   # Run smoke tests
-  cmd bin/smoke-test "$@"
+  cmd bin/check-translations "$@"
 }
 
 # function redis-cli {
@@ -201,8 +201,8 @@ function check {
   # echo "Resetting local database..."
   # flask cli dbreset
 
-  printf "\n> Running english and japanese smoke tests...\n" >&2
-  smoke-test en jp
+  printf "\n> Running english and japanese translation tests...\n" >&2
+  check-translations en jp
 
   printf "\n> Running python tests...\n" >&2
   test
