@@ -138,6 +138,8 @@
 
     <div class="flex flex-wrap items-end">
       {{ donate_button('amazon', gettext('page.donate.payment.buttons.amazon'), discount_percent=0, large=True) }}
+      <!-- TODO:TRANSLATE -->
+      {{ donate_button('payment3a_cc', "Bank card (using app)", discount_percent=0, large=True) }}
       {{ donate_button('payment2', gettext('page.donate.payment.buttons.crypto', bitcoin_icon=''), discount_percent=10, large=True) }}
 
       <!-- {{ donate_button('cc', gettext('page.donate.payment.buttons.credit_debit', bitcoin_icon=''), discount_percent=10) }} -->
@@ -154,7 +156,8 @@
       {{ donate_button('payment2cashapp', gettext('page.donate.payment.buttons.cashapp', bitcoin_icon=''), discount_percent=10) }}
       {{ donate_button('payment2revolut', gettext('page.donate.payment.buttons.revolut', bitcoin_icon=''), discount_percent=10) }}
       <!-- {{ donate_button('payment2paypal', gettext('page.donate.payment.buttons.paypal_plain', bitcoin_icon=''), discount_percent=10) }} -->
-      {{ donate_button('ccexp', gettext('page.donate.payment.buttons.credit_debit', bitcoin_icon=''), discount_percent=0) }}
+      <!-- TODO:TRANSLATE -->
+      {{ donate_button('ccexp', 'Bank card', discount_percent=0) }}
       <!-- {{ donate_button('hoodpay', gettext('page.donate.payment.buttons.credit_debit_backup', bitcoin_icon=''), discount_percent=0) }} -->
       <!-- {{ donate_button('payment2cc', gettext('page.donate.payment.buttons.credit_debit2', bitcoin_icon=''), discount_percent=0) }} -->
 
@@ -316,6 +319,32 @@
       <p class="mb-4">
         {{ gettext('page.donate.payment.desc.credit_debit') }}
         {{ gettext('page.donate.payment.desc.credit_debit_backup') }}
+      </p>
+    </div>
+
+    <div class="js-membership-descr js-membership-descr-payment3a_cc">
+      <p class="mb-4">
+        Donate using a credit/debit card, through the Alipay app (super easy to set up).
+      </p>
+
+      <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>Install Alipay app</p>
+
+      <!-- TODO:TRANSLATE -->
+      <p class="mb-4">
+        Install the Alipay app from the <a href="https://apps.apple.com/us/app/alipay-simplify-your-life/id333206289" rel="noopener noreferrer nofollow">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" rel="noopener noreferrer nofollow">Google Play Store</a>.
+        Register using your phone number. No further personal details are required.
+      </p>
+
+      <!-- TODO:TRANSLATE -->
+      <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">2</span>Add bank card</p>
+
+      <p class="mb-4">
+        <img class="w-full max-w-[400px]" src="/images/alipay_cc.png">
+      </p>
+
+      <!-- TODO:TRANSLATE -->
+      <p class="mb-4 text-sm text-gray-500">
+        Supported: Visa, MasterCard, JCB, Diners Club and Discover.
       </p>
     </div>
 

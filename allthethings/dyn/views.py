@@ -867,7 +867,7 @@ def account_buy_membership():
         raise Exception("Invalid costCentsUsdVerification")
 
     donation_type = 0 # manual
-    if method in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b']:
+    if method in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
         donation_type = 1
 
     with Session(mariapersist_engine) as mariapersist_session:
@@ -894,7 +894,7 @@ def account_buy_membership():
             response.raise_for_status()
             donation_json['hoodpay_request'] = response.json()
 
-        if method in ['payment3a', 'payment3b']:
+        if method in ['payment3a', 'payment3a_cc', 'payment3b']:
             data = {
                 # Note that these are sorted by key.
                 "amount": str(int(float(membership_costs['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
@@ -903,7 +903,7 @@ def account_buy_membership():
                 "mchId": 20000007,
                 "mchOrderId": donation_id,
                 "payerName": "Anna",
-                "productId": 8038 if method == 'payment3a' else 8055,
+                "productId": 8038 if method in ['payment3a', 'payment3a_cc'] else 8055,
                 "remark": "",
                 "time": int(time.time()),
             }

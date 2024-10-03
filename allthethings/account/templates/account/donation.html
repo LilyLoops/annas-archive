@@ -495,6 +495,52 @@
           <button onclick="window.location.reload()" class="bg-[#0195ff] hover:bg-blue-600 px-4 py-1 rounded-md text-white mb-1">{{ gettext('page.donation.refresh_status') }}</button>
         </p>
       {% endif %}
+    {% elif donation_dict.json.method == 'payment3a_cc' %}
+      {% if donation_time_expired %}
+        <p class="mb-4">
+          {{ gettext('page.donation.expired') }}
+        </p>
+      {% else %}
+        <h2 class="mt-4 mb-4 text-xl font-bold">{{ gettext('page.donation.payment.alipay.top_header') }}</h2>
+
+        <!-- TODO:TRANSLATE -->
+        <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>Make donation (scan QR code or press button)</p>
+
+        <!-- TODO:TRANSLATE -->
+        <p class="mb-4">
+          Open this page: <a href="{{ donation_dict.json.payment3_request.data.url | safe }}" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank">QR-code donation page</a>.
+        </p>
+
+        <!-- TODO:TRANSLATE -->
+        <p class="mb-4">
+          Scan the QR code with the Alipay app, or press the button to open the Alipay app. Please be patient, the page might take a while to load since it’s in China.
+        </p>
+
+        <p class="mb-4">
+          <img class="w-full max-w-[206px]" src="/images/alipay_qr.png">
+        </p>
+
+        <!-- <p class="mb-4">
+          {{ gettext('page.donation.payment.alipay.error') }}
+        </p> -->
+
+        <!-- <p class="mb-4">
+          {{ gettext('page.donate.strange_account') }}
+        </p> -->
+
+        <p class="mb-4">
+          <strong>{{ gettext('page.donation.status_header') }}</strong> {% if donation_confirming %}{{ gettext('page.donation.waiting_for_confirmation_refresh') }}{% else %}{{ gettext('page.donation.waiting_for_transfer_refresh') }}{% endif %}<br>
+          <strong>{{ gettext('page.donation.time_left_header') }}</strong> {{ (donation_time_left | string).split('.')[0] }} {% if donation_time_left_not_much %}{{ gettext('page.donation.might_want_to_cancel') }}{% endif %}
+        </p>
+
+        <p class="mb-4">
+          {{ gettext('page.donation.reset_timer') }}
+        </p>
+
+        <p class="mb-4">
+          <button onclick="window.location.reload()" class="bg-[#0195ff] hover:bg-blue-600 px-4 py-1 rounded-md text-white mb-1">{{ gettext('page.donation.refresh_status') }}</button>
+        </p>
+      {% endif %}
     {% elif donation_dict.json.method == 'payment3b' %}
       {% if donation_time_expired %}
         <p class="mb-4">
@@ -540,7 +586,7 @@
       </p> -->
     {% endif %}
 
-    {% if donation_dict.json.method not in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3b'] %}
+    {% if donation_dict.json.method not in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b'] %}
       <p class="mt-8 mb-4 font-bold">{{ gettext('page.donation.footer.header', span_circle=(' class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5"' | safe), circle_number=(3 if donation_dict.json.method in ['paypal', 'binance'] else 2)) }}
 
       <p class="mb-4">
