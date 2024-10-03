@@ -41,11 +41,17 @@ function flask {
 
 function lint:dockerfile {
   # Lint Dockerfile
-  docker container run --rm -i \
-    hadolint/hadolint hadolint --ignore DL3008 "$@" - < Dockerfile
+  docker container run --rm -i hadolint/hadolint \
+    hadolint --ignore DL3008 --ignore DL3029 - < Dockerfile
 }
 
-function lint {
+function lint:shellcheck {
+  # Lint shell scripts
+  docker container run --rm -it -v "$PWD:/mnt:ro" --workdir /mnt koalaman/shellcheck:stable \
+    ./run bin/check-dumps bin/docker-entrypoint-web
+}
+
+function lint:python {
   # Lint Python code
   cmd ruff check "$@"
 }
@@ -57,7 +63,7 @@ function format {
 
 function test {
   # Run test suite
-  cmd pytest test/ "$@"
+  cmd pytest test/
 }
 
 function test:coverage {
@@ -80,15 +86,20 @@ function mysql {
 function mariapersist {
   # Connect to MariaDB
   # shellcheck disable=SC1091
-  . .env
- _dc mariapersist mysql -u "${MARIAPERSIST_USER}" -p${MARIAPERSIST_PASSWORD} "${MARIAPERSIST_DATABASE}"
+  source .env
+ _dc mariapersist mysql -u "${MARIAPERSIST_USER}" "-p${MARIAPERSIST_PASSWORD}" "${MARIAPERSIST_DATABASE}"
 }
 
 function mariapersistreplica {
   # Connect to MariaDB
   # shellcheck disable=SC1091
-  . .env
- _dc mariapersistreplica mysql -u "${MARIAPERSIST_USER}" -p${MARIAPERSIST_PASSWORD} "${MARIAPERSIST_DATABASE}"
+  source .env
+ _dc mariapersistreplica mysql -u "${MARIAPERSIST_USER}" "-p${MARIAPERSIST_PASSWORD}" "${MARIAPERSIST_DATABASE}"
+}
+
+function smoke-test {
+  # Run smoke tests
+  cmd bin/smoke-test "$@"
 }
 
 # function redis-cli {
@@ -144,38 +155,57 @@ function clean {
   touch public/.keep
 }
 
-function ci:install-deps {
-  # Install Continuous Integration (CI) dependencies
-  sudo apt-get install -y curl shellcheck
-  sudo curl \
-    -L https://raw.githubusercontent.com/nickjj/wait-until/v0.2.0/wait-until \
-    -o /usr/local/bin/wait-until && sudo chmod +x /usr/local/bin/wait-until
+function check-dumps {
+  cmd bin/check-dumps
 }
 
-function ci:test {
-  # Execute Continuous Integration (CI) pipeline
+function check:fix {
+  # Basic checks in lieu of a full CI pipeline
   #
   # It's expected that your CI environment has these tools available:
   #   - https://github.com/koalaman/shellcheck
-  #   - https://github.com/nickjj/wait-until
-  shellcheck run bin/*
-  lint:dockerfile "$@"
+  lint:shellcheck
+  lint:dockerfile
+  lint:python --fix
+  format --help
+}
 
-  cp --no-clobber .env.example .env
+function check {
+  # Basic checks in lieu of a full CI pipeline
+  #
+  # It's expected that your CI environment has these tools available:
+  #   - https://github.com/koalaman/shellcheck
+  printf "\n> Running basic checks...\n" >&2
+  lint:shellcheck
+  lint:dockerfile
+  lint:python
 
+  printf "\n> Verifying code formatting...\n" >&2
+  # skipping this until we have reformatted the codebase
+  # format --check
+
+  printf "\n> Building docker images...\n" >&2
+  if ! [ -f .env ]; then cp .env.dev .env; fi
   docker compose build
+
+  printf "\n> Starting services in docker...\n" >&2
   docker compose up -d
 
   # shellcheck disable=SC1091
-  . .env
-  wait-until "docker compose exec -T \
-    -e MYSQL_PWD=password mariadb \
-    mysql -u allthethings allthethings -c 'SELECT 1'"
+  source .env
 
-  lint "$@"
-  format --check
-  flask db reset --with-testdb
-  test "$@"
+  printf "\n> Waiting for services to start...\n" >&2
+  ./bin/wait-until "docker compose exec -T mariadb mysql -u allthethings -ppassword allthethings -e 'SELECT 1'"
+  ./bin/wait-until "curl --fail http://localtest.me:8000/dyn/up/databases/"
+
+  # echo "Resetting local database..."
+  # flask cli dbreset
+
+  printf "\n> Running english and japanese smoke tests...\n" >&2
+  smoke-test en jp
+
+  printf "\n> Running python tests...\n" >&2
+  test
 }
 
 function help {
