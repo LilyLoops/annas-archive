@@ -5668,9 +5668,18 @@ def get_aarecords_mysql(session, aarecord_ids):
         # Make ia_record's description a very last resort here, since it's usually not very good.
         aarecord['file_unified_data']['stripped_description_best'], aarecord['file_unified_data']['stripped_description_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'stripped_description_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'stripped_description_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['ia_record']), 'stripped_description_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['ia_record']), 'stripped_description_additional')], [('ia_record', 'stripped_description_best'), ('ia_record', 'stripped_description_additional')]])
 
+        all_langcodes_most_common_codes = []
+        all_langcodes_counter = collections.Counter([langcode for source_record in source_records for langcode in source_record['source_record']['file_unified_data']['language_codes']])
+        if all_langcodes_counter.total() > 0:
+            all_langcodes_most_common_count = all_langcodes_counter.most_common(1)[0][1]
+            all_langcodes_most_common_codes = [langcode_count[0] for langcode_count in all_langcodes_counter.most_common() if langcode_count[1] == all_langcodes_most_common_count]
         # Still lump in other language codes with ol_book_dicts_primary_linked. We use the
         # fact that combine_bcp47_lang_codes is stable (preserves order).
-        aarecord['file_unified_data']['most_likely_language_codes'] = combine_bcp47_lang_codes([(source_record['file_unified_data']['language_codes']) for source_type in ['ol_book_dicts_primary_linked','lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'] for source_record in source_records_by_type[source_type]])
+        aarecord['file_unified_data']['most_likely_language_codes'] = combine_bcp47_lang_codes([
+            *[(source_record['file_unified_data']['language_codes']) for source_record in source_records_by_type['ol_book_dicts_primary_linked']],
+            all_langcodes_most_common_codes,
+            *[(source_record['file_unified_data']['language_codes']) for source_type in ['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'] for source_record in source_records_by_type[source_type]],
+        ])
         aarecord['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([aarecord['file_unified_data']['most_likely_language_codes']] + [(source_record['source_record']['file_unified_data']['language_codes']) for source_record in source_records])
         if len(aarecord['file_unified_data']['language_codes']) == 0:
             identifiers_unified = allthethings.utils.merge_unified_fields([
