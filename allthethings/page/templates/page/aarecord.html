@@ -1,4 +1,5 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
 {% block title %}{{aarecord.additional.top_box.meta_information[0]}}{% endblock %}
 
@@ -262,12 +263,12 @@
 
       <script>
         window.showExternalDownloads = function() {
-          for (const el of document.querySelectorAll('.js-show-external')) { 
+          for (const el of document.querySelectorAll('.js-show-external')) {
             el.classList.remove('hidden');
-          }; 
-          for (const el of document.querySelectorAll('.js-show-external-button')) { 
+          };
+          for (const el of document.querySelectorAll('.js-show-external-button')) {
             el.classList.add('hidden');
-          }; 
+          };
         }
       </script>
     {% endif %}
@@ -290,18 +291,50 @@
       {% endif %}
 
       <div class="mb-4 pt-4 border-dashed border-t">
-        <ul class="list-inside mb-4 ml-1">
-          <li class="list-disc">
-            <!-- TODO:TRANSLATE please use different strings for the different sentences -->
-            For large files we recommend using a download manager, to prevent interruptions.
-            Recommended:
-            <a href="https://jdownloader.org/" rel="noopener noreferrer nofollow" target="_blank">JDownloader</a>.
+        <ul class="list-outside mb-4 ml-5">
+          <li class="list-disc mb-2">
+            {{ gettext('page.md5.box.download.dl_managers') }}<br>
+            {{ gettext(
+                'page.md5.box.download.dl_managers.links',
+                links=(format_list([
+                  (a.html_a('JDownloader', href="https://jdownloader.org/", **a.external_link) | safe),
+                ], style='standard') | safe),
+            ) }}
           </li>
-          <li class="list-disc">Recommended ebook readers: <a href="https://readera.org/" rel="noopener noreferrer nofollow">ReadEra (mobile)</a>, <a href="https://calibre-ebook.com/" rel="noopener noreferrer nofollow">Calibre (desktop)</a>. <!-- TODO:TRANSLATE -->
-          <li class="list-disc">{{ gettext('page.md5.box.download.convert', a_cloudconvert=(' href="https://cloudconvert.com/epub-to-pdf" rel="noopener noreferrer nofollow"' | safe)) }}</li>
-          <li class="list-disc">{{ gettext('page.md5.box.download.kindle', a_kindle=(' href="https://www.amazon.com/sendtokindle" rel="noopener noreferrer nofollow"' | safe), a_kobosend=(' href="https://send.djazz.se/" rel="noopener noreferrer nofollow"' | safe)) }}</li>
-          <li class="list-disc">{{ gettext('page.md5.box.download.support_authors') }}</li>
-          <li class="list-disc">{{ gettext('page.md5.box.download.support_libraries') }}</li>
+          <li class="list-disc mb-2">
+            {{ gettext('page.md5.box.download.readers') }}<br>
+            {{ gettext(
+                'page.md5.box.download.readers.links',
+                links=(format_list([
+                  (a.html_a('ReadEra', href="https://readera.org/", **a.external_link) | safe),
+                  (a.html_a('Calibre', href="https://calibre-ebook.com/", **a.external_link) | safe),
+                ], style='standard') | safe),
+            ) }}
+          </li>
+          <li class="list-disc mb-2">
+            {{ gettext('page.md5.box.download.conversion') }}<br>
+            {{ gettext(
+                'page.md5.box.download.conversion.links',
+                links=(format_list([
+                  (a.html_a('CloudConvert', href="https://cloudconvert.com/epub-to-pdf", **a.external_link) | safe),
+                ], style='standard') | safe),
+            ) }}
+          </li>
+          <li class="list-disc mb-2">
+            {{ gettext('page.md5.box.download.sendtokindle') }}<br>
+            {{ gettext(
+                'page.md5.box.download.sendtokindle.links',
+                links=(format_list([
+                    (a.html_a(gettext('page.md5.box.download.link.send_to_kindle'), href="https://www.amazon.com/sendtokindle", **a.external_link) | safe),
+                    (a.html_a(gettext('page.md5.box.download.link.send_to_kobokindle'), href="https://send.djazz.se", **a.external_link) | safe),
+                ], style='standard') | safe),
+            ) }}
+          </li>
+          <li class="list-disc mb-2">
+            {{ gettext('page.md5.box.download.support') }}<br>
+            ✍️ {{ gettext('page.md5.box.download.support.authors') }}<br>
+            📚 {{ gettext('page.md5.box.download.support.libraries') }}
+          </li>
         </ul>
       </div>
     {% endif %}
@@ -329,7 +362,7 @@
     {% endif %}
 
     {% if aarecord_id_split[0] == 'md5' %}
-      <div>
+      <div class="pt-4 border-dashed border-t">
         <a name="quality"></a>
         <h3 class="font-bold">📂 {{ gettext('page.md5.quality.header') }}</h3>
 
@@ -339,7 +372,7 @@
 
         <div class="">
           <button class="custom bg-[#777] hover:bg-[#999] text-white font-bold py-1 px-3 rounded shadow mb-2" onclick='if (localStorage["aa_logged_in"] !== "1") { document.querySelector(".js-discussion-logged-out").classList.toggle("hidden"); return; }; document.querySelector(".js-report-file-issues").classList.toggle("hidden"); document.querySelector(".js-new-comment").classList.add("hidden")'><span class='text-[18px] align-text-bottom text-white inline-block icon-[uil--exclamation-triangle]'></span> <span class="js-md5-button-new-issue-label">{{ gettext('page.md5.quality.report_issue', count=('<output class="js-count">0</output>' | safe)) }}</span></button>
-          
+
           <span class="inline-block mb-2"><button class="shadow js-md5-button-great-quality custom bg-[#777] hover:bg-[#999] text-white font-bold py-1 px-3 rounded-l border-r border-[#999] align-bottom [&.selected]:bg-[#555] [&.selected]:pt-[5px] [&.selected]:pb-[3px] [&.selected]:shadow-[inset_0px_-1px_0px_0px_rgba(255,255,255,0.2),_inset_0px_1px_5px_0px_rgba(0,0,0,0.6)]" onclick='if (localStorage["aa_logged_in"] !== "1") { document.querySelector(".js-discussion-logged-out").classList.toggle("hidden"); return; }; fetch("/dyn/reactions/" + (window.md5UserReaction === 2 ? 0 : 2) + "/md5:" + {{ aarecord_id_split[1] | tojson }}, { method: "PUT" }).then(() => window.md5ReloadSummary())'> <span class='text-[21px] align-[-4px] text-white inline-block icon-[material-symbols--star-outline] [button.selected>&]:icon-[material-symbols--star]'></span> <span class="js-md5-button-great-quality-label">{{ gettext('page.md5.quality.great_quality', count=('<output class="js-count">0</output>' | safe)) }}</span></button><button class="disabled shadow js-md5-button-new-comment custom bg-[#777] hover:bg-[#999] [&.disabled]:opacity-40 [&.disabled]:hover:bg-[#777] [&.disabled]:cursor-auto text-white font-bold py-1 px-3 rounded-r" onclick='if (this.classList.contains("disabled")) { return; }; document.querySelector(".js-new-comment").classList.toggle("hidden"); document.querySelector(".js-report-file-issues").classList.add("hidden")'> {{ gettext('page.md5.quality.add_comment', count=('<output class="js-count">0</output>' | safe)) }}</button></span>
         </div>
 
