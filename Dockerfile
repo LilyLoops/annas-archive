@@ -1,69 +1,157 @@
+# syntax=docker/dockerfile:1.9
+
 FROM node:16.15.1-bullseye-slim AS assets
 
 WORKDIR /app/assets
+ENV YARN_CACHE_FOLDER=/.yarn
 
 ARG UID=1000
 ARG GID=1000
+RUN groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node
 
-RUN apt-get update \
-    && apt-get install -y build-essential \
-    && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
-    && apt-get clean \
-    && groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node \
-    && mkdir -p /node_modules && chown node:node -R /node_modules /app
+RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=tmpfs,target=/usr/share/doc \
+    --mount=type=tmpfs,target=/usr/share/man \
+    # allow docker to cache the packages outside of the image
+    rm -f /etc/apt/apt.conf.d/docker-clean \
+    # update the package list
+    && apt-get update \
+    # upgrade any installed packages
+    && apt-get upgrade -y
+
+RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=tmpfs,target=/usr/share/doc \
+    --mount=type=tmpfs,target=/usr/share/man \
+    apt-get install -y --no-install-recommends build-essential
+
+RUN --mount=type=cache,target=${YARN_CACHE_FOLDER} \
+    mkdir -p /node_modules && chown node:node -R /node_modules /app "$YARN_CACHE_FOLDER"
 
 USER node
 
-COPY --chown=node:node assets/package.json assets/*yarn* ./
+COPY --chown=1000:1000 --link assets/package.json assets/*yarn* ./
 
-RUN yarn install && yarn cache clean
+RUN --mount=type=cache,target=${YARN_CACHE_FOLDER} \
+    yarn install
 
 ARG NODE_ENV="production"
-ENV NODE_ENV="${NODE_ENV}" \
-    PATH="${PATH}:/node_modules/.bin" \
-    USER="node"
+ENV NODE_ENV="${NODE_ENV}"
+ENV PATH="${PATH}:/node_modules/.bin"
+ENV USER="node"
 
-COPY --chown=node:node . ..
+COPY --chown=1000:1000 --link . ..
 
-RUN if [ "${NODE_ENV}" != "development" ]; then \
-    ../run yarn:build:js && ../run yarn:build:css; else mkdir -p /app/public; fi
+RUN if test "${NODE_ENV}" != "development"; then ../run yarn:build:js && ../run yarn:build:css; else mkdir -p /app/public; fi
 
 CMD ["bash"]
 
 ###############################################################################
 
-FROM --platform=linux/amd64 python:3.10.5-slim-bullseye AS app
+FROM --platform=linux/amd64 python:3.10.5-slim-bullseye AS base
 
+SHELL ["/bin/bash", "-o", "pipefail", "-eu", "-c"]
 WORKDIR /app
 
-RUN sed -i -e's/ main/ main contrib non-free archive stretch /g' /etc/apt/sources.list
-RUN apt-get update && apt-get install -y build-essential curl libpq-dev python3-dev default-libmysqlclient-dev aria2 unrar unzip p7zip curl python3 python3-pip ctorrent mariadb-client pv rclone gcc g++ make wget git cmake ca-certificates curl gnupg sshpass p7zip-full p7zip-rar libatomic1 libglib2.0-0 pigz parallel
+RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=tmpfs,target=/usr/share/doc \
+    --mount=type=tmpfs,target=/usr/share/man \
+    # allow docker to cache the packages outside of the image
+    rm -f /etc/apt/apt.conf.d/docker-clean \
+    # update the list of sources
+    && sed -i -e 's/ main/ main contrib non-free archive stretch /g' /etc/apt/sources.list \
+    # update the package list
+    && apt-get update \
+    # upgrade any installed packages
+    && apt-get upgrade -y
 
+# install the packages we need
+RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=tmpfs,target=/usr/share/doc \
+    --mount=type=tmpfs,target=/usr/share/man \
+    apt-get install -y --no-install-recommends \
+    aria2 \
+    ca-certificates \
+    curl \
+    default-libmysqlclient-dev \
+    gnupg \
+    libatomic1 \
+    libglib2.0-0 \
+    mariadb-client \
+    p7zip \
+    p7zip-full \
+    p7zip-rar \
+    parallel \
+    pigz \
+    pv \
+    rclone \
+    shellcheck \
+    sshpass \
+    unrar \
+    unzip \
+    wget
+
+
+FROM base AS zstd
+
+# install a few more packages, for c++ compilation
+RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=tmpfs,target=/usr/share/doc \
+    --mount=type=tmpfs,target=/usr/share/man \
+    apt-get install -y --no-install-recommends build-essential cmake checkinstall
+
+ADD https://github.com/facebook/zstd.git#v1.5.6 /zstd
+WORKDIR /zstd
+# install zstd, because t2sz requires zstd to be installed to be built
+RUN make
+# checkinstall is like `make install`, but creates a .deb package too
+RUN checkinstall --default --pkgname zstd && mv zstd_*.deb /zstd.deb
+
+
+FROM zstd AS t2sz
+ADD https://github.com/martinellimarco/t2sz.git#v1.1.2 /t2sz
+WORKDIR /t2sz/build
+RUN cmake .. -DCMAKE_BUILD_TYPE="Release"
+# hadolint ignore=DL3059
+RUN make
+RUN checkinstall --install=no --default --pkgname t2sz && mv t2sz_*.deb /t2sz.deb
+
+
+FROM base AS app
 # https://github.com/nodesource/distributions
-RUN mkdir -p /etc/apt/keyrings
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+ADD --link https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key /nodesource-repo.gpg.key
+RUN mkdir -p /etc/apt/keyrings \
+    && gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg < /nodesource-repo.gpg.key
 ENV NODE_MAJOR=20
-RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-RUN apt-get update && apt-get install nodejs -y
-RUN npm install webtorrent-cli -g && webtorrent --version
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
+RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=tmpfs,target=/usr/share/doc \
+    --mount=type=tmpfs,target=/usr/share/man \
+    apt-get update && apt-get install nodejs -y --no-install-recommends
 
-# Install latest, with support for threading for t2sz
-RUN git clone --depth 1 https://github.com/facebook/zstd --branch v1.5.6
-RUN cd zstd && make && make install
-# Install t2sz
-RUN git clone --depth 1 https://github.com/martinellimarco/t2sz --branch v1.1.2
-RUN mkdir t2sz/build
-RUN cd t2sz/build && cmake .. -DCMAKE_BUILD_TYPE="Release" && make && make install
+ARG WEBTORRENT_VERSION=5.1.2
+RUN --mount=type=cache,target=/root/.npm \
+    npm install -g "webtorrent-cli@${WEBTORRENT_VERSION}"
+
+ARG ELASTICDUMP_VERSION=6.112.0
+RUN --mount=type=cache,target=/root/.npm \
+    npm install -g "elasticdump@${ELASTICDUMP_VERSION}"
+
+# Install latest zstd, with support for threading for t2sz
+RUN --mount=from=zstd,source=/zstd.deb,target=/zstd.deb dpkg -i /zstd.deb
+RUN --mount=from=t2sz,source=/t2sz.deb,target=/t2sz.deb dpkg -i /t2sz.deb
+
 # Env for t2sz finding latest libzstd
-ENV LD_LIBRARY_PATH=/usr/local/lib
+# ENV LD_LIBRARY_PATH=/usr/local/lib
 
-RUN npm install elasticdump@6.112.0 -g
-
-RUN wget https://github.com/mydumper/mydumper/releases/download/v0.16.3-3/mydumper_0.16.3-3.bullseye_amd64.deb
-RUN dpkg -i mydumper_*.deb
-
-RUN rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
-RUN apt-get clean
+ARG MYDUMPER_VERSION=0.16.3-3
+ADD --link https://github.com/mydumper/mydumper/releases/download/v${MYDUMPER_VERSION}/mydumper_${MYDUMPER_VERSION}.bullseye_amd64.deb ./mydumper.deb
+RUN dpkg -i mydumper.deb
 
 COPY --from=ghcr.io/astral-sh/uv:0.4 /uv /bin/uv
 ENV UV_PROJECT_ENVIRONMENT=/venv
@@ -78,30 +166,26 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-install-project
 
 # Download models
-RUN echo 'import fast_langdetect; fast_langdetect.detect("dummy")' | python3
-# RUN echo 'import sentence_transformers; sentence_transformers.SentenceTransformer("intfloat/multilingual-e5-small")' | python3
+RUN python -c 'import fast_langdetect; fast_langdetect.detect("dummy")'
+# RUN python -c 'import sentence_transformers; sentence_transformers.SentenceTransformer("intfloat/multilingual-e5-small")'
 
 ARG FLASK_DEBUG="false"
-ENV FLASK_DEBUG="${FLASK_DEBUG}" \
-    FLASK_APP="allthethings.app" \
-    FLASK_SKIP_DOTENV="true" \
-    PYTHONUNBUFFERED="true" \
-    PYTHONPATH="."
-
+ENV FLASK_DEBUG="${FLASK_DEBUG}"
+ENV FLASK_APP="allthethings.app"
+ENV FLASK_SKIP_DOTENV="true"
+ENV PYTHONUNBUFFERED="true"
+ENV PYTHONPATH="."
 ENV PYTHONFAULTHANDLER=1
 
 # Get pdf.js
-RUN mkdir -p /public
-RUN wget https://github.com/mozilla/pdf.js/releases/download/v4.5.136/pdfjs-4.5.136-dist.zip -O /public/pdfjs-4.5.136-dist.zip
-RUN rm -rf /public/pdfjs
-RUN mkdir /public/pdfjs
-RUN unzip /public/pdfjs-4.5.136-dist.zip -d /public/pdfjs
-# Remove lines
-RUN sed -i -e '/if (fileOrigin !== viewerOrigin) {/,+2d' /public/pdfjs/web/viewer.mjs
+ARG PDFJS_VERSION=4.5.136
+ADD --link https://github.com/mozilla/pdf.js/releases/download/v${PDFJS_VERSION}/pdfjs-${PDFJS_VERSION}-dist.zip /public/pdfjs.zip
+RUN rm -rf /public/pdfjs \
+    && unzip /public/pdfjs.zip -d /public/pdfjs \
+    && sed -i -e '/if (fileOrigin !== viewerOrigin) {/,+2d' /public/pdfjs/web/viewer.mjs
 
-COPY --from=assets /app/public /public
-
-COPY . .
+COPY --from=assets --link /app/public /public
+COPY --link . .
 
 # Sync the project
 RUN --mount=type=cache,target=/root/.cache/uv \

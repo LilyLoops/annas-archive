@@ -1,12 +1,10 @@
 import os
-import random
 
 from flask_babel import Babel
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_static_digest import FlaskStaticDigest
-from sqlalchemy import Column, Integer, ForeignKey, inspect, create_engine
-from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy.ext.declarative import DeferredReflection
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base
 from elasticsearch import Elasticsearch
 from flask_mail import Mail
 from config.settings import ELASTICSEARCH_HOST, ELASTICSEARCHAUX_HOST

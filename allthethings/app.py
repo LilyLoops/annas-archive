@@ -238,7 +238,7 @@ def extensions(app):
         doc_counts_journals = {}
         try:
             doc_counts_journals = {content_type['key']: content_type['doc_count'] for content_type in all_search_aggs('en', 'aarecords_journals')[0]['search_content_type']}
-        except:
+        except Exception:
             pass
         doc_counts['journal_article'] = doc_counts_journals.get('journal_article') or 100000000
         doc_counts['total'] = doc_counts['total_without_journals'] + doc_counts['journal_article']

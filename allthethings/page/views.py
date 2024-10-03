@@ -163,22 +163,22 @@ def strip_description(description):
 
 # A mapping of countries to languages, for those countries that have a clear single spoken language.
 # Courtesy of a friendly LLM.. beware of hallucinations!
-country_lang_mapping = { "Albania": "Albanian", "Algeria": "Arabic", "Andorra": "Catalan", "Argentina": "Spanish", "Armenia": "Armenian", 
-"Azerbaijan": "Azerbaijani", "Bahrain": "Arabic", "Bangladesh": "Bangla", "Belarus": "Belorussian", "Benin": "French", 
-"Bhutan": "Dzongkha", "Brazil": "Portuguese", "Brunei Darussalam": "Malay", "Bulgaria": "Bulgarian", "Cambodia": "Khmer", 
-"Caribbean Community": "English", "Chile": "Spanish", "China": "Mandarin", "Colombia": "Spanish", "Costa Rica": "Spanish", 
-"Croatia": "Croatian", "Cuba": "Spanish", "Cur": "Papiamento", "Cyprus": "Greek", "Denmark": "Danish", 
-"Dominican Republic": "Spanish", "Ecuador": "Spanish", "Egypt": "Arabic", "El Salvador": "Spanish", "Estonia": "Estonian", 
-"Finland": "Finnish", "France": "French", "Gambia": "English", "Georgia": "Georgian", "Ghana": "English", "Greece": "Greek", 
-"Guatemala": "Spanish", "Honduras": "Spanish", "Hungary": "Hungarian", "Iceland": "Icelandic", "Indonesia": "Bahasa Indonesia", 
-"Iran": "Persian", "Iraq": "Arabic", "Israel": "Hebrew", "Italy": "Italian", "Japan": "Japanese", "Jordan": "Arabic", 
-"Kazakhstan": "Kazak", "Kuwait": "Arabic", "Latvia": "Latvian", "Lebanon": "Arabic", "Libya": "Arabic", "Lithuania": "Lithuanian", 
-"Malaysia": "Malay", "Maldives": "Dhivehi", "Mexico": "Spanish", "Moldova": "Moldovan", "Mongolia": "Mongolian", 
-"Myanmar": "Burmese", "Namibia": "English", "Nepal": "Nepali", "Netherlands": "Dutch", "Nicaragua": "Spanish", 
-"North Macedonia": "Macedonian", "Norway": "Norwegian", "Oman": "Arabic", "Pakistan": "Urdu", "Palestine": "Arabic", 
-"Panama": "Spanish", "Paraguay": "Spanish", "Peru": "Spanish", "Philippines": "Filipino", "Poland": "Polish", "Portugal": "Portuguese", 
-"Qatar": "Arabic", "Romania": "Romanian", "Saudi Arabia": "Arabic", "Slovenia": "Slovenian", "South Pacific": "English", "Spain": "Spanish", 
-"Srpska": "Serbian", "Sweden": "Swedish", "Thailand": "Thai", "Turkey": "Turkish", "Ukraine": "Ukrainian", 
+country_lang_mapping = { "Albania": "Albanian", "Algeria": "Arabic", "Andorra": "Catalan", "Argentina": "Spanish", "Armenia": "Armenian",
+"Azerbaijan": "Azerbaijani", "Bahrain": "Arabic", "Bangladesh": "Bangla", "Belarus": "Belorussian", "Benin": "French",
+"Bhutan": "Dzongkha", "Brazil": "Portuguese", "Brunei Darussalam": "Malay", "Bulgaria": "Bulgarian", "Cambodia": "Khmer",
+"Caribbean Community": "English", "Chile": "Spanish", "China": "Mandarin", "Colombia": "Spanish", "Costa Rica": "Spanish",
+"Croatia": "Croatian", "Cuba": "Spanish", "Cur": "Papiamento", "Cyprus": "Greek", "Denmark": "Danish",
+"Dominican Republic": "Spanish", "Ecuador": "Spanish", "Egypt": "Arabic", "El Salvador": "Spanish", "Estonia": "Estonian",
+"Finland": "Finnish", "France": "French", "Gambia": "English", "Georgia": "Georgian", "Ghana": "English", "Greece": "Greek",
+"Guatemala": "Spanish", "Honduras": "Spanish", "Hungary": "Hungarian", "Iceland": "Icelandic", "Indonesia": "Bahasa Indonesia",
+"Iran": "Persian", "Iraq": "Arabic", "Israel": "Hebrew", "Italy": "Italian", "Japan": "Japanese", "Jordan": "Arabic",
+"Kazakhstan": "Kazak", "Kuwait": "Arabic", "Latvia": "Latvian", "Lebanon": "Arabic", "Libya": "Arabic", "Lithuania": "Lithuanian",
+"Malaysia": "Malay", "Maldives": "Dhivehi", "Mexico": "Spanish", "Moldova": "Moldovan", "Mongolia": "Mongolian",
+"Myanmar": "Burmese", "Namibia": "English", "Nepal": "Nepali", "Netherlands": "Dutch", "Nicaragua": "Spanish",
+"North Macedonia": "Macedonian", "Norway": "Norwegian", "Oman": "Arabic", "Pakistan": "Urdu", "Palestine": "Arabic",
+"Panama": "Spanish", "Paraguay": "Spanish", "Peru": "Spanish", "Philippines": "Filipino", "Poland": "Polish", "Portugal": "Portuguese",
+"Qatar": "Arabic", "Romania": "Romanian", "Saudi Arabia": "Arabic", "Slovenia": "Slovenian", "South Pacific": "English", "Spain": "Spanish",
+"Srpska": "Serbian", "Sweden": "Swedish", "Thailand": "Thai", "Turkey": "Turkish", "Ukraine": "Ukrainian",
 "United Arab Emirates": "Arabic", "United States": "English", "Uruguay": "Spanish", "Venezuela": "Spanish", "Vietnam": "Vietnamese" }
 
 # @functools.cache
@@ -403,7 +403,7 @@ def get_stats_data():
             nexusstc_aacid = cursor.fetchone()['aacid']
             nexusstc_date_raw = nexusstc_aacid.split('__')[2][0:8]
             nexusstc_date = f"{nexusstc_date_raw[0:4]}-{nexusstc_date_raw[4:6]}-{nexusstc_date_raw[6:8]}"
-        except:
+        except Exception:
             pass
 
         edsebk_date = 'Unknown'
@@ -412,7 +412,7 @@ def get_stats_data():
             edsebk_aacid = cursor.fetchone()['aacid']
             edsebk_date_raw = edsebk_aacid.split('__')[2][0:8]
             edsebk_date = f"{edsebk_date_raw[0:4]}-{edsebk_date_raw[4:6]}-{edsebk_date_raw[6:8]}"
-        except:
+        except Exception:
             pass
 
         stats_data_es = dict(es.msearch(
@@ -650,13 +650,13 @@ def get_torrents_data():
             list_to_add.append({
                 "created": small_file['created'].strftime("%Y-%m-%d"), # First, so it gets sorted by first. Also, only year-month-day, so it gets secondarily sorted by file path.
                 "file_path": small_file['file_path'],
-                "metadata": metadata, 
+                "metadata": metadata,
                 "aa_currently_seeding": allthethings.utils.aa_currently_seeding(metadata),
-                "size_string": format_filesize(metadata['data_size']), 
+                "size_string": format_filesize(metadata['data_size']),
                 "file_path_short": small_file['file_path'].replace('torrents/managed_by_aa/annas_archive_meta__aacid/', '').replace('torrents/managed_by_aa/annas_archive_data__aacid/', '').replace(f'torrents/managed_by_aa/{group}/', '').replace(f'torrents/external/{group}/', '').replace(f'torrents/other_aa/{group}/', ''),
-                "display_name": display_name, 
-                "scrape_metadata": scrape_metadata, 
-                "scrape_created": scrape_created, 
+                "display_name": display_name,
+                "scrape_metadata": scrape_metadata,
+                "scrape_created": scrape_created,
                 "is_metadata": (('annas_archive_meta__' in small_file['file_path']) or ('.sql' in small_file['file_path']) or ('-index-' in small_file['file_path']) or ('-derived' in small_file['file_path']) or ('isbndb' in small_file['file_path']) or ('covers-' in small_file['file_path']) or ('-metadata-' in small_file['file_path']) or ('-thumbs' in small_file['file_path']) or ('.csv' in small_file['file_path'])),
                 "magnet_link": f"magnet:?xt=urn:btih:{metadata['btih']}&dn={urllib.parse.quote(display_name)}&tr=udp://tracker.opentrackr.org:1337/announce",
                 "temp_uuid": shortuuid.uuid(),
@@ -746,7 +746,7 @@ def datasets_duxiu_page():
 @page.get("/datasets/uploads")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_uploads_page():
-    return redirect(f"/datasets/upload", code=302)
+    return redirect("/datasets/upload", code=302)
 
 @page.get("/datasets/upload")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -762,7 +762,7 @@ def datasets_upload_page():
 @page.get("/datasets/zlibzh")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_zlibzh_page():
-    return redirect(f"/datasets/zlib", code=302)
+    return redirect("/datasets/zlib", code=302)
 
 @page.get("/datasets/zlib")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -800,7 +800,7 @@ def datasets_scihub_page():
 @page.get("/datasets/libgen_rs")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_libgen_rs_page():
-    return redirect(f"/datasets/lgrs", code=302)
+    return redirect("/datasets/lgrs", code=302)
 
 @page.get("/datasets/lgrs")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -816,7 +816,7 @@ def datasets_lgrs_page():
 @page.get("/datasets/libgen_li")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_libgen_li_page():
-    return redirect(f"/datasets/lgli", code=302)
+    return redirect("/datasets/lgli", code=302)
 
 @page.get("/datasets/lgli")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -829,12 +829,12 @@ def datasets_lgli_page():
             return "Error with datasets page, please try again.", 503
         raise
 
-    return redirect(f"/datasets/ol", code=302)
+    return redirect("/datasets/ol", code=302)
 
 @page.get("/datasets/openlib")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_openlib_page():
-    return redirect(f"/datasets/ol", code=302)
+    return redirect("/datasets/ol", code=302)
 
 @page.get("/datasets/ol")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -850,7 +850,7 @@ def datasets_ol_page():
 @page.get("/datasets/worldcat")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_worldcat_page():
-    return redirect(f"/datasets/oclc", code=302)
+    return redirect("/datasets/oclc", code=302)
 
 @page.get("/datasets/oclc")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -1211,7 +1211,7 @@ def get_aac_zlib3_book_dicts(session, key, values):
     try:
         cursor = allthethings.utils.get_cursor_ping(session)
         cursor.execute(f'SELECT annas_archive_meta__aacid__zlib3_records.byte_offset AS record_byte_offset, annas_archive_meta__aacid__zlib3_records.byte_length AS record_byte_length, annas_archive_meta__aacid__zlib3_files.byte_offset AS file_byte_offset, annas_archive_meta__aacid__zlib3_files.byte_length AS file_byte_length, annas_archive_meta__aacid__zlib3_records.primary_id AS primary_id FROM annas_archive_meta__aacid__zlib3_records LEFT JOIN annas_archive_meta__aacid__zlib3_files USING (primary_id) WHERE {aac_key} IN %(values)s', { "values": [str(value) for value in values] })
-        
+
         zlib3_rows = []
         zlib3_records_indexes = []
         zlib3_records_offsets_and_lengths = []
@@ -1316,7 +1316,7 @@ def get_aac_zlib3_book_dicts(session, key, values):
         elif zlib_deleted_comment == 'bad file':
             aac_zlib3_book_dict['file_unified_data']['problems'].append({ 'type': 'zlib_bad_file', 'descr': '', 'only_if_no_partner_server': False, 'better_aarecord_id': '' })
         else:
-            raise Exception(f"Unexpected {zlib_deleted_comment=} for {aarecord=}")
+            raise Exception(f"Unexpected {zlib_deleted_comment=} for {aac_zlib3_book_dict=}")
 
         if (aac_zlib3_book_dict.get('ipfs_cid') or '') != '':
             aac_zlib3_book_dict['file_unified_data']['ipfs_infos'].append({ 'ipfs_cid': aac_zlib3_book_dict['ipfs_cid'], 'from': 'zlib_ipfs_cid' })
@@ -2047,7 +2047,7 @@ def get_lgrsfic_book_dicts(session, key, values):
         lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(filter(len, list(dict.fromkeys([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('toc') or ''])))))[0:5000]
         lgrs_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
         lgrs_book_dict['file_unified_data']['cover_url_best'] = f"https://libgen.is/fictioncovers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
-        
+
         if lgrs_book_dict['timeadded'] != '0000-00-00 00:00:00':
             if not isinstance(lgrs_book_dict['timeadded'], datetime.datetime):
                 raise Exception(f"Unexpected {lgrs_book_dict['timeadded']=} for {lgrs_book_dict=}")
@@ -2523,7 +2523,7 @@ def get_lgli_file_dicts(session, key, values):
             ' -- '.join(filter(len, [*(lgli_file_dict.get('descriptions_mapped') or {}).get('descriptions_mapped.library', []), *lgli_file_dict.get('descriptions_mapped', {}).get('descriptions_mapped.library_issue', [])])),
             *[(edition.get('editions_add_info') or '').strip() for edition in lgli_file_dict['editions']],
             *[(edition.get('commentary') or '').strip() for edition in lgli_file_dict['editions']],
-            *[note.strip() for edition in lgli_file_dict['editions'] for note in (((lgli_single_edition or {}).get('descriptions_mapped') or {}).get('descriptions_mapped.notes') or [])],
+            *[note.strip() for edition in lgli_file_dict['editions'] for note in (((lgli_file_dict or {}).get('descriptions_mapped') or {}).get('descriptions_mapped.notes') or [])],
         ]))
 
         lgli_file_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([edition['language_codes'] for edition in lgli_file_dict['editions']])
@@ -2730,8 +2730,8 @@ def get_scihub_doi_dicts(session, key, values):
 
     scihub_doi_dicts = []
     for scihub_doi in scihub_dois:
-        scihub_doi_dict = { 
-            "doi": scihub_doi["doi"], 
+        scihub_doi_dict = {
+            "doi": scihub_doi["doi"],
             "file_unified_data": allthethings.utils.make_file_unified_data(),
         }
         scihub_doi_dict["file_unified_data"]["original_filename_best"] = allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].strip()}.pdf")
@@ -2996,7 +2996,7 @@ def get_oclc_dicts(session, key, values):
 # cadal_ssno_01000001    |        2 | "cadal_table__books_solr","cadal_table__books_detail"
 # duxiu_ssid_11454502    |        1 | "dx_toc_db__dx_toc"
 # duxiu_ssid_10002062    |        1 | "DX_corrections240209_csv"
-# 
+#
 # duxiu_ssid_14084714 has Miaochuan link.
 # cadal_ssno_44517971 has some <font>s.
 def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path):
@@ -3071,10 +3071,10 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                         if line_value.strip() != '':
                             if line_key not in new_aac_record["metadata"]["record"]["aa_derived_ini_values"]:
                                 new_aac_record["metadata"]["record"]["aa_derived_ini_values"][line_key] = []
-                            new_aac_record["metadata"]["record"]["aa_derived_ini_values"][line_key].append({ 
+                            new_aac_record["metadata"]["record"]["aa_derived_ini_values"][line_key].append({
                                 "aacid": new_aac_record["aacid"],
-                                "filename": serialized_file["filename"], 
-                                "key": line_key, 
+                                "filename": serialized_file["filename"],
+                                "key": line_key,
                                 "value": line_value,
                             })
 
@@ -3250,7 +3250,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                 if len(aac_record['metadata']['record'].get('md5') or '') > 0:
                     related_file['md5'] = aac_record['metadata']['record']['md5']
                 if (aac_record['metadata']['record'].get('size') or 0) > 0:
-                    related_file['filesize'] = aac_record['metadata']['record']['size']    
+                    related_file['filesize'] = aac_record['metadata']['record']['size']
                 filepath_components = []
                 if len(aac_record['metadata']['record'].get('path') or '') > 0:
                     filepath_components.append(aac_record['metadata']['record']['path'])
@@ -3584,13 +3584,13 @@ def get_aac_upload_book_dicts(session, key, values):
         aac_key = 'annas_archive_meta__aacid__upload_records.md5'
     else:
         raise Exception(f"Unexpected 'key' in get_aac_upload_book_dicts: '{key}'")
-    
+
     aac_upload_book_dicts_raw = []
     try:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         cursor.execute(f'SELECT annas_archive_meta__aacid__upload_records.byte_offset AS record_byte_offset, annas_archive_meta__aacid__upload_records.byte_length AS record_byte_length, annas_archive_meta__aacid__upload_files.byte_offset AS file_byte_offset, annas_archive_meta__aacid__upload_files.byte_length AS file_byte_length, annas_archive_meta__aacid__upload_records.md5 AS md5 FROM annas_archive_meta__aacid__upload_records LEFT JOIN annas_archive_meta__aacid__upload_files ON (annas_archive_meta__aacid__upload_records.md5 = annas_archive_meta__aacid__upload_files.primary_id) WHERE {aac_key} IN %(values)s', { "values": [str(value) for value in values] })
-    
+
         upload_records_indexes = []
         upload_records_offsets_and_lengths = []
         upload_files_indexes = []
@@ -3814,9 +3814,9 @@ def get_aac_magzdb_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'magzdb_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, SUBSTRING(primary_id, 8) AS requested_value FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"record_{value}" for value in values] })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, SUBSTRING(primary_id, 8) AS requested_value FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"record_{value}" for value in values] })
         elif key == 'md5':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__magzdb_records JOIN annas_archive_meta__aacid__magzdb_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 IN %(values)s', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__magzdb_records JOIN annas_archive_meta__aacid__magzdb_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__magzdb_records__multiple_md5.md5 IN %(values)s', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_magzdb_book_dicts: '{key}'")
     except Exception as err:
@@ -3845,15 +3845,14 @@ def get_aac_magzdb_book_dicts(session, key, values):
     if len(publication_ids) > 0:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(f'SELECT byte_offset, byte_length FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"publication_{pubid}" for pubid in publication_ids] })
+        cursor.execute('SELECT byte_offset, byte_length FROM annas_archive_meta__aacid__magzdb_records WHERE primary_id IN %(values)s', { "values": [f"publication_{pubid}" for pubid in publication_ids] })
         for row in cursor.fetchall():
             publication_offsets_and_lengths.append((row['byte_offset'], row['byte_length']))
     publication_aac_records_by_id = {}
     for line_bytes in allthethings.utils.get_lines_from_aac_file(cursor, 'magzdb_records', publication_offsets_and_lengths):
         aac_record = orjson.loads(line_bytes)
         publication_aac_records_by_id[aac_record['metadata']['record']['id']] = aac_record
-    
-    values_set = set(values)
+
     aac_magzdb_book_dicts = []
     for requested_value, aac_record in aac_records_by_requested_value.items():
         publication_aac_record = publication_aac_records_by_id[aac_record['metadata']['record']['publicationId']]
@@ -3880,7 +3879,7 @@ def get_aac_magzdb_book_dicts(session, key, values):
         issn_stripped = (publication_aac_record['metadata']['record']['issn'] or '').strip()
         if issn_stripped != '':
             allthethings.utils.add_issn_unified(aac_magzdb_book_dict['file_unified_data'], issn_stripped)
-        
+
         aac_magzdb_book_dict['file_unified_data']['title_best'] = f"{publication_aac_record['metadata']['record']['title'].strip()} {aac_record['metadata']['record']['year'] or ''} № {(aac_record['metadata']['record']['edition'] or '').strip()}"
         aac_magzdb_book_dict['file_unified_data']['title_additional'] = []
         for aka in (publication_aac_record['metadata']['record']['aka'] or '').split(';'):
@@ -3962,9 +3961,9 @@ def get_aac_nexusstc_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key in ['nexusstc_id', 'nexusstc_download']:
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, primary_id AS requested_value FROM annas_archive_meta__aacid__nexusstc_records WHERE primary_id IN %(values)s', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, primary_id AS requested_value FROM annas_archive_meta__aacid__nexusstc_records WHERE primary_id IN %(values)s', { "values": values })
         elif key == 'md5':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__nexusstc_records JOIN annas_archive_meta__aacid__nexusstc_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 IN %(values)s', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id, annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 as requested_value FROM annas_archive_meta__aacid__nexusstc_records JOIN annas_archive_meta__aacid__nexusstc_records__multiple_md5 USING (aacid) WHERE annas_archive_meta__aacid__nexusstc_records__multiple_md5.md5 IN %(values)s', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_nexusstc_book_dicts: '{key}'")
     except Exception as err:
@@ -3986,11 +3985,10 @@ def get_aac_nexusstc_book_dicts(session, key, values):
     for index, line_bytes in enumerate(allthethings.utils.get_lines_from_aac_file(cursor, 'nexusstc_records', record_offsets_and_lengths)):
         try:
             aac_record = orjson.loads(line_bytes)
-        except:
+        except Exception:
             raise Exception(f"Invalid JSON in get_aac_nexusstc_book_dicts: {line_bytes=}")
         aac_records_by_requested_value[requested_values[index]] = aac_record
 
-    values_set = set(values)
     aac_nexusstc_book_dicts = []
     for requested_value, aac_record in aac_records_by_requested_value.items():
         aac_nexusstc_book_dict = {
@@ -4040,7 +4038,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
             issued_at = None
             try:
                 issued_at = datetime.datetime.fromtimestamp(aac_record['metadata']['record']['issued_at'][0])
-            except:
+            except Exception:
                 pass
             if issued_at is not None:
                 if allthethings.utils.validate_year(issued_at.year):
@@ -4303,7 +4301,7 @@ def get_aac_edsebk_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'edsebk_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__ebscohost_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__ebscohost_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_edsebk_book_dicts: '{key}'")
     except Exception as err:
@@ -4406,7 +4404,7 @@ def get_aac_cerlalc_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'cerlalc_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__cerlalc_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__cerlalc_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_cerlalc_book_dicts: '{key}'")
     except Exception as err:
@@ -4460,7 +4458,7 @@ def get_aac_czech_oo42hcks_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'czech_oo42hcks_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__czech_oo42hcks_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__czech_oo42hcks_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_czech_oo42hcks_book_dicts: '{key}'")
     except Exception as err:
@@ -4514,7 +4512,7 @@ def get_aac_gbooks_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'gbooks_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__gbooks_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__gbooks_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_gbooks_book_dicts: '{key}'")
     except Exception as err:
@@ -4615,7 +4613,7 @@ def get_aac_goodreads_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'goodreads_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__goodreads_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__goodreads_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_goodreads_book_dicts: '{key}'")
     except Exception as err:
@@ -4709,7 +4707,7 @@ def get_aac_isbngrp_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'isbngrp_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__isbngrp_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__isbngrp_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_isbngrp_book_dicts: '{key}'")
     except Exception as err:
@@ -4763,7 +4761,7 @@ def get_aac_libby_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'libby_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__libby_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__libby_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_libby_book_dicts: '{key}'")
     except Exception as err:
@@ -4879,7 +4877,7 @@ def get_aac_rgb_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'rgb_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__rgb_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__rgb_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_rgb_book_dicts: '{key}'")
     except Exception as err:
@@ -4933,7 +4931,7 @@ def get_aac_trantor_book_dicts(session, key, values):
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
         if key == 'trantor_id':
-            cursor.execute(f'SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__trantor_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
+            cursor.execute('SELECT byte_offset, byte_length, primary_id FROM annas_archive_meta__aacid__trantor_records WHERE primary_id IN %(values)s GROUP BY primary_id', { "values": values })
         else:
             raise Exception(f"Unexpected 'key' in get_aac_trantor_book_dicts: '{key}'")
     except Exception as err:
@@ -5354,14 +5352,14 @@ def merge_file_unified_data_strings(source_records_by_type, iterations):
             if source_type == UNIFIED_DATA_MERGE_ALL:
                 for found_source_type in source_records_by_type:
                     expanded_iteration.append((found_source_type, field_name))
-            elif type(source_type) == dict and "___excluded" in source_type:
+            elif type(source_type) is dict and "___excluded" in source_type:
                 for found_source_type in source_records_by_type:
                     if found_source_type not in source_type["___excluded"]:
                         expanded_iteration.append((found_source_type, field_name))
-            elif type(source_type) == list:
+            elif type(source_type) is list:
                 for found_source_type in source_type:
                     expanded_iteration.append((found_source_type, field_name))
-            elif type(source_type) == str:
+            elif type(source_type) is str:
                 expanded_iteration.append((source_type, field_name))
             else:
                 raise Exception(f"Unexpected {source_type=} in merge_file_unified_data_strings")
@@ -5586,7 +5584,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord_id_split = aarecord_id.split(':', 1)
         source_records = source_records_full_by_aarecord_id[aarecord_id]
         source_records_by_type = allthethings.utils.groupby(source_records, 'source_type', 'source_record')
-        
+
         aarecord['file_unified_data']['ipfs_infos'] = [ipfs_info for source_record in source_records for ipfs_info in source_record['source_record']['file_unified_data']['ipfs_infos']]
         for ipfs_info in aarecord['file_unified_data']['ipfs_infos']:
             allthethings.utils.add_identifier_unified(aarecord['file_unified_data'], 'ipfs_cid', ipfs_info['ipfs_cid'])
@@ -5599,16 +5597,16 @@ def get_aarecords_mysql(session, aarecord_ids):
         # Select the cover_url_normalized in order of what is likely to be the best one.
         # For now, keep out cover urls from zlib entirely, and only add them ad-hoc from aac_zlib3_book.cover_path.
         aarecord['file_unified_data']['cover_url_best'], aarecord['file_unified_data']['cover_url_additional'] = merge_file_unified_data_strings(source_records_by_type, [
-            [('ol_book_dicts_primary_linked', 'cover_url_best')], 
-            [('ia_record', 'cover_url_best')], 
-            [('ia_records_meta_only', 'cover_url_best')], 
-            [('lgrsnf_book', 'cover_url_best')], 
-            [('lgrsfic_book', 'cover_url_best')], 
-            [('lgli_file', 'cover_url_best')], 
-            [('ol', 'cover_url_best')], 
+            [('ol_book_dicts_primary_linked', 'cover_url_best')],
+            [('ia_record', 'cover_url_best')],
+            [('ia_records_meta_only', 'cover_url_best')],
+            [('lgrsnf_book', 'cover_url_best')],
+            [('lgrsfic_book', 'cover_url_best')],
+            [('lgli_file', 'cover_url_best')],
+            [('ol', 'cover_url_best')],
             [('isbndb', 'cover_url_best')],
             [('libby', 'cover_url_best')],
-            [(UNIFIED_DATA_MERGE_ALL, 'cover_url_best')], 
+            [(UNIFIED_DATA_MERGE_ALL, 'cover_url_best')],
             [(UNIFIED_DATA_MERGE_ALL, 'cover_url_additional')]
         ])
 
@@ -5822,24 +5820,24 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['source_records'] = []
         for source_record in source_records_full_by_aarecord_id[aarecord_id]:
             if source_record['source_type'] == 'lgrsnf_book':
-                aarecord['source_records'].append({ 
-                    'source_type': 'lgrsnf_book', 
+                aarecord['source_records'].append({
+                    'source_type': 'lgrsnf_book',
                     'source_record': {
                         'id': source_record['source_record']['id'],
                         'md5': source_record['source_record']['md5'],
                     },
                 })
             elif source_record['source_type'] == 'lgrsfic_book':
-                aarecord['source_records'].append({ 
-                    'source_type': 'lgrsfic_book', 
+                aarecord['source_records'].append({
+                    'source_type': 'lgrsfic_book',
                     'source_record': {
                         'id': source_record['source_record']['id'],
                         'md5': source_record['source_record']['md5'],
                     },
                 })
             elif source_record['source_type'] == 'lgli_file':
-                aarecord['source_records'].append({ 
-                    'source_type': 'lgli_file', 
+                aarecord['source_records'].append({
+                    'source_type': 'lgli_file',
                     'source_record': {
                         'f_id': source_record['source_record']['f_id'],
                         'md5': source_record['source_record']['md5'],
@@ -5855,8 +5853,8 @@ def get_aarecords_mysql(session, aarecord_ids):
                     },
                 })
             elif source_record['source_type'] == 'zlib_book':
-                aarecord['source_records'].append({ 
-                    'source_type': 'zlib_book', 
+                aarecord['source_records'].append({
+                    'source_type': 'zlib_book',
                     'source_record': {
                         'zlibrary_id': source_record['source_record']['zlibrary_id'],
                         'md5': source_record['source_record']['md5'],
@@ -5868,8 +5866,8 @@ def get_aarecords_mysql(session, aarecord_ids):
                     },
                 })
             elif source_record['source_type'] == 'aac_zlib3_book':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_zlib3_book', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_zlib3_book',
                     'source_record': {
                         'zlibrary_id': source_record['source_record']['zlibrary_id'],
                         'md5': source_record['source_record']['md5'],
@@ -5883,8 +5881,8 @@ def get_aarecords_mysql(session, aarecord_ids):
                     },
                 })
             elif source_record['source_type'] == 'ia_record':
-                aarecord['source_records'].append({ 
-                    'source_type': 'ia_record', 
+                aarecord['source_records'].append({
+                    'source_type': 'ia_record',
                     'source_record': {
                         'ia_id': source_record['source_record']['ia_id'],
                         # 'has_thumb': source_record['source_record']['has_thumb'],
@@ -5944,8 +5942,8 @@ def get_aarecords_mysql(session, aarecord_ids):
                     },
                 })
             elif source_record['source_type'] == 'duxiu':
-                new_source_record = { 
-                    'source_type': 'duxiu', 
+                new_source_record = {
+                    'source_type': 'duxiu',
                     'source_record': {
                         'duxiu_ssid': source_record['source_record'].get('duxiu_ssid'),
                         'cadal_ssno': source_record['source_record'].get('cadal_ssno'),
@@ -5959,8 +5957,8 @@ def get_aarecords_mysql(session, aarecord_ids):
                     del new_source_record['source_record']['cadal_ssno']
                 aarecord['source_records'].append(new_source_record)
             elif source_record['source_type'] == 'duxius_nontransitive_meta_only':
-                aarecord['source_records'].append({ 
-                    'source_type': 'duxius_nontransitive_meta_only', 
+                aarecord['source_records'].append({
+                    'source_type': 'duxius_nontransitive_meta_only',
                     'source_record': {
                         'duxiu_ssid': source_record['source_record'].get('duxiu_ssid'),
                         'cadal_ssno': source_record['source_record'].get('cadal_ssno'),
@@ -5968,24 +5966,24 @@ def get_aarecords_mysql(session, aarecord_ids):
                     },
                 })
             elif source_record['source_type'] == 'aac_upload':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_upload', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_upload',
                     'source_record': {
                         'md5': source_record['source_record']['md5'],
                         'files': source_record['source_record']['files'],
                     },
                 })
             elif source_record['source_type'] == 'aac_magzdb':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_magzdb', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_magzdb',
                     'source_record': {
                         'requested_value': source_record['source_record']['requested_value'],
                         'id': source_record['source_record']['id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_nexusstc':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_nexusstc', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_nexusstc',
                     'source_record': {
                         'requested_value': source_record['source_record']['requested_value'],
                         'id': source_record['source_record']['id'],
@@ -5995,64 +5993,64 @@ def get_aarecords_mysql(session, aarecord_ids):
                     },
                 })
             elif source_record['source_type'] == 'aac_edsebk':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_edsebk', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_edsebk',
                     'source_record': {
                         'edsebk_id': source_record['source_record']['edsebk_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_cerlalc':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_cerlalc', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_cerlalc',
                     'source_record': {
                         'cerlalc_id': source_record['source_record']['cerlalc_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_czech_oo42hcks':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_czech_oo42hcks', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_czech_oo42hcks',
                     'source_record': {
                         'czech_oo42hcks_id': source_record['source_record']['czech_oo42hcks_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_gbooks':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_gbooks', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_gbooks',
                     'source_record': {
                         'gbooks_id': source_record['source_record']['gbooks_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_goodreads':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_goodreads', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_goodreads',
                     'source_record': {
                         'goodreads_id': source_record['source_record']['goodreads_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_isbngrp':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_isbngrp', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_isbngrp',
                     'source_record': {
                         'isbngrp_id': source_record['source_record']['isbngrp_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_libby':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_libby', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_libby',
                     'source_record': {
                         'libby_id': source_record['source_record']['libby_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_rgb':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_rgb', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_rgb',
                     'source_record': {
                         'rgb_id': source_record['source_record']['rgb_id'],
                     },
                 })
             elif source_record['source_type'] == 'aac_trantor':
-                aarecord['source_records'].append({ 
-                    'source_type': 'aac_trantor', 
+                aarecord['source_records'].append({
+                    'source_type': 'aac_trantor',
                     'source_record': {
                         'trantor_id': source_record['source_record']['trantor_id'],
                     },
@@ -6149,7 +6147,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             raise Exception(f"Missing search_record_sources; phantom record? {aarecord=}")
         if len(aarecord['search_only_fields']['search_access_types']) == 0:
             raise Exception(f"Missing search_access_types; phantom record? {aarecord=}")
-        
+
         # At the very end
         aarecord['search_only_fields']['search_score_base_rank'] = float(aarecord_score_base(aarecord))
 
@@ -6168,7 +6166,7 @@ def get_aarecords_mysql(session, aarecord_ids):
     return aarecords
 
 def get_md5_problem_type_mapping():
-    return { 
+    return {
         "lgrsnf_visible":         gettext("common.md5_problem_type_mapping.lgrsnf_visible"),
         "lgrsfic_visible":        gettext("common.md5_problem_type_mapping.lgrsfic_visible"),
         "lgli_visible":           gettext("common.md5_problem_type_mapping.lgli_visible"),
@@ -6297,7 +6295,7 @@ def make_source_record(aarecord, source_type):
     orig = aarecord.get(source_type)
     if orig is None:
         return []
-    elif type(orig) == list:
+    elif type(orig) is list:
         return [{"source_type": source_type, "source_record": record} for record in orig]
     else:
         return [{"source_type": source_type, "source_record": orig}]
@@ -6516,7 +6514,7 @@ def get_additional_for_aarecord(aarecord):
             scimag_hundredthousand_dir = (scimag_id // 100000)
             scimag_thousand_dir = (scimag_id // 1000)
             scimag_filename = urllib.parse.quote(source_record['scimag_archive_path'].replace('\\', '/'))
-            
+
             scimag_torrent_path = f"external/scihub/sm_{scimag_hundredthousand_dir:03}00000-{scimag_hundredthousand_dir:03}99999.torrent"
             additional['torrent_paths'].append({ "collection": "scihub", "torrent_path": scimag_torrent_path, "file_level1": f"libgen.scimag{scimag_thousand_dir:05}000-{scimag_thousand_dir:05}999.zip", "file_level2": scimag_filename })
 
@@ -6575,7 +6573,7 @@ def get_additional_for_aarecord(aarecord):
             additional['ipfs_urls'].append({ "name": "atomichub-ipfs.com", "url": f"https://atomichub-ipfs.com/ipfs/{ipfs_info['ipfs_cid']}?filename={additional['filename_without_annas_archive']}", "from": ipfs_info['from'] })
 
         additional['download_urls'].append(("IPFS", f"/ipfs_downloads/{aarecord['id']}", ""))
-    
+
     for source_record in source_records_by_type['zlib_book']:
         if (source_record['pilimi_torrent'] or '') != '':
             zlib_path = make_temp_anon_zlib_path(source_record['zlibrary_id'], source_record['pilimi_torrent'])
@@ -6584,7 +6582,7 @@ def get_additional_for_aarecord(aarecord):
                 additional['torrent_paths'].append({ "collection": "zlib", "torrent_path": f"managed_by_aa/zlib/{source_record['pilimi_torrent']}", "file_level1": source_record['pilimi_torrent'].replace('.torrent', '.tar'), "file_level2": str(source_record['zlibrary_id']) })
             else:
                 additional['torrent_paths'].append({ "collection": "zlib", "torrent_path": f"managed_by_aa/zlib/{source_record['pilimi_torrent']}", "file_level1": str(source_record['zlibrary_id']), "file_level2": "" })
-    
+
     for source_record in source_records_by_type['aac_zlib3_book']:
         if source_record['file_aacid'] is not None:
             server = 'u'
@@ -6596,11 +6594,11 @@ def get_additional_for_aarecord(aarecord):
             additional['torrent_paths'].append({ "collection": "zlib", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['file_data_folder']}.torrent", "file_level1": source_record['file_aacid'], "file_level2": "" })
         additional['download_urls'].append((gettext('page.md5.box.download.zlib'), f"https://z-lib.gs/md5/{source_record['md5_reported'].lower()}", ""))
         additional['download_urls'].append((gettext('page.md5.box.download.zlib_tor'), f"http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/md5/{source_record['md5_reported'].lower()}", gettext('page.md5.box.download.zlib_tor_extra')))
-    
+
     for source_record in source_records_by_type['zlib_book']:
         additional['download_urls'].append((gettext('page.md5.box.download.zlib'), f"https://z-lib.gs/md5/{source_record['md5_reported'].lower()}", ""))
         additional['download_urls'].append((gettext('page.md5.box.download.zlib_tor'), f"http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/md5/{source_record['md5_reported'].lower()}", gettext('page.md5.box.download.zlib_tor_extra')))
-    
+
     for source_record in source_records_by_type['aac_magzdb']:
         additional['download_urls'].append((gettext('page.md5.box.download.magzdb'), f"http://magzdb.org/num/{source_record['id']}", ""))
 
@@ -6612,17 +6610,17 @@ def get_additional_for_aarecord(aarecord):
         ia_id = source_record['ia_id']
         printdisabled_only = source_record['aa_ia_derived']['printdisabled_only']
         additional['download_urls'].append((gettext('page.md5.box.download.ia_borrow'), f"https://archive.org/details/{ia_id}", gettext('page.md5.box.download.print_disabled_only') if printdisabled_only else ''))
-    
+
     for doi in (aarecord['file_unified_data']['identifiers_unified'].get('doi') or []):
         if doi not in linked_dois:
             additional['download_urls'].append((gettext('page.md5.box.download.scihub', doi=doi), f"https://sci-hub.ru/{doi}", gettext('page.md5.box.download.scihub_maybe')))
-    
+
     for manualslib_id in (aarecord['file_unified_data']['identifiers_unified'].get('manualslib') or []):
         additional['download_urls'].append((gettext('page.md5.box.download.manualslib'), f"https://www.manualslib.com/manual/{manualslib_id}/manual.html", ""))
 
     for pmid in (aarecord['file_unified_data']['identifiers_unified'].get('pmid') or []):
         additional['download_urls'].append((gettext('page.md5.box.download.pubmed'), f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/", ""))
-    
+
     if aarecord_id_split[0] == 'md5':
         for torrent_path in additional['torrent_paths']:
             # path = "/torrents"
@@ -6689,8 +6687,8 @@ def get_additional_for_aarecord(aarecord):
                 *additional['most_likely_language_names'][0:3],
                 f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
                 "/".join(filter(len,[
-                    "🧬" if (additional['has_scidb'] == 1) else "", 
-                    "🚀" if (additional['has_aa_downloads'] == 1) else "", 
+                    "🧬" if (additional['has_scidb'] == 1) else "",
+                    "🚀" if (additional['has_aa_downloads'] == 1) else "",
                     *aarecord_sources(aarecord)
                 ])),
                 format_filesize(aarecord['file_unified_data']['filesize_best']) if aarecord['file_unified_data']['filesize_best'] > 0 else '',
@@ -6904,7 +6902,7 @@ def scidb_page(doi_input):
 
     if not doi_input.startswith('10.'):
         if '10.' in doi_input:
-            return redirect(f"/scidb/{doi_input[doi_input.find('10.'):].strip()}", code=302)    
+            return redirect(f"/scidb/{doi_input[doi_input.find('10.'):].strip()}", code=302)
         return redirect(f"/search?index=journals&q={doi_input}", code=302)
 
     if allthethings.utils.doi_is_isbn(doi_input):
@@ -7001,7 +6999,7 @@ def md5_json(aarecord_id):
         return '"Page loading issue"', 500
     if len(aarecords) == 0:
         return "{}", 404
-    
+
     aarecord_comments = {
         "id": ("before", ["File from the combined collections of Anna's Archive.",
                            "More details at https://annas-archive.se/datasets",
@@ -7119,7 +7117,7 @@ def md5_fast_download(md5_input, path_index, domain_index):
 
     if not allthethings.utils.validate_canonical_md5s([canonical_md5]) or canonical_md5 != md5_input:
         return redirect(f"/md5/{md5_input}", code=302)
-    
+
     account_id = allthethings.utils.get_account_id(request.cookies)
     if account_id is None:
         return redirect("/fast_download_not_member", code=302)
@@ -7463,7 +7461,7 @@ def search_page():
                             "should": [
                                 # The 3.0 is from the 3x "boost" of title/author/etc in search_text.
                                 { "rank_feature": { "field": "search_only_fields.search_score_base_rank", "boost": 3.0*10000.0 } },
-                                { 
+                                {
                                     "constant_score": {
                                         "filter": { "term": { "search_only_fields.search_most_likely_language_code": { "value": allthethings.utils.get_base_lang_code(get_locale()) } } },
                                         "boost": 3.0*50000.0,
@@ -7471,7 +7469,7 @@ def search_page():
                                 },
                             ],
                             "must": [
-                                { 
+                                {
                                     "bool": {
                                         "must": [
                                             {
@@ -7527,7 +7525,7 @@ def search_page():
     primary_search_searches = [
         { "index": allthethings.utils.all_virtshards_for_index(search_index_long) },
         {
-            "size": max_display_results, 
+            "size": max_display_results,
             "from": (page_value-1)*max_display_results,
             "query": search_query,
             "aggs": search_query_aggs(search_index_long),

@@ -9,7 +9,7 @@ To get Anna's Archive running locally:
 1. **System Requirements**
   For local development you don't need a super strong computer, but a very cheap VPS isn't going to cut it either. We recommend at least 4GB of RAM and 4GB of free disk space.
 
-  WINDOWS AND MAC USERS: if any containers have trouble starting, first make sure to configure Docker Desktop to allocate plenty of resources. We have tested with a memory limit of 8GB and swap of 4GB. CPU limit should matter less, but if you have trouble set it as high as possible. 
+  WINDOWS AND MAC USERS: if any containers have trouble starting, first make sure to configure Docker Desktop to allocate plenty of resources. We have tested with a memory limit of 8GB and swap of 4GB. CPU limit should matter less, but if you have trouble set it as high as possible.
 
   A production system needs a lot more, we recommend at least 256GB RAM and 4TB disk space, and a fast 32-core CPU. More is better, especially if you are going to run all of [data-imports/README.md](data-imports/README.md) yourself.
 
@@ -159,13 +159,15 @@ For larger projects, please contact Anna first on [Reddit](https://www.reddit.co
 
 ## Testing
 
-Please run `docker exec -it web bin/check` before committing to ensure that your changes pass the automated checks. You can also run `./bin/fix` to apply some automatic fixes to common lint issues.
+Please run `./run check` before committing to ensure that your changes pass the automated checks. You can also run `./run check:fix` to apply some automatic fixes to common lint issues.
 
-To check that all pages are working, you can start your docker-compose stack, then run `docker exec -it web bin/smoke-test`.
-
-You can also run `docker exec -it web bin/smoke-test <language-code>` to check a single language.
+To check that all pages are working, run `./run smoke-test`. You can also run `./run smoke-test <language-code>` to check a single language.
 
 The script will output .html files in the current directory named `<language>--<path>.html`, where path is the url-encoded pathname that errored. You can open that file to see the error.
+
+You can also do `./run check-dumps` to check that the database is still working.
+
+If you are changing any translations, you should also run `./run check-translations` to check that *all* translations work.
 
 ## License
 
