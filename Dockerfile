@@ -1,5 +1,4 @@
 FROM node:16.15.1-bullseye-slim AS assets
-LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 
 WORKDIR /app/assets
 
@@ -34,7 +33,6 @@ CMD ["bash"]
 ###############################################################################
 
 FROM --platform=linux/amd64 python:3.10.5-slim-bullseye AS app
-LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 
 WORKDIR /app
 
