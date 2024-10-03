@@ -39,5 +39,6 @@ INSERT INTO `aarecords_codes_oclc_for_lookup` VALUES("isbn13:9780080117324","ocl
 ,("isbn13:9781426208072","oclc:2")
 ,("isbn13:9781579123871","oclc:34")
 ,("isbn13:9781579126131","oclc:34")
+,("isbn13:9787539190235","oclc:909713202")
 ,("isbn13:9788460059363","oclc:5")
 ;
