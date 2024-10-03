@@ -310,7 +310,7 @@ def list_translations():
                 continue
             if any(x.endswith('.mo') for x in os.listdir(locale_dir)) and any(x.endswith('.po') for x in os.listdir(locale_dir)):
                 if folder in result:
-                    raise f"Duplicate {folder=}"
+                    raise Exception("Duplicate {folder=}")
                 try:
                     result[folder] = babel.Locale.parse(folder)
                 except babel.UnknownLocaleError:
@@ -448,7 +448,7 @@ def usd_currency_rates_cached():
 @functools.cache
 def membership_tier_names(locale):
     with force_locale(locale):
-        return { 
+        return {
             "1": gettext('common.membership.tier_name.bonus'),
             "2": gettext('common.membership.tier_name.2'),
             "3": gettext('common.membership.tier_name.3'),
@@ -456,7 +456,7 @@ def membership_tier_names(locale):
             "5": gettext('common.membership.tier_name.5'),
         }
 
-MEMBERSHIP_TIER_COSTS = { 
+MEMBERSHIP_TIER_COSTS = {
     "2": 7, "3": 10, "4": 30, "5": 100,
 }
 MEMBERSHIP_METHOD_DISCOUNTS = {
@@ -688,11 +688,11 @@ def membership_costs_data(locale):
 
         formatted_native_currency = membership_format_native_currency(locale, native_currency_code, cost_cents_native_currency, cost_cents_usd)
 
-        return { 
-            'cost_cents_usd': cost_cents_usd, 
-            'cost_cents_usd_str': babel.numbers.format_currency(cost_cents_usd / 100.0, 'USD', locale=locale), 
-            'cost_cents_native_currency': cost_cents_native_currency, 
-            'cost_cents_native_currency_str_calculator': formatted_native_currency['cost_cents_native_currency_str_calculator'], 
+        return {
+            'cost_cents_usd': cost_cents_usd,
+            'cost_cents_usd_str': babel.numbers.format_currency(cost_cents_usd / 100.0, 'USD', locale=locale),
+            'cost_cents_native_currency': cost_cents_native_currency,
+            'cost_cents_native_currency_str_calculator': formatted_native_currency['cost_cents_native_currency_str_calculator'],
             'cost_cents_native_currency_str_button': formatted_native_currency['cost_cents_native_currency_str_button'],
             'native_currency_code': native_currency_code,
             'monthly_cents': monthly_cents,
@@ -912,7 +912,7 @@ def make_anon_download_uri(limit_multiple, speed_kbps, path, filename, domain):
     secure_str = f"{domain}/{limit_multiple_field}/{expiry}/{speed_kbps}/{path},{DOWNLOADS_SECRET_KEY}"
     md5 = base64.urlsafe_b64encode(hashlib.md5(secure_str.encode('utf-8')).digest()).decode('utf-8').rstrip('=')
     return f"d3/{limit_multiple_field}/{expiry}/{speed_kbps}/{urllib.parse.quote(path)}~/{md5}/{filename}"
-    
+
 DICT_COMMENTS_NO_API_DISCLAIMER = "This page is *not* intended as an API. If you need programmatic access to this JSON, please set up your own instance. For more information, see: https://annas-archive.se/datasets and https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports"
 
 COMMON_DICT_COMMENTS = {
@@ -1078,18 +1078,18 @@ LGLI_CLASSIFICATIONS_MAPPING = {
     "libraryofcongressclassification": "lcc",
 }
 
-LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING = { 
-    'asin': 'asin', 
-    'googlebookid': 'gbooks', 
+LGRS_TO_UNIFIED_IDENTIFIERS_MAPPING = {
+    'asin': 'asin',
+    'googlebookid': 'gbooks',
     'openlibraryid': 'ol',
     'doi': 'doi',
     'issn': 'issn',
 }
-LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = { 
+LGRS_TO_UNIFIED_CLASSIFICATIONS_MAPPING = {
     'udc': 'udc',
     'ddc': 'ddc',
     'lbc': 'lbc',
-    'lcc': 'lcc', 
+    'lcc': 'lcc',
 }
 
 UNIFIED_IDENTIFIERS = {
@@ -1213,7 +1213,6 @@ UNIFIED_CLASSIFICATIONS = {
 }
 
 OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING = {
-    'annas_archive': 'md5',
     'abebooks,de': 'abebooks.de',
     'amazon': 'asin',
     'amazon.ca_asin': 'asin',
@@ -1416,7 +1415,7 @@ def add_classification_unified(output_dict, name, value):
 
 def normalize_isbn(string):
     canonical_isbn13 = isbnlib.get_canonical_isbn(string, output='isbn13')
-    try: 
+    try:
         if len(canonical_isbn13) != 13 or len(isbnlib.info(canonical_isbn13)) == 0:
             return ''
     except Exception:
@@ -2000,8 +1999,10 @@ def aa_currently_seeding(metadata):
 def get_torrents_json_aa_currently_seeding_by_torrent_path():
     try:
         with engine.connect() as connection:
+            connection.connection.ping(reconnect=True)
+            cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
             cursor.execute('SELECT 1')
-    except:
+    except Exception:
         return {}
 
     with engine.connect() as connection:
@@ -2118,14 +2119,14 @@ def extract_ia_archive_org_from_string(string):
     return list(dict.fromkeys(re.findall(r'archive.org\/details\/([^\n\r\/ ]+)', string)))
 
 def groupby(dicts, index_field, unpack_field=None):
-    if type(index_field) == str:
-        index_field_func = lambda row: row[index_field]
+    if type(index_field) is str:
+        index_field_func = lambda row: row[index_field]  # noqa: E731
     else:
         index_field_func = index_field
     if unpack_field is None:
-        unpack_field_func = lambda row: row
-    elif type(unpack_field) == str:
-        unpack_field_func = lambda row: row[unpack_field]
+        unpack_field_func = lambda row: row  # noqa: E731
+    elif type(unpack_field) is str:
+        unpack_field_func = lambda row: row[unpack_field]  # noqa: E731
     else:
         unpack_field_func = unpack_field
     output = collections.defaultdict(list)
@@ -2134,17 +2135,3 @@ def groupby(dicts, index_field, unpack_field=None):
         unpack_field_value = unpack_field_func(row)
         output[index_field_value].append(unpack_field_value)
     return output
-
-
-
-
-
-
-
-
-
-
-
-
-
-

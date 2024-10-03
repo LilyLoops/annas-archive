@@ -5,7 +5,6 @@ import isbnlib
 import collections
 import tqdm
 import concurrent
-import multiprocessing
 import elasticsearch.helpers
 import time
 import pathlib
@@ -85,7 +84,6 @@ def nonpersistent_dbreset_internal():
     mysql_build_aac_tables_internal()
 
     engine_multi.raw_connection().ping(reconnect=True)
-    check_after_imports = pathlib.Path(os.path.join(__location__, '../../data-imports/scripts/helpers/check_after_imports.sql')).read_text()
     cursor.execute(mariadb_dump)
     cursor.close()
 
@@ -119,7 +117,7 @@ def query_yield_batches(conn, qry, pk_attr, maxrq):
 # Reset "annas_archive_meta_*" tables so they are built from scratch.
 # ./run flask cli mysql_reset_aac_tables
 #
-# To dump computed_all_md5s to txt: 
+# To dump computed_all_md5s to txt:
 #   docker exec mariadb mariadb -uallthethings -ppassword allthethings --skip-column-names -e 'SELECT LOWER(HEX(md5)) from computed_all_md5s;' > md5.txt
 @cli.cli.command('mysql_reset_aac_tables')
 def mysql_reset_aac_tables():
@@ -228,9 +226,9 @@ def mysql_build_aac_tables_internal():
                 if collection in COLLECTIONS_WITH_MULTIPLE_MD5:
                     multiple_md5s = [md5 for md5 in set([md5.decode().lower() for md5 in re.findall(rb'"md5":"([^"]+)"', line)]) if allthethings.utils.validate_canonical_md5s([md5])]
 
-                return_data = { 
-                    'aacid': aacid.decode(), 
-                    'primary_id': primary_id.decode(), 
+                return_data = {
+                    'aacid': aacid.decode(),
+                    'primary_id': primary_id.decode(),
                     'md5': md5.decode().lower() if md5 is not None else None,
                     'multiple_md5s': multiple_md5s,
                     'byte_offset': byte_offset,
@@ -322,7 +320,7 @@ def mysql_build_aac_tables_internal():
 # used in the app, but it is used for `./run flask cli elastic_build_aarecords_main`.
 # ./run flask cli mysql_build_computed_all_md5s
 #
-# To dump computed_all_md5s to txt: 
+# To dump computed_all_md5s to txt:
 #   docker exec mariadb mariadb -uallthethings -ppassword allthethings --skip-column-names -e 'SELECT LOWER(HEX(md5)) from computed_all_md5s;' > md5.txt
 @cli.cli.command('mysql_build_computed_all_md5s')
 def mysql_build_computed_all_md5s():
@@ -693,7 +691,7 @@ def elastic_build_aarecords_job(aarecord_ids):
                                 aarecords_codes_insert_data_by_codes_table_name[codes_for_lookup_table_name].append({ 'code': code_text, 'aarecord_id': aarecord['id'].encode() })
 
                 # print(f"[{os.getpid()}] elastic_build_aarecords_job finished for loop")
-                    
+
                 try:
                     for es_handle, operations in operations_by_es_handle.items():
                         elasticsearch.helpers.bulk(es_handle, operations, request_timeout=30)
@@ -1170,7 +1168,7 @@ def mysql_change_aarecords_codes_tables_for_check_dumps():
         for table_name in list(dict.fromkeys(AARECORD_ID_PREFIX_TO_CODES_TABLE_NAME.values())):
             cursor.execute(f"ALTER TABLE {table_name} DROP PRIMARY KEY, DROP COLUMN id, ADD PRIMARY KEY(code, aarecord_id);")
 
-    print(f"Done!")
+    print("Done!")
 
 
 #################################################################################################
