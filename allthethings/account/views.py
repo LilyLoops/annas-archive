@@ -447,8 +447,8 @@ def donation_page(donation_id):
 
         if donation_json['method'] in ['payment3a', 'payment3a_cc', 'payment3b'] and donation['processing_status'] == 0:
             # return redirect(donation_json['payment3_request']['data']['url'], code=302)
-            donation_time_left = donation['created'] - datetime.datetime.now() + datetime.timedelta(minutes=15)
-            if donation_time_left < datetime.timedelta(minutes=5):
+            donation_time_left = donation['created'] - datetime.datetime.now() + datetime.timedelta(minutes=6)
+            if donation_time_left < datetime.timedelta(minutes=2):
                 donation_time_left_not_much = True
             if donation_time_left < datetime.timedelta():
                 donation_time_expired = True

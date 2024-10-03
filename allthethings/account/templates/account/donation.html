@@ -1,4 +1,5 @@
 {% extends "layouts/index.html" %}
+{% import 'macros/shared_links.j2' as a %}
 
 {% block title %}{{ gettext('page.donation.title') }}{% endblock %}
 
@@ -504,7 +505,21 @@
         <h2 class="mt-4 mb-4 text-xl font-bold">{{ gettext('page.donation.payment.alipay.top_header') }}</h2>
 
         <!-- TODO:TRANSLATE -->
-        <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>Make donation (scan QR code or press button)</p>
+        <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">1</span>Set up Alipay app</p>
+
+        <!-- TODO:TRANSLATE -->
+        <p class="mb-4">
+          Install the Alipay app from the <a href="https://apps.apple.com/us/app/alipay-simplify-your-life/id333206289" rel="noopener noreferrer nofollow">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" rel="noopener noreferrer nofollow">Google Play Store</a>.
+          Register using your phone number. No further personal details are required.
+        </p>
+
+        <!-- TODO:TRANSLATE -->
+        <p class="mb-4">
+          Then add your bank card. See <a {{ a.alipay_pdf | xmlattr }}>this guide</a> for more information.
+        </p>
+
+        <!-- TODO:TRANSLATE -->
+        <p class="mb-4 font-bold"><span class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5">2</span>Make donation (scan QR code or press button)</p>
 
         <!-- TODO:TRANSLATE -->
         <p class="mb-4">
