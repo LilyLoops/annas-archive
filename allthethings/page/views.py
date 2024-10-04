@@ -6583,11 +6583,11 @@ def get_additional_for_aarecord(aarecord):
     additional['codes'] = []
     for key, values in aarecord['file_unified_data']['identifiers_unified'].items():
         for value in values:
-            additional['codes'].append(allthethings.utils.make_code_for_display(key, value))
+            additional['codes'].append({'key': key, 'value': value})
     for key, values in aarecord['file_unified_data']['classifications_unified'].items():
         for value in values:
-            additional['codes'].append(allthethings.utils.make_code_for_display(key, value))
-    additional['codes'].sort(key=lambda item: ((-1000+allthethings.utils.CODES_HIGHLIGHT.index(item['key'])) if item['highlight'] else 1, item['key'], item['value']))
+            additional['codes'].append({'key': key, 'value': value})
+    additional['codes'].sort(key=lambda item: ((-1000+allthethings.utils.CODES_HIGHLIGHT.index(item['key'])) if (item['key'] in allthethings.utils.CODES_HIGHLIGHT) else 1, item['key'], item['value']))
 
     md5_content_type_mapping = get_md5_content_type_mapping(allthethings.utils.get_base_lang_code(get_locale()))
 

@@ -7,121 +7,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Fiction",
-							"url": "https://libgen.is/fiction/",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsfic",
-						"masked_isbn": "",
-						"value": "79"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "02161c1d326db3cbb1b82c73b010c18a"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "55o6xxmnhtq3qg7eiodxh73xkgqpfuoo"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "a6316cd206ea60e18af5f48719972fdaf242ad3d919f74603fc4bf38a5f3c274"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:02161c1d326db3cbb1b82c73b010c18a"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacedud5cfmqkphfdqavyf633dbnojwxbtcqxoxsykfkuycmympl7ox2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_fiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Fiction published this file.",
-							"label": "Libgen.rs Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsfic_source",
-						"masked_isbn": "",
 						"value": "2011-06-11"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "filepath",
+						"value": "lgrsfic/C\\Clarke, Arthur C\\2061 Odyssey III.txt"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzacedud5cfmqkphfdqavyf633dbnojwxbtcqxoxsykfkuycmympl7ox2"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "en"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsfic/C\\Clarke, Arthur C\\2061 Odyssey III.txt"
+						"key": "lgrsfic",
+						"value": "79"
+					},
+					{
+						"key": "md5",
+						"value": "02161c1d326db3cbb1b82c73b010c18a"
+					},
+					{
+						"key": "sha1",
+						"value": "55o6xxmnhtq3qg7eiodxh73xkgqpfuoo"
+					},
+					{
+						"key": "sha256",
+						"value": "a6316cd206ea60e18af5f48719972fdaf242ad3d919f74603fc4bf38a5f3c274"
 					}
 				],
 				"download_urls": [
@@ -472,225 +395,80 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology\\\\Molecular"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "67"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "0c16ff2f7a495c790b55f997e59dffa9"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Open Library",
-							"url": "https://openlibrary.org/books/%s"
-						},
-						"key": "ol",
-						"masked_isbn": "",
-						"value": "OL22723104M"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "7fpqwu5f3flybfltixq3wcjmkcdsjj3b"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "b543fb3ed32430cb8514f7745ac64e103216e58d24450fd5d65b1824a9ad7060"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:0c16ff2f7a495c790b55f997e59dffa9"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacea5qmracf55x7nkkpqhq6y6qlvyuommymyqibonnysnoryrzokyho"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Dewey Decimal",
-							"label": "DDC",
-							"url": "https://libgen.li/biblioservice.php?value=%s&type=ddc",
-							"website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes"
-						},
 						"key": "ddc",
-						"masked_isbn": "",
 						"value": "612/.015756"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Library of Congress Classification",
-							"label": "LCC",
-							"url": "https://catalog.loc.gov/vwebv/search?searchCode=CALL%2B&searchArg=%s&searchType=1&limitTo=none&fromYear=&toYear=&limitTo=LOCA%3Dall&limitTo=PLAC%3Dall&limitTo=TYPE%3Dall&limitTo=LANG%3Dall&recCount=25",
-							"website": "https://en.wikipedia.org/wiki/Library_of_Congress_Classification"
-						},
-						"key": "lcc",
-						"masked_isbn": "",
-						"value": "QP624.5.A57 P47 2006"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Janson C.G., During M.J. Peptide nucleic acids, morpholinos and related antisense biomolecules (Kluwer, 2006)(ISBN 0306482304)(T)(285s)_B_.djvu"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2006"
+						"key": "ipfs_cid",
+						"value": "bafykbzacea5qmracf55x7nkkpqhq6y6qlvyuommymyqibonnysnoryrzokyho"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-306-48230-4",
 						"value": "0306482304"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-387-32956-0",
 						"value": "0387329560"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-306-48230-4",
 						"value": "9780306482304"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-387-32956-7",
 						"value": "9780387329567"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lcc",
+						"value": "QP624.5.A57 P47 2006"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "67"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology\\\\Molecular"
+					},
+					{
+						"key": "md5",
+						"value": "0c16ff2f7a495c790b55f997e59dffa9"
+					},
+					{
+						"key": "ol",
+						"value": "OL22723104M"
+					},
+					{
+						"key": "sha1",
+						"value": "7fpqwu5f3flybfltixq3wcjmkcdsjj3b"
+					},
+					{
+						"key": "sha256",
+						"value": "b543fb3ed32430cb8514f7745ac64e103216e58d24450fd5d65b1824a9ad7060"
+					},
+					{
+						"key": "year",
+						"value": "2006"
 					}
 				],
 				"download_urls": [
@@ -1074,124 +852,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "15de67fb315c12314ba9250a29a8124f"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "6c1f1337594c6b4e38b8d8382af0f817"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__zlib3_records__20240809T225932Z__51__4k7gxZp7Yt3BERNU3BwpDc"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:15de67fb315c12314ba9250a29a8124f"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "QmeFgsCPSCAxYSqrvAmrCuAzwNBeEi6VYe2qPVtsN8k8vU"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafk2bzaceb3whb6l3hgupzdjc75lkwkptttx7cbotjvogjzki5d2fdnebk4om"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_unknown"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Z-Library published this file.",
-							"label": "Z-Library Source Date",
-							"website": "/datasets/zlib"
-						},
 						"key": "date_zlib_source",
-						"masked_isbn": "",
 						"value": "2011-07-10"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID in Z-Library.",
-							"label": "Z-Library",
-							"url": "https://z-lib.gs/",
-							"website": "/datasets/zlib"
-						},
-						"key": "zlib",
-						"masked_isbn": "",
-						"value": "51"
+						"key": "ipfs_cid",
+						"value": "QmeFgsCPSCAxYSqrvAmrCuAzwNBeEi6VYe2qPVtsN8k8vU"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "ipfs_cid",
+						"value": "bafk2bzaceb3whb6l3hgupzdjc75lkwkptttx7cbotjvogjzki5d2fdnebk4om"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "ru"
+					},
+					{
+						"key": "md5",
+						"value": "15de67fb315c12314ba9250a29a8124f"
+					},
+					{
+						"key": "md5",
+						"value": "6c1f1337594c6b4e38b8d8382af0f817"
+					},
+					{
+						"key": "zlib",
+						"value": "51"
 					}
 				],
 				"download_urls": [
@@ -1674,121 +1372,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Fiction",
-							"url": "https://libgen.is/fiction/",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsfic",
-						"masked_isbn": "",
-						"value": "47"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "1b904fba9a7c56fad75d300aef91b468"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "qdwr2brfftc2mm3rc46albq3ucvjrsdy"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "41c2ab0eb57335820fd33f3802693c5cadcd01f09272b160814791eb71e9c607"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:1b904fba9a7c56fad75d300aef91b468"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzaceapbxiusvuntpzof7d7gznvn564me5kzym5ipgku4m7n654srv6lu"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_fiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Fiction published this file.",
-							"label": "Libgen.rs Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsfic_source",
-						"masked_isbn": "",
 						"value": "2011-06-11"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "filepath",
+						"value": "lgrsfic/D\\Dikty, T E & Blieler, E F\\T. E. Dikty &  E. F. Blieler - The Best Science Fiction Stories - 1949.pdf"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzaceapbxiusvuntpzof7d7gznvn564me5kzym5ipgku4m7n654srv6lu"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "en"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsfic/D\\Dikty, T E & Blieler, E F\\T. E. Dikty &  E. F. Blieler - The Best Science Fiction Stories - 1949.pdf"
+						"key": "lgrsfic",
+						"value": "47"
+					},
+					{
+						"key": "md5",
+						"value": "1b904fba9a7c56fad75d300aef91b468"
+					},
+					{
+						"key": "sha1",
+						"value": "qdwr2brfftc2mm3rc46albq3ucvjrsdy"
+					},
+					{
+						"key": "sha256",
+						"value": "41c2ab0eb57335820fd33f3802693c5cadcd01f09272b160814791eb71e9c607"
 					}
 				],
 				"download_urls": [
@@ -2139,153 +1760,56 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "2d7b0f6e604bf1fcb053640cb464cc94"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__magzdb_records__20240906T130340Z__publication_1__c8BFPsb47UqVusF4kvkn96"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__magzdb_records__20240906T130340Z__record_1609__V6anYZbCWbFrDpxcb9jGmw"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:2d7b0f6e604bf1fcb053640cb464cc94"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "magazine"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Anna\u2019s Archive scraped the MagzDB metadata.",
-							"label": "MagzDB Source Scrape Date",
-							"website": "/datasets/magzdb"
-						},
 						"key": "date_magzdb_meta_scrape",
-						"masked_isbn": "",
 						"value": "2024-09-06"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID of a publication in MagzDB.",
-							"label": "MagzDB Publication ID",
-							"url": "http://magzdb.org/j/%s",
-							"website": "/datasets/magzdb"
-						},
-						"key": "magzdb_pub",
-						"masked_isbn": "",
-						"value": "1"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "ID of an individual edition of a magazine in MagzDB.",
-							"label": "MagzDB Edition ID",
-							"url": "http://magzdb.org/num/%s",
-							"website": "/datasets/magzdb"
-						},
-						"key": "magzdb",
-						"masked_isbn": "",
-						"value": "1609"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "ru"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "magzdb/\u0418\u0441\u043a\u0430\u0442\u0435\u043b\u044c/1961/4/2d7b0f6e604bf1fcb053640cb464cc94.pdf"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication keyword in MagzDB (in Russian).",
-							"label": "MagzDB Keyword",
-							"url": "",
-							"website": "/datasets/magzdb"
-						},
+						"key": "issn",
+						"value": "01306634"
+					},
+					{
+						"key": "lang",
+						"value": "ru"
+					},
+					{
+						"key": "magzdb",
+						"value": "1609"
+					},
+					{
 						"key": "magzdb_keyword",
-						"masked_isbn": "",
 						"value": "\u041b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u043d\u044b\u0435"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "1961"
+						"key": "magzdb_pub",
+						"value": "1"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "International Standard Serial Number",
-							"label": "ISSN",
-							"url": "https://urn.issn.org/urn:issn:%s"
-						},
-						"key": "issn",
-						"masked_isbn": "",
-						"value": "01306634"
+						"key": "md5",
+						"value": "2d7b0f6e604bf1fcb053640cb464cc94"
+					},
+					{
+						"key": "year",
+						"value": "1961"
 					}
 				],
 				"download_urls": [
@@ -2481,98 +2005,36 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "92"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "2fb98791a404f86eed5b2326a1b597a7"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:2fb98791a404f86eed5b2326a1b597a7"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
+						"key": "better_aarecord_id",
+						"value": "md5:d90b5c1a67fc8446becd111e274df649"
+					},
+					{
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgli/V:\\comics\\_0DAY\\new\\us\\com\\Image\\We Stand On Guard\\We Stand On Guard 001 (2015) (digital) (Minutemen-Spaztastic).cbr"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Problem type indicated by a source library.",
-							"label": "File Problem",
-							"url": "",
-							"website": ""
-						},
 						"key": "file_problem",
-						"masked_isbn": "",
 						"value": "lgli_visible"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Source library has indicated this record to be better.",
-							"label": "Better AA Record ID",
-							"shortenvalue": true,
-							"url": "",
-							"website": ""
-						},
-						"key": "better_aarecord_id",
-						"masked_isbn": "",
-						"value": "md5:d90b5c1a67fc8446becd111e274df649"
+						"key": "filepath",
+						"value": "lgli/V:\\comics\\_0DAY\\new\\us\\com\\Image\\We Stand On Guard\\We Stand On Guard 001 (2015) (digital) (Minutemen-Spaztastic).cbr"
+					},
+					{
+						"key": "lgli",
+						"value": "92"
+					},
+					{
+						"key": "md5",
+						"value": "2fb98791a404f86eed5b2326a1b597a7"
 					}
 				],
 				"download_urls": [
@@ -2754,202 +2216,72 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Housekeeping, leisure\\\\Cooking"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "3"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Google Books",
-							"url": "https://books.google.com/books?id=%s",
-							"website": "/datasets/gbooks"
-						},
-						"key": "gbooks",
-						"masked_isbn": "",
-						"value": "jITovbFEuO8C"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "411b9300a2f2094800e0e30d439c30fd"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "o3pvkpfv5o7bnrebhgopp4e2v25coqx2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "0ad346829c1614ffdd9b7e369633431b9a6c28cb1339e127e27ffe01989fc75a"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:411b9300a2f2094800e0e30d439c30fd"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzaceb5aopa3h5mzj2qmdmpokxwh24sak2ltji33a3gxnxq4qjgvjgjou"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Handbook of Herbs and Spices, Volume 2 (2001)(ISBN 0849325358)(374s).pdf"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2004"
+						"key": "gbooks",
+						"value": "jITovbFEuO8C"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
+						"key": "ipfs_cid",
+						"value": "bafykbzaceb5aopa3h5mzj2qmdmpokxwh24sak2ltji33a3gxnxq4qjgvjgjou"
+					},
+					{
 						"key": "isbn10",
-						"masked_isbn": "0-8493-2535-8",
 						"value": "0849325358"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "1-85573-721-3",
 						"value": "1855737213"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-8493-2535-9",
 						"value": "9780849325359"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-1-85573-721-1",
 						"value": "9781855737211"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "3"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Housekeeping, leisure\\\\Cooking"
+					},
+					{
+						"key": "md5",
+						"value": "411b9300a2f2094800e0e30d439c30fd"
+					},
+					{
+						"key": "sha1",
+						"value": "o3pvkpfv5o7bnrebhgopp4e2v25coqx2"
+					},
+					{
+						"key": "sha256",
+						"value": "0ad346829c1614ffdd9b7e369633431b9a6c28cb1339e127e27ffe01989fc75a"
+					},
+					{
+						"key": "year",
+						"value": "2004"
 					}
 				],
 				"download_urls": [
@@ -3327,84 +2659,32 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "65"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.li comics_id",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli_comics_id",
-						"masked_isbn": "",
-						"value": "1115825"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "42c1366d8adc09e938029e6ae985e964"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:42c1366d8adc09e938029e6ae985e964"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_0DAY\\new\\us\\com\\IDW\\October Faction\\The October Faction 007 (2015) (digital-Empire).cbr"
+					},
+					{
+						"key": "lgli",
+						"value": "65"
+					},
+					{
+						"key": "lgli_comics_id",
+						"value": "1115825"
+					},
+					{
+						"key": "md5",
+						"value": "42c1366d8adc09e938029e6ae985e964"
 					}
 				],
 				"download_urls": [
@@ -3633,124 +2913,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "15535fde0420e9a39ca999eb7af2aaac"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "4810ba8015f4eec3f00e693158ffa6aa"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__zlib3_records__20240809T232342Z__73__axR5sJcVw42iZmwKg8YrCn"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:4810ba8015f4eec3f00e693158ffa6aa"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "QmSdcL7hr9TZmsopznnCV4FKEUD2qK43rz9e3xthpLGxu5"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafk2bzacea6bihsffwkcgjlzabeshiiqlandrshuqhbqjv4io2cd3xlewbon2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_unknown"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Z-Library published this file.",
-							"label": "Z-Library Source Date",
-							"website": "/datasets/zlib"
-						},
 						"key": "date_zlib_source",
-						"masked_isbn": "",
 						"value": "2011-07-10"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID in Z-Library.",
-							"label": "Z-Library",
-							"url": "https://z-lib.gs/",
-							"website": "/datasets/zlib"
-						},
-						"key": "zlib",
-						"masked_isbn": "",
-						"value": "73"
+						"key": "ipfs_cid",
+						"value": "QmSdcL7hr9TZmsopznnCV4FKEUD2qK43rz9e3xthpLGxu5"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "ipfs_cid",
+						"value": "bafk2bzacea6bihsffwkcgjlzabeshiiqlandrshuqhbqjv4io2cd3xlewbon2"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "es"
+					},
+					{
+						"key": "md5",
+						"value": "15535fde0420e9a39ca999eb7af2aaac"
+					},
+					{
+						"key": "md5",
+						"value": "4810ba8015f4eec3f00e693158ffa6aa"
+					},
+					{
+						"key": "zlib",
+						"value": "73"
 					}
 				],
 				"download_urls": [
@@ -4233,124 +3433,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "4bbaf12fef3e47ae8b22fe472fe459be"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "4bc238384f51ac09d75f2fa939f7f5d7"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__zlib3_records__20240809T223821Z__40__gYUEYZYQABT4LMpB3sJQvF"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:4bbaf12fef3e47ae8b22fe472fe459be"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "QmcmhqCFHx6ZdpGpxy3Ye4vgrodchUuMPFM4gziAhqKsZc"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzaceavbn2taxfhfasrfsd65tjnbtqpr67b26yopvug3ps5a4gsxh7ljq"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_unknown"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Z-Library published this file.",
-							"label": "Z-Library Source Date",
-							"website": "/datasets/zlib"
-						},
 						"key": "date_zlib_source",
-						"masked_isbn": "",
 						"value": "2011-07-10"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID in Z-Library.",
-							"label": "Z-Library",
-							"url": "https://z-lib.gs/",
-							"website": "/datasets/zlib"
-						},
-						"key": "zlib",
-						"masked_isbn": "",
-						"value": "40"
+						"key": "ipfs_cid",
+						"value": "QmcmhqCFHx6ZdpGpxy3Ye4vgrodchUuMPFM4gziAhqKsZc"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "ipfs_cid",
+						"value": "bafykbzaceavbn2taxfhfasrfsd65tjnbtqpr67b26yopvug3ps5a4gsxh7ljq"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "fr"
+					},
+					{
+						"key": "md5",
+						"value": "4bbaf12fef3e47ae8b22fe472fe459be"
+					},
+					{
+						"key": "md5",
+						"value": "4bc238384f51ac09d75f2fa939f7f5d7"
+					},
+					{
+						"key": "zlib",
+						"value": "40"
 					}
 				],
 				"download_urls": [
@@ -4833,84 +3953,32 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "38"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.li comics_id",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli_comics_id",
-						"masked_isbn": "",
-						"value": "1110312"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "4cb3adebe454da7ff368fe96f3e89577"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:4cb3adebe454da7ff368fe96f3e89577"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_ENG_ORIG_PUBL\\_A\\Archaia\\Mouse Guard - Legends of Guard (2015)\\Mouse Guard - Legends of the Guard v03 04 (of 04) (2015) (digital) (Son of Ultron-Empire).cbr"
+					},
+					{
+						"key": "lgli",
+						"value": "38"
+					},
+					{
+						"key": "lgli_comics_id",
+						"value": "1110312"
+					},
+					{
+						"key": "md5",
+						"value": "4cb3adebe454da7ff368fe96f3e89577"
 					}
 				],
 				"download_urls": [
@@ -5139,124 +4207,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "3ac8a5877e1f710efab95156ff557be8"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "5817fbc7802c11a1910071ea24363842"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__zlib3_records__20240809T223233Z__37__BgP75ykvPjunW9KJntiXTJ"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:5817fbc7802c11a1910071ea24363842"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "QmWm44FWeDiAafKJaSK2NNBCfSpF62R9JqDKoZB3C1u6e4"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafk2bzaceaymhp3fegnqbam4ckkhcppgwf546qcpyoh3dsmmdlmwoomodqqrw"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_unknown"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Z-Library published this file.",
-							"label": "Z-Library Source Date",
-							"website": "/datasets/zlib"
-						},
 						"key": "date_zlib_source",
-						"masked_isbn": "",
 						"value": "2011-07-10"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID in Z-Library.",
-							"label": "Z-Library",
-							"url": "https://z-lib.gs/",
-							"website": "/datasets/zlib"
-						},
-						"key": "zlib",
-						"masked_isbn": "",
-						"value": "37"
+						"key": "ipfs_cid",
+						"value": "QmWm44FWeDiAafKJaSK2NNBCfSpF62R9JqDKoZB3C1u6e4"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "ipfs_cid",
+						"value": "bafk2bzaceaymhp3fegnqbam4ckkhcppgwf546qcpyoh3dsmmdlmwoomodqqrw"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "pl"
+					},
+					{
+						"key": "md5",
+						"value": "3ac8a5877e1f710efab95156ff557be8"
+					},
+					{
+						"key": "md5",
+						"value": "5817fbc7802c11a1910071ea24363842"
+					},
+					{
+						"key": "zlib",
+						"value": "37"
 					}
 				],
 				"download_urls": [
@@ -5739,166 +4727,60 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology\\\\Genetics"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "58"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "630c09e7a60febd02bdb49eba10db68b"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "ghwfo2d2p73en6fos742uz3ozurwg6uf"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "e04ee4e41572649dd366fb28c805f44a0dcb9f628726323b5d65755cd3954357"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:630c09e7a60febd02bdb49eba10db68b"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacec4gv4w7qimadaswd3xckoqzxaclmgyf5jwjrksits6gmr6six4nm"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Griffiths A.J.F., et al. Introduction to genetic analysis (draft, 2004)(T)(C)(707s)_B_.djvu"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2010"
+						"key": "ipfs_cid",
+						"value": "bafykbzacec4gv4w7qimadaswd3xckoqzxaclmgyf5jwjrksits6gmr6six4nm"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "1-4292-3255-2",
 						"value": "1429232552"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-1-4292-3255-5",
 						"value": "9781429232555"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "58"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology\\\\Genetics"
+					},
+					{
+						"key": "md5",
+						"value": "630c09e7a60febd02bdb49eba10db68b"
+					},
+					{
+						"key": "sha1",
+						"value": "ghwfo2d2p73en6fos742uz3ozurwg6uf"
+					},
+					{
+						"key": "sha256",
+						"value": "e04ee4e41572649dd366fb28c805f44a0dcb9f628726323b5d65755cd3954357"
+					},
+					{
+						"key": "year",
+						"value": "2010"
 					}
 				],
 				"download_urls": [
@@ -6270,84 +5152,32 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "18"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.li comics_id",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli_comics_id",
-						"masked_isbn": "",
-						"value": "1154856"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "72a03e629068d623f10173a507ef3cb6"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:72a03e629068d623f10173a507ef3cb6"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_0DAY\\new\\us\\com\\Top Cow\\Tales of Honor FCBD\\Tales of Honor 000 (FCBD 2015) (digital) (Minutemen-Faessla).cbz"
+					},
+					{
+						"key": "lgli",
+						"value": "18"
+					},
+					{
+						"key": "lgli_comics_id",
+						"value": "1154856"
+					},
+					{
+						"key": "md5",
+						"value": "72a03e629068d623f10173a507ef3cb6"
 					}
 				],
 				"download_urls": [
@@ -6576,201 +5406,72 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "90"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "762ce959dc3e6cb2ff82720605529d9c"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Open Library",
-							"url": "https://openlibrary.org/books/%s"
-						},
-						"key": "ol",
-						"masked_isbn": "",
-						"value": "OL15365644M"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "27qpwbwecaqziqww4ttmfdqkitlwpnks"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "e95d0104d6f34c758da951b8560b75e83235326152ee05a33cfd986f0ac285b2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:762ce959dc3e6cb2ff82720605529d9c"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzaceabf6pjr7ppwrwtqccaje2g5qjwfsqfjtz45lcuyiumpyk5xso6kc"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Moss L. What Genes Can't Do (Bradford Book,2002)(ISBN 026213411X)(241s)_B_.pdf"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2003"
+						"key": "ipfs_cid",
+						"value": "bafykbzaceabf6pjr7ppwrwtqccaje2g5qjwfsqfjtz45lcuyiumpyk5xso6kc"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-262-13411-X",
 						"value": "026213411X"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-585-44161-8",
 						"value": "0585441618"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-262-13411-8",
 						"value": "9780262134118"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-585-44161-0",
 						"value": "9780585441610"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "90"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology"
+					},
+					{
+						"key": "md5",
+						"value": "762ce959dc3e6cb2ff82720605529d9c"
+					},
+					{
+						"key": "ol",
+						"value": "OL15365644M"
+					},
+					{
+						"key": "sha1",
+						"value": "27qpwbwecaqziqww4ttmfdqkitlwpnks"
+					},
+					{
+						"key": "sha256",
+						"value": "e95d0104d6f34c758da951b8560b75e83235326152ee05a33cfd986f0ac285b2"
+					},
+					{
+						"key": "year",
+						"value": "2003"
 					}
 				],
 				"download_urls": [
@@ -7148,84 +5849,32 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "52"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.li comics_id",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli_comics_id",
-						"masked_isbn": "",
-						"value": "1010434"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "79612f4e689a46bfdcf2e1fae4dff91c"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:79612f4e689a46bfdcf2e1fae4dff91c"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_WEB_COMICS\\Best Thing\\The Best Thing 006 (2015) (McGuire, Henderson, Schwager - digital).cbr"
+					},
+					{
+						"key": "lgli",
+						"value": "52"
+					},
+					{
+						"key": "lgli_comics_id",
+						"value": "1010434"
+					},
+					{
+						"key": "md5",
+						"value": "79612f4e689a46bfdcf2e1fae4dff91c"
 					}
 				],
 				"download_urls": [
@@ -7454,134 +6103,48 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "7b721f58829ac7c1af37fbfc8e2b3c2e"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__zlib3_records__20240808T070432Z__28406459__mRJxpS86ePffUXens85EBW"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:7b721f58829ac7c1af37fbfc8e2b3c2e"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "QmQgM3McXUM7HVQKU6J53mZpEV4g6aCjbuS6SPEiRzvrMG"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacedmidvqqcfx744zp6hcr7u2fhjlqve7ylq7hsf3nefauqjifryqr2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_unknown"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Z-Library published this file.",
-							"label": "Z-Library Source Date",
-							"website": "/datasets/zlib"
-						},
 						"key": "date_zlib_source",
-						"masked_isbn": "",
 						"value": "2024-04-22"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID in Z-Library.",
-							"label": "Z-Library",
-							"url": "https://z-lib.gs/",
-							"website": "/datasets/zlib"
-						},
-						"key": "zlib",
-						"masked_isbn": "",
-						"value": "28406459"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Problem type indicated by a source library.",
-							"label": "File Problem",
-							"url": "",
-							"website": ""
-						},
 						"key": "file_problem",
-						"masked_isbn": "",
 						"value": "zlib_missing"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
+						"key": "ipfs_cid",
+						"value": "QmQgM3McXUM7HVQKU6J53mZpEV4g6aCjbuS6SPEiRzvrMG"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzacedmidvqqcfx744zp6hcr7u2fhjlqve7ylq7hsf3nefauqjifryqr2"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "md5",
+						"value": "7b721f58829ac7c1af37fbfc8e2b3c2e"
+					},
+					{
 						"key": "year",
-						"masked_isbn": "",
 						"value": "2024"
+					},
+					{
+						"key": "zlib",
+						"value": "28406459"
 					}
 				],
 				"download_urls": [
@@ -8004,166 +6567,60 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "50"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "8a558de287cb2b2fa18304d5aa10ff40"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Open Library",
-							"url": "https://openlibrary.org/books/%s"
-						},
-						"key": "ol",
-						"masked_isbn": "",
-						"value": "OL15470919M"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "56lenyxn2pw57shf3unagbr5fm433lwt"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "055545e3fdfeb2b7050da18f12c840035a4ab585c74fb575ebd5c0e3b259915a"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:8a558de287cb2b2fa18304d5aa10ff40"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzaceckodwsv7xplxynylrsueswqzca3bpynwnvvax77ybcrb22vnszyc"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Diekmann O., et al. Mathematics inspired by biology.. Lectures (LNM1714, Springer, 1999)(T)(O)(ISBN 3540665226)(272s)_B_.djvu"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2000"
+						"key": "ipfs_cid",
+						"value": "bafykbzaceckodwsv7xplxynylrsueswqzca3bpynwnvvax77ybcrb22vnszyc"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "3-540-66522-6",
 						"value": "3540665226"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-3-540-66522-9",
 						"value": "9783540665229"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "50"
+					},
+					{
+						"key": "md5",
+						"value": "8a558de287cb2b2fa18304d5aa10ff40"
+					},
+					{
+						"key": "ol",
+						"value": "OL15470919M"
+					},
+					{
+						"key": "sha1",
+						"value": "56lenyxn2pw57shf3unagbr5fm433lwt"
+					},
+					{
+						"key": "sha256",
+						"value": "055545e3fdfeb2b7050da18f12c840035a4ab585c74fb575ebd5c0e3b259915a"
+					},
+					{
+						"key": "year",
+						"value": "2000"
 					}
 				],
 				"download_urls": [
@@ -8535,121 +6992,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Fiction",
-							"url": "https://libgen.is/fiction/",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsfic",
-						"masked_isbn": "",
-						"value": "89"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "9b51970401de145d4756fbcef0fc9d2e"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "dgajdumdvqwd2jotu5nnjgvuxk65qex4"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "186fb41ab4ea981802982c96083a1e47ab32746fac5c3edbb0bf51e5ad03e7d7"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:9b51970401de145d4756fbcef0fc9d2e"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafk2bzaceb4mj42aazwc3mnl74kkzw7i7lh5ouh57yzxsxenk7vw4xppvhnwu"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_fiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Fiction published this file.",
-							"label": "Libgen.rs Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsfic_source",
-						"masked_isbn": "",
 						"value": "2011-06-11"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "filepath",
+						"value": "lgrsfic/S\\Scieszka, Jon\\Time Warp Trio 05 - 2095.rtf"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafk2bzaceb4mj42aazwc3mnl74kkzw7i7lh5ouh57yzxsxenk7vw4xppvhnwu"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "en"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsfic/S\\Scieszka, Jon\\Time Warp Trio 05 - 2095.rtf"
+						"key": "lgrsfic",
+						"value": "89"
+					},
+					{
+						"key": "md5",
+						"value": "9b51970401de145d4756fbcef0fc9d2e"
+					},
+					{
+						"key": "sha1",
+						"value": "dgajdumdvqwd2jotu5nnjgvuxk65qex4"
+					},
+					{
+						"key": "sha256",
+						"value": "186fb41ab4ea981802982c96083a1e47ab32746fac5c3edbb0bf51e5ad03e7d7"
 					}
 				],
 				"download_urls": [
@@ -9000,121 +7380,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Fiction",
-							"url": "https://libgen.is/fiction/",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsfic",
-						"masked_isbn": "",
-						"value": "52"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "9ede0473c0d14cbcf7c252399d7451fa"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "k67r4eusgivzuitysys6doso7gkxsstc"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "03c0718b67308182c97603c327ee4dc55cba92ba47ff315cb8c8ff7841a971b3"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:9ede0473c0d14cbcf7c252399d7451fa"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacedwaxmrazi3djhmasyodjnombo7yqcbzk32rjyvaricnh4h4yy4n6"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_fiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Fiction published this file.",
-							"label": "Libgen.rs Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsfic_source",
-						"masked_isbn": "",
 						"value": "2011-06-11"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "filepath",
+						"value": "lgrsfic/C\\Clarke, Arthur C\\2001 A Space Odyssey.txt"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzacedwaxmrazi3djhmasyodjnombo7yqcbzk32rjyvaricnh4h4yy4n6"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "en"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsfic/C\\Clarke, Arthur C\\2001 A Space Odyssey.txt"
+						"key": "lgrsfic",
+						"value": "52"
+					},
+					{
+						"key": "md5",
+						"value": "9ede0473c0d14cbcf7c252399d7451fa"
+					},
+					{
+						"key": "sha1",
+						"value": "k67r4eusgivzuitysys6doso7gkxsstc"
+					},
+					{
+						"key": "sha256",
+						"value": "03c0718b67308182c97603c327ee4dc55cba92ba47ff315cb8c8ff7841a971b3"
 					}
 				],
 				"download_urls": [
@@ -9465,84 +7768,32 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "33"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the 'comics' repository in Libgen.li. Directly taken from the 'comics_id' field in the 'files' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.li comics_id",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli_comics_id",
-						"masked_isbn": "",
-						"value": "1010436"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "a15953776ed5e720e7000b540a157a8a"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:a15953776ed5e720e7000b540a157a8a"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_WEB_COMICS\\Best Thing\\The Best Thing 008 (2015) (McGuire, Henderson, Schwager - digital).cbr"
+					},
+					{
+						"key": "lgli",
+						"value": "33"
+					},
+					{
+						"key": "lgli_comics_id",
+						"value": "1010436"
+					},
+					{
+						"key": "md5",
+						"value": "a15953776ed5e720e7000b540a157a8a"
 					}
 				],
 				"download_urls": [
@@ -9771,201 +8022,72 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology\\\\Biophysics"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "28"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "aac0058748685baeb782d1a156a2ed25"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Open Library",
-							"url": "https://openlibrary.org/books/%s"
-						},
-						"key": "ol",
-						"masked_isbn": "",
-						"value": "OL10260454M"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "j7afnqxhqtfqbwe5jcz7p5kh2dtw366p"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "57e93072d54ed9b24bb7959139dc8ad0eecd55baa3e3d0d8568b8807e96ef447"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:aac0058748685baeb782d1a156a2ed25"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzaceca5dajld6dg6k47xhgjxmglu5u4hl3pddqvcximr6cvr7vfta4bs"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Blomberg C. Physics of life (Elsevier, 2007)(ISBN 9780444527981)(437s)_B_.pdf"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2007"
+						"key": "ipfs_cid",
+						"value": "bafykbzaceca5dajld6dg6k47xhgjxmglu5u4hl3pddqvcximr6cvr7vfta4bs"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-08-055464-4",
 						"value": "0080554644"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-444-52798-2",
 						"value": "0444527982"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-08-055464-8",
 						"value": "9780080554648"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-444-52798-1",
 						"value": "9780444527981"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "28"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology\\\\Biophysics"
+					},
+					{
+						"key": "md5",
+						"value": "aac0058748685baeb782d1a156a2ed25"
+					},
+					{
+						"key": "ol",
+						"value": "OL10260454M"
+					},
+					{
+						"key": "sha1",
+						"value": "j7afnqxhqtfqbwe5jcz7p5kh2dtw366p"
+					},
+					{
+						"key": "sha256",
+						"value": "57e93072d54ed9b24bb7959139dc8ad0eecd55baa3e3d0d8568b8807e96ef447"
+					},
+					{
+						"key": "year",
+						"value": "2007"
 					}
 				],
 				"download_urls": [
@@ -10343,121 +8465,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Fiction",
-							"url": "https://libgen.is/fiction/",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsfic",
-						"masked_isbn": "",
-						"value": "71"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "aad970269c5109d8ec3c8a8ccabd577a"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "i4of3yb5bdjpqy5wjkcysabaxqquqfxl"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "b24d0e5cb8c6016748744919babce5f50eabf9ad28e61735f3705573a04014cb"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:aad970269c5109d8ec3c8a8ccabd577a"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacedtfey4oeno4t47alsezhbixzwhuzlzjshffrqi3ku2dvdks3wtbq"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_fiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Fiction published this file.",
-							"label": "Libgen.rs Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsfic_source",
-						"masked_isbn": "",
 						"value": "2011-06-11"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "filepath",
+						"value": "lgrsfic/C\\Clarke, Arthur C\\Clarke, Arthur C - Odissey Two.txt"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzacedtfey4oeno4t47alsezhbixzwhuzlzjshffrqi3ku2dvdks3wtbq"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "en"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsfic/C\\Clarke, Arthur C\\Clarke, Arthur C - Odissey Two.txt"
+						"key": "lgrsfic",
+						"value": "71"
+					},
+					{
+						"key": "md5",
+						"value": "aad970269c5109d8ec3c8a8ccabd577a"
+					},
+					{
+						"key": "sha1",
+						"value": "i4of3yb5bdjpqy5wjkcysabaxqquqfxl"
+					},
+					{
+						"key": "sha256",
+						"value": "b24d0e5cb8c6016748744919babce5f50eabf9ad28e61735f3705573a04014cb"
 					}
 				],
 				"download_urls": [
@@ -10808,239 +8853,84 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "96"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "bd5eae4da074a643f9963bdb3a90c6d1"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "hdgfbpzorqc43ldytrqidaino3aas2lv"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "4872dee44b8e4096138ebc3cb485672d380fe735f6a30bcda0d9e2add172b3b4"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:bd5eae4da074a643f9963bdb3a90c6d1"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacebydje2nabed6mrkbz4li2a7fqfs6xhodd5shtibb3qm7oa7airoq"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
-						"key": "content_type",
-						"masked_isbn": "",
-						"value": "book_nonfiction"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
-						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
-						"value": "2009-07-20"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Dewey Decimal",
-							"label": "DDC",
-							"url": "https://libgen.li/biblioservice.php?value=%s&type=ddc",
-							"website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes"
-						},
-						"key": "ddc",
-						"masked_isbn": "",
-						"value": "612.8/2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Library of Congress Classification",
-							"label": "LCC",
-							"url": "https://catalog.loc.gov/vwebv/search?searchCode=CALL%2B&searchArg=%s&searchType=1&limitTo=none&fromYear=&toYear=&limitTo=LOCA%3Dall&limitTo=PLAC%3Dall&limitTo=TYPE%3Dall&limitTo=LANG%3Dall&recCount=25",
-							"website": "https://en.wikipedia.org/wiki/Library_of_Congress_Classification"
-						},
-						"key": "lcc",
-						"masked_isbn": "",
-						"value": "QP376 .O84 2006"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsnf/B_Biology/O Shea M. The brain.. a very short introduction (OUP, 2005)(ISBN 0192853929)(149s)_B_.pdf"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Problem type indicated by a source library.",
-							"label": "File Problem",
-							"url": "",
-							"website": ""
-						},
-						"key": "file_problem",
-						"masked_isbn": "",
-						"value": "lgrsnf_visible"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2006"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Source library has indicated this record to be better.",
-							"label": "Better AA Record ID",
-							"shortenvalue": true,
-							"url": "",
-							"website": ""
-						},
 						"key": "better_aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:be65b1459c852fd985a368cfd9bba5ec"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
+						"key": "content_type",
+						"value": "book_nonfiction"
+					},
+					{
+						"key": "date_lgrsnf_source",
+						"value": "2009-07-20"
+					},
+					{
+						"key": "ddc",
+						"value": "612.8/2"
+					},
+					{
+						"key": "file_problem",
+						"value": "lgrsnf_visible"
+					},
+					{
+						"key": "filepath",
+						"value": "lgrsnf/B_Biology/O Shea M. The brain.. a very short introduction (OUP, 2005)(ISBN 0192853929)(149s)_B_.pdf"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzacebydje2nabed6mrkbz4li2a7fqfs6xhodd5shtibb3qm7oa7airoq"
+					},
+					{
 						"key": "isbn10",
-						"masked_isbn": "0-19-285392-9",
 						"value": "0192853929"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "1-4294-2118-5",
 						"value": "1429421185"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-19-285392-9",
 						"value": "9780192853929"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-1-4294-2118-8",
 						"value": "9781429421188"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lcc",
+						"value": "QP376 .O84 2006"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "96"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology"
+					},
+					{
+						"key": "md5",
+						"value": "bd5eae4da074a643f9963bdb3a90c6d1"
+					},
+					{
+						"key": "sha1",
+						"value": "hdgfbpzorqc43ldytrqidaino3aas2lv"
+					},
+					{
+						"key": "sha256",
+						"value": "4872dee44b8e4096138ebc3cb485672d380fe735f6a30bcda0d9e2add172b3b4"
+					},
+					{
+						"key": "year",
+						"value": "2006"
 					}
 				],
 				"download_urls": [
@@ -11434,136 +9324,48 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "83ceebb2388e57afe97b5a9a6a9498eb"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "bdf39d8e3976af141f09a245a9ddb9c5"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__zlib3_records__20240809T220522Z__27__dFmniVEYDHAroWtC8qWwGq"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:bdf39d8e3976af141f09a245a9ddb9c5"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "QmX3Hte8EPhFoSqxWAtaKNTmBPKmzhGYkhuNk2dYXteN7z"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacecisaiihnfoltw3rqwspyenrgnhxtw7vozj4nroraskevycollxym"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_unknown"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Z-Library published this file.",
-							"label": "Z-Library Source Date",
-							"website": "/datasets/zlib"
-						},
 						"key": "date_zlib_source",
-						"masked_isbn": "",
 						"value": "2011-07-10"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID in Z-Library.",
-							"label": "Z-Library",
-							"url": "https://z-lib.gs/",
-							"website": "/datasets/zlib"
-						},
-						"key": "zlib",
-						"masked_isbn": "",
-						"value": "27"
+						"key": "file_problem",
+						"value": "zlib_missing"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "ipfs_cid",
+						"value": "QmX3Hte8EPhFoSqxWAtaKNTmBPKmzhGYkhuNk2dYXteN7z"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzacecisaiihnfoltw3rqwspyenrgnhxtw7vozj4nroraskevycollxym"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "pl"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Problem type indicated by a source library.",
-							"label": "File Problem",
-							"url": "",
-							"website": ""
-						},
-						"key": "file_problem",
-						"masked_isbn": "",
-						"value": "zlib_missing"
+						"key": "md5",
+						"value": "83ceebb2388e57afe97b5a9a6a9498eb"
+					},
+					{
+						"key": "md5",
+						"value": "bdf39d8e3976af141f09a245a9ddb9c5"
+					},
+					{
+						"key": "zlib",
+						"value": "27"
 					}
 				],
 				"download_urls": [
@@ -12056,177 +9858,64 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology\\\\Microbiology"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "48"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "c892c74aeac46715475ef5334302d751"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Open Library",
-							"url": "https://openlibrary.org/books/%s"
-						},
-						"key": "ol",
-						"masked_isbn": "",
-						"value": "OL10325046M"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "zqscz4jna2ndsmmmknju456qhzjevqkk"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "811115f7904c1b809f555e28b53d7ec713d908bdd46dd0ff2d1df6aabdcec2a8"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:c892c74aeac46715475ef5334302d751"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacebgena3765iicrcybwcmwt4olon52ol2dsg4zkbwyh735ba35bd6k"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/De Cuyper M., Bulte J.W.M. (eds.) Physics and Chemistry Basis of Biotechnology (Kluwer, 2002)(ISBN 0306468913)(341s).pdf"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2001"
+						"key": "ipfs_cid",
+						"value": "bafykbzacebgena3765iicrcybwcmwt4olon52ol2dsg4zkbwyh735ba35bd6k"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-306-46891-3",
 						"value": "0306468913"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-306-46891-9",
 						"value": "9780306468919"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "48"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology\\\\Microbiology"
+					},
+					{
+						"key": "md5",
+						"value": "c892c74aeac46715475ef5334302d751"
+					},
+					{
+						"key": "ol",
+						"value": "OL10325046M"
+					},
+					{
+						"key": "sha1",
+						"value": "zqscz4jna2ndsmmmknju456qhzjevqkk"
+					},
+					{
+						"key": "sha256",
+						"value": "811115f7904c1b809f555e28b53d7ec713d908bdd46dd0ff2d1df6aabdcec2a8"
+					},
+					{
+						"key": "year",
+						"value": "2001"
 					}
 				],
 				"download_urls": [
@@ -12601,201 +10290,72 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology\\\\Biochemistry"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "73"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "c924f24882bb6b47d55131f6a373f5c7"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Open Library",
-							"url": "https://openlibrary.org/books/%s"
-						},
-						"key": "ol",
-						"masked_isbn": "",
-						"value": "OL677228M"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "uxl6hvw74ckj4bluc2dovjh7dtfflnea"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "93a5627d967f5b9f8b2fa9dfbfebbad88c8adc39d426d8c8a31565e57774f258"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:c924f24882bb6b47d55131f6a373f5c7"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzaceafk4ggrbnxxtfzmsmogrhz3vrogzghqfjliu4ow6bydkl7iibjco"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Dewey Decimal",
-							"label": "DDC",
-							"url": "https://libgen.li/biblioservice.php?value=%s&type=ddc",
-							"website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes"
-						},
 						"key": "ddc",
-						"masked_isbn": "",
 						"value": "572"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Library of Congress Classification",
-							"label": "LCC",
-							"url": "https://catalog.loc.gov/vwebv/search?searchCode=CALL%2B&searchArg=%s&searchType=1&limitTo=none&fromYear=&toYear=&limitTo=LOCA%3Dall&limitTo=PLAC%3Dall&limitTo=TYPE%3Dall&limitTo=LANG%3Dall&recCount=25",
-							"website": "https://en.wikipedia.org/wiki/Library_of_Congress_Classification"
-						},
-						"key": "lcc",
-						"masked_isbn": "",
-						"value": "QP518.3 .S3 1998"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Kuchel W. Schaum's outline of theory and problems of biochemistry (McGraw-Hill 1997)(T)(572s).djvu"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "1998"
+						"key": "ipfs_cid",
+						"value": "bafykbzaceafk4ggrbnxxtfzmsmogrhz3vrogzghqfjliu4ow6bydkl7iibjco"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "0-07-036149-5",
 						"value": "0070361495"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-0-07-036149-2",
 						"value": "9780070361492"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lcc",
+						"value": "QP518.3 .S3 1998"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "73"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology\\\\Biochemistry"
+					},
+					{
+						"key": "md5",
+						"value": "c924f24882bb6b47d55131f6a373f5c7"
+					},
+					{
+						"key": "ol",
+						"value": "OL677228M"
+					},
+					{
+						"key": "sha1",
+						"value": "uxl6hvw74ckj4bluc2dovjh7dtfflnea"
+					},
+					{
+						"key": "sha256",
+						"value": "93a5627d967f5b9f8b2fa9dfbfebbad88c8adc39d426d8c8a31565e57774f258"
+					},
+					{
+						"key": "year",
+						"value": "1998"
 					}
 				],
 				"download_urls": [
@@ -13176,124 +10736,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "10d315ea2b2af624be90d8c300ceed09"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "cab196666c6fb3da84dda2641b94a2ff"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__zlib3_records__20240809T225539Z__4__jACibBcWjgmDTdAFrQVrXg"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:cab196666c6fb3da84dda2641b94a2ff"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "QmasJJp7kvsx3aRmsGGRC2au3egsqx5uoYomZWjXSfNhXq"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafk2bzaceacs3a4t6kfbjjpkgx562qeqzhkbslpdk7hmv5qozarqn2jid5sfg"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_unknown"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Z-Library published this file.",
-							"label": "Z-Library Source Date",
-							"website": "/datasets/zlib"
-						},
 						"key": "date_zlib_source",
-						"masked_isbn": "",
 						"value": "2011-07-10"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID in Z-Library.",
-							"label": "Z-Library",
-							"url": "https://z-lib.gs/",
-							"website": "/datasets/zlib"
-						},
-						"key": "zlib",
-						"masked_isbn": "",
-						"value": "4"
+						"key": "ipfs_cid",
+						"value": "QmasJJp7kvsx3aRmsGGRC2au3egsqx5uoYomZWjXSfNhXq"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "ipfs_cid",
+						"value": "bafk2bzaceacs3a4t6kfbjjpkgx562qeqzhkbslpdk7hmv5qozarqn2jid5sfg"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "es"
+					},
+					{
+						"key": "md5",
+						"value": "10d315ea2b2af624be90d8c300ceed09"
+					},
+					{
+						"key": "md5",
+						"value": "cab196666c6fb3da84dda2641b94a2ff"
+					},
+					{
+						"key": "zlib",
+						"value": "4"
 					}
 				],
 				"download_urls": [
@@ -13777,141 +11257,51 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "d129057bc21897e90c10aa97eea22094"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__magzdb_records__20240906T130340Z__publication_5611__85jz6WGNZCiH8EdecM5iqe"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__magzdb_records__20240906T130340Z__record_3810648__RQHSk6gP57YFAXeNp8NGqZ"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:d129057bc21897e90c10aa97eea22094"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "magazine"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Anna\u2019s Archive scraped the MagzDB metadata.",
-							"label": "MagzDB Source Scrape Date",
-							"website": "/datasets/magzdb"
-						},
 						"key": "date_magzdb_meta_scrape",
-						"masked_isbn": "",
 						"value": "2024-09-06"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "ID of a publication in MagzDB.",
-							"label": "MagzDB Publication ID",
-							"url": "http://magzdb.org/j/%s",
-							"website": "/datasets/magzdb"
-						},
-						"key": "magzdb_pub",
-						"masked_isbn": "",
-						"value": "5611"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "ID of an individual edition of a magazine in MagzDB.",
-							"label": "MagzDB Edition ID",
-							"url": "http://magzdb.org/num/%s",
-							"website": "/datasets/magzdb"
-						},
-						"key": "magzdb",
-						"masked_isbn": "",
-						"value": "3810648"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "magzdb/Future Combined with Science Fiction Stories/1950/1#2/d129057bc21897e90c10aa97eea22094.pdf"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication keyword in MagzDB (in Russian).",
-							"label": "MagzDB Keyword",
-							"url": "",
-							"website": "/datasets/magzdb"
-						},
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "magzdb",
+						"value": "3810648"
+					},
+					{
 						"key": "magzdb_keyword",
-						"masked_isbn": "",
 						"value": "\u041b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u043d\u044b\u0435"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
+						"key": "magzdb_pub",
+						"value": "5611"
+					},
+					{
+						"key": "md5",
+						"value": "d129057bc21897e90c10aa97eea22094"
+					},
+					{
 						"key": "year",
-						"masked_isbn": "",
 						"value": "1950"
 					}
 				],
@@ -14115,201 +11505,72 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Libgen\u2019s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.",
-							"label": "Libgen.rs Non-Fiction Topic",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf_topic",
-						"masked_isbn": "",
-						"value": "Biology"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Non-Fiction",
-							"url": "https://libgen.is/json.php?fields=*&ids=%s",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsnf",
-						"masked_isbn": "",
-						"value": "82"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "dbe658668bdc472f23a8e9854db64703"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "Open Library",
-							"url": "https://openlibrary.org/books/%s"
-						},
-						"key": "ol",
-						"masked_isbn": "",
-						"value": "OL9194410M"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "6jbibuhkuuvanmkl5ssofeksanwwkej2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "d24e6b8a3bcb5e6df6673f6cb802b2411821f063ccdd3e05979ded1e6b35b89d"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:dbe658668bdc472f23a8e9854db64703"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacebrzejv7itjgdmbkqe2rwmdl2pvl5gaknwp6qty6e7az2fs37fq52"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_nonfiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Non_Fiction published this file.",
-							"label": "Libgen.rs Non-Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsnf_source",
-						"masked_isbn": "",
 						"value": "2009-07-20"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Dewey Decimal",
-							"label": "DDC",
-							"url": "https://libgen.li/biblioservice.php?value=%s&type=ddc",
-							"website": "https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes"
-						},
 						"key": "ddc",
-						"masked_isbn": "",
 						"value": "617.7/0022/2"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
-						"key": "lang",
-						"masked_isbn": "",
-						"value": "en"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Library of Congress Classification",
-							"label": "LCC",
-							"url": "https://catalog.loc.gov/vwebv/search?searchCode=CALL%2B&searchArg=%s&searchType=1&limitTo=none&fromYear=&toYear=&limitTo=LOCA%3Dall&limitTo=PLAC%3Dall&limitTo=TYPE%3Dall&limitTo=LANG%3Dall&recCount=25",
-							"website": "https://en.wikipedia.org/wiki/Library_of_Congress_Classification"
-						},
-						"key": "lcc",
-						"masked_isbn": "",
-						"value": "RE71 .L55 1995"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgrsnf/B_Biology/Lodish H. Molecular Cell Biology. (5ed, Freeman, 2003) Contents(T)(21s).djvu"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Publication year.",
-							"label": "Year"
-						},
-						"key": "year",
-						"masked_isbn": "",
-						"value": "2003"
+						"key": "ipfs_cid",
+						"value": "bafykbzacebrzejv7itjgdmbkqe2rwmdl2pvl5gaknwp6qty6e7az2fs37fq52"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-10",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn10",
-						"masked_isbn": "981-02-2339-0",
 						"value": "9810223390"
 					},
 					{
-						"highlight": true,
-						"info": {
-							"description": "",
-							"label": "ISBN-13",
-							"url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s",
-							"website": "https://en.wikipedia.org/wiki/ISBN"
-						},
 						"key": "isbn13",
-						"masked_isbn": "978-981-02-2339-7",
 						"value": "9789810223397"
+					},
+					{
+						"key": "lang",
+						"value": "en"
+					},
+					{
+						"key": "lcc",
+						"value": "RE71 .L55 1995"
+					},
+					{
+						"key": "lgrsnf",
+						"value": "82"
+					},
+					{
+						"key": "lgrsnf_topic",
+						"value": "Biology"
+					},
+					{
+						"key": "md5",
+						"value": "dbe658668bdc472f23a8e9854db64703"
+					},
+					{
+						"key": "ol",
+						"value": "OL9194410M"
+					},
+					{
+						"key": "sha1",
+						"value": "6jbibuhkuuvanmkl5ssofeksanwwkej2"
+					},
+					{
+						"key": "sha256",
+						"value": "d24e6b8a3bcb5e6df6673f6cb802b2411821f063ccdd3e05979ded1e6b35b89d"
+					},
+					{
+						"key": "year",
+						"value": "2003"
 					}
 				],
 				"download_urls": [
@@ -14690,73 +11951,28 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "31"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "deb0f98ae2a1ecc2b14a7b45e1fe3d0b"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:deb0f98ae2a1ecc2b14a7b45e1fe3d0b"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "lgli/V:\\comics\\_0DAY\\new\\us\\com\\DC\\Teen Titans Go!-Scooby-Doo! Team-Up Special Edition FCBD\\Teen Titans Go! - Scooby-Doo Team-Up - FCBD Special Edition 001 (2015) (digital) (Son of Ultron-Empire).cbr"
+					},
+					{
+						"key": "lgli",
+						"value": "31"
+					},
+					{
+						"key": "md5",
+						"value": "deb0f98ae2a1ecc2b14a7b45e1fe3d0b"
 					}
 				],
 				"download_urls": [
@@ -14925,98 +12141,36 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Global file ID in Libgen.li. Directly taken from the 'f_id' field in the 'files' table.",
-							"label": "Libgen.li File",
-							"url": "https://libgen.li/file.php?id=%s",
-							"website": "/datasets/lgli"
-						},
-						"key": "lgli",
-						"masked_isbn": "",
-						"value": "82"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "ed3cb6a0fa48e2f366832656431d9d5f"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:ed3cb6a0fa48e2f366832656431d9d5f"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
+						"key": "better_aarecord_id",
+						"value": "md5:bc6112085a157dd636570d707bd6efbe"
+					},
+					{
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_comic"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.li published this file.",
-							"label": "Libgen.li Source Date",
-							"website": "/datasets/lgli"
-						},
 						"key": "date_lgli_source",
-						"masked_isbn": "",
 						"value": "2015-07-05"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgli/V:\\comics\\_ENG_ORIG_PUBL\\_B\\Boom\\Broken World (2015)\\Broken World 02 (of 04) (2015) (digital) (Minutemen-Faessla).cbz"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Problem type indicated by a source library.",
-							"label": "File Problem",
-							"url": "",
-							"website": ""
-						},
 						"key": "file_problem",
-						"masked_isbn": "",
 						"value": "lgli_visible"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Source library has indicated this record to be better.",
-							"label": "Better AA Record ID",
-							"shortenvalue": true,
-							"url": "",
-							"website": ""
-						},
-						"key": "better_aarecord_id",
-						"masked_isbn": "",
-						"value": "md5:bc6112085a157dd636570d707bd6efbe"
+						"key": "filepath",
+						"value": "lgli/V:\\comics\\_ENG_ORIG_PUBL\\_B\\Boom\\Broken World (2015)\\Broken World 02 (of 04) (2015) (digital) (Minutemen-Faessla).cbz"
+					},
+					{
+						"key": "lgli",
+						"value": "82"
+					},
+					{
+						"key": "md5",
+						"value": "ed3cb6a0fa48e2f366832656431d9d5f"
 					}
 				],
 				"download_urls": [
@@ -15198,121 +12352,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Fiction",
-							"url": "https://libgen.is/fiction/",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsfic",
-						"masked_isbn": "",
-						"value": "13"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "f5f7b4026d768d4026d0b3daa6606710"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "xzr5kqliw5bjsz4tey4w7vwlvjcpd4ky"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "5dab1b8e803c6f0bd0d1f5d79b296dbd2bfa36256225db542d40a216f0543c9d"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:f5f7b4026d768d4026d0b3daa6606710"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafk2bzacedtoarbwtkljg2cug5ectc546wj7ay4y4a57uzlh7tfcdlr7mhrd6"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_fiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Fiction published this file.",
-							"label": "Libgen.rs Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsfic_source",
-						"masked_isbn": "",
 						"value": "2011-06-11"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "filepath",
+						"value": "lgrsfic/T\\Twain, Mark\\Twain, Mark - 1601.txt"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafk2bzacedtoarbwtkljg2cug5ectc546wj7ay4y4a57uzlh7tfcdlr7mhrd6"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "en"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsfic/T\\Twain, Mark\\Twain, Mark - 1601.txt"
+						"key": "lgrsfic",
+						"value": "13"
+					},
+					{
+						"key": "md5",
+						"value": "f5f7b4026d768d4026d0b3daa6606710"
+					},
+					{
+						"key": "sha1",
+						"value": "xzr5kqliw5bjsz4tey4w7vwlvjcpd4ky"
+					},
+					{
+						"key": "sha256",
+						"value": "5dab1b8e803c6f0bd0d1f5d79b296dbd2bfa36256225db542d40a216f0543c9d"
 					}
 				],
 				"download_urls": [
@@ -15663,121 +12740,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Anna\u2019s Archive indexed this file in our 'upload' collection.",
-							"label": "Upload Collection Date",
-							"website": "/datasets/upload"
-						},
-						"key": "date_upload_record",
-						"masked_isbn": "",
-						"value": "2024-06-27"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "fe1eb0e1ffae824cb844c85710b143ed"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "1b74835ca85e2586d9b7ec09ea44553f10936db2"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "54c793e37f207dd0351b0ffb1939e627076c408a0d183069470c6f119a30502d"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__upload_files_magzdb__20240510T020105Z__bywNkYiVhAdvMXN99aETRX"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive Container identifier.",
-							"label": "AacId",
-							"shortenvalue": true,
-							"website": "/blog/annas-archive-containers.html"
-						},
 						"key": "aacid",
-						"masked_isbn": "",
 						"value": "aacid__upload_records_magzdb__20240627T204706Z__128002__55kciJdRYDQfj2mmDL7e3o"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:fe1eb0e1ffae824cb844c85710b143ed"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "magazine"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
+						"key": "date_upload_record",
+						"value": "2024-06-27"
+					},
+					{
+						"key": "file_problem",
+						"value": "upload_exiftool_failed"
+					},
+					{
 						"key": "filepath",
-						"masked_isbn": "",
 						"value": "upload/magzdb/ul/5709/\u0423\u0440\u043e\u0436\u0430\u0439\u043d\u0430\u044f \u0433\u0440\u044f\u0434\u043a\u0430 2013'01.pdf"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Problem type indicated by a source library.",
-							"label": "File Problem",
-							"url": "",
-							"website": ""
-						},
-						"key": "file_problem",
-						"masked_isbn": "",
-						"value": "upload_exiftool_failed"
+						"key": "md5",
+						"value": "fe1eb0e1ffae824cb844c85710b143ed"
+					},
+					{
+						"key": "sha1",
+						"value": "1b74835ca85e2586d9b7ec09ea44553f10936db2"
+					},
+					{
+						"key": "sha256",
+						"value": "54c793e37f207dd0351b0ffb1939e627076c408a0d183069470c6f119a30502d"
 					}
 				],
 				"download_urls": [
@@ -16015,121 +13015,44 @@
 			"additional_SLOW_DATA_IMPORTS": {
 				"codes": [
 					{
-						"highlight": false,
-						"info": {
-							"description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.",
-							"label": "Libgen.rs Fiction",
-							"url": "https://libgen.is/fiction/",
-							"website": "/datasets/lgrs"
-						},
-						"key": "lgrsfic",
-						"masked_isbn": "",
-						"value": "39"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "MD5",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/MD5"
-						},
-						"key": "md5",
-						"masked_isbn": "",
-						"value": "fe20ce9eaa794b42e8d34dad3bc9bb3b"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-1",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-1"
-						},
-						"key": "sha1",
-						"masked_isbn": "",
-						"value": "s63t3kkmpaqyq4ca3t2asqrkf2b6qaca"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "",
-							"label": "SHA-256",
-							"shortenvalue": true,
-							"website": "https://en.wikipedia.org/wiki/SHA-2"
-						},
-						"key": "sha256",
-						"masked_isbn": "",
-						"value": "fc7e07e11190678f2b003b6c9226c57244d97470f4cbcc441cbdd7680ef6c65c"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Anna\u2019s Archive record ID.",
-							"label": "AA Record ID",
-							"shortenvalue": true,
-							"website": ""
-						},
 						"key": "aarecord_id",
-						"masked_isbn": "",
 						"value": "md5:fe20ce9eaa794b42e8d34dad3bc9bb3b"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Content Identifier (CID) of the InterPlanetary File System (IPFS).",
-							"label": "IPFS CID",
-							"shortenvalue": true,
-							"url": "ipfs://%s",
-							"website": "https://ipfs.tech/"
-						},
-						"key": "ipfs_cid",
-						"masked_isbn": "",
-						"value": "bafykbzacec3osw76m2qjxh3srnr3dtdvluce3ftihge3ojrrd7bmzawvxc6fo"
-					},
-					{
-						"highlight": false,
-						"info": {
-							"description": "Content type, determined by Anna\u2019s Archive.",
-							"label": "Content Type",
-							"url": "",
-							"website": ""
-						},
 						"key": "content_type",
-						"masked_isbn": "",
 						"value": "book_fiction"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Date Libgen.rs Fiction published this file.",
-							"label": "Libgen.rs Fiction Date",
-							"website": "/datasets/lgrs"
-						},
 						"key": "date_lgrsfic_source",
-						"masked_isbn": "",
 						"value": "2011-06-11"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "IETF language tag.",
-							"label": "Language",
-							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
-						},
+						"key": "filepath",
+						"value": "lgrsfic/F\\Flint, Eric\\SciFi - Eric Flint - 1633.txt"
+					},
+					{
+						"key": "ipfs_cid",
+						"value": "bafykbzacec3osw76m2qjxh3srnr3dtdvluce3ftihge3ojrrd7bmzawvxc6fo"
+					},
+					{
 						"key": "lang",
-						"masked_isbn": "",
 						"value": "en"
 					},
 					{
-						"highlight": false,
-						"info": {
-							"description": "Original filepath in source library.",
-							"label": "Filepath"
-						},
-						"key": "filepath",
-						"masked_isbn": "",
-						"value": "lgrsfic/F\\Flint, Eric\\SciFi - Eric Flint - 1633.txt"
+						"key": "lgrsfic",
+						"value": "39"
+					},
+					{
+						"key": "md5",
+						"value": "fe20ce9eaa794b42e8d34dad3bc9bb3b"
+					},
+					{
+						"key": "sha1",
+						"value": "s63t3kkmpaqyq4ca3t2asqrkf2b6qaca"
+					},
+					{
+						"key": "sha256",
+						"value": "fc7e07e11190678f2b003b6c9226c57244d97470f4cbcc441cbdd7680ef6c65c"
 					}
 				],
 				"download_urls": [

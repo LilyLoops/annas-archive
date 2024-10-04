@@ -79,13 +79,15 @@
 
     <div class="js-md5-codes-container hidden">
       <div class="mt-4 text-xs flex flex-wrap js-md5-codes-tabs" role="tablist" aria-label="code tabs" aria-multiselectable="true">
-        {% for code_item in aarecord.additional.codes %}
+        {% for code_from_additional in aarecord.additional.codes %}
+          {% set code_item = make_code_for_display(code_from_additional) %}
           {% if (not code_item.highlight) and (loop.index0 > 0) and (aarecord.additional.codes[loop.index0 - 1].highlight)%}<div style="width: 100%"></div>{% endif %}
           <a class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#aaa] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab max-w-[calc(50%-8px)]" href="#" aria-selected="false" id="md5-codes-tab-{{ loop.index }}" aria-controls="md5-codes-panel-{{ loop.index }}" tabindex="0"><span class="py-0.5 bg-[#aaa] mr-1 px-1 truncate {% if code_item.info.shortenvalue %}max-w-[50px]{% else %}max-w-[60px] sm:max-w-[120px]{% endif %} flex-shrink-0">{{ code_item.info.label or code_item.key }}</span><span class="py-0.5 truncate {% if code_item.info.shortenvalue %}max-w-[35px]{% else %}max-w-[100px] sm:max-w-[300px]{% endif %}">{{ code_item.masked_isbn or code_item.value }}</span></a>
         {% endfor %}
       </div>
       <div>
-        {% for code_item in aarecord.additional.codes %}
+        {% for code_from_additional in aarecord.additional.codes %}
+          {% set code_item = make_code_for_display(code_from_additional) %}
           <div id="md5-codes-panel-{{ loop.index }}" role="tabpanel" aria-labelledby="md5-codes-tab-{{ loop.index }}" hidden class="text-sm mt-2">
             <div><strong>{{ code_item.info.label or code_item.key }}:</strong>
             {% if code_item.masked_isbn %}{{ code_item.masked_isbn }} {{ copy_button(code_item.masked_isbn) }} / {% endif %}{{ code_item.value }} {{ copy_button(code_item.value) }}</div>
