@@ -173,6 +173,10 @@ You can also do `./run check-dumps` to check that the database is still working.
 
 If you are changing any translations, you should also run `./run check-translations` to check that *all* translations work.
 
+There are also some experimental tests in `test-e2e`. You can run them inside the docker container with `./run e2e`, or outside with `uv run pytest test-e2e/`. If a test fails, add `--trace on` to the command, then run `./run cmd playwright show-trace ./test-results/path/to/trace.zip` or `uv run playwright show-trace ./test-results/path/to/trace.zip`.
+
+(If you are running the tests outside of Docker, you'll need to do `uv playwright install` first.)
+
 ## License
 
 Released in the public domain under the terms of [CC0](./LICENSE). By contributing you agree to license your code under the same license.
