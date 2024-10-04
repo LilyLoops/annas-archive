@@ -204,6 +204,10 @@ def mysql_build_aac_tables_internal():
                     if ebscohost_matches is None:
                         raise Exception(f"Incorrect ebscohost line: '{line}'")
                     primary_id = ebscohost_matches[1]
+                elif collection == 'goodreads_records':
+                    if line.endswith(b',"record":""}}\n'):
+                        # Bad record
+                        return None
 
                 md5 = matches[6]
                 if ('duxiu_files' in collection and b'"original_md5"' in line):

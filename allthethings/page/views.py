@@ -4850,8 +4850,9 @@ def get_aac_goodreads_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'goodreads', primary_id)
 
+        filtered_record_str = ''.join([char for char in aac_record['metadata']['record'] if char in string.printable and char not in ['\x0b', '\x0c']])
         try:
-            record = xmltodict.parse(''.join([char for char in aac_record['metadata']['record'] if char in string.printable and char not in ['\x0b', '\x0c']]))
+            record = xmltodict.parse(filtered_record_str)
         except Exception as err:
             print(f"Error in get_aac_goodreads_book_dicts for: {primary_id=} {aac_record=}")
             print(repr(err))
