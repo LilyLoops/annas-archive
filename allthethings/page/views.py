@@ -5355,8 +5355,8 @@ def get_aarecords_elasticsearch(aarecord_ids):
         return []
 
     # Uncomment the following lines to use MySQL directly; useful for local development.
-    with Session(engine) as session:
-        return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
+    # with Session(engine) as session:
+    #     return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
 
     docs_by_es_handle = collections.defaultdict(list)
     for aarecord_id in aarecord_ids:
@@ -5539,6 +5539,12 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_czech_oo42hcks_book_dicts(session, 'czech_oo42hcks_id', split_ids['czech_oo42hcks']):
                 for code in codes_by_aarecord_ids[f"czech_oo42hcks:{return_dict['czech_oo42hcks_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_cerlalc_for_lookup':
+            if len(split_ids['cerlalc']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_cerlalc_book_dicts(session, 'cerlalc_id', split_ids['cerlalc']):
+                for code in codes_by_aarecord_ids[f"cerlalc:{return_dict['cerlalc_id']}"]:
                     retval[code].append(return_dict)
         else:
             raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
@@ -5787,6 +5793,12 @@ def get_aarecords_mysql(session, aarecord_ids):
                 if any([source_record['source_record']['czech_oo42hcks_id'] == czech_oo42hcks_book_dict['czech_oo42hcks_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_czech_oo42hcks']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_czech_oo42hcks', 'source_record': czech_oo42hcks_book_dict})
+    for code_full, cerlalc_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_cerlalc_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
+        for aarecord_id in transitive_codes[code_full]:
+            for cerlalc_book_dict in cerlalc_book_dicts:
+                if any([source_record['source_record']['cerlalc_id'] == cerlalc_book_dict['cerlalc_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_cerlalc']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_cerlalc', 'source_record': cerlalc_book_dict})
 
     # Second pass
     for aarecord in aarecords:

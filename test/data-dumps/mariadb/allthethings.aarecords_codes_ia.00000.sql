@@ -2,7 +2,8 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0*/;
 /*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
 /*!40103 SET TIME_ZONE='+00:00' */;
-INSERT INTO `aarecords_codes_ia` VALUES("aacid:aacid__ia2_records__20240126T065114Z__36XV8fUiR5vpmLUMMamqyS","ia:1000carsofnycsol0000kore")
+INSERT INTO `aarecords_codes_ia` VALUES("aacid:aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc","ia:vocabularioaymar0000arno")
+,("aacid:aacid__ia2_records__20240126T065114Z__36XV8fUiR5vpmLUMMamqyS","ia:1000carsofnycsol0000kore")
 ,("aacid:aacid__ia2_records__20240126T065114Z__P77QGfwfrzVPjMnGZA4wQB","ia:100marvelsupreme0000samm")
 ,("aacid:aacid__ia2_records__20240126T065900Z__HoFf9oz2n3hxufw8hvrys2","ia:isbn_9781861523501")
 ,("aacid:aacid__ia2_records__20240126T065937Z__PWLXDQfj8raXySASwwWYTH","ia:isbn_9787539190235")
@@ -16,6 +17,7 @@ INSERT INTO `aarecords_codes_ia` VALUES("aacid:aacid__ia2_records__20240126T0651
 ,("aarecord_id:ia:sim_artweek_2002-09_33_7","ia:sim_artweek_2002-09_33_7")
 ,("aarecord_id:ia:tankkillingantit0000hogg","ia:tankkillingantit0000hogg")
 ,("aarecord_id:ia:vocabularioaymar0000arno","ia:vocabularioaymar0000arno")
+,("cerlalc:cerlalc_bolivia__titulos__11","ia:vocabularioaymar0000arno")
 ,("collection:ia","ia:1000carsofnycsol0000kore")
 ,("collection:ia","ia:100marvelsupreme0000samm")
 ,("collection:ia","ia:isbn_9781861523501")
@@ -30,6 +32,7 @@ INSERT INTO `aarecords_codes_ia` VALUES("aacid:aacid__ia2_records__20240126T0651
 ,("content_type:book_unknown","ia:tankkillingantit0000hogg")
 ,("content_type:book_unknown","ia:vocabularioaymar0000arno")
 ,("content_type:magazine","ia:sim_artweek_2002-09_33_7")
+,("date_cerlalc_meta_scrape:2024-09-18","ia:vocabularioaymar0000arno")
 ,("date_ia_source:2021-06-08","ia:sim_artweek_2002-09_33_7")
 ,("date_ia_source:2023-05-13","ia:100marvelsupreme0000samm")
 ,("date_ia_source:2023-05-31","ia:isbn_9787539190235")
@@ -81,6 +84,7 @@ INSERT INTO `aarecords_codes_ia` VALUES("aacid:aacid__ia2_records__20240126T0651
 ,("isbn13:9788862085465","ia:1000carsofnycsol0000kore")
 ,("isbn13:9789990500110","ia:vocabularioaymar0000arno")
 ,("lang:af","ia:isbn_9787539190235")
+,("lang:ay","ia:vocabularioaymar0000arno")
 ,("lang:en","ia:1000carsofnycsol0000kore")
 ,("lang:en","ia:100marvelsupreme0000samm")
 ,("lang:en","ia:isbn_9781861523501")

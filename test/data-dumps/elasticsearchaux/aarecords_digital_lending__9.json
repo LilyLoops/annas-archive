@@ -61,6 +61,18 @@
 						},
 						"key": "aacid",
 						"masked_isbn": "",
+						"value": "aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Anna\u2019s Archive Container identifier.",
+							"label": "AacId",
+							"shortenvalue": true,
+							"website": "/blog/annas-archive-containers.html"
+						},
+						"key": "aacid",
+						"masked_isbn": "",
 						"value": "aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH"
 					},
 					{
@@ -78,6 +90,18 @@
 					{
 						"highlight": false,
 						"info": {
+							"description": "Cerlalc ID.",
+							"label": "Cerlalc ID",
+							"url": "",
+							"website": "/datasets/cerlalc"
+						},
+						"key": "cerlalc",
+						"masked_isbn": "",
+						"value": "cerlalc_bolivia__titulos__11"
+					},
+					{
+						"highlight": false,
+						"info": {
 							"description": "Content type, determined by Anna\u2019s Archive.",
 							"label": "Content Type",
 							"url": "",
@@ -86,6 +110,28 @@
 						"key": "content_type",
 						"masked_isbn": "",
 						"value": "book_unknown"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "Date Anna\u2019s Archive scraped the Cerlalc collection.",
+							"label": "Cerlalc Source Scrape Date",
+							"website": "/datasets/cerlalc"
+						},
+						"key": "date_cerlalc_meta_scrape",
+						"masked_isbn": "",
+						"value": "2024-09-18"
+					},
+					{
+						"highlight": false,
+						"info": {
+							"description": "IETF language tag.",
+							"label": "Language",
+							"website": "https://en.wikipedia.org/wiki/IETF_language_tag"
+						},
+						"key": "lang",
+						"masked_isbn": "",
+						"value": "ay"
 					},
 					{
 						"highlight": false,
@@ -195,6 +241,7 @@
 				"has_scidb": 0,
 				"ipfs_urls": [],
 				"most_likely_language_names": [
+					"Aymara [ay]",
 					"Spanish [es]"
 				],
 				"ol_is_primary_linked": false,
@@ -215,6 +262,18 @@
 						[
 							"286 p. ; 21 cm\n\"Coedici\u00f3n, Family Health International\"--T.p. verso\nIncludes bibliographical references (p. 261-269)",
 							"description"
+						],
+						[
+							"Alternative author",
+							"Arnold Busch, Dennise; Yapita Moya, Juan de Dios; Tito, Margarita"
+						],
+						[
+							"Alternative edition",
+							"La Paz, 1999-04-28"
+						],
+						[
+							"Alternative publisher",
+							"Instituto de Lengua y Cultura Aymara (ILCA)"
 						]
 					],
 					"meta_information": [
@@ -226,16 +285,19 @@
 					],
 					"publisher_and_edition": "La Paz, Bolivia: Instituto de Lengua y Cultura Aymara, 1999",
 					"title": "Vocabulario aymara del parto y de la vida reproductiva de la mujer",
-					"top_row": "Spanish [es], ia, 19.6MB, \ud83d\udcd7 Book (unknown), vocabularioaymar0000arno"
+					"top_row": "Spanish [es], Aymara [ay], ia, 19.6MB, \ud83d\udcd7 Book (unknown), vocabularioaymar0000arno"
 				},
 				"torrent_paths": []
 			},
 			"file_unified_data": {
 				"added_date_best": "2023-06-03",
 				"added_date_unified": {
+					"date_cerlalc_meta_scrape": "2024-09-18",
 					"date_ia_source": "2023-06-03"
 				},
-				"author_additional": [],
+				"author_additional": [
+					"Arnold Busch, Dennise; Yapita Moya, Juan de Dios; Tito, Margarita"
+				],
 				"author_best": "Arnold, Denise Y; Yapita, Juan de Dios; Tito, Margarita",
 				"classifications_unified": {
 					"collection": [
@@ -243,6 +305,9 @@
 					],
 					"content_type": [
 						"book_unknown"
+					],
+					"date_cerlalc_meta_scrape": [
+						"2024-09-18"
 					],
 					"date_ia_source": [
 						"2023-06-03"
@@ -253,6 +318,7 @@
 						"printdisabled"
 					],
 					"lang": [
+						"ay",
 						"es"
 					],
 					"year": [
@@ -263,7 +329,9 @@
 				"content_type_best": "book_unknown",
 				"cover_url_additional": [],
 				"cover_url_best": "https://archive.org/download/vocabularioaymar0000arno/__ia_thumb.jpg",
-				"edition_varia_additional": [],
+				"edition_varia_additional": [
+					"La Paz, 1999-04-28"
+				],
 				"edition_varia_best": "1999",
 				"extension_additional": [],
 				"extension_best": "",
@@ -276,10 +344,14 @@
 				"has_torrent_paths": 0,
 				"identifiers_unified": {
 					"aacid": [
+						"aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc",
 						"aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH"
 					],
 					"aarecord_id": [
 						"ia:vocabularioaymar0000arno"
+					],
+					"cerlalc": [
+						"cerlalc_bolivia__titulos__11"
 					],
 					"isbn10": [
 						"9990500118"
@@ -300,17 +372,21 @@
 				},
 				"ipfs_infos": [],
 				"language_codes": [
+					"ay",
 					"es"
 				],
 				"language_codes_detected": [],
 				"most_likely_language_codes": [
+					"ay",
 					"es"
 				],
 				"ol_is_primary_linked": false,
 				"original_filename_additional": [],
 				"original_filename_best": "",
 				"problems": [],
-				"publisher_additional": [],
+				"publisher_additional": [
+					"Instituto de Lengua y Cultura Aymara (ILCA)"
+				],
 				"publisher_best": "La Paz, Bolivia: Instituto de Lengua y Cultura Aymara",
 				"stripped_description_additional": [],
 				"stripped_description_best": "286 p. ; 21 cm\n\"Coedici\u00f3n, Family Health International\"--T.p. verso\nIncludes bibliographical references (p. 261-269)",
@@ -340,6 +416,7 @@
 					"9789990500110"
 				],
 				"search_most_likely_language_code": [
+					"ay",
 					"es"
 				],
 				"search_original_filename": "",
@@ -348,7 +425,7 @@
 					"ia"
 				],
 				"search_score_base_rank": 11040,
-				"search_text": "Vocabulario aymara del parto y de la vida reproductiva de la mujer\nArnold, Denise Y; Yapita, Juan de Dios; Tito, Margarita\n1999\nLa Paz, Bolivia: Instituto de Lengua y Cultura Aymara\n\nia:vocabularioaymar0000arno\n\naacid:aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH aacid aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH\naarecord_id:ia:vocabularioaymar0000arno aarecord_id ia:vocabularioaymar0000arno\nisbn10:9990500118\nisbn13:9789990500110\nocaid:vocabularioaymar0000arno\noclc:1391907224\nol:OL135587M\nol:OL876248W\ncollection:ia\ncontent_type:book_unknown content_type book_unknown\ndate_ia_source:2023-06-03 date_ia_source 2023-06-03\nia_collection:inlibrary ia_collection inlibrary\nia_collection:internetarchivebooks ia_collection internetarchivebooks\nia_collection:printdisabled ia_collection printdisabled\nlang:es\nyear:1999\n\nBolivia ia vocabularioaymar0000arno ia2 records 20240126T070531Z cT7Di2ntyu3QYKZCi8xKEH ia2 records 20240126T070531Z cT7Di2ntyu3QYKZCi8xKEH aarecord id ia vocabularioaymar0000arno aarecord id ia vocabularioaymar0000arno isbn10 9990500118 isbn13 9789990500110 ocaid vocabularioaymar0000arno oclc 1391907224 ol OL135587M ol OL876248W collection ia content type book unknown content type book unknown date ia source 2023 06 03 date ia source 2023 06 03 ia collection ia collection ia collection ia collection ia collection ia collection lang es year",
+				"search_text": "Vocabulario aymara del parto y de la vida reproductiva de la mujer\nArnold, Denise Y; Yapita, Juan de Dios; Tito, Margarita\nArnold Busch, Dennise; Yapita Moya, Juan de Dios; Tito, Margarita\n1999\nLa Paz, 1999-04-28\nLa Paz, Bolivia: Instituto de Lengua y Cultura Aymara\nInstituto de Lengua y Cultura Aymara (ILCA)\n\nia:vocabularioaymar0000arno\n\naacid:aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc aacid aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc\naacid:aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH aacid aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH\naarecord_id:ia:vocabularioaymar0000arno aarecord_id ia:vocabularioaymar0000arno\ncerlalc:cerlalc_bolivia__titulos__11 cerlalc cerlalc_bolivia__titulos__11\nisbn10:9990500118\nisbn13:9789990500110\nocaid:vocabularioaymar0000arno\noclc:1391907224\nol:OL135587M\nol:OL876248W\ncollection:ia\ncontent_type:book_unknown content_type book_unknown\ndate_cerlalc_meta_scrape:2024-09-18 date_cerlalc_meta_scrape 2024-09-18\ndate_ia_source:2023-06-03 date_ia_source 2023-06-03\nia_collection:inlibrary ia_collection inlibrary\nia_collection:internetarchivebooks ia_collection internetarchivebooks\nia_collection:printdisabled ia_collection printdisabled\nlang:ay\nlang:es\nyear:1999\n\n04 28 Bolivia ILCA ia vocabularioaymar0000arno records 20240918T044206Z 969UNYjPsEH4iMUC6NwPrc records 20240918T044206Z 969UNYjPsEH4iMUC6NwPrc ia2 records 20240126T070531Z cT7Di2ntyu3QYKZCi8xKEH ia2 records 20240126T070531Z cT7Di2ntyu3QYKZCi8xKEH aarecord id ia vocabularioaymar0000arno aarecord id ia vocabularioaymar0000arno bolivia titulos 11 bolivia titulos 11 isbn10 9990500118 isbn13 9789990500110 ocaid vocabularioaymar0000arno oclc 1391907224 ol OL135587M ol OL876248W collection ia content type book unknown content type book unknown date meta scrape 2024 09 18 date meta scrape 2024 09 18 date ia source 2023 06 03 date ia source 2023 06 03 ia collection ia collection ia collection ia collection ia collection ia collection lang ay lang es year",
 				"search_title": "Vocabulario aymara del parto y de la vida reproductiva de la mujer",
 				"search_year": "1999"
 			},
@@ -362,6 +439,12 @@
 						"ia_id": "vocabularioaymar0000arno"
 					},
 					"source_type": "ia_record"
+				},
+				{
+					"source_record": {
+						"cerlalc_id": "cerlalc_bolivia__titulos__11"
+					},
+					"source_type": "aac_cerlalc"
 				}
 			]
 		}
