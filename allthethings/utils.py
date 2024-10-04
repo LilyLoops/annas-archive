@@ -1100,6 +1100,7 @@ UNIFIED_IDENTIFIERS = {
     "sha1": { "shortenvalue": True, "label": "SHA-1", "website": "https://en.wikipedia.org/wiki/SHA-1", "description": "" },
     "sha256": { "shortenvalue": True, "label": "SHA-256", "website": "https://en.wikipedia.org/wiki/SHA-2", "description": "" },
     "aarecord_id": { "shortenvalue": True, "label": "AA Record ID", "website": "", "description": "Anna’s Archive record ID." },
+    "openlib_source_record": { "shortenvalue": True, "label": "Open Library Source Record", "url": "", "description": "The code for a source record that Open Library imported from.", "website": "/datasets/ol" },
     "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },

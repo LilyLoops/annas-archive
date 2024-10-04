@@ -1747,6 +1747,8 @@ def get_ol_book_dicts(session, key, values):
             allthethings.utils.init_identifiers_and_classification_unified(ol_book_dict['edition'])
             allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'ol', ol_book_dict['ol_edition'])
             allthethings.utils.add_isbns_unified(ol_book_dict['edition'], (ol_book_dict['edition']['json'].get('isbn_10') or []) + (ol_book_dict['edition']['json'].get('isbn_13') or []))
+            for source_record_code in (ol_book_dict['edition']['json'].get('source_records') or []):
+                allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'openlib_source_record', source_record_code)
             for item in (ol_book_dict['edition']['json'].get('lc_classifications') or []):
                 # https://openlibrary.org/books/OL52784454M
                 if len(item) > 50:
