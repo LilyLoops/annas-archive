@@ -25,6 +25,7 @@ import unicodedata
 # import openai
 import xmltodict
 import html
+import string
 
 from flask import g, Blueprint, render_template, make_response, redirect, request
 from allthethings.extensions import engine, es, es_aux, mariapersist_engine
@@ -136,13 +137,13 @@ for language in ol_languages_json:
 # * http://localhost:8000/md5/8fcb740b8c13f202e89e05c4937c09ac
 # * http://localhost:8000/md5/a50f2e8f2963888a976899e2c4675d70 (sacrificed for OpenLibrary annas_archive tagging testing)
 
-def normalize_doi(string):
-    if not (('/' in string) and (' ' not in string)):
+def normalize_doi(s):
+    if not (('/' in s) and (' ' not in s)):
         return ''
-    if string.startswith('doi:10.'):
-        return string[len('doi:'):]
-    if string.startswith('10.'):
-        return string
+    if s.startswith('doi:10.'):
+        return s[len('doi:'):]
+    if s.startswith('10.'):
+        return s
     return ''
 
 # Example: zlib2/pilimi-zlib2-0-14679999-extra/11078831
@@ -271,10 +272,10 @@ def get_bcp47_lang_codes_parse_substr(substr):
     return lang
 
 @functools.cache
-def get_bcp47_lang_codes(string):
+def get_bcp47_lang_codes(s):
     potential_codes = list()
-    potential_codes.append(get_bcp47_lang_codes_parse_substr(string))
-    for substr in re.split(r'[-_,;/]', string):
+    potential_codes.append(get_bcp47_lang_codes_parse_substr(s))
+    for substr in re.split(r'[-_,;/]', s):
         potential_codes.append(get_bcp47_lang_codes_parse_substr(substr.strip()))
     return list(dict.fromkeys([code for code in potential_codes if code != '']))
 
@@ -4846,7 +4847,7 @@ def get_aac_goodreads_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'goodreads', primary_id)
 
         try:
-            record = xmltodict.parse(aac_record['metadata']['record'])
+            record = xmltodict.parse(''.join([char for char in aac_record['metadata']['record'] if char in string.printable]))
         except Exception as err:
             print(f"Error in get_aac_goodreads_book_dicts for: {primary_id=} {aac_record=}")
             print(repr(err))
@@ -5341,10 +5342,10 @@ def sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_uni
     if len(strings) == 0:
         return []
     strings_filtered = []
-    for string in strings:
-        if any([is_string_subsequence(string, string_filtered) for string_filtered in strings_filtered]):
+    for s in strings:
+        if any([is_string_subsequence(s, string_filtered) for string_filtered in strings_filtered]):
             continue
-        strings_filtered.append(string)
+        strings_filtered.append(s)
     return strings_filtered
 
 number_of_get_aarecords_elasticsearch_exceptions = 0

@@ -5,4 +5,5 @@
 INSERT INTO `aarecords_codes_goodreads_for_lookup` VALUES("isbn13:9780385061209","goodreads:3929483")
 ,("isbn13:9782130588252","goodreads:28223767")
 ,("isbn13:9782384961788","goodreads:203981051")
+,("isbn13:9789025303198","goodreads:10762586")
 ;
