@@ -595,6 +595,7 @@ AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
     'gbooks': { 'table_name': 'aarecords_codes_gbooks_for_lookup', 'code_names': ['isbn13', 'oclc'] },
     'goodreads': { 'table_name': 'aarecords_codes_goodreads_for_lookup', 'code_names': ['isbn13'] },
     'libby': { 'table_name': 'aarecords_codes_libby_for_lookup', 'code_names': ['isbn13'] },
+    'czech_oo42hcks': { 'table_name': 'aarecords_codes_czech_oo42hcks_for_lookup', 'code_names': ['czech_oo42hcks_filename'] },
 }
 
 def elastic_build_aarecords_job(aarecord_ids):
@@ -976,7 +977,7 @@ def elastic_build_aarecords_cerlalc_internal():
 def elastic_build_aarecords_czech_oo42hcks():
     elastic_build_aarecords_czech_oo42hcks_internal()
 def elastic_build_aarecords_czech_oo42hcks_internal():
-    new_tables_internal('aarecords_codes_czech_oo42hcks') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    new_tables_internal('aarecords_codes_czech_oo42hcks', 'aarecords_codes_czech_oo42hcks_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__czech_oo42hcks_records', lambda batch: [f"czech_oo42hcks:{row['primary_id']}" for row in batch])
 
 #################################################################################################

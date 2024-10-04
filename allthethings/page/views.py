@@ -4492,9 +4492,11 @@ def get_aac_czech_oo42hcks_book_dicts(session, key, values):
         return []
 
     aac_records_by_primary_id = {}
+    line_bytes_by_primary_id = {}
     for index, line_bytes in enumerate(allthethings.utils.get_lines_from_aac_file(cursor, 'czech_oo42hcks_records', record_offsets_and_lengths)):
         aac_record = orjson.loads(line_bytes)
         aac_records_by_primary_id[primary_ids[index]] = aac_record
+        line_bytes_by_primary_id[primary_ids[index]] = line_bytes
 
     aac_czech_oo42hcks_book_dicts = []
     for primary_id, aac_record in aac_records_by_primary_id.items():
@@ -4507,6 +4509,119 @@ def get_aac_czech_oo42hcks_book_dicts(session, key, values):
 
         allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'czech_oo42hcks', primary_id)
+
+        aac_czech_oo42hcks_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
+
+        id_prefix = aac_record['metadata']['id'].rsplit('_', 1)[0]
+        if id_prefix == 'solen_papers':
+            allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'czech_oo42hcks_filename', f"SolenPapers/{aac_record['metadata']['filename']}")
+
+            if (title_cz_stripped := aac_record['metadata']['record']['Title_CZ'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['title_additional'].append(title_cz_stripped)
+                aac_czech_oo42hcks_book_dict['file_unified_data']['title_best'] = title_cz_stripped
+            if (title_en_stripped := aac_record['metadata']['record']['Title_EN'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['title_additional'].append(title_en_stripped)
+                aac_czech_oo42hcks_book_dict['file_unified_data']['title_best'] = title_en_stripped
+
+            if (abstract_other_stripped := strip_description(aac_record['metadata']['record']['Abstact'])) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_additional'].append(abstract_other_stripped)
+                aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_best'] = abstract_other_stripped
+            if (abstract_cz_stripped := strip_description(aac_record['metadata']['record']['Abstract_CZ'])) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_additional'].append(abstract_cz_stripped)
+                aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_best'] = abstract_cz_stripped
+            if (abstract_en_stripped := strip_description(aac_record['metadata']['record']['Abstract_EN'])) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_additional'].append(abstract_en_stripped)
+                aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_best'] = abstract_en_stripped
+
+            if (authors_stripped := aac_record['metadata']['record']['Authors'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['author_best'] = authors_stripped
+
+            if (article_href_stripped := aac_record['metadata']['record']['Článek-href'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['comments_multiple'].append(article_href_stripped)
+
+            edition_varia_normalized = []
+            if (magazine_stripped := aac_record['metadata']['record']['Časopis'].strip()) != '':
+                edition_varia_normalized.append(magazine_stripped)
+            if (edition_stripped := aac_record['metadata']['record']['Číslo'].strip()) != '':
+                edition_varia_normalized.append(edition_stripped)
+            if (ids_stripped := aac_record['metadata']['record']['IDs'].strip()) != '':
+                edition_varia_normalized.append(ids_stripped)
+            aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
+
+            if (doi_from_text := allthethings.utils.find_doi_in_text('\n'.join([aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best']] + aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_additional']))) is not None:
+                allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'doi', doi_from_text)
+
+            if (date_stripped := aac_record['metadata']['record']['Date'].strip()) != '':
+                potential_year = re.search(r"(\d\d\d\d)", date_stripped)
+                if potential_year is not None:
+                    aac_czech_oo42hcks_book_dict['file_unified_data']['year_best'] = potential_year[0]
+        elif id_prefix == 'archive_cccc':
+            allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'czech_oo42hcks_filename', f"CCCC/{aac_record['metadata']['filename']}")
+
+            if (authors_stripped := aac_record['metadata']['record']['Authors'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['author_best'] = authors_stripped
+
+            if (title_en_stripped := aac_record['metadata']['record']['Article'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['title_best'] = title_en_stripped
+
+            if (abstract_en_stripped := strip_description(aac_record['metadata']['record']['Abstract'])) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['stripped_description_best'] = abstract_en_stripped
+
+            if (article_href_stripped := aac_record['metadata']['record']['Link to repository'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['comments_multiple'].append(article_href_stripped)
+
+            edition_varia_normalized = []
+            if (year_vol_stripped := aac_record['metadata']['record']['Year'].strip()) != '':
+                edition_varia_normalized.append(year_vol_stripped)
+                potential_year = re.search(r"(\d\d\d\d)", year_vol_stripped)
+                if potential_year is not None:
+                    aac_czech_oo42hcks_book_dict['file_unified_data']['year_best'] = potential_year[0]
+            if (volume_stripped := aac_record['metadata']['record']['Volume'].strip()) != '':
+                edition_varia_normalized.append(volume_stripped)
+            if (issue_stripped := aac_record['metadata']['record']['Issue'].strip()) != '':
+                edition_varia_normalized.append(issue_stripped)
+            if (reference_stripped := aac_record['metadata']['record']['Reference'].strip()) != '':
+                edition_varia_normalized.append(reference_stripped)
+            if (doi_stripped := aac_record['metadata']['record']['DOI'].strip()) != '':
+                edition_varia_normalized.append(doi_stripped)
+            aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
+
+            if (doi_from_text := allthethings.utils.find_doi_in_text(aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best'])) is not None:
+                allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'doi', doi_from_text)
+        elif id_prefix == 'cccc_csv':
+            allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'czech_oo42hcks_filename', f"CCCC/{aac_record['metadata']['filename']}")
+
+            if (authors_stripped := aac_record['metadata']['record']['Authors'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['author_best'] = authors_stripped
+
+            if (title_en_stripped := aac_record['metadata']['record']['Article title'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['title_best'] = title_en_stripped
+
+            if (article_href_stripped := aac_record['metadata']['record']['Articles-href'].strip()) != '':
+                aac_czech_oo42hcks_book_dict['file_unified_data']['comments_multiple'].append(article_href_stripped)
+
+            edition_varia_normalized = []
+            if (year_vol_stripped := aac_record['metadata']['record']['Year, vol'].strip()) != '':
+                edition_varia_normalized.append(year_vol_stripped)
+                potential_year = re.search(r"(\d\d\d\d)", year_vol_stripped)
+                if potential_year is not None:
+                    aac_czech_oo42hcks_book_dict['file_unified_data']['year_best'] = potential_year[0]
+            if (id_stripped := aac_record['metadata']['record']['identificator'].strip()) != '':
+                edition_varia_normalized.append(id_stripped)
+            aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
+
+            if (doi_from_text := allthethings.utils.find_doi_in_text(aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best'])) is not None:
+                allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'doi', doi_from_text)
+        elif id_prefix in ['fottea', 'veterinarni_medicina', 'research_in_agricultural_engineering', 'soil_and_water_research', 'agricult_econ', 'biomed_papers_olomouc', 'czech_j_food_sci', 'czech_j_of_genetics_and_plant_breeding', 'czech_journal_of_animal_science', 'horticultural_science', 'j_forrest_sci', 'plant_protection_science', 'plant_soil_environment']:
+            # TODO: process these fields.
+            # Only solen_papers, archive_cccc, and cccc_csv appear to be relevant (not open access), so low priority.
+
+            full_json_text = line_bytes_by_primary_id[primary_id].decode()
+            if (doi_from_text := allthethings.utils.find_doi_in_text(full_json_text)) is not None:
+                allthethings.utils.add_identifier_unified(aac_czech_oo42hcks_book_dict['file_unified_data'], 'doi', doi_from_text)
+            aac_czech_oo42hcks_book_dict['file_unified_data']['comments_multiple'].append(full_json_text)
+        else:
+            raise Exception(f"Unexpected {id_prefix=} in get_aac_czech_oo42hcks_book_dicts")
 
         aac_czech_oo42hcks_book_dicts.append(aac_czech_oo42hcks_book_dict)
     return aac_czech_oo42hcks_book_dicts
@@ -5173,8 +5288,8 @@ def get_aarecords_elasticsearch(aarecord_ids):
         return []
 
     # Uncomment the following lines to use MySQL directly; useful for local development.
-    # with Session(engine) as session:
-    #     return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
+    with Session(engine) as session:
+        return [add_additional_to_aarecord({ '_source': aarecord }) for aarecord in get_aarecords_mysql(session, aarecord_ids)]
 
     docs_by_es_handle = collections.defaultdict(list)
     for aarecord_id in aarecord_ids:

@@ -1130,11 +1130,12 @@ UNIFIED_IDENTIFIERS = {
     "british_standard": { "label": "British Standard", "url": "", "description": "British Standards (BS) are the standards produced by the BSI Group.", "website": "https://en.wikipedia.org/wiki/British_Standards" },
     "edsebk": { "label": "EBSCOhost eBook Index Accession Number", "url": "https://library.macewan.ca/full-record/edsebk/%s", "description": "ID in the EBSCOhost eBook Index (edsebk).", "website": "/datasets/edsebk" },
     "cerlalc": { "label": "Cerlalc ID", "url": "", "description": "Cerlalc ID.", "website": "/datasets/cerlalc" },
-    "czech_oo42hcks": { "label": "Czech metadata ID", "url": "", "description": "Czech metadata ID.", "website": "/datasets/czech_oo42hcks" },
+    "czech_oo42hcks": { "label": "Czech Metadata ID", "url": "", "description": "Czech metadata ID.", "website": "/datasets/czech_oo42hcks" },
     "isbngrp": { "label": "ISBN GRP ID", "url": "", "description": "ISBN GRP ID.", "website": "/datasets/isbngrp" },
     "libby": { "label": "Libby ID", "url": "", "description": "Libby ID.", "website": "/datasets/libby" },
     "rgb": { "label": "Russian State Library ID", "url": "", "description": "Russian State Library ID.", "website": "/datasets/rgb" },
     "trantor": { "label": "Trantor ID", "url": "", "description": "Trantor ID.", "website": "/datasets/trantor" },
+    "czech_oo42hcks_filename": { "label": "Czech Metadata Filename", "url": "", "description": "Czech metadata canonical filename.", "website": "/datasets/czech_oo42hcks" },
     **{LGLI_IDENTIFIERS_MAPPING.get(key, key): value for key, value in LGLI_IDENTIFIERS.items()},
     # Plus more added below!
 }
