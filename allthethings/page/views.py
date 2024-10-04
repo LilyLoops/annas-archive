@@ -1833,10 +1833,11 @@ def get_ol_book_dicts(session, key, values):
                 ol_book_dict['file_unified_data']['cover_url_best'] = f"https://covers.openlibrary.org/b/id/{extract_ol_str_field(ol_book_dict['work']['json']['covers'][0])}-L.jpg"
 
             if len(ol_book_dict['file_unified_data']['title_best'].strip()) == 0 and 'title' in ol_book_dict['edition']['json']:
+                ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title'])
                 if 'title_prefix' in ol_book_dict['edition']['json']:
-                    ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title_prefix']) + " " + extract_ol_str_field(ol_book_dict['edition']['json']['title'])
-                else:
-                    ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title'])
+                    ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title_prefix']) + " " + ol_book_dict['file_unified_data']['title_best']
+                if 'subtitle' in ol_book_dict['edition']['json']:
+                    ol_book_dict['file_unified_data']['title_best'] += ": " + extract_ol_str_field(ol_book_dict['edition']['json']['subtitle'])
             if len(ol_book_dict['file_unified_data']['title_best'].strip()) == 0 and ol_book_dict['work'] and 'title' in ol_book_dict['work']['json']:
                 ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['work']['json']['title'])
             if len(ol_book_dict['file_unified_data']['title_best'].strip()) == 0 and len(ol_book_dict['edition']['json'].get('work_titles') or []) > 0:
