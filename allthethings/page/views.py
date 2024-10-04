@@ -4495,9 +4495,9 @@ def get_aac_cerlalc_book_dicts(session, key, values):
         edition_varia_normalized = []
         if (series_stripped := (aac_record['metadata']['record']['titulos']['serie'] or '').strip()) not in ['', '0']:
             edition_varia_normalized.append(series_stripped)
-        if (volume_stripped := (aac_record['metadata']['record']['titulos']['volumen'] or '').strip()) not in ['', '0']:
+        if (volume_stripped := str(aac_record['metadata']['record']['titulos']['volumen'] or '').strip()) not in ['', '0']:
             edition_varia_normalized.append(volume_stripped)
-        if (volume2_stripped := (aac_record['metadata']['record']['titulos']['volumenes'] or '').strip()) not in ['', '0']:
+        if (volume2_stripped := str(aac_record['metadata']['record']['titulos']['volumenes'] or '').strip()) not in ['', '0']:
             edition_varia_normalized.append(volume2_stripped)
         if city_stripped != '':
             edition_varia_normalized.append(city_stripped)
@@ -4845,7 +4845,13 @@ def get_aac_goodreads_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'goodreads', primary_id)
 
-        record = xmltodict.parse(aac_record['metadata']['record'])
+        try:
+            record = xmltodict.parse(aac_record['metadata']['record'])
+        except Exception as err:
+            print(f"Error in get_aac_goodreads_book_dicts for: {primary_id=} {aac_record=}")
+            print(repr(err))
+            traceback.print_tb(err.__traceback__)
+            raise err
         # print(orjson.dumps(record, option=orjson.OPT_INDENT_2).decode())
 
         if (title_stripped := (record['GoodreadsResponse']['book'].get('title') or '').strip()) != '':
