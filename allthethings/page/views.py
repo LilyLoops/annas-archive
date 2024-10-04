@@ -3744,6 +3744,9 @@ def get_aac_upload_book_dicts(session, key, values):
                 duxiu_ssid_filename = allthethings.utils.extract_ssid_or_ssno_from_filepath(record['metadata']['filepath'])
                 if duxiu_ssid_filename is not None:
                     allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'duxiu_ssid', duxiu_ssid_filename)
+            if subcollection == 'misc' and (record['metadata']['filepath'].startswith('oo42hcksBxZYAOjqwGWu/SolenPapers/') or record['metadata']['filepath'].startswith('oo42hcksBxZYAOjqwGWu/CCCC/')):
+                normalized_filename = record['metadata']['filepath'][len('oo42hcksBxZYAOjqwGWu/'):].replace(' (1)', '').replace(' (2)', '').replace(' (3)', '')
+                allthethings.utils.add_identifier_unified(aac_upload_book_dict['file_unified_data'], 'czech_oo42hcks_filename', normalized_filename)
 
             upload_record_date = datetime.datetime.strptime(record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
             aac_upload_book_dict['file_unified_data']['added_date_unified']['date_upload_record'] = min(upload_record_date, aac_upload_book_dict['file_unified_data']['added_date_unified'].get('date_upload_record') or upload_record_date)
@@ -3808,6 +3811,8 @@ def get_aac_upload_book_dicts(session, key, values):
             aac_upload_book_dict['file_unified_data']['content_type_best'] = 'book_nonfiction'
         elif any('misc/music_books' in filename for filename in aac_upload_book_dict['file_unified_data']['original_filename_additional']):
             aac_upload_book_dict['file_unified_data']['content_type_best'] = 'musical_score'
+        elif any('misc/oo42hcksBxZYAOjqwGWu' in filename for filename in aac_upload_book_dict['file_unified_data']['original_filename_additional']):
+            aac_upload_book_dict['file_unified_data']['content_type_best'] = 'journal_article'
 
         aac_upload_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
@@ -5467,6 +5472,12 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
             for return_dict in get_aac_trantor_book_dicts(session, 'trantor_id', split_ids['trantor']):
                 for code in codes_by_aarecord_ids[f"trantor:{return_dict['trantor_id']}"]:
                     retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_czech_oo42hcks_for_lookup':
+            if len(split_ids['czech_oo42hcks']) != len(rows):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_czech_oo42hcks_book_dicts(session, 'czech_oo42hcks_id', split_ids['czech_oo42hcks']):
+                for code in codes_by_aarecord_ids[f"czech_oo42hcks:{return_dict['czech_oo42hcks_id']}"]:
+                    retval[code].append(return_dict)
         else:
             raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
         return dict(retval)
@@ -5624,7 +5635,7 @@ def get_aarecords_mysql(session, aarecord_ids):
                 # Filter out obscenely long ISBN lists, e.g. https://archive.org/details/240524-CL-aa
                 if len(code_values) >= 10:
                     continue
-                if code_name in ['isbn13', 'ol', 'doi', 'oclc', 'ocaid', 'duxiu_ssid', 'cadal_ssno', 'sha256']:
+                if code_name in ['isbn13', 'ol', 'doi', 'oclc', 'ocaid', 'duxiu_ssid', 'cadal_ssno', 'sha256', 'czech_oo42hcks_filename']:
                     for code_value in code_values:
                         transitive_codes[(code_name, code_value)].append(aarecord_id)
 
@@ -5708,6 +5719,12 @@ def get_aarecords_mysql(session, aarecord_ids):
                 if any([source_record['source_record']['libby_id'] == libby_book_dict['libby_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_libby']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_libby', 'source_record': libby_book_dict})
+    for code_full, czech_oo42hcks_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_czech_oo42hcks_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['czech_oo42hcks_filename']]).items():
+        for aarecord_id in transitive_codes[code_full]:
+            for czech_oo42hcks_book_dict in czech_oo42hcks_book_dicts:
+                if any([source_record['source_record']['czech_oo42hcks_id'] == czech_oo42hcks_book_dict['czech_oo42hcks_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_czech_oo42hcks']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_czech_oo42hcks', 'source_record': czech_oo42hcks_book_dict})
 
     # Second pass
     for aarecord in aarecords:
