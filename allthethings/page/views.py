@@ -4708,7 +4708,7 @@ def get_aac_gbooks_book_dicts(session, key, values):
         elif print_type == 'MAGAZINE':
             aac_gbooks_book_dict['file_unified_data']['content_type_best'] = 'magazine'
         elif print_type == '':
-            continue
+            pass
         else:
             raise Exception(f"Unexpected {print_type} in get_aac_gbooks_book_dicts for {aac_record=}")
 
@@ -5768,12 +5768,12 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['file_unified_data']['extension_additional'] = [s for s in dict.fromkeys(filter(len, extension_multiple)) if s != aarecord['file_unified_data']['extension_best']]
 
         filesize_multiple = [(source_record['source_record']['file_unified_data']['filesize_best']) for source_record in source_records]
-        aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
+        aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple + [0])
         if aarecord['file_unified_data']['filesize_best'] == 0:
-            aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
+            aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple + [0])
         filesize_multiple += [filesize for source_record in source_records for filesize in (source_record['source_record']['file_unified_data']['filesize_additional'])]
         if aarecord['file_unified_data']['filesize_best'] == 0:
-            aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple)
+            aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple + [0])
         aarecord['file_unified_data']['filesize_additional'] = [s for s in dict.fromkeys(filter(lambda fz: fz > 0, filesize_multiple)) if s != aarecord['file_unified_data']['filesize_best']]
 
         aarecord['file_unified_data']['title_best'], aarecord['file_unified_data']['title_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'title_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','ia_record','duxiu','aac_magzdb','aac_nexusstc','aac_upload','aac_edsebk'], 'title_best')], [(UNIFIED_DATA_MERGE_ALL, 'title_best')], [(UNIFIED_DATA_MERGE_ALL, 'title_additional')]])
@@ -6261,8 +6261,8 @@ def get_aarecords_mysql(session, aarecord_ids):
             *(aarecord['file_unified_data']['extension_additional']),
             # If we find REPLACE_PUNCTUATION in item, we need a separate standalone one in which punctionation is not replaced.
             # Otherwise we can rely on REPLACE_PUNCTUATION replacing the : and generating the standalone one.
-            *[f"{key}:{item} {key} {item}" if re.search(REPLACE_PUNCTUATION, item) else f"{key}:{item}" for key, items in sorted(aarecord['file_unified_data']['identifiers_unified'].items()) for item in sorted(items)],
-            *[f"{key}:{item} {key} {item}" if re.search(REPLACE_PUNCTUATION, item) else f"{key}:{item}" for key, items in sorted(aarecord['file_unified_data']['classifications_unified'].items()) for item in sorted(items)],
+            *[(f"{key}:{item} {key} {item}" if bool(re.search(REPLACE_PUNCTUATION, f"{key} {item}")) else f"{key}:{item}") for key, items in sorted(aarecord['file_unified_data']['identifiers_unified'].items()) for item in sorted(items)],
+            *[(f"{key}:{item} {key} {item}" if bool(re.search(REPLACE_PUNCTUATION, f"{key} {item}")) else f"{key}:{item}") for key, items in sorted(aarecord['file_unified_data']['classifications_unified'].items()) for item in sorted(items)],
         ])
         # Duplicate search terms that contain punctuation, in *addition* to the original search terms (so precise matches still work).
         split_search_text = set(initial_search_text.split())
