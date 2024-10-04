@@ -5037,7 +5037,8 @@ def get_aac_libby_book_dicts(session, key, values):
         aac_libby_book_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(lang['id']) for lang in (aac_record['metadata'].get('languages') or [])])
 
         if len(covers := list((aac_record['metadata'].get('covers') or {}).values())) > 0:
-            aac_libby_book_dict['file_unified_data']['cover_url_best'] = max(covers, key=lambda cover: int(cover['width']))['href']
+            # TODO: can get the cover from the key if 'width' is not set.
+            aac_libby_book_dict['file_unified_data']['cover_url_best'] = max(covers, key=lambda cover: int(cover.get('width') or '0'))['href']
 
         # 7383764 ebook, 751587 audiobook, 165064 magazine, 94174 video, 79195 music, 1548 disney online ebook, 22 external service
         book_type = ((aac_record['metadata'].get('type') or {}).get('id') or '').lower().strip()
