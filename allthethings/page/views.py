@@ -4459,6 +4459,68 @@ def get_aac_cerlalc_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_cerlalc_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_cerlalc_book_dict['file_unified_data'], 'cerlalc', primary_id)
 
+        if (isbn_stripped := (aac_record['metadata']['record']['titulos']['isbn'] or '').strip()) != '':
+            allthethings.utils.add_isbns_unified(aac_cerlalc_book_dict['file_unified_data'], [isbn_stripped])
+
+        if (title_stripped := (aac_record['metadata']['record']['titulos']['titulo'] or '').strip()) != '':
+            aac_cerlalc_book_dict['file_unified_data']['title_best'] = title_stripped
+        if (subtitle_stripped := (aac_record['metadata']['record']['titulos']['subtitulo'] or '').strip()) != '':
+            aac_cerlalc_book_dict['file_unified_data']['title_additional'].append(subtitle_stripped)
+        if (trad_title_stripped := (aac_record['metadata']['record']['titulos']['trad_titulo'] or '').strip()) != '':
+            aac_cerlalc_book_dict['file_unified_data']['title_additional'].append(trad_title_stripped)
+
+        if (collection_stripped := (aac_record['metadata']['record']['titulos']['coleccion'] or '').strip()) != '':
+            aac_cerlalc_book_dict['file_unified_data']['comments_multiple'].append(f"Collection: {collection_stripped}")
+        if (review_stripped := strip_description(aac_record['metadata']['record']['titulos']['resena'] or '')) != '':
+            aac_cerlalc_book_dict['file_unified_data']['comments_multiple'].append(f"Review: {review_stripped}")
+
+        authors = [author['colaboradores_rows'][0]['nombre'] for author in (aac_record['metadata']['record']['titulos_autores_rows'] or []) if author['roles_rows'][0]['nombre'] == 'Autor']
+        aac_cerlalc_book_dict['file_unified_data']['author_best'] = '; '.join(authors)
+        aac_cerlalc_book_dict['file_unified_data']['author_additional'] = ['; '.join(authors + [f"{author['colaboradores_rows'][0]['nombre']} ({author['roles_rows'][0]['nombre']})" for author in (aac_record['metadata']['record']['titulos_autores_rows'] or []) if author['roles_rows'][0]['nombre'] != 'Autor'])]
+
+        city_stripped = ''
+        if len(aac_record['metadata']['record']['editores_rows'] or []) > 0:
+            if (publisher_stripped := (aac_record['metadata']['record']['editores_rows'][0]['nombre'] or '').strip()) != '':
+                aac_cerlalc_book_dict['file_unified_data']['publisher_best'] = publisher_stripped
+            if (acronym_stripped := (aac_record['metadata']['record']['editores_rows'][0]['sigla'] or '').strip()) != '':
+                aac_cerlalc_book_dict['file_unified_data']['publisher_best'] += f" ({acronym_stripped})"
+            if (publishing_group_stripped := (aac_record['metadata']['record']['editores_rows'][0]['grupo_editorial'] or '').strip()) != '':
+                aac_cerlalc_book_dict['file_unified_data']['publisher_best'] += f", {publishing_group_stripped}"
+            if len(aac_record['metadata']['record']['editores_rows'][0]['ciudades_rows'] or []) > 0:
+                city_stripped = (aac_record['metadata']['record']['editores_rows'][0]['ciudades_rows'][0]['nombre'] or '').strip()
+
+        if (coeditor_stripped := (aac_record['metadata']['record']['titulos'].get('coeditor') or '').strip()) != '':
+            aac_cerlalc_book_dict['file_unified_data']['publisher_additional'].append(coeditor_stripped)
+
+        edition_varia_normalized = []
+        if (series_stripped := (aac_record['metadata']['record']['titulos']['serie'] or '').strip()) not in ['', '0']:
+            edition_varia_normalized.append(series_stripped)
+        if (volume_stripped := (aac_record['metadata']['record']['titulos']['volumen'] or '').strip()) not in ['', '0']:
+            edition_varia_normalized.append(volume_stripped)
+        if (volume2_stripped := (aac_record['metadata']['record']['titulos']['volumenes'] or '').strip()) not in ['', '0']:
+            edition_varia_normalized.append(volume2_stripped)
+        if city_stripped != '':
+            edition_varia_normalized.append(city_stripped)
+        if (date_appearance_stripped := (aac_record['metadata']['record']['titulos']['fecha_aparicion'] or '').strip()) != '':
+            edition_varia_normalized.append(date_appearance_stripped)
+            potential_year = re.search(r"(\d\d\d\d)", date_appearance_stripped)
+            if potential_year is not None:
+                aac_cerlalc_book_dict['file_unified_data']['year_best'] = potential_year[0]
+        aac_cerlalc_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
+
+        aac_cerlalc_book_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes(lang_row.get('onix') or lang_row.get('nombre') or '') for lang_root in aac_record['metadata']['record']['titulos_idiomas_rows'] for lang_row in lang_root['idiomas_rows']])
+
+        if len(aac_record['metadata']['record']['tipocontenidodig_rows'] or []) > 0:
+            book_type = aac_record['metadata']['record']['tipocontenidodig_rows'][0]['nombre'] or ''
+            if book_type in ["Imágenes fijas / gráficos", "Imágenes en movimiento", "Películas, vídeos, etc.", "Mapas u otros contenidos cartográficos"]:
+                aac_cerlalc_book_dict['file_unified_data']['content_type_best'] = 'other'
+            elif book_type == "Audiolibro":
+                aac_cerlalc_book_dict['file_unified_data']['content_type_best'] = 'audiobook'
+            elif book_type == "Texto (legible a simple vista)":
+                aac_cerlalc_book_dict['file_unified_data']['content_type_best'] = '' # So it defaults to book_unknown
+            else:
+                raise Exception(f"Unexpected {book_type=} in get_aac_cerlalc_book_dicts")
+
         aac_cerlalc_book_dicts.append(aac_cerlalc_book_dict)
     return aac_cerlalc_book_dicts
 

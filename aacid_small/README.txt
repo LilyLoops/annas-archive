@@ -28,10 +28,10 @@ docker exec -it web bash -c 'for f in /app/aacid_small/*.jsonl; do echo "Process
 - aacid__nexusstc_records__20240516T152812Z__7ck1kAjKFPGL7hCYPT4ZPK => isbn13:9782130588252 => aacid__goodreads_records__20240913T115838Z__28223767__63Nx8yezHvKn6jPAEJCrfX
 - aacid__zlib3_records__20240824T040725Z__29545078__ASMfze3MyphFoSdYbnbZ4v => isbn13:9789564084916 => aacid__libby_records__20240911T184811Z__10371786__DTjjwXDJjsHykZuDKRwJB8
 - aacid__ia2_records__20240126T065937Z__PWLXDQfj8raXySASwwWYTH => isbn13:9787539190235 => aacid__worldcat__20231001T161012Z__909713202__fvRvgPk5mseB2fuEkSDZVs
-
 - aacid__upload_records_misc__20240627T233937Z__491971__6u64PEeu5seLzAXnExGGAW (and matching upload_files) => czech_oo42hcks_filename:SolenPapers/Solen_uro-200105-0009.pdf => aacid__czech_oo42hcks_records__20240917T175820Z__D3eKhyCaU624VewHp6HaQt
 - aacid__upload_records_misc__20240627T233937Z__495641__fKdrwYUC9FWcodTAVRAoJu (and matching upload_files) => czech_oo42hcks_filename:CCCC/19530151.pdf => aacid__czech_oo42hcks_records__20240917T175820Z__L8awzAxEARfxubdXrok3QL
 - aacid__upload_records_misc__20240627T233937Z__495639__3kP8itPUSuCvKiCfK4fLki (and matching upload_files) => czech_oo42hcks_filename:CCCC/19290658.pdf => aacid__czech_oo42hcks_records__20240917T175820Z__RMzzyh9GxgHa6ErpPoQ8EX
+- aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH => isbn13:9789990500110 => aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc
 
 112770562 annas_archive_meta__aacid__gbooks_records__20240920T051416Z--20240920T051416Z.jsonl  
 11122860 annas_archive_meta__aacid__goodreads_records__20240913T115838Z--20240913T115838Z.jsonl
