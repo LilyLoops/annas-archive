@@ -4608,7 +4608,7 @@ def get_aac_czech_oo42hcks_book_dicts(session, key, values):
                 aac_czech_oo42hcks_book_dict['file_unified_data']['comments_multiple'].append(article_href_stripped)
 
             edition_varia_normalized = []
-            if (magazine_stripped := aac_record['metadata']['record']['Časopis'].strip()) != '':
+            if (magazine_stripped := (aac_record['metadata']['record'].get('Časopis') or aac_record['metadata']['record']['\ufeffČasopis']).strip()) != '':
                 edition_varia_normalized.append(magazine_stripped)
             if (edition_stripped := aac_record['metadata']['record']['Číslo'].strip()) != '':
                 edition_varia_normalized.append(edition_stripped)
@@ -4669,11 +4669,15 @@ def get_aac_czech_oo42hcks_book_dicts(session, key, values):
                 aac_czech_oo42hcks_book_dict['file_unified_data']['comments_multiple'].append(article_href_stripped)
 
             edition_varia_normalized = []
-            if (year_vol_stripped := aac_record['metadata']['record']['Year, vol'].strip()) != '':
-                edition_varia_normalized.append(year_vol_stripped)
-                potential_year = re.search(r"(\d\d\d\d)", year_vol_stripped)
-                if potential_year is not None:
-                    aac_czech_oo42hcks_book_dict['file_unified_data']['year_best'] = potential_year[0]
+            try:
+                if (year_vol_stripped := (aac_record['metadata']['record'].get('Year, vol') or aac_record['metadata']['record']['\ufeffYear, vol']).strip()) != '':
+                    edition_varia_normalized.append(year_vol_stripped)
+                    potential_year = re.search(r"(\d\d\d\d)", year_vol_stripped)
+                    if potential_year is not None:
+                        aac_czech_oo42hcks_book_dict['file_unified_data']['year_best'] = potential_year[0]
+            except:
+                print(f"{aac_record=}")
+                raise
             if (id_stripped := aac_record['metadata']['record']['identificator'].strip()) != '':
                 edition_varia_normalized.append(id_stripped)
             aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
@@ -4847,7 +4851,7 @@ def get_aac_goodreads_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_goodreads_book_dict['file_unified_data'], 'goodreads', primary_id)
 
         try:
-            record = xmltodict.parse(''.join([char for char in aac_record['metadata']['record'] if char in string.printable]))
+            record = xmltodict.parse(''.join([char for char in aac_record['metadata']['record'] if char in string.printable and char not in ['\x0b', '\x0c']]))
         except Exception as err:
             print(f"Error in get_aac_goodreads_book_dicts for: {primary_id=} {aac_record=}")
             print(repr(err))
@@ -4867,11 +4871,10 @@ def get_aac_goodreads_book_dicts(session, key, values):
             aac_goodreads_book_dict['file_unified_data']['stripped_description_best'] = description_stripped
 
         authors = (record['GoodreadsResponse']['book'].get('authors') or {}).get('author') or []
-        if type(authors) is dict:
+        if type(authors) in [dict, str]:
             authors = [authors]
-        aac_goodreads_book_dict['file_unified_data']['author_best'] = '; '.join([author['name'].strip() for author in authors])
-
-
+        aac_goodreads_book_dict['file_unified_data']['author_best'] = '; '.join([author.strip() if type(author) is str else author['name'].strip() for author in authors if type(author) is str or author['name'] is not None])
+        
         aac_goodreads_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(record['GoodreadsResponse']['book'].get('language_code') or '')
 
         edition_varia_normalized = []
