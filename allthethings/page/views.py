@@ -34,6 +34,8 @@ from sqlalchemy.orm import Session
 from flask_babel import gettext, force_locale, get_locale
 from config.settings import AA_EMAIL, DOWNLOADS_SECRET_KEY, AACID_SMALL_DATA_IMPORTS, FLASK_DEBUG, SLOW_DATA_IMPORTS
 
+import allthethings.openlibrary_marc.parse
+import allthethings.marc.marc_json
 import allthethings.utils
 
 HASHED_DOWNLOADS_SECRET_KEY = hashlib.sha256(DOWNLOADS_SECRET_KEY.encode()).digest()
@@ -1642,6 +1644,163 @@ def extract_ol_author_field(field):
         return field['key']
     return ""
 
+def process_ol_book_dict(file_unified_data, ol_book_dict):
+    allthethings.utils.init_identifiers_and_classification_unified(ol_book_dict['edition'])
+    allthethings.utils.add_isbns_unified(ol_book_dict['edition'], (ol_book_dict['edition']['json'].get('isbn_10') or []) + (ol_book_dict['edition']['json'].get('isbn_13') or []))
+    for source_record_code in (ol_book_dict['edition']['json'].get('source_records') or []):
+        allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'openlib_source_record', source_record_code)
+    for item in (ol_book_dict['edition']['json'].get('lc_classifications') or []):
+        # https://openlibrary.org/books/OL52784454M
+        if len(item) > 50:
+            continue
+        allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['lc_classifications'], item)
+    for item in (ol_book_dict['edition']['json'].get('dewey_decimal_class') or []):
+        allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_decimal_class'], item)
+    for item in (ol_book_dict['edition']['json'].get('dewey_number') or []):
+        allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_number'], item)
+    for classification_type, items in (ol_book_dict['edition']['json'].get('classifications') or {}).items():
+        if classification_type in allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
+            # Sometimes identifiers are incorrectly in the classifications list
+            for item in items:
+                allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[classification_type], item)
+            continue
+        if classification_type not in allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
+            # TODO: Do a scrape / review of all classification types in OL.
+            print(f"Warning: missing classification_type: {classification_type}")
+            continue
+        for item in items:
+            allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[classification_type], item)
+    if ol_book_dict['work']:
+        allthethings.utils.init_identifiers_and_classification_unified(ol_book_dict['work'])
+        allthethings.utils.add_identifier_unified(ol_book_dict['work'], 'ol', ol_book_dict['work']['ol_key'].replace('/works/', ''))
+        for item in (ol_book_dict['work']['json'].get('lc_classifications') or []):
+            allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['lc_classifications'], item)
+        for item in (ol_book_dict['work']['json'].get('dewey_decimal_class') or []):
+            allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_decimal_class'], item)
+        for item in (ol_book_dict['work']['json'].get('dewey_number') or []):
+            allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_number'], item)
+        for classification_type, items in (ol_book_dict['work']['json'].get('classifications') or {}).items():
+            if classification_type == 'annas_archive':
+                print(f"Warning: annas_archive field mistakenly put in 'classifications' on work {ol_book_dict['work']['ol_key']=}")
+            if classification_type in allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
+                # Sometimes identifiers are incorrectly in the classifications list
+                for item in items:
+                    allthethings.utils.add_identifier_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[classification_type], item)
+                continue
+            if classification_type not in allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
+                # TODO: Do a scrape / review of all classification types in OL.
+                print(f"Warning: missing classification_type: {classification_type}")
+                continue
+            for item in items:
+                allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[classification_type], item)
+    for item in (ol_book_dict['edition']['json'].get('lccn') or []):
+        if item is not None:
+            # For some reason there's a bunch of nulls in the raw data here.
+            allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING['lccn'], item)
+    for item in (ol_book_dict['edition']['json'].get('oclc_numbers') or []):
+        allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING['oclc_numbers'], item)
+    if 'ocaid' in ol_book_dict['edition']['json']:
+        allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'ocaid', ol_book_dict['edition']['json']['ocaid'])
+    for identifier_type, items in (ol_book_dict['edition']['json'].get('identifiers') or {}).items():
+        if 'isbn' in identifier_type or identifier_type == 'ean':
+            allthethings.utils.add_isbns_unified(ol_book_dict['edition'], items)
+            continue
+        if identifier_type in allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
+            # Sometimes classifications are incorrectly in the identifiers list
+            for item in items:
+                allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[identifier_type], item)
+            continue
+        if identifier_type not in allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
+            # TODO: Do a scrape / review of all identifier types in OL.
+            print(f"Warning: missing identifier_type: {identifier_type}")
+            continue
+        for item in items:
+            allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[identifier_type], item)
+
+    ol_book_dict['aa_ol_derived'] = {}
+
+    file_unified_data['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes((ol_languages.get(lang['key']) or {'name':lang['key']})['name']) for lang in (ol_book_dict['edition']['json'].get('languages') or [])])
+    ol_book_dict['aa_ol_derived']['translated_from_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes((ol_languages.get(lang['key']) or {'name':lang['key']})['name']) for lang in (ol_book_dict['edition']['json'].get('translated_from') or [])])
+
+    file_unified_data['identifiers_unified'] = allthethings.utils.merge_unified_fields([ol_book_dict['edition']['identifiers_unified'], (ol_book_dict.get('work') or {'identifiers_unified': {}})['identifiers_unified']])
+    file_unified_data['classifications_unified'] = allthethings.utils.merge_unified_fields([ol_book_dict['edition']['classifications_unified'], (ol_book_dict.get('work') or {'classifications_unified': {}})['classifications_unified']])
+
+    file_unified_data['cover_url_best'] = ''
+    if len(ol_book_dict['edition']['json'].get('covers') or []) > 0:
+        file_unified_data['cover_url_best'] = f"https://covers.openlibrary.org/b/id/{extract_ol_str_field(ol_book_dict['edition']['json']['covers'][0])}-L.jpg"
+    elif ol_book_dict['work'] and len(ol_book_dict['work']['json'].get('covers') or []) > 0:
+        file_unified_data['cover_url_best'] = f"https://covers.openlibrary.org/b/id/{extract_ol_str_field(ol_book_dict['work']['json']['covers'][0])}-L.jpg"
+
+    if len(file_unified_data['title_best'].strip()) == 0 and 'title' in ol_book_dict['edition']['json']:
+        file_unified_data['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title'])
+        if 'title_prefix' in ol_book_dict['edition']['json']:
+            file_unified_data['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title_prefix']) + " " + file_unified_data['title_best']
+        if 'subtitle' in ol_book_dict['edition']['json']:
+            file_unified_data['title_best'] += ": " + extract_ol_str_field(ol_book_dict['edition']['json']['subtitle'])
+    if len(file_unified_data['title_best'].strip()) == 0 and ol_book_dict['work'] and 'title' in ol_book_dict['work']['json']:
+        file_unified_data['title_best'] = extract_ol_str_field(ol_book_dict['work']['json']['title'])
+    if len(file_unified_data['title_best'].strip()) == 0 and len(ol_book_dict['edition']['json'].get('work_titles') or []) > 0:
+        file_unified_data['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['work_titles'][0])
+    if len(file_unified_data['title_best'].strip()) == 0 and len(ol_book_dict['edition']['json'].get('work_titles') or []) > 0:
+        file_unified_data['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['work_titles'][0])
+    file_unified_data['title_best'] = file_unified_data['title_best'].replace(' : ', ': ')
+
+    if (authors_list := ", ".join([extract_ol_str_field(author['json']['name']) for author in ol_book_dict['authors'] if 'name' in author['json']])) != '':
+        file_unified_data['author_best'] = authors_list
+        file_unified_data['author_additional'].append(authors_list)
+    if ('by_statement' in ol_book_dict['edition']['json']) and (by_statement := extract_ol_str_field(ol_book_dict['edition']['json']['by_statement']).strip()) != '':
+        file_unified_data['author_best'] = by_statement
+        file_unified_data['author_additional'].append(by_statement)
+
+    file_unified_data['author_best'] = file_unified_data['author_best'].replace(' ; ', '; ').replace(' , ', ', ')
+    if file_unified_data['author_best'].endswith('.'):
+        file_unified_data['author_best'] = file_unified_data['author_best'][0:-1]
+
+    file_unified_data['publisher_best'] = (", ".join([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('publishers') or []])).strip()
+    if len(file_unified_data['publisher_best']) == 0:
+        file_unified_data['publisher_best'] = (", ".join([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('distributors') or []])).strip()
+
+    ol_book_dict['aa_ol_derived']['all_dates'] = [item.strip() for item in [
+        extract_ol_str_field(ol_book_dict['edition']['json'].get('publish_date')),
+        extract_ol_str_field(ol_book_dict['edition']['json'].get('copyright_date')),
+        extract_ol_str_field(((ol_book_dict.get('work') or {}).get('json') or {}).get('first_publish_date')),
+    ] if item and item.strip() != '']
+    ol_book_dict['aa_ol_derived']['longest_date_field'] = max([''] + ol_book_dict['aa_ol_derived']['all_dates'])
+
+    file_unified_data['edition_varia_best'] = ", ".join([item.strip() for item in [
+        *([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('series') or []]),
+        extract_ol_str_field(ol_book_dict['edition']['json'].get('edition_name') or ''),
+        *([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('publish_places') or []]),
+        # TODO: translate?
+        allthethings.utils.marc_country_code_to_english(extract_ol_str_field(ol_book_dict['edition']['json'].get('publish_country') or '')),
+        ol_book_dict['aa_ol_derived']['longest_date_field'],
+    ] if item and item.strip() != ''])
+
+    for date in ([ol_book_dict['aa_ol_derived']['longest_date_field']] + ol_book_dict['aa_ol_derived']['all_dates']):
+        potential_year = re.search(r"(\d\d\d\d)", date)
+        if potential_year is not None:
+            file_unified_data['year_best'] = potential_year[0]
+            break
+
+    if len(file_unified_data['stripped_description_best']) == 0 and 'description' in ol_book_dict['edition']['json']:
+        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['description']))
+    if len(file_unified_data['stripped_description_best']) == 0 and ol_book_dict['work'] and 'description' in ol_book_dict['work']['json']:
+        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['work']['json']['description']))
+    if len(file_unified_data['stripped_description_best']) == 0 and 'first_sentence' in ol_book_dict['edition']['json']:
+        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['first_sentence']))
+    if len(file_unified_data['stripped_description_best']) == 0 and ol_book_dict['work'] and 'first_sentence' in ol_book_dict['work']['json']:
+        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['work']['json']['first_sentence']))
+    file_unified_data['stripped_description_best'] = file_unified_data['stripped_description_best'][0:5000]
+
+    file_unified_data['comments_multiple'] += [item.strip() for item in [
+        extract_ol_str_field(ol_book_dict['edition']['json'].get('notes') or ''),
+        extract_ol_str_field(((ol_book_dict.get('work') or {}).get('json') or {}).get('notes') or ''),
+    ] if item and item.strip() != '']
+
+    # TODO: pull non-fiction vs fiction from "subjects" in ol_book_dicts_primary_linked, and make that more leading?
+
+    return ol_book_dict
+
 def get_ol_book_dicts(session, key, values):
     if key != 'ol_edition':
         raise Exception(f"Unsupported get_ol_dicts key: {key}")
@@ -1742,159 +1901,11 @@ def get_ol_book_dicts(session, key, values):
                     author_dict['json'] = orjson.loads(author_dict['json'])
                     ol_book_dict['authors'].append(author_dict)
 
-        # Everything else
         for ol_book_dict in ol_book_dicts:
-            allthethings.utils.init_identifiers_and_classification_unified(ol_book_dict['edition'])
-            allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'ol', ol_book_dict['ol_edition'])
-            allthethings.utils.add_isbns_unified(ol_book_dict['edition'], (ol_book_dict['edition']['json'].get('isbn_10') or []) + (ol_book_dict['edition']['json'].get('isbn_13') or []))
-            for source_record_code in (ol_book_dict['edition']['json'].get('source_records') or []):
-                allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'openlib_source_record', source_record_code)
-            for item in (ol_book_dict['edition']['json'].get('lc_classifications') or []):
-                # https://openlibrary.org/books/OL52784454M
-                if len(item) > 50:
-                    continue
-                allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['lc_classifications'], item)
-            for item in (ol_book_dict['edition']['json'].get('dewey_decimal_class') or []):
-                allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_decimal_class'], item)
-            for item in (ol_book_dict['edition']['json'].get('dewey_number') or []):
-                allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_number'], item)
-            for classification_type, items in (ol_book_dict['edition']['json'].get('classifications') or {}).items():
-                if classification_type in allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
-                    # Sometimes identifiers are incorrectly in the classifications list
-                    for item in items:
-                        allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[classification_type], item)
-                    continue
-                if classification_type not in allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
-                    # TODO: Do a scrape / review of all classification types in OL.
-                    print(f"Warning: missing classification_type: {classification_type}")
-                    continue
-                for item in items:
-                    allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[classification_type], item)
-            if ol_book_dict['work']:
-                allthethings.utils.init_identifiers_and_classification_unified(ol_book_dict['work'])
-                allthethings.utils.add_identifier_unified(ol_book_dict['work'], 'ol', ol_book_dict['work']['ol_key'].replace('/works/', ''))
-                for item in (ol_book_dict['work']['json'].get('lc_classifications') or []):
-                    allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['lc_classifications'], item)
-                for item in (ol_book_dict['work']['json'].get('dewey_decimal_class') or []):
-                    allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_decimal_class'], item)
-                for item in (ol_book_dict['work']['json'].get('dewey_number') or []):
-                    allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING['dewey_number'], item)
-                for classification_type, items in (ol_book_dict['work']['json'].get('classifications') or {}).items():
-                    if classification_type == 'annas_archive':
-                        print(f"Warning: annas_archive field mistakenly put in 'classifications' on work {ol_book_dict['work']['ol_key']=}")
-                    if classification_type in allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
-                        # Sometimes identifiers are incorrectly in the classifications list
-                        for item in items:
-                            allthethings.utils.add_identifier_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[classification_type], item)
-                        continue
-                    if classification_type not in allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
-                        # TODO: Do a scrape / review of all classification types in OL.
-                        print(f"Warning: missing classification_type: {classification_type}")
-                        continue
-                    for item in items:
-                        allthethings.utils.add_classification_unified(ol_book_dict['work'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[classification_type], item)
-            for item in (ol_book_dict['edition']['json'].get('lccn') or []):
-                if item is not None:
-                    # For some reason there's a bunch of nulls in the raw data here.
-                    allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING['lccn'], item)
-            for item in (ol_book_dict['edition']['json'].get('oclc_numbers') or []):
-                allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING['oclc_numbers'], item)
-            if 'ocaid' in ol_book_dict['edition']['json']:
-                allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'ocaid', ol_book_dict['edition']['json']['ocaid'])
-            for identifier_type, items in (ol_book_dict['edition']['json'].get('identifiers') or {}).items():
-                if 'isbn' in identifier_type or identifier_type == 'ean':
-                    allthethings.utils.add_isbns_unified(ol_book_dict['edition'], items)
-                    continue
-                if identifier_type in allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING:
-                    # Sometimes classifications are incorrectly in the identifiers list
-                    for item in items:
-                        allthethings.utils.add_classification_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_CLASSIFICATIONS_MAPPING[identifier_type], item)
-                    continue
-                if identifier_type not in allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING:
-                    # TODO: Do a scrape / review of all identifier types in OL.
-                    print(f"Warning: missing identifier_type: {identifier_type}")
-                    continue
-                for item in items:
-                    allthethings.utils.add_identifier_unified(ol_book_dict['edition'], allthethings.utils.OPENLIB_TO_UNIFIED_IDENTIFIERS_MAPPING[identifier_type], item)
-
-            ol_book_dict['aa_ol_derived'] = {}
             ol_book_dict['file_unified_data'] = allthethings.utils.make_file_unified_data()
+            process_ol_book_dict(ol_book_dict['file_unified_data'], ol_book_dict)
 
-            ol_book_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes((ol_languages.get(lang['key']) or {'name':lang['key']})['name']) for lang in (ol_book_dict['edition']['json'].get('languages') or [])])
-            ol_book_dict['aa_ol_derived']['translated_from_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes((ol_languages.get(lang['key']) or {'name':lang['key']})['name']) for lang in (ol_book_dict['edition']['json'].get('translated_from') or [])])
-
-            ol_book_dict['file_unified_data']['identifiers_unified'] = allthethings.utils.merge_unified_fields([ol_book_dict['edition']['identifiers_unified'], (ol_book_dict.get('work') or {'identifiers_unified': {}})['identifiers_unified']])
-            ol_book_dict['file_unified_data']['classifications_unified'] = allthethings.utils.merge_unified_fields([ol_book_dict['edition']['classifications_unified'], (ol_book_dict.get('work') or {'classifications_unified': {}})['classifications_unified']])
-
-            ol_book_dict['file_unified_data']['cover_url_best'] = ''
-            if len(ol_book_dict['edition']['json'].get('covers') or []) > 0:
-                ol_book_dict['file_unified_data']['cover_url_best'] = f"https://covers.openlibrary.org/b/id/{extract_ol_str_field(ol_book_dict['edition']['json']['covers'][0])}-L.jpg"
-            elif ol_book_dict['work'] and len(ol_book_dict['work']['json'].get('covers') or []) > 0:
-                ol_book_dict['file_unified_data']['cover_url_best'] = f"https://covers.openlibrary.org/b/id/{extract_ol_str_field(ol_book_dict['work']['json']['covers'][0])}-L.jpg"
-
-            if len(ol_book_dict['file_unified_data']['title_best'].strip()) == 0 and 'title' in ol_book_dict['edition']['json']:
-                ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title'])
-                if 'title_prefix' in ol_book_dict['edition']['json']:
-                    ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['title_prefix']) + " " + ol_book_dict['file_unified_data']['title_best']
-                if 'subtitle' in ol_book_dict['edition']['json']:
-                    ol_book_dict['file_unified_data']['title_best'] += ": " + extract_ol_str_field(ol_book_dict['edition']['json']['subtitle'])
-            if len(ol_book_dict['file_unified_data']['title_best'].strip()) == 0 and ol_book_dict['work'] and 'title' in ol_book_dict['work']['json']:
-                ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['work']['json']['title'])
-            if len(ol_book_dict['file_unified_data']['title_best'].strip()) == 0 and len(ol_book_dict['edition']['json'].get('work_titles') or []) > 0:
-                ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['work_titles'][0])
-            if len(ol_book_dict['file_unified_data']['title_best'].strip()) == 0 and len(ol_book_dict['edition']['json'].get('work_titles') or []) > 0:
-                ol_book_dict['file_unified_data']['title_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['work_titles'][0])
-            ol_book_dict['file_unified_data']['title_best'] = ol_book_dict['file_unified_data']['title_best'].replace(' : ', ': ')
-
-            if len(ol_book_dict['file_unified_data']['author_best'].strip()) == 0 and 'by_statement' in ol_book_dict['edition']['json']:
-                ol_book_dict['file_unified_data']['author_best'] = extract_ol_str_field(ol_book_dict['edition']['json']['by_statement']).strip()
-            if len(ol_book_dict['file_unified_data']['author_best'].strip()) == 0:
-                ol_book_dict['file_unified_data']['author_best'] = ", ".join([extract_ol_str_field(author['json']['name']) for author in ol_book_dict['authors'] if 'name' in author['json']])
-
-            ol_book_dict['file_unified_data']['author_best'] = ol_book_dict['file_unified_data']['author_best'].replace(' ; ', '; ').replace(' , ', ', ')
-            if ol_book_dict['file_unified_data']['author_best'].endswith('.'):
-                ol_book_dict['file_unified_data']['author_best'] = ol_book_dict['file_unified_data']['author_best'][0:-1]
-
-            ol_book_dict['file_unified_data']['publisher_best'] = (", ".join([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('publishers') or []])).strip()
-            if len(ol_book_dict['file_unified_data']['publisher_best']) == 0:
-                ol_book_dict['file_unified_data']['publisher_best'] = (", ".join([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('distributors') or []])).strip()
-
-            ol_book_dict['aa_ol_derived']['all_dates'] = [item.strip() for item in [
-                extract_ol_str_field(ol_book_dict['edition']['json'].get('publish_date')),
-                extract_ol_str_field(ol_book_dict['edition']['json'].get('copyright_date')),
-                extract_ol_str_field(((ol_book_dict.get('work') or {}).get('json') or {}).get('first_publish_date')),
-            ] if item and item.strip() != '']
-            ol_book_dict['aa_ol_derived']['longest_date_field'] = max([''] + ol_book_dict['aa_ol_derived']['all_dates'])
-
-            ol_book_dict['file_unified_data']['edition_varia_best'] = ", ".join([item.strip() for item in [
-                *([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('series') or []]),
-                extract_ol_str_field(ol_book_dict['edition']['json'].get('edition_name') or ''),
-                *([extract_ol_str_field(field) for field in ol_book_dict['edition']['json'].get('publish_places') or []]),
-                # TODO: translate?
-                allthethings.utils.marc_country_code_to_english(extract_ol_str_field(ol_book_dict['edition']['json'].get('publish_country') or '')),
-                ol_book_dict['aa_ol_derived']['longest_date_field'],
-            ] if item and item.strip() != ''])
-
-            for date in ([ol_book_dict['aa_ol_derived']['longest_date_field']] + ol_book_dict['aa_ol_derived']['all_dates']):
-                potential_year = re.search(r"(\d\d\d\d)", date)
-                if potential_year is not None:
-                    ol_book_dict['file_unified_data']['year_best'] = potential_year[0]
-                    break
-
-            if len(ol_book_dict['file_unified_data']['stripped_description_best']) == 0 and 'description' in ol_book_dict['edition']['json']:
-                ol_book_dict['file_unified_data']['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['description']))
-            if len(ol_book_dict['file_unified_data']['stripped_description_best']) == 0 and ol_book_dict['work'] and 'description' in ol_book_dict['work']['json']:
-                ol_book_dict['file_unified_data']['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['work']['json']['description']))
-            if len(ol_book_dict['file_unified_data']['stripped_description_best']) == 0 and 'first_sentence' in ol_book_dict['edition']['json']:
-                ol_book_dict['file_unified_data']['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['first_sentence']))
-            if len(ol_book_dict['file_unified_data']['stripped_description_best']) == 0 and ol_book_dict['work'] and 'first_sentence' in ol_book_dict['work']['json']:
-                ol_book_dict['file_unified_data']['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['work']['json']['first_sentence']))
-            ol_book_dict['file_unified_data']['stripped_description_best'] = ol_book_dict['file_unified_data']['stripped_description_best'][0:5000]
-
-            ol_book_dict['file_unified_data']['comments_multiple'] = [item.strip() for item in [
-                extract_ol_str_field(ol_book_dict['edition']['json'].get('notes') or ''),
-                extract_ol_str_field(((ol_book_dict.get('work') or {}).get('json') or {}).get('notes') or ''),
-            ] if item and item.strip() != '']
+            allthethings.utils.add_identifier_unified(ol_book_dict['file_unified_data'], 'ol', ol_book_dict['ol_edition'])
 
             created_normalized = ''
             if len(created_normalized) == 0 and 'created' in ol_book_dict['edition']['json']:
@@ -1903,25 +1914,9 @@ def get_ol_book_dicts(session, key, values):
                 created_normalized = extract_ol_str_field(ol_book_dict['work']['json']['created']).strip()
             if len(created_normalized) > 0:
                 if '.' in created_normalized:
-                    ol_book_dict['file_unified_data']['added_date_unified'] = { 'date_ol_source': datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S.%f').isoformat().split('T', 1)[0] }
+                    ol_book_dict['file_unified_data']['added_date_unified']['date_ol_source'] = datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S.%f').isoformat().split('T', 1)[0]
                 else:
-                    ol_book_dict['file_unified_data']['added_date_unified'] = { 'date_ol_source': datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S').isoformat().split('T', 1)[0] }
-
-            # TODO: pull non-fiction vs fiction from "subjects" in ol_book_dicts_primary_linked, and make that more leading?
-
-            # {% for source_record in ol_book_dict.json.source_records %}
-            #   <div class="flex odd:bg-black/5 hover:bg-black/64">
-            #     <div class="flex-none w-[150] px-2 py-1">{{ 'Source records' if loop.index0 == 0 else ' ' }}&nbsp;</div>
-            #     <div class="px-2 py-1 grow break-words line-clamp-[8]">{{source_record}}</div>
-            #     <div class="px-2 py-1 whitespace-nowrap text-right">
-            #       <!-- Logic roughly based on https://github.com/internetarchive/openlibrary/blob/e7e8aa5b/openlibrary/templates/history/sources.html#L27 -->
-            #       {% if '/' not in source_record and '_meta.mrc:' in source_record %}
-            #         <a href="https://openlibrary.org/show-records/ia:{{source_record | split('_') | first}}">url</a></div>
-            #       {% else %}
-            #         <a href="https://openlibrary.org/show-records/{{source_record | replace('marc:','')}}">url</a></div>
-            #       {% endif %}
-            #   </div>
-            # {% endfor %}
+                    ol_book_dict['file_unified_data']['added_date_unified']['date_ol_source'] = datetime.datetime.strptime(created_normalized, '%Y-%m-%dT%H:%M:%S').isoformat().split('T', 1)[0]
 
         return ol_book_dicts
 
@@ -5082,6 +5077,20 @@ def aac_libby_book_json(libby_id):
             return "{}", 404
         return allthethings.utils.nice_json(aac_libby_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
+def marc_parse_into_file_unified_data(book_dict, json):
+    marc_json = allthethings.marc.marc_json.MarcJson(json)
+    openlib_edition = allthethings.openlibrary_marc.parse.read_edition(marc_json)
+    book_dict['ol_book_dict'] = {
+        'edition': { 
+            'json': {
+                **openlib_edition,
+                'languages': [{'key': lang} for lang in (openlib_edition.get('languages') or [])],
+             },
+        },
+        'authors': [ {'json': author} for author in (openlib_edition.get('authors') or []) ],
+        'work': None,
+    }
+    process_ol_book_dict(book_dict['file_unified_data'], book_dict['ol_book_dict'])
 
 def get_aac_rgb_book_dicts(session, key, values):
     if len(values) == 0:
@@ -5123,6 +5132,11 @@ def get_aac_rgb_book_dicts(session, key, values):
 
         allthethings.utils.add_identifier_unified(aac_rgb_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_rgb_book_dict['file_unified_data'], 'rgb', primary_id)
+
+        # MARC counts
+        # 15902135 "852", 10606372 "001", 10605628 "008", 10605333 "245", 10557446 "040", 10470757 "260", 10469346 "005", 10362733 "300", 10170797 "041", 9495158 "017", 8809822 "979", 8628771 "084", 7646809 "650", 6595867 "100", 6299382 "003", 6000816 "035", 4306977 "044", 3888421 "700", 3432177 "020", 3086006 "504", 2682496 "653", 2681749 "500", 2153114 "080", 2018713 "787", 1988958 "072", 1906132 "336", 1905981 "337", 1809929 "490", 1657564 "773", 1476720 "856", 1132215 "338", 1051889 "720", 1019658 "710", 622259 "246", 503353 "250", 431353 "505", 402532 "533", 390989 "007", 375592 "600", 371348 "546", 365262 "520", 322442 "110", 236478 "651", 212491 "880", 208942 "242", 181865 "048", 180451 "541", 167325 "015", 123145 "510", 110125 "130", 108082 "550", 102624 "440", 98818 "362", 95544 "534", 89250 "555", 80026 "561", 75513 "111", 75354 "240", 74982 "580", 72145 "034", 64872 "751", 64279 "256", 61945 "028", 57645 "610", 57413 "538", 56406 "255", 52477 "730", 51017 "501", 46412 "047", 43797 "254", 41114 "774", 39715 "830", 39515 "711", 36295 "022", 32705 "740", 31379 "340", 30316 "506", 29867 "563", 26008 "306", 19402 "247", 17951 "530", 16898 "310", 13852 "024", 13726 "043", 11726 "515", 9478 "525", 8658 "777", 5068 "006", 4635 "630", 4060 "016", 3791 "765", 3755 "780", 3380 "502", 3335 "581", 3281 "545", 2896 "785", 2623 "772", 1694 "786", 1589 "611", 1415 "770", 1395 "547", 1300 "321", 1134 "762", 803 "511", 761 "521", 616 "850", 530 "082", 435 "010", 422 "775", 417 "060", 374 "648", 374 "050", 289 "585", 273 "042", 266 "243", 217 "536", 205 "357", 190 "045", 119 "508", 82 "263", 42 "544", 29 "522", 27 "583", 18 "540", 15 "086", 15 "055", 13 "264", 8 "535", 5 "514", 5 "037", 3 "800", 3 "753", 2 "090", 1 "760", 1 "752", 1 "656", 1 "586", 1 "562", 1 "556", 1 "258", 1 "210", 1 "092", 1 "026", 1 "002"
+
+        marc_parse_into_file_unified_data(aac_rgb_book_dict, aac_record['metadata']['record'])
 
         aac_rgb_book_dicts.append(aac_rgb_book_dict)
     return aac_rgb_book_dicts

@@ -99,6 +99,7 @@ INSERT INTO `aarecords_codes_ol_for_lookup` VALUES("isbn13:9780107716806","ol:OL
 ,("isbn13:9780415125024","ol:OL1000008M")
 ,("isbn13:9780415135665","ol:OL1000007M")
 ,("isbn13:9780786882045","ol:OL1000001M")
+,("isbn13:9780945448747","ol:OL998696M")
 ,("isbn13:9781560918516","ol:OL1000005M")
 ,("isbn13:9781861523501","ol:OL1000003M")
 ,("isbn13:9781861523679","ol:OL1000004M")
@@ -110,5 +111,6 @@ INSERT INTO `aarecords_codes_ol_for_lookup` VALUES("isbn13:9780107716806","ol:OL
 ,("ocaid:managingriskinin0000clar","ol:OL1000002M")
 ,("ocaid:newfleximanager0000birc","ol:OL1000008M")
 ,("ocaid:tankkillingantit0000hogg","ol:OL1000000M")
+,("ocaid:tenkeystohelping00wyso","ol:OL998696M")
 ,("ocaid:timemanagement0000crof_y4n0","ol:OL1000007M")
 ;
