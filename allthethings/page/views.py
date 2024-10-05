@@ -1644,7 +1644,8 @@ def extract_ol_author_field(field):
         return field['key']
     return ""
 
-def process_ol_book_dict(file_unified_data, ol_book_dict):
+def process_ol_book_dict(ol_book_dict):
+    file_unified_data = allthethings.utils.make_file_unified_data()
     allthethings.utils.init_identifiers_and_classification_unified(ol_book_dict['edition'])
     allthethings.utils.add_isbns_unified(ol_book_dict['edition'], (ol_book_dict['edition']['json'].get('isbn_10') or []) + (ol_book_dict['edition']['json'].get('isbn_13') or []))
     for source_record_code in (ol_book_dict['edition']['json'].get('source_records') or []):
@@ -1799,7 +1800,7 @@ def process_ol_book_dict(file_unified_data, ol_book_dict):
 
     # TODO: pull non-fiction vs fiction from "subjects" in ol_book_dicts_primary_linked, and make that more leading?
 
-    return ol_book_dict
+    return file_unified_data
 
 def get_ol_book_dicts(session, key, values):
     if key != 'ol_edition':
@@ -1902,9 +1903,7 @@ def get_ol_book_dicts(session, key, values):
                     ol_book_dict['authors'].append(author_dict)
 
         for ol_book_dict in ol_book_dicts:
-            ol_book_dict['file_unified_data'] = allthethings.utils.make_file_unified_data()
-            process_ol_book_dict(ol_book_dict['file_unified_data'], ol_book_dict)
-
+            ol_book_dict['file_unified_data'] = process_ol_book_dict(ol_book_dict)
             allthethings.utils.add_identifier_unified(ol_book_dict['file_unified_data'], 'ol', ol_book_dict['ol_edition'])
 
             created_normalized = ''
@@ -5077,10 +5076,10 @@ def aac_libby_book_json(libby_id):
             return "{}", 404
         return allthethings.utils.nice_json(aac_libby_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
-def marc_parse_into_file_unified_data(book_dict, json):
+def marc_parse_into_file_unified_data(json):
     marc_json = allthethings.marc.marc_json.MarcJson(json)
     openlib_edition = allthethings.openlibrary_marc.parse.read_edition(marc_json)
-    book_dict['ol_book_dict'] = {
+    ol_book_dict = {
         'edition': { 
             'json': {
                 **openlib_edition,
@@ -5090,7 +5089,7 @@ def marc_parse_into_file_unified_data(book_dict, json):
         'authors': [ {'json': author} for author in (openlib_edition.get('authors') or []) ],
         'work': None,
     }
-    process_ol_book_dict(book_dict['file_unified_data'], book_dict['ol_book_dict'])
+    return process_ol_book_dict(ol_book_dict), ol_book_dict
 
 def get_aac_rgb_book_dicts(session, key, values):
     if len(values) == 0:
@@ -5125,18 +5124,19 @@ def get_aac_rgb_book_dicts(session, key, values):
     for primary_id, aac_record in aac_records_by_primary_id.items():
         aac_rgb_book_dict = {
             "rgb_id": primary_id,
-            "file_unified_data": allthethings.utils.make_file_unified_data(),
+            "file_unified_data": None,
+            "ol_book_dict": None,
             "aac_record": aac_record,
         }
+
+        # MARC counts
+        # 15902135 "852", 10606372 "001", 10605628 "008", 10605333 "245", 10557446 "040", 10470757 "260", 10469346 "005", 10362733 "300", 10170797 "041", 9495158 "017", 8809822 "979", 8628771 "084", 7646809 "650", 6595867 "100", 6299382 "003", 6000816 "035", 4306977 "044", 3888421 "700", 3432177 "020", 3086006 "504", 2682496 "653", 2681749 "500", 2153114 "080", 2018713 "787", 1988958 "072", 1906132 "336", 1905981 "337", 1809929 "490", 1657564 "773", 1476720 "856", 1132215 "338", 1051889 "720", 1019658 "710", 622259 "246", 503353 "250", 431353 "505", 402532 "533", 390989 "007", 375592 "600", 371348 "546", 365262 "520", 322442 "110", 236478 "651", 212491 "880", 208942 "242", 181865 "048", 180451 "541", 167325 "015", 123145 "510", 110125 "130", 108082 "550", 102624 "440", 98818 "362", 95544 "534", 89250 "555", 80026 "561", 75513 "111", 75354 "240", 74982 "580", 72145 "034", 64872 "751", 64279 "256", 61945 "028", 57645 "610", 57413 "538", 56406 "255", 52477 "730", 51017 "501", 46412 "047", 43797 "254", 41114 "774", 39715 "830", 39515 "711", 36295 "022", 32705 "740", 31379 "340", 30316 "506", 29867 "563", 26008 "306", 19402 "247", 17951 "530", 16898 "310", 13852 "024", 13726 "043", 11726 "515", 9478 "525", 8658 "777", 5068 "006", 4635 "630", 4060 "016", 3791 "765", 3755 "780", 3380 "502", 3335 "581", 3281 "545", 2896 "785", 2623 "772", 1694 "786", 1589 "611", 1415 "770", 1395 "547", 1300 "321", 1134 "762", 803 "511", 761 "521", 616 "850", 530 "082", 435 "010", 422 "775", 417 "060", 374 "648", 374 "050", 289 "585", 273 "042", 266 "243", 217 "536", 205 "357", 190 "045", 119 "508", 82 "263", 42 "544", 29 "522", 27 "583", 18 "540", 15 "086", 15 "055", 13 "264", 8 "535", 5 "514", 5 "037", 3 "800", 3 "753", 2 "090", 1 "760", 1 "752", 1 "656", 1 "586", 1 "562", 1 "556", 1 "258", 1 "210", 1 "092", 1 "026", 1 "002"
+        aac_rgb_book_dict['file_unified_data'], aac_rgb_book_dict['ol_book_dict'] = marc_parse_into_file_unified_data(aac_record['metadata']['record'])
+
         aac_rgb_book_dict["file_unified_data"]["added_date_unified"]["date_rgb_meta_scrape"] = datetime.datetime.strptime(aac_record['aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
 
         allthethings.utils.add_identifier_unified(aac_rgb_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_rgb_book_dict['file_unified_data'], 'rgb', primary_id)
-
-        # MARC counts
-        # 15902135 "852", 10606372 "001", 10605628 "008", 10605333 "245", 10557446 "040", 10470757 "260", 10469346 "005", 10362733 "300", 10170797 "041", 9495158 "017", 8809822 "979", 8628771 "084", 7646809 "650", 6595867 "100", 6299382 "003", 6000816 "035", 4306977 "044", 3888421 "700", 3432177 "020", 3086006 "504", 2682496 "653", 2681749 "500", 2153114 "080", 2018713 "787", 1988958 "072", 1906132 "336", 1905981 "337", 1809929 "490", 1657564 "773", 1476720 "856", 1132215 "338", 1051889 "720", 1019658 "710", 622259 "246", 503353 "250", 431353 "505", 402532 "533", 390989 "007", 375592 "600", 371348 "546", 365262 "520", 322442 "110", 236478 "651", 212491 "880", 208942 "242", 181865 "048", 180451 "541", 167325 "015", 123145 "510", 110125 "130", 108082 "550", 102624 "440", 98818 "362", 95544 "534", 89250 "555", 80026 "561", 75513 "111", 75354 "240", 74982 "580", 72145 "034", 64872 "751", 64279 "256", 61945 "028", 57645 "610", 57413 "538", 56406 "255", 52477 "730", 51017 "501", 46412 "047", 43797 "254", 41114 "774", 39715 "830", 39515 "711", 36295 "022", 32705 "740", 31379 "340", 30316 "506", 29867 "563", 26008 "306", 19402 "247", 17951 "530", 16898 "310", 13852 "024", 13726 "043", 11726 "515", 9478 "525", 8658 "777", 5068 "006", 4635 "630", 4060 "016", 3791 "765", 3755 "780", 3380 "502", 3335 "581", 3281 "545", 2896 "785", 2623 "772", 1694 "786", 1589 "611", 1415 "770", 1395 "547", 1300 "321", 1134 "762", 803 "511", 761 "521", 616 "850", 530 "082", 435 "010", 422 "775", 417 "060", 374 "648", 374 "050", 289 "585", 273 "042", 266 "243", 217 "536", 205 "357", 190 "045", 119 "508", 82 "263", 42 "544", 29 "522", 27 "583", 18 "540", 15 "086", 15 "055", 13 "264", 8 "535", 5 "514", 5 "037", 3 "800", 3 "753", 2 "090", 1 "760", 1 "752", 1 "656", 1 "586", 1 "562", 1 "556", 1 "258", 1 "210", 1 "092", 1 "026", 1 "002"
-
-        marc_parse_into_file_unified_data(aac_rgb_book_dict, aac_record['metadata']['record'])
 
         aac_rgb_book_dicts.append(aac_rgb_book_dict)
     return aac_rgb_book_dicts

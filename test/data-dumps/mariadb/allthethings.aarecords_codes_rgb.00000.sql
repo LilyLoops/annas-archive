@@ -2,7 +2,11 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0*/;
 /*!40101 SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'*/;
 /*!40103 SET TIME_ZONE='+00:00' */;
-INSERT INTO `aarecords_codes_rgb` VALUES("aarecord_id:rgb:000000002","rgb:000000002")
+INSERT INTO `aarecords_codes_rgb` VALUES("aacid:aacid__rgb_records__20240919T161201Z__AyorrUXvxj9e3M8c2TVM6Q","rgb:000000012")
+,("aacid:aacid__rgb_records__20240919T161201Z__Zap94vkWFPzF2dYHK4pvwF","rgb:001849643")
+,("aacid:aacid__rgb_records__20240919T161201Z__Zku3RjaChW3wMmzQpFCsUx","rgb:000000003")
+,("aacid:aacid__rgb_records__20240919T161201Z__cpEY3TETU53WZkCn9rLQBg","rgb:000000002")
+,("aarecord_id:rgb:000000002","rgb:000000002")
 ,("aarecord_id:rgb:000000003","rgb:000000003")
 ,("aarecord_id:rgb:000000012","rgb:000000012")
 ,("aarecord_id:rgb:001849643","rgb:001849643")
@@ -22,6 +26,10 @@ INSERT INTO `aarecords_codes_rgb` VALUES("aarecord_id:rgb:000000002","rgb:000000
 ,("lang:ru","rgb:000000002")
 ,("lang:ru","rgb:000000003")
 ,("lang:ru","rgb:000000012")
+,("rgb:000000002","rgb:000000002")
+,("rgb:000000003","rgb:000000003")
+,("rgb:000000012","rgb:000000012")
+,("rgb:001849643","rgb:001849643")
 ,("year:1990","rgb:000000002")
 ,("year:1991","rgb:000000003")
 ,("year:1992","rgb:000000012")
