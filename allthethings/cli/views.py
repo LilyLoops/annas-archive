@@ -601,6 +601,8 @@ AARECORD_ID_PREFIX_TO_CODES_FOR_LOOKUP = {
     'libby': { 'table_name': 'aarecords_codes_libby_for_lookup', 'code_names': ['isbn13'] },
     'czech_oo42hcks': { 'table_name': 'aarecords_codes_czech_oo42hcks_for_lookup', 'code_names': ['czech_oo42hcks_filename'] },
     'cerlalc': { 'table_name': 'aarecords_codes_cerlalc_for_lookup', 'code_names': ['isbn13'] },
+    'rgb': { 'table_name': 'aarecords_codes_rgb_for_lookup', 'code_names': ['isbn13'] },
+    'isbngrp': { 'table_name': 'aarecords_codes_isbngrp_for_lookup', 'code_names': ['isbn13', 'isbn13_prefix'] },
 }
 
 def elastic_build_aarecords_job(aarecord_ids):
@@ -1009,7 +1011,7 @@ def elastic_build_aarecords_goodreads_internal():
 def elastic_build_aarecords_isbngrp():
     elastic_build_aarecords_isbngrp_internal()
 def elastic_build_aarecords_isbngrp_internal():
-    new_tables_internal('aarecords_codes_isbngrp') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    new_tables_internal('aarecords_codes_isbngrp', 'aarecords_codes_isbngrp_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__isbngrp_records', lambda batch: [f"isbngrp:{row['primary_id']}" for row in batch])
 
 #################################################################################################
@@ -1027,7 +1029,7 @@ def elastic_build_aarecords_libby_internal():
 def elastic_build_aarecords_rgb():
     elastic_build_aarecords_rgb_internal()
 def elastic_build_aarecords_rgb_internal():
-    new_tables_internal('aarecords_codes_rgb') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
+    new_tables_internal('aarecords_codes_rgb', 'aarecords_codes_rgb_for_lookup') # WARNING! Update the upload excludes, and dump_mariadb_omit_tables.txt.
     build_common('annas_archive_meta__aacid__rgb_records', lambda batch: [f"rgb:{row['primary_id']}" for row in batch])
 
 #################################################################################################

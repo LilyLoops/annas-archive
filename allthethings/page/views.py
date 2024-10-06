@@ -5589,66 +5589,92 @@ def get_transitive_lookup_dicts(session, lookup_table_name, codes):
         cursor = connection.connection.cursor(pymysql.cursors.DictCursor)
         cursor.execute(f'SELECT code, aarecord_id FROM {lookup_table_name} WHERE code IN %(codes)s', { "codes": [':'.join(code).encode() for code in codes] })
         rows = list(cursor.fetchall())
-        if len(rows) == 0:
-            return {}
         codes_by_aarecord_ids = collections.defaultdict(list)
         for row in rows:
             codes_by_aarecord_ids[row['aarecord_id'].decode()].append(tuple(row['code'].decode().split(':', 1)))
+
+        if lookup_table_name == 'aarecords_codes_isbngrp_for_lookup':
+            isbn13_prefixes_to_codes = collections.defaultdict(list)
+            for code in codes:
+                if code[0] == 'isbn13':
+                    for i in range(4, 13):
+                        isbn13_prefixes_to_codes[code[1][0:i]].append(code)
+            if len(isbn13_prefixes_to_codes) > 0:
+                cursor.execute(f'SELECT code, aarecord_id FROM aarecords_codes_isbngrp_for_lookup WHERE code IN %(codes)s', { "codes": [f"isbn13_prefix:{isbn13_prefix}".encode() for isbn13_prefix in isbn13_prefixes_to_codes] })
+                for row in cursor.fetchall():
+                    isbn13_prefix = row['code'].decode().split(':', 1)[-1]
+                    for code in isbn13_prefixes_to_codes[isbn13_prefix]:
+                        codes_by_aarecord_ids[row['aarecord_id'].decode()].append(code)
+
+        if len(codes_by_aarecord_ids) == 0:
+            return {}
         split_ids = allthethings.utils.split_aarecord_ids(codes_by_aarecord_ids.keys())
         retval = collections.defaultdict(list)
         if lookup_table_name == 'aarecords_codes_oclc_for_lookup':
-            if len(split_ids['oclc']) != len(rows):
+            if len(split_ids['oclc']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_oclc_dicts(session, 'oclc', split_ids['oclc']):
                 for code in codes_by_aarecord_ids[f"oclc:{return_dict['oclc_id']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_edsebk_for_lookup':
-            if len(split_ids['edsebk']) != len(rows):
+            if len(split_ids['edsebk']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_edsebk_book_dicts(session, 'edsebk_id', split_ids['edsebk']):
                 for code in codes_by_aarecord_ids[f"edsebk:{return_dict['edsebk_id']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_ol_for_lookup':
-            if len(split_ids['ol']) != len(rows):
+            if len(split_ids['ol']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_ol_book_dicts(session, 'ol_edition', split_ids['ol']):
                 for code in codes_by_aarecord_ids[f"ol:{return_dict['ol_edition']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_gbooks_for_lookup':
-            if len(split_ids['gbooks']) != len(rows):
+            if len(split_ids['gbooks']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_gbooks_book_dicts(session, 'gbooks_id', split_ids['gbooks']):
                 for code in codes_by_aarecord_ids[f"gbooks:{return_dict['gbooks_id']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_goodreads_for_lookup':
-            if len(split_ids['goodreads']) != len(rows):
+            if len(split_ids['goodreads']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_goodreads_book_dicts(session, 'goodreads_id', split_ids['goodreads']):
                 for code in codes_by_aarecord_ids[f"goodreads:{return_dict['goodreads_id']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_libby_for_lookup':
-            if len(split_ids['libby']) != len(rows):
+            if len(split_ids['libby']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_libby_book_dicts(session, 'libby_id', split_ids['libby']):
                 for code in codes_by_aarecord_ids[f"libby:{return_dict['libby_id']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_trantor_for_lookup':
-            if len(split_ids['trantor']) != len(rows):
+            if len(split_ids['trantor']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_trantor_book_dicts(session, 'trantor_id', split_ids['trantor']):
                 for code in codes_by_aarecord_ids[f"trantor:{return_dict['trantor_id']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_czech_oo42hcks_for_lookup':
-            if len(split_ids['czech_oo42hcks']) != len(rows):
+            if len(split_ids['czech_oo42hcks']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_czech_oo42hcks_book_dicts(session, 'czech_oo42hcks_id', split_ids['czech_oo42hcks']):
                 for code in codes_by_aarecord_ids[f"czech_oo42hcks:{return_dict['czech_oo42hcks_id']}"]:
                     retval[code].append(return_dict)
         elif lookup_table_name == 'aarecords_codes_cerlalc_for_lookup':
-            if len(split_ids['cerlalc']) != len(rows):
+            if len(split_ids['cerlalc']) != len(codes_by_aarecord_ids):
                 raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
             for return_dict in get_aac_cerlalc_book_dicts(session, 'cerlalc_id', split_ids['cerlalc']):
                 for code in codes_by_aarecord_ids[f"cerlalc:{return_dict['cerlalc_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_isbngrp_for_lookup':
+            if len(split_ids['isbngrp']) != len(codes_by_aarecord_ids):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_isbngrp_book_dicts(session, 'isbngrp_id', split_ids['isbngrp']):
+                for code in codes_by_aarecord_ids[f"isbngrp:{return_dict['isbngrp_id']}"]:
+                    retval[code].append(return_dict)
+        elif lookup_table_name == 'aarecords_codes_rgb_for_lookup':
+            if len(split_ids['rgb']) != len(codes_by_aarecord_ids):
+                raise Exception(f"Unexpected empty split_ids in get_transitive_lookup_dicts: {lookup_table_name=} {codes=} {split_ids=}")
+            for return_dict in get_aac_rgb_book_dicts(session, 'rgb_id', split_ids['rgb']):
+                for code in codes_by_aarecord_ids[f"rgb:{return_dict['rgb_id']}"]:
                     retval[code].append(return_dict)
         else:
             raise Exception(f"Unknown {lookup_table_name=} in get_transitive_lookup_dicts")
@@ -5903,6 +5929,18 @@ def get_aarecords_mysql(session, aarecord_ids):
                 if any([source_record['source_record']['cerlalc_id'] == cerlalc_book_dict['cerlalc_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_cerlalc']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_cerlalc', 'source_record': cerlalc_book_dict})
+    for code_full, isbngrp_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_isbngrp_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
+        for aarecord_id in transitive_codes[code_full]:
+            for isbngrp_book_dict in isbngrp_book_dicts:
+                if any([source_record['source_record']['isbngrp_id'] == isbngrp_book_dict['isbngrp_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_isbngrp']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_isbngrp', 'source_record': isbngrp_book_dict})
+    for code_full, rgb_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_rgb_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
+        for aarecord_id in transitive_codes[code_full]:
+            for rgb_book_dict in rgb_book_dicts:
+                if any([source_record['source_record']['rgb_id'] == rgb_book_dict['rgb_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_rgb']):
+                    continue
+                source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_rgb', 'source_record': rgb_book_dict})
 
     # Second pass
     for aarecord in aarecords:
@@ -6426,6 +6464,10 @@ def get_aarecords_mysql(session, aarecord_ids):
         record_sources = aarecord_sources(aarecord)
         for source_name in record_sources:
             allthethings.utils.add_classification_unified(aarecord['file_unified_data'], 'collection', source_name)
+
+        # Delete extraneous identifiers at the last moment.
+        if aarecord_id_split[0] != 'isbngrp' and 'isbn13_prefix' in aarecord['file_unified_data']['classifications_unified']:
+            del aarecord['file_unified_data']['classifications_unified']['isbn13_prefix']
 
         REPLACE_PUNCTUATION = r'[.:_\-/\(\)\\]'
         initial_search_text = "\n".join([
