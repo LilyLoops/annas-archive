@@ -4969,8 +4969,16 @@ def get_aac_isbngrp_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_isbngrp_book_dict['file_unified_data'], 'isbngrp', primary_id)
 
         # Use _additional for lower priority, since this isn't very complete.
-        aac_isbngrp_book_dict['file_unified_data']['publisher_additional'].append(aac_record['metadata']['record']['registrant_name'])
-        aac_isbngrp_book_dict['file_unified_data']['edition_varia_additional'].append(f"{aac_record['metadata']['record']['agency_name']}, {aac_record['metadata']['record']['country_name']}")
+        if registrant_name := (aac_record['metadata']['record']['registrant_name'] or '').strip():
+            aac_isbngrp_book_dict['file_unified_data']['publisher_additional'].append(registrant_name)
+
+        edition_varia_normalized = []
+        if agency_name := (aac_record['metadata']['record']['agency_name'] or '').strip():
+            edition_varia_normalized.append(agency_name)
+        if country_name := (aac_record['metadata']['record']['country_name'] or '').strip():
+            edition_varia_normalized.append(country_name)
+        if len(edition_varia_normalized) > 0:
+            aac_isbngrp_book_dict['file_unified_data']['edition_varia_additional'].append(', '.join(edition_varia_normalized))
 
         for isbn_entry in aac_record['metadata']['record']['isbns']:
             if isbn_entry['isbn_type'] == 'prefix':
@@ -7278,7 +7286,7 @@ def scidb_page(doi_input):
     # if account_id is None:
     #     return render_template("page/login_to_view.html", header_active="")
 
-    doi_input = doi_input.strip()
+    doi_input = doi_input.strip().replace('\n', '')
 
     if not doi_input.startswith('10.'):
         if '10.' in doi_input:
