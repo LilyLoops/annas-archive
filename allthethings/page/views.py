@@ -277,7 +277,7 @@ def get_bcp47_lang_codes_parse_substr(substr):
 def get_bcp47_lang_codes(s):
     potential_codes = list()
     potential_codes.append(get_bcp47_lang_codes_parse_substr(s))
-    for substr in re.split(r'[-_,;/]', s):
+    for substr in re.split(r'[-_,;/ ]', s):
         potential_codes.append(get_bcp47_lang_codes_parse_substr(substr.strip()))
     return list(dict.fromkeys([code for code in potential_codes if code != '']))
 

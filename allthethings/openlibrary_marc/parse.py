@@ -346,16 +346,16 @@ def read_languages(rec: MarcBase, lang_008: str | None = None) -> list[str]:
             logger.error(f'Unrecognised language source = {code_source}')
             continue  # Skip anything which is using a non-MARC code source e.g. iso639-1
         for value in f.get_subfield_values('a'):
-            value = value.replace(' ', '').replace('-', '')  # remove pad/separators
-            if len(value) % 3 == 0:
+            stripped_value = value.replace(' ', '').replace('-', '')  # remove pad/separators  # ANNA CHANGED
+            if len(stripped_value) % 3 == 0: # ANNA CHANGED
                 # Obsolete cataloging practice was to concatenate all language codes in a single subfield
-                for k in range(0, len(value), 3):
-                    code = value[k : k + 3].lower()
+                for k in range(0, len(stripped_value), 3): # ANNA CHANGED
+                    code = stripped_value[k : k + 3].lower() # ANNA CHANGED
                     if code != 'zxx' and code not in found:
                         found.append(code)
             else:
                 # logger.error(f'Unrecognised MARC language code(s) = {value}') # ANNA CHANGED
-                found.append(code) # ANNA CHANGED
+                found.append(value) # ANNA CHANGED
     return [lang_map.get(code, code) for code in found]
 
 
