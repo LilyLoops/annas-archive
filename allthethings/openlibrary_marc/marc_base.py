@@ -1,3 +1,7 @@
+# CHANGES by Anna marked with "ANNA CHANGED"
+
+
+
 import re
 from abc import abstractmethod
 from collections import defaultdict
@@ -97,6 +101,9 @@ class MarcBase:
         target = link.replace('880', original)
         for tag, f in linkages:
             assert isinstance(f, MarcFieldBase)
-            if f.get_subfield_values('6')[0].startswith(target):
+            subfield_values = f.get_subfield_values('6') # ANNA CHANGED
+            if len(subfield_values) == 0: # ANNA CHANGED
+                return None # ANNA CHANGED
+            if subfield_values[0].startswith(target): # ANNA CHANGED
                 return f
         return None

@@ -2,7 +2,8 @@ from allthethings.openlibrary_marc.marc_base import MarcBase, MarcFieldBase
 from collections.abc import Iterator
 
 class DataField(MarcFieldBase):
-    def __init__(self, json) -> None:
+    def __init__(self, rec, json) -> None:
+        self.rec = rec
         self.json = json
 
     def ind1(self) -> str:
@@ -29,4 +30,4 @@ class MarcJson(MarcBase):
                 if type(v) is str:
                     yield k, v
                 else:
-                    yield k, DataField(v)
+                    yield k, DataField(self, v)

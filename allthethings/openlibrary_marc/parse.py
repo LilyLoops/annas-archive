@@ -1,3 +1,7 @@
+# CHANGES by Anna marked with "ANNA CHANGED"
+
+
+
 import logging
 import re
 from typing import Any
@@ -350,7 +354,8 @@ def read_languages(rec: MarcBase, lang_008: str | None = None) -> list[str]:
                     if code != 'zxx' and code not in found:
                         found.append(code)
             else:
-                logger.error(f'Unrecognised MARC language code(s) = {value}')
+                # logger.error(f'Unrecognised MARC language code(s) = {value}') # ANNA CHANGED
+                found.append(code) # ANNA CHANGED
     return [lang_map.get(code, code) for code in found]
 
 
@@ -378,6 +383,8 @@ def read_publisher(rec: MarcBase) -> dict[str, Any] | None:
 
     def publish_place(s: str) -> str:
         place = s.strip(' /.,;:')
+        if place == '': # ANNA CHANGED
+            return '' # ANNA CHANGED
         # remove encompassing []
         if (place[0], place[-1]) == ('[', ']'):
             place = place[1:-1]
@@ -457,6 +464,8 @@ def read_author_person(field: MarcFieldBase, tag: str = '100') -> dict | None:
 # 1. if authors in 100, 110, 111 use them
 # 2. if first contrib is 700, 710, or 711 use it
 def person_last_name(field: MarcFieldBase) -> str:
+    if len(field.get_subfield_values('a')) == 0: # ANNA CHANGED
+        return '' # ANNA CHANGED
     v = field.get_subfield_values('a')[0]
     return v[: v.find(', ')] if ', ' in v else v
 
@@ -730,7 +739,8 @@ def read_edition(rec: MarcBase) -> dict[str, Any]:
             edition['title'] = edition['work_titles'][0]
             del edition['work_titles']
         else:
-            raise
+            # raise
+            pass # ANNA CHANGED
 
     update_edition(rec, edition, read_lccn, 'lccn')
     update_edition(rec, edition, read_dnb, 'identifiers')
