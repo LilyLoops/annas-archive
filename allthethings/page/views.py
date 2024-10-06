@@ -1722,7 +1722,7 @@ def process_ol_book_dict(ol_book_dict):
     ol_book_dict['aa_ol_derived'] = {}
 
     file_unified_data['language_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes((ol_languages.get(lang['key']) or {'name':lang['key']})['name']) for lang in (ol_book_dict['edition']['json'].get('languages') or [])])
-    ol_book_dict['aa_ol_derived']['translated_from_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes((ol_languages.get(lang['key']) or {'name':lang['key']})['name']) for lang in (ol_book_dict['edition']['json'].get('translated_from') or [])])
+    # ol_book_dict['aa_ol_derived']['translated_from_codes'] = combine_bcp47_lang_codes([get_bcp47_lang_codes((ol_languages.get(lang['key']) or {'name':lang['key']})['name']) for lang in (ol_book_dict['edition']['json'].get('translated_from') or [])])
 
     file_unified_data['identifiers_unified'] = allthethings.utils.merge_unified_fields([ol_book_dict['edition']['identifiers_unified'], (ol_book_dict.get('work') or {'identifiers_unified': {}})['identifiers_unified']])
     file_unified_data['classifications_unified'] = allthethings.utils.merge_unified_fields([ol_book_dict['edition']['classifications_unified'], (ol_book_dict.get('work') or {'classifications_unified': {}})['classifications_unified']])
@@ -1804,6 +1804,7 @@ def process_ol_book_dict(ol_book_dict):
     file_unified_data['comments_multiple'] += [item.strip() for item in [
         extract_ol_str_field(ol_book_dict['edition']['json'].get('notes') or ''),
         extract_ol_str_field(((ol_book_dict.get('work') or {}).get('json') or {}).get('notes') or ''),
+        *[extract_ol_str_field(loc) for loc in (ol_book_dict['edition']['json'].get('location') or [])],
     ] if item and item.strip() != '']
 
     # TODO: pull non-fiction vs fiction from "subjects" in ol_book_dicts_primary_linked, and make that more leading?
@@ -5109,7 +5110,46 @@ def marc_parse_into_file_unified_data(json):
         'authors': [ {'json': author} for author in (openlib_edition.get('authors') or []) ],
         'work': None,
     }
-    return process_ol_book_dict(ol_book_dict), ol_book_dict
+    file_unified_data = process_ol_book_dict(ol_book_dict)
+
+    marc_content_type = json['leader'][6:7]
+    if marc_content_type in ['c', 'd']:
+        file_unified_data['content_type_best'] = 'musical_score'
+    elif marc_content_type in ['a', 't']:
+        # marc_content_level = json['leader'][7:8] # TODO: use this to refine?
+        # 9750309 "am"
+        # 136937 "as"
+        # 60197 "aa"
+        # 7620 "ac"
+        # 1 "ab"
+        file_unified_data['content_type_best'] = '' # So it defaults to book_unknown
+    else:
+        file_unified_data['content_type_best'] = 'other'
+
+    # Based on pymarc but with more whitespace.
+    marc_lines = ['MARC:']
+    for field in json['fields']:
+        for tag, field_contents in field.items():
+            if type(field_contents) is str:
+                _cont = field_contents.replace(" ", "\\")
+                marc_lines.append(f"={tag}  {_cont}")
+            else:
+                _ind = []
+                _subf = []
+                for indicator in [field_contents['ind1'], field_contents['ind2']]:
+                    if indicator in (" ", "\\"):
+                        _ind.append("\\")
+                    else:
+                        _ind.append(f"{indicator}")
+                for subfield in field_contents['subfields']:
+                    for code, value in subfield.items():
+                        _subf.append(f"${code} {value}")
+                marc_lines.append(f"={tag}  {''.join(_ind)} {' '.join(_subf)}")
+    marc_readable_searchable = '\n'.join(marc_lines)
+    file_unified_data['comments_multiple'].append(marc_readable_searchable)
+    allthethings.utils.add_isbns_unified(file_unified_data, allthethings.utils.get_isbnlike(marc_readable_searchable))
+
+    return file_unified_data, ol_book_dict
 
 def get_aac_rgb_book_dicts(session, key, values):
     if len(values) == 0:
