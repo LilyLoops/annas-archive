@@ -33,6 +33,7 @@ docker exec -it web bash -c 'for f in /app/aacid_small/*.jsonl; do echo "Process
 - aacid__upload_records_misc__20240627T233937Z__495639__3kP8itPUSuCvKiCfK4fLki (and matching upload_files) => czech_oo42hcks_filename:CCCC/19290658.pdf => aacid__czech_oo42hcks_records__20240917T175820Z__RMzzyh9GxgHa6ErpPoQ8EX
 - aacid__ia2_records__20240126T070531Z__cT7Di2ntyu3QYKZCi8xKEH => isbn13:9789990500110 => aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc
 - aacid__zlib3_records__20240809T200924Z__21891758__6JKGg7ar5ccWPjfSbU8mW8 => isbn13:9780586211281 => isbn13_prefix:9780586 => aacid__isbngrp_records__20240920T194930Z__A5mavEDkDnenRFaCXbGEZY
+- aacid__zlib3_records__20240809T215546Z__27250306__oFf82h43Ta6EuVERvbVjp9 => isbn13:9785020171077 => aacid__rgb_records__20240919T161201Z__eVx9gaYSR4L5oiXpzXZ8Rr
 
 112770562 annas_archive_meta__aacid__gbooks_records__20240920T051416Z--20240920T051416Z.jsonl  
 11122860 annas_archive_meta__aacid__goodreads_records__20240913T115838Z--20240913T115838Z.jsonl

@@ -7043,7 +7043,7 @@ def get_additional_for_aarecord(aarecord):
                 gettext('page.md5.top_row.czech_oo42hcks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'czech_oo42hcks' else '',
                 gettext('page.md5.top_row.gbooks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'gbooks' else '',
                 gettext('page.md5.top_row.goodreads', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'goodreads' else '',
-                gettext('page.md5.top_row.isbngrp', id=next(iter(aarecord['file_unified_data']['classifications_unified'].get('isbn13_prefix') or []), next(iter(aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []), aarecord_id_split[1]))) if aarecord_id_split[0] == 'isbngrp' else '',
+                gettext('page.md5.top_row.isbngrp', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbngrp' else '',
                 gettext('page.md5.top_row.libby', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'libby' else '',
                 gettext('page.md5.top_row.rgb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'rgb' else '',
                 gettext('page.md5.top_row.trantor', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'trantor' else '',
