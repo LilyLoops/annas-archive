@@ -1142,6 +1142,7 @@ UNIFIED_IDENTIFIERS = {
     # Plus more added below!
 }
 UNIFIED_CLASSIFICATIONS = {
+    "isbn13_prefix": { "label": "ISBN-13 Prefix", "url": "", "description": "ISBN-13 range, associated with a country or agency.", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "lgrsnf_topic": { "label": "Libgen.rs Non-Fiction Topic", "description": "Libgen’s own classification system of 'topics' for non-fiction books. Obtained from the 'topic' metadata field, using the 'topics' database table, which seems to have its roots in the Kolxo3 library that Libgen was originally based on. https://wiki.mhut.org/content:bibliographic_data says that this field will be deprecated in favor of Dewey Decimal.", "website": "/datasets/lgrs" },
     "torrent": { "label": "Torrent", "url": "/dyn/small_file/torrents/%s", "description": "Bulk torrent for long-term preservation.", "website": "/torrents" },
     "collection": { "label": "Collection", "url": "/datasets/%s", "description": "The collection on Anna’s Archive that provided data for this record.", "website": "/datasets" },

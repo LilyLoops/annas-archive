@@ -4968,6 +4968,18 @@ def get_aac_isbngrp_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_isbngrp_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_isbngrp_book_dict['file_unified_data'], 'isbngrp', primary_id)
 
+        # Use _additional for lower priority, since this isn't very complete.
+        aac_isbngrp_book_dict['file_unified_data']['publisher_additional'].append(aac_record['metadata']['record']['registrant_name'])
+        aac_isbngrp_book_dict['file_unified_data']['edition_varia_additional'].append(f"{aac_record['metadata']['record']['agency_name']}, {aac_record['metadata']['record']['country_name']}")
+
+        for isbn_entry in aac_record['metadata']['record']['isbns']:
+            if isbn_entry['isbn_type'] == 'prefix':
+                allthethings.utils.add_classification_unified(aac_isbngrp_book_dict['file_unified_data'], 'isbn13_prefix', isbn_entry['isbn'].replace('-',''))
+            else:
+                allthethings.utils.add_isbns_unified(aac_isbngrp_book_dict['file_unified_data'], [isbn_entry['isbn']])
+
+        aac_isbngrp_book_dict['file_unified_data']['content_type_best'] = 'other'
+
         aac_isbngrp_book_dicts.append(aac_isbngrp_book_dict)
     return aac_isbngrp_book_dicts
 
@@ -6122,10 +6134,10 @@ def get_aarecords_mysql(session, aarecord_ids):
                 [('ol_book_dicts_primary_linked', 'content_type_best')],
                 [('scihub_doi', 'content_type_best')],
                 [('aac_upload', 'content_type_best')], # Here aac_upload is actually high quality since it's all hardcoded.
-                [(UNIFIED_DATA_MERGE_EXCEPT(['oclc', 'libby']), 'content_type_best')],
+                [(UNIFIED_DATA_MERGE_EXCEPT(['oclc', 'aac_libby', 'aac_isbngrp']), 'content_type_best')],
             ])
         if aarecord['file_unified_data']['content_type_best'] == '':
-            for libby in source_records_by_type['libby']:
+            for libby in source_records_by_type['aac_libby']:
                 # Only tag Libby as audiobook or other when it's a Libby metadata record
                 if (aarecord_id_split[0] == 'libby') or (libby['file_unified_data']['content_type_best'] not in ['other', 'audiobook']):
                     aarecord['file_unified_data']['content_type_best'] = libby['file_unified_data']['content_type_best']
@@ -6135,6 +6147,12 @@ def get_aarecords_mysql(session, aarecord_ids):
                 # OCLC has a lot of books mis-tagged as journal article.
                 if (aarecord_id_split[0] == 'oclc') or (oclc['file_unified_data']['content_type_best'] not in ['other', 'journal_article']):
                     aarecord['file_unified_data']['content_type_best'] = oclc['file_unified_data']['content_type_best']
+                    break
+        if aarecord['file_unified_data']['content_type_best'] == '':
+            for isbngrp in source_records_by_type['aac_isbngrp']:
+                # Only use ISBNGRP content type if it's that metadata
+                if aarecord_id_split[0] == 'isbngrp':
+                    aarecord['file_unified_data']['content_type_best'] = isbngrp['file_unified_data']['content_type_best']
                     break
         if aarecord['file_unified_data']['content_type_best'] == '':
             aarecord['file_unified_data']['content_type_best'] = 'book_unknown'
@@ -7025,7 +7043,7 @@ def get_additional_for_aarecord(aarecord):
                 gettext('page.md5.top_row.czech_oo42hcks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'czech_oo42hcks' else '',
                 gettext('page.md5.top_row.gbooks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'gbooks' else '',
                 gettext('page.md5.top_row.goodreads', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'goodreads' else '',
-                gettext('page.md5.top_row.isbngrp', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbngrp' else '',
+                gettext('page.md5.top_row.isbngrp', id=next(iter(aarecord['file_unified_data']['classifications_unified'].get('isbn13_prefix') or []), next(iter(aarecord['file_unified_data']['identifiers_unified'].get('isbn13') or []), aarecord_id_split[1]))) if aarecord_id_split[0] == 'isbngrp' else '',
                 gettext('page.md5.top_row.libby', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'libby' else '',
                 gettext('page.md5.top_row.rgb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'rgb' else '',
                 gettext('page.md5.top_row.trantor', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'trantor' else '',

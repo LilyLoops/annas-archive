@@ -769,7 +769,7 @@ def elastic_build_aarecords_job(aarecord_ids):
             return True
 
 THREADS = 200
-CHUNK_SIZE = 200
+CHUNK_SIZE = 50
 BATCH_SIZE = 100000
 
 # Locally
