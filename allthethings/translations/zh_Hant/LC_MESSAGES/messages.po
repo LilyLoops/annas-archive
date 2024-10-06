@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-06 17:51+0000\n"
-"PO-Revision-Date: 2024-10-06 18:13+0000\n"
+"PO-Revision-Date: 2024-10-07 10:18+0000\n"
 "Last-Translator: Tiffany Tai <tiffanytaiyankiu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_Hant\n"
@@ -27,7 +27,7 @@ msgstr "LibGens"
 
 #: allthethings/app.py:252
 msgid "layout.index.header.tagline_zlib"
-msgstr "Z-Lib."
+msgstr "Z-Lib"
 
 #: allthethings/app.py:253
 msgid "layout.index.header.tagline_openlib"
@@ -55,11 +55,11 @@ msgstr "和更多"
 
 #: allthethings/app.py:266
 msgid "layout.index.header.tagline_newnew2a"
-msgstr "⭐️我們的鏡像%(libraries)s。"
+msgstr "⭐️我們建立了%(libraries)s的鏡像站。"
 
 #: allthethings/app.py:267
 msgid "layout.index.header.tagline_newnew2b"
-msgstr "我們抓取並開源%(scraped)s。"
+msgstr "我們抓取並建立了%(scraped)s的開源數據。"
 
 #: allthethings/app.py:268
 msgid "layout.index.header.tagline_open_source"
@@ -80,15 +80,15 @@ msgstr "📚&nbsp;世界上最大的開源及數據開放圖書館 ⭐️&nbsp;�
 
 #: allthethings/app.py:279
 msgid "layout.index.header.tagline_short"
-msgstr "📚 全球最大的開源開放資料庫。<br>⭐️ 鏡像 Scihub, Libgen, Zlib等。"
+msgstr "📚 全球最大的開源開放資料庫。<br>⭐️ Scihub、Libgen、Zlib等資料庫的開源鏡像站。"
 
 #: allthethings/utils.py:419
 msgid "common.md5_report_type_mapping.metadata"
-msgstr "錯誤的元信息（如標題、描述或封面圖片）"
+msgstr "錯誤的元數據（如標題、描述或封面圖片）"
 
 #: allthethings/utils.py:420
 msgid "common.md5_report_type_mapping.download"
-msgstr "下載問題(例如無法連接、錯誤信息、非常慢)"
+msgstr "下載問題（如無法連接、錯誤信息、下載速度慢)"
 
 #: allthethings/utils.py:421
 msgid "common.md5_report_type_mapping.broken"
@@ -238,9 +238,8 @@ msgid "page.donate.perks.jsonapi"
 msgstr "<a %(a_api)s>JSON API</a> 使用權"
 
 #: allthethings/account/templates/account/donate.html:73
-#, fuzzy
 msgid "page.donate.perks.refer"
-msgstr "透過<a href=\"/refer\">推薦朋友</a>賺取<strong>%(percentage)s%%次額外下載次數</strong>。"
+msgstr "透過<a %(a_refer)s>向好友推薦此網站</a>賺取<strong>%(percentage)s%%次額外下載次數</strong>。"
 
 #: allthethings/account/templates/account/donate.html:74
 msgid "page.donate.perks.credits"
@@ -299,9 +298,8 @@ msgid "page.donate.header.large_donations_wealthy"
 msgstr "我們歡迎富有的個人或機構的大筆捐款。 "
 
 #: allthethings/account/templates/account/donate.html:114
-#, fuzzy
 msgid "page.donate.header.large_donations"
-msgstr "如欲捐赠超過5000美元，請直接聯繫我們，電郵至%(email)s。"
+msgstr "如欲捐贈超過$5000美元，請於%(email)s直接聯繫我們。"
 
 #: allthethings/account/templates/account/donate.html:116
 msgid "page.donate.header.recurring"
@@ -544,47 +542,40 @@ msgstr "從<a %(a_app_store)s>Apple App Store</a>或<a %(a_play_store)s>Google P
 
 #: allthethings/account/templates/account/donate.html:335
 #: allthethings/account/templates/account/donation.html:516
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "使用您的手機號碼註冊。"
 
 #: allthethings/account/templates/account/donate.html:336
 #: allthethings/account/templates/account/donation.html:517
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
-msgstr "不需要提供其他個人詳細信息。"
+msgstr "不需提供其他個人資料。"
 
 #: allthethings/account/templates/account/donate.html:340
 #: allthethings/account/templates/account/donation.html:521
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>添加銀行卡"
 
 #: allthethings/account/templates/account/donate.html:348
 #: allthethings/account/templates/account/donation.html:529
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
-msgstr "支持：Visa、MasterCard、JCB、Diners Club和Discover。"
+msgstr "支持Visa、MasterCard、JCB、Diners Club和Discover。"
 
 #: allthethings/account/templates/account/donate.html:349
 #: allthethings/account/templates/account/donation.html:530
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
-msgstr "欲了解更多信息，請參閱<a %(a_alipay)s>此指南</a>。"
+msgstr "如欲了解更多信息，請參閱<a %(a_alipay)s>此指南</a>。"
 
 #: allthethings/account/templates/account/donate.html:355
-#, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
-msgstr "我們無法直接支持信用卡/借記卡，因為銀行不願意與我們合作。☹ 但是，仍有幾種方法可以通過其他支付方式使用信用卡/借記卡："
+msgstr "拰無法直接使用信用卡或提款卡捐款，因為銀行不願意與我們合作。☹ 但是，您仍可以用以下幾種方式使用信用卡/提款卡："
 
 #: allthethings/account/templates/account/donate.html:360
 msgid "page.donate.ccexp.amazon_com"
 msgstr "使用您的信用卡/借記卡向我們發送 Amazon.com 禮品卡。"
 
 #: allthethings/account/templates/account/donate.html:363
-#, fuzzy
 msgid "page.donate.ccexp.alipay"
-msgstr "Alipay 支持國際信用卡/借記卡。請參閱<a %(a_alipay)s>本指南</a>了解更多信息。"
+msgstr "Alipay 支持國際信用卡/提款卡。詳情請參閱<a %(a_alipay)s>本指南</a>。"
 
 #: allthethings/account/templates/account/donate.html:366
 #, fuzzy
@@ -596,22 +587,18 @@ msgid "page.donate.ccexp.crypto"
 msgstr "您可以使用信用卡/借記卡購買加密貨幣。"
 
 #: allthethings/account/templates/account/donate.html:379
-#, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "加密貨幣快速服務"
 
 #: allthethings/account/templates/account/donate.html:381
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
-msgstr "快速服務很方便，但收取較高的費用。"
+msgstr "快速服務很方便，但會收取更高的手續費。"
 
 #: allthethings/account/templates/account/donate.html:382
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
-msgstr "如果您想快速進行較大額的捐贈且不介意支付5-10美元的費用，可以使用此方法代替加密貨幣交易所。"
+msgstr "如果您想快速進行較大額的捐贈（並且不介意支付5-10美元的手續費），可以使用此方式。"
 
 #: allthethings/account/templates/account/donate.html:385
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "請務必發送捐贈頁面上顯示的確切加密貨幣金額，而不是美元金額。"
 
@@ -732,7 +719,6 @@ msgid "page.donate.currency_lowest_minimum"
 msgstr "（最低金額）"
 
 #: allthethings/account/templates/account/donate.html:469
-#, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "（使用Coinbase發送以太坊時使用）"
 
@@ -792,14 +778,12 @@ msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "24 個月"
 
 #: allthethings/account/templates/account/donate.html:578
-#, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
-msgstr "為期 48 個月"
+msgstr "48個月"
 
 #: allthethings/account/templates/account/donate.html:579
-#, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
-msgstr "為期 96 個月"
+msgstr "96 個月"
 
 #: allthethings/account/templates/account/donate.html:583
 msgid "page.donate.submit.button.label.1_mo"
@@ -827,7 +811,6 @@ msgid "page.donate.submit.button.label.48_mo"
 msgstr "為期 48 個月「%(tier_name)s」"
 
 #: allthethings/account/templates/account/donate.html:589
-#, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "為期 96 個月「%(tier_name)s」"
 
@@ -1080,7 +1063,6 @@ msgstr "如果您遇到任何問題，請透過 %(email)s 與我們聯繫，並�
 #: allthethings/account/templates/account/donation.html:170
 #: allthethings/account/templates/account/donation.html:210
 #: allthethings/account/templates/account/donation.html:253
-#, fuzzy
 msgid "page.donation.step1"
 msgstr "1"
 
@@ -1099,7 +1081,6 @@ msgstr "購買比您捐贈的金額（%(amount)s）多一點點（我們建議�
 #: allthethings/account/templates/account/donation.html:181
 #: allthethings/account/templates/account/donation.html:220
 #: allthethings/account/templates/account/donation.html:263
-#, fuzzy
 msgid "page.donation.step2"
 msgstr "2"
 
@@ -1115,42 +1096,34 @@ msgid "page.donation.transfer_amount_to"
 msgstr "將 %(amount)s轉帳至%(account)s"
 
 #: allthethings/account/templates/account/donation.html:210
-#, fuzzy
 msgid "page.donation.cash_app_btc.step1"
 msgstr "在 Cash App 上購買比特幣 (BTC)"
 
 #: allthethings/account/templates/account/donation.html:213
-#, fuzzy
 msgid "page.donation.cash_app_btc.step1.text1"
 msgstr "進入 Cash App 的「比特幣」(BTC) 頁面。"
 
 #: allthethings/account/templates/account/donation.html:217
-#, fuzzy
 msgid "page.donation.cash_app_btc.step1.more"
-msgstr "購買比捐贈金額 (%(amount)s) 多一點的比特幣（我們建議多購買 %(more)s），以支付交易費用。剩餘的部分將歸您所有。"
+msgstr "購買比你想捐贈的數量 (%(amount)s) 稍微多一點的比特幣（我們建議多購買 %(more)s），以支付手續費。剩下的幣額由你保管！"
 
 #: allthethings/account/templates/account/donation.html:220
-#, fuzzy
 msgid "page.donation.cash_app_btc.step2"
-msgstr "將比特幣轉移到我們的地址"
+msgstr "將比特幣轉移到我們的帳號"
 
 #: allthethings/account/templates/account/donation.html:223
-#, fuzzy
 msgid "page.donation.cash_app_btc.step2.transfer"
-msgstr "點擊「發送比特幣」按鈕進行「提現」。按 %(icon)s 圖標從美元切換到 BTC。輸入下方的 BTC 金額並點擊「發送」。如果遇到困難，請參閱<a %(help_video)s>此視頻</a>。"
+msgstr "點擊「發送比特幣」按鈕進行「提現」。按 %(icon)s 圖標在美元/ BTC間切換。在下方輸入 BTC 金額並點擊「發送」。如果遇到困難，請參閱<a %(help_video)s>此影片</a>。"
 
 #: allthethings/account/templates/account/donation.html:231
-#, fuzzy
 msgid "page.donation.cash_app_btc.step2.rush_priority"
-msgstr "對於小額捐款（低於 $25），您可能需要使用 Rush 或 Priority。"
+msgstr "如欲進行低於$25美元的小額捐款，您可能需要使用 Rush 或 Priority。"
 
 #: allthethings/account/templates/account/donation.html:253
-#, fuzzy
 msgid "page.donation.revolut.step1"
 msgstr "在 Revolut 上購買比特幣 (BTC)"
 
 #: allthethings/account/templates/account/donation.html:256
-#, fuzzy
 msgid "page.donation.revolut.step1.text1"
 msgstr "進入 Revolut 的「加密貨幣」頁面購買比特幣 (BTC)。"
 
