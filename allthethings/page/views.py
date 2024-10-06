@@ -1648,8 +1648,9 @@ def process_ol_book_dict(ol_book_dict):
     file_unified_data = allthethings.utils.make_file_unified_data()
     allthethings.utils.init_identifiers_and_classification_unified(ol_book_dict['edition'])
     allthethings.utils.add_isbns_unified(ol_book_dict['edition'], (ol_book_dict['edition']['json'].get('isbn_10') or []) + (ol_book_dict['edition']['json'].get('isbn_13') or []))
-    for source_record_code in (ol_book_dict['edition']['json'].get('source_records') or []):
-        allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'openlib_source_record', source_record_code)
+    for item in (ol_book_dict['edition']['json'].get('links') or []):
+        title = (item.get('title') or '').strip()
+        allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'link', f"{item['url']}###{title}" if title != '' else item['url'])
     for item in (ol_book_dict['edition']['json'].get('lc_classifications') or []):
         # https://openlibrary.org/books/OL52784454M
         if len(item) > 50:
@@ -1783,15 +1784,22 @@ def process_ol_book_dict(ol_book_dict):
             file_unified_data['year_best'] = potential_year[0]
             break
 
-    if len(file_unified_data['stripped_description_best']) == 0 and 'description' in ol_book_dict['edition']['json']:
-        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['description']))
-    if len(file_unified_data['stripped_description_best']) == 0 and ol_book_dict['work'] and 'description' in ol_book_dict['work']['json']:
-        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['work']['json']['description']))
-    if len(file_unified_data['stripped_description_best']) == 0 and 'first_sentence' in ol_book_dict['edition']['json']:
-        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['first_sentence']))
-    if len(file_unified_data['stripped_description_best']) == 0 and ol_book_dict['work'] and 'first_sentence' in ol_book_dict['work']['json']:
-        file_unified_data['stripped_description_best'] = strip_description(extract_ol_str_field(ol_book_dict['work']['json']['first_sentence']))
+    if ol_book_dict['work'] and 'first_sentence' in ol_book_dict['work']['json'] and (descr := strip_description(extract_ol_str_field(ol_book_dict['work']['json']['first_sentence']))) != '':
+        file_unified_data['stripped_description_best'] = descr
+        file_unified_data['stripped_description_additional'].append(descr)
+    if 'first_sentence' in ol_book_dict['edition']['json'] and (descr := strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['first_sentence']))) != '':
+        file_unified_data['stripped_description_best'] = descr
+        file_unified_data['stripped_description_additional'].append(descr)
+    if ol_book_dict['work'] and 'description' in ol_book_dict['work']['json'] and (descr := strip_description(extract_ol_str_field(ol_book_dict['work']['json']['description']))) != '':
+        file_unified_data['stripped_description_best'] = descr
+        file_unified_data['stripped_description_additional'].append(descr)
+    if 'description' in ol_book_dict['edition']['json'] and (descr := strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['description']))) != '':
+        file_unified_data['stripped_description_best'] = descr
+        file_unified_data['stripped_description_additional'].append(descr)
     file_unified_data['stripped_description_best'] = file_unified_data['stripped_description_best'][0:5000]
+
+    if 'table_of_contents' in ol_book_dict['edition']['json'] and (toc := '\n'.join(filter(len, [item.get('title') or item.get('value') or '' for item in ol_book_dict['edition']['json']['table_of_contents']]))) != '':
+        file_unified_data['stripped_description_additional'].append(toc)
 
     file_unified_data['comments_multiple'] += [item.strip() for item in [
         extract_ol_str_field(ol_book_dict['edition']['json'].get('notes') or ''),
@@ -1906,6 +1914,16 @@ def get_ol_book_dicts(session, key, values):
             ol_book_dict['file_unified_data'] = process_ol_book_dict(ol_book_dict)
             allthethings.utils.add_identifier_unified(ol_book_dict['file_unified_data'], 'ol', ol_book_dict['ol_edition'])
 
+            for item in (ol_book_dict['edition']['json'].get('subjects') or []):
+                allthethings.utils.add_classification_unified(ol_book_dict['file_unified_data'], 'openlib_subject', item)
+
+            for source_record_code in (ol_book_dict['edition']['json'].get('source_records') or []):
+                # Logic roughly based on https://github.com/internetarchive/openlibrary/blob/e7e8aa5b/openlibrary/templates/history/sources.html#L27
+                if '/' not in source_record_code and '_meta.mrc:' in source_record_code:
+                    allthethings.utils.add_identifier_unified(ol_book_dict['file_unified_data'], 'openlib_source_record', 'ia:' + source_record_code.split('_', 1)[0])
+                else:
+                    allthethings.utils.add_identifier_unified(ol_book_dict['file_unified_data'], 'openlib_source_record', source_record_code.replace('marc:',''))
+
             created_normalized = ''
             if len(created_normalized) == 0 and 'created' in ol_book_dict['edition']['json']:
                 created_normalized = extract_ol_str_field(ol_book_dict['edition']['json']['created']).strip()
@@ -1957,7 +1975,9 @@ def get_lgrsnf_book_dicts(session, key, values):
             (lgrs_book_dict['commentary'] or '').strip(),
             ' -- '.join(filter(len, [(lgrs_book_dict['library'] or '').strip(), (lgrs_book_dict['issue'] or '').strip()])),
         ]))
-        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(filter(len, list(dict.fromkeys([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('toc') or ''])))))[0:5000]
+        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description(lgrs_book_dict.get('descr') or '')[0:5000]
+        if (toc := strip_description(lgrs_book_dict.get('toc') or '')[0:5000]) != '':
+            lgrs_book_dict['file_unified_data']['stripped_description_additional'].append(toc)
         lgrs_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
         lgrs_book_dict['file_unified_data']['cover_url_best'] = f"https://libgen.is/covers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
 
@@ -2055,7 +2075,7 @@ def get_lgrsfic_book_dicts(session, key, values):
             (lgrs_book_dict['commentary'] or '').strip(),
             ' -- '.join(filter(len, [(lgrs_book_dict['library'] or '').strip(), (lgrs_book_dict['issue'] or '').strip()])),
         ]))
-        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(filter(len, list(dict.fromkeys([lgrs_book_dict.get('descr') or '', lgrs_book_dict.get('toc') or ''])))))[0:5000]
+        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description(lgrs_book_dict.get('descr') or '')[0:5000]
         lgrs_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
         lgrs_book_dict['file_unified_data']['cover_url_best'] = f"https://libgen.is/fictioncovers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
 
@@ -5137,6 +5157,9 @@ def get_aac_rgb_book_dicts(session, key, values):
 
         allthethings.utils.add_identifier_unified(aac_rgb_book_dict['file_unified_data'], 'aacid', aac_record['aacid'])
         allthethings.utils.add_identifier_unified(aac_rgb_book_dict['file_unified_data'], 'rgb', primary_id)
+
+        for item in (aac_rgb_book_dict['ol_book_dict']['edition']['json'].get('subjects') or []):
+            allthethings.utils.add_classification_unified(aac_rgb_book_dict['file_unified_data'], 'rgb_subject', item)
 
         aac_rgb_book_dicts.append(aac_rgb_book_dict)
     return aac_rgb_book_dicts
