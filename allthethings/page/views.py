@@ -1307,7 +1307,7 @@ def get_aac_zlib3_book_dicts(session, key, values):
         if 'description' not in aac_zlib3_book_dict:
             print(f'WARNING WARNING! missing description in aac_zlib3_book_dict: {aac_zlib3_book_dict=} {zlib_book=}')
             print('------------------')
-        aac_zlib3_book_dict['file_unified_data']['stripped_description_best'] = strip_description(aac_zlib3_book_dict['description'])[0:5000]
+        aac_zlib3_book_dict['file_unified_data']['stripped_description_best'] = strip_description(aac_zlib3_book_dict['description'])
         aac_zlib3_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(aac_zlib3_book_dict['language'] or '')
         aac_zlib3_book_dict['file_unified_data']['added_date_unified']["date_zlib_source"] = aac_zlib3_book_dict['date_added'].split('T', 1)[0]
         zlib_add_edition_varia_normalized(aac_zlib3_book_dict)
@@ -1803,7 +1803,7 @@ def process_ol_book_dict(ol_book_dict):
     if 'description' in ol_book_dict['edition']['json'] and (descr := strip_description(extract_ol_str_field(ol_book_dict['edition']['json']['description']))) != '':
         file_unified_data['stripped_description_best'] = descr
         file_unified_data['stripped_description_additional'].append(descr)
-    file_unified_data['stripped_description_best'] = file_unified_data['stripped_description_best'][0:5000]
+    file_unified_data['stripped_description_best'] = file_unified_data['stripped_description_best']
 
     if 'table_of_contents' in ol_book_dict['edition']['json'] and (toc := '\n'.join(filter(len, [item.get('title') or item.get('value') or '' for item in ol_book_dict['edition']['json']['table_of_contents']]))) != '':
         file_unified_data['stripped_description_additional'].append(toc)
@@ -1983,8 +1983,8 @@ def get_lgrsnf_book_dicts(session, key, values):
             (lgrs_book_dict['commentary'] or '').strip(),
             ' -- '.join(filter(len, [(lgrs_book_dict['library'] or '').strip(), (lgrs_book_dict['issue'] or '').strip()])),
         ]))
-        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description(lgrs_book_dict.get('descr') or '')[0:5000]
-        if (toc := strip_description(lgrs_book_dict.get('toc') or '')[0:5000]) != '':
+        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description(lgrs_book_dict.get('descr') or '')
+        if (toc := strip_description(lgrs_book_dict.get('toc') or '')) != '':
             lgrs_book_dict['file_unified_data']['stripped_description_additional'].append(toc)
         lgrs_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
         lgrs_book_dict['file_unified_data']['cover_url_best'] = f"https://libgen.is/covers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
@@ -2083,7 +2083,7 @@ def get_lgrsfic_book_dicts(session, key, values):
             (lgrs_book_dict['commentary'] or '').strip(),
             ' -- '.join(filter(len, [(lgrs_book_dict['library'] or '').strip(), (lgrs_book_dict['issue'] or '').strip()])),
         ]))
-        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description(lgrs_book_dict.get('descr') or '')[0:5000]
+        lgrs_book_dict['file_unified_data']['stripped_description_best'] = strip_description(lgrs_book_dict.get('descr') or '')
         lgrs_book_dict['file_unified_data']['language_codes'] = get_bcp47_lang_codes(lgrs_book_dict.get('language') or '')
         lgrs_book_dict['file_unified_data']['cover_url_best'] = f"https://libgen.is/fictioncovers/{lgrs_book_dict['coverurl']}" if len(lgrs_book_dict.get('coverurl') or '') > 0 else ''
 
@@ -2735,7 +2735,7 @@ def get_isbndb_dicts(session, canonical_isbn13s):
         isbndb_dict['file_unified_data']['publisher_additional'] = [(isbndb_inner_dict['json'].get('publisher') or '').strip() for isbndb_inner_dict in isbndb_dict['isbndb_inner']]
         isbndb_dict['file_unified_data']['edition_varia_additional'] = [(isbndb_inner_dict.get('edition_varia_normalized') or '').strip() for isbndb_inner_dict in isbndb_dict['isbndb_inner']]
         isbndb_dict['file_unified_data']['year_additional'] = [(isbndb_inner_dict.get('year_normalized') or '').strip() for isbndb_inner_dict in isbndb_dict['isbndb_inner']]
-        isbndb_dict['file_unified_data']['stripped_description_additional'] = [(isbndb_inner_dict['json'].get('synopsis') or '').strip()[0:5000] for isbndb_inner_dict in isbndb_dict['isbndb_inner']] + [(isbndb_inner_dict['json'].get('overview') or '').strip()[0:5000] for isbndb_inner_dict in isbndb_dict['isbndb_inner']]
+        isbndb_dict['file_unified_data']['stripped_description_additional'] = [(isbndb_inner_dict['json'].get('synopsis') or '').strip() for isbndb_inner_dict in isbndb_dict['isbndb_inner']] + [(isbndb_inner_dict['json'].get('overview') or '').strip() for isbndb_inner_dict in isbndb_dict['isbndb_inner']]
         isbndb_dict['file_unified_data']['language_codes'] = combine_bcp47_lang_codes([isbndb_inner_dict['language_codes'] for isbndb_inner_dict in isbndb_dict['isbndb_inner']])
         isbndb_dict['file_unified_data']['added_date_unified'] = { "date_isbndb_scrape": "2022-09-01" }
 
@@ -6007,12 +6007,12 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['filesize_best'] = max(filesize_multiple + [0])
         aarecord['file_unified_data']['filesize_additional'] = [s for s in dict.fromkeys(filter(lambda fz: fz > 0, filesize_multiple)) if s != aarecord['file_unified_data']['filesize_best']]
 
-        aarecord['file_unified_data']['title_best'], aarecord['file_unified_data']['title_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'title_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_edsebk'], 'title_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'title_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'title_additional')], [(UNIFIED_DATA_MERGE_ALL, 'title_best')], [(UNIFIED_DATA_MERGE_ALL, 'title_additional')]])
-        aarecord['file_unified_data']['author_best'], aarecord['file_unified_data']['author_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'author_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_edsebk'], 'author_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'author_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'author_additional')], [(UNIFIED_DATA_MERGE_ALL, 'author_best')], [(UNIFIED_DATA_MERGE_ALL, 'author_additional')]])
-        aarecord['file_unified_data']['publisher_best'], aarecord['file_unified_data']['publisher_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'publisher_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_edsebk'], 'publisher_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'publisher_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'publisher_additional')], [(UNIFIED_DATA_MERGE_ALL, 'publisher_best')], [(UNIFIED_DATA_MERGE_ALL, 'publisher_additional')]])
-        aarecord['file_unified_data']['edition_varia_best'], aarecord['file_unified_data']['edition_varia_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'edition_varia_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_edsebk'], 'edition_varia_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'edition_varia_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'edition_varia_additional')], [(UNIFIED_DATA_MERGE_ALL, 'edition_varia_best')], [(UNIFIED_DATA_MERGE_ALL, 'edition_varia_additional')]])
+        aarecord['file_unified_data']['title_best'], aarecord['file_unified_data']['title_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'title_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','aac_magzdb','aac_nexusstc','aac_edsebk'], 'title_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'title_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'title_additional')], [(UNIFIED_DATA_MERGE_ALL, 'title_best')], [(UNIFIED_DATA_MERGE_ALL, 'title_additional')]])
+        aarecord['file_unified_data']['author_best'], aarecord['file_unified_data']['author_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'author_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','aac_magzdb','aac_nexusstc','aac_edsebk'], 'author_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'author_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'author_additional')], [(UNIFIED_DATA_MERGE_ALL, 'author_best')], [(UNIFIED_DATA_MERGE_ALL, 'author_additional')]])
+        aarecord['file_unified_data']['publisher_best'], aarecord['file_unified_data']['publisher_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'publisher_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','aac_magzdb','aac_nexusstc','aac_edsebk'], 'publisher_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'publisher_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'publisher_additional')], [(UNIFIED_DATA_MERGE_ALL, 'publisher_best')], [(UNIFIED_DATA_MERGE_ALL, 'publisher_additional')]])
+        aarecord['file_unified_data']['edition_varia_best'], aarecord['file_unified_data']['edition_varia_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'edition_varia_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','aac_magzdb','aac_nexusstc','aac_edsebk'], 'edition_varia_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'edition_varia_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'edition_varia_additional')], [(UNIFIED_DATA_MERGE_ALL, 'edition_varia_best')], [(UNIFIED_DATA_MERGE_ALL, 'edition_varia_additional')]])
 
-        year_best, year_additional = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'year_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_edsebk'], 'year_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'year_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'year_additional')], [(UNIFIED_DATA_MERGE_ALL, 'year_best')], [(UNIFIED_DATA_MERGE_ALL, 'year_additional')]])
+        year_best, year_additional = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'year_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','aac_magzdb','aac_nexusstc','aac_edsebk'], 'year_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'year_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'year_additional')], [(UNIFIED_DATA_MERGE_ALL, 'year_best')], [(UNIFIED_DATA_MERGE_ALL, 'year_additional')]])
         # Filter out years in for which we surely don't have books (famous last words..)
         year_multiple = [year for year in ([year_best] + year_additional) if allthethings.utils.validate_year(year)]
         if len(year_multiple) == 0:
@@ -6032,7 +6032,7 @@ def get_aarecords_mysql(session, aarecord_ids):
         aarecord['file_unified_data']['comments_multiple'] = sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode([comment for source_record in source_records for comment in source_record['source_record']['file_unified_data']['comments_multiple']])
 
         # Make ia_record's description a very last resort here, since it's usually not very good.
-        aarecord['file_unified_data']['stripped_description_best'], aarecord['file_unified_data']['stripped_description_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'stripped_description_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','duxiu','aac_magzdb','aac_nexusstc','aac_edsebk'], 'stripped_description_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'stripped_description_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['aac_upload', 'ia_record']), 'stripped_description_additional')], [(UNIFIED_DATA_MERGE_ALL, 'stripped_description_best'), (UNIFIED_DATA_MERGE_ALL, 'stripped_description_additional')]])
+        aarecord['file_unified_data']['stripped_description_best'], aarecord['file_unified_data']['stripped_description_additional'] = merge_file_unified_data_strings(source_records_by_type, [[('ol_book_dicts_primary_linked', 'stripped_description_best')], [(['lgrsnf_book','lgrsfic_book','lgli_file','aac_zlib3_book','aac_magzdb','aac_nexusstc','aac_edsebk'], 'stripped_description_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'stripped_description_best')], [(UNIFIED_DATA_MERGE_EXCEPT(['duxiu', 'aac_upload', 'ia_record']), 'stripped_description_additional')], [(UNIFIED_DATA_MERGE_ALL, 'stripped_description_best'), (UNIFIED_DATA_MERGE_ALL, 'stripped_description_additional')]])
 
         all_langcodes_most_common_codes = []
         all_langcodes_counter = collections.Counter([langcode for source_record in source_records for langcode in source_record['source_record']['file_unified_data']['language_codes']])
@@ -6483,6 +6483,13 @@ def get_aarecords_mysql(session, aarecord_ids):
         # Delete extraneous identifiers at the last moment.
         if aarecord_id_split[0] != 'isbngrp' and 'isbn13_prefix' in aarecord['file_unified_data']['classifications_unified']:
             del aarecord['file_unified_data']['classifications_unified']['isbn13_prefix']
+
+        # Strip fields at the last moment.
+        for key, value in aarecord['file_unified_data'].items():
+            if type(value) is str:
+                aarecord['file_unified_data'][key] = value[0:30000]
+            elif type(value) is list:
+                aarecord['file_unified_data'][key] = [subvalue[0:30000] if type(subvalue) is str else subvalue for subvalue in value]
 
         REPLACE_PUNCTUATION = r'[.:_\-/\(\)\\]'
         initial_search_text = "\n".join([
