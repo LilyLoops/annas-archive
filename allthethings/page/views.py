@@ -1805,7 +1805,7 @@ def process_ol_book_dict(ol_book_dict):
         file_unified_data['stripped_description_additional'].append(descr)
     file_unified_data['stripped_description_best'] = file_unified_data['stripped_description_best']
 
-    if 'table_of_contents' in ol_book_dict['edition']['json'] and (toc := '\n'.join(filter(len, [item.get('title') or item.get('value') or '' for item in ol_book_dict['edition']['json']['table_of_contents']]))) != '':
+    if 'table_of_contents' in ol_book_dict['edition']['json'] and (toc := '\n'.join(filter(len, [item.get('title') if (type(item) is dict and 'title' in item) else extract_ol_str_field(item) for item in ol_book_dict['edition']['json']['table_of_contents']]))) != '':
         file_unified_data['stripped_description_additional'].append(toc)
 
     file_unified_data['comments_multiple'] += [item.strip() for item in [
