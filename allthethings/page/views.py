@@ -1110,7 +1110,7 @@ def codes_page():
                     "codes": last_record["dense_rank_order_by_code"]-first_record["dense_rank_order_by_code"]+1,
                     "records": last_record["row_number_order_by_code"]-first_record["row_number_order_by_code"]+1,
                     "link": f'/member_codes?prefix_b64={longest_prefix_b64}',
-                    "code_item": allthethings.utils.make_code_for_display(longest_prefix_label[:-1], '') if prefix_bytes == b'' else None,
+                    "code_item": allthethings.utils.make_code_for_display({'key': longest_prefix_label[:-1], 'value': ''}) if prefix_bytes == b'' else None,
                 })
 
         bad_unicode = False
@@ -1123,7 +1123,7 @@ def codes_page():
         code_item = None
         if ':' in prefix_label:
             key, value = prefix_label.split(':', 1)
-            code_item = allthethings.utils.make_code_for_display(key, value)
+            code_item = allthethings.utils.make_code_for_display({'key': key, 'value': value})
 
         return render_template(
             "page/codes.html",
