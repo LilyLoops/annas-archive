@@ -422,15 +422,6 @@ def get_stats_data():
         except Exception:
             pass
 
-        edsebk_date = 'Unknown'
-        try:
-            cursor.execute('SELECT aacid FROM annas_archive_meta__aacid__ebscohost_records ORDER BY aacid DESC LIMIT 1')
-            edsebk_aacid = cursor.fetchone()['aacid']
-            edsebk_date_raw = edsebk_aacid.split('__')[2][0:8]
-            edsebk_date = f"{edsebk_date_raw[0:4]}-{edsebk_date_raw[4:6]}-{edsebk_date_raw[6:8]}"
-        except Exception:
-            pass
-
         stats_data_es = dict(es.msearch(
             request_timeout=30,
             max_concurrent_searches=10,
@@ -568,7 +559,6 @@ def get_stats_data():
         'oclc_date': '2023-10-01',
         'magzdb_date': '2024-07-29',
         'nexusstc_date': nexusstc_date,
-        'edsebk_date': edsebk_date,
     }
 
 def torrent_group_data_from_file_path(file_path):
@@ -901,16 +891,53 @@ def datasets_nexusstc_page():
             return "Error with datasets page, please try again.", 503
         raise
 
-@page.get("/datasets/edsebk")
+@page.get("/datasets/other_metadata")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def datasets_edsebk_page():
+def datasets_other_metadata_page():
     try:
         stats_data = get_stats_data()
-        return render_template("page/datasets_edsebk.html", header_active="home/datasets", stats_data=stats_data)
+        return render_template("page/datasets_other_metadata.html", header_active="home/datasets", stats_data=stats_data)
     except Exception as e:
         if 'timed out' in str(e):
             return "Error with datasets page, please try again.", 503
         raise
+
+@page.get("/datasets/edsebk")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_edsebk_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/cerlalc")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_cerlalc_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/czech_oo42hcks")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_czech_oo42hcks_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/gbooks")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_gbooks_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/goodreads")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_goodreads_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/isbngrp")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_isbngrp_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/libby")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_libby_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/rgb")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_rgb_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/trantor")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_trantor_page():
+    return redirect("/datasets/other_metadata", code=302)
 
 # @page.get("/datasets/isbn_ranges")
 # @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
@@ -4317,33 +4344,6 @@ def get_aac_nexusstc_book_dicts(session, key, values):
         aac_nexusstc_book_dicts.append(aac_nexusstc_book_dict)
     return aac_nexusstc_book_dicts
 
-@page.get("/db/aac_nexusstc/<string:nexusstc_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_nexusstc_book_json(nexusstc_id):
-    with Session(engine) as session:
-        aac_nexusstc_book_dicts = get_aac_nexusstc_book_dicts(session, "nexusstc_id", [nexusstc_id])
-        if len(aac_nexusstc_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_nexusstc_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-@page.get("/db/aac_nexusstc_download/<string:nexusstc_download>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_nexusstc_download_book_json(nexusstc_download):
-    with Session(engine) as session:
-        aac_nexusstc_book_dicts = get_aac_nexusstc_book_dicts(session, "nexusstc_download", [nexusstc_download])
-        if len(aac_nexusstc_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_nexusstc_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
-@page.get("/db/aac_nexusstc_md5/<string:md5>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_nexusstc_md5_book_json(md5):
-    with Session(engine) as session:
-        aac_nexusstc_book_dicts = get_aac_nexusstc_book_dicts(session, "md5", [md5])
-        if len(aac_nexusstc_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_nexusstc_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 def get_aac_edsebk_book_dicts(session, key, values):
     if len(values) == 0:
         return []
@@ -4438,15 +4438,6 @@ def get_aac_edsebk_book_dicts(session, key, values):
 
         aac_edsebk_book_dicts.append(aac_edsebk_book_dict)
     return aac_edsebk_book_dicts
-
-@page.get("/db/aac_edsebk/<string:edsebk_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_edsebk_book_json(edsebk_id):
-    with Session(engine) as session:
-        aac_edsebk_book_dicts = get_aac_edsebk_book_dicts(session, "edsebk_id", [edsebk_id])
-        if len(aac_edsebk_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_edsebk_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 def get_aac_cerlalc_book_dicts(session, key, values):
     if len(values) == 0:
@@ -4553,15 +4544,6 @@ def get_aac_cerlalc_book_dicts(session, key, values):
 
         aac_cerlalc_book_dicts.append(aac_cerlalc_book_dict)
     return aac_cerlalc_book_dicts
-
-@page.get("/db/aac_cerlalc/<string:cerlalc_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_cerlalc_book_json(cerlalc_id):
-    with Session(engine) as session:
-        aac_cerlalc_book_dicts = get_aac_cerlalc_book_dicts(session, "cerlalc_id", [cerlalc_id])
-        if len(aac_cerlalc_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_cerlalc_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 
 def get_aac_czech_oo42hcks_book_dicts(session, key, values):
@@ -4727,15 +4709,6 @@ def get_aac_czech_oo42hcks_book_dicts(session, key, values):
         aac_czech_oo42hcks_book_dicts.append(aac_czech_oo42hcks_book_dict)
     return aac_czech_oo42hcks_book_dicts
 
-@page.get("/db/aac_czech_oo42hcks/<string:czech_oo42hcks_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_czech_oo42hcks_book_json(czech_oo42hcks_id):
-    with Session(engine) as session:
-        aac_czech_oo42hcks_book_dicts = get_aac_czech_oo42hcks_book_dicts(session, "czech_oo42hcks_id", [czech_oo42hcks_id])
-        if len(aac_czech_oo42hcks_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_czech_oo42hcks_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 
 def get_aac_gbooks_book_dicts(session, key, values):
     if len(values) == 0:
@@ -4828,15 +4801,6 @@ def get_aac_gbooks_book_dicts(session, key, values):
         aac_gbooks_book_dicts.append(aac_gbooks_book_dict)
     return aac_gbooks_book_dicts
 
-@page.get("/db/aac_gbooks/<string:gbooks_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_gbooks_book_json(gbooks_id):
-    with Session(engine) as session:
-        aac_gbooks_book_dicts = get_aac_gbooks_book_dicts(session, "gbooks_id", [gbooks_id])
-        if len(aac_gbooks_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_gbooks_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 
 def get_aac_goodreads_book_dicts(session, key, values):
     if len(values) == 0:
@@ -4928,15 +4892,6 @@ def get_aac_goodreads_book_dicts(session, key, values):
         aac_goodreads_book_dicts.append(aac_goodreads_book_dict)
     return aac_goodreads_book_dicts
 
-@page.get("/db/aac_goodreads/<string:goodreads_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_goodreads_book_json(goodreads_id):
-    with Session(engine) as session:
-        aac_goodreads_book_dicts = get_aac_goodreads_book_dicts(session, "goodreads_id", [goodreads_id])
-        if len(aac_goodreads_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_goodreads_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 
 def get_aac_isbngrp_book_dicts(session, key, values):
     if len(values) == 0:
@@ -5001,15 +4956,6 @@ def get_aac_isbngrp_book_dicts(session, key, values):
 
         aac_isbngrp_book_dicts.append(aac_isbngrp_book_dict)
     return aac_isbngrp_book_dicts
-
-@page.get("/db/aac_isbngrp/<string:isbngrp_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_isbngrp_book_json(isbngrp_id):
-    with Session(engine) as session:
-        aac_isbngrp_book_dicts = get_aac_isbngrp_book_dicts(session, "isbngrp_id", [isbngrp_id])
-        if len(aac_isbngrp_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_isbngrp_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 
 def get_aac_libby_book_dicts(session, key, values):
@@ -5119,15 +5065,6 @@ def get_aac_libby_book_dicts(session, key, values):
         aac_libby_book_dicts.append(aac_libby_book_dict)
     return aac_libby_book_dicts
 
-@page.get("/db/aac_libby/<string:libby_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_libby_book_json(libby_id):
-    with Session(engine) as session:
-        aac_libby_book_dicts = get_aac_libby_book_dicts(session, "libby_id", [libby_id])
-        if len(aac_libby_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_libby_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 def marc_parse_into_file_unified_data(json):
     marc_json = allthethings.marc.marc_json.MarcJson(json)
     openlib_edition = allthethings.openlibrary_marc.parse.read_edition(marc_json)
@@ -5235,15 +5172,6 @@ def get_aac_rgb_book_dicts(session, key, values):
         aac_rgb_book_dicts.append(aac_rgb_book_dict)
     return aac_rgb_book_dicts
 
-@page.get("/db/aac_rgb/<string:rgb_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_rgb_book_json(rgb_id):
-    with Session(engine) as session:
-        aac_rgb_book_dicts = get_aac_rgb_book_dicts(session, "rgb_id", [rgb_id])
-        if len(aac_rgb_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_rgb_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
-
 
 def get_aac_trantor_book_dicts(session, key, values):
     if len(values) == 0:
@@ -5310,15 +5238,6 @@ def get_aac_trantor_book_dicts(session, key, values):
 
         aac_trantor_book_dicts.append(aac_trantor_book_dict)
     return aac_trantor_book_dicts
-
-@page.get("/db/aac_trantor/<string:trantor_id>.json")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def aac_trantor_book_json(trantor_id):
-    with Session(engine) as session:
-        aac_trantor_book_dicts = get_aac_trantor_book_dicts(session, "trantor_id", [trantor_id])
-        if len(aac_trantor_book_dicts) == 0:
-            return "{}", 404
-        return allthethings.utils.nice_json(aac_trantor_book_dicts[0]), {'Content-Type': 'text/json; charset=utf-8'}
 
 # def get_embeddings_for_aarecords(session, aarecords):
 #     filtered_aarecord_ids = [aarecord['id'] for aarecord in aarecords if aarecord['id'].startswith('md5:')]
@@ -7489,23 +7408,23 @@ def db_raw_json(raw_path):
             result_dicts = get_aac_nexusstc_book_dicts(session, "nexusstc_download", [raw_path_split[1]])
         elif raw_path_split[0] == 'aac_nexusstc_md5':
             result_dicts = get_aac_nexusstc_book_dicts(session, "md5", [raw_path_split[1]])
-        elif raw_path_split[0] == 'edsebk':
+        elif raw_path_split[0] == 'aac_edsebk':
             result_dicts = get_aac_edsebk_book_dicts(session, "edsebk_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'cerlalc':
+        elif raw_path_split[0] == 'aac_cerlalc':
             result_dicts = get_aac_cerlalc_book_dicts(session, "cerlalc_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'czech_oo42hcks':
+        elif raw_path_split[0] == 'aac_czech_oo42hcks':
             result_dicts = get_aac_czech_oo42hcks_book_dicts(session, "czech_oo42hcks_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'gbooks':
+        elif raw_path_split[0] == 'aac_gbooks':
             result_dicts = get_aac_gbooks_book_dicts(session, "gbooks_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'goodreads':
+        elif raw_path_split[0] == 'aac_goodreads':
             result_dicts = get_aac_goodreads_book_dicts(session, "goodreads_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'isbngrp':
+        elif raw_path_split[0] == 'aac_isbngrp':
             result_dicts = get_aac_isbngrp_book_dicts(session, "isbngrp_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'libby':
+        elif raw_path_split[0] == 'aac_libby':
             result_dicts = get_aac_libby_book_dicts(session, "libby_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'rgb':
+        elif raw_path_split[0] == 'aac_rgb':
             result_dicts = get_aac_rgb_book_dicts(session, "rgb_id", [raw_path_split[1]])
-        elif raw_path_split[0] == 'trantor':
+        elif raw_path_split[0] == 'aac_trantor':
             result_dicts = get_aac_trantor_book_dicts(session, "trantor_id", [raw_path_split[1]])
         else:
             return '{"error":"Unknown path"}', 404
