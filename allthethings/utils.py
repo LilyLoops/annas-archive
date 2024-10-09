@@ -1104,6 +1104,7 @@ UNIFIED_IDENTIFIERS = {
     "link": { "label": "Link", "url": "%s", "description": "Arbitrary external link, optionally suffixed with a description (after ###)." },
     "isbn10": { "label": "ISBN-10", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "isbn13": { "label": "ISBN-13", "url": "https://en.wikipedia.org/wiki/Special:BookSources?isbn=%s", "description": "", "website": "https://en.wikipedia.org/wiki/ISBN" },
+    "isbn_invalid": { "label": "ISBN-10 Bad Check Digit", "url": "", "description": "Marked as ISBN value, but has a bad check digit or is otherwise invalid.", "website": "https://en.wikipedia.org/wiki/ISBN" },
     "doi": { "label": "DOI", "url": "https://doi.org/%s", "description": "Digital Object Identifier", "website": "https://en.wikipedia.org/wiki/Digital_object_identifier" },
     "lgrsnf": { "label": "Libgen.rs Non-Fiction", "url": "https://libgen.is/json.php?fields=*&ids=%s", "description": "Repository ID for the non-fiction ('libgen') repository in Libgen.rs. Directly taken from the 'id' field in the 'updated' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
     "lgrsfic": { "label": "Libgen.rs Fiction", "url": "https://libgen.is/fiction/", "description": "Repository ID for the fiction repository in Libgen.rs. Directly taken from the 'id' field in the 'fiction' table. Corresponds to the 'thousands folder' torrents.", "website": "/datasets/lgrs" },
@@ -1437,7 +1438,10 @@ def add_isbns_unified(output_dict, potential_isbns):
     isbn10s = set()
     isbn13s = set()
     csbns = set()
+    isbns_invalid = set()
+    isbn13s_invalid = set()
     for potential_isbn in potential_isbns:
+        potential_isbn = potential_isbn.replace('-','').replace(' ', '')
         if '·' in potential_isbn:
             csbns.add(potential_isbn)
         else:
@@ -1447,10 +1451,14 @@ def add_isbns_unified(output_dict, potential_isbns):
                 isbn10 = isbnlib.to_isbn10(isbn13)
                 if isbnlib.is_isbn10(isbn10 or ''):
                     isbn10s.add(isbn10)
+            else:
+                isbns_invalid.add(potential_isbn)
     for isbn10 in isbn10s:
         add_identifier_unified(output_dict, 'isbn10', isbn10)
     for isbn13 in isbn13s:
         add_identifier_unified(output_dict, 'isbn13', isbn13)
+    for isbn_invalid in isbns_invalid:
+        add_identifier_unified(output_dict, 'isbn_invalid', isbn_invalid)
     for csbn in csbns:
         add_identifier_unified(output_dict, 'csbn', csbn)
 

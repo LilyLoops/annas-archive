@@ -152,6 +152,8 @@ INSERT INTO `aarecords_codes_nexusstc` VALUES("aacid:aacid__nexusstc_records__20
 ,("isbn13:9782130588252","nexusstc:6ct789dk2k58tnntfx1072pqb")
 ,("isbn13:9783030719128","nexusstc:bsinlt28ndwrmj2hl3zhk88jm")
 ,("isbn13:9783030719135","nexusstc:bsinlt28ndwrmj2hl3zhk88jm")
+,("isbn_invalid:0212243283","nexusstc:6ct789dk2k58tnntfx1072pqb")
+,("isbn_invalid:4146939145","nexusstc:6s7w2pwgd81akkrpw3803pyhk")
 ,("iso:70743:en","nexusstc:e6envx3axp3tce54a0wnrpe80")
 ,("issn:00189383","nexusstc:101orwkkequ1g2w1r8b1gjg5w")
 ,("issn:03600572","nexusstc:1040wjyuo9pwa31p5uquwt0wx")
