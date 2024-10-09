@@ -1650,7 +1650,9 @@ def process_ol_book_dict(ol_book_dict):
     allthethings.utils.add_isbns_unified(ol_book_dict['edition'], (ol_book_dict['edition']['json'].get('isbn_10') or []) + (ol_book_dict['edition']['json'].get('isbn_13') or []))
     for item in (ol_book_dict['edition']['json'].get('links') or []):
         title = (item.get('title') or '').strip()
-        allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'link', f"{item['url']}###{title}" if title != '' else item['url'])
+        link = f"{item['url']}###{title}" if title != '' else item['url']
+        if len(link.encode()) < allthethings.utils.AARECORDS_CODES_CODE_LENGTH - len('link:') - 5:
+            allthethings.utils.add_identifier_unified(ol_book_dict['edition'], 'link', link)
     for item in (ol_book_dict['edition']['json'].get('lc_classifications') or []):
         # https://openlibrary.org/books/OL52784454M
         if len(item) > 50:
@@ -1923,9 +1925,11 @@ def get_ol_book_dicts(session, key, values):
             allthethings.utils.add_identifier_unified(ol_book_dict['file_unified_data'], 'ol', ol_book_dict['ol_edition'])
 
             for item in (ol_book_dict['edition']['json'].get('subjects') or []):
-                allthethings.utils.add_classification_unified(ol_book_dict['file_unified_data'], 'openlib_subject', item)
+                allthethings.utils.add_classification_unified(ol_book_dict['file_unified_data'], 'openlib_subject', item.encode()[0:allthethings.utils.AARECORDS_CODES_CODE_LENGTH-len('openlib_subject:')-5].decode(errors='replace'))
 
             for source_record_code in (ol_book_dict['edition']['json'].get('source_records') or []):
+                if source_record_code is None:
+                    continue
                 # Logic roughly based on https://github.com/internetarchive/openlibrary/blob/e7e8aa5b/openlibrary/templates/history/sources.html#L27
                 if '/' not in source_record_code and '_meta.mrc:' in source_record_code:
                     allthethings.utils.add_identifier_unified(ol_book_dict['file_unified_data'], 'openlib_source_record', 'ia:' + source_record_code.split('_', 1)[0])
@@ -6875,7 +6879,7 @@ def get_additional_for_aarecord(aarecord):
     for source_record in source_records_by_type['lgrsnf_book']:
         lgrsnf_thousands_dir = (source_record['id'] // 1000) * 1000
         lgrsnf_torrent_path = f"external/libgen_rs_non_fic/r_{lgrsnf_thousands_dir:03}.torrent"
-        lgrsnf_manually_synced = (lgrsnf_thousands_dir <= 4371000)
+        lgrsnf_manually_synced = (lgrsnf_thousands_dir <= 4391000)
         lgrsnf_filename = source_record['md5'].lower()
         if lgrsnf_manually_synced or (lgrsnf_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path):
             additional['torrent_paths'].append({ "collection": "libgen_rs_non_fic", "torrent_path": lgrsnf_torrent_path, "file_level1": lgrsnf_filename, "file_level2": "" })
@@ -6888,7 +6892,7 @@ def get_additional_for_aarecord(aarecord):
     for source_record in source_records_by_type['lgrsfic_book']:
         lgrsfic_thousands_dir = (source_record['id'] // 1000) * 1000
         lgrsfic_torrent_path = f"external/libgen_rs_fic/f_{lgrsfic_thousands_dir}.torrent" # Note: no leading zeroes
-        lgrsfic_manually_synced = (lgrsfic_thousands_dir <= 3026000)
+        lgrsfic_manually_synced = (lgrsfic_thousands_dir <= 3039000)
         lgrsfic_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
         if lgrsfic_manually_synced or (lgrsfic_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path):
             additional['torrent_paths'].append({ "collection": "libgen_rs_fic", "torrent_path": lgrsfic_torrent_path, "file_level1": lgrsfic_filename, "file_level2": "" })

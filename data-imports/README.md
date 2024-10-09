@@ -10,6 +10,9 @@ Roughly the steps are:
 Many steps can be skipped by downloading our [precalculated data](https://annas-archive.se/torrents#aa_derived_mirror_metadata). For more details on that, see below.
 
 ```bash
+# First navigate to this data-imports directory.
+cd /my/path/to/annas-archive/data-imports
+
 [ -e ../../aa-data-import--allthethings-mysql-data ] && (echo '../../aa-data-import--allthethings-mysql-data already exists; aborting'; exit 1)
 [ -e ../../aa-data-import--allthethings-elastic-data ] && (echo '../../aa-data-import--allthethings-elastic-data already exists; aborting'; exit 1)
 [ -e ../../aa-data-import--allthethings-elasticsearchaux-data ] && (echo '../../aa-data-import--allthethings-elasticsearchaux-data already exists; aborting'; exit 1)
