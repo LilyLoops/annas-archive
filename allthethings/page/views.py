@@ -781,17 +781,6 @@ def datasets_zlib_page():
             return "Error with datasets page, please try again.", 503
         raise
 
-@page.get("/datasets/isbndb")
-@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
-def datasets_isbndb_page():
-    try:
-        stats_data = get_stats_data()
-        return render_template("page/datasets_isbndb.html", header_active="home/datasets", stats_data=stats_data)
-    except Exception as e:
-        if 'timed out' in str(e):
-            return "Error with datasets page, please try again.", 503
-        raise
-
 @page.get("/datasets/scihub")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_scihub_page():
@@ -937,6 +926,10 @@ def datasets_rgb_page():
 @page.get("/datasets/trantor")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def datasets_trantor_page():
+    return redirect("/datasets/other_metadata", code=302)
+@page.get("/datasets/isbndb")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def datasets_isbndb_page():
     return redirect("/datasets/other_metadata", code=302)
 
 # @page.get("/datasets/isbn_ranges")

@@ -21,7 +21,7 @@
 
       <tr class="even:bg-[#f2f2f2]">
         <td class="p-2 align-top">
-          <a class="custom-a underline hover:opacity-60" href="/datasets/edsebk">
+          <a class="custom-a underline hover:opacity-60" href="/datasets/other_metadata">
             Other metadata scrapes
           </a>
         </td>
@@ -34,6 +34,10 @@
       </tr>
     </table>
   </div>
+
+  <p class="mb-4">
+    Various smaller or one-off metadata scrapes.
+  </p>
 
   <div class="relative overflow-x-auto border sm:rounded-lg mb-4">
     <table class="w-full text-sm text-left">
@@ -73,6 +77,22 @@
             <p class="">
               The filename of the latest release (annas_archive_meta__aacid__ebscohost_records__20240823T161729Z--Wk44RExtNXgJ3346eBgRk9.jsonl) is incorrect (the timestamp should be a range, and there should not be a uid). We’ll correct this in the next release.
             </p>
+          </td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-black/5">
+          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">isbndb</th>
+          <td class="px-6 py-4"><a href="/isbndb/9780060512804">Page example</a></td>
+          <td class="px-6 py-4"><a href="/db/raw/isbndb/9780060512804.json">AAC example</a></td>
+          <td class="px-6 py-4"></td>
+          <td class="px-6 py-4">
+            <p class="mb-4">
+              ISBNdb is a company that scrapes various online bookstores to find ISBN metadata. We made an initial scrape in 2022, with more information in our blog post <a href="https://annas-archive.org/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html">“ISBNdb dump, or How Many Books Are Preserved Forever?”</a>. Future releases will be made in the AAC format.
+            </p>
+            <p><strong>{{ gettext('page.datasets.isbndb.release1.title') }}</strong></p>
+            <p class="mb-4">{{ gettext('page.datasets.isbndb.release1.text1') }}</p>
+            <p class="mb-4">{{ gettext('page.datasets.isbndb.release1.text2') }}</p>
+            <p class="">{{ gettext('page.datasets.isbndb.release1.text3') }}</p>
           </td>
         </tr>
 
