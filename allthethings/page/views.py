@@ -3841,7 +3841,7 @@ def get_aac_upload_book_dicts(session, key, values):
         aac_upload_book_dict['file_unified_data']['author_best'] = next(iter(aac_upload_book_dict['file_unified_data']['author_additional']), '')
         aac_upload_book_dict['file_unified_data']['publisher_best'] = next(iter(aac_upload_book_dict['file_unified_data']['publisher_additional']), '')
         aac_upload_book_dict['aa_upload_derived']['pages_best'] = next(iter(aac_upload_book_dict['aa_upload_derived']['pages_multiple']), '')
-        aac_upload_book_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(list(dict.fromkeys(aac_upload_book_dict['aa_upload_derived']['description_cumulative']))))
+        aac_upload_book_dict['file_unified_data']['stripped_description_best'] = strip_description('\n\n'.join(list(dict.fromkeys([descr for descr in aac_upload_book_dict['aa_upload_derived']['description_cumulative'] if 'Traceback (most recent call last)' not in descr]))))
         sources_joined = '\n'.join(sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(aac_upload_book_dict['aa_upload_derived']['source_multiple']))
         producers_joined = '\n'.join(sort_by_length_and_filter_subsequences_with_longest_string_and_normalize_unicode(aac_upload_book_dict['aa_upload_derived']['producer_multiple']))
         aac_upload_book_dict['file_unified_data']['comments_multiple'] = list(dict.fromkeys(filter(len, aac_upload_book_dict['aa_upload_derived']['comments_cumulative'] + [
