@@ -15,6 +15,14 @@
   <td class="p-0"></td><td colspan="5" class="p-0 text-xs">The above torrent file is partially broken, but still in use. It can never get to 100% seeding, so leechers are treated as seeders.</td>
 </tr>{% endif %}{% if (not small_file.aa_currently_seeding) and ('/scihub/' not in small_file.file_path) %}<tr class="{% if small_file.obsolete %}line-through{% endif %}">
   <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Not currently seeded by Anna’s Archive.</td>
+</tr>{% endif %}{% if 'peoples-daily-rmrb.tar.zst' in small_file.file_path %}<tr>
+  <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Seems a web-based database of the “People’s Daily”, and maybe more. Someone wrote a <a href="https://github.com/liuzhiliangpc/third_corpus?search=1#111-%E4%BA%BA%E6%B0%91%E6%97%A5%E6%8A%A5%E6%96%B0%E9%97%BB%E6%95%B0%E6%8D%AE">script</a> to extract the text, but not actual good PDFs. Can someone help make good PDFs from this?</td>
+</tr>{% endif %}{% if 'skqs-isos.tar.zst' in small_file.file_path %}<tr>
+  <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Volunteer “n” explains: “This is a software made by Dizhi/迪志 (a company) in Taiwan. It's the text version of Siku Quanshu (skqs, 四库全书, Complete Library of the Four Treasuries). They ran OCR on the entire collection and manually did some corrections. Normally Chinese ancient classics have multiple versions, differing in printing, proofreading, footnotes — almost everything during publishing. And for digitalization there are different scanners and different compress methods. All these make Chinese classics difficult to collect.” Volunteer “l” adds: “文渊阁四库全书文本数据光盘迪志版 is a digitial edition. It has a main EXE program to read the data. NOTE: Some isos (skqs.iso, 201-208, 308) are not complete. I can't find a complete version online. Can others find them? I have a <a href="magnet:?xt=urn:btih:8b9482f29292ca52f3be52cba815ca5f87748037&dn=%E5%9B%9B%E5%BA%93%E5%85%A8%E4%B9%A6">magnet link</a> for the 光盘迪志版. It lacks some data, the same part (skqs.iso, 201-208, 308) as uploaded files. No seeders for a long time.” Can someone help make good PDFs from this?</td>
+</tr>{% endif %}{% if 'taiwanese-scrapes-2023-11-09.tar.zst' in small_file.file_path %}<tr>
+  <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Scrapes of pttweb.cc and Taiwanese news sites. Could be useful for LLM training.</td>
+</tr>{% endif %}{% if 'isbn-cerlalc-2022-11-scrubbed-annas-archive.sql.zst' in small_file.file_path %}<tr>
+  <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Full data leak of CERLALC, scrubbed from personal information. Used to generate the <a href="/datasets/cerlalc">“cerlalc” metadata collection</a>.</td>
 </tr>{% endif %}
 {%- endmacro %}
 
@@ -199,6 +207,8 @@
                 <div class="mb-1 text-sm">Z-Library books. The different types of torrents in this list are cumulative — you need them all to get the full collection. *file count is hidden because of big .tar files. <a href="/torrents/zlib">full list</a><span class="text-xs text-gray-500"> / </span><a href="/datasets/zlib">dataset</a></div>
               {% elif group == 'other_metadata' %}
                 <div class="mb-1 text-sm">Other metadata. <a href="/torrents/other_metadata">full list</a><span class="text-xs text-gray-500"> / </span><a href="/datasets/other_metadata">dataset</a></div>
+              {% elif group == 'aa_misc_data' %}
+                <div class="mb-1 text-sm">Miscellaneous files which are not critical to seed, but which may help with long-term preservation. <a href="/torrents/aa_misc_data">full list</a></div>
               {% elif group == 'libgenrs_covers' %}
                 <div class="mb-1 text-sm">Book covers from Libgen.rs. <a href="/torrents/libgenrs_covers">full list</a><span class="text-xs text-gray-500"> / </span><a href="/datasets/lgrs">dataset</a><span class="text-xs text-gray-500"> / </span><a href="https://annas-archive.se/blog/annas-update-open-source-elasticsearch-covers.html">blog</a></div>
               {% elif group == 'ia' %}
