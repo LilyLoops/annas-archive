@@ -554,7 +554,6 @@ def get_stats_data():
         'ia_date': ia_date,
         'upload_file_date': upload_file_date,
         'duxiu_date': duxiu_file_date,
-        'isbndb_date': '2022-09-01',
         'isbn_country_date': '2022-02-11',
         'oclc_date': '2023-10-01',
         'magzdb_date': '2024-07-29',
@@ -600,6 +599,8 @@ def torrent_group_data_from_file_path(file_path):
     if 'cerlalc_records' in file_path:
         group = 'other_metadata'
     if 'czech_oo42hcks_records' in file_path:
+        group = 'other_metadata'
+    if 'isbndb' in file_path:
         group = 'other_metadata'
 
     return { 'group': group, 'aac_meta_group': aac_meta_group }
