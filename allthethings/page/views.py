@@ -4481,7 +4481,21 @@ def get_aac_cerlalc_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_cerlalc_book_dict['file_unified_data'], 'cerlalc', primary_id)
 
         if (isbn_stripped := (aac_record['metadata']['record']['titulos']['isbn'] or '').strip()) != '':
-            allthethings.utils.add_isbns_unified(aac_cerlalc_book_dict['file_unified_data'], [isbn_stripped])
+            # 740648 "aprobado"
+            # 11008 "rechazada"
+            # 2668 "solicitado"
+            # 845 "pendiente"
+            # 583 "rechazado"
+            # 403 "anulado"
+            # 8 "en_proceso"
+            # 7 ""
+            status_stripped = (aac_record['metadata']['record']['titulos']['estado'] or '').strip()
+            if status_stripped in ['rechazada', 'rechazado', 'anulado']:
+                allthethings.utils.add_identifier_unified(aac_cerlalc_book_dict['file_unified_data'], 'isbn_cancelled', isbn_stripped.replace('-',''))
+            elif status_stripped in ['aprobado', 'solicitado', 'pendiente', 'en_proceso', '']:
+                allthethings.utils.add_isbns_unified(aac_cerlalc_book_dict['file_unified_data'], [isbn_stripped])
+            else:
+                raise Exception(f"Unexpected {status_stripped=} in get_aac_cerlalc_book_dicts")
 
         if (title_stripped := (aac_record['metadata']['record']['titulos']['titulo'] or '').strip()) != '':
             aac_cerlalc_book_dict['file_unified_data']['title_best'] = title_stripped

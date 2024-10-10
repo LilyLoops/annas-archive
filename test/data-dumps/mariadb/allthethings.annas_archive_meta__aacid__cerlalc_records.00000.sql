@@ -6,6 +6,7 @@ INSERT INTO `annas_archive_meta__aacid__cerlalc_records` VALUES("aacid__cerlalc_
 ,("aacid__cerlalc_records__20240918T044206Z__3P8abmxoorveM2gKttGqVF","cerlalc_bolivia__titulos__25902",NULL,104914,38273)
 ,("aacid__cerlalc_records__20240918T044206Z__4ySGN5f8D9wqytiaFqHSMA","cerlalc_paraguay__titulos__1",NULL,49745,3917)
 ,("aacid__cerlalc_records__20240918T044206Z__969UNYjPsEH4iMUC6NwPrc","cerlalc_bolivia__titulos__11",NULL,5792,6380)
+,("aacid__cerlalc_records__20240918T044206Z__9e8g2TN6CskZoH6BhXxSLm","cerlalc_ecuador__titulos__29519",NULL,143187,3193)
 ,("aacid__cerlalc_records__20240918T044206Z__AQtgaJQYuaVztcVJXAWhCC","cerlalc_peru__titulos__1",NULL,53662,4480)
 ,("aacid__cerlalc_records__20240918T044206Z__CsQ2XQ2pgF8QNucLXdzB32","cerlalc_republica_dominicana__titulos__1",NULL,58142,4197)
 ,("aacid__cerlalc_records__20240918T044206Z__DBfNyoV5hDZPoPz5bwhAGW","cerlalc_honduras__titulos__1",NULL,37006,4558)
