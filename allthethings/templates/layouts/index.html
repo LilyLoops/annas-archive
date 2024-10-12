@@ -232,8 +232,8 @@
                     <!-- 我们还在寻找能够让我们保持匿名的专业支付宝/微信支付处理器，使用加密货币。此外，我们正在寻找希望放置小而别致广告的公司。 -->
                     <!-- payment processors -->
                     <!-- 我们还在寻找能够让我们保持匿名的专业支付宝/微信支付处理器，使用加密货币。 <a class="custom-a text-[#fff] hover:text-[#ddd] underline text-xs" href="/contact">{{ gettext('page.contact.title') }}</a> -->
-                    <!-- long live annas-archive.se -->
-                    <!-- ❌ 更新您的书签吧:annas-archive.org 已不复存在,欢迎访问annas-archive.se! 🎉 -->
+                    <!-- long live annas-archive.li -->
+                    <!-- ❌ 更新您的书签吧:annas-archive.org 已不复存在,欢迎访问annas-archive.li! 🎉 -->
                     📄 新博客文章: <a class="custom-a text-[#fff] hover:text-[#ddd] underline" href="/blog/critical-window-chinese.html">海盗图书馆的关键时期</a>
                   </div>
                   <div>
@@ -252,7 +252,7 @@
                     {{ gettext('layout.index.header.banner.mirrors') }} <a class="custom-a text-[#fff] hover:text-[#ddd] underline text-xs" href="/mirrors">{{ gettext('layout.index.header.learn_more') }}</a>
                   </div> -->
                   <!-- <div>
-                    ❌ Update your bookmarks: annas-archive.org is no more, long live annas-archive.se! 🎉
+                    ❌ Update your bookmarks: annas-archive.org is no more, long live annas-archive.li! 🎉
                   </div> -->
                   <!-- <div>
                     {{ gettext('layout.index.header.banner.valentine_gift') }} {{ gettext('layout.index.header.banner.refer', percentage=50) }} <a class="custom-a text-[#fff] hover:text-[#ddd] underline text-xs" href="/refer">{{ gettext('layout.index.header.learn_more') }}</a>
@@ -509,8 +509,8 @@
                 <a class="custom-a block py-1 {% if header_active == 'home/codes'        %}font-bold text-black{% else %}text-black/64{% endif %} hover:text-black" href="/member_codes">{{ gettext('layout.index.header.nav.codes') }}</a>
                 <a class="custom-a block py-1 {% if header_active == 'home/llm'          %}font-bold text-black{% else %}text-black/64{% endif %} hover:text-black" href="/llm">{{ gettext('layout.index.header.nav.llm_data') }}</a>
                 <a class="custom-a block py-1 text-black/64 hover:text-black" href="/blog" target="_blank">{{ gettext('layout.index.header.nav.annasblog') }}</a>
-                <a class="custom-a block py-1 text-black/64 hover:text-black" href="https://software.annas-archive.se" target="_blank">{{ gettext('layout.index.header.nav.annassoftware') }}</a>
-                <a class="custom-a block py-1 text-black/64 hover:text-black" href="https://translate.annas-archive.se" target="_blank">{{ gettext('layout.index.header.nav.translate') }}</a>
+                <a class="custom-a block py-1 text-black/64 hover:text-black" href="https://software.annas-archive.li" target="_blank">{{ gettext('layout.index.header.nav.annassoftware') }}</a>
+                <a class="custom-a block py-1 text-black/64 hover:text-black" href="https://translate.annas-archive.li" target="_blank">{{ gettext('layout.index.header.nav.translate') }}</a>
               </div>
               <a href="/donate" class="{{ 'header-link-active' if header_active == 'donate' }}"><span class="header-link-normal">{{ gettext('layout.index.header.nav.donate') }}{% if g.is_membership_double %} <span class="ml-1 text-xs bg-[#ff005b] text-white px-1 rounded align-[1px]">x2</span>{% endif %}</span><span class="header-link-bold">{{ gettext('layout.index.header.nav.donate') }}{% if g.is_membership_double %} <span class="ml-1 text-xs bg-[#ff005b] text-white px-1 rounded align-[1px]">x2</span>{% endif %}</span></a>
             </div>
@@ -588,8 +588,8 @@
             <a class="custom-a hover:text-[#333]" href="/copyright">{{ gettext('layout.index.footer.list2.dmca_copyright') }}</a><br>
             <a class="custom-a hover:text-[#333]" href="https://www.reddit.com/r/Annas_Archive">{{ gettext('layout.index.footer.list2.reddit') }}</a> / <a class="custom-a hover:text-[#333]" href="https://t.me/annasarchiveorg">{{ gettext('layout.index.footer.list2.telegram') }}</a><br>
             <a class="custom-a hover:text-[#333]" href="/blog">{{ gettext('layout.index.header.nav.annasblog') }}</a><br>
-            <a class="custom-a hover:text-[#333]" href="https://software.annas-archive.se">{{ gettext('layout.index.header.nav.annassoftware') }}</a><br>
-            <a class="custom-a hover:text-[#333]" href="https://translate.annas-archive.se">{{ gettext('layout.index.header.nav.translate') }}</a><br>
+            <a class="custom-a hover:text-[#333]" href="https://software.annas-archive.li">{{ gettext('layout.index.header.nav.annassoftware') }}</a><br>
+            <a class="custom-a hover:text-[#333]" href="https://translate.annas-archive.li">{{ gettext('layout.index.header.nav.translate') }}</a><br>
           </div>
 
           <div class="mr-4 mb-4 grow">
@@ -606,7 +606,6 @@
 
           <div class="grow">
             <strong class="font-bold text-black">{{ gettext('layout.index.footer.list3.header') }}</strong><br>
-            <a class="custom-a hover:text-[#333] js-annas-archive-se" href="https://annas-archive.se">annas-archive.se</a><br>
             <a class="custom-a hover:text-[#333] js-annas-archive-li" href="https://annas-archive.li">annas-archive.li</a><br>
             <a class="custom-a hover:text-[#333] js-annas-archive-org" href="https://annas-archive.org">annas-archive.org</a><br>
           </div>
@@ -616,12 +615,12 @@
     <script>
       (function() {
         // Possible domains we can encounter:
-        const domainsToReplace = ["annas-" + "archive.org", "annas-" + "archive.se", "annas-" + "archive.li", "localtest.me:8000", "localtest.me", window.baseDomain];
-        const validDomains = ["annas-" + "archive.org", "annas-" + "archive.se", "annas-" + "archive.li", "localtest.me:8000", "localtest.me"];
+        const domainsToReplace = ["annas-" + "archive.org", "annas-" + "archive.li", "localtest.me:8000", "localtest.me", window.baseDomain];
+        const validDomains = ["annas-" + "archive.org", "annas-" + "archive.li", "localtest.me:8000", "localtest.me"];
         // For checking and redirecting if our current host is down (but if Cloudflare still responds).
         const initialCheckMs = 0;
         const intervalCheckOtherDomains = 10000;
-        const domainsToNavigateTo = ["annas-" + "archive.se", "annas-" + "archive.li", "annas-" + "archive.org"];
+        const domainsToNavigateTo = ["annas-" + "archive.li", "annas-" + "archive.org"];
         // For testing:
         // const domainsToNavigateTo = ["localtest.me:8000", "testing_redirects.localtest.me:8000"];
 
@@ -631,7 +630,7 @@
         if (isInvalidDomain) {
           console.log("Invalid domain");
           // If the domain is invalid, replace window.baseDomain first, in case the domain
-          // is something weird like 'weird.annas-archive.se'.
+          // is something weird like 'weird.annas-archive.li'.
           domainsToReplace.unshift(window.baseDomain);
         }
 
@@ -646,9 +645,6 @@
         }
         for (const el of document.querySelectorAll(".js-annas-archive-org")) {
           el.href = loc.replace(currentDomainToReplace, "annas-" + "archive.org");
-        }
-        for (const el of document.querySelectorAll(".js-annas-archive-se")) {
-          el.href = loc.replace(currentDomainToReplace, "annas-" + "archive.se");
         }
         for (const el of document.querySelectorAll(".js-annas-archive-li")) {
           el.href = loc.replace(currentDomainToReplace, "annas-" + "archive.li");
@@ -676,7 +672,7 @@
             el.action = el.action.replace(currentDomainToReplace, domain);
           }
         }
-        // useOtherDomain('annas-archive.se'); // For testing.
+        // useOtherDomain('annas-archive.li'); // For testing.
 
         function getRandomString() {
           return Math.random() + "." + Math.random() + "." + Math.random();

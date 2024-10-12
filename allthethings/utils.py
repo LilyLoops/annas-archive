@@ -45,7 +45,7 @@ AARECORDS_CODES_CODE_LENGTH = 680
 AARECORDS_CODES_AARECORD_ID_LENGTH = 300
 AARECORDS_CODES_AARECORD_ID_PREFIX_LENGTH = 20
 
-# Per https://software.annas-archive.se/AnnaArchivist/annas-archive/-/issues/37
+# Per https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/37
 SEARCH_FILTERED_BAD_AARECORD_IDS = [
     "md5:d41d8cd98f00b204e9800998ecf8427e", # md5("")
     "md5:5058f1af8388633f609cadb75a75dc9d", # md5(".")
@@ -916,7 +916,7 @@ def make_anon_download_uri(limit_multiple, speed_kbps, path, filename, domain):
     md5 = base64.urlsafe_b64encode(hashlib.md5(secure_str.encode('utf-8')).digest()).decode('utf-8').rstrip('=')
     return f"d3/{limit_multiple_field}/{expiry}/{speed_kbps}/{urllib.parse.quote(path)}~/{md5}/{filename}"
 
-DICT_COMMENTS_NO_API_DISCLAIMER = "This page is *not* intended as an API. If you need programmatic access to this JSON, please set up your own instance. For more information, see: https://annas-archive.se/datasets and https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports"
+DICT_COMMENTS_NO_API_DISCLAIMER = "This page is *not* intended as an API. If you need programmatic access to this JSON, please set up your own instance. For more information, see: https://annas-archive.li/datasets and https://software.annas-archive.li/AnnaArchivist/annas-archive/-/tree/main/data-imports"
 
 COMMON_DICT_COMMENTS = {
     "identifier": ("after", ["Typically ISBN-10 or ISBN-13."]),

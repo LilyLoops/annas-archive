@@ -7,14 +7,14 @@
 <meta name="twitter:card" value="summary">
 <meta property="og:title" content="Anna’s Update: fully open source archive, ElasticSearch, 300GB+ of book covers" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://annas-archive.se/blog/annas-update-open-source-elasticsearch-covers.html" />
+<meta property="og:url" content="http://annas-archive.li/blog/annas-update-open-source-elasticsearch-covers.html" />
 <meta property="og:description" content="We’ve been working around the clock to provide a good alternative with Anna’s Archive. Here are some of the things we achieved recently." />
 {% endblock %}
 
 {% block body %}
   <h1>Anna’s Update: fully open source archive, ElasticSearch, 300GB+ of book covers</h1>
   <p style="font-style: italic">
-    annas-archive.se/blog, 2022-12-09
+    annas-archive.li/blog, 2022-12-09
   </p>
 
   <p>
@@ -24,7 +24,7 @@
   <h2>Anna’s Archive is fully open source</h2>
 
   <p>
-    We believe that information should be free, and our own code is no exception. We have released all of our code on our privately hosted Gitlab instance: <a href="https://software.annas-archive.se/">Anna’s Software</a>. We also use the issue tracker to organize our work. If you want to engage with our development, this is a great place to start.
+    We believe that information should be free, and our own code is no exception. We have released all of our code on our privately hosted Gitlab instance: <a href="https://software.annas-archive.li/">Anna’s Software</a>. We also use the issue tracker to organize our work. If you want to engage with our development, this is a great place to start.
   </p>
 
   <p>
@@ -60,7 +60,7 @@ render();
   </p>
 
   <p>
-    Another big effort was to automate building the database. When we launched, we just haphazardly pulled different sources together. Now we want to keep them updated, so we wrote a bunch of scripts to download new metadata from the two Library Genesis forks, and integrates them. The goal is to not just make this useful for our archive, but to make things easy for anyone who wants to play around with shadow library metadata. The goal would be a Jupyter notebook that has all sorts of interesting metadata available, so we can do more research like figuring out what <a href="https://annas-archive.se/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html">percentage of ISBNs are preserved forever</a>.
+    Another big effort was to automate building the database. When we launched, we just haphazardly pulled different sources together. Now we want to keep them updated, so we wrote a bunch of scripts to download new metadata from the two Library Genesis forks, and integrates them. The goal is to not just make this useful for our archive, but to make things easy for anyone who wants to play around with shadow library metadata. The goal would be a Jupyter notebook that has all sorts of interesting metadata available, so we can do more research like figuring out what <a href="https://annas-archive.li/blog/blog-isbndb-dump-how-many-books-are-preserved-forever.html">percentage of ISBNs are preserved forever</a>.
   </p>
 
   <p>
@@ -70,7 +70,7 @@ render();
   <h2>Switch to ElasticSearch</h2>
 
   <p>
-    One of our <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/issues/6">tickets</a> was a grab-bag of issues with our search system. We used MySQL full-text search, since we had all our data in MySQL anyway. But it had its limits:
+    One of our <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/6">tickets</a> was a grab-bag of issues with our search system. We used MySQL full-text search, since we had all our data in MySQL anyway. But it had its limits:
   </p>
 
   <ul>
@@ -85,7 +85,7 @@ render();
   </p>
 
   <p>
-    For now, we’ve implemented much faster search, better language support, better relevancy sorting, different sorting options, and filtering on language/book type/file type. If you’re curious how it works, <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/648b425f91cf49107fc67194ad9e8afe2398243e/allthethings/cli/views.py#L140">have</a> <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/648b425f91cf49107fc67194ad9e8afe2398243e/allthethings/page/views.py#L1115">a</a> <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/648b425f91cf49107fc67194ad9e8afe2398243e/allthethings/page/views.py#L1635">look</a>. It’s fairly accessible, though it could use some more comments…
+    For now, we’ve implemented much faster search, better language support, better relevancy sorting, different sorting options, and filtering on language/book type/file type. If you’re curious how it works, <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/648b425f91cf49107fc67194ad9e8afe2398243e/allthethings/cli/views.py#L140">have</a> <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/648b425f91cf49107fc67194ad9e8afe2398243e/allthethings/page/views.py#L1115">a</a> <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/648b425f91cf49107fc67194ad9e8afe2398243e/allthethings/page/views.py#L1635">look</a>. It’s fairly accessible, though it could use some more comments…
   </p>
 
   <h2>300GB+ of book covers released</h2>
@@ -99,7 +99,7 @@ render();
   </p>
 
   <p>
-    Hopefully we can relax our pace a little, now that we have a decent alternative to Z-Library. This workload is not particularly sustainable. If you are interested in helping out with programming, server operations, or preservation work, definitely reach out to us. There is still a lot of <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/issues">work to be done</a>. Thanks for your interest and support.
+    Hopefully we can relax our pace a little, now that we have a decent alternative to Z-Library. This workload is not particularly sustainable. If you are interested in helping out with programming, server operations, or preservation work, definitely reach out to us. There is still a lot of <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues">work to be done</a>. Thanks for your interest and support.
   </p>
 
   <p>

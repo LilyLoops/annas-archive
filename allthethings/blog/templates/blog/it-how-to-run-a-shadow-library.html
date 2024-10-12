@@ -6,7 +6,7 @@
 <meta name="description" content="" />
 <meta name="twitter:card" value="summary">
 <meta property="og:title" content="Come gestire una biblioteca in ombra: le operazioni dell'Archivio di Anna" />
-<meta property="og:image" content="http://annas-archive.se/blog/copyright-bell-curve.png" />
+<meta property="og:image" content="http://annas-archive.li/blog/copyright-bell-curve.png" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="it-how-to-run-a-shadow-library.html" />
 <meta property="og:description" content="" />
@@ -15,7 +15,7 @@
 {% block body %}
   <h1>Come gestire una biblioteca in ombra: le operazioni dell'Archivio di Anna</h1>
   <p style="font-style: italic">
-    annas-archive.se/blog, 2023-03-19
+    annas-archive.li/blog, 2023-03-19
   </p>
 
   <p>
@@ -140,7 +140,7 @@ di caching e protezione.
 non accetta pagamenti anonimi, quindi possiamo utilizzare solo il
 piano gratuito. Ciò significa che non possiamo utilizzare le loro
 funzioni di bilanciamento del carico o di failover. Per questo
-motivo, <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/0f730afd4cc9612ef0c12c0f1b46505a4fd1c724/allthethings/templates/layouts/index.html#L255">abbiamo implementato il tutto a livello di dominio</a>. Al
+motivo, <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/0f730afd4cc9612ef0c12c0f1b46505a4fd1c724/allthethings/templates/layouts/index.html#L255">abbiamo implementato il tutto a livello di dominio</a>. Al
 caricamento della pagina, il browser verifica se il dominio corrente
 è ancora disponibile e, in caso contrario, riscrive tutti gli URL su
 un dominio diverso. Poiché Cloudflare memorizza nella cache molte

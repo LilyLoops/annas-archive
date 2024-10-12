@@ -7,7 +7,7 @@ Roughly the steps are:
 - Generate derived data (mostly ElasticSearch).
 - Swap out the new data in production.
 
-Many steps can be skipped by downloading our [precalculated data](https://annas-archive.se/torrents#aa_derived_mirror_metadata). For more details on that, see below.
+Many steps can be skipped by downloading our [precalculated data](https://annas-archive.li/torrents#aa_derived_mirror_metadata). For more details on that, see below.
 
 ```bash
 # First navigate to this data-imports directory.
@@ -136,7 +136,7 @@ docker compose logs --tail 20 --follow
 For answers to questions about this, please see [this Reddit post and comments](https://www.reddit.com/r/Annas_Archive/comments/1dtb4qz/comment/lbbo3ys/).
 
 ```bash
-# First, download the torrents from https://annas-archive.se/torrents#aa_derived_mirror_metadata to aa-data-import--temp-dir/imports.
+# First, download the torrents from https://annas-archive.li/torrents#aa_derived_mirror_metadata to aa-data-import--temp-dir/imports.
 # Then run these before the commands mentioned above:
 docker exec -it aa-data-import--web /scripts/load_elasticsearch.sh
 docker exec -it aa-data-import--web /scripts/load_elasticsearchaux.sh

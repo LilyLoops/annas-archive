@@ -30,7 +30,7 @@
             ✅ Summa database available through IPFS, though can be slow to download or directly interact with.
           </div>
           <div class="my-2 first:mt-0 last:mb-0">
-            👩‍💻 Anna’s Archive manages a collection of <a href="/torrents#nexusstc">Nexus/STC metadata</a>, through <a href="https://software.annas-archive.se/AnnaArchivist/stc-dump">this code</a>.
+            👩‍💻 Anna’s Archive manages a collection of <a href="/torrents#nexusstc">Nexus/STC metadata</a>, through <a href="https://software.annas-archive.li/AnnaArchivist/stc-dump">this code</a>.
           </div>
         </td>
         <td class="p-2 align-top">
@@ -62,7 +62,7 @@
   </p>
 
   <p class="mb-4">
-    At this point we have only integrated their metadata. For this we pull their Summa database (using <a href="https://software.annas-archive.se/AnnaArchivist/stc-dump">this code</a>), and repackage it in our <a href="https://annas-archive.se/blog/annas-archive-containers.html">Anna’s Archive Containers format</a>. The resulting file can be downloaded on our <a href="/torrents#nexusstc">Nexus/STC torrents page</a>. To mirror the Nexus/STC content files, see their <a href="https://libstc.cc/#/help/replication">replication page</a>.
+    At this point we have only integrated their metadata. For this we pull their Summa database (using <a href="https://software.annas-archive.li/AnnaArchivist/stc-dump">this code</a>), and repackage it in our <a href="https://annas-archive.li/blog/annas-archive-containers.html">Anna’s Archive Containers format</a>. The resulting file can be downloaded on our <a href="/torrents#nexusstc">Nexus/STC torrents page</a>. To mirror the Nexus/STC content files, see their <a href="https://libstc.cc/#/help/replication">replication page</a>.
   </p>
 
   <p class="mb-4">
@@ -76,7 +76,7 @@
     <li class="list-disc">{{ gettext('page.datasets.common.mirrored_file_count', count=(stats_data.stats_by_group.nexusstc.aa_count | numberformat), percent=((stats_data.stats_by_group.nexusstc.aa_count/(stats_data.stats_by_group.nexusstc.count+1)*100.0) | decimalformat)) }}</li>
     <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.nexusstc_date) }}</li>
     <li class="list-disc"><a href="/torrents#nexusstc">Metadata torrents by Anna’s Archive</a></li>
-    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/stc-dump">Our code for exporting from Summa to the AAC format.</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.li/AnnaArchivist/stc-dump">Our code for exporting from Summa to the AAC format.</a></li>
     <li class="list-disc"><a href="/db/raw/aac_nexusstc/1aq6gcl3bo1yxavod8lpw1t7h.json">Example record on Anna’s Archive (AAC format)</a></li>
     <li class="list-disc"><a href="/nexusstc/1aq6gcl3bo1yxavod8lpw1t7h">Example metadata record on Anna’s Archive (full page)</a></li>
     <li class="list-disc"><a href="/nexusstc_download/1040wjyuo9pwa31p5uquwt0wx">Example content record on Anna’s Archive (when MD5 is not available)</a></li>
@@ -89,7 +89,7 @@
     <li class="list-disc"><a href="https://x.com/the_superpirate">Ultranymous/
     the_superpirate X/Twitter</a></li>
     <li class="list-disc"><a href="https://x.com/ultranymous">ultranymous X/Twitter</a></li>
-    <li class="list-disc"><a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
-    <li class="list-disc"><a href="https://annas-archive.se/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
+    <li class="list-disc"><a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/tree/main/data-imports">{{ gettext('page.datasets.common.import_scripts') }}</a></li>
+    <li class="list-disc"><a href="https://annas-archive.li/blog/annas-archive-containers.html">{{ gettext('page.datasets.common.aac') }}</a></li>
   </ul>
 {% endblock %}

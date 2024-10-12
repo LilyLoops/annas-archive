@@ -6,7 +6,7 @@
 <meta name="description" content="There is no “AWS for shadow charities”, so how do we run Anna’s Archive?" />
 <meta name="twitter:card" value="summary">
 <meta property="og:title" content="How to run a shadow library: operations at Anna’s Archive" />
-<meta property="og:image" content="https://annas-archive.se/blog/copyright-bell-curve.png" />
+<meta property="og:image" content="https://annas-archive.li/blog/copyright-bell-curve.png" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="how-to-run-a-shadow-library.html" />
 <meta property="og:description" content="There is no “AWS for shadow charities”, so how do we run Anna’s Archive?" />
@@ -15,7 +15,7 @@
 {% block body %}
   <h1>How to run a shadow library: operations at Anna’s Archive</h1>
   <p style="font-style: italic">
-    annas-archive.se/blog, 2023-03-19
+    annas-archive.li/blog, 2023-03-19
   </p>
 
   <p>
@@ -79,7 +79,7 @@
   <img src="diagram3.svg" style="max-width: 100%">
 
   <p>
-    Cloudflare does not accept anonymous payments, so we can only use their free plan. This means that we can’t use their load balancing or failover features. We therefore <a href="https://software.annas-archive.se/AnnaArchivist/annas-archive/-/blob/0f730afd4cc9612ef0c12c0f1b46505a4fd1c724/allthethings/templates/layouts/index.html#L255">implemented this ourselves</a> at the domain level. On page load, the browser will check if the current domain is still available, and if not, it rewrites all URLs to a different domain. Since Cloudflare caches many pages, this means that a user can land on our main domain, even if the proxy server is down, and then on the next click be moved over to another domain.
+    Cloudflare does not accept anonymous payments, so we can only use their free plan. This means that we can’t use their load balancing or failover features. We therefore <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/0f730afd4cc9612ef0c12c0f1b46505a4fd1c724/allthethings/templates/layouts/index.html#L255">implemented this ourselves</a> at the domain level. On page load, the browser will check if the current domain is still available, and if not, it rewrites all URLs to a different domain. Since Cloudflare caches many pages, this means that a user can land on our main domain, even if the proxy server is down, and then on the next click be moved over to another domain.
   </p>
 
   <p>

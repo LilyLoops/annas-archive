@@ -369,10 +369,10 @@ def donation_page(donation_id):
                 # Note that these are sorted by key.
                 "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
-                "notify_url": "https://annas-archive.se/dyn/payment1_notify/",
+                "notify_url": "https://annas-archive.li/dyn/payment1_notify/",
                 "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1_ID,
-                "return_url": "https://annas-archive.se/account/",
+                "return_url": "https://annas-archive.li/account/",
                 "sitename": "Anna’s Archive",
             }
             sign_str = '&'.join([f'{k}={v}' for k, v in data.items()]) + PAYMENT1_KEY
@@ -383,10 +383,10 @@ def donation_page(donation_id):
                 # Note that these are sorted by key.
                 "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
-                "notify_url": "https://annas-archive.se/dyn/payment1_notify/",
+                "notify_url": "https://annas-archive.li/dyn/payment1_notify/",
                 "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1_ID,
-                "return_url": "https://annas-archive.se/account/",
+                "return_url": "https://annas-archive.li/account/",
                 "sitename": "Anna’s Archive",
                 "type": "alipay",
             }
@@ -398,10 +398,10 @@ def donation_page(donation_id):
                 # Note that these are sorted by key.
                 "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
-                "notify_url": "https://annas-archive.se/dyn/payment1_notify/",
+                "notify_url": "https://annas-archive.li/dyn/payment1_notify/",
                 "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1_ID,
-                "return_url": "https://annas-archive.se/account/",
+                "return_url": "https://annas-archive.li/account/",
                 "sitename": "Anna’s Archive",
                 "type": "wxpay",
             }
@@ -414,10 +414,10 @@ def donation_page(donation_id):
                 # Note that these are sorted by key.
                 "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
                 "name": "Anna’s Archive Membership",
-                "notify_url": "https://annas-archive.se/dyn/payment1b_notify/",
+                "notify_url": "https://annas-archive.li/dyn/payment1b_notify/",
                 "out_trade_no": str(donation['donation_id']),
                 "pid": PAYMENT1B_ID,
-                "return_url": "https://annas-archive.se/account/",
+                "return_url": "https://annas-archive.li/account/",
                 "sitename": "Anna’s Archive",
             }
             sign_str = '&'.join([f'{k}={v}' for k, v in data.items()]) + PAYMENT1B_KEY
@@ -481,7 +481,7 @@ def donation_page(donation_id):
 
         donation_email = f"AnnaReceipts+{donation_dict['receipt_id']}@proton.me"
         if donation_json['method'] == 'amazon':
-            donation_email = f"giftcards+{donation_dict['receipt_id']}@annas-archive.se"
+            donation_email = f"giftcards+{donation_dict['receipt_id']}@annas-archive.li"
 
         # # No need to call get_referral_account_id here, because we have already verified, and we don't want to take away their bonus because
         # # the referrer's membership expired.

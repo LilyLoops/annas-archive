@@ -183,7 +183,7 @@ def extensions(app):
     @app.before_request
     def before_req():
         if X_AA_SECRET is not None and request.headers.get('x-aa-secret') != X_AA_SECRET and (not request.full_path.startswith('/dyn/up')):
-            return gettext('layout.index.invalid_request', websites='annas-archive.se, .li, .org')
+            return gettext('layout.index.invalid_request', websites='annas-archive.li, .org')
 
         # Add English as a fallback language to all translations.
         translations = get_translations()
@@ -193,8 +193,8 @@ def extensions(app):
             translations_with_english_fallback.add(translations)
 
         g.app_debug = app.debug
-        g.base_domain = 'annas-archive.se'
-        valid_other_domains = ['annas-archive.li', 'annas-archive.org']
+        g.base_domain = 'annas-archive.li'
+        valid_other_domains = ['annas-archive.org']
         if app.debug:
             valid_other_domains.append('localtest.me:8000')
         # Not just for app.debug, but also for Docker health check.

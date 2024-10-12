@@ -887,8 +887,8 @@ def account_buy_membership():
                 "name": "Anna",
                 "currency": "USD",
                 "amount": round(float(membership_costs['cost_cents_usd']) / 100.0, 2),
-                "redirectUrl": "https://annas-archive.se/account",
-                "notifyUrl": f"https://annas-archive.se/dyn/hoodpay_notify/{donation_id}",
+                "redirectUrl": "https://annas-archive.li/account",
+                "notifyUrl": f"https://annas-archive.li/dyn/hoodpay_notify/{donation_id}",
             }
             response = httpx.post(HOODPAY_URL, json=payload, headers={"Authorization": f"Bearer {HOODPAY_AUTH}"}, proxies=PAYMENT2_PROXIES, timeout=10.0)
             response.raise_for_status()
@@ -898,7 +898,7 @@ def account_buy_membership():
             data = {
                 # Note that these are sorted by key.
                 "amount": str(int(float(membership_costs['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
-                "callbackUrl": "https://annas-archive.se/dyn/payment3_notify/",
+                "callbackUrl": "https://annas-archive.li/dyn/payment3_notify/",
                 "clientIp": "1.1.1.1",
                 "mchId": 20000007,
                 "mchOrderId": donation_id,
@@ -914,7 +914,7 @@ def account_buy_membership():
             donation_json['payment3_request'] = response.json()
             if str(donation_json['payment3_request']['code']) != '1':
                 print(f"Warning payment3_request error: {donation_json['payment3_request']}")
-                return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.unknown', email="https://annas-archive.se/contact") })
+                return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.unknown', email="https://annas-archive.li/contact") })
 
         if method in ['payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc']:
             if method == 'payment2':
@@ -943,10 +943,10 @@ def account_buy_membership():
                 })
                 donation_json['payment2_request'] = response.json()
             except httpx.HTTPError:
-                return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.try_again', email="https://annas-archive.se/contact") })
+                return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.try_again', email="https://annas-archive.li/contact") })
             except Exception as err:
                 print(f"Warning: unknown error in payment2 http request: {repr(err)} /// {traceback.format_exc()}")
-                return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.unknown', email="https://annas-archive.se/contact") })
+                return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.unknown', email="https://annas-archive.li/contact") })
 
 
             if 'code' in donation_json['payment2_request']:
@@ -954,10 +954,10 @@ def account_buy_membership():
                     return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.minimum') })
                 elif donation_json['payment2_request']['code'] == 'INTERNAL_ERROR':
                     print(f"Warning: internal error in payment2_request: {donation_json['payment2_request']=}")
-                    return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.wait', email="https://annas-archive.se/contact") })
+                    return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.wait', email="https://annas-archive.li/contact") })
                 else:
                     print(f"Warning: unknown error in payment2 with code missing: {donation_json['payment2_request']} /// {curlify2.to_curl(response.request)}")
-                    return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.unknown', email="https://annas-archive.se/contact") })
+                    return orjson.dumps({ 'error': gettext('dyn.buy_membership.error.unknown', email="https://annas-archive.li/contact") })
 
         
         # existing_unpaid_donations_counts = mariapersist_session.connection().execute(select(func.count(MariapersistDonations.donation_id)).where((MariapersistDonations.account_id == account_id) & ((MariapersistDonations.processing_status == 0) | (MariapersistDonations.processing_status == 4))).limit(1)).scalar()

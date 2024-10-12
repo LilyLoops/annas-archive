@@ -20,7 +20,7 @@ To get Anna's Archive running locally:
   ```bash
   mkdir annas-archive-outer # Several data directories will get created in here.
   cd annas-archive-outer
-  git clone https://software.annas-archive.se/AnnaArchivist/annas-archive.git --depth=1
+  git clone https://software.annas-archive.li/AnnaArchivist/annas-archive.git --depth=1
   cd annas-archive
   cp .env.dev .env
   cp data-imports/.env-data-imports.dev data-imports/.env-data-imports
@@ -151,9 +151,9 @@ One-time scraped datasets should ideally follow our AAC conventions. Follow this
 
 ## Contributing
 
-To report bugs or suggest new ideas, please file an ["issue"](https://software.annas-archive.se/AnnaArchivist/annas-archive/-/issues).
+To report bugs or suggest new ideas, please file an ["issue"](https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues).
 
-To contribute code, also file an [issue](https://software.annas-archive.se/AnnaArchivist/annas-archive/-/issues), and include your `git diff` inline (you can use \`\`\`diff to get some syntax highlighting on the diff). Merge requests are currently disabled for security purposes — if you make consistently useful contributions you might get access.
+To contribute code, also file an [issue](https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues), and include your `git diff` inline (you can use \`\`\`diff to get some syntax highlighting on the diff). Merge requests are currently disabled for security purposes — if you make consistently useful contributions you might get access.
 
 For larger projects, please contact Anna first on [Reddit](https://www.reddit.com/r/Annas_Archive/).
 

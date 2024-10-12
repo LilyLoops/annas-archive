@@ -8,7 +8,7 @@ IMPORTANT: Please ALSO store the original files (HTML, XML, JSON) and zip them, 
 
 Give us a single .jsonl file, which should be in the AAC format.
 
-* Here is are examples: https://software.annas-archive.se/AnnaArchivist/annas-archive/-/tree/main/aacid_small
+* Here is are examples: https://software.annas-archive.li/AnnaArchivist/annas-archive/-/tree/main/aacid_small
 * And here is the documentation: https://annas-archive.org/blog/annas-archive-containers.html
 
 Essentially just wrap every line in `{"aacid":..,"metadata":<your original json>}`. Your original JSON should have the ID of the record as its first field. If you have fields of multiple types (e.g. "groups" and "books"), then you can prefix the ID with the type, e.g. "group_001" and "book_789".

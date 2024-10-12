@@ -10,7 +10,7 @@ mkdir /temp-dir/aac_duxiu_records
 
 cd /temp-dir/aac_duxiu_records
 
-curl -C - -O https://annas-archive.se/dyn/torrents/latest_aac_meta/duxiu_records.torrent
+curl -C - -O https://annas-archive.li/dyn/torrents/latest_aac_meta/duxiu_records.torrent
 
 # Tried ctorrent and aria2, but webtorrent seems to work best overall.
 webtorrent --verbose download duxiu_records.torrent

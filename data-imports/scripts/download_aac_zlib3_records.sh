@@ -10,7 +10,7 @@ mkdir /temp-dir/aac_zlib3_records
 
 cd /temp-dir/aac_zlib3_records
 
-curl -C - -O https://annas-archive.se/dyn/torrents/latest_aac_meta/zlib3_records.torrent
+curl -C - -O https://annas-archive.li/dyn/torrents/latest_aac_meta/zlib3_records.torrent
 
 # Tried ctorrent and aria2, but webtorrent seems to work best overall.
 webtorrent --verbose download zlib3_records.torrent

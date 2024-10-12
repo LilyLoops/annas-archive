@@ -10,7 +10,7 @@ mkdir /temp-dir/aac_ia2_acsmpdf_files
 
 cd /temp-dir/aac_ia2_acsmpdf_files
 
-curl -C - -O https://annas-archive.se/dyn/torrents/latest_aac_meta/ia2_acsmpdf_files.torrent
+curl -C - -O https://annas-archive.li/dyn/torrents/latest_aac_meta/ia2_acsmpdf_files.torrent
 
 # Tried ctorrent and aria2, but webtorrent seems to work best overall.
 webtorrent --verbose download ia2_acsmpdf_files.torrent
