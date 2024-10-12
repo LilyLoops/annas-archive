@@ -2521,9 +2521,9 @@ def get_lgli_file_dicts(session, key, values):
             if len((edition_dict['issue_series_issn'] or '').strip()) > 0:
                 allthethings.utils.add_issn_unified(edition_dict, edition_dict['issue_series_issn'].strip())
 
-            edition_dict['stripped_description'] = ''
+            edition_dict['stripped_description_normalized'] = ''
             if len(edition_dict['descriptions_mapped'].get('description') or []) > 0:
-                edition_dict['stripped_description'] = strip_description("\n\n".join(edition_dict['descriptions_mapped']['description']))
+                edition_dict['stripped_description_normalized'] = strip_description("\n\n".join(edition_dict['descriptions_mapped']['description']))
 
             edition_dict['edition_type_full'] = allthethings.utils.LGLI_EDITION_TYPE_MAPPING.get(edition_dict['type'], '')
 
@@ -2569,8 +2569,8 @@ def get_lgli_file_dicts(session, key, values):
         lgli_file_dict['file_unified_data']['author_best'] = lgli_file_dict['editions'][0]['authors_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
         lgli_file_dict['file_unified_data']['author_additional'] = [edition['authors_normalized'] for edition in lgli_file_dict['editions']]
 
-        lgli_file_dict['file_unified_data']['publisher_best'] = lgli_file_dict['editions'][0]['publishers_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
-        lgli_file_dict['file_unified_data']['publisher_additional'] = [edition['publishers_normalized'] for edition in lgli_file_dict['editions']]
+        lgli_file_dict['file_unified_data']['publisher_best'] = lgli_file_dict['editions'][0]['publisher_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
+        lgli_file_dict['file_unified_data']['publisher_additional'] = [edition['publisher_normalized'] for edition in lgli_file_dict['editions']]
 
         lgli_file_dict['file_unified_data']['edition_varia_best'] = lgli_file_dict['editions'][0]['edition_varia_normalized'] if len(lgli_file_dict['editions']) == 1 else ''
         lgli_file_dict['file_unified_data']['edition_varia_additional'] = [edition['edition_varia_normalized'] for edition in lgli_file_dict['editions']]

@@ -6593,6 +6593,7 @@ INSERT INTO `aarecords_codes_main` VALUES("aacid:aacid__czech_oo42hcks_records__
 ,("year:2010","md5:74f3b80bbb292475043d13f21e5f5059")
 ,("year:2011","md5:08f2874f2a84acd3a00c76a48c91814f")
 ,("year:2011","md5:99aaa193197795a2064fd7d6bda0c3c1")
+,("year:2012","md5:059ec79fbbe7b5612278d27fe64d7c2f")
 ,("year:2012","md5:3a662f5921336b88982ceea7169add23")
 ,("year:2012","md5:b6b75de1b3a330095eb7388068c1b948")
 ,("year:2018","md5:6de36a601e633e6412d72eb1860bf161")
