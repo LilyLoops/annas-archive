@@ -6682,7 +6682,7 @@ def get_additional_for_aarecord(aarecord):
 
     md5_content_type_mapping = get_md5_content_type_mapping(allthethings.utils.get_base_lang_code(get_locale()))
 
-    cover_url = aarecord['file_unified_data']['cover_url_best']
+    cover_url = aarecord['file_unified_data']['cover_url_best'].replace('https://libgen.rs', 'https://libgen.is')
     zlib3_cover_path = ((next(iter(source_records_by_type['aac_zlib3_book']), {})).get('cover_path') or '')
     if '/collections/' in zlib3_cover_path:
         cover_url = f"https://s3proxy.cdn-zlib.sk/{zlib3_cover_path}"
