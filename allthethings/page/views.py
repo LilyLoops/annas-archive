@@ -6685,7 +6685,7 @@ def get_additional_for_aarecord(aarecord):
     cover_url = aarecord['file_unified_data']['cover_url_best']
     zlib3_cover_path = ((next(iter(source_records_by_type['aac_zlib3_book']), {})).get('cover_path') or '')
     if '/collections/' in zlib3_cover_path:
-        cover_url = f"https://s3proxy.cdn-zlib.se/{zlib3_cover_path}"
+        cover_url = f"https://s3proxy.cdn-zlib.sk/{zlib3_cover_path}"
     elif 'zlib' in cover_url or '1lib' in cover_url: # Remove old zlib cover_urls.
         non_zlib_covers = [url for url in aarecord['file_unified_data']['cover_url_additional'] if ('zlib' not in url and '1lib' not in url)]
         if len(non_zlib_covers) > 0:
