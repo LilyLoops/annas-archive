@@ -10,7 +10,7 @@ mkdir /temp-dir/aac_upload_records
 
 cd /temp-dir/aac_upload_records
 
-curl -C - -O https://annas-archive.org/dyn/torrents/latest_aac_meta/upload_records.torrent
+curl -C - -O https://annas-archive.li/dyn/torrents/latest_aac_meta/upload_records.torrent
 
 # Tried ctorrent and aria2, but webtorrent seems to work best overall.
 webtorrent --verbose download upload_records.torrent
