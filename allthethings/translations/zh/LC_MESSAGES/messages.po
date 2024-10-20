@@ -1,6 +1,21 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-15 11:22+0000\n"
+"PO-Revision-Date: 2024-10-18 08:18+0000\n"
+"Last-Translator: X Zhao <zx0@mail.ustc.edu.cn>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.7.2\n"
+
 #: allthethings/app.py:186
 msgid "layout.index.invalid_request"
-msgstr "无效的请求。访问 %(websites)s。"
+msgstr "无效的请求。请访问 %(websites)s。"
 
 #: allthethings/app.py:251
 msgid "layout.index.header.tagline_scihub"
@@ -289,7 +304,7 @@ msgstr "超过$5000的捐赠请直接通过%(email)s联系我们。"
 #: allthethings/account/templates/account/donate.html:116
 #, fuzzy
 msgid "page.donate.header.recurring"
-msgstr "请注意，虽然此页面上的会员资格是“按月”计算，但它们是一次性捐赠（不重复）。请参阅<a %(faq)s>捐赠常见问题解答</a>。"
+msgstr "请注意，虽然此页面上的会员资格是“按月”计算，但它们是一次性捐赠（不会自动续费）。请参阅<a %(faq)s>捐赠常见问题解答</a>。"
 
 #: allthethings/account/templates/account/donate.html:118
 msgid "page.donate.without_membership"
@@ -312,7 +327,7 @@ msgstr "亚马逊礼品卡"
 #: allthethings/account/templates/account/donate.html:139
 #, fuzzy
 msgid "page.donate.payment.buttons.bank_card_app"
-msgstr "银行卡（使用应用程序）"
+msgstr "银行卡（使用app）"
 
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
@@ -365,7 +380,6 @@ msgid "page.donate.payment.buttons.paypal_plain"
 msgstr "PayPal"
 
 #: allthethings/account/templates/account/donate.html:156
-#, fuzzy
 msgid "page.donate.payment.buttons.bank_card"
 msgstr "银行卡"
 
@@ -512,9 +526,8 @@ msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "这种方法使用加密货币提供商作为媒介。这种方式操作可能比较复杂，因此请仅在其他支付方法无效时使用此方法。而且，这种方法并不适用于所有国家。"
 
 #: allthethings/account/templates/account/donate.html:323
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
-msgstr "通过支付宝应用程序使用信用卡/借记卡捐赠（设置超级简单）。"
+msgstr "通过支付宝使用信用卡/借记卡捐赠（设置超级简单）。"
 
 #: allthethings/account/templates/account/donate.html:327
 #: allthethings/account/templates/account/donation.html:508
@@ -573,19 +586,16 @@ msgid "page.donate.ccexp.crypto"
 msgstr "你可以使用信用卡/借记卡购买加密货币。"
 
 #: allthethings/account/templates/account/donate.html:379
-#, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "加密货币快速服务"
 
 #: allthethings/account/templates/account/donate.html:381
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
-msgstr "快速服务方便，但收取较高的费用。"
+msgstr "快速服务虽然更为便捷，但同时也会产生高昂的手续费。"
 
 #: allthethings/account/templates/account/donate.html:382
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
-msgstr "如果您希望快速进行较大金额的捐赠，并且不介意支付5-10美元的费用，可以使用此服务而不是加密货币交易所。"
+msgstr "如果您希望方便快捷地进行大金额的捐赠，并且不介意额外多支付5-10美元的手续费，可以使用此服务。"
 
 #: allthethings/account/templates/account/donate.html:385
 #, fuzzy
@@ -3876,9 +3886,8 @@ msgid "page.datasets.upload.source.cgiym_more"
 msgstr "来自我们的志愿者“cgiym”的非中文集合（表示为子目录）。"
 
 #: allthethings/page/templates/page/datasets_upload.html:123
-#, fuzzy
 msgid "page.datasets.upload.source.degruyter"
-msgstr "来自学术出版社 <a %(a_href)s>De Gruyter</a> 的书籍，从几个大型种子中收集。"
+msgstr "从几个大型种子中收集的学术出版社 <a %(a_href)s>De Gruyter</a> 的书籍。"
 
 #: allthethings/page/templates/page/datasets_upload.html:130
 #, fuzzy
@@ -3886,9 +3895,8 @@ msgid "page.datasets.upload.source.docer"
 msgstr "抓取自 <a %(a_href)s>docer.pl</a>，一个专注于书籍和其他书面作品的波兰文件共享网站。由志愿者“p”在2023年末抓取。我们没有从原网站获得好的元数据（甚至没有文件扩展名），但我们过滤了类似书籍的文件，并且通常能够从文件本身提取元数据。"
 
 #: allthethings/page/templates/page/datasets_upload.html:137
-#, fuzzy
 msgid "page.datasets.upload.source.duxiu_epub"
-msgstr "读秀的epub文件，直接来自读秀，由志愿者“w”收集。只有最近的读秀书籍可以直接通过电子书获得，所以这些书籍大多是最近的。"
+msgstr "由志愿者“w”收集的读秀的epub文件。读秀仅提供最近几年书籍的电子版，因此这个集合中的大部分书都是很新的。"
 
 #: allthethings/page/templates/page/datasets_upload.html:144
 #, fuzzy
@@ -3900,9 +3908,8 @@ msgid "page.datasets.upload.source.japanese_manga"
 msgstr "由志愿者“t”从一家日本漫画出版社抓取的集合。"
 
 #: allthethings/page/templates/page/datasets_upload.html:158
-#, fuzzy
 msgid "page.datasets.upload.source.longquan_archives"
-msgstr "<a %(a_href)s>龙泉司法档案精选</a>，由志愿者“c”提供。"
+msgstr "由志愿者“c”提供的<a %(a_href)s>龙泉司法档案精选</a>。"
 
 #: allthethings/page/templates/page/datasets_upload.html:165
 #, fuzzy
@@ -3960,9 +3967,8 @@ msgid "page.datasets.zlib.description.allegations.title"
 msgstr "截至2023年2月的更新。"
 
 #: allthethings/page/templates/page/datasets_zlib.html:46
-#, fuzzy
 msgid "page.datasets.zlib.description.allegations"
-msgstr "在2022年底，Z-Library的涉嫌创始人被捕，域名被美国当局查封。从那时起，该网站逐渐重新上线。目前尚不清楚是谁在运营它。"
+msgstr "在2022年底，Z-Library的涉嫌创始人被捕，且域名被美国当局查封。但之后该网站以另外的方式被未知运营者重新上线。"
 
 #: allthethings/page/templates/page/datasets_zlib.html:50
 #, fuzzy
@@ -6255,4 +6261,3 @@ msgstr "下一页"
 
 #~ msgid "page.datasets.isbndb.release1.text4"
 #~ msgstr "目前我们有一个种子，包含一个4.4GB的gzip压缩<a %(a_jsonl)s>JSON Lines</a>文件（解压后20GB）：“isbndb_2022_09.jsonl.gz”。要将“.jsonl”文件导入PostgreSQL，您可以使用类似<a %(a_script)s>此脚本</a>的东西。您甚至可以使用类似%(example_code)s的东西直接管道传输，以便它在传输过程中解压。"
-
