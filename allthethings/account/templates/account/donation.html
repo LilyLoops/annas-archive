@@ -266,6 +266,9 @@
           {{ gettext('page.donation.revolut.step2.transfer', icon=('<span class="icon-[cil--transfer] align-middle"></span>' | safe), help_video=(dict(href="https://youtu.be/iYMtrm5SViE") | xmlattr)) }}
         </p>
 
+        <!-- TODO:TRANSLATE -->
+        <p class="mb-4 font-bold">Be sure to use the BTC amount below, <em>NOT</em> euros or dollars, otherwise we won’t receive receive the correct amount and can’t automatically confirm your membership.</p>
+
         <p class="mb-4">
           {{ gettext('page.donation.transfer_amount_to', amount=((donation_pay_amount + ' ' + (donation_dict.json.payment2_request.pay_currency | upper) + ' ' + copy_button(donation_pay_amount)) | safe), account=((donation_dict.json.payment2_request.pay_address + ' ' + copy_button(donation_dict.json.payment2_request.pay_address)) | safe)) }}
         </p>
