@@ -546,7 +546,7 @@ MEMBERSHIP_METHOD_MAXIMUM_CENTS_NATIVE = {
     "payment1bb": 100000,
     "payment3a": 150000,
     "payment3a_cc": 150000,
-    "payment3b": 150000,
+    "payment3b": 500000,
     "amazon": 20000,
 }
 MEMBERSHIP_MAX_BONUS_DOWNLOADS = 10000

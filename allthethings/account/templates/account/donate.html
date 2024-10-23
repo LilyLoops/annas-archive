@@ -161,11 +161,9 @@
     </div>
 
     <div class="flex flex-wrap w-full">
+      {{ donate_button('payment3b', gettext('page.donate.payment.buttons.wechat'), discount_percent=0, large=True) }}
       {{ donate_button('payment3a', "{} 支付宝".format(gettext('page.donate.payment.buttons.alipay') if g.domain_lang_code != 'zh' else ''), discount_percent=0, large=True) }}
       {{ donate_button('payment1b', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体R)</span>' | safe, discount_percent=0) }}
-      <div class="hidden">
-        {{ donate_button('payment3b', gettext('page.donate.payment.buttons.wechat'), discount_percent=0) }}
-      </div>
     </div>
 
     <div class="flex flex-wrap w-full">
