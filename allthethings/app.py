@@ -95,6 +95,9 @@ def get_static_file_contents(filepath):
             return static_file.read()
     return ''
 
+def jinja_md5(s):
+    return hashlib.md5(s.encode()).hexdigest()
+
 def extensions(app):
     """
     Register 0 or more extensions (mutates the app passed in).
@@ -131,6 +134,7 @@ def extensions(app):
     app.jinja_env.lstrip_blocks = True
     app.jinja_env.globals['get_locale'] = get_locale
     app.jinja_env.globals['make_code_for_display'] = allthethings.utils.make_code_for_display
+    app.jinja_env.globals['md5'] = jinja_md5
     app.jinja_env.globals['FEATURE_FLAGS'] = allthethings.utils.FEATURE_FLAGS
 
     def urlsafe_b64encode(string):

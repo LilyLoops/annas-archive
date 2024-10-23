@@ -51,3 +51,4 @@ SLOW_DATA_IMPORTS = str(os.getenv("SLOW_DATA_IMPORTS", "")).lower() in ["1","tru
 AACID_SMALL_DATA_IMPORTS = str(os.getenv("AACID_SMALL_DATA_IMPORTS", "")).lower() in ["1","true"]
 
 FLASK_DEBUG = str(os.getenv("FLASK_DEBUG", "")).lower() in ["1","true"]
+DEBUG_TB_INTERCEPT_REDIRECTS = False

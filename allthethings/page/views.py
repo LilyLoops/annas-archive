@@ -1040,6 +1040,10 @@ def member_codes_page():
             return redirect(f"/codes?prefix_b64={prefix_b64}", code=302)
     return codes_page()
 
+def code_make_label(bytestr):
+    label = bytestr.decode(errors='replace')
+    return "".join(['�' if ((not char.isprintable()) or (char.isspace() and char != ' ')) else char for char in label])
+
 @page.get("/codes")
 @page.post("/codes")
 @allthethings.utils.no_cache()
@@ -1066,16 +1070,16 @@ def codes_page():
 
         cursor.execute("DROP FUNCTION IF EXISTS fn_get_next_codepoint")
         cursor.execute("""
-            CREATE FUNCTION fn_get_next_codepoint(initial INT, prefix VARCHAR(200)) RETURNS INT
+            CREATE FUNCTION fn_get_next_codepoint(initial INT, prefix VARBINARY(2000)) RETURNS INT
             NOT DETERMINISTIC
             READS SQL DATA
             BEGIN
-                    DECLARE _next VARCHAR(200);
+                    DECLARE _next VARBINARY(2000);
                     DECLARE EXIT HANDLER FOR NOT FOUND RETURN 0;
                     SELECT  ORD(SUBSTRING(code, LENGTH(prefix)+1, 1))
                     INTO    _next
                     FROM    aarecords_codes
-                    WHERE   code LIKE CONCAT(REPLACE(REPLACE(prefix, "%%", "\\%%"), "_", "\\_"), "%%") AND code >= CONCAT(prefix, CHAR(initial + 1))
+                    WHERE   code LIKE CONCAT(REPLACE(REPLACE(REPLACE(prefix, "\\\\", "\\\\\\\\"), "%%", "\\%%"), "_", "\\_"), "%%") AND code >= CONCAT(prefix, CHAR(initial + 1))
                     ORDER BY
                             code
                     LIMIT 1;
@@ -1098,7 +1102,7 @@ def codes_page():
                 hit_max_exact_matches = True
 
             # cursor.execute('SELECT CONCAT(%(prefix)s, IF(@r > 0, CHAR(@r USING utf8), "")) AS new_prefix, @r := fn_get_next_codepoint(IF(@r > 0, @r, ORD(" ")), %(prefix)s) AS next_letter FROM (SELECT @r := ORD(SUBSTRING(code, LENGTH(%(prefix)s)+1, 1)) FROM aarecords_codes WHERE code >= %(prefix)s ORDER BY code LIMIT 1) vars, (SELECT 1 FROM aarecords_codes LIMIT 1000) iterator WHERE @r IS NOT NULL', { "prefix": prefix })
-            cursor.execute('SELECT CONCAT(%(prefix)s, CHAR(@r USING binary)) AS new_prefix, @r := fn_get_next_codepoint(@r, %(prefix)s) AS next_letter FROM (SELECT @r := ORD(SUBSTRING(code, LENGTH(%(prefix)s)+1, 1)) FROM aarecords_codes WHERE code > %(prefix)s AND code LIKE CONCAT(REPLACE(REPLACE(%(prefix)s, "%%", "\\%%"), "_", "\\_"), "%%") ORDER BY code LIMIT 1) vars, (SELECT 1 FROM aarecords_codes LIMIT 10000) iterator WHERE @r != 0', { "prefix": prefix_bytes })
+            cursor.execute('SELECT CONCAT(%(prefix)s, CHAR(@r USING binary)) AS new_prefix, @r := fn_get_next_codepoint(@r, %(prefix)s) AS next_letter FROM (SELECT @r := ORD(SUBSTRING(code, LENGTH(%(prefix)s)+1, 1)) FROM aarecords_codes WHERE code > %(prefix)s AND code LIKE CONCAT(REPLACE(REPLACE(REPLACE(%(prefix)s, "\\\\", "\\\\\\\\"), "%%", "\\%%"), "_", "\\_"), "%%") ORDER BY code LIMIT 1) vars, (SELECT 1 FROM aarecords_codes LIMIT 10000) iterator WHERE @r != 0', { "prefix": prefix_bytes })
             new_prefixes_raw = list(cursor.fetchall())
             new_prefixes = [row['new_prefix'] for row in new_prefixes_raw]
             # print(f"{new_prefixes_raw=}")
@@ -1106,17 +1110,16 @@ def codes_page():
         prefix_rows = []
         for new_prefix in new_prefixes:
             # TODO: more efficient? Though this is not that bad because we don't typically iterate through that many values.
-            cursor.execute('SELECT code, row_number_order_by_code, dense_rank_order_by_code FROM aarecords_codes WHERE code LIKE CONCAT(REPLACE(REPLACE(%(new_prefix)s, "%%", "\\%%"), "_", "\\_"), "%%") ORDER BY code, aarecord_id LIMIT 1', { "new_prefix": new_prefix })
+            cursor.execute('SELECT code, row_number_order_by_code, dense_rank_order_by_code FROM aarecords_codes WHERE code LIKE CONCAT(REPLACE(REPLACE(REPLACE(%(new_prefix)s, "\\\\", "\\\\\\\\"), "%%", "\\%%"), "_", "\\_"), "%%") ORDER BY code, aarecord_id LIMIT 1', { "new_prefix": new_prefix })
             first_record = cursor.fetchone()
-            cursor.execute('SELECT code, row_number_order_by_code, dense_rank_order_by_code FROM aarecords_codes WHERE code LIKE CONCAT(REPLACE(REPLACE(%(new_prefix)s, "%%", "\\%%"), "_", "\\_"), "%%") ORDER BY code DESC, aarecord_id DESC LIMIT 1', { "new_prefix": new_prefix })
+            cursor.execute('SELECT code, row_number_order_by_code, dense_rank_order_by_code FROM aarecords_codes WHERE code LIKE CONCAT(REPLACE(REPLACE(REPLACE(%(new_prefix)s, "\\\\", "\\\\\\\\"), "%%", "\\%%"), "_", "\\_"), "%%") ORDER BY code DESC, aarecord_id DESC LIMIT 1', { "new_prefix": new_prefix })
             last_record = cursor.fetchone()
 
             if (first_record['code'] == last_record['code']) and (prefix_bytes != b''):
                 code = first_record["code"]
-                code_label = code.decode(errors='replace')
                 code_b64 = base64.b64encode(code).decode()
                 prefix_rows.append({
-                    "label": code_label,
+                    "label": code_make_label(code),
                     "records": last_record["row_number_order_by_code"]-first_record["row_number_order_by_code"]+1,
                     "link": f'/member_codes?prefix_b64={code_b64}',
                 })
@@ -1124,10 +1127,10 @@ def codes_page():
                 longest_prefix = new_prefix
                 if prefix_bytes != b'':
                     longest_prefix = os.path.commonprefix([first_record["code"], last_record["code"]])
-                longest_prefix_label = longest_prefix.decode(errors='replace')
+                longest_prefix_label = code_make_label(longest_prefix)
                 longest_prefix_b64 = base64.b64encode(longest_prefix).decode()
                 prefix_rows.append({
-                    "label": f'{longest_prefix_label}⋯',
+                    "label": (f'{longest_prefix_label}⋯'),
                     "codes": last_record["dense_rank_order_by_code"]-first_record["dense_rank_order_by_code"]+1,
                     "records": last_record["row_number_order_by_code"]-first_record["row_number_order_by_code"]+1,
                     "link": f'/member_codes?prefix_b64={longest_prefix_b64}',
@@ -1140,7 +1143,10 @@ def codes_page():
         except Exception:
             bad_unicode = True
 
-        prefix_label = prefix_bytes.decode(errors='replace')
+        prefix_label = code_make_label(prefix_bytes)
+        if '�' in prefix_label:
+            bad_unicode = True
+
         code_item = None
         if ':' in prefix_label:
             key, value = prefix_label.split(':', 1)
@@ -7018,6 +7024,8 @@ def get_additional_for_aarecord(aarecord):
         'cover_missing_hue_deg': int(hashlib.md5(aarecord['id'].encode()).hexdigest(), 16) % 360,
         'cover_url': cover_url,
         'top_row': ("✅ " if additional['ol_is_primary_linked'] else "") + ", ".join(item for item in [
+                # TODO:TRANSLATE
+                "Metadata" if allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]) else "",
                 *additional['most_likely_language_names'][0:3],
                 f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
                 "/".join(filter(len, [
@@ -7031,6 +7039,8 @@ def get_additional_for_aarecord(aarecord):
                 gettext('page.md5.top_row.isbndb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbndb' else '',
                 gettext('page.md5.top_row.oclc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'oclc' else '',
                 gettext('page.md5.top_row.duxiu_ssid', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'duxiu_ssid' else '',
+                # TODO:TRANSLATE
+                f"CADAL SSNO {aarecord_id_split[1]}" if aarecord_id_split[0] == 'cadal_ssno' else '',
                 gettext('page.md5.top_row.magzdb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'magzdb' else '',
                 gettext('page.md5.top_row.nexusstc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'nexusstc' else '',
                 gettext('page.md5.top_row.edsebk', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'edsebk' else '',

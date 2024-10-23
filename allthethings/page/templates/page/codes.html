@@ -30,13 +30,17 @@
   {% endif %}
 
   <form action="/member_codes" method="get" class="mt-4">
-    <input name="prefix" value="{{ prefix_label }}" placeholder="{{ gettext('page.codes.prefix') }}" class="js-slash-focus grow bg-black/6.7 px-2 py-1 mr-2 rounded text-sm">
+    <div class="mb-1">
+      <input name="prefix" value="{{ prefix_label }}" placeholder="{{ gettext('page.codes.prefix') }}" class="js-slash-focus grow bg-black/6.7 px-2 py-1 mr-2 rounded text-sm w-full">
+    </div>
     <button class="px-4 py-1 bg-[#0195ff] text-white rounded hover:bg-blue-600 text-sm" type="submit">{{ gettext('common.form.go') }}</button>
-    <a href="/member_codes" class="custom-a mr-2 bg-[#777] hover:bg-[#999] text-white py-1 px-3 rounded text-sm">{{ gettext('common.form.reset') }}</a>
+    <a href="/member_codes" class="custom-a bg-[#777] hover:bg-[#999] text-white py-1 px-3 rounded text-sm">{{ gettext('common.form.reset') }}</a>
+    <!-- TODO:TRANSLATE -->
+    <a class="custom-a bg-[#777] hover:bg-[#999] text-white py-1 px-3 rounded text-sm" {{ dict(href='/search?q="{}"'.format(prefix_label)) | xmlattr }}>Search Anna’s Archive</a>
   </form>
 
   {% if bad_unicode %}
-    <div class="font-bold italic mt-4">
+    <div class="text-sm italic mt-4">
       {{ gettext('page.codes.bad_unicode') }}
     </div>
   {% endif %}
@@ -44,17 +48,17 @@
   {% if code_item and ((code_item.info | length) > 0) %}
     <div class="mt-4">
       <div class="font-bold">{{ gettext('page.codes.known_code_prefix', key=code_item.key) }}</div>
-      <table>
-        <tr class=""><td class="pr-8 py-2">{{ gettext('page.codes.code_prefix') }}</td><td><a href="/member_codes?prefix={{ code_item.key }}:"><q>{{ code_item.key }}</q></a></td></tr>
-        <tr class=""><td class="pr-8 py-2">{{ gettext('page.codes.code_label') }}</td><td>{{ code_item.info.label }}</td></tr>
+      <table class="text-sm">
+        <tr class=""><td class="pr-8 pb-1">{{ gettext('page.codes.code_prefix') }}</td><td><a href="/member_codes?prefix={{ code_item.key }}:"><q>{{ code_item.key }}</q></a></td></tr>
+        <tr class=""><td class="pr-8 pb-1">{{ gettext('page.codes.code_label') }}</td><td>{{ code_item.info.label }}</td></tr>
         {% if code_item.info.description %}
-        <tr class=""><td class="pr-8 py-2">{{ gettext('page.codes.code_description') }}</td><td class="py-2">{{ code_item.info.description }}</td></tr>
+        <tr class=""><td class="pr-8 pb-1">{{ gettext('page.codes.code_description') }}</td><td class="py-2">{{ code_item.info.description }}</td></tr>
         {% endif %}
         {% if code_item.info.url %}
           {% if '%s' in code_item.info.url %}
-            <tr class=""><td class="pr-8 py-2">{{ gettext('page.codes.code_url') }}</td><td class="py-2">{{ code_item.info.url }} <div class="text-sm text-gray-500">{{ pgettext('the %s should not be changed', 'page.codes.s_substitution') }}</div></td></tr>
+            <tr class=""><td class="pr-8 pb-1">{{ gettext('page.codes.code_url') }}</td><td class="py-2">{{ code_item.info.url }} <div class="text-sm text-gray-500">{{ pgettext('the %s should not be changed', 'page.codes.s_substitution') }}</div></td></tr>
           {% else %}
-            <tr class=""><td class="pr-8 py-2">{{ gettext('page.codes.generic_url') }}</td><td class="py-2"><a href="{{ code_item.info.url }}" rel="noopener noreferrer nofollow">{{ code_item.info.url }}</a></td></tr>
+            <tr class=""><td class="pr-8 pb-1">{{ gettext('page.codes.generic_url') }}</td><td class="py-2"><a href="{{ code_item.info.url }}" rel="noopener noreferrer nofollow">{{ code_item.info.url }}</a></td></tr>
           {% endif %}
         {% endif %}
         {% if code_item.info.website %}
@@ -66,16 +70,23 @@
 
   {% if (aarecords | length) > 0 %}
     <div class="font-bold mt-4">
-      {{ ngettext('page.codes.record_starting_with', 'page.codes.records_starting_with', (aarecords | length), prefix_label=prefix_label, count=("{}{}".format((aarecords | length), "+" if hit_max_aarecords else ""))) }}
+      {{ ngettext('page.codes.record_starting_with', 'page.codes.records_starting_with', (aarecords | length), prefix_label=prefix_label, count=("{}{}".format((aarecords | length), "+" if hit_max_exact_matches else ""))) }}
     </div>
 
-    {% from 'macros/aarecord_list.html' import aarecord_list %}
-    {{ aarecord_list(aarecords) }}
-
-    <div class="text-sm mt-2"><a {{ dict(href='/search?q="{}"'.format(prefix_label)) | xmlattr }}>{{ gettext('page.codes.search_archive', term=prefix_label) }}</a></div>
     {% if code_item.info.url and ('%s' in code_item.info.url) %}
       <div class="text-sm"><a href="{{ code_item.info.url | replace('%s', code_item.value) }}">{{ gettext('page.codes.url_link', url=(code_item.info.url | replace('%s', code_item.value))) }}</a></div>
     {% endif %}
+
+    <div class="mt-2">
+      {% from 'macros/aarecord_list.html' import aarecord_list %}
+      {{ aarecord_list(aarecords[0:3]) }}
+      {% if (aarecords | length) > 3 %}
+        <div class="js-codes-aarecord-list-more hidden">
+          {{ aarecord_list(aarecords[4:]) }}
+        </div>
+        <a href="#" onclick="event.preventDefault(); document.querySelector('.js-codes-aarecord-list-more').classList.remove('hidden'); this.classList.add('hidden'); return false">More…</a>
+      {% endif %}
+    </div>
   {% endif %}
 
   {% if (prefix_rows | length) > 0 %}
