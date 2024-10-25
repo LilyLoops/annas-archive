@@ -5,6 +5,8 @@ If you’re going to write a scraper, it would be helpful to us if you use the s
 
 This is a very rough initial guide. We would love for someone to make an example scraper based off this, and which can actually be easily run and adapted.
 
+Use the [EXAMPLE REPOSITORY](https://software.annas-archive.li/BubbaGump/example-scraper) here as a good starting point!
+
 We sometimes also ask for one-time scrapes. In that case it's less necessary to set up this structure, just make sure that the final file follow this structure: [AAC.md](AAC.md).
 
 ## Overview

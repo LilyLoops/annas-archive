@@ -56,6 +56,10 @@
     ) }}
   </p>
 
+  <p class="mb-4">
+    <strong>Update October 2024:</strong> a perceptive volunteer discovered that our "not_found_title_json" entries might be incorrect in some cases. For example, we have a such an entry for ID 1405, even though that appears to be a <a href="https://worldcat.org/title/1405" rel="noopener noreferrer nofollow">legitimate record</a>, suggesting that this might have been a bug in our scraper. Before rescraping everything, we should do some analysis by rescraping some of these records, and investigating if there are some patterns to this bug, such as only certain ID ranges, or original scraper filenames.
+  </p>
+
   <p class="font-bold">{{ gettext('page.datasets.common.resources') }}</p>
   <ul class="list-inside mb-4 ml-1">
     <li class="list-disc">{{ gettext('page.datasets.common.last_updated', date=stats_data.oclc_date) }}</li>
