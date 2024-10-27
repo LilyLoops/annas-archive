@@ -7024,8 +7024,7 @@ def get_additional_for_aarecord(aarecord):
         'cover_missing_hue_deg': int(hashlib.md5(aarecord['id'].encode()).hexdigest(), 16) % 360,
         'cover_url': cover_url,
         'top_row': ("✅ " if additional['ol_is_primary_linked'] else "") + ", ".join(item for item in [
-                # TODO:TRANSLATE
-                "Metadata" if allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]) else "",
+                gettext('page.datasets.sources.metadata.header') if allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]) else "",
                 *additional['most_likely_language_names'][0:3],
                 f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
                 "/".join(filter(len, [

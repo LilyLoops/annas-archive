@@ -266,8 +266,7 @@
           {{ gettext('page.donation.revolut.step2.transfer', icon=('<span class="icon-[cil--transfer] align-middle"></span>' | safe), help_video=(dict(href="https://youtu.be/iYMtrm5SViE") | xmlattr)) }}
         </p>
 
-        <!-- TODO:TRANSLATE -->
-        <p class="mb-4 font-bold">Be sure to use the BTC amount below, <em>NOT</em> euros or dollars, otherwise we won’t receive receive the correct amount and can’t automatically confirm your membership.</p>
+        <p class="mb-4 font-bold">{{ gettext('page.donation.revolut.btc_amount_below') }}</p>
 
         <p class="mb-4">
           {{ gettext('page.donation.transfer_amount_to', amount=((donation_pay_amount + ' ' + (donation_dict.json.payment2_request.pay_currency | upper) + ' ' + copy_button(donation_pay_amount)) | safe), account=((donation_dict.json.payment2_request.pay_address + ' ' + copy_button(donation_dict.json.payment2_request.pay_address)) | safe)) }}
@@ -696,7 +695,7 @@
 
     <p class="mb-4">
       {{ gettext('page.donation.footer.issues_contact', email=(('<a class="break-all" href="mailto:' + donation_email + '">' + donation_email + '</a>') | safe)) }}
-      {{ gettext('page.donate.wait', span_hours=(' class="font-bold" ' | safe)) }}
+      {{ gettext('page.donate.wait_new', span_hours=(' class="font-bold" ' | safe)) }}
       <span class="text-sm text-gray-500">{{ gettext('page.donate.small_team') }} {{ gettext('page.donate.mistake') }}</span>
     </p>
   </div>
