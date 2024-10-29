@@ -164,6 +164,7 @@
       {{ donate_button('payment3b', gettext('page.donate.payment.buttons.wechat'), discount_percent=0, large=True) }}
       {{ donate_button('payment3a', "{} 支付宝".format(gettext('page.donate.payment.buttons.alipay') if g.domain_lang_code != 'zh' else ''), discount_percent=0, large=True) }}
       {{ donate_button('payment1b', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体R)</span>' | safe, discount_percent=0) }}
+      {{ donate_button('payment1c', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体S)</span>' | safe, discount_percent=0) }}
     </div>
 
     <div class="flex flex-wrap w-full">
@@ -287,6 +288,12 @@
     </div>
 
     <div class="js-membership-descr js-membership-descr-payment1b">
+      <p class="mb-4">
+        {{ gettext('page.donate.payment.desc.alipay_wechat') }}
+      </p>
+    </div>
+
+    <div class="js-membership-descr js-membership-descr-payment1c">
       <p class="mb-4">
         {{ gettext('page.donate.payment.desc.alipay_wechat') }}
       </p>

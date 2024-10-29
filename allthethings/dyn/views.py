@@ -23,7 +23,7 @@ from sqlalchemy.orm import Session
 from flask_babel import gettext, get_locale
 
 from allthethings.extensions import es, engine, mariapersist_engine
-from config.settings import PAYMENT1_KEY, PAYMENT1B_KEY, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, PAYMENT2_HMAC, PAYMENT2_SIG_HEADER, GC_NOTIFY_SIG, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY
+from config.settings import PAYMENT1_KEY, PAYMENT1B_KEY, PAYMENT1C_KEY, PAYMENT2_URL, PAYMENT2_API_KEY, PAYMENT2_PROXIES, PAYMENT2_HMAC, PAYMENT2_SIG_HEADER, GC_NOTIFY_SIG, HOODPAY_URL, HOODPAY_AUTH, PAYMENT3_DOMAIN, PAYMENT3_KEY
 from allthethings.page.views import get_aarecords_elasticsearch, ES_TIMEOUT_PRIMARY, get_torrents_data
 
 import allthethings.utils
@@ -867,7 +867,7 @@ def account_buy_membership():
         raise Exception("Invalid costCentsUsdVerification")
 
     donation_type = 0 # manual
-    if method in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
+    if method in ['payment1', 'payment1_alipay', 'payment1_wechat', 'payment1b', 'payment1bb', 'payment1c', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
         donation_type = 1
 
     with Session(mariapersist_engine) as mariapersist_session:
@@ -1065,6 +1065,11 @@ def payment1_notify():
 @allthethings.utils.no_cache()
 def payment1b_notify():
     return payment1_common_notify(PAYMENT1B_KEY, 'payment1b_notify')
+
+@dyn.get("/payment1c_notify/")
+@allthethings.utils.no_cache()
+def payment1c_notify():
+    return payment1_common_notify(PAYMENT1C_KEY, 'payment1c_notify')
 
 def payment1_common_notify(sign_key, data_key):
     data = {

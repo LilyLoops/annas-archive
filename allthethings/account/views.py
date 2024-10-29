@@ -16,7 +16,7 @@ from flask_babel import gettext, force_locale, get_locale
 
 from allthethings.extensions import mariapersist_engine
 from allthethings.page.views import get_aarecords_elasticsearch
-from config.settings import SECRET_KEY, PAYMENT1_ID, PAYMENT1_KEY, PAYMENT1B_ID, PAYMENT1B_KEY
+from config.settings import SECRET_KEY, PAYMENT1_ID, PAYMENT1_KEY, PAYMENT1B_ID, PAYMENT1B_KEY, PAYMENT1C_ID, PAYMENT1C_KEY
 
 import allthethings.utils
 
@@ -423,6 +423,21 @@ def donation_page(donation_id):
             sign_str = '&'.join([f'{k}={v}' for k, v in data.items()]) + PAYMENT1B_KEY
             sign = hashlib.md5((sign_str).encode()).hexdigest()
             return redirect(f'https://anna.zpaycashier.sk/submit.php?{urllib.parse.urlencode(data)}&sign={sign}&sign_type=MD5', code=302)
+
+        if donation_json['method'] in ['payment1c'] and donation['processing_status'] == 0:
+            data = {
+                # Note that these are sorted by key.
+                "money": str(int(float(donation['cost_cents_usd']) * allthethings.utils.MEMBERSHIP_EXCHANGE_RATE_RMB / 100.0)),
+                "name": "Anna’s Archive Membership",
+                "notify_url": "https://annas-archive.li/dyn/payment1c_notify/",
+                "out_trade_no": str(donation['donation_id']),
+                "pid": PAYMENT1C_ID,
+                "return_url": "https://annas-archive.li/account/",
+                "sitename": "Anna’s Archive",
+            }
+            sign_str = '&'.join([f'{k}={v}' for k, v in data.items()]) + PAYMENT1C_KEY
+            sign = hashlib.md5((sign_str).encode()).hexdigest()
+            return redirect(f'https://api.idapap.top/submit.php?{urllib.parse.urlencode(data)}&sign={sign}&sign_type=MD5', code=302)
 
         if donation_json['method'] in ['payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc'] and donation['processing_status'] == 0:
             donation_time_left = donation['created'] - datetime.datetime.now() + datetime.timedelta(days=1)
