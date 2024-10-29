@@ -171,5 +171,4 @@ If you are changing any translations, you should also run `./run check-translati
 
 ## License
 
->>>>>>> README.md
 Released in the public domain under the terms of [CC0](./LICENSE). By contributing you agree to license your code under the same license.

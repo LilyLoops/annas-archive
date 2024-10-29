@@ -477,6 +477,11 @@
           {{ gettext('page.donation.payment.alipay.text1_new', total=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions, a_account=((' href="' | safe) + (donation_dict.json.payment3_request.data.url | safe) + ('" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank"' | safe) | safe)) }}
         </p>
 
+        <p class="mb-4">
+          <!-- TODO:TRANSLATE -->
+          If the donation page gets blocked, try a different internet connection (e.g. VPN or phone internet).
+        </p>
+
         <!-- <p class="mb-4">
           {{ gettext('page.donation.payment.alipay.error') }}
         </p> -->
@@ -549,6 +554,11 @@
           <img class="w-full max-w-[206px]" src="/images/alipay_qr.png">
         </p>
 
+        <p class="mb-4">
+          <!-- TODO:TRANSLATE -->
+          If the donation page gets blocked, try a different internet connection (e.g. VPN or phone internet).
+        </p>
+
         <!-- <p class="mb-4">
           {{ gettext('page.donation.payment.alipay.error') }}
         </p> -->
@@ -582,6 +592,11 @@
 
         <p class="mb-4">
           {{ gettext('page.donation.payment.wechat.text1', total=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions, a_account=((' href="' | safe) + (donation_dict.json.payment3_request.data.url | safe) + ('" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank"' | safe) | safe)) }}
+        </p>
+
+        <p class="mb-4">
+          <!-- TODO:TRANSLATE -->
+          If the donation page gets blocked, try a different internet connection (e.g. VPN or phone internet).
         </p>
 
         <p class="mb-4">

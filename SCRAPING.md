@@ -9,6 +9,13 @@ Use the [EXAMPLE REPOSITORY](https://software.annas-archive.li/BubbaGump/example
 
 We sometimes also ask for one-time scrapes. In that case it's less necessary to set up this structure, just make sure that the final file follow this structure: [AAC.md](AAC.md).
 
+## General scraping tips
+
+- Store raw responses as files on disk, and parse only the required information for your next scrapes into your database (too many times we had a bug in the parsing but we already threw away the raw data so had to rescrape everything).
+- Create a new directory for every hour (and store the full filename including the directory in your database), that way you won't get like 300 million files in a single directory (which can cause filesystem issues).
+- Compress the raw responses with gzip or zstd.
+- You can also bundle multiple responses in a single compressed file. That usually compresses a bit better, and reduces the number of total files on disk. You can use either the tar format to distinguish the different sub-files (safest; you'd get .tar.gz or .tar.zst), or store byte offsets in the database (test this thoroughly).
+
 ## Overview
 
 * Docker containers:

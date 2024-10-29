@@ -1211,7 +1211,7 @@ def gc_notify():
         if "dkim=pass" not in auth_results:
             return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong auth_results: {auth_results}")
 
-        if re.search(r'<gc-orders@gc\.email\.amazon\.com>$', message['From'].strip()) is None:
+        if (re.search(r'<gc-orders@gc\.email\.amazon\.com>$', message['From'].strip()) is None) and (re.search(r'<do-not-reply@amazon\.com>$', message['From'].strip()) is None):
             return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong From: {message['From']}")
 
         if not (message['Subject'].strip().endswith('sent you an Amazon Gift Card!') or message['Subject'].strip().endswith('is waiting')):
