@@ -213,7 +213,7 @@
                     </div>
                   </div> -->
                   <!-- TODO:TRANSLATE -->
-                  <div>➡️ If you donate now, you get <strong style="color:#a0d7ff">double</strong> the number of fast downloads. Valid until the end of this month. <a class="custom-a text-[#fff] hover:text-[#ddd] underline" href="/donate">{{ gettext('layout.index.header.nav.donate') }}</a></div>
+                  <div>➡️ {{ gettext('layout.index.header.banner.fundraiser.now') | replace('<strong>' | safe, '<strong style="color:#a0d7ff">' | safe) }} {{ gettext('layout.index.header.banner.fundraiser.valid_end_of_month') }} <a class="custom-a text-[#fff] hover:text-[#ddd] underline" href="/donate">{{ gettext('layout.index.header.nav.donate') }}</a></div>
                   <!-- <div>➡️ {{ gettext('layout.index.header.banner.fundraiser.this_month') | replace('<strong>' | safe, '<strong style="color:#a0d7ff">' | safe) }} <a class="custom-a text-[#fff] hover:text-[#ddd] underline" href="/donate">{{ gettext('layout.index.header.nav.donate') }}</a></div> -->
                 </div>
                 <div>
