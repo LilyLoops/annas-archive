@@ -115,15 +115,15 @@ msgstr "Засліплюючий Знавець"
 msgid "common.membership.tier_name.5"
 msgstr "Дивовижний Дяк"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) всього"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s всього"
 
@@ -266,7 +266,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "зв'яжіться з нами"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 msgid "page.donate.small_team"
 msgstr "У нас невелика команда волонтерів. Нам може знадобитися 1-2 тижні, щоб відповісти."
@@ -307,12 +307,12 @@ msgid "page.donate.payment.select_method"
 msgstr "Будь ласка, оберіть спосіб оплати."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Подарункува картка Amazon"
 
@@ -324,7 +324,7 @@ msgstr "Банківська картка (використовуючи дода
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Криптовалюта %(bitcoin_icon)s"
 
@@ -353,8 +353,8 @@ msgstr "Кредитна/дебетова/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
@@ -395,450 +395,452 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Бінанс"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(тимчасово недоступно)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 msgid "page.donate.payment.desc.crypto"
 msgstr "За допомогою криптовалюти ви можете задонатити використовуючи BTC, ETH, XMR та SOL. Використовуйте цей варіант, якщо ви вже добре обізнані щодо криптовалюти."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Ви можете донатити за допомогою криптовалют використовуючи BTC, ETH, XMR та інші."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Якщо ви використовуєте криптовалюту вперше, ми рекомендуємо скористатися %(options)s для купівлі та пожертвування Bitcoin (оригінальної та найпоширенішої криптовалюти)."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Бінанс"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 msgid "page.donate.payment.desc.paypal"
 msgstr "Щоб задонатити за допомогою PayPal (США), ми будемо використовувати PayPal Crypto, який дозволяє нам залишатися анонімними. Ми вдячні вам за те, що ви знайшли час, аби навчитися робити внески за допомогою цього методу, оскільки це дуже допомагає нам."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Донатьте використовуючи PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Донатьне використовуючи Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Якщо вас є Cash App, то це найпростіший спосіб задонатити!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Зауважте, що для транзакцій менше %(amount)s, Cash App може стягувати додаткову платню в розмірі %(fee)s . Для %(amount)s чи вище це безкоштовно!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Пожертвуйте за допомогою Revolut."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Якщо у вас є Revolut, це найпростіший спосіб зробити пожертву!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Донатьте використовуючи кредитну або дебетову картку."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay та Apple Pay також можуть спрацювати."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Зауважте, додаткова плата, що стягується при оплаті кредитною карткою, при оплаті маленьких донатів, може знівелювати нашу %(discount)s%% знижку, тому ми рекомендуємо довготривалі підписки."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Зауважте, додаткова плата, що стягується при оплаті маленьких донатів велика, тому ми рекомендуємо довготривалі підписки."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "З Binance ви купуєте Bitcoin за допомогою кредитної/дебетової картки або банківського рахунку, а потім жертвуєте цей Bitcoin нам. Таким чином, ми можемо залишатися захищеними та анонімними при прийнятті вашої пожертви."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance доступний майже в кожній країні та підтримує більшість банків і кредитних/дебетових карток. Це наразі наша основна рекомендація. Ми вдячні вам за те, що ви витратили час на вивчення цього методу пожертвування, оскільки це дуже допомагає нам."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Пожертвуйте за допомогою вашого звичайного облікового запису PayPal."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Донатьте використовуючи Alipay or WeChat. Ви можете обрати між ними на наступній сторінці."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Пожертвуйте за допомогою кредитної/дебетової картки, PayPal або Venmo. Ви можете вибрати між ними на наступній сторінці."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 msgid "page.donate.payment.desc.amazon"
 msgstr "Донатьте використовуючи подарункову картку Амазон."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Зауважте, що нам треба округляти до значень, що приймаються нашими посередниками (мінімум %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>ВАЖЛИВО:</strong> Ми підтримуємо тільки Amazon.com, інші вебсторінки Amazon, для прикладу: .de, .co.uk, .ca, не підтримуються."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Цей метод використовує постачальника криптовалют як проміжну конверсію. Це може бути трохи заплутано, тому, будь ласка, використовуйте цей метод лише якщо інші способи оплати не працюють. Він також не працює у всіх країнах."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Пожертвуйте, використовуючи кредитну/дебетову картку, через додаток Alipay (дуже легко налаштувати)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Встановіть додаток Alipay"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "Встановіть додаток Alipay з <a %(a_app_store)s>Apple App Store</a> або <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Зареєструйтесь, використовуючи свій номер телефону."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Додаткові особисті дані не потрібні."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Додайте банківську картку"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Підтримуються: Visa, MasterCard, JCB, Diners Club і Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Дивіться <a %(a_alipay)s>цей посібник</a> для отримання додаткової інформації."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Ми не можемо підтримувати кредитні/дебетові картки безпосередньо, тому що банки не хочуть з нами працювати. ☹ Однак, є кілька способів використання кредитних/дебетових карток через інші платіжні методи:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Надсилайте нам подарункові картки Amazon.com за допомогою кредитної/дебетової картки."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay підтримує міжнародні кредитні/дебетові картки. Дивіться <a %(a_alipay)s>цей посібник</a> для отримання додаткової інформації."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) підтримує міжнародні кредитні/дебетові картки. У додатку WeChat перейдіть в “Me => Services => Wallet => Add a Card”. Якщо ви не бачите цього пунткту, то увімкніть його в “Me => Settings => General => Tools => Weixin Pay => Enable”."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 msgid "page.donate.ccexp.crypto"
 msgstr "Ви можете придбати криптовалюту за допомогою кредитної/дебетової картки."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Крипто експрес-послуги"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Експрес-послуги зручні, але стягують вищі комісії."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Ви можете використовувати це замість криптообміну, якщо хочете швидко зробити більший донат і не проти комісії в $5-10."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Обов’язково надішліть точну суму криптовалюти, вказану на сторінці донатів, а не суму в $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Інакше комісія буде вирахувана, і ми не зможемо автоматично обробити ваше членство."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(мінімум: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(мінімум: %(minimum)s залежно від країни, без перевірки для першої транзакції)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(мінімум: %(minimum)s, без перевірки для першої транзакції)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(мінімум: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(мінімум: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(мінімум: %(minimum)s, без перевірки для першої транзакції)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Якщо будь-яка з цієї інформації застаріла, будь ласка, напишіть нам електронного листа, щоб повідомити нас."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "Для кредитних карток, дебетових карток, Apple Pay та Google Pay ми використовуємо “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). У їхній системі одна “кава” дорівнює $5, тому ваша пожертва буде округлена до найближчого кратного 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 msgid "page.donate.duration.intro"
 msgstr "Оберіть тривалість на яку ви хочете підписатися."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 msgid "page.donate.duration.1_mo"
 msgstr "1 місяць"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 msgid "page.donate.duration.3_mo"
 msgstr "3 місяці"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 msgid "page.donate.duration.6_mo"
 msgstr "6 місяців"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 msgid "page.donate.duration.12_mo"
 msgstr "12 місяців"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 msgid "page.donate.duration.24_mo"
 msgstr "24 місяці"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 місяців"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 місяців"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>після <span %(span_discount)s></span> discounts</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 msgid "page.donate.payment.minimum_method"
 msgstr "Цей спосіб оплати потребує мінімум %(amount)s. Будь ласка, оберіть іншу тривалість або спосіб оплати."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Пожертвувати"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 msgid "page.donate.payment.maximum_method"
 msgstr "Цей спосіб оплати дозволяє тільки максимум %(amount)s. Будь ласка, оберіть іншу тривалість або спосіб оплати."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 msgid "page.donate.login2"
 msgstr "Щоб стати учасником <a %(a_login)s>Увійдіть або Зареєструйтесь</a>. Дякуємо за вашу підтримку!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 msgid "page.donate.payment.crypto_select"
 msgstr "Оберіть криптовалюту, якій ви надаєте перевагу:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(найменша мінімальна сума)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(використовуйте при відправці Ethereum з Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(увага: висока мінімальна сума)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 msgid "page.donate.submit.confirm"
 msgstr "Натисніть кнопку «Задонатити», щоб підтвердити цей внесок."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 msgid "page.donate.submit.button"
 msgstr "Задонатити <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 msgid "page.donate.submit.cancel_note"
 msgstr "Ви все ще можете скасувати цей донат під час оформлення."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 msgid "page.donate.submit.success"
 msgstr "✅ Перенаправлення на сторінку донатів…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 msgid "page.donate.submit.failure"
 msgstr "❌ Щось пішло не так. Будь ласка, перезавантажте сторінку і спробуйте ще раз."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / місяць"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "на 1 місяць"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "на 3 місяці"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "на 6 місяців"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "на 12 місяців"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "на 24 місяці"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "на 48 місяців"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "на 96 місяців"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "на 1 місяць “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "на 3 місяці “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "на 6 місяців “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "на 12 місяців “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "на 24 місяці “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "на 48 місяців “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "на 96 місяців “%(tier_name)s”"
@@ -938,9 +940,9 @@ msgstr "<strong>Важлива інформація:</strong> Ціни на кр
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 msgid "page.donation.expired"
 msgstr "Цей донат закінчився. Будь ласка, скасуйте та створіть новий."
 
@@ -1005,9 +1007,9 @@ msgstr "Дивіться покрокову інструкцію нижче."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.status_header"
 msgstr "Статус:"
 
@@ -1017,9 +1019,9 @@ msgstr "Статус:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Очікуємо підтвердження (оновіть сторінку для перевірки)…"
 
@@ -1029,9 +1031,9 @@ msgstr "Очікуємо підтвердження (оновіть сторін
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Очікуємо на переказ (оновіть сторінку для перевірки)…"
 
@@ -1041,9 +1043,9 @@ msgstr "Очікуємо на переказ (оновіть сторінку д
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.time_left_header"
 msgstr "Часу залишилось:"
 
@@ -1053,9 +1055,9 @@ msgstr "Часу залишилось:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.might_want_to_cancel"
 msgstr "(ви можете скасувати та створити новий донат)"
 
@@ -1065,9 +1067,9 @@ msgstr "(ви можете скасувати та створити новий �
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 msgid "page.donation.reset_timer"
 msgstr "Щоб перезапустити таймер, просто створіть новий донат."
 
@@ -1078,14 +1080,14 @@ msgstr "Щоб перезапустити таймер, просто створ�
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 msgid "page.donation.refresh_status"
 msgstr "Статус оновлення"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 msgid "page.donation.footer.issues_contact"
 msgstr "Якщо ви зіткнулися з проблемами, будь ласка, напишіть на %(email)s та прикрипіть якомога більше інформації (наприклад, знімки екрану)."
 
@@ -1266,15 +1268,15 @@ msgstr "Приклад:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 msgid "page.donate.strange_account"
 msgstr "Зверніть увагу, що назва акаунта або його зображення можуть виглядати дещо дивно. Не хвилюйтеся! Цими акаунтами керують наші партнери по збору внесків. Наші акаунти не були зламані."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Вказівки щодо використання Alipay"
 
@@ -1289,129 +1291,129 @@ msgstr "<span %(span_circle)s>1</span>Задонатити через Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "Пожертвуйте загальну суму %(total)s за допомогою <a %(a_account)s>цього Alipay акаунту</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "На жаль, сторінка Alipay часто доступна лише з <strong>материкового Китаю</strong>. Можливо, вам доведеться тимчасово вимкнути свій VPN або використовувати VPN до материкового Китаю (іноді також працює Гонконг)."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Зробіть донат (скануйте QR-код або натисніть кнопку)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Відкрийте <a %(a_href)s>сторінку донатів з QR-кодом</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Скануйте QR-код за допомогою додатка Alipay або натисніть кнопку, щоб відкрити додаток Alipay."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Будь ласка, будьте терплячими; сторінка може завантажуватися деякий час, оскільки вона знаходиться в Китаї."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Інструкції для WeChat"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Пожертвуйте через WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Пожертвуйте загальну суму %(total)s за допомогою <a %(a_account)s>цього WeChat акаунту</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 msgid "page.donation.payment.pix.top_header"
 msgstr "Вказівки щодо використання Pix"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Задонатити через Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 msgid "page.donation.payment.pix.text1"
 msgstr "Переказати загальну суму %(total)s через <a %(a_account)s>цей Pix рахунок"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Надішліть нам квитанцію на електронну пошту"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Надішліть квитанцію або скріншот на вашу особисту адресу для верифікації. НЕ використовуйте цю електронну адресу для вашої пожертви через PayPal."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 msgid "page.donation.footer.text1"
 msgstr "Надішліть для підтверждення квитанцію або скріншот на вашу особисту адресу:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 msgid "page.donation.footer.crypto_note"
 msgstr "Обов'язково додайте квитанцію з початковим курсом обміну криптовалюти, якщо курс коливався під час транзакції. Ми дуже цінуємо, що ви використовуєте криптовалюту, це дуже допомагає нам!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 msgid "page.donation.footer.text2"
 msgstr "Коли ви надішлете квитанцію на електронну пошту, натисніть цю кнопку, аби Анна могла особисто переглянути її (це може зайняти декілька днів):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 msgid "page.donation.footer.button"
 msgstr "Так, я надіслав квитанцію на електронну пошту"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 msgid "page.donation.footer.success"
 msgstr "✅ Дякуємо за ваш внесок! Анна особисто активує вашу підписку на сайті в найближчі кілька днів."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 msgid "page.donation.footer.failure"
 msgstr "❌ Щось пішло не так. Будь ласка, перезавантажте сторінку і спробуйте ще раз."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 msgid "page.donation.stepbystep"
 msgstr "Покрокова інструкція"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 msgid "page.donation.crypto_dont_worry"
 msgstr "Деякі з кроків містять згадки про криптогаманці, не хвилюйтесь, вам не треба нічого вивчати про криптовалюти для цього."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Введіть вашу електронну пошту."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Оберіть ваш спосіб оплати."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Оберіть ваш спосіб оплати знову."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Оберіть “Self-hosted” гаманець."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Натистіть “Я підтверджую власність”."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Ви отримуєте електронного листа. Будь ласка, відправте його нам і ми підтвердимо ваш донат, якомога швидче."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 msgid "page.donate.mistake"
 msgstr "Якщо ви зробили помилку під час оплати, ми не можемо повернути кошти, але спробуємо це вирішити."
 
@@ -1541,9 +1543,9 @@ msgstr "Зв'яжіться з Анною за адресою %(email)s, якщ�
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 msgid "page.contact.title"
 msgstr "Контактна електронна скринька"
 
@@ -1553,23 +1555,23 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Ви можете об’єднати кілька членств (швидке завантаження за 24 години буде додано разом)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 msgid "layout.index.header.nav.public_profile"
 msgstr "Загальнодоступний профіль"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Завантажені файли"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 msgid "layout.index.header.nav.my_donations"
 msgstr "Мої донати"
 
@@ -2479,7 +2481,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Швидкі завантаження</strong> <a %(a_membership)s>Підпишіться</a>, щоб підтримати процес довготривалого збереження книг, документів та іншого. На знак нашої вдячності за вашу підтримку, ви отримаєте швидкі завантаження. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Якщо ви пожертвуєте цього місяця, ви отримаєте <strong>подвійно</strong> більше швидких завантажень."
@@ -2506,7 +2508,7 @@ msgid "page.md5.box.download.option"
 msgstr "Опція #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
 msgstr "Запросіть друга, і ви і ваш друг отримаєте %(percentage)s%% бонусних швидких завантажень!"
 
@@ -2517,11 +2519,11 @@ msgstr "Запросіть друга, і ви і ваш друг отримає
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 msgid "layout.index.header.learn_more"
 msgstr "Дізнатися більше…"
 
@@ -3442,7 +3444,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Ми також збагачуємо нашу колекцію джерелами тільки з метаданими, які ми можемо зіставити з файлами, наприклад, використовуючи номери ISBN або інші поля. Нижче наведено огляд таких джерел. Знову ж таки, деякі з цих джерел є повністю відкритими, тоді як інші ми змушені скрапити."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4588,317 +4590,317 @@ msgstr "<div %(div_question)s>Чи можу я оновити своє член�
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>Чи підтримуєте ви інші методи оплати?</div> Наразі ні, адже тіньові архіви, яким являється наш, потребують додаткової безпеки та анонімності. Якщо у вас є ідеї щодо альтернативних безпечних та зручних методів оплати, пишіть нам на %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>На що ви витрачаєте донати?</div> 100%% коштів йдуть на збереження та поширення знань і культури світу. Наразі ми витрачаємо їх здебільшого на сервери, засоби зберігання даних та збільшення каналів зв'язку. Жодні гроші не йдуть особисто членам нашої команди."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>Чи можу я надіслати велику суму?</div> Так, звичайно! Якщо ви збираєтеся надіслати декілька тисяч доларів чи більше, напишіть нам на %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>Чи можу я зробити пожертву, не стаючи членом?</div> Звичайно. Ми приймаємо пожертви будь-якої суми на цю адресу Monero (XMR): %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 msgid "page.faq.upload.title"
 msgstr "Як завантажити нові книги?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 msgid "page.upload.text1"
 msgstr "Наразі ми рекомендуємо додавати нові книги на гілки Library Genesis. Ось <a %(a_guide)s>зручна інструкція</a>. Зверніть увагу, що обидві гілки, які ми індексуємо на цьому сайті, беруть інформацію з однієї і тієї ж системи завантаження файлів."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 msgid "common.libgen.email"
 msgstr "Якщо ваша електронна адреса не працює на форумах Libgen, ми рекомендуємо використовувати <a %(a_mail)s>Proton Mail</a> (безкоштовно). Ви також можете <a %(a_manual)s>особисто надіслати запит</a> на активацію вашого облікового запису."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "Зверніть увагу, що mhut.org блокує певні діапазони IP, тому може знадобитися VPN."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "Альтернативно, ви можете завантажити їх на Z-Library <a %(a_upload)s>тут</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "Для завантаження наукових статей, будь ласка, також (крім Library Genesis) завантажуйте на <a %(a_stc_nexus)s>STC Nexus</a>. Вони є найкращою тіньовою бібліотекою для нових статей. Ми ще не інтегрували їх, але зробимо це згодом. Ви можете скористатися їх <a %(a_telegram)s>ботом для завантаження в Telegram</a>, або зв'язатися з адресою, вказаною в їх закріпленому повідомленні, якщо у вас занадто багато файлів для завантаження таким чином."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 msgid "page.upload.large.text"
 msgstr "Щодо великих завантажень (понад 10 000 файлів), які не приймаються Libgen або Z-Library, будь ласка, зв'яжіться з нами за адресою %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 msgid "page.faq.request.title"
 msgstr "Як зробити запит на книги?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 msgid "page.request.cannot_accomodate"
 msgstr "Наразі ми не можемо задовольнити запити на книги."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 msgid "page.request.forums"
 msgstr "Будь ласка, залишайте свої запити на форумах Z-Library або Libgen."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 msgid "page.request.dont_email"
 msgstr "Не надсилайте нам запити щодо книг на електронну скриньку."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "Чи збираєте ви метадані?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "Так, ми це робимо."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "Я завантажив \"1984\" Джорджа Орвелла, чи прийде поліція до мене додому?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "Не хвилюйтеся занадто, багато людей завантажують з вебсайтів, на які ми посилаємося, і дуже рідко виникають проблеми. Однак, щоб бути в безпеці, ми рекомендуємо використовувати VPN (платний) або <a %(a_tor)s>Tor</a> (безкоштовний)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "Як зберегти налаштування пошуку?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "Виберіть потрібні налаштування, залиште поле пошуку порожнім, натисніть \"Пошук\", а потім додайте сторінку в закладки за допомогою функції закладок вашого браузера."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "Чи є у вас мобільний додаток?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "У нас немає офіційного мобільного додатку, але ви можете встановити цей вебсайт як додаток."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> Натисніть меню з трьома крапками у верхньому правому куті та виберіть \"Додати на головний екран\"."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> Натисніть кнопку \"Поділитися\" внизу та виберіть \"Додати на головний екран\"."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "Чи є у вас API?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "У нас є стабільний JSON API для членів, щоб отримати швидке посилання для завантаження: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (документація всередині самого JSON)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "Для інших випадків використання, таких як ітерація через всі наші файли, створення власного пошуку тощо, ми рекомендуємо <a %(a_generate)s>генерувати</a> або <a %(a_download)s>завантажувати</a> наші бази даних ElasticSearch та MariaDB. Сирові дані можна вручну досліджувати <a %(a_explore)s>через файли JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "Наш список сирих торрентів також можна завантажити у форматі <a %(a_torrents)s>JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "Часті питання про торренти"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "Я хотів би допомогти з роздачею, але у мене мало місця на диску."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "Використовуйте <a %(a_list)s>генератор списку торрентів</a>, щоб створити список торрентів, які найбільше потребують роздачі, в межах ваших обмежень по місцю для зберігання."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "Торренти занадто повільні; чи можу я завантажити дані безпосередньо від вас?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "Так, дивіться сторінку <a %(a_llm)s>даних LLM</a>."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "Чи можу я завантажити лише підмножину файлів, наприклад, лише певною мовою або на певну тему?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "Більшість торрентів містять файли безпосередньо, що означає, що ви можете вказати торрент-клієнтам завантажувати лише потрібні файли. Щоб визначити, які файли завантажувати, ви можете <a %(a_generate)s>генерувати</a> наші метадані або <a %(a_download)s>завантажити</a> наші бази даних ElasticSearch та MariaDB. На жаль, деякі колекції торрентів містять файли .zip або .tar у корені, у такому випадку вам потрібно завантажити весь торрент, перш ніж ви зможете вибрати окремі файли."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "Як ви обробляєте дублікати в торентах?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "Ми намагаємося мінімізувати дублювання або перекриття між торентами в цьому списку, але це не завжди можливо і сильно залежить від політики бібліотек-джерел. Для бібліотек, які випускають свої власні торенти, це поза нашою компетенцією. Для торентів, випущених Архівом Анни, ми видаляємо дублікати лише на основі MD5-хешу, що означає, що різні версії однієї і тієї ж книги не видаляються."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "Чи можу я отримати список торентів у форматі JSON?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "Так."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "Я не бачу PDF або EPUB у торентах, тільки бінарні файли? Що робити?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "Це насправді PDF та EPUB, вони просто не мають розширення у багатьох наших торрентах. Є два місця, де ви можете знайти метадані для торрент-файлів, включаючи типи/розширення файлів:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. Кожна колекція або реліз має свої власні метадані. Наприклад, <a %(a_libgen_nonfic)s>торренти Libgen.rs</a> мають відповідну базу метаданих, розміщену на вебсайті Libgen.rs. Ми зазвичай посилаємося на відповідні ресурси метаданих з <a %(a_datasets)s>сторінки набору даних</a> кожної колекції."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Ми рекомендуємо <a %(a_generate)s>генерувати</a> або <a %(a_download)s>завантажувати</a> наші бази даних ElasticSearch та MariaDB. Вони містять мапінг для кожного запису в Архіві Анни до відповідних торрент-файлів (якщо доступні), під “torrent_paths” у JSON ElasticSearch."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "Чи є у вас програма відповідального розкриття інформації?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "Ми вітаємо дослідників безпеки, які шукають вразливості в наших системах. Ми є великими прихильниками відповідального розкриття інформації. Зв'яжіться з нами <a %(a_contact)s>тут</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "Наразі ми не можемо надавати винагороди за знайдені помилки, за винятком вразливостей, які мають <a %(a_link)s>потенціал скомпрометувати нашу анонімність</a>, за які ми пропонуємо винагороди в діапазоні $10k-50k. Ми хотіли б у майбутньому розширити сферу дії винагород за знайдені помилки! Зверніть увагу, що атаки соціальної інженерії не входять у сферу дії."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "Якщо ви зацікавлені в наступальній безпеці та хочете допомогти архівувати знання та культуру світу, обов'язково зв'яжіться з нами. Є багато способів, як ви можете допомогти."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "Чи є більше ресурсів про Архів Анни?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Блог Анни</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Subreddit</a> — регулярні оновлення"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Програмне забезпечення Анни</a> — наш відкритий код"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Переклад на Програмне забезпечення Анни</a> — наша система перекладу"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Набори даних</a> — про дані"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — альтернативні домени"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Вікіпедія</a> — більше про нас (будь ласка, допоможіть підтримувати цю сторінку в актуальному стані або створіть одну для своєї мови!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "Як повідомити про порушення авторських прав?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "Ми не розміщуємо жодних матеріалів, захищених авторським правом. Ми є пошуковою системою і, як така, індексуємо лише метадані, які вже є у відкритому доступі. Завантажуючи з цих зовнішніх джерел, ми рекомендуємо перевірити закони у вашій юрисдикції щодо того, що дозволено. Ми не несемо відповідальності за контент, розміщений іншими."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "Якщо у вас є скарги на те, що ви бачите тут, найкраще звернутися до оригінального вебсайту. Ми регулярно оновлюємо нашу базу даних їхніми змінами. Якщо ви дійсно вважаєте, що у вас є обґрунтована скарга DMCA, на яку ми повинні відповісти, будь ласка, заповніть <a %(a_copyright)s>форму скарги DMCA / Авторське право</a>. Ми серйозно ставимося до ваших скарг і відповімо вам якомога швидше."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "Мені не подобається, як ви керуєте цим проєктом!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "Ми також хочемо нагадати всім, що весь наш код і дані є повністю відкритими. Це унікально для проєктів, подібних до нашого — ми не знаємо жодного іншого проєкту з таким же масивним каталогом, який також є повністю відкритим. Ми дуже раді будь-кому, хто вважає, що ми погано керуємо нашим проєктом, взяти наш код і дані та створити власну тіньову бібліотеку! Ми не говоримо це зі злістю чи чимось подібним — ми щиро вважаємо, що це було б чудово, оскільки це підвищило б планку для всіх і краще зберегло б спадщину людства."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "Чи є у вас моніторинг доступності?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Будь ласка, перегляньте <a %(a_href)s>цей чудовий проєкт</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Хто така Анна?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Ви — Анна!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Які ваші улюблені книги?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Ось кілька книг, які мають особливе значення для світу тіньових бібліотек і цифрового збереження:"
@@ -4931,15 +4933,15 @@ msgstr "Пошук"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 msgid "layout.index.header.nav.beta"
 msgstr "beta"
 
@@ -5030,8 +5032,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Якщо ви є власником анонімної платіжної системи, будь ласка, зв'яжіться з нами. Ми також шукаємо людей, які бажають розмістити невеликі оголошення. Усі виручені кошти йдуть на наші зусилля щодо збереження."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 msgid "layout.index.header.nav.annasblog"
 msgstr "Блог Анни↗"
 
@@ -5453,7 +5455,7 @@ msgstr "Якщо ви використовуєте VPN, спільне інте�
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 msgid "layout.index.header.title"
 msgstr "Архів Анни"
 
@@ -5537,7 +5539,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Метадані"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 msgid "common.search.placeholder"
 msgstr "Пошук по назві, автору, DOi, ISBN, MD5, …"
 
@@ -5845,117 +5847,117 @@ msgstr "Легка волонтерська робота"
 msgid "page.volunteering.section.light.text1"
 msgstr "Якщо у вас є кілька вільних годин, ви можете допомогти різними способами. Обов’язково приєднуйтесь до <a %(a_telegram)s>чату волонтерів у Telegram</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Як знак вдячності, ми зазвичай надаємо 6 місяців статусу “Щасливий Бібліотекар” за базові досягнення, і більше за продовження волонтерської роботи. Усі досягнення вимагають високоякісної роботи — недбала робота шкодить нам більше, ніж допомагає, і ми її відхилимо. Будь ласка, <a %(a_contact)s>напишіть нам електронного листа</a>, коли досягнете певного етапу."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Завдання"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Досягнення"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Покращення метаданих шляхом <a %(a_metadata)s>зв’язування</a> з Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s посилання на записи, які ви покращили."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Переклад</a> вебсайту."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Повний переклад мови (якщо він не був майже завершений)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Поширення інформації про Архів Анни в соціальних мережах та онлайн-форумах, рекомендуючи книги або списки на AA, або відповідаючи на запитання."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s посилання або скріншоти."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Покращення сторінки Вікіпедії про Архів Анни вашою мовою. Включіть інформацію зі сторінки Вікіпедії AA іншими мовами, а також з нашого вебсайту та блогу. Додайте посилання на AA на інших відповідних сторінках."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Посилання на історію редагувань, що показує ваші значні внески."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Виконання запитів на книги (або статті тощо) на форумах Z-Library або Library Genesis. У нас немає власної системи запитів на книги, але ми дзеркалимо ці бібліотеки, тому покращення їх робить кращим і Архів Анни."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s посилання або скріншоти запитів, які ви виконали."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Невеликі завдання, опубліковані в нашому <a %(a_telegram)s>чаті волонтерів у Telegram</a>. Зазвичай для членства, іноді для невеликих винагород."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Залежить від завдання."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Винагороди"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Ми завжди шукаємо людей з міцними навичками програмування або наступальної безпеки, щоб залучити їх до нашої роботи. Ви можете зробити серйозний внесок у збереження спадщини людства."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Як подяку, ми надаємо членство за вагомі внески. Як велику подяку, ми надаємо грошові винагороди за особливо важливі та складні завдання. Це не повинно розглядатися як заміна роботи, але це додатковий стимул і може допомогти з покриттям витрат."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Більшість нашого коду є відкритим, і ми попросимо, щоб ваш код також був відкритим при наданні винагороди. Є деякі винятки, які ми можемо обговорити індивідуально."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Винагороди надаються першій людині, яка виконає завдання. Не соромтеся коментувати завдання з винагородою, щоб інші знали, що ви працюєте над чимось, щоб вони могли утриматися або зв'язатися з вами для співпраці. Але майте на увазі, що інші також можуть працювати над цим і намагатися випередити вас. Однак ми не надаємо винагороди за недбалу роботу. Якщо дві високоякісні подачі зроблені близько одна до одної (протягом одного-двох днів), ми можемо вирішити надати винагороди обом, на наш розсуд, наприклад, 100%% за першу подачу і 50%% за другу подачу (тобто всього 150%%)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "Для більших винагород (особливо за скрапінг), будь ласка, зв'яжіться з нами, коли ви завершите ~5%% завдання, і ви впевнені, що ваш метод масштабуватиметься до повного етапу. Вам доведеться поділитися своїм методом з нами, щоб ми могли надати зворотний зв'язок. Також, таким чином, ми можемо вирішити, що робити, якщо кілька людей наближаються до винагороди, наприклад, потенційно надавати її кільком людям, заохочувати людей до співпраці тощо."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "УВАГА: завдання з високими винагородами <span %(bold)s>складні</span> — можливо, варто почати з легших."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Перейдіть до нашого <a %(a_gitlab)s>списку завдань на Gitlab</a> і сортуйте за “Пріоритет мітки”. Це приблизно показує порядок завдань, які нас цікавлять. Завдання без явних винагород все ще можуть претендувати на членство, особливо ті, що позначені як “Прийнято” та “Улюблене Анни”. Можливо, вам варто почати з “Початкового проекту”."
@@ -5982,161 +5984,162 @@ msgstr "Архів Анни потребує вашої допомоги!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Багато хто намагається нас знищити, але ми боремося."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 msgid "layout.index.header.nav.donate"
 msgstr "Задонатити"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "Збереження людських знань: чудовий подарунок до свята!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.surprise"
 msgstr "Здивуйте кохану людину, подаруйте їй обліковий запис із членством."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 msgid "layout.index.header.banner.mirrors"
 msgstr "Щоб підвищити стійкість \"Архіву Анни\", ми шукаємо волонтерів для роботи з дзеркалами."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "Ідеальний подарунок на День Святого Валентина!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Ми додали новий метод для донацій: %(method_name)s. Обслуговування сайту є дорогим та ми були б дуже вдячні вам за %(donate_link_open_tag)sпідтримку</a>. Дуже вам дякуємо."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Ми проводимо збір коштів на <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">створення резервної копії</a> найбільшої тіньової бібліотеки коміксів у світі. Дякуємо за вашу підтримку! <a href=\"/donate\">Зробити благодійний внесок.</a> Якщо ви не можете зробити благодійний внесок, підтримайте нас, розказавши друзям та підписавшись на нас у <a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a>, або <a href=\"https://t.me/annasarchiveorg\">Telegram</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 msgid "layout.index.header.recent_downloads"
 msgstr "Нещодавні завантаження:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-msgid "layout.index.header.nav.search"
-msgstr "Пошук"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
-#, fuzzy
-msgid "layout.index.header.nav.faq"
-msgstr "ЧаПи"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Покращити метадані"
+msgid "layout.index.header.nav.search"
+msgstr "Пошук"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
 #, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "Волонтерство та нагороди"
+msgid "layout.index.header.nav.faq"
+msgstr "ЧаПи"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
-msgid "layout.index.header.nav.datasets"
-msgstr "Бази даних"
+#, fuzzy
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Покращити метадані"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
-msgid "layout.index.header.nav.torrents"
-msgstr "Торренти"
+#, fuzzy
+msgid "layout.index.header.nav.volunteering"
+msgstr "Волонтерство та нагороди"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
-#, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "Дослідник кодів"
+msgid "layout.index.header.nav.datasets"
+msgstr "Бази даних"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
-msgid "layout.index.header.nav.llm_data"
-msgstr "LLM дані"
+msgid "layout.index.header.nav.torrents"
+msgstr "Торренти"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "Дослідник кодів"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+msgid "layout.index.header.nav.llm_data"
+msgstr "LLM дані"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 msgid "layout.index.header.nav.home"
 msgstr "Головна сторінка"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Аннине програмне забезпечення ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 msgid "layout.index.header.nav.translate"
 msgstr "Перекладати ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 msgid "layout.index.header.nav.login_register"
 msgstr "Увійти / Зареєструватися"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 msgid "layout.index.header.nav.account"
 msgstr "Обліковий запис"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 msgid "layout.index.footer.list1.header"
 msgstr "Архів Анни"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 msgid "layout.index.footer.list2.header"
 msgstr "Контакти"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / Закон про авторське право"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "Розширений"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 msgid "layout.index.header.nav.security"
 msgstr "Безпека"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 msgid "layout.index.footer.list3.header"
 msgstr "Альтернативи"
 

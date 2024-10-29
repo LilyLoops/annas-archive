@@ -144,17 +144,17 @@ msgstr "Glæsilegi gagnasafnarinn"
 msgid "common.membership.tier_name.5"
 msgstr "Ótrúlegur skjalavörður"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 #, fuzzy
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) samtals"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 #, fuzzy
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 #, fuzzy
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s samtals"
@@ -325,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "hafðu samband við okkur"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,13 +372,13 @@ msgid "page.donate.payment.select_method"
 msgstr "Vinsamlegast veldu greiðslumáta."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Amazon gjafakort"
@@ -391,7 +391,7 @@ msgstr "Bankakort (með appi)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Crypto %(bitcoin_icon)s"
@@ -423,8 +423,8 @@ msgstr "Kredit/debet/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
@@ -470,498 +470,500 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(til bráðabirgða óaðgengilegt)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "Með rafmynt geturðu gefið með BTC, ETH, XMR og SOL. Notaðu þennan valkost ef þú ert þegar kunnugur rafmyntum."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Með dulritun geturðu gefið með BTC, ETH, XMR og fleiru."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Ef þú ert að nota dulritun í fyrsta skipti, mælum við með að nota %(options)s til að kaupa og gefa Bitcoin (upprunalega og mest notaða dulritunargjaldeyri)."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "Til að gefa með PayPal US, ætlum við að nota PayPal Crypto, sem gerir okkur kleift að vera nafnlaus. Við þökkum þér fyrir að taka þér tíma til að læra hvernig á að gefa með þessari aðferð, þar sem það hjálpar okkur mikið."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Gefðu með PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Gefðu með Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Ef þú ert með Cash App, þá er þetta auðveldasta leiðin til að gefa!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Athugið að fyrir færslur undir %(amount)s, getur Cash App rukkað %(fee)s gjald. Fyrir %(amount)s eða meira, er það ókeypis!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Styrktu með því að nota Revolut."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Ef þú ert með Revolut, þá er þetta auðveldasta leiðin til að styrkja!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Gefðu með kredit- eða debetkorti."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay og Apple Pay gætu einnig virkað."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Athugaðu að fyrir litlar framlög gætu kreditkortagjöldin eytt %(discount)s%% afslættinum okkar, svo við mælum með lengri áskriftum."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Athugið að fyrir litlar framlög eru gjöldin há, svo við mælum með lengri áskriftum."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Með Binance geturðu keypt Bitcoin með kredit-/debetkorti eða bankareikningi og síðan gefið okkur það Bitcoin. Þannig getum við verið örugg og nafnlaus þegar við tökum við framlagi þínu."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance er fáanlegt í næstum öllum löndum og styður flestar banka og debet/kreditkort. Þetta er núna okkar helsta meðmæli. Við þökkum þér fyrir að taka þér tíma til að læra hvernig á að gefa með þessari aðferð, þar sem það hjálpar okkur mikið."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Styrktu með því að nota venjulegan PayPal reikninginn þinn."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Gefðu með Alipay eða WeChat. Þú getur valið á milli þeirra á næstu síðu."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Gefðu með kredit-/debetkorti, PayPal eða Venmo. Þú getur valið á milli þessara á næstu síðu."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Gefðu með Amazon gjafakorti."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Athugaðu að við þurfum að námunda að upphæðum sem söluaðilar okkar samþykkja (lágmark %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>MIKILVÆGT:</strong> Við styðjum aðeins Amazon.com, ekki aðrar Amazon vefsíður. Til dæmis, .de, .co.uk, .ca, eru EKKI studdar."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Þessi aðferð notar dulritunargjaldmiðilsveitu sem millistig umbreytingu. Þetta getur verið svolítið ruglingslegt, svo vinsamlegast notaðu þessa aðferð aðeins ef aðrar greiðsluaðferðir virka ekki. Hún virkar einnig ekki í öllum löndum."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Gefðu með kredit-/debetkorti, í gegnum Alipay appið (mjög auðvelt að setja upp)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Settu upp Alipay appið"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "Settu upp Alipay appið frá <a %(a_app_store)s>Apple App Store</a> eða <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Skráðu þig með símanúmerinu þínu."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Engar frekari persónuupplýsingar eru nauðsynlegar."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Bættu við bankakorti"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Stuðningur: Visa, MasterCard, JCB, Diners Club og Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Sjáðu <a %(a_alipay)s>þessa leiðbeiningu</a> fyrir frekari upplýsingar."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Við getum ekki stutt kredit-/debetkort beint, því bankar vilja ekki vinna með okkur. ☹ Hins vegar eru nokkrar leiðir til að nota kredit-/debetkort samt, með því að nota aðrar greiðsluaðferðir:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Sendu okkur Amazon.com gjafakort með því að nota kredit-/debetkortið þitt."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay styður alþjóðleg kredit-/debetkort. Sjáðu <a %(a_alipay)s>þessa leiðbeiningu</a> fyrir frekari upplýsingar."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) styður alþjóðlegar kredit-/debetkort. Í WeChat appinu, farðu í „Ég => Þjónustur => Veski => Bæta við korti“. Ef þú sérð það ekki, virkjaðu það með því að fara í „Ég => Stillingar => Almennar => Verkfæri => Weixin Pay => Virkja“."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "Þú getur keypt dulritunargjaldmiðla með kredit-/debetkortum."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Rafmynta hraðþjónustur"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Hraðþjónustur eru þægilegar, en rukka hærri gjöld."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Þú getur notað þetta í stað rafmyntaskipta ef þú vilt fljótt gefa stærra framlag og þér er sama um gjald á $5-10."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Gakktu úr skugga um að senda nákvæma rafmyntaupphæð sem sýnd er á framlagsíðunni, ekki upphæðina í $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Annars verður gjaldið dregið frá og við getum ekki sjálfkrafa unnið úr aðildinni þinni."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(lágmark: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(lágmark: %(minimum)s fer eftir landi, engin staðfesting fyrir fyrstu færslu)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(lágmark: %(minimum)s, engin staðfesting fyrir fyrstu færslu)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(lágmark: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(lágmark: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(lágmark: %(minimum)s, engin staðfesting fyrir fyrstu færslu)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Ef einhverjar af þessum upplýsingum eru úreltar, vinsamlegast sendið okkur tölvupóst til að láta okkur vita."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "Fyrir kreditkort, debetkort, Apple Pay og Google Pay notum við „Buy Me a Coffee“ (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). Í þeirra kerfi jafngildir ein „kaffi“ $5, þannig að framlag þitt verður námundað að næsta margfeldi af 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "Veldu hversu lengi þú vilt gerast áskrifandi."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 mánuður"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 mánuðir"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 mánuðir"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 mánuðir"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 mánuðir"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 mánuðir"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 mánuðir"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>eftir <span %(span_discount)s></span> afslætti</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "Þessi greiðslumáti krefst lágmarks %(amount)s. Vinsamlegast veldu annan tíma eða greiðslumáta."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Styrkja"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "Þessi greiðsluaðferð leyfir aðeins hámark %(amount)s. Vinsamlegast veldu annan tíma eða greiðsluaðferð."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "Til að gerast meðlimur, vinsamlegast <a %(a_login)s>Skráðu þig inn eða Skráðu þig</a>. Takk fyrir stuðninginn!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "Veldu þína uppáhalds rafmynt:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(lægsta lágmarksupphæð)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(notaðu þegar þú sendir Ethereum frá Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(viðvörun: há lágmarksupphæð)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "Smelltu á gefa hnappinn til að staðfesta þessa gjöf."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "Gefið <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "Þú getur enn hætt við framlög á afgreiðslustigi."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ Áframsending á gjafasíðuna…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ Eitthvað fór úrskeiðis. Vinsamlegast endurhlaðið síðuna og reyndu aftur."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / mánuður"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "í 1 mánuð"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "í 3 mánuði"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "í 6 mánuði"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "í 12 mánuði"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "í 24 mánuði"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "í 48 mánuði"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "í 96 mánuði"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "í 1 mánuð „%(tier_name)s“"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "í 3 mánuði “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "í 6 mánuði “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "í 12 mánuði “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "í 24 mánuði „%(tier_name)s“"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "í 48 mánuði “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "í 96 mánuði „%(tier_name)s“"
@@ -1081,9 +1083,9 @@ msgstr "<strong>Mikilvæg athugasemd:</strong> Verð á rafmyntum getur sveiflas
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "Þessi styrkur er útrunninn. Vinsamlegast hættið við og búið til nýjan."
@@ -1162,9 +1164,9 @@ msgstr "Sjáðu skref-fyrir-skref leiðbeiningarnar hér að neðan."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "Staða:"
@@ -1175,9 +1177,9 @@ msgstr "Staða:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Bíð eftir staðfestingu (endurhlaðið síðuna til að athuga)…"
@@ -1188,9 +1190,9 @@ msgstr "Bíð eftir staðfestingu (endurhlaðið síðuna til að athuga)…"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Bíð eftir flutningi (endurnýjaðu síðuna til að athuga)…"
@@ -1201,9 +1203,9 @@ msgstr "Bíð eftir flutningi (endurnýjaðu síðuna til að athuga)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "Tími eftir:"
@@ -1214,9 +1216,9 @@ msgstr "Tími eftir:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(þú gætir viljað hætta við og búa til nýja framlög)"
@@ -1227,9 +1229,9 @@ msgstr "(þú gætir viljað hætta við og búa til nýja framlög)"
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "Til að endurstilla tímamælinn, einfaldlega búðu til nýtt framlag."
@@ -1241,15 +1243,15 @@ msgstr "Til að endurstilla tímamælinn, einfaldlega búðu til nýtt framlag."
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "Uppfæra stöðu"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "Ef þú lendir í vandræðum, vinsamlegast hafðu samband við okkur á %(email)s og láttu eins miklar upplýsingar fylgja og mögulegt er (svo sem skjáskot)."
@@ -1448,16 +1450,16 @@ msgstr "Dæmi:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "Athugið að reikningsnafn eða mynd gæti litið undarlega út. Engin ástæða til að hafa áhyggjur! Þessir reikningar eru stjórnaðir af styrktaraðilum okkar. Reikningarnir okkar hafa ekki verið hökkuð."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 #, fuzzy
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Leiðbeiningar um Alipay"
@@ -1474,147 +1476,147 @@ msgstr "<span %(span_circle)s>1</span>Gefðu á Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "Gefðu heildarupphæðina %(total)s með því að nota <a %(a_account)s>þennan Alipay reikning</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Því miður er Alipay síðan oft aðeins aðgengileg frá <strong>meginlandi Kína</strong>. Þú gætir þurft að slökkva tímabundið á VPN þínum, eða nota VPN til meginlands Kína (eða Hong Kong virkar stundum líka)."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Gerðu framlag (skannaðu QR kóða eða ýttu á hnapp)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Opnaðu <a %(a_href)s>QR-kóða framlagsíðuna</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Skannaðu QR kóðann með Alipay appinu, eða ýttu á hnappinn til að opna Alipay appið."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Vinsamlegast verið þolinmóð; síðan gæti tekið smá tíma að hlaðast þar sem hún er í Kína."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "WeChat leiðbeiningar"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Gefið á WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Gefið heildarupphæðina %(total)s með því að nota <a %(a_account)s>þennan WeChat reikning</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Pix leiðbeiningar"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Gefðu á Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "Gefðu heildarupphæðina %(total)s með því að nota <a %(a_account)s>þennan Pix reikning"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Sendu okkur kvittunina með tölvupósti"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Sendu kvittun eða skjáskot á persónulega staðfestingarheimilisfangið þitt. NOTAÐU EKKI þetta netfang fyrir PayPal framlög þín."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "Sendu kvittun eða skjáskot á persónulega staðfestingar netfangið þitt:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "Ef gengi dulritunargjaldmiðilsins sveiflaðist á meðan viðskiptin áttu sér stað, vertu viss um að innihalda kvittunina sem sýnir upprunalega gengið. Við kunnum virkilega að meta að þú tekur þér fyrir hendur að nota dulritunargjaldmiðil, það hjálpar okkur mikið!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "Þegar þú hefur sent kvittunina þína með tölvupósti, smelltu á þennan hnapp, svo Anna geti handvirkt skoðað hana (þetta gæti tekið nokkra daga):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "Já, ég sendi kvittunina mína í tölvupósti"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ Takk fyrir framlagið! Anna mun handvirkt virkja aðild þína innan nokkurra daga."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ Eitthvað fór úrskeiðis. Vinsamlegast endurhlaðið síðuna og reyndu aftur."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Skref-fyrir-skref leiðbeiningar"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Sum skrefin nefna dulritunarveski, en ekki hafa áhyggjur, þú þarft ekki að læra neitt um dulritun fyrir þetta."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Sláðu inn netfangið þitt."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Veldu greiðslumáta."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Veldu greiðslumáta aftur."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Veldu “Sjálf-hýst” veski."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Smelltu á “Ég staðfesti eignarhald”."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Þú ættir að fá kvittun í tölvupósti. Vinsamlegast sendu okkur hana, og við munum staðfesta styrkinn þinn eins fljótt og auðið er."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Ef þú gerðir mistök við greiðslu, getum við ekki endurgreitt, en við munum reyna að leysa málið."
@@ -1768,9 +1770,9 @@ msgstr "Hafðu samband við Önnu á %(email)s ef þú hefur áhuga á að uppf�
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 #, fuzzy
 msgid "page.contact.title"
 msgstr "Tengiliðatölvupóstur"
@@ -1782,25 +1784,25 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Þú getur sameinað margar aðildir (hraðar niðurhal á 24 klukkustundum verða sameinaðar)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 #, fuzzy
 msgid "layout.index.header.nav.public_profile"
 msgstr "Opinber prófíll"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 #, fuzzy
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Niðurhalaðar skrár"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 #, fuzzy
 msgid "layout.index.header.nav.my_donations"
 msgstr "Framlög mín"
@@ -2839,7 +2841,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Hraðari niðurhal</strong> Verða <a %(a_membership)s>meðlimur</a> til að styðja langtíma varðveislu bóka, greina og fleira. Til að sýna þakklæti okkar fyrir stuðninginn færðu hraðari niðurhal. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Ef þú styrkir í þessum mánuði, færðu <strong>tvöfalt</strong> fleiri hraðniðurhöl."
@@ -2867,7 +2869,7 @@ msgid "page.md5.box.download.option"
 msgstr "Valkostur #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Vísaðu vini, og bæði þú og vinur þinn fáið %(percentage)s%% bónus hraða niðurhal!"
@@ -2879,11 +2881,11 @@ msgstr "Vísaðu vini, og bæði þú og vinur þinn fáið %(percentage)s%% bó
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "Læra meira…"
@@ -3822,7 +3824,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Við auðgum einnig safn okkar með aðeins gagnalýsingum, sem við getum tengt við skrár, t.d. með því að nota ISBN númer eða aðra reiti. Hér að neðan er yfirlit yfir þau. Enn og aftur, sum þessara heimilda eru alveg opin, á meðan við þurfum að skafa aðrar."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4993,327 +4995,327 @@ msgstr "<div %(div_question)s>Get ég uppfært áskriftina mína eða fengið ma
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>Eru aðrar greiðsluaðferðir í boði?</div> Ekki eins og er. Margir vilja ekki að skjalasöfn eins og þetta séu til, svo við verðum að fara varlega. Ef þú getur hjálpað okkur að setja upp aðrar (þægilegri) greiðsluaðferðir á öruggan hátt, vinsamlegast hafðu samband við %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 #, fuzzy
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>Hvað eyðið þið styrkjum í?</div> 100%% fer í að varðveita og gera aðgengilega þekkingu og menningu heimsins. Eins og er eyðum við því mest í netþjóna, geymslu og bandvídd. Engir peningar fara til neinna liðsmanna persónulega."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 #, fuzzy
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>Get ég gefið stóran styrk?</div> Það væri frábært! Fyrir styrki yfir nokkur þúsund dollara, vinsamlegast hafðu beint samband við okkur á %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>Get ég gefið framlag án þess að gerast meðlimur?</div> Auðvitað. Við tökum við framlögum af hvaða upphæð sem er á þetta Monero (XMR) heimilisfang: %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 #, fuzzy
 msgid "page.faq.upload.title"
 msgstr "Hvernig hleð ég upp nýjum bókum?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 #, fuzzy
 msgid "page.upload.text1"
 msgstr "Í bili mælum við með að hlaða upp nýjum bókum á Library Genesis afritin. Hér er <a %(a_guide)s>handhæg leiðarvísir</a>. Athugið að bæði afritin sem við vísum á þessari vefsíðu draga frá þessu sama upphleðslukerfi."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 #, fuzzy
 msgid "common.libgen.email"
 msgstr "Ef netfangið þitt virkar ekki á Libgen spjallborðunum, mælum við með að nota <a %(a_mail)s>Proton Mail</a> (ókeypis). Þú getur einnig <a %(a_manual)s>beðið handvirkt</a> um að reikningurinn þinn verði virkjaður."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "Athugið að mhut.org lokar fyrir ákveðin IP svið, svo VPN gæti verið nauðsynlegt."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "Að öðrum kosti geturðu hlaðið þeim upp á Z-Library <a %(a_upload)s>hér</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "Til að hlaða upp fræðiritum, vinsamlegast hlaðið einnig (auk Library Genesis) upp á <a %(a_stc_nexus)s>STC Nexus</a>. Þeir eru besta skuggabókasafnið fyrir ný rit. Við höfum ekki samþætt þá enn, en munum gera það á einhverjum tímapunkti. Þú getur notað þeirra <a %(a_telegram)s>upphleðslubot á Telegram</a>, eða haft samband við netfangið sem er skráð í festu skilaboðunum ef þú hefur of mörg skrár til að hlaða upp á þennan hátt."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 #, fuzzy
 msgid "page.upload.large.text"
 msgstr "Fyrir stórar upphleðslur (yfir 10.000 skrár) sem eru ekki samþykktar af Libgen eða Z-Library, vinsamlegast hafðu samband við okkur á %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 #, fuzzy
 msgid "page.faq.request.title"
 msgstr "Hvernig bið ég um bækur?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 #, fuzzy
 msgid "page.request.cannot_accomodate"
 msgstr "Eins og er getum við ekki tekið við bókabeiðnum."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 #, fuzzy
 msgid "page.request.forums"
 msgstr "Vinsamlegast gerðu beiðnir þínar á Z-Library eða Libgen spjallborðum."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 #, fuzzy
 msgid "page.request.dont_email"
 msgstr "Ekki senda okkur bókabeiðnir í tölvupósti."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "Safnið þið meta gögnum?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "Við gerum það sannarlega."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "Ég halaði niður 1984 eftir George Orwell, mun lögreglan koma að dyrum mínum?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "Ekki hafa of miklar áhyggjur, það eru margir að hlaða niður af vefsíðum sem við tengjum við, og það er mjög sjaldgæft að lenda í vandræðum. Hins vegar, til að vera öruggur mælum við með að nota VPN (greitt), eða <a %(a_tor)s>Tor</a> (ókeypis)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "Hvernig vista ég leitastillingar mínar?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "Veldu stillingarnar sem þér líkar, hafðu leitarreitinn tóman, smelltu á „Leita“ og bókamerktu síðan síðuna með bókamerkjafítus vafrans þíns."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "Ertu með farsímaforrit?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "Við erum ekki með opinbera farsímaforrit, en þú getur sett upp þessa vefsíðu sem forrit."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> Smelltu á þriggja punkta valmyndina efst til hægri og veldu „Bæta við á heimaskjá“."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> Smelltu á „Deila“ hnappinn neðst og veldu „Bæta við heimaskjá“."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "Ertu með API?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "Við höfum einn stöðugan JSON API fyrir meðlimi, til að fá hraðan niðurhals URL: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (skjöl innan JSON sjálfs)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "Fyrir aðra notkunartilfelli, eins og að fara í gegnum allar skrár okkar, byggja sérsniðna leit og svo framvegis, mælum við með <a %(a_generate)s>að búa til</a> eða <a %(a_download)s>að sækja</a> ElasticSearch og MariaDB gagnagrunna okkar. Hrá gögnin má skoða handvirkt <a %(a_explore)s>í gegnum JSON skrár</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "Hægt er að hlaða niður hráu torrent-listanum okkar sem <a %(a_torrents)s>JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "Torrents FAQ"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "Mig langar að hjálpa til við að sáldra, en ég hef ekki mikið pláss á disknum."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "Notaðu <a %(a_list)s>torrent lista búa til</a> til að búa til lista yfir torrents sem mest þurfa á torrenting að halda, innan geymslupláss takmarkana þinna."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "Straumarnir eru of hægir; get ég hlaðið gögnunum beint frá ykkur?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "Já, sjáðu <a %(a_llm)s>LLM gögn</a> síðuna."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "Get ég hlaðið niður aðeins hluta af skránum, eins og aðeins ákveðnu tungumáli eða efni?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "Flestir straumar innihalda skrárnar beint, sem þýðir að þú getur leiðbeint straumklientum að hlaða aðeins niður þeim skrám sem þú þarft. Til að ákvarða hvaða skrár á að hlaða niður geturðu <a %(a_generate)s>búið til</a> okkar metadata, eða <a %(a_download)s>hlaðið niður</a> okkar ElasticSearch og MariaDB gagnagrunnum. Því miður innihalda nokkrar straumsafnanir .zip eða .tar skrár í rótinni, í því tilfelli þarftu að hlaða niður öllum straumnum áður en þú getur valið einstakar skrár."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "Hvernig höndlið þið tvíteknar skrár í straumunum?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "Við reynum að halda lágmarks tvítekningu eða skörun milli straumanna á þessum lista, en það er ekki alltaf hægt að ná, og fer mikið eftir stefnumótun upprunabókasafna. Fyrir bókasöfn sem gefa út eigin strauma, er það utan okkar valdsviðs. Fyrir strauma sem gefnir eru út af Söfnum Önnu, afritum við aðeins út frá MD5 hash, sem þýðir að mismunandi útgáfur af sömu bók verða ekki afritaðar."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "Get ég fengið torrent listann sem JSON?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "Já."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "Ég sé ekki PDF eða EPUB í straumunum, bara tvöfaldar skrár? Hvað geri ég?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "Þetta eru í raun PDF og EPUB skrár, þær hafa bara ekki viðbót í mörgum af torrentunum okkar. Það eru tveir staðir þar sem þú getur fundið lýsigögn fyrir torrent skrár, þar á meðal skráargerðir/viðbætur:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. Hver safn eða útgáfa hefur sín eigin lýsigögn. Til dæmis, <a %(a_libgen_nonfic)s>Libgen.rs torrents</a> hafa samsvarandi lýsigagnagagnagrunn sem er hýstur á Libgen.rs vefsíðunni. Við tengjum venjulega við viðeigandi lýsigagnauppsprettur frá hverri safns <a %(a_datasets)s>gagnasettssíðu</a>."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Við mælum með að <a %(a_generate)s>búa til</a> eða <a %(a_download)s>hlaða niður</a> okkar ElasticSearch og MariaDB gagnagrunnum. Þeir innihalda kortlagningu fyrir hverja færslu í Söfn Önnu til samsvarandi straumskráa (ef til eru), undir “torrent_paths” í ElasticSearch JSON."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "Ertu með ábyrga tilkynningaráætlun?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "Við bjóðum öryggisrannsakendur velkomna til að leita að veikleikum í kerfum okkar. Við erum miklir stuðningsmenn ábyrgra uppljóstrana. Hafðu samband við okkur <a %(a_contact)s>hér</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "Við getum ekki veitt verðlaun fyrir villuleit, nema fyrir veikleika sem hafa <a %(a_link)s>möguleika á að ógna nafnleynd okkar</a>, fyrir sem við bjóðum verðlaun á bilinu $10k-50k. Við viljum bjóða upp á víðtækari verðlaun fyrir villuleit í framtíðinni! Vinsamlegast athugið að félagslegar verkfræðiráðstafanir eru utan umfangs."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "Ef þú hefur áhuga á sóknaröryggi og vilt hjálpa til við að skrá heimsvitund og menningu, vertu viss um að hafa samband við okkur. Það eru margar leiðir til að hjálpa."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "Eru til fleiri upplýsingar um Söfn Önnu?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Blogg Önnu</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Subreddit</a> — reglulegar uppfærslur"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Hugbúnaður Önnu</a> — okkar opinn hugbúnaður"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Þýða á Hugbúnaði Önnu</a> — þýðingarkerfi okkar"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Gagnasett</a> — um gögnin"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — valkostir lén"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Wikipedia</a> — meira um okkur (vinsamlegast hjálpaðu til við að halda þessari síðu uppfærðri, eða búðu til eina fyrir þitt eigið tungumál!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "Hvernig tilkynni ég brot á höfundarrétti?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "Við hýsum engin höfundarréttarvarin efni hér. Við erum leitarvél og skráum aðeins lýsigögn sem eru þegar opinberlega aðgengileg. Þegar þú hleður niður frá þessum ytri aðilum mælum við með að þú athugir lögin í þínu lögsagnarumdæmi varðandi hvað er leyfilegt. Við berum ekki ábyrgð á efni sem aðrir hýsa."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "Ef þú hefur kvartanir um það sem þú sérð hér, er best að hafa samband við upprunalegu vefsíðuna. Við drögum reglulega breytingar þeirra inn í gagnagrunn okkar. Ef þú telur að þú hafir gildar DMCA kvartanir sem við ættum að bregðast við, vinsamlegast fylltu út <a %(a_copyright)s>DMCA / Höfundarréttarkvörtunarformið</a>. Við tökum kvartanir þínar alvarlega og munum svara eins fljótt og auðið er."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "Ég hata hvernig þið stjórnið þessu verkefni!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "Við viljum einnig minna alla á að allur kóði okkar og gögn eru algjörlega opinn hugbúnaður. Þetta er einstakt fyrir verkefni eins og okkar — við vitum ekki um neitt annað verkefni með jafn stóran gagnagrunn sem er einnig algjörlega opinn hugbúnaður. Við fögnum mjög öllum sem telja að við rekum verkefnið okkar illa að taka kóðann okkar og gögn og setja upp sína eigin skuggabókasafn! Við segjum þetta ekki af illvilja eða neinu slíku — við teljum í raun að þetta væri frábært þar sem það myndi hækka kröfurnar fyrir alla og betur varðveita arfleifð mannkyns."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "Ertu með vöktunarkerfi fyrir uppitíma?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Vinsamlegast skoðaðu <a %(a_href)s>þetta frábæra verkefni</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Hver er Anna?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Þú ert Anna!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Hverjar eru uppáhaldsbækurnar þínar?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Hér eru nokkrar bækur sem hafa sérstaka þýðingu fyrir heim skuggabókasafna og stafrænnar varðveislu:"
@@ -5351,16 +5353,16 @@ msgstr "Leita"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 #, fuzzy
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 #, fuzzy
 msgid "layout.index.header.nav.beta"
 msgstr "beta"
@@ -5466,8 +5468,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Ef þú rekur áhættusaman nafnlausan greiðslumiðlara, vinsamlegast hafðu samband við okkur. Við erum einnig að leita að fólki sem vill setja smekklegar litlar auglýsingar. Allur ágóði fer í varðveislustarf okkar."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 #, fuzzy
 msgid "layout.index.header.nav.annasblog"
 msgstr "Blogg Önnu ↗"
@@ -5899,7 +5901,7 @@ msgstr "Ef þú ert að nota VPN, deilt netsamband eða netþjónninn þinn deil
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 #, fuzzy
 msgid "layout.index.header.title"
 msgstr "Söfn Önnu"
@@ -5996,7 +5998,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Lýsigögn"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 #, fuzzy
 msgid "common.search.placeholder"
 msgstr "Titill, höfundur, DOI, ISBN, MD5, …"
@@ -6353,117 +6355,117 @@ msgstr "Létt sjálfboðavinna"
 msgid "page.volunteering.section.light.text1"
 msgstr "Ef þú hefur nokkrar klukkustundir til að gefa, geturðu hjálpað á ýmsa vegu. Vertu viss um að ganga í <a %(a_telegram)s>sjálfboðaliðaspjallið á Telegram</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Sem þakklætisvott, gefum við venjulega 6 mánuði af „Heppinn bókavörður“ fyrir grunnáfanga, og meira fyrir áframhaldandi sjálfboðavinnu. Allir áfangar krefjast hágæða vinnu — slæm vinna skaðar okkur meira en hún hjálpar og við munum hafna henni. Vinsamlegast <a %(a_contact)s>sendu okkur tölvupóst</a> þegar þú nærð áfanga."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Verkefni"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Áfangi"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Bæta metadata með því að <a %(a_metadata)s>tengja</a> við Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s tenglar af skrám sem þú bætti við."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Þýða</a> vefsíðuna."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Þýða heilt tungumál (ef það var ekki næstum því fullklárað áður)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Dreifa orðinu um Anna’s Archive á samfélagsmiðlum og netspjallborðum, með því að mæla með bókum eða listum á AA, eða svara spurningum."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s tenglar eða skjáskot."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Bæta Wikipedia síðu Anna’s Archive á þínu tungumáli. Innihalda upplýsingar frá Wikipedia síðu AA á öðrum tungumálum, og frá vefsíðu okkar og bloggi. Bæta við tilvísunum til AA á öðrum viðeigandi síðum."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Tengill á breytingasögu sem sýnir að þú gerðir verulegar breytingar."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Uppfylla bóka (eða greina, o.s.frv.) beiðnir á Z-Library eða Library Genesis spjallborðunum. Við höfum ekki okkar eigin bókabeiðnakerfi, en við speglum þær bókasöfn, svo að gera þau betri gerir Anna’s Archive betra líka."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s tenglar eða skjáskot af beiðnum sem þú uppfylltir."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Smáverkefni sem birt eru á <a %(a_telegram)s>sjálfboðaliðaspjallinu á Telegram</a>. Venjulega fyrir aðild, stundum fyrir smá verðlaun."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Fer eftir verkefninu."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Verðlaun"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Við erum alltaf að leita að fólki með trausta forritunar- eða öryggishæfileika til að taka þátt. Þú getur haft veruleg áhrif á að varðveita arfleifð mannkynsins."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Sem þakklætisvottur gefum við út aðild fyrir traust framlög. Sem stórt þakklætisvottur gefum við út peningaverðlaun fyrir sérstaklega mikilvæg og erfið verkefni. Þetta ætti ekki að líta á sem staðgengil fyrir starf, en það er aukahvati og getur hjálpað til við að mæta kostnaði."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Flest af okkar kóða er opinn hugbúnaður, og við munum biðja um það sama af þínum kóða þegar verðlaun eru veitt. Það eru nokkrar undantekningar sem við getum rætt á einstaklingsgrundvelli."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Verðlaun eru veitt þeim fyrsta sem klárar verkefni. Ekki hika við að kommenta á verðlaunamiða til að láta aðra vita að þú ert að vinna að einhverju, svo aðrir geti haldið aftur eða haft samband við þig til að vinna saman. En hafðu í huga að aðrir eru enn frjálsir til að vinna að því líka og reyna að vinna þig. Hins vegar veitum við ekki verðlaun fyrir slæm vinnubrögð. Ef tvö hágæða framlög eru gerð nálægt hvort öðru (innan dags eða tveggja), gætum við valið að veita verðlaun til beggja, að okkar ákvörðun, til dæmis 100%% fyrir fyrsta framlagið og 50%% fyrir annað framlagið (samtals 150%%)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "Fyrir stærri verðlaun (sérstaklega skrapverðlaun), vinsamlegast hafðu samband við okkur þegar þú hefur lokið ~5%% af því, og þú ert viss um að aðferð þín muni skala upp í fullan áfanga. Þú verður að deila aðferð þinni með okkur svo við getum gefið ábendingar. Einnig, á þennan hátt getum við ákveðið hvað á að gera ef það eru margir sem nálgast verðlaun, svo sem að veita það til margra, hvetja fólk til að vinna saman, o.s.frv."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "VIÐVÖRUN: verkefnin með háum verðlaunum eru <span %(bold)s>erfið</span> — það gæti verið skynsamlegt að byrja á auðveldari verkefnum."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Farðu á okkar <a %(a_gitlab)s>Gitlab verkefnalista</a> og raðaðu eftir „Label priority“. Þetta sýnir gróflega röð verkefna sem við leggjum áherslu á. Verkefni án skýrra verðlauna eru enn gjaldgeng fyrir aðild, sérstaklega þau sem eru merkt „Accepted“ og „Uppáhald Önnu“. Þú gætir viljað byrja á „Byrjunarverkefni“."
@@ -6493,184 +6495,185 @@ msgstr "Örkin hennar Önnu þarf á hjálp þinni að halda!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Margir reyna að fella okkur, en við berjumst á móti."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 #, fuzzy
 msgid "layout.index.header.nav.donate"
 msgstr "Styrkja"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "Að bjarga mannlegri þekkingu: frábær gjöf fyrir hátíðarnar!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.surprise"
 msgstr "Komdu á óvart ástvini, gefðu þeim reikning með áskrift."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 #, fuzzy
 msgid "layout.index.header.banner.mirrors"
 msgstr "Til að auka seiglu Örkinni hennar Önnu, leitum við að sjálfboðaliðum til að keyra spegla."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "Fullkomin gjöf fyrir Valentínusardaginn!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 #, fuzzy
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Við höfum nýja gjafaaðferð í boði: %(method_name)s. Vinsamlegast íhugaðu að %(donate_link_open_tag)sgefa</a> — það er ekki ódýrt að reka þessa vefsíðu, og framlag þitt skiptir verulegu máli. Takk kærlega."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 #, fuzzy
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Við erum að safna fyrir <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">afritun</a> stærsta skuggabókasafns teiknimynda í heiminum. Takk fyrir stuðninginn! <a href=\"/donate\">Gefa.</a> Ef þú getur ekki gefið, íhugaðu að styðja okkur með því að segja vinum þínum frá okkur, og fylgja okkur á <a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a>, eða <a href=\"https://t.me/annasarchiveorg\">Telegram</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 #, fuzzy
 msgid "layout.index.header.recent_downloads"
 msgstr "Nýleg niðurhöl:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-#, fuzzy
-msgid "layout.index.header.nav.search"
-msgstr "Leita"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
 #, fuzzy
-msgid "layout.index.header.nav.faq"
-msgstr "Algengar spurningar"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Bæta við lýsigögnum"
+msgid "layout.index.header.nav.search"
+msgstr "Leita"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
 #, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "Sjálfboðaliðastarf & Verðlaun"
+msgid "layout.index.header.nav.faq"
+msgstr "Algengar spurningar"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
 #, fuzzy
-msgid "layout.index.header.nav.datasets"
-msgstr "Datasets"
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Bæta við lýsigögnum"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
 #, fuzzy
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrents"
+msgid "layout.index.header.nav.volunteering"
+msgstr "Sjálfboðaliðastarf & Verðlaun"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
 #, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "Kóða könnuður"
+msgid "layout.index.header.nav.datasets"
+msgstr "Datasets"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
 #, fuzzy
-msgid "layout.index.header.nav.llm_data"
-msgstr "LLM gögn"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrents"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "Kóða könnuður"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+#, fuzzy
+msgid "layout.index.header.nav.llm_data"
+msgstr "LLM gögn"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 #, fuzzy
 msgid "layout.index.header.nav.home"
 msgstr "Heim"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 #, fuzzy
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Hugbúnaður Önnu ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 #, fuzzy
 msgid "layout.index.header.nav.translate"
 msgstr "Þýða ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 #, fuzzy
 msgid "layout.index.header.nav.login_register"
 msgstr "Skrá inn / Skráning"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 #, fuzzy
 msgid "layout.index.header.nav.account"
 msgstr "Reikningur"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 #, fuzzy
 msgid "layout.index.footer.list1.header"
 msgstr "Örkin hennar Önnu"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 #, fuzzy
 msgid "layout.index.footer.list2.header"
 msgstr "Vertu í sambandi"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 #, fuzzy
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / höfundarréttarkröfur"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "Ítarlegt"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 #, fuzzy
 msgid "layout.index.header.nav.security"
 msgstr "Öryggi"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 #, fuzzy
 msgid "layout.index.footer.list3.header"
 msgstr "Valkostir"

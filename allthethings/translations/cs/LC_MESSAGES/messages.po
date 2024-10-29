@@ -115,15 +115,15 @@ msgstr "Oslnivý datakupič"
 msgid "common.membership.tier_name.5"
 msgstr "Úžasný archivář"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) celkem"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s celkem"
 
@@ -261,7 +261,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "kontaktujte nás"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 msgid "page.donate.small_team"
 msgstr "Jsme malý tým dobrovolníku. Může nám trvat 1-2 týdny, než odpovíme."
@@ -301,12 +301,12 @@ msgid "page.donate.payment.select_method"
 msgstr "Prosím, vyberte si způsob platby."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Amazon Gift Card"
 
@@ -318,7 +318,7 @@ msgstr "Bankovní karta (použití aplikace)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Krypto %(bitcoin_icon)s"
 
@@ -344,8 +344,8 @@ msgstr "Kreditní karta/debetní karta/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
@@ -383,433 +383,435 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(dočasně nedostupné)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 msgid "page.donate.payment.desc.crypto"
 msgstr "Pomocí kryptoměn můžete přispívat pomocí BTC, ETH, XMR a SOL. Tuto možnost použijte, pokud jste s kryptoměnami již obeznámeni."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Pomocí kryptoměn můžete přispívat prostřednictvím BTC, ETH, XMR a dalších."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Pokud platíte kryptoměnami poprvé, doporučujeme k nákupu a darování Bitcoinu (původní a nejpoužívanější kryptoměna) použít %(options)s."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 msgid "page.donate.payment.desc.paypal"
 msgstr "Pro dary pomocí služby PayPal používáme službu PayPal Crypto, která nám umožňuje zůstat v anonymitě. Vážíme si toho, že jste si našli čas a naučili se, jak přispívat touto metodou, protože nám to velmi pomáhá."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Přispět pomocí PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Přispět pomocí Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Pokud máte Cash App, toto je nejjednodušší způsob, jak přispět!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Vezměte na vědomí, že při transakcích pod %(amount)s vám může Cash App účtovat poplatky %(fee)s. Pro %(amount)s a více je transakce zdarma!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 msgid "page.donate.payment.desc.revolut"
 msgstr "Darujte pomocí Revolutu."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Pokud máte Revolut, je to nejjednodušší způsob, jak darovat!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Přispět pomocí kreditní nebo debetní karty."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Fungovat může i Google Pay a Apple Pay."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Upozorňujeme, že u malých darů mohou poplatky za kreditní kartu eliminovat naši slevu %(discount)s%%, proto doporučujeme delší předplatné."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Upozorňujeme, že v případě malých příspěvků jsou poplatky vysoké, proto doporučujeme delší předplatné."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Na Binance nakoupíte bitcoiny kreditní/debetní kartou nebo z bankovního účtu a pak nám je darujete. Tímto způsobem můžeme při přijímání vašeho daru zůstat v bezpečí a anonymitě."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance je dostupná téměř ve všech zemích a podporuje většinu bank a kreditních/debetních karet. V současné chvíli je to naše primární doporučení. Vážíme si, že jste si udělali čas a naučili se darovat touto metodou, neboť nám to nesmírně pomáhá."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Darujte pomocí svého běžného účtu PayPal."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Přispět pomocí Alipay nebo WeChat. Vybrat mezi nimi můžete na další stránce."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Přispějte pomocí kreditní/debetní karty, služby PayPal nebo Venmo. Na další stránce si mezi nimi můžete vybrat."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 msgid "page.donate.payment.desc.amazon"
 msgstr "Přispět pomocí dárkových karet Amazon."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Berte v potaz, že musíme zaokrouhlit částky na hodnoty příjmané našimi prodejci (minimum %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>DŮLEŽITÉ:</strong> Podporujeme pouze Amazon.com, nikoliv jiné stránky Amazonu. Například .de, .co.uk, .ca NEJSOU podporovány."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Tato metoda využívá poskytovatele kryptoměn jako zprostředkovatele konverze. To může být trochu matoucí, proto tuto metodu používejte pouze v případě, že jiné platební metody nefungují. Tato metoda nemusí fungovat ve všech zemích."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Darujte pomocí kreditní/debetní karty prostřednictvím aplikace Alipay (velmi snadné nastavení)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Nainstalujte aplikaci Alipay"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "Nainstalujte aplikaci Alipay z <a %(a_app_store)s>Apple App Store</a> nebo <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Zaregistrujte se pomocí svého telefonního čísla."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Nejsou vyžadovány žádné další osobní údaje."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Přidejte bankovní kartu"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Podporováno: Visa, MasterCard, JCB, Diners Club a Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Pro více informací si přečtěte <a %(a_alipay)s>tento průvodce</a>."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Nemůžeme přímo podporovat kreditní/debetní karty, protože banky s námi nechtějí spolupracovat. ☹ Nicméně existuje několik způsobů, jak použít kreditní/debetní karty prostřednictvím jiných platebních metod:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Pošlete nám dárkové karty Amazon.com pomocí své kreditní/debetní karty."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay podporuje mezinárodní kreditní/debetní karty. Více informací naleznete v <a %(a_alipay)s>tomto průvodci</a>."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) podporuje mezinárodní kreditní/debetní karty. V aplikaci WeChat přejděte do „Me => Services => Wallet => Add a Card“. Pokud ji nevidíte, povolte ji pomocí „Me => Settings => General => Tools => Weixin Pay => Enable“."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 msgid "page.donate.ccexp.crypto"
 msgstr "Kryptoměny můžete nakoupit pomocí kreditních/debetních karet."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Krypto expresní služby"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Expresní služby jsou pohodlné, ale účtují vyšší poplatky."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Můžete je použít místo krypto burzy, pokud chcete rychle provést větší dar a nevadí vám poplatek 5-10 $."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Ujistěte se, že posíláte přesnou částku kryptoměny uvedenou na stránce darů, nikoli částku v $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Jinak bude poplatek odečten a nemůžeme automaticky zpracovat vaše členství."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(minimum: %(minimum)s v závislosti na zemi, žádné ověření pro první transakci)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(minimum: %(minimum)s, žádné ověření pro první transakci)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(minimum: %(minimum)s, žádné ověření pro první transakci)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Pokud jsou některé z těchto informací zastaralé, napište nám prosím e-mail, abyste nás informovali."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 msgid "page.donate.payment.desc.bmc"
 msgstr "Pro kreditní a debetní karty, Apple Pay a Google Pay používáme službu „Buy Me a Coffee“ (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). V jejich systému se jedna „káva“ rovná 5 dolarům, takže váš dar bude zaokrouhlen na nejbližší násobek 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 msgid "page.donate.duration.intro"
 msgstr "Vyberte délku předplatného."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 msgid "page.donate.duration.1_mo"
 msgstr "1 měsíc"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 msgid "page.donate.duration.3_mo"
 msgstr "3 měsíce"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 msgid "page.donate.duration.6_mo"
 msgstr "6 měsíců"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 msgid "page.donate.duration.12_mo"
 msgstr "12 měsíců"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 msgid "page.donate.duration.24_mo"
 msgstr "24 měsíců"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 msgid "page.donate.duration.48_mo"
 msgstr "48 měsíců"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 msgid "page.donate.duration.96_mo"
 msgstr "96 měsíců"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>po <span %(span_discount)s></span> slevě</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 msgid "page.donate.payment.minimum_method"
 msgstr "Tento způsob platby vyžaduje čásku nejméně %(amount)s. Prosíme vyberte jiné trvání nebo způsob platby."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 msgid "page.donate.buttons.donate"
 msgstr "Přispět"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 msgid "page.donate.payment.maximum_method"
 msgstr "Tento způsob platby dovoluje čásku maximálně %(amount)s. Prosíme vyberte jiné trvání nebo způsob platby."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 msgid "page.donate.login2"
 msgstr "Chcete-li se stát členem, prosíme, <a %(a_login)s>přihlaste se nebo se zaregistrujte</a>. Děkujeme za vaši podporu!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 msgid "page.donate.payment.crypto_select"
 msgstr "Vyberte svou preferovanou kryptoměnu:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(nejnižší minimální částka)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(použijte při odesílání Etherea z Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(upozornění: vysoká minimální částka)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 msgid "page.donate.submit.confirm"
 msgstr "Pro dokončení klikněte na tlačítko Darovat."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 msgid "page.donate.submit.button"
 msgstr "Darovat <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 msgid "page.donate.submit.cancel_note"
 msgstr "Poslání daru můžete stále zrušit během platby."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 msgid "page.donate.submit.success"
 msgstr "✅ Přesměrování na stránku dárcovství…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 msgid "page.donate.submit.failure"
 msgstr "❌ Něco se pokazilo. Znovu načtěte stránku a zkuste to znovu."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / měsíc"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "za 1 měsíc"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "za 3 měsíce"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "za 6 měsíců"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "za 12 měsíců"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "za 24 měsíců"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "za 48 měsíců"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "za 96 měsíců"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "za 1 měsíc “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "za 3 měsíce “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "za 6 měsíců “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "za 12 měsíců “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "za 24 měsíců “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "za 48 měsíců “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "za 96 měsíců “%(tier_name)s”"
 
@@ -908,9 +910,9 @@ msgstr "<strong>Důležitá poznámka:</strong> Ceny kryptoměn mohou prudce kol
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 msgid "page.donation.expired"
 msgstr "Tento příspěvek vypršel. Prosíme zrušte ho a vytvořte nový."
 
@@ -975,9 +977,9 @@ msgstr "Viz níže uvedený návod krok po kroku."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.status_header"
 msgstr "Stav:"
 
@@ -987,9 +989,9 @@ msgstr "Stav:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Čekáme na potvrzení (obnovte stránku pro kontrolu)…"
 
@@ -999,9 +1001,9 @@ msgstr "Čekáme na potvrzení (obnovte stránku pro kontrolu)…"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Čekáme na převod (obnovte stránku pro kontrolu)…"
 
@@ -1011,9 +1013,9 @@ msgstr "Čekáme na převod (obnovte stránku pro kontrolu)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.time_left_header"
 msgstr "Zbývající čas:"
 
@@ -1023,9 +1025,9 @@ msgstr "Zbývající čas:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.might_want_to_cancel"
 msgstr "(možná budete chtít zrušit a vytvořit nový příspěvek)"
 
@@ -1035,9 +1037,9 @@ msgstr "(možná budete chtít zrušit a vytvořit nový příspěvek)"
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 msgid "page.donation.reset_timer"
 msgstr "Chcete-li obnovit časovač, jednoduše vytvořte nový příspěvek."
 
@@ -1048,14 +1050,14 @@ msgstr "Chcete-li obnovit časovač, jednoduše vytvořte nový příspěvek."
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 msgid "page.donation.refresh_status"
 msgstr "Aktualizovat stav"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 msgid "page.donation.footer.issues_contact"
 msgstr "Pokud narazíte na jakoukoliv chybu, prosíme kontaktujte nás na %(email)s a připojte co nejvíce informací (např. snímky obrazovky)."
 
@@ -1236,15 +1238,15 @@ msgstr "Příklad:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 msgid "page.donate.strange_account"
 msgstr "Přestože název účtu a jeho ikona mohou vypadat zvláštně, nebojte se, naše účty nebyly napadeny. Tyto účty jsou spravovány našimi dárcovskými partnery."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Instrukce k platbě přes Alipay"
 
@@ -1258,125 +1260,125 @@ msgstr "<span %(span_circle)s>1</span>Darovat přes Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "Darovat celkovou částku %(total)s pomocí <a %(a_account)s>tohoto účtu Alipay</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 msgid "page.donation.payment.alipay.error"
 msgstr "Stránka Alipay je bohužel často přístupná pouze z <strong>pevninské Číny</strong>. Je možné, že budete muset dočasně deaktivovat svou VPN nebo použít VPN z pevninské Číny, popřípadě Hongkongu."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Proveďte dar (naskenujte QR kód nebo stiskněte tlačítko)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Otevřete <a %(a_href)s>stránku darování pomocí QR kódu</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Naskenujte QR kód pomocí aplikace Alipay nebo stiskněte tlačítko pro otevření aplikace Alipay."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Prosím, buďte trpěliví; stránka se může načítat déle, protože je v Číně."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Pokyny k WeChat"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Přispět pomocí WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 msgid "page.donation.payment.wechat.text1"
 msgstr "Přispět celkovou částku %(total)s pomocí <a %(a_account)s>tohoto účtu WeChat</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 msgid "page.donation.payment.pix.top_header"
 msgstr "Instrukce pro platbu skrze Pix"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Darovat skrze Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 msgid "page.donation.payment.pix.text1"
 msgstr "Darujte celkovou částku %(total)s pomocí <a %(a_account)s>tohoto Pix účtu"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span> Potvrzení o platbě nám pošlete emailem"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Zašlete potvrzení nebo screenshot na vaši osobní ověřovací adresu. Nepoužívejte tuto e-mailovou adresu pro váš dar přes PayPal."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 msgid "page.donation.footer.text1"
 msgstr "Pošlete si potvrzení o platbě nebo snímek obrazovky na svou ověřovací adresu:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 msgid "page.donation.footer.crypto_note"
 msgstr "Pokud se směnný kurz kryptoměn v průběhu transakce výrazně měnil, přiložte prosím potvrzení s původním kurzem. Jsme vám vděční, že i přes všechny komplikace darujete v kryptoměnách, velice nám to pomáhá!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 msgid "page.donation.footer.text2"
 msgstr "Po zaslání platebního potvrzení klikněte na toto tlačítko, aby Anna mohla platbu zkontrolovat (což může trvat několik dní):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 msgid "page.donation.footer.button"
 msgstr "Ano, poslal jsem potvrzení emailem"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 msgid "page.donation.footer.success"
 msgstr "✅ Děkujeme za váš dar! Anna v průběhu několika dní ručně aktivuje vaše členství."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 msgid "page.donation.footer.failure"
 msgstr "❌ Něco se pokazilo. Znovu načtěte stránku a zkuste to znovu."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 msgid "page.donation.stepbystep"
 msgstr "Návod krok po kroku"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 msgid "page.donation.crypto_dont_worry"
 msgstr "Některé kroky zmiňují peněženky pro kryptoměny, nemějte strach, nic o kryptoměnách se kvůli tomuto učit nemusíte."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Zadejte svůj email."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Vyberte způsob platby."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Znovu vyberte svůj způsob platby."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 msgid "page.donation.hoodpay.step4"
 msgstr "Zvolte peněženku \"Self-hosted\"."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Klikněte na \"Potvrzuji vlastnictví\"."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Účtenku byste měli obdržet emailem. Tu nám prosím zašlete a my potvrdíme váš dar co nejdříve to bude možné."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 msgid "page.donate.mistake"
 msgstr "Pokud jste udělali chybu během platby, peníze vám vrátit nedokážeme. Pokusíme se však vše napravit."
 
@@ -1504,9 +1506,9 @@ msgstr "Pokud chcete zvýšit úroveň svého členství, kontaktujte Annu na %(
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 msgid "page.contact.title"
 msgstr "kontaktní email"
 
@@ -1516,23 +1518,23 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Můžete kombinovat více členství (rychlé stahování za 24 hodin se sečtou)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 msgid "layout.index.header.nav.public_profile"
 msgstr "Veřejný profil"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Stažené soubory"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 msgid "layout.index.header.nav.my_donations"
 msgstr "Mé dary"
 
@@ -2417,7 +2419,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Rychlé stahování</strong> Staňte se <a %(a_membership)s>členem</a> a podpořte dlouhodobé uchovávání knih, odborných článků, a dalších materiálů. Jako naše díky za vaši podporu dostanete přístup k rychlejšímu stahování. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Pokud tento měsíc přispějete, získáte <strong>dvojnásobný</strong> počet rychlých stažení."
 
@@ -2440,7 +2442,7 @@ msgid "page.md5.box.download.option"
 msgstr "Varianta #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
 msgstr "Pozvěte kamaráda a oba dva získáte %(percentage)s bonusových rychlých stažení!"
 
@@ -2451,11 +2453,11 @@ msgstr "Pozvěte kamaráda a oba dva získáte %(percentage)s bonusových rychl�
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 msgid "layout.index.header.learn_more"
 msgstr "Zjistit více…"
 
@@ -3369,7 +3371,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Také obohacujeme naši sbírku o zdroje pouze s metadata, které můžeme přiřadit k souborům, např. pomocí ISBN čísel nebo jiných polí. Níže je přehled těchto zdrojů. Opět, některé z těchto zdrojů jsou zcela otevřené, zatímco jiné musíme skenovat."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4510,267 +4512,267 @@ msgstr "<div %(div_question)s>Mohu upgradovat své členství nebo získat více
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>Přijímáte jiné způsoby platby?</div> V současnosti bohužel ne. Různé skupiny lidí se snaží, aby archivy, jako je ten náš, neexistovaly, a tak musíme být velmi opatrní. Pokud byste byli ochotní nám pomoci s bezpečným použitím jiných (pohodlnějších) způsobů platby, neváhejte nás kontaktovat na %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>Na co jsou dary použity?</div> 100%% darů jde na uchovávání a zpřístupňování celosvětových znalostí a kultury. V současnosti je většina použita na financování serverů, úložišť a přenosu dat. Členové našeho týmu nijak placeni nejsou."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>Je možné darovat velký obnos peněz?</div> To by bylo skvělé! Pokud plánujete darovat více než několik tisíc dolarů, kontaktujte nás prosím na %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>Můžu přispět, aniž bych se stal členem?</div> Jistě. Na této Monero adrese (XMR) přijímáme dary v jakékoli výši: %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 msgid "page.faq.upload.title"
 msgstr "Jak nahraji nové knihy?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 msgid "page.upload.text1"
 msgstr "Prozatím doporučujeme nahrávat nové knihy na fork Library Genesis. Návod, jak to provést, najdete <a %(a_guide)s>zde</a>. Oba forky uvedené na této stránce čerpají data ze stejného nahrávacího systému."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 msgid "common.libgen.email"
 msgstr "Pokud vaše emailová adresa na Libgen fórech nefunguje, doporučujeme použít <a %(a_mail)s>Proton Mail</a> (zdarma). Je též možné <a %(a_manual)s>manuálně zažádat</a> o aktivaci vašeho účtu."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 msgid "page.faq.mhut_upload"
 msgstr "Vemte na vědomí, že mhut.org blokuje určité rozsahy IP adres, může tak být nutné využít VPN."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 msgid "page.upload.zlib.text1"
 msgstr "Případně je můžete nahrát na Z-library <a %(a_upload)s>zde</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 msgid "page.upload.zlib.text2"
 msgstr "Chcete-li nahrát akademické dokumenty, nahrajte je také (kromě Library Genesis) na <a %(a_stc_nexus)s>STC Nexus</a>. Jsou nejlepší stínovou knihovnou pro nové akademické dokumenty. Prozatím jsme je neintegrovali, do budoucna to však plánujeme. Pro nahrání můžete využít jejich <a %(a_telegram)s> uploadovacího bota na Telegramu</a>. V případě příliš mnoha souborů můžete využít adresu uvedenou v jejich připnuté zprávě."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 msgid "page.upload.large.text"
 msgstr "Pro nahrání velkého množství souborů (10 000 a více), které Libgen nebo Z-Library neakceptují, nás prosím kontaktujte na %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 msgid "page.faq.request.title"
 msgstr "Jak si mohu požádat o knihy?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 msgid "page.request.cannot_accomodate"
 msgstr "V současné době nemůžeme vyhovět požadavkům na knihy."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 msgid "page.request.forums"
 msgstr "Žádosti podávejte na fórech Z-Library nebo Libgen."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 msgid "page.request.dont_email"
 msgstr "Neposílejte nám své požadavky na knihy e-mailem."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 msgid "page.faq.metadata.title"
 msgstr "Shromažďujete metadata?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 msgid "page.faq.metadata.indeed"
 msgstr "Samozřejmě."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 msgid "page.faq.1984.title"
 msgstr "Stáhl jsem si 1984 od George Orwella, zaklepe mi na dveře policie?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 msgid "page.faq.1984.text"
 msgstr "Nedělejte si příliš velké starosti, z námi odkazovaných webových stránek stahují spousty lidí a do problémů se dostanete jen velmi zřídka. Pro vyšší bezpečnost však doporučujeme využít VPN (placené), nebo <a %(a_tor)s>Tor</a> (zdarma)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 msgid "page.faq.save_search.title"
 msgstr "Jak uložím své nastavení vyhledávání?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 msgid "page.faq.save_search.text1"
 msgstr "Vyberte příslušné parametry, nechte vyhledávací pole prázdné, klikněte na tlačítko „Hledat“ a poté si stránku přidejte do záložek v prohlížeči."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 msgid "page.faq.mobile.title"
 msgstr "Máte mobilní aplikaci?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 msgid "page.faq.mobile.text1"
 msgstr "Oficiální mobilní aplikaci nemáme, můžete si však tuto webovou stránku nainstalovat jako aplikaci."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> Klikněte na nabídku se třemi tečkami a vyberte možnost „Přidat na domovskou obrazovku“."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> Klikněte na tlačítko „Sdílet“ ve spodní části a vyberte možnost „Přidat na domovskou obrazovku“."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 msgid "page.faq.api.title"
 msgstr "Máte API?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 msgid "page.faq.api.text1"
 msgstr "Pro naše podporovatele máme jedno stabilní API JSON k získání URL pro rychlé stahování: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (dokumentace v samotném JSON)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 msgid "page.faq.api.text2"
 msgstr "Pro další případy použití, jako je iterace skrze všechny naše soubory, vytváření vlastního vyhledávání apod., doporučujeme <a %(a_generate)s>generovat</a> nebo <a %(a_download)s>stáhnout</a> naše databáze ElasticSearch a MariaDB. Raw data lze ručně prozkoumat <a %(a_explore)s>skrze soubory JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 msgid "page.faq.api.text3"
 msgstr "Náš seznam raw torrentů si můžete stáhnout také jako <a %(a_torrents)s>JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 msgid "page.faq.torrents.title"
 msgstr "Torrenty FAQ"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 msgid "page.faq.torrents.q1"
 msgstr "Rád bych pomohl se seedováním, ale nemám moc místa na disku."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 msgid "page.faq.torrents.a1"
 msgstr "Pomocí <a %(a_list)s>generátoru seznamu torrentů</a> si můžete vygenerovat seznam torrentů, které nejlépe vyhovují vašim požadavkům na úložný prostor."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 msgid "page.faq.torrents.q2"
 msgstr "Torrenty jsou příliš pomalé; mohu si data stáhnout přímo od vás?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 msgid "page.faq.torrents.a2"
 msgstr "Ano, viz stránka <a %(a_llm)s>LLM data</a>."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 msgid "page.faq.torrents.q3"
 msgstr "Mohu si stáhnout pouze část souborů, například pouze určitý jazyk nebo téma?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 msgid "page.faq.torrents.a3"
 msgstr "Většina torrentů obsahuje soubory přímo, takže je možné skrze nastavení torrent klientů stahovat pouze požadované soubory. Pro určení konkrétních souborů ke stažení můžete <a %(a_generate)s>generovat</a> naše metadata nebo <a %(a_download)s>stáhnout</a> naše databáze ElasticSearch a MariaDB. Bohužel, řada torrentů obsahuje v kořenovém adresáři soubory .zip nebo .tar, v takovém případě je třeba stáhnout celý torrent a teprve poté je možné procházet jednotlivé soubory."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 msgid "page.faq.torrents.q4"
 msgstr "Jak řešíte duplicity v torrentech?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 msgid "page.faq.torrents.a4"
 msgstr "Snažíme se, aby se torrenty v tomto seznamu co nejméně opakovaly nebo překrývaly, ne vždy je to však možné a do značné míry to závisí na pravidlech zdrojových knihoven. U knihoven, které vydávají své vlastní torrenty, to nemůžeme ovlivnit. U torrentů vydávaných Anniným archivem deduplikujeme pouze na základě hashe MD5, což znamená, že různé verze stejné knihy se nededuplikují."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 msgid "page.faq.torrents.q5"
 msgstr "Mohu získat seznam torrentů ve formátu JSON?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 msgid "page.faq.torrents.a5"
 msgstr "Ano."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 msgid "page.faq.torrents.q6"
 msgstr "V torrentech nevidím PDF ani EPUB, pouze binární soubory? Co mám dělat?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 msgid "page.faq.torrents.a6"
 msgstr "Ve skutečnosti se jedná o soubory PDF a EPUB, jen v mnoha našich torrentech nemají příponu. Existují dvě místa, na kterých můžete najít metadata torrentových souborů, včetně typů souborů/přípon:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 msgid "page.faq.torrents.a6.li1"
 msgstr "Každá sbírka nebo vydání má svá vlastní metadata. Například <a %(a_libgen_nonfic)s>torrenty z Libgen.rs</a> mají odpovídající databázi metadat umístěnou právě na Libgen.rs. Zpravidla odkazujeme na příslušné zdroje metadat daného <a %(a_datasets)s>datasetu</a>."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Doporučujeme <a %(a_generate)s>generovat</a> nebo <a %(a_download)s>stáhnout</a> naše databáze ElasticSearch a MariaDB. Ty zahrnují přiřazení každého záznamu v Annině archivu k odpovídajícím torrentovým souborům (pokud jsou k dispozici) v položce \"torrent_paths\" v ElasticSearch JSON."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 msgid "page.faq.security.title"
 msgstr "Máte responsible disclosure program?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 msgid "page.faq.security.text1"
 msgstr "Vítáme výzkumníky z oblasti bezpečnosti, hledající zranitelnosti v našich systémech. Jsme velkými zastánci zodpovědného zveřejňování informací. Kontaktujte nás <a %(a_contact)s>zde</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 msgid "page.faq.security.text2"
 msgstr "V současné době nemůžeme poskytovat odměny za odhalení chyb, s výjimkou zranitelností, které mají <a %(a_link)s >potenciál ohrozit naši anonymitu</a>, za které nabízíme odměny v rozmezí 10-50 tisíc dolarů. V budoucnu bychom však rádi nabídli širší rozsah odměn! Vezměte prosím na vědomí, že útoky sociálního inženýrství do této oblasti nespadají."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 msgid "page.faq.security.text3"
 msgstr "Pokud se zajímáte o ofenzivní kyberbezpečnost a chcete pomoci archivovat světové znalosti a kulturu, kontaktujte nás. Existuje mnoho cest, jak můžete pomoci."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 msgid "page.faq.resources.title"
 msgstr "Kde najdu další informace o Annině archivu?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Anna’s Blog</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Subreddit</a> — pravidelně aktualizováno"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Anna’s Software</a> — náš open source kód"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Překládejte na Anna's Software</a> — našem překladatelském systému"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Datasety</a> — o datech"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — alternativní domény"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Wikipedie</a> — více o nás (pomozte prosím udržovat tuto stránku aktualizovanou, nebo vytvořte stránku pro svůj jazyk!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 msgid "page.faq.copyright.title"
 msgstr "Jak mohu nahlásit porušení autorských práv?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 msgid "page.faq.copyright.text1"
 msgstr "Nehostujeme žádné materiály chráněné autorskými právy. Jsme vyhledávač, a proto indexujeme pouze metadata, která jsou již veřejně přístupná. V rámci stahování z externích zdrojů bychom doporučovali zkontrolovat zákony ve vaší jurisdikci. Nejsme zodpovědní za obsah hostovaný jinými subjekty."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 msgid "page.faq.copyright.text2"
 msgstr "Pokud máte výhrady k obsahu Annina archivu, obraťte se nejlépe na původní webovou stránku, neboť jejich obsah pravidelně stahujeme do naší databáze. Pokud si však opravdu myslíte, že máte platnou stížnost DMCA, na kterou bychom měli reagovat, vyplňte prosím formulář <a %(a_copyright)s>DMCA / nárokování autorských práv</a>. Vaše stížnosti bereme vážně a ozveme se vám co nejdříve."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 msgid "page.faq.hate.title"
 msgstr "Nelíbí se mi, jak tento projekt vedete!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 msgid "page.faq.hate.text1"
 msgstr "Rádi bychom všem připomněli, že veškerý náš kód a data jsou zcela open source. To je u podobných projektů unikátní. Nevíme o žádném jiném projektu s podobně rozsáhlým katalogem, který by byl také plně open source. Každého, kdo si myslí, že náš projekt vedeme špatně, nabádáme, aby převzal náš kód, data a založil si vlastní stínovou knihovnu! Neříkáme to ze zlomyslnosti... opravdu věříme, že by to bylo skvělé, neboť by to pro všechny zvedlo laťku a lépe by se zachovával odkaz lidstva."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "Máte monitor dostupnosti?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Podívejte se na <a %(a_href)s>tento vynikající projekt</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Kdo je Anna?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Vy jste Anna!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 msgid "page.faq.favorite.title"
 msgstr "Jaké jsou vaše oblíbené knihy?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 msgid "page.faq.favorite.text1"
 msgstr "Níže uvádíme některé knihy, které mají zvláštní význam pro svět stínových knihoven a uchovávání digitálních dokumentů:"
 
@@ -4802,15 +4804,15 @@ msgstr "Hledat"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 msgid "layout.index.header.nav.beta"
 msgstr "beta"
 
@@ -4897,8 +4899,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Pokud provozujete rizikový anonymní procesor plateb, kontaktujte nás, prosím. Hledáme také zájemce o umístění malé vkusné reklamy. Veškerý výtěžek půjde na naše úsilí o zachování lidského vědění a kultury."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 msgid "layout.index.header.nav.annasblog"
 msgstr "Annin blog↗"
 
@@ -5295,7 +5297,7 @@ msgstr "Toto varování se zobrazuje například kvůli používání VPN, sdíl
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 msgid "layout.index.header.title"
 msgstr "Annin archiv"
 
@@ -5374,7 +5376,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Metadata"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 msgid "common.search.placeholder"
 msgstr "Název, autor, DOI, ISBN, MD5, …"
 
@@ -5676,116 +5678,116 @@ msgstr "Lehké dobrovolnictví"
 msgid "page.volunteering.section.light.text1"
 msgstr "Pokud máte pár hodin volného času, můžete pomoci různými způsoby. Nezapomeňte se připojit k <a %(a_telegram)s>dobrovolnickému chatu na Telegramu</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Jako projev vděčnosti obvykle rozdáváme 6 měsíců členství „Šťastný knihovník“ za základní milníky a více za pokračující dobrovolnickou práci. Všechny milníky vyžadují vysoce kvalitní práci — nedbalá práce nám škodí více, než pomáhá, a odmítneme ji. Prosím <a %(a_contact)s>pošlete nám e-mail</a>, když dosáhnete milníku."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Úkol"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Milník"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Zlepšete metadata <a %(a_metadata)s>propojením</a> s Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "Odkazy na záznamy, které jste vylepšili: %(links)s."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Překlad</a> webové stránky."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Kompletní překlad jazyka (pokud již nebyl téměř dokončen)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Šíření povědomí o Annině archivu na sociálních sítích a online fórech, doporučováním knih nebo seznamů na AA, nebo odpovídáním na otázky."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "Odkazy nebo snímky obrazovky: %(links)s."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Vylepšete stránku Wikipedie pro Annin archiv ve vašem jazyce. Zahrňte informace z Wikipedie AA v jiných jazycích a z našeho webu a blogu. Přidejte odkazy na AA na dalších relevantních stránkách."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Odkaz na historii úprav, který ukazuje, že jste významně přispěli."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Plnění žádostí o knihy (nebo články atd.) na fórech Z-Library nebo Library Genesis. Nemáme vlastní systém žádostí o knihy, ale zrcadlíme tyto knihovny, takže jejich zlepšení zlepšuje i Annin archiv."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "Odkazy nebo snímky obrazovky žádostí, které jste splnili: %(links)s."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Malé úkoly zveřejněné v našem <a %(a_telegram)s>dobrovolnickém chatu na Telegramu</a>. Obvykle za členství, někdy za malé odměny."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Záleží na úkolu."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Odměny"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Stále hledáme lidi s pevnými programátorskými nebo ofenzivními bezpečnostními dovednostmi, kteří by se zapojili. Můžete významně přispět k zachování dědictví lidstva."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Jako poděkování nabízíme členství za solidní příspěvky. Jako velké poděkování nabízíme peněžní odměny za zvláště důležité a obtížné úkoly. Nemělo by to být vnímáno jako náhrada za práci, ale je to další pobídka a může pomoci s vynaloženými náklady."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Většina našeho kódu je open source a budeme to požadovat i od vašeho kódu při udělování odměny. Existují některé výjimky, které můžeme projednat individuálně."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Odměny jsou udělovány první osobě, která úkol dokončí. Neváhejte komentovat odměnový tiket, aby ostatní věděli, že na něčem pracujete, aby mohli počkat nebo vás kontaktovat pro spolupráci. Ale mějte na paměti, že ostatní jsou stále volní pracovat na tom také a pokusit se vás předběhnout. Nicméně, neudělujeme odměny za nedbalou práci. Pokud jsou dvě kvalitní podání učiněna blízko sebe (během jednoho nebo dvou dnů), můžeme se rozhodnout udělit odměny oběma, podle našeho uvážení, například 100%% za první podání a 50%% za druhé podání (tedy celkem 150%%)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "U větších odměn (zejména odměn za scraping) nás prosím kontaktujte, když dokončíte ~5%% z toho, a jste si jisti, že vaše metoda bude škálovat na celý milník. Budete muset sdílet svou metodu s námi, abychom mohli poskytnout zpětnou vazbu. Také tímto způsobem můžeme rozhodnout, co dělat, pokud se k odměně blíží více lidí, například potenciálně ji udělit více lidem, povzbudit lidi ke spolupráci atd."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "UPOZORNĚNÍ: úkoly s vysokou odměnou jsou <span %(bold)s>obtížné</span> — může být moudré začít s jednoduššími."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Přejděte na náš <a %(a_gitlab)s>seznam problémů na Gitlabu</a> a seřaďte podle „Priorita štítku“. To zhruba ukazuje pořadí úkolů, na kterých nám záleží. Úkoly bez explicitních odměn jsou stále způsobilé pro členství, zejména ty označené „Přijato“ a „Oblíbené Anny“. Možná budete chtít začít s „Startovacím projektem“."
@@ -5810,156 +5812,157 @@ msgstr "Annin archiv potřebuje vaši pomoc!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Mnozí se nás snaží zničit, ale my bojujeme."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 msgid "layout.index.header.nav.donate"
 msgstr "Přispět"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "Záchrana lidských znalostí: skvělý dárek k svátku!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.surprise"
 msgstr "Překvapte někoho blízkého, dejte mu účet s členstvím."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 msgid "layout.index.header.banner.mirrors"
 msgstr "Abychom zvýšili odolnost Annina archivu, hledáme dobrovolníky k provozování zrcadel."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "Perfektní Valentýnský dárek!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Je dostupná nová platební metoda pro darování: %(method_name)s. Prosím zvažte%(donate_link_open_tag)szaslání daru</a> —provozovat tuto stránku není levné a vaše dary nám skutečně pomohou. Jsme vám velice vděční."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Pořádáme finanční sbírku na <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">zálohování</a> největší stínové knihovny komiksů na světě. Jsme vám velice vděční za vaši podporu! <a href=\"/donate\">Přispějte.</a>Pokud nejste schopni přispět, podpořte nás tak, že o nás řeknete svým přátelům a že nás budete sledovat na <a href=\"https://www.reddit.com/r/Annas_Archive\">Redditu</a> a <a href=\"https://t.me/annasarchiveorg\">Telegramu</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 msgid "layout.index.header.recent_downloads"
 msgstr "Nedávno staženo:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-msgid "layout.index.header.nav.search"
-msgstr "Vyhledat"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
-msgid "layout.index.header.nav.faq"
-msgstr "FAQ"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Zlepšit metadata"
+msgid "layout.index.header.nav.search"
+msgstr "Vyhledat"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
-msgid "layout.index.header.nav.volunteering"
-msgstr "Dobrovolnictví a odměny"
+msgid "layout.index.header.nav.faq"
+msgstr "FAQ"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
-msgid "layout.index.header.nav.datasets"
-msgstr "Datasety"
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Zlepšit metadata"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrenty"
+msgid "layout.index.header.nav.volunteering"
+msgstr "Dobrovolnictví a odměny"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
-msgid "layout.index.header.nav.codes"
-msgstr "Codes Explorer"
+msgid "layout.index.header.nav.datasets"
+msgstr "Datasety"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
-msgid "layout.index.header.nav.llm_data"
-msgstr "Data pro LLM"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrenty"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+msgid "layout.index.header.nav.codes"
+msgstr "Codes Explorer"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+msgid "layout.index.header.nav.llm_data"
+msgstr "Data pro LLM"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 msgid "layout.index.header.nav.home"
 msgstr "Domů"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Annin software ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 msgid "layout.index.header.nav.translate"
 msgstr "Překlad ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 msgid "layout.index.header.nav.login_register"
 msgstr "Přihlásit / Registrovat"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 msgid "layout.index.header.nav.account"
 msgstr "Účet"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 msgid "layout.index.footer.list1.header"
 msgstr "Annin archiv"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 msgid "layout.index.footer.list2.header"
 msgstr "Buďte v kontaktu"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / nárokování autorských práv"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 msgid "layout.index.header.nav.advanced"
 msgstr "Pokročilé"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 msgid "layout.index.header.nav.security"
 msgstr "Bezpečnost"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 msgid "layout.index.footer.list3.header"
 msgstr "Alternativní domény"
 

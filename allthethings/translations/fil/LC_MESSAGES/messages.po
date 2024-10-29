@@ -115,15 +115,15 @@ msgstr "Nagniningning na Datahoarder"
 msgid "common.membership.tier_name.5"
 msgstr "Kamangha-manghang Archivist"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) kabuuan"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s kabuuan"
 
@@ -262,7 +262,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "makipag-ugnayan sa amin"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 msgid "page.donate.small_team"
 msgstr "Kami ay isang maliit na grupo ng mga boluntaryo. Maaaring abutin ng 1-2 linggo bago kami makasagot."
@@ -302,12 +302,12 @@ msgid "page.donate.payment.select_method"
 msgstr "Mangyaring pumili ng paraan ng pagbabayad."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Amazon Gift Card"
 
@@ -319,7 +319,7 @@ msgstr "Bank card (gamit ang app)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Crypto %(bitcoin_icon)s"
 
@@ -348,8 +348,8 @@ msgstr "Credit/debit/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
@@ -389,437 +389,439 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(pansamantalang hindi magagamit)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 msgid "page.donate.payment.desc.crypto"
 msgstr "Sa pamamagitan ng crypto, maaari kang mag-donate gamit ang BTC, ETH, XMR, at SOL. Gamitin ang opsyong ito kung pamilyar ka na sa cryptocurrency."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Sa pamamagitan ng crypto, maaari kang mag-donate gamit ang BTC, ETH, XMR, at iba pa."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Kung gagamit ka ng crypto sa unang pagkakataon, iminumungkahi naming gamitin ang %(options)s upang bumili at mag-donate ng Bitcoin (ang orihinal at pinakaginagamit na cryptocurrency)."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 msgid "page.donate.payment.desc.paypal"
 msgstr "Upang mag-donate gamit ang PayPal US, gagamit kami ng PayPal Crypto, na nagpapahintulot sa amin na manatiling anonymous. Pinahahalagahan namin ang oras na ginugol mo upang matutunan kung paano mag-donate gamit ang pamamaraang ito, dahil malaki ang maitutulong nito sa amin."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Mag-donate gamit ang PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Mag-donate gamit ang Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Kung mayroon kang Cash App, ito ang pinakamadaling paraan upang mag-donate!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Tandaan na para sa mga transaksyon na mas mababa sa %(amount)s, maaaring maningil ang Cash App ng %(fee)s na bayad. Para sa %(amount)s o higit pa, libre ito!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Mag-donate gamit ang Revolut."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Kung may Revolut ka, ito ang pinakamadaling paraan para mag-donate!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Mag-donate gamit ang credit o debit card."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Maaaring gumana rin ang Google Pay at Apple Pay."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Tandaan na para sa maliliit na donasyon, maaaring mawala ang aming %(discount)s%% na diskwento dahil sa mga bayarin sa credit card, kaya inirerekomenda namin ang mas mahabang subscription."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Tandaan na para sa maliliit na donasyon, mataas ang mga bayarin, kaya inirerekomenda namin ang mas mahabang subscription."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Sa Binance, maaari kang bumili ng Bitcoin gamit ang credit/debit card o bank account, at pagkatapos ay i-donate ang Bitcoin na iyon sa amin. Sa ganitong paraan, mananatili kaming ligtas at anonymous sa pagtanggap ng iyong donasyon."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Ang Binance ay available sa halos lahat ng bansa, at sinusuportahan ang karamihan ng mga bangko at credit/debit cards. Ito ang aming pangunahing rekomendasyon sa kasalukuyan. Pinahahalagahan namin ang iyong oras sa pag-aaral kung paano mag-donate gamit ang pamamaraang ito, dahil malaki ang maitutulong nito sa amin."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Mag-donate gamit ang iyong regular na PayPal account."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Mag-donate gamit ang Alipay o WeChat. Maaari kang pumili sa pagitan ng mga ito sa susunod na pahina."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Mag-donate gamit ang credit/debit card, PayPal, o Venmo. Maaari kang pumili sa pagitan ng mga ito sa susunod na pahina."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 msgid "page.donate.payment.desc.amazon"
 msgstr "Mag-donate gamit ang Amazon gift card."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Tandaan na kailangan naming i-round sa mga halagang tinatanggap ng aming mga reseller (minimum %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>MAHALAGA:</strong> Sinusuportahan lang namin ang Amazon.com, hindi ang iba pang mga website ng Amazon. Halimbawa, .de, .co.uk, .ca, ay HINDI sinusuportahan."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Ang pamamaraang ito ay gumagamit ng cryptocurrency provider bilang intermediate conversion. Maaari itong maging medyo nakakalito, kaya't mangyaring gamitin lamang ang pamamaraang ito kung hindi gumagana ang iba pang mga paraan ng pagbabayad. Hindi rin ito gumagana sa lahat ng bansa."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Mag-donate gamit ang credit/debit card, sa pamamagitan ng Alipay app (napakadaling i-set up)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>I-install ang Alipay app"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "I-install ang Alipay app mula sa <a %(a_app_store)s>Apple App Store</a> o <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Magrehistro gamit ang iyong numero ng telepono."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Walang karagdagang personal na detalye ang kinakailangan."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Idagdag ang bank card"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Suportado: Visa, MasterCard, JCB, Diners Club at Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Tingnan ang <a %(a_alipay)s>gabay na ito</a> para sa karagdagang impormasyon."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Hindi namin direktang masuportahan ang credit/debit cards, dahil ayaw makipagtrabaho ng mga bangko sa amin. ☹ Gayunpaman, may ilang paraan para magamit ang credit/debit cards, gamit ang ibang mga paraan ng pagbabayad:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Ipadala sa amin ang Amazon.com gift cards gamit ang iyong credit/debit card."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Sinusuportahan ng Alipay ang mga international credit/debit cards. Tingnan ang <a %(a_alipay)s>gabay na ito</a> para sa karagdagang impormasyon."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "Sinusuportahan ng WeChat (Weixin Pay) ang mga international credit/debit cards. Sa WeChat app, pumunta sa “Me => Services => Wallet => Add a Card”. Kung hindi mo ito makita, i-enable ito gamit ang “Me => Settings => General => Tools => Weixin Pay => Enable”."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 msgid "page.donate.ccexp.crypto"
 msgstr "Maaari kang bumili ng crypto gamit ang credit/debit cards."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Crypto express services"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Ang express services ay maginhawa, ngunit may mas mataas na bayarin."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Maaari mong gamitin ito sa halip na crypto exchange kung nais mong mabilis na makapagbigay ng mas malaking donasyon at hindi alintana ang bayad na $5-10."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Siguraduhing ipadala ang eksaktong crypto amount na ipinapakita sa pahina ng donasyon, hindi ang halaga sa $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Kung hindi, ang bayad ay ibabawas at hindi namin maiproseso nang awtomatiko ang iyong membership."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(minimum: %(minimum)s depende sa bansa, walang beripikasyon para sa unang transaksyon)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(minimum: %(minimum)s, walang beripikasyon para sa unang transaksyon)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(minimum: %(minimum)s, walang beripikasyon para sa unang transaksyon)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Kung ang alinman sa impormasyong ito ay hindi na napapanahon, mangyaring i-email kami upang ipaalam sa amin."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 msgid "page.donate.payment.desc.bmc"
 msgstr "Para sa credit cards, debit cards, Apple Pay, at Google Pay, ginagamit namin ang “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). Sa kanilang sistema, ang isang “coffee” ay katumbas ng $5, kaya ang iyong donasyon ay iroround sa pinakamalapit na multiple ng 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 msgid "page.donate.duration.intro"
 msgstr "Piliin kung gaano katagal mo gustong mag-subscribe."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 msgid "page.donate.duration.1_mo"
 msgstr "1 buwan"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 msgid "page.donate.duration.3_mo"
 msgstr "3 buwan"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 msgid "page.donate.duration.6_mo"
 msgstr "6 buwan"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 msgid "page.donate.duration.12_mo"
 msgstr "12 buwan"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 msgid "page.donate.duration.24_mo"
 msgstr "24 buwan"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 msgid "page.donate.duration.48_mo"
 msgstr "48 na buwan"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 msgid "page.donate.duration.96_mo"
 msgstr "96 na buwan"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>pagkatapos ng <span %(span_discount)s></span> mga diskwento</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 msgid "page.donate.payment.minimum_method"
 msgstr "Ang pamamaraang ito ng pagbabayad ay nangangailangan ng minimum na %(amount)s. Mangyaring pumili ng ibang tagal o paraan ng pagbabayad."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 msgid "page.donate.buttons.donate"
 msgstr "Mag-donate"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 msgid "page.donate.payment.maximum_method"
 msgstr "Ang pamamaraang ito ng pagbabayad ay nagpapahintulot lamang ng maximum na %(amount)s. Mangyaring pumili ng ibang duration o paraan ng pagbabayad."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 msgid "page.donate.login2"
 msgstr "Upang maging miyembro, mangyaring <a %(a_login)s>Mag-log in o Magrehistro</a>. Salamat sa iyong suporta!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 msgid "page.donate.payment.crypto_select"
 msgstr "Piliin ang iyong paboritong crypto coin:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(pinakamababang minimum na halaga)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(gamitin kapag nagpapadala ng Ethereum mula sa Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(babala: mataas na minimum na halaga)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 msgid "page.donate.submit.confirm"
 msgstr "I-click ang pindutan ng donasyon upang kumpirmahin ang donasyon na ito."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 msgid "page.donate.submit.button"
 msgstr "Mag-donate ng <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 msgid "page.donate.submit.cancel_note"
 msgstr "Maaari mo pa ring kanselahin ang donasyon sa panahon ng pag-checkout."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 msgid "page.donate.submit.success"
 msgstr "✅ Ire-redirect sa pahina ng donasyon…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 msgid "page.donate.submit.failure"
 msgstr "❌ May nangyaring mali. Mangyaring i-reload ang page at subukang muli."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / buwan"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "para sa 1 buwan"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "para sa 3 buwan"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "para sa 6 na buwan"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "para sa 12 buwan"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "para sa 24 buwan"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "para sa 48 buwan"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "para sa 96 buwan"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "para sa 1 buwan “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "para sa 3 buwan “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "para sa 6 buwan “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "para sa 12 buwan “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "para sa 24 buwan “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "para sa 48 buwan “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "para sa 96 buwan “%(tier_name)s”"
 
@@ -918,9 +920,9 @@ msgstr "<strong>Mahalagang paalala:</strong> Ang mga presyo ng crypto ay maaarin
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 msgid "page.donation.expired"
 msgstr "Nag-expire na ang donasyon na ito. Pakikansela at gumawa ng bago."
 
@@ -985,9 +987,9 @@ msgstr "Tingnan ang step-by-step na gabay sa ibaba."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.status_header"
 msgstr "Katayuan:"
 
@@ -997,9 +999,9 @@ msgstr "Katayuan:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Naghihintay ng kumpirmasyon (i-refresh ang pahina upang suriin)…"
 
@@ -1009,9 +1011,9 @@ msgstr "Naghihintay ng kumpirmasyon (i-refresh ang pahina upang suriin)…"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Naghihintay ng transfer (i-refresh ang pahina upang suriin)…"
 
@@ -1021,9 +1023,9 @@ msgstr "Naghihintay ng transfer (i-refresh ang pahina upang suriin)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.time_left_header"
 msgstr "Natitirang oras:"
 
@@ -1033,9 +1035,9 @@ msgstr "Natitirang oras:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.might_want_to_cancel"
 msgstr "(maaaring nais mong kanselahin at lumikha ng bagong donasyon)"
 
@@ -1045,9 +1047,9 @@ msgstr "(maaaring nais mong kanselahin at lumikha ng bagong donasyon)"
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 msgid "page.donation.reset_timer"
 msgstr "Upang i-reset ang timer, lumikha lamang ng bagong donasyon."
 
@@ -1058,14 +1060,14 @@ msgstr "Upang i-reset ang timer, lumikha lamang ng bagong donasyon."
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 msgid "page.donation.refresh_status"
 msgstr "I-update ang katayuan"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 msgid "page.donation.footer.issues_contact"
 msgstr "Kung makakaranas ka ng anumang isyu, mangyaring makipag-ugnayan sa amin sa %(email)s at isama ang mas maraming impormasyon hangga't maaari (tulad ng mga screenshot)."
 
@@ -1254,16 +1256,16 @@ msgstr "Halimbawa:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "Tandaan na ang pangalan ng account o larawan ay maaaring mukhang kakaiba. Walang dapat ipag-alala! Ang mga account na ito ay pinamamahalaan ng aming mga donation partners. Ang aming mga account ay hindi na-hack."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 #, fuzzy
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Mga tagubilin sa Alipay"
@@ -1280,147 +1282,147 @@ msgstr "<span %(span_circle)s>1</span>Mag-donate sa Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "I-donate ang kabuuang halaga na %(total)s gamit ang <a %(a_account)s>account na ito sa Alipay</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Sa kasamaang palad, ang pahina ng Alipay ay madalas na naa-access lamang mula sa <strong>mainland China</strong>. Maaaring kailanganin mong pansamantalang i-disable ang iyong VPN, o gumamit ng VPN papuntang mainland China (o minsan ay gumagana rin ang Hong Kong)."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Gumawa ng donasyon (i-scan ang QR code o pindutin ang button)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Buksan ang <a %(a_href)s>QR-code donation page</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "I-scan ang QR code gamit ang Alipay app, o pindutin ang button para buksan ang Alipay app."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Mangyaring maging matiyaga; maaaring magtagal ang pag-load ng pahina dahil ito ay nasa Tsina."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Mga tagubilin sa WeChat"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Mag-donate sa WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "I-donate ang kabuuang halaga na %(total)s gamit ang <a %(a_account)s>account na ito sa WeChat</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Mga tagubilin sa Pix"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Mag-donate sa Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "I-donate ang kabuuang halaga ng %(total)s gamit ang <a %(a_account)s>account na ito sa Pix"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>I-email sa amin ang resibo"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Magpadala ng resibo o screenshot sa iyong personal na verification address. HUWAG gamitin ang email address na ito para sa iyong PayPal donation."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "Ipadala ang resibo o screenshot sa iyong personal na verification address:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "Kung nagbago ang crypto exchange rate habang nagta-transact, siguraduhing isama ang resibo na nagpapakita ng orihinal na exchange rate. Talagang pinahahalagahan namin ang iyong pagsisikap na gumamit ng crypto, malaki ang naitutulong nito sa amin!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "Kapag na-email mo na ang iyong resibo, i-click ang button na ito, upang manu-manong ma-review ni Anna (maaari itong tumagal ng ilang araw):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "Oo, na-email ko na ang aking resibo"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ Salamat sa iyong donasyon! Manu-manong ia-activate ni Anna ang iyong membership sa loob ng ilang araw."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ May nangyaring mali. Pakireload ang pahina at subukang muli."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Step-by-step na gabay"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Ang ilan sa mga hakbang ay binabanggit ang crypto wallets, ngunit huwag mag-alala, hindi mo kailangang matuto ng kahit ano tungkol sa crypto para dito."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Ipasok ang iyong email."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Piliin ang iyong paraan ng pagbabayad."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Piliin muli ang iyong paraan ng pagbabayad."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Piliin ang “Self-hosted” na wallet."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. I-click ang “I confirm ownership”."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Dapat kang makatanggap ng email resibo. Pakipadala iyon sa amin, at ikukumpirma namin ang iyong donasyon sa lalong madaling panahon."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Kung nagkamali ka sa pagbabayad, hindi kami makakapag-refund, ngunit susubukan naming ayusin ito."
@@ -1572,9 +1574,9 @@ msgstr "Makipag-ugnayan kay Anna sa %(email)s kung interesado kang mag-upgrade n
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 msgid "page.contact.title"
 msgstr "Contact email"
 
@@ -1585,25 +1587,25 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Maaari mong pagsamahin ang maraming membership (ang mabilis na pag-download kada 24 oras ay pagsasamahin)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 #, fuzzy
 msgid "layout.index.header.nav.public_profile"
 msgstr "Pampublikong profile"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 #, fuzzy
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Mga na-download na file"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 #, fuzzy
 msgid "layout.index.header.nav.my_donations"
 msgstr "Aking mga donasyon"
@@ -2639,7 +2641,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Mabilis na pag-download</strong> Maging isang <a %(a_membership)s>miyembro</a> upang suportahan ang pangmatagalang pag-iingat ng mga libro, papel, at iba pa. Bilang pasasalamat sa iyong suporta, makakakuha ka ng mabilis na pag-download. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Kung mag-donate ka ngayong buwan, makakakuha ka ng <strong>dobleng</strong> bilang ng mabilis na pag-download."
 
@@ -2666,7 +2668,7 @@ msgid "page.md5.box.download.option"
 msgstr "Opsyon #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Mag-refer ng kaibigan, at pareho kayong makakakuha ng %(percentage)s%% bonus na mabilis na pag-download!"
@@ -2678,11 +2680,11 @@ msgstr "Mag-refer ng kaibigan, at pareho kayong makakakuha ng %(percentage)s%% b
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "Alamin pa…"
@@ -3580,7 +3582,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Pinayayaman din namin ang aming koleksyon gamit ang mga pinagmulan ng metadata lamang, na maaari naming itugma sa mga file, halimbawa gamit ang mga numero ng ISBN o iba pang mga field. Sa ibaba ay isang pangkalahatang-ideya ng mga iyon. Muli, ang ilan sa mga pinagmulan na ito ay ganap na bukas, habang ang iba ay kailangan naming i-scrape."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4749,267 +4751,267 @@ msgstr "<div %(div_question)s>Maaari ko bang i-upgrade ang aking membership o ma
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>Mayroon ba kayong ibang paraan ng pagbabayad?</div> Sa kasalukuyan, wala. Maraming tao ang ayaw na magkaroon ng mga archive na tulad nito, kaya kailangan naming maging maingat. Kung maaari mo kaming tulungan na mag-set up ng iba pang (mas maginhawang) paraan ng pagbabayad nang ligtas, mangyaring makipag-ugnayan sa amin sa %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>Saan napupunta ang mga donasyon?</div> 100%% ay napupunta sa pagpapanatili at pagpapalaganap ng kaalaman at kultura ng mundo. Sa kasalukuyan, ginagastos namin ito karamihan sa mga servers, storage, at bandwidth. Walang pera ang napupunta sa sinumang miyembro ng team."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>Maaari ba akong magbigay ng malaking donasyon?</div> Iyon ay magiging kamangha-mangha! Para sa mga donasyon na higit sa ilang libong dolyar, mangyaring makipag-ugnayan sa amin nang direkta sa %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>Maaari ba akong magbigay ng donasyon nang hindi nagiging miyembro?</div> Oo naman. Tumatanggap kami ng donasyon ng anumang halaga sa Monero (XMR) address na ito: %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 msgid "page.faq.upload.title"
 msgstr "Paano ako mag-upload ng mga bagong libro?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 msgid "page.upload.text1"
 msgstr "Sa ngayon, inirerekomenda naming mag-upload ng mga bagong libro sa mga Library Genesis forks. Narito ang isang <a %(a_guide)s>handy guide</a>. Tandaan na ang parehong forks na ini-index namin sa website na ito ay kumukuha mula sa parehong sistema ng pag-upload."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 msgid "common.libgen.email"
 msgstr "Kung hindi gumagana ang iyong email address sa mga Libgen forums, inirerekomenda naming gamitin ang <a %(a_mail)s>Proton Mail</a> (libre). Maaari ka ring <a %(a_manual)s>manu-manong humiling</a> na ma-activate ang iyong account."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 msgid "page.faq.mhut_upload"
 msgstr "Tandaan na ang mhut.org ay nagba-block ng ilang IP ranges, kaya maaaring kailanganin ang VPN."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 msgid "page.upload.zlib.text1"
 msgstr "Bilang alternatibo, maaari mo ring i-upload ang mga ito sa Z-Library <a %(a_upload)s>dito</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 msgid "page.upload.zlib.text2"
 msgstr "Para sa pag-upload ng mga academic papers, mangyaring (bukod sa Library Genesis) mag-upload din sa <a %(a_stc_nexus)s>STC Nexus</a>. Sila ang pinakamahusay na shadow library para sa mga bagong papers. Hindi pa namin sila na-integrate, ngunit gagawin namin sa hinaharap. Maaari mong gamitin ang kanilang <a %(a_telegram)s>upload bot sa Telegram</a>, o makipag-ugnayan sa address na nakalista sa kanilang pinned message kung mayroon kang masyadong maraming files na i-upload sa ganitong paraan."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 msgid "page.upload.large.text"
 msgstr "Para sa malalaking uploads (higit sa 10,000 files) na hindi tinatanggap ng Libgen o Z-Library, mangyaring makipag-ugnayan sa amin sa %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 msgid "page.faq.request.title"
 msgstr "Paano ako mag-request ng mga libro?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 msgid "page.request.cannot_accomodate"
 msgstr "Sa kasalukuyan, hindi namin kayang tugunan ang mga book requests."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 msgid "page.request.forums"
 msgstr "Mangyaring mag-request sa mga forum ng Z-Library o Libgen."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 msgid "page.request.dont_email"
 msgstr "Huwag mag-email sa amin ng inyong mga kahilingan sa libro."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 msgid "page.faq.metadata.title"
 msgstr "Nangongolekta ba kayo ng metadata?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 msgid "page.faq.metadata.indeed"
 msgstr "Oo, nangongolekta kami."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 msgid "page.faq.1984.title"
 msgstr "Nag-download ako ng 1984 ni George Orwell, darating ba ang pulis sa aking pintuan?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 msgid "page.faq.1984.text"
 msgstr "Huwag masyadong mag-alala, maraming tao ang nagda-download mula sa mga website na naka-link sa amin, at napakabihirang magkaroon ng problema. Gayunpaman, upang manatiling ligtas, inirerekomenda namin ang paggamit ng VPN (bayad), o <a %(a_tor)s>Tor</a> (libre)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 msgid "page.faq.save_search.title"
 msgstr "Paano ko ise-save ang aking mga setting sa paghahanap?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 msgid "page.faq.save_search.text1"
 msgstr "Piliin ang mga setting na gusto mo, iwanang walang laman ang search box, i-click ang “Search”, at pagkatapos ay i-bookmark ang pahina gamit ang bookmark feature ng iyong browser."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 msgid "page.faq.mobile.title"
 msgstr "Mayroon ba kayong mobile app?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 msgid "page.faq.mobile.text1"
 msgstr "Wala kaming opisyal na mobile app, ngunit maaari mong i-install ang website na ito bilang isang app."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> I-click ang three-dot menu sa kanang itaas, at piliin ang “Add to Home Screen”."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> I-click ang “Share” button sa ibaba, at piliin ang “Add to Home Screen”."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 msgid "page.faq.api.title"
 msgstr "Mayroon ba kayong API?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 msgid "page.faq.api.text1"
 msgstr "Mayroon kaming isang stable na JSON API para sa mga miyembro, para makakuha ng mabilis na download URL: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (dokumentasyon sa loob ng JSON mismo)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 msgid "page.faq.api.text2"
 msgstr "Para sa iba pang mga kaso ng paggamit, tulad ng pag-iterate sa lahat ng aming mga file, pagbuo ng custom na paghahanap, at iba pa, inirerekomenda namin ang <a %(a_generate)s>pag-generate</a> o <a %(a_download)s>pag-download</a> ng aming ElasticSearch at MariaDB databases. Ang raw data ay maaaring manu-manong tuklasin <a %(a_explore)s>sa pamamagitan ng mga JSON file</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 msgid "page.faq.api.text3"
 msgstr "Ang aming raw torrents list ay maaaring i-download bilang <a %(a_torrents)s>JSON</a> din."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 msgid "page.faq.torrents.title"
 msgstr "Torrents FAQ"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 msgid "page.faq.torrents.q1"
 msgstr "Gusto kong tumulong sa pag-seed, ngunit wala akong masyadong disk space."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 msgid "page.faq.torrents.a1"
 msgstr "Gamitin ang <a %(a_list)s>torrent list generator</a> upang makabuo ng listahan ng mga torrents na pinaka-kailangan ng pag-torrent, sa loob ng iyong mga limitasyon sa storage space."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 msgid "page.faq.torrents.q2"
 msgstr "Masyadong mabagal ang mga torrents; maaari ko bang i-download ang data nang direkta mula sa inyo?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 msgid "page.faq.torrents.a2"
 msgstr "Oo, tingnan ang pahina ng <a %(a_llm)s>LLM data</a>."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 msgid "page.faq.torrents.q3"
 msgstr "Maaari ko bang i-download lamang ang isang subset ng mga file, tulad ng isang partikular na wika o paksa?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 msgid "page.faq.torrents.a3"
 msgstr "Karamihan sa mga torrent ay naglalaman ng mga file nang direkta, na nangangahulugang maaari mong utusan ang mga torrent client na i-download lamang ang mga kinakailangang file. Upang matukoy kung aling mga file ang i-download, maaari mong <a %(a_generate)s>i-generate</a> ang aming metadata, o <a %(a_download)s>i-download</a> ang aming ElasticSearch at MariaDB databases. Sa kasamaang palad, ang ilang mga torrent collection ay naglalaman ng .zip o .tar file sa root, kung saan kailangan mong i-download ang buong torrent bago mo mapili ang mga indibidwal na file."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 msgid "page.faq.torrents.q4"
 msgstr "Paano ninyo hinahawakan ang mga duplicate sa mga torrent?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 msgid "page.faq.torrents.a4"
 msgstr "Sinusubukan naming panatilihing minimal ang pagdodoble o overlap sa pagitan ng mga torrent sa listahang ito, ngunit hindi ito palaging makakamit, at nakasalalay nang malaki sa mga patakaran ng mga source library. Para sa mga library na naglalabas ng kanilang sariling mga torrent, wala na ito sa aming mga kamay. Para sa mga torrent na inilabas ng Anna’s Archive, nagdededuplicate kami batay lamang sa MD5 hash, na nangangahulugang ang iba't ibang bersyon ng parehong libro ay hindi nadededuplicate."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 msgid "page.faq.torrents.q5"
 msgstr "Maaari ko bang makuha ang listahan ng torrent bilang JSON?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 msgid "page.faq.torrents.a5"
 msgstr "Oo."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 msgid "page.faq.torrents.q6"
 msgstr "Hindi ko nakikita ang mga PDF o EPUB sa mga torrent, tanging mga binary file? Ano ang gagawin ko?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 msgid "page.faq.torrents.a6"
 msgstr "Ang mga ito ay talagang mga PDF at EPUB, wala lang silang extension sa marami sa aming mga torrent. Mayroong dalawang lugar kung saan maaari mong makita ang metadata para sa mga torrent file, kabilang ang mga uri ng file/extension:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. Ang bawat koleksyon o release ay may sariling metadata. Halimbawa, ang mga <a %(a_libgen_nonfic)s>Libgen.rs torrents</a> ay may katumbas na metadata database na naka-host sa website ng Libgen.rs. Karaniwan naming iniuugnay ang mga kaugnay na mapagkukunan ng metadata mula sa bawat pahina ng <a %(a_datasets)s>dataset</a> ng koleksyon."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Inirerekomenda namin ang <a %(a_generate)s>pag-generate</a> o <a %(a_download)s>pag-download</a> ng aming ElasticSearch at MariaDB databases. Ang mga ito ay naglalaman ng mapping para sa bawat record sa Anna’s Archive sa mga katumbas nitong torrent file (kung available), sa ilalim ng “torrent_paths” sa ElasticSearch JSON."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 msgid "page.faq.security.title"
 msgstr "Mayroon ba kayong responsible disclosure program?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 msgid "page.faq.security.text1"
 msgstr "Tinatanggap namin ang mga security researcher na maghanap ng mga kahinaan sa aming mga sistema. Kami ay malalaking tagasuporta ng responsible disclosure. Makipag-ugnayan sa amin <a %(a_contact)s>dito</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 msgid "page.faq.security.text2"
 msgstr "Sa kasalukuyan, hindi kami makapagbigay ng bug bounties, maliban sa mga kahinaan na may <a %(a_link)s>potensyal na ikompromiso ang aming anonymity</a>, kung saan nag-aalok kami ng bounties sa halagang $10k-50k. Nais naming mag-alok ng mas malawak na saklaw para sa bug bounties sa hinaharap! Pakitandaan na ang mga social engineering attack ay wala sa saklaw."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 msgid "page.faq.security.text3"
 msgstr "Kung ikaw ay interesado sa offensive security, at nais mong tumulong sa pag-archive ng kaalaman at kultura ng mundo, siguraduhing makipag-ugnayan sa amin. Maraming paraan kung paano ka makakatulong."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 msgid "page.faq.resources.title"
 msgstr "Mayroon bang higit pang mga mapagkukunan tungkol sa Anna’s Archive?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Blog ni Anna</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Subreddit</a> — regular na mga update"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Software ni Anna</a> — ang aming open source code"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Isalin sa Software ni Anna</a> — ang aming translation system"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Datasets</a> — tungkol sa data"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — alternatibong mga domain"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Wikipedia</a> — higit pa tungkol sa amin (mangyaring tulungan panatilihing na-update ang pahinang ito, o lumikha ng isa para sa iyong sariling wika!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 msgid "page.faq.copyright.title"
 msgstr "Paano ko irereport ang paglabag sa copyright?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 msgid "page.faq.copyright.text1"
 msgstr "Hindi kami nagho-host ng anumang copyrighted na materyales dito. Kami ay isang search engine, at bilang ganoon, nag-iindex lamang kami ng metadata na pampublikong magagamit na. Kapag nagda-download mula sa mga panlabas na pinagmulan, iminumungkahi naming suriin ang mga batas sa iyong hurisdiksyon tungkol sa kung ano ang pinapayagan. Hindi kami responsable para sa nilalaman na hino-host ng iba."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 msgid "page.faq.copyright.text2"
 msgstr "Kung mayroon kang mga reklamo tungkol sa nakikita mo dito, ang pinakamainam na gawin ay makipag-ugnayan sa orihinal na website. Regular naming kinukuha ang kanilang mga pagbabago sa aming database. Kung talagang sa tingin mo ay may valid na reklamo sa DMCA na dapat naming tugunan, mangyaring punan ang <a %(a_copyright)s>DMCA / Copyright claim form</a>. Seryoso naming tinatrato ang iyong mga reklamo, at babalikan ka namin sa lalong madaling panahon."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 msgid "page.faq.hate.title"
 msgstr "Ayoko kung paano mo pinapatakbo ang proyektong ito!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 msgid "page.faq.hate.text1"
 msgstr "Nais din naming ipaalala sa lahat na ang lahat ng aming code at data ay ganap na open source. Ito ay natatangi para sa mga proyekto tulad ng sa amin — wala kaming alam na anumang iba pang proyekto na may katulad na napakalaking katalogo na ganap ding open source. Malugod naming tinatanggap ang sinumang nag-iisip na mali ang pagpapatakbo namin ng aming proyekto na kunin ang aming code at data at mag-set up ng kanilang sariling shadow library! Hindi namin sinasabi ito dahil sa galit o kung ano pa man — tunay naming iniisip na magiging kahanga-hanga ito dahil itataas nito ang pamantayan para sa lahat, at mas mapapanatili ang pamana ng sangkatauhan."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "Mayroon ka bang uptime monitor?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Pakiusap tingnan ang <a %(a_href)s>napakahusay na proyektong ito</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Sino si Anna?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Ikaw si Anna!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 msgid "page.faq.favorite.title"
 msgstr "Ano ang mga paborito mong libro?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 msgid "page.faq.favorite.text1"
 msgstr "Narito ang ilang mga libro na may espesyal na kahalagahan sa mundo ng shadow libraries at digital preservation:"
 
@@ -5040,15 +5042,15 @@ msgstr "Maghanap"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 msgid "layout.index.header.nav.beta"
 msgstr "beta"
 
@@ -5135,8 +5137,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Kung nagpapatakbo ka ng isang high-risk anonymous payment processor, mangyaring makipag-ugnayan sa amin. Naghahanap din kami ng mga taong nais maglagay ng mga disente at maliliit na patalastas. Ang lahat ng kita ay mapupunta sa aming mga pagsisikap sa pagpepreserba."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 msgid "layout.index.header.nav.annasblog"
 msgstr "Blog ni Anna ↗"
 
@@ -5497,7 +5499,7 @@ msgstr "Kung gumagamit ka ng VPN, shared internet connection, o ang iyong ISP ay
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 msgid "layout.index.header.title"
 msgstr "Anna’s Archive"
 
@@ -5576,7 +5578,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Metadata"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 msgid "common.search.placeholder"
 msgstr "Pamagat, may-akda, DOI, ISBN, MD5, …"
 
@@ -5901,116 +5903,116 @@ msgstr "Magaan na boluntaryong trabaho"
 msgid "page.volunteering.section.light.text1"
 msgstr "Kung may ilang oras kang bakante, maaari kang tumulong sa iba't ibang paraan. Siguraduhing sumali sa <a %(a_telegram)s>volunteers chat sa Telegram</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Bilang tanda ng aming pasasalamat, karaniwan kaming nagbibigay ng 6 na buwan ng “Maswerteng Librarian” para sa mga pangunahing milestone, at higit pa para sa patuloy na boluntaryong trabaho. Lahat ng milestone ay nangangailangan ng mataas na kalidad na trabaho — ang pabaya na trabaho ay mas makakasama kaysa makakatulong at tatanggihan namin ito. Mangyaring <a %(a_contact)s>i-email kami</a> kapag naabot mo na ang isang milestone."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Gawain"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Milestone"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Pagbutihin ang metadata sa pamamagitan ng <a %(a_metadata)s>pag-link</a> sa Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s mga link ng mga rekord na iyong pinahusay."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Pagsasalin</a> ng website."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Kumpletuhin ang pagsasalin ng isang wika (kung hindi pa ito malapit sa pagkakumpleto)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Pagpapalaganap ng balita tungkol sa Anna’s Archive sa social media at online forums, sa pamamagitan ng pagrekomenda ng libro o listahan sa AA, o pagsagot sa mga tanong."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s mga link o screenshot."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Pagbutihin ang Wikipedia page para sa Anna’s Archive sa iyong wika. Isama ang impormasyon mula sa Wikipedia page ng AA sa ibang mga wika, at mula sa aming website at blog. Magdagdag ng mga sanggunian sa AA sa iba pang kaugnay na mga pahina."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Link sa edit history na nagpapakita na gumawa ka ng makabuluhang kontribusyon."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Pagtupad ng mga kahilingan ng libro (o papel, atbp) sa Z-Library o sa Library Genesis forums. Wala kaming sariling sistema ng kahilingan ng libro, ngunit ini-mirror namin ang mga aklatan na iyon, kaya ang pagpapabuti sa kanila ay nagpapabuti rin sa Anna’s Archive."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s mga link o screenshot ng mga kahilingang iyong natupad."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Maliit na mga gawain na ipinost sa aming <a %(a_telegram)s>volunteers chat sa Telegram</a>. Karaniwan para sa membership, minsan para sa maliliit na gantimpala."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Depende sa gawain."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Mga Pabuya"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Palagi kaming naghahanap ng mga tao na may solidong kasanayan sa programming o offensive security upang makilahok. Maaari kang magbigay ng malaking kontribusyon sa pagpapanatili ng pamana ng sangkatauhan."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Bilang pasasalamat, nagbibigay kami ng membership para sa solidong kontribusyon. Bilang malaking pasasalamat, nagbibigay kami ng mga pabuya sa pera para sa mga partikular na mahalaga at mahihirap na gawain. Hindi ito dapat ituring na kapalit ng trabaho, ngunit ito ay isang karagdagang insentibo at maaaring makatulong sa mga nagastos."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Karamihan sa aming code ay open source, at hihilingin din namin na ang iyong code ay maging ganoon kapag nagbibigay ng pabuya. May ilang mga eksepsiyon na maaari naming talakayin sa indibidwal na batayan."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Ang mga pabuya ay ibinibigay sa unang taong makakakumpleto ng isang gawain. Huwag mag-atubiling magkomento sa isang bounty ticket upang ipaalam sa iba na ikaw ay nagtatrabaho sa isang bagay, upang ang iba ay maghintay o makipag-ugnayan sa iyo upang makipagtulungan. Ngunit tandaan na ang iba ay malayang magtrabaho rin dito at subukang maunahan ka. Gayunpaman, hindi kami nagbibigay ng pabuya para sa magulong trabaho. Kung may dalawang mataas na kalidad na pagsusumite na ginawa nang magkalapit (sa loob ng isang araw o dalawa), maaari naming piliing magbigay ng pabuya sa pareho, ayon sa aming pagpapasya, halimbawa 100%% para sa unang pagsusumite at 50%% para sa pangalawang pagsusumite (kaya 150%% kabuuan)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "Para sa mas malalaking pabuya (lalo na ang mga scraping bounties), mangyaring makipag-ugnayan sa amin kapag nakumpleto mo na ang ~5%% nito, at kumpiyansa kang ang iyong pamamaraan ay mag-scale sa buong milestone. Kailangan mong ibahagi ang iyong pamamaraan sa amin upang makapagbigay kami ng feedback. Gayundin, sa ganitong paraan maaari naming magpasya kung ano ang gagawin kung mayroong maraming tao na malapit sa isang pabuya, tulad ng potensyal na pagbibigay nito sa maraming tao, paghikayat sa mga tao na makipagtulungan, atbp."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 msgid "page.volunteering.section.bounties.text6"
 msgstr "BABALA: ang mga mataas na pabuya na gawain ay <span %(bold)s>mahirap</span> — maaaring mas mabuting magsimula sa mas madadaling gawain."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Pumunta sa aming <a %(a_gitlab)s>listahan ng mga isyu sa Gitlab</a> at ayusin ayon sa “Label priority”. Ipinapakita nito ang pagkakasunud-sunod ng mga gawain na mahalaga sa amin. Ang mga gawain na walang tiyak na pabuya ay eligible pa rin para sa membership, lalo na ang mga may markang “Accepted” at “Paborito ni Anna”. Maaaring gusto mong magsimula sa isang “Starter project”."
 
@@ -6034,156 +6036,157 @@ msgstr "Kailangan ng tulong ng Anna’s Archive!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Maraming sumusubok na pabagsakin kami, ngunit lumalaban kami."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 msgid "layout.index.header.nav.donate"
 msgstr "Mag-donate"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "Pag-save ng kaalaman ng tao: isang mahusay na regalo sa holiday!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.surprise"
 msgstr "Isurprise ang isang mahal sa buhay, bigyan sila ng account na may membership."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 msgid "layout.index.header.banner.mirrors"
 msgstr "Upang mapataas ang katatagan ng Anna’s Archive, naghahanap kami ng mga boluntaryo na magpapatakbo ng mga mirror."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "Ang perpektong regalo para sa Araw ng mga Puso!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Mayroon kaming bagong paraan ng donasyon na magagamit: %(method_name)s. Mangyaring isaalang-alang ang %(donate_link_open_tag)spag-donate</a> — hindi mura ang pagpapatakbo ng website na ito, at ang iyong donasyon ay talagang may malaking epekto. Maraming salamat."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Nagsasagawa kami ng fundraiser para sa <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">pag-backup</a> ng pinakamalaking shadow library ng komiks sa mundo. Salamat sa iyong suporta! <a href=\"/donate\">Mag-donate.</a> Kung hindi ka makakapag-donate, isaalang-alang ang pagsuporta sa amin sa pamamagitan ng pagsasabi sa iyong mga kaibigan, at pagsunod sa amin sa <a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a>, o <a href=\"https://t.me/annasarchiveorg\">Telegram</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 msgid "layout.index.header.recent_downloads"
 msgstr "Mga recent download:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-msgid "layout.index.header.nav.search"
-msgstr "Maghanap"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
-msgid "layout.index.header.nav.faq"
-msgstr "Mga FAQ"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Pagbutihin ang metadata"
+msgid "layout.index.header.nav.search"
+msgstr "Maghanap"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
-msgid "layout.index.header.nav.volunteering"
-msgstr "Pagboboluntaryo at Mga Pabuya"
+msgid "layout.index.header.nav.faq"
+msgstr "Mga FAQ"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
-msgid "layout.index.header.nav.datasets"
-msgstr "Datasets"
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Pagbutihin ang metadata"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrents"
+msgid "layout.index.header.nav.volunteering"
+msgstr "Pagboboluntaryo at Mga Pabuya"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
-msgid "layout.index.header.nav.codes"
-msgstr "Codes Explorer"
+msgid "layout.index.header.nav.datasets"
+msgstr "Datasets"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
-msgid "layout.index.header.nav.llm_data"
-msgstr "LLM data"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrents"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+msgid "layout.index.header.nav.codes"
+msgstr "Codes Explorer"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+msgid "layout.index.header.nav.llm_data"
+msgstr "LLM data"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 msgid "layout.index.header.nav.home"
 msgstr "Home"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Software ni Anna ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 msgid "layout.index.header.nav.translate"
 msgstr "Isalin ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 msgid "layout.index.header.nav.login_register"
 msgstr "Mag-log in / Magrehistro"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 msgid "layout.index.header.nav.account"
 msgstr "Account"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 msgid "layout.index.footer.list1.header"
 msgstr "Anna's Archive"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 msgid "layout.index.footer.list2.header"
 msgstr "Manatiling nakikipag-ugnayan"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / mga reklamo sa copyright"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 msgid "layout.index.header.nav.advanced"
 msgstr "Advanced"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 msgid "layout.index.header.nav.security"
 msgstr "Seguridad"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 msgid "layout.index.footer.list3.header"
 msgstr "Mga Alternatibo"
 

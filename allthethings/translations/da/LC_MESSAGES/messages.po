@@ -144,17 +144,17 @@ msgstr "Strålende Samler"
 msgid "common.membership.tier_name.5"
 msgstr "Fantastisk Arkivar"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 #, fuzzy
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) i alt"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 #, fuzzy
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 #, fuzzy
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s i alt"
@@ -325,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "kontakt os"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,13 +372,13 @@ msgid "page.donate.payment.select_method"
 msgstr "Vælg venligst en betalingsmetode."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Amazon-gavekort"
@@ -391,7 +391,7 @@ msgstr "Bankkort (ved brug af app)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Krypto %(bitcoin_icon)s"
@@ -423,8 +423,8 @@ msgstr "Kredit/debit/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
@@ -470,498 +470,500 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(midlertidigt utilgængelig)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "Med krypto kan du donere ved hjælp af BTC, ETH, XMR og SOL. Brug denne mulighed, hvis du allerede er bekendt med kryptovaluta."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Med krypto kan du donere ved hjælp af BTC, ETH, XMR og mere."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Hvis du bruger krypto for første gang, foreslår vi at bruge %(options)s til at købe og donere Bitcoin (den oprindelige og mest brugte kryptovaluta)."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Blæksprutte"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "For at donere ved hjælp af PayPal US, vil vi bruge PayPal Crypto, som giver os mulighed for at forblive anonyme. Vi sætter pris på, at du tager dig tid til at lære, hvordan du donerer ved hjælp af denne metode, da det hjælper os meget."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Donér ved hjælp af PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Donér ved hjælp af Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Hvis du har Cash App, er dette den nemmeste måde at donere på!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Bemærk, at for transaktioner under %(amount)s kan Cash App opkræve et %(fee)s gebyr. For %(amount)s eller derover er det gratis!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Doner ved hjælp af Revolut."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Hvis du har Revolut, er dette den nemmeste måde at donere på!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Donér med et kredit- eller debetkort."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay og Apple Pay kan også virke."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Bemærk, at for små donationer kan kreditkortgebyrerne eliminere vores %(discount)s%% rabat, så vi anbefaler længere abonnementer."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Bemærk, at for små donationer er gebyrerne høje, så vi anbefaler længere abonnementer."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Med Binance kan du købe Bitcoin med et kredit-/debitkort eller bankkonto og derefter donere den Bitcoin til os. På den måde kan vi forblive sikre og anonyme, når vi modtager din donation."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance er tilgængelig i næsten alle lande og understøtter de fleste banker og kredit-/debitkort. Dette er i øjeblikket vores hovedanbefaling. Vi værdsætter, at du tager dig tid til at lære, hvordan du donerer ved hjælp af denne metode, da det hjælper os meget."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Doner ved hjælp af din almindelige PayPal-konto."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Donér ved hjælp af Alipay eller WeChat. Du kan vælge mellem disse på den næste side."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Donér ved hjælp af kredit-/debitkort, PayPal eller Venmo. Du kan vælge mellem disse på den næste side."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Donér ved hjælp af et Amazon-gavekort."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Bemærk, at vi skal runde op til beløb, der accepteres af vores forhandlere (minimum %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>VIGTIGT:</strong> Vi understøtter kun Amazon.com, ikke andre Amazon-websteder. For eksempel understøttes .de, .co.uk, .ca IKKE."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Denne metode bruger en kryptovalutaudbyder som en mellemmand til konvertering. Dette kan være lidt forvirrende, så brug kun denne metode, hvis andre betalingsmetoder ikke virker. Det virker heller ikke i alle lande."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Donér ved hjælp af et kredit-/debetkort gennem Alipay-appen (super nemt at sætte op)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Installer Alipay-appen"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "Installer Alipay-appen fra <a %(a_app_store)s>Apple App Store</a> eller <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Registrer dig med dit telefonnummer."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Ingen yderligere personlige oplysninger er nødvendige."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Tilføj bankkort"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Understøttet: Visa, MasterCard, JCB, Diners Club og Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Se <a %(a_alipay)s>denne vejledning</a> for mere information."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Vi kan ikke understøtte kredit-/debetkort direkte, fordi bankerne ikke vil samarbejde med os. ☹ Der er dog flere måder at bruge kredit-/debetkort alligevel, ved hjælp af andre betalingsmetoder:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Send os Amazon.com-gavekort ved hjælp af dit kredit-/debitkort."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay understøtter internationale kredit-/debetkort. Se <a %(a_alipay)s>denne vejledning</a> for mere information."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) understøtter internationale kredit-/debitkort. I WeChat-appen skal du gå til “Me => Services => Wallet => Add a Card”. Hvis du ikke ser det, skal du aktivere det ved hjælp af “Me => Settings => General => Tools => Weixin Pay => Enable”."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "Du kan købe krypto ved hjælp af kredit-/debitkort."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Krypto ekspres tjenester"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Ekspres tjenester er bekvemme, men opkræver højere gebyrer."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Du kan bruge dette i stedet for en krypto børs, hvis du ønsker hurtigt at lave en større donation og ikke har noget imod et gebyr på $5-10."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Sørg for at sende det nøjagtige krypto beløb, der vises på donationssiden, ikke beløbet i $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Ellers vil gebyret blive trukket fra, og vi kan ikke automatisk behandle dit medlemskab."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(minimum: %(minimum)s afhængig af land, ingen verifikation for første transaktion)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(minimum: %(minimum)s, ingen verifikation for første transaktion)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(minimum: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Hvis nogen af disse oplysninger er forældede, bedes du sende os en e-mail for at informere os."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "For kreditkort, debitkort, Apple Pay og Google Pay bruger vi “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). I deres system er en “kaffe” lig med $5, så din donation vil blive afrundet til nærmeste multiplum af 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "Vælg, hvor længe du vil abonnere."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 måned"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 måneder"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 måneder"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 måneder"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 måneder"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 måneder"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 måneder"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>efter <span %(span_discount)s></span> rabatter</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "Denne betalingsmetode kræver et minimum på %(amount)s. Vælg venligst en anden varighed eller betalingsmetode."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Donér"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "Denne betalingsmetode tillader kun et maksimum på %(amount)s. Vælg venligst en anden varighed eller betalingsmetode."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "For at blive medlem, venligst <a %(a_login)s>Log ind eller Registrer</a>. Tak for din støtte!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "Vælg din foretrukne kryptomønt:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(laveste minimumsbeløb)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(bruges ved afsendelse af Ethereum fra Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(advarsel: højt minimumsbeløb)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "Klik på doner-knappen for at bekræfte denne donation."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "Doner <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "Du kan stadig annullere donationen under betalingen."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ Omdirigerer til donationssiden…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ Noget gik galt. Genindlæs siden og prøv igen."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / måned"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "for 1 måned"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "for 3 måneder"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "for 6 måneder"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "for 12 måneder"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "for 24 måneder"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "for 48 måneder"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "i 96 måneder"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "i 1 måned “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "i 3 måneder “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "i 6 måneder “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "i 12 måneder “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "i 24 måneder “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "i 48 måneder “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "i 96 måneder “%(tier_name)s”"
@@ -1081,9 +1083,9 @@ msgstr "<strong>Vigtig bemærkning:</strong> Kryptopriser kan svinge voldsomt, n
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "Denne donation er udløbet. Annuller venligst og opret en ny."
@@ -1162,9 +1164,9 @@ msgstr "Se trin-for-trin guiden nedenfor."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "Status:"
@@ -1175,9 +1177,9 @@ msgstr "Status:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Venter på bekræftelse (opdater siden for at tjekke)…"
@@ -1188,9 +1190,9 @@ msgstr "Venter på bekræftelse (opdater siden for at tjekke)…"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Venter på overførsel (opdater siden for at tjekke)…"
@@ -1201,9 +1203,9 @@ msgstr "Venter på overførsel (opdater siden for at tjekke)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "Tid tilbage:"
@@ -1214,9 +1216,9 @@ msgstr "Tid tilbage:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(du vil måske annullere og oprette en ny donation)"
@@ -1227,9 +1229,9 @@ msgstr "(du vil måske annullere og oprette en ny donation)"
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "For at nulstille timeren skal du blot oprette en ny donation."
@@ -1241,15 +1243,15 @@ msgstr "For at nulstille timeren skal du blot oprette en ny donation."
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "Opdater status"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "Hvis du støder på problemer, bedes du kontakte os på %(email)s og inkludere så mange oplysninger som muligt (såsom skærmbilleder)."
@@ -1448,16 +1450,16 @@ msgstr "Eksempel:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "Bemærk, at kontonavnet eller billedet kan se mærkeligt ud. Ingen grund til bekymring! Disse konti administreres af vores donationspartnere. Vores konti er ikke blevet hacket."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 #, fuzzy
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Alipay-instruktioner"
@@ -1474,147 +1476,147 @@ msgstr "<span %(span_circle)s>1</span>Doner på Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "Donér det samlede beløb på %(total)s ved at bruge <a %(a_account)s>denne Alipay-konto</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Desværre er Alipay-siden ofte kun tilgængelig fra <strong>fastlands-Kina</strong>. Du kan være nødt til midlertidigt at deaktivere din VPN eller bruge en VPN til fastlands-Kina (eller Hongkong fungerer også nogle gange)."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Foretag donation (scan QR-kode eller tryk på knappen)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Åbn <a %(a_href)s>QR-kode donationssiden</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Scan QR-koden med Alipay-appen, eller tryk på knappen for at åbne Alipay-appen."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Vær venligst tålmodig; siden kan tage lidt tid at indlæse, da den er i Kina."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "WeChat-instruktioner"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Donér på WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Donér det samlede beløb på %(total)s ved at bruge <a %(a_account)s>denne WeChat-konto</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Pix-instruktioner"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Donér på Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "Donér det samlede beløb på %(total)s ved at bruge <a %(a_account)s>denne Pix-konto"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Email os kvitteringen"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Send en kvittering eller skærmbillede til din personlige verifikationsadresse. Brug IKKE denne e-mailadresse til din PayPal-donation."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "Send en kvittering eller skærmbillede til din personlige verificeringsadresse:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "Hvis kryptovalutakursen svingede under transaktionen, skal du sørge for at inkludere kvitteringen, der viser den oprindelige valutakurs. Vi sætter virkelig pris på, at du tager besværet med at bruge krypto, det hjælper os meget!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "Når du har sendt din kvittering via e-mail, klik på denne knap, så Anna kan gennemgå den manuelt (dette kan tage et par dage):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "Ja, jeg har sendt min kvittering via e-mail"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ Tak for din donation! Anna vil manuelt aktivere dit medlemskab inden for et par dage."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ Noget gik galt. Genindlæs siden og prøv igen."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Trin-for-trin guide"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Nogle af trinene nævner kryptotegnebøger, men bare rolig, du behøver ikke at lære noget om krypto for dette."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Indtast din e-mail."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Vælg din betalingsmetode."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Vælg din betalingsmetode igen."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Vælg \"Selvhostet\" tegnebog."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Klik på \"Jeg bekræfter ejerskab\"."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Du bør modtage en e-mailkvittering. Send den venligst til os, og vi vil bekræfte din donation så hurtigt som muligt."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Hvis du lavede en fejl under betalingen, kan vi ikke refundere, men vi vil forsøge at rette det."
@@ -1768,9 +1770,9 @@ msgstr "Kontakt Anna på %(email)s, hvis du er interesseret i at opgradere dit m
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 #, fuzzy
 msgid "page.contact.title"
 msgstr "Kontakt email"
@@ -1782,25 +1784,25 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Du kan kombinere flere medlemskaber (hurtige downloads pr. 24 timer vil blive lagt sammen)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 #, fuzzy
 msgid "layout.index.header.nav.public_profile"
 msgstr "Offentlig profil"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 #, fuzzy
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Downloadede filer"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 #, fuzzy
 msgid "layout.index.header.nav.my_donations"
 msgstr "Mine donationer"
@@ -2839,7 +2841,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Hurtige downloads</strong> Bliv <a %(a_membership)s>medlem</a> for at støtte den langsigtede bevaring af bøger, artikler og mere. For at vise vores taknemmelighed for din støtte, får du hurtige downloads. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Hvis du donerer denne måned, får du <strong>dobbelt</strong> så mange hurtige downloads."
@@ -2867,7 +2869,7 @@ msgid "page.md5.box.download.option"
 msgstr "Option #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Henvis en ven, og både du og din ven får %(percentage)s%% bonus hurtige downloads!"
@@ -2879,11 +2881,11 @@ msgstr "Henvis en ven, og både du og din ven får %(percentage)s%% bonus hurtig
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "Lær mere…"
@@ -3822,7 +3824,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Vi beriger også vores samling med kun metadata-kilder, som vi kan matche til filer, f.eks. ved hjælp af ISBN-numre eller andre felter. Nedenfor er en oversigt over disse. Igen, nogle af disse kilder er helt åbne, mens vi for andre er nødt til at skrabe dem."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4993,327 +4995,327 @@ msgstr "<div %(div_question)s>Kan jeg opgradere mit medlemskab eller få flere m
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>Har I andre betalingsmetoder?</div> Ikke i øjeblikket. Mange mennesker ønsker ikke, at arkiver som dette skal eksistere, så vi skal være forsigtige. Hvis du kan hjælpe os med at oprette andre (mere bekvemme) betalingsmetoder sikkert, så kontakt os på %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 #, fuzzy
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>Hvad bruger I donationer på?</div> 100%% går til at bevare og gøre verdens viden og kultur tilgængelig. I øjeblikket bruger vi det mest på servere, lagerplads og båndbredde. Ingen penge går til nogen teammedlemmer personligt."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 #, fuzzy
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>Kan jeg give en stor donation?</div> Det ville være fantastisk! For donationer over et par tusinde dollars, kontakt os venligst direkte på %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>Kan jeg give en donation uden at blive medlem?</div> Selvfølgelig. Vi accepterer donationer af enhver størrelse på denne Monero (XMR) adresse: %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 #, fuzzy
 msgid "page.faq.upload.title"
 msgstr "Hvordan uploader jeg nye bøger?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 #, fuzzy
 msgid "page.upload.text1"
 msgstr "Indtil videre foreslår vi at uploade nye bøger til Library Genesis forks. Her er en <a %(a_guide)s>praktisk guide</a>. Bemærk, at begge forks, som vi indekserer på denne hjemmeside, trækker fra dette samme upload-system."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 #, fuzzy
 msgid "common.libgen.email"
 msgstr "Hvis din e-mailadresse ikke virker på Libgen-foraene, anbefaler vi at bruge <a %(a_mail)s>Proton Mail</a> (gratis). Du kan også <a %(a_manual)s>anmode manuelt</a> om at få din konto aktiveret."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "Bemærk, at mhut.org blokerer visse IP-områder, så en VPN kan være nødvendig."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "Alternativt kan du uploade dem til Z-Library <a %(a_upload)s>her</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "For at uploade akademiske artikler, bedes du også (ud over Library Genesis) uploade til <a %(a_stc_nexus)s>STC Nexus</a>. De er det bedste skyggebibliotek for nye artikler. Vi har ikke integreret dem endnu, men det vil vi på et tidspunkt. Du kan bruge deres <a %(a_telegram)s>upload-bot på Telegram</a> eller kontakte adressen, der er angivet i deres fastgjorte besked, hvis du har for mange filer til at uploade på denne måde."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 #, fuzzy
 msgid "page.upload.large.text"
 msgstr "For store uploads (over 10.000 filer), der ikke accepteres af Libgen eller Z-Library, kontakt os venligst på %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 #, fuzzy
 msgid "page.faq.request.title"
 msgstr "Hvordan anmoder jeg om bøger?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 #, fuzzy
 msgid "page.request.cannot_accomodate"
 msgstr "På nuværende tidspunkt kan vi ikke imødekomme boganmodninger."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 #, fuzzy
 msgid "page.request.forums"
 msgstr "Lav venligst dine anmodninger på Z-Library eller Libgen-foraene."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 #, fuzzy
 msgid "page.request.dont_email"
 msgstr "Send os ikke dine boganmodninger."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "Indsamler I metadata?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "Det gør vi faktisk."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "Jeg downloadede 1984 af George Orwell, vil politiet komme til min dør?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "Bekymr dig ikke for meget, der er mange mennesker, der downloader fra de hjemmesider, vi linker til, og det er ekstremt sjældent at komme i problemer. For at være på den sikre side anbefaler vi at bruge en VPN (betalt) eller <a %(a_tor)s>Tor</a> (gratis)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "Hvordan gemmer jeg mine søgeindstillinger?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "Vælg de indstillinger, du kan lide, lad søgefeltet være tomt, klik på “Søg”, og bogmærk derefter siden ved hjælp af din browsers bogmærkefunktion."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "Har I en mobilapp?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "Vi har ikke en officiel mobilapp, men du kan installere denne hjemmeside som en app."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> Klik på tre-punkts menuen øverst til højre, og vælg “Tilføj til startskærm”."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> Klik på “Del” knappen nederst, og vælg “Tilføj til startskærm”."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "Har I en API?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "Vi har en stabil JSON API for medlemmer, til at få en hurtig download-URL: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (dokumentation inden for JSON selv)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "Til andre brugsscenarier, såsom at iterere gennem alle vores filer, bygge tilpassede søgninger og så videre, anbefaler vi <a %(a_generate)s>at generere</a> eller <a %(a_download)s>downloade</a> vores ElasticSearch og MariaDB databaser. De rå data kan manuelt udforskes <a %(a_explore)s>gennem JSON-filer</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "Vores rå torrentliste kan også downloades som <a %(a_torrents)s>JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "Torrents FAQ"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "Jeg vil gerne hjælpe med at seede, men jeg har ikke meget diskplads."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "Brug <a %(a_list)s>torrentlistegeneratoren</a> til at generere en liste over torrents, der har mest brug for seeding, inden for dine lagerpladsgrænser."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "Torrenterne er for langsomme; kan jeg downloade dataene direkte fra jer?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "Ja, se <a %(a_llm)s>LLM data</a> siden."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "Kan jeg kun downloade et underudvalg af filerne, som kun et bestemt sprog eller emne?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "De fleste torrents indeholder filerne direkte, hvilket betyder, at du kan instruere torrentklienter til kun at downloade de nødvendige filer. For at bestemme hvilke filer der skal downloades, kan du <a %(a_generate)s>generere</a> vores metadata, eller <a %(a_download)s>downloade</a> vores ElasticSearch- og MariaDB-databaser. Desværre indeholder en række torrent-samlinger .zip- eller .tar-filer i roden, i hvilket tilfælde du skal downloade hele torrenten, før du kan vælge individuelle filer."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "Hvordan håndterer I dubletter i torrents?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "Vi forsøger at holde minimal duplikering eller overlap mellem torrents i denne liste, men det kan ikke altid opnås og afhænger meget af politikkerne i kildens biblioteker. For biblioteker, der udgiver deres egne torrents, er det uden for vores kontrol. For torrents udgivet af Annas Arkiv, deduplikerer vi kun baseret på MD5-hash, hvilket betyder, at forskellige versioner af den samme bog ikke bliver deduplikeret."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "Kan jeg få torrent-listen som JSON?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "Ja."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "Jeg ser ikke PDF'er eller EPUB'er i torrents, kun binære filer? Hvad gør jeg?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "Disse er faktisk PDF'er og EPUB'er, de har bare ikke en udvidelse i mange af vores torrents. Der er to steder, hvor du kan finde metadata for torrentfiler, inklusive filtyper/udvidelser:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. Hver samling eller udgivelse har sine egne metadata. For eksempel har <a %(a_libgen_nonfic)s>Libgen.rs torrents</a> en tilsvarende metadatadatabase, der er hostet på Libgen.rs-websitet. Vi linker typisk til relevante metadataressourcer fra hver samlings <a %(a_datasets)s>dataside</a>."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Vi anbefaler at <a %(a_generate)s>generere</a> eller <a %(a_download)s>downloade</a> vores ElasticSearch- og MariaDB-databaser. Disse indeholder en mapping for hver post i Annas Arkiv til de tilsvarende torrentfiler (hvis tilgængelige), under “torrent_paths” i ElasticSearch JSON."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "Har I et program for ansvarlig offentliggørelse?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "Vi byder sikkerhedsforskere velkommen til at søge efter sårbarheder i vores systemer. Vi er store tilhængere af ansvarlig offentliggørelse. Kontakt os <a %(a_contact)s>her</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "Vi er i øjeblikket ikke i stand til at tildele bug bounties, undtagen for sårbarheder, der har <a %(a_link)s>potentiale til at kompromittere vores anonymitet</a>, for hvilke vi tilbyder bounties i området $10k-50k. Vi vil gerne tilbyde bredere scope for bug bounties i fremtiden! Bemærk venligst, at social engineering-angreb er uden for scope."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "Hvis du er interesseret i offensiv sikkerhed og vil hjælpe med at arkivere verdens viden og kultur, så sørg for at kontakte os. Der er mange måder, hvorpå du kan hjælpe."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "Er der flere ressourcer om Annas Arkiv?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Annas Blog</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Subreddit</a> — regelmæssige opdateringer"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Annas Software</a> — vores open source-kode"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Oversæt på Annas Software</a> — vores oversættelsessystem"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Datasets</a> — om dataene"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — alternative domæner"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Wikipedia</a> — mere om os (hjælp venligst med at holde denne side opdateret, eller opret en for dit eget sprog!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "Hvordan rapporterer jeg ophavsretskrænkelser?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "Vi hoster ikke noget ophavsretligt beskyttet materiale her. Vi er en søgemaskine og indekserer derfor kun metadata, der allerede er offentligt tilgængelige. Når du downloader fra disse eksterne kilder, foreslår vi, at du tjekker lovene i din jurisdiktion med hensyn til, hvad der er tilladt. Vi er ikke ansvarlige for indhold hostet af andre."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "Hvis du har klager over, hvad du ser her, er det bedste at kontakte den oprindelige hjemmeside. Vi trækker regelmæssigt deres ændringer ind i vores database. Hvis du virkelig mener, at du har en gyldig DMCA-klage, som vi bør reagere på, bedes du udfylde <a %(a_copyright)s>DMCA / Copyright-klageformularen</a>. Vi tager dine klager alvorligt og vender tilbage til dig så hurtigt som muligt."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "Jeg hader, hvordan I kører dette projekt!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "Vi vil også gerne minde alle om, at al vores kode og data er fuldstændig open source. Dette er unikt for projekter som vores — vi kender ikke til noget andet projekt med en tilsvarende massiv katalog, der også er fuldstændig open source. Vi byder meget velkommen til alle, der mener, at vi kører vores projekt dårligt, til at tage vores kode og data og oprette deres eget skyggebibliotek! Vi siger ikke dette af trods eller noget — vi synes oprigtigt, at dette ville være fantastisk, da det ville hæve standarden for alle og bedre bevare menneskehedens arv."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "Har du en oppetidsovervågning?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Se venligst <a %(a_href)s>dette fremragende projekt</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Hvem er Anna?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Du er Anna!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Hvad er jeres yndlingsbøger?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Her er nogle bøger, der har særlig betydning for skyggebiblioteker og digital bevaring:"
@@ -5351,16 +5353,16 @@ msgstr "Søg"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 #, fuzzy
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 #, fuzzy
 msgid "layout.index.header.nav.beta"
 msgstr "beta"
@@ -5466,8 +5468,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Hvis du driver en højrisiko anonym betalingsprocessor, bedes du kontakte os. Vi søger også folk, der ønsker at placere smagfulde små annoncer. Alle indtægter går til vores bevaringsindsats."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 #, fuzzy
 msgid "layout.index.header.nav.annasblog"
 msgstr "Annas Blog ↗"
@@ -5899,7 +5901,7 @@ msgstr "Hvis du bruger en VPN, delt internetforbindelse eller din internetudbyde
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 #, fuzzy
 msgid "layout.index.header.title"
 msgstr "Annas Arkiv"
@@ -5996,7 +5998,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Metadata"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 #, fuzzy
 msgid "common.search.placeholder"
 msgstr "Titel, forfatter, DOI, ISBN, MD5, …"
@@ -6353,117 +6355,117 @@ msgstr "Let frivilligt arbejde"
 msgid "page.volunteering.section.light.text1"
 msgstr "Hvis du har et par timer til overs, kan du hjælpe på flere måder. Sørg for at deltage i <a %(a_telegram)s>frivilligchatten på Telegram</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Som et tegn på vores påskønnelse giver vi typisk 6 måneder af “Heldige Bibliotekar” for grundlæggende milepæle, og mere for fortsat frivilligt arbejde. Alle milepæle kræver arbejde af høj kvalitet — sjusket arbejde skader os mere, end det hjælper, og vi vil afvise det. Venligst <a %(a_contact)s>send os en e-mail</a>, når du når en milepæl."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Opgave"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Milepæl"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Forbedre metadata ved <a %(a_metadata)s>at linke</a> med Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s links til optegnelser, du har forbedret."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Oversætte</a> hjemmesiden."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Fuldstændig oversættelse af et sprog (hvis det ikke allerede var tæt på færdiggørelse)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Udbrede kendskabet til Anna’s Arkiv på sociale medier og online fora, ved at anbefale bøger eller lister på AA, eller besvare spørgsmål."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s links eller skærmbilleder."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Forbedre Wikipedia-siden for Anna’s Arkiv på dit sprog. Inkluder information fra AA’s Wikipedia-side på andre sprog og fra vores hjemmeside og blog. Tilføj referencer til AA på andre relevante sider."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Link til redigeringshistorik, der viser, at du har lavet betydelige bidrag."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Opfylde bog- (eller papir osv.) anmodninger på Z-Library eller Library Genesis fora. Vi har ikke vores eget boganmodningssystem, men vi spejler disse biblioteker, så at gøre dem bedre gør også Anna’s Arkiv bedre."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s links eller skærmbilleder af anmodninger, du har opfyldt."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Små opgaver, der er postet i vores <a %(a_telegram)s>frivilligchat på Telegram</a>. Normalt for medlemskab, nogle gange for små belønninger."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Afhænger af opgaven."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Dusører"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Vi leder altid efter folk med solide programmerings- eller offensive sikkerhedsfærdigheder til at involvere sig. Du kan gøre en seriøs forskel i bevarelsen af menneskehedens arv."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Som tak giver vi medlemskab for solide bidrag. Som en stor tak giver vi monetære dusører for særligt vigtige og vanskelige opgaver. Dette bør ikke ses som en erstatning for et job, men det er et ekstra incitament og kan hjælpe med påløbne omkostninger."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Det meste af vores kode er open source, og vi vil bede om det samme af din kode, når vi tildeler dusøren. Der er nogle undtagelser, som vi kan diskutere individuelt."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Dusører tildeles den første person, der fuldfører en opgave. Du er velkommen til at kommentere på en dusørbillet for at lade andre vide, at du arbejder på noget, så andre kan holde sig tilbage eller kontakte dig for at samarbejde. Men vær opmærksom på, at andre stadig er frie til at arbejde på det og forsøge at slå dig. Vi tildeler dog ikke dusører for sjusket arbejde. Hvis to højtkvalitetsindsendelser laves tæt på hinanden (inden for en dag eller to), kan vi vælge at tildele dusører til begge, efter vores skøn, for eksempel 100%% for den første indsendelse og 50%% for den anden indsendelse (så 150%% i alt)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "For de større dusører (især scraping-dusører), bedes du kontakte os, når du har fuldført ~5%% af det, og du er sikker på, at din metode vil skalere til den fulde milepæl. Du skal dele din metode med os, så vi kan give feedback. På denne måde kan vi også beslutte, hvad vi skal gøre, hvis der er flere personer, der nærmer sig en dusør, såsom potentielt at tildele den til flere personer, opmuntre folk til at samarbejde osv."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "ADVARSEL: de højtbelønnede opgaver er <span %(bold)s>svære</span> — det kan være klogt at starte med de lettere."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Gå til vores <a %(a_gitlab)s>Gitlab-issues-liste</a> og sorter efter \"Label priority\". Dette viser nogenlunde rækkefølgen af opgaver, vi går op i. Opgaver uden eksplicitte dusører er stadig berettigede til medlemskab, især dem markeret \"Accepted\" og \"Anna’s favorite\". Du vil måske starte med et \"Starter project\"."
@@ -6493,184 +6495,185 @@ msgstr "Annas Arkiv har brug for din hjælp!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Mange forsøger at tage os ned, men vi kæmper tilbage."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 #, fuzzy
 msgid "layout.index.header.nav.donate"
 msgstr "Donér"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "At redde menneskelig viden: en fantastisk julegave!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.surprise"
 msgstr "Overrask en elsket, giv dem en konto med medlemskab."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 #, fuzzy
 msgid "layout.index.header.banner.mirrors"
 msgstr "For at øge modstandsdygtigheden af Annas Arkiv søger vi frivillige til at køre spejle."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "Den perfekte Valentinsgave!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 #, fuzzy
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Vi har en ny donationsmetode tilgængelig: %(method_name)s. Overvej venligst %(donate_link_open_tag)sat donere</a> — det er ikke billigt at drive denne hjemmeside, og din donation gør virkelig en forskel. Mange tak."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 #, fuzzy
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Vi kører en indsamlingskampagne for <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">backup</a> af verdens største skyggebibliotek for tegneserier. Tak for din støtte! <a href=\"/donate\">Donér.</a> Hvis du ikke kan donere, overvej at støtte os ved at fortælle dine venner og følge os på <a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a> eller <a href=\"https://t.me/annasarchiveorg\">Telegram</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 #, fuzzy
 msgid "layout.index.header.recent_downloads"
 msgstr "Seneste downloads:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-#, fuzzy
-msgid "layout.index.header.nav.search"
-msgstr "Søg"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
 #, fuzzy
-msgid "layout.index.header.nav.faq"
-msgstr "FAQ"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Forbedr metadata"
+msgid "layout.index.header.nav.search"
+msgstr "Søg"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
 #, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "Frivilligt arbejde & dusører"
+msgid "layout.index.header.nav.faq"
+msgstr "FAQ"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
 #, fuzzy
-msgid "layout.index.header.nav.datasets"
-msgstr "Datasæt"
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Forbedr metadata"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
 #, fuzzy
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrents"
+msgid "layout.index.header.nav.volunteering"
+msgstr "Frivilligt arbejde & dusører"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
 #, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "Koder Explorer"
+msgid "layout.index.header.nav.datasets"
+msgstr "Datasæt"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
 #, fuzzy
-msgid "layout.index.header.nav.llm_data"
-msgstr "LLM data"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrents"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "Koder Explorer"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+#, fuzzy
+msgid "layout.index.header.nav.llm_data"
+msgstr "LLM data"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 #, fuzzy
 msgid "layout.index.header.nav.home"
 msgstr "Hjem"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 #, fuzzy
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Annas Software ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 #, fuzzy
 msgid "layout.index.header.nav.translate"
 msgstr "Oversæt ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 #, fuzzy
 msgid "layout.index.header.nav.login_register"
 msgstr "Log ind / Registrer"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 #, fuzzy
 msgid "layout.index.header.nav.account"
 msgstr "Konto"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 #, fuzzy
 msgid "layout.index.footer.list1.header"
 msgstr "Annas Arkiv"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 #, fuzzy
 msgid "layout.index.footer.list2.header"
 msgstr "Hold kontakten"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 #, fuzzy
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / ophavsretskrav"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "Avanceret"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 #, fuzzy
 msgid "layout.index.header.nav.security"
 msgstr "Sikkerhed"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 #, fuzzy
 msgid "layout.index.footer.list3.header"
 msgstr "Alternativer"

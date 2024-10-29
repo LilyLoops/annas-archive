@@ -122,15 +122,15 @@ msgstr "まばゆき情報保持者"
 msgid "common.membership.tier_name.5"
 msgstr "驚異のアーカイビスト"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) 合計"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 msgid "common.membership.format_currency.total"
 msgstr "合計%(amount)s"
 
@@ -280,7 +280,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "お問い合わせ"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -324,12 +324,12 @@ msgid "page.donate.payment.select_method"
 msgstr "お支払い方法を選択してください。"
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 msgid "page.donate.payment.buttons.amazon"
 msgstr "アマゾンギフト券"
 
@@ -341,7 +341,7 @@ msgstr "銀行カード（アプリ使用）"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 msgid "page.donate.payment.buttons.crypto"
 msgstr "暗号通貨%(bitcoin_icon)s"
 
@@ -370,8 +370,8 @@ msgstr "クレジット/デビット/Apple/Google（BMC）"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
@@ -412,453 +412,455 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "バイナンス"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(一時利用不可)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 msgid "page.donate.payment.desc.crypto"
 msgstr "暗号通貨での寄付にはBTC、ETH、XMR、SOLがご利用いただけます。このオプションは暗号通貨に精通している場合のみ使用してください。"
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 msgid "page.donate.payment.desc.crypto2"
 msgstr "BTC、ETH、XMRなどで暗号通貨での寄付が行なえます。"
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "初めて暗号通貨を使用する場合は、%(options)sを使用してビットコイン（最初に作られ、最も使用されている暗号通貨）を購入および寄付することをお勧めします。"
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "バイナンス"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 msgid "page.donate.payment.desc.paypal"
 msgstr "PayPalでの寄付には匿名性を保てるPayPalクリプトをご利用ください。この寄付の方法に時間を割いていただき、ありがとうございました。"
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "寄付にPayPalを使用します。"
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 msgid "page.donate.payment.desc.cashapp"
 msgstr "寄付にCash Appを使用します。"
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Cash Appを利用した寄付が簡単です!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Cash Appで%(amount)s以下の取引を行う場合、%(fee)sの手数料がかかります。%(amount)s以上では無料です！"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Revolutを使って寄付する。"
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Revolutをお持ちの場合、これが最も簡単な寄付方法です！"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "寄付にクレジットカード又はデビットーカードを使用します。"
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay及びApple Payが使用できる可能性があります。"
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "クレジットカードで少額の寄付を行う場合、%(discount)s%%の割引が受けられなくなる可能性がございますので、長期のサブスクリプションをお勧めします。"
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "少額の寄付を行う場合、手数料が高額になる場合がございますので長期のサブスクリプションをお勧めします。"
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Binanceを使用すると、クレジット/デビットカードや銀行口座でビットコインを購入し、そのビットコインを私たちに寄付できます。これにより、寄付を受け取る際に安全かつ匿名性を保つことができます。"
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binanceはほぼすべての国で利用可能で、ほとんどの銀行やクレジット/デビットカードに対応しています。現在、これが私たちの主な推奨方法です。この方法での寄付方法を学んでいただくことに感謝します。私たちにとって大きな助けとなります。"
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "通常のPayPalアカウントを使って寄付する。"
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "寄付にAlipay又はWeChatを使用します。次のページで選択が可能です。"
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "クレジット/デビットカード、PayPal、またはVenmoを使用して寄付できます。次のページでこれらの中から選択できます。"
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 msgid "page.donate.payment.desc.amazon"
 msgstr "寄付にアマゾンギフト券を使用します。"
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "販売店が認める金額(最低%(minimum)s単位)に四捨五入する必要があることに注意してください。"
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>重要：</strong>Amazon.comにのみ対応しております。Amazon.co.jp等の他のアマゾンには対応していません。"
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "この方法は暗号通貨プロバイダーを中間変換として使用します。少し混乱するかもしれないので、他の支払い方法がうまくいかない場合にのみこの方法を使用してください。また、すべての国で機能するわけではありません。"
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Alipayアプリを通じて、クレジット/デビットカードを使用して寄付します（設定が非常に簡単です）。"
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Alipayアプリをインストール"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "<a %(a_app_store)s>Apple App Store</a>または<a %(a_play_store)s>Google Play Store</a>からAlipayアプリをインストールします。"
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "電話番号を使用して登録します。"
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "それ以上の個人情報は必要ありません。"
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>銀行カードを追加"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "対応カード：Visa、MasterCard、JCB、Diners Club、Discover。"
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "詳細は<a %(a_alipay)s>このガイド</a>をご覧ください。"
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "銀行が私たちと取引したがらないため、クレジット/デビットカードを直接サポートすることはできません。☹ しかし、他の支払い方法を使用してクレジット/デビットカードを使用する方法はいくつかあります："
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "クレジット/デビットカードを使用してAmazon.comギフトカードを送信してください。"
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipayは国際クレジット/デビットカードをサポートしています。詳細については<a %(a_alipay)s>このガイド</a>をご覧ください。"
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat（Weixin Pay）は国際クレジット/デビットカードに対応しています。WeChatアプリで、「Me => Services => Wallet => Add a Card」に進んでください。それが表示されない場合は、「Me => Settings => General => Tools => Weixin Pay => Enable」を使用して有効にしてください。"
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "クレジット/デビットカードを使用して暗号通貨を購入できます。"
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "暗号通貨エクスプレスサービス"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "エクスプレスサービスは便利ですが、手数料が高くなります。"
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "より大きな寄付を迅速に行いたい場合で、$5-10の手数料を気にしない場合は、暗号通貨取引所の代わりにこれを使用できます。"
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "寄付ページに表示されている正確な暗号通貨の金額を送信してください。$USDの金額ではありません。"
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "そうしないと、手数料が差し引かれ、自動的にメンバーシップを処理できません。"
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "（最低：%(minimum)s）"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "（最低：%(minimum)s、国によって異なり、初回取引は認証不要）"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "（最低：%(minimum)s、初回取引は認証不要）"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "（最低：%(minimum)s）"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "（最低：%(minimum)s）"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "（最低：%(minimum)s、初回取引は認証不要）"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "この情報が古い場合は、メールでお知らせください。"
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "クレジットカード、デビットカード、Apple Pay、Google Payの場合、「Buy Me a Coffee」（BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>）を使用します。彼らのシステムでは、1つの「コーヒー」は5ドルに相当するため、寄付は5の倍数に丸められます。"
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 msgid "page.donate.duration.intro"
 msgstr "購読(サブスクライブ)期間を選択してください。"
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 msgid "page.donate.duration.1_mo"
 msgstr "1か月間"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 msgid "page.donate.duration.3_mo"
 msgstr "3か月間"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 msgid "page.donate.duration.6_mo"
 msgstr "6か月間"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 msgid "page.donate.duration.12_mo"
 msgstr "12か月間"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 msgid "page.donate.duration.24_mo"
 msgstr "24か月間"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48ヶ月"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96ヶ月"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>以降<span %(span_discount)s></span>割引</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 msgid "page.donate.payment.minimum_method"
 msgstr "この決済では%(amount)s以上の取引のみ対応しております。異なる期間、決済方法を選択してください。"
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "寄付する"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 msgid "page.donate.payment.maximum_method"
 msgstr "この決済では%(amount)s以下の取引のみ対応しております。異なる期間、決済方法を選択してください。"
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 msgid "page.donate.login2"
 msgstr "メンバーになるには<a %(a_login)s>ログイン・登録</a>が必要です。ご支援感謝いたします！"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 msgid "page.donate.payment.crypto_select"
 msgstr "お支払いに利用される通貨を選択してください："
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "最低限の金額"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "（CoinbaseからEthereumを送信する際に使用）"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "（警告：高額の最低金額）"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 msgid "page.donate.submit.confirm"
 msgstr "寄付ボタンをクリックして寄付を承認。"
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 msgid "page.donate.submit.button"
 msgstr "<span %(span_cost)s></span> <span %(span_label)s></span>を寄付"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 msgid "page.donate.submit.cancel_note"
 msgstr "チェックアウト時に寄付をキャンセルできます。"
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 msgid "page.donate.submit.success"
 msgstr "✅寄付ページへリダイレクト中…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 msgid "page.donate.submit.failure"
 msgstr "❌エラーが発生しました。ページを再読込みしてもう一度試してみてください。"
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s/1か月"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "1か月間"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "3か月間"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "6か月間"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "12か月間"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "24か月間"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "48ヶ月間"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "96ヶ月間"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "１か月の\"%(tier_name)s\""
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "３か月の\"%(tier_name)s\""
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "6か月の\"%(tier_name)s\""
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "12か月の\"%(tier_name)s\""
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "24か月の\"%(tier_name)s\""
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "48ヶ月間「%(tier_name)s」"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "96ヶ月間「%(tier_name)s」"
@@ -960,9 +962,9 @@ msgstr "<strong>重要な注意:</strong> 暗号通貨の価格は大きく変�
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 msgid "page.donation.expired"
 msgstr "この寄付は期限切れです。キャンセルして、もう一度やり直してください。"
 
@@ -1027,9 +1029,9 @@ msgstr "ページ下部のステップ・バイ・ステップガイドを参照
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.status_header"
 msgstr "状態："
 
@@ -1039,9 +1041,9 @@ msgstr "状態："
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "認証を待機中(ページをリフレッシュして確認)…"
 
@@ -1051,9 +1053,9 @@ msgstr "認証を待機中(ページをリフレッシュして確認)…"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "譲渡を待機中(ページをリフレッシュして確認)…"
 
@@ -1063,9 +1065,9 @@ msgstr "譲渡を待機中(ページをリフレッシュして確認)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.time_left_header"
 msgstr "残り時間："
 
@@ -1075,9 +1077,9 @@ msgstr "残り時間："
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 msgid "page.donation.might_want_to_cancel"
 msgstr "(キャンセルを行い、新たに寄付を行う)"
 
@@ -1087,9 +1089,9 @@ msgstr "(キャンセルを行い、新たに寄付を行う)"
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 msgid "page.donation.reset_timer"
 msgstr "タイマーをリセットするには、新たに寄付を行ってください。"
 
@@ -1100,14 +1102,14 @@ msgstr "タイマーをリセットするには、新たに寄付を行ってく
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 msgid "page.donation.refresh_status"
 msgstr "状態を更新"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 msgid "page.donation.footer.issues_contact"
 msgstr "問題が発生した場合は%(email)sまでご連絡ください。またできるだけ多くの情報(スクリーンショットなど)を添付してください。"
 
@@ -1291,15 +1293,15 @@ msgstr "例："
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 msgid "page.donate.strange_account"
 msgstr "なお、アカウント名や画像が変になる場合があります。ご安心ください！これらのアカウントは、私たちの寄付先によって管理されています。ハッキングされたことはありません。"
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Aripayのインストラクション"
 
@@ -1314,129 +1316,129 @@ msgstr "<span %(span_circle)s>1</span>Aripayで寄付"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "%(total)sの合計金額を<a %(a_account)s>このAlipayアカウント</a>を使用して寄付してください。"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "残念ながら、Alipayページは<strong>中国本土</strong>からのみアクセス可能な場合が多いです。VPNを一時的に無効にするか、中国本土（または時々香港も）へのVPNを使用する必要があるかもしれません。"
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>寄付を行う（QRコードをスキャンまたはボタンを押す）"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "<a %(a_href)s>QRコード寄付ページ</a>を開きます。"
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "AlipayアプリでQRコードをスキャンするか、ボタンを押してAlipayアプリを開きます。"
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "中国にあるため、ページの読み込みに時間がかかる場合がありますので、しばらくお待ちください。"
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "WeChatの手順"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>WeChatで寄付"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "%(total)sの合計金額を<a %(a_account)s>このWeChatアカウント</a>を使用して寄付してください。"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 msgid "page.donation.payment.pix.top_header"
 msgstr "Pixのインストラクション"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Pixで寄付"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 msgid "page.donation.payment.pix.text1"
 msgstr "<a %(a_account)s>このPixアカウントを使用して%(total)sを寄付"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>領収書をEメールで我々に送信してください"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "領収書またはスクリーンショットを個人認証アドレスに送信してください。このメールアドレスをPayPal寄付に使用しないでください。"
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 msgid "page.donation.footer.text1"
 msgstr "領収書もしくはあなたの認証番号のスクリーンショットを送信してください。"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 msgid "page.donation.footer.crypto_note"
 msgstr "寄付中に暗号通貨のレートが変動した場合は元のレートを示す領収書を必ず添付してください。暗号通貨をご利用いただいたことにとても感謝しており、とても助かっています!!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 msgid "page.donation.footer.text2"
 msgstr "領収書を我々にEメールで送信したらこのボタンを押してください。アンナが手動でレビューを行います(この処理には数日かかることがあります)："
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 msgid "page.donation.footer.button"
 msgstr "はい。私は領収書を送信しました"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 msgid "page.donation.footer.success"
 msgstr "✅寄付ありがとうございます。アンナが手動であなたのメンバーシップを有効化するまで数日ほどお待ち下さい。"
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 msgid "page.donation.footer.failure"
 msgstr "❌エラーが発生しました。ページを再読込みしてもう一度試してみてください。"
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 msgid "page.donation.stepbystep"
 msgstr "ステップ・バイ・ステップガイド"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 msgid "page.donation.crypto_dont_worry"
 msgstr "手順の一部では暗号通貨ウォレットについて言及していますが、心配しないでください。この手順の為に暗号通貨を学ぶ必要はありません。"
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 msgid "page.donation.hoodpay.step1"
 msgstr "1. あなたのメールアドレスを入力"
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 msgid "page.donation.hoodpay.step2"
 msgstr "2. 支払方法を選択"
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 msgid "page.donation.hoodpay.step3"
 msgstr "3. 再度支払方法を選択"
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 msgid "page.donation.hoodpay.step4"
 msgstr "4. 「Self-hosted」を選択"
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 msgid "page.donation.hoodpay.step5"
 msgstr "5. 「I confirm ownership」をクリック。"
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 msgid "page.donation.hoodpay.step6"
 msgstr "6.電子メールで領収書が届きます。それを私たちに送ってください。できるだけ早く寄付を確認します。"
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "支払い中に間違いがあった場合、返金はできませんが、できる限り対応いたします。"
@@ -1576,9 +1578,9 @@ msgstr "メンバーシップのより高いティアへのアップグレード
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 #, fuzzy
 msgid "page.contact.title"
 msgstr "連絡用メール"
@@ -1590,23 +1592,23 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "複数のメンバーシップを組み合わせることができます（24時間ごとの高速ダウンロードが合算されます）。"
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 msgid "layout.index.header.nav.public_profile"
 msgstr "公開プロフィール"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "ダウンロード済みのファイル"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 msgid "layout.index.header.nav.my_donations"
 msgstr "私の寄付"
 
@@ -2548,7 +2550,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 高速ダウンロード</strong><a %(a_membership)s>メンバー</a>になることで書籍や論文などの長期保存を支援することができます。私達からそのご支援への感謝の気持ちを込めて、高速ダウンロードがご利用可能です。❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "今月寄付すると、速いダウンロードの数が<strong>倍</strong>になります。"
@@ -2575,7 +2577,7 @@ msgid "page.md5.box.download.option"
 msgstr "オプション #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "友達を紹介すると、あなたと友達の両方に%(percentage)s%%のボーナス高速ダウンロードがもらえます！"
@@ -2587,11 +2589,11 @@ msgstr "友達を紹介すると、あなたと友達の両方に%(percentage)s%
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "詳細を確認…"
@@ -3520,7 +3522,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "また、メタデータのみのソースを使用してコレクションを充実させています。これらは、ISBN番号や他のフィールドを使用してファイルと一致させることができます。以下はその概要です。再度、これらのソースの一部は完全にオープンである一方、他のソースはスクレイピングが必要です。"
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4679,323 +4681,323 @@ msgstr "<div %(div_question)s>メンバーシップをアップグレードし�
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>他の支払い方法はありますか？</div>現在はありません。多くの人がこのようなアーカイブの存在を望んでいませんので、慎重にならざるを得ません。もしあなたが他の（より便利な）支払い方法を安全に設定するのを手伝ってくれるなら、%(email)sに連絡してください。"
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>寄付されたお金は何に使用されますか？</div>その100%%が世界の知識と文化を保存し、アクセスできるようにするために使われています。現在、私たちはそのほとんどをサーバーやストレージ、帯域幅に費やしております。どのチームメンバーにも個人的にお金が行くことは決してありません。"
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>多額の寄付をすることはできますか？</div> それは素晴らしいことだと思います！数千ドル以上の寄付は、%(email)sに直接ご連絡ください。"
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>メンバーにならずに寄付することはできますか？</div> もちろんです。このMonero (XMR)アドレスに任意の金額を寄付できます: %(address)s。"
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 #, fuzzy
 msgid "page.faq.upload.title"
 msgstr "新しい本をアップロードするにはどうすればよいですか？"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 msgid "page.upload.text1"
 msgstr "今のところ、私達はGenesis forksへアップロードすることを提案します。<a %(a_guide)s>こちら</a>がハンディガイドです。このウェブサイトでインデックスしているforkはどちらもこの同じアップロードシステムから引っ張ってきていることに注意してください。"
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 msgid "common.libgen.email"
 msgstr "Libgen forumsでEメールが動作しない場合、わたしたちは<a %(a_mail)s>Proton Mail</a>(無料)を推奨します。あなたのアカウントを有効にするために<a %(a_manual)s>手動リクエスト</a>を行うことも可能です。"
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "mhut.orgは特定のIP範囲をブロックしているため、VPNが必要になる場合があります。"
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "または、Z-Libraryに<a %(a_upload)s>こちら</a>からアップロードすることもできます。"
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "学術論文をアップロードする場合は、Library Genesisに加えて<a %(a_stc_nexus)s>STC Nexus</a>にもアップロードしてください。彼らは新しい論文のための最高のシャドウライブラリです。まだ統合していませんが、いずれ統合する予定です。<a %(a_telegram)s>Telegramのアップロードボット</a>を使用するか、ピン留めされたメッセージに記載されているアドレスに連絡してください。"
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 #, fuzzy
 msgid "page.upload.large.text"
 msgstr "10,000ファイル以上の大規模なアップロードがLibgenやZ-Libraryに受け入れられない場合は、%(a_email)sまでご連絡ください。"
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 #, fuzzy
 msgid "page.faq.request.title"
 msgstr "本をリクエストするにはどうすればよいですか？"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 #, fuzzy
 msgid "page.request.cannot_accomodate"
 msgstr "現在、書籍のリクエストには対応できません。"
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 #, fuzzy
 msgid "page.request.forums"
 msgstr "Z-LibraryまたはLibgenのフォーラムでリクエストを行ってください。"
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 #, fuzzy
 msgid "page.request.dont_email"
 msgstr "本のリクエストをメールで送らないでください。"
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "メタデータを収集しますか？"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "はい、収集します。"
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "ジョージ・オーウェルの「1984」をダウンロードしましたが、警察が来るのでしょうか？"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "あまり心配しないでください。私たちがリンクしているウェブサイトから多くの人がダウンロードしており、トラブルになることは非常に稀です。ただし、安全のためにVPN（有料）や<a %(a_tor)s>Tor</a>（無料）を使用することをお勧めします。"
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "検索設定を保存するにはどうすればよいですか？"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "お好みの設定を選択し、検索ボックスを空のままにして「検索」をクリックし、ブラウザのブックマーク機能を使用してページをブックマークしてください。"
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "モバイルアプリはありますか？"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "公式のモバイルアプリはありませんが、このウェブサイトをアプリとしてインストールすることができます。"
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> 右上の三点メニューをクリックし、「ホーム画面に追加」を選択します。"
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> 下部の「共有」ボタンをクリックし、「ホーム画面に追加」を選択してください。"
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "APIはありますか？"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "メンバー向けに安定したJSON APIがあり、迅速なダウンロードURLを取得できます：<a %(a_fast_download)s>/dyn/api/fast_download.json</a>（JSON内にドキュメントがあります）。"
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "他の使用例、例えばすべてのファイルを繰り返し処理する、カスタム検索を構築するなどの場合は、<a %(a_generate)s>生成</a>または<a %(a_download)s>ダウンロード</a>するElasticSearchおよびMariaDBデータベースをお勧めします。生データは<a %(a_explore)s>JSONファイルを通じて</a>手動で探索できます。"
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "生のトレントリストも<a %(a_torrents)s>JSON</a>としてダウンロードできます。"
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "トレントFAQ"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "シードを手伝いたいのですが、ディスクスペースがあまりありません。"
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "<a %(a_list)s>トレントリストジェネレーター</a>を使用して、ストレージスペースの制限内で最もトレントが必要なトレントのリストを生成します。"
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "トレントが遅すぎます。データを直接ダウンロードできますか？"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "はい、<a %(a_llm)s>LLMデータ</a>ページをご覧ください。"
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "特定の言語やトピックなど、ファイルの一部だけをダウンロードすることはできますか？"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "ほとんどのトレントはファイルを直接含んでいるため、トレントクライアントに必要なファイルのみをダウンロードするよう指示できます。どのファイルをダウンロードするかを決定するには、<a %(a_generate)s>メタデータを生成</a>するか、<a %(a_download)s>ElasticSearchおよびMariaDBデータベースをダウンロード</a>できます。ただし、一部のトレントコレクションにはルートに.zipや.tarファイルが含まれているため、個々のファイルを選択する前にトレント全体をダウンロードする必要があります。"
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "トレントの重複はどのように処理しますか？"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "このリストのトレント間で重複や重なりを最小限に抑えるよう努めていますが、これは常に達成できるわけではなく、ソースライブラリのポリシーに大きく依存します。ライブラリが独自のトレントを公開している場合、それは私たちの手に負えません。Anna’s Archiveがリリースするトレントについては、MD5ハッシュに基づいて重複を排除しますが、同じ本の異なるバージョンは重複排除されません。"
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "トレントリストをJSON形式で取得できますか？"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "はい。"
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "トレントにPDFやEPUBが見当たらず、バイナリファイルのみですが、どうすればいいですか？"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "これらは実際にはPDFやEPUBですが、多くのトレントでは拡張子がありません。トレントファイルのメタデータ、ファイルタイプや拡張子を含む情報は2か所で見つけることができます："
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. 各コレクションやリリースには独自のメタデータがあります。例えば、<a %(a_libgen_nonfic)s>Libgen.rsのトレント</a>には、Libgen.rsウェブサイト上に対応するメタデータデータベースがあります。通常、各コレクションの<a %(a_datasets)s>データセットページ</a>から関連するメタデータリソースへのリンクを提供しています。"
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. <a %(a_generate)s>生成</a>または<a %(a_download)s>ダウンロード</a>することをお勧めします。これには、Anna’s Archiveの各レコードと対応するトレントファイル（利用可能な場合）へのマッピングが含まれています。ElasticSearch JSONの「torrent_paths」にあります。"
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "責任ある開示プログラムはありますか？"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "セキュリティ研究者の皆さんには、私たちのシステムの脆弱性を探していただきたいと思っています。私たちは責任ある開示の大支持者です。こちら<a %(a_contact)s>から</a>ご連絡ください。"
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "現在、バグ報奨金を提供することはできませんが、匿名性を危険にさらす可能性のある脆弱性については、1万ドルから5万ドルの範囲で報奨金を提供しています。将来的には、バグ報奨金の範囲を広げたいと考えています！ただし、ソーシャルエンジニアリング攻撃は対象外であることにご注意ください。"
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "攻撃的セキュリティに興味があり、世界の知識や文化をアーカイブする手助けをしたい場合は、ぜひご連絡ください。あなたが貢献できる方法はたくさんあります。"
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "アンナのアーカイブについてのさらなるリソースはありますか？"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>アンナのブログ</a>、<a %(a_reddit_u)s>Reddit</a>、<a %(a_reddit_r)s>サブレディット</a> — 定期的な更新"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Anna’s Software</a> — 私たちのオープンソースコード"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Anna’s Softwareで翻訳</a> — 私たちの翻訳システム"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Datasets</a> — データについて"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>、<a %(a_se)s>.se</a>、<a %(a_org)s>.org</a> — 代替ドメイン"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>ウィキペディア</a> — 私たちについての詳細（このページを更新していただくか、あなたの言語で新しいページを作成してください！）"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "著作権侵害を報告するにはどうすればいいですか？"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "ここでは著作権のある資料はホストしていません。私たちは検索エンジンであり、既に公開されているメタデータのみをインデックスしています。これらの外部ソースからダウンロードする際には、許可されている内容に関してあなたの管轄地域の法律を確認することをお勧めします。他者がホストするコンテンツについては責任を負いません。"
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "ここで見たものについて苦情がある場合、最善の方法は元のウェブサイトに連絡することです。私たちは定期的に彼らの変更をデータベースに取り込んでいます。本当に有効なDMCAの苦情があると思われる場合は、<a %(a_copyright)s>DMCA / 著作権クレームフォーム</a>に記入してください。私たちはあなたの苦情を真剣に受け止め、できるだけ早くご連絡いたします。"
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "このプロジェクトの運営方法が嫌いです！"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "また、私たちのコードとデータは完全にオープンソースであることを皆さんにお伝えしたいと思います。私たちのようなプロジェクトで、これほど大規模なカタログを持ちながら完全にオープンソースである例は他に知りません。私たちのプロジェクトを不十分に運営していると考える方は、私たちのコードとデータを取り、自分たちのシャドウライブラリを設立していただきたいと思います。これは恨みや何かから言っているのではなく、本当に素晴らしいことだと思っています。なぜなら、それによって全体の基準が引き上げられ、人類の遺産がより良く保存されるからです。"
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "稼働時間モニターをお持ちですか？"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "<a %(a_href)s>この素晴らしいプロジェクト</a>をご覧ください。"
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "アンナとは誰ですか？"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "あなたがアンナです！"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "お気に入りの本は何ですか？"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "シャドウライブラリやデジタル保存の世界に特別な意味を持つ本をいくつか紹介します："
@@ -5031,15 +5033,15 @@ msgstr "検索"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 msgid "layout.index.header.nav.beta"
 msgstr "ベータ"
 
@@ -5139,8 +5141,8 @@ msgid "page.home.payment_processor.body"
 msgstr "高リスクの匿名決済プロセッサーを運営している場合は、ぜひご連絡ください。また、控えめな小さな広告を掲載したい方も募集しています。すべての収益は保存活動に充てられます。"
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 msgid "layout.index.header.nav.annasblog"
 msgstr "アンナのブログ↗"
 
@@ -5565,7 +5567,7 @@ msgstr "VPN、共有インターネット接続、またはISPがIPを共有し�
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 msgid "layout.index.header.title"
 msgstr "アンナのアーカイブ"
 
@@ -5659,7 +5661,7 @@ msgid "page.search.tabs.metadata"
 msgstr "メタデータ"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 msgid "common.search.placeholder"
 msgstr "タイトル、著者、DOI、ISBN、MD5…"
 
@@ -6002,117 +6004,117 @@ msgstr "軽作業ボランティア"
 msgid "page.volunteering.section.light.text1"
 msgstr "数時間の余裕がある場合、さまざまな方法で手助けすることができます。<a %(a_telegram)s>Telegramのボランティアチャット</a>に参加することを忘れないでください。"
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "感謝の印として、基本的なマイルストーンには通常6ヶ月の「ラッキーライブラリアン」を提供し、継続的なボランティア作業にはさらに多くを提供します。すべてのマイルストーンには高品質の作業が必要です—いい加減な作業は私たちにとって害になるため、拒否されます。マイルストーンに達したら<a %(a_contact)s>メール</a>してください。"
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "タスク"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "マイルストーン"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Open Libraryと<a %(a_metadata)s>リンク</a>してメタデータを改善する。"
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s 改善した記録のリンク。"
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>ウェブサイトの翻訳</a>。"
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "言語全体を完全に翻訳する（すでにほぼ完了していない場合）。"
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Anna’s Archiveのことをソーシャルメディアやオンラインフォーラムで広める、AAで本やリストを推薦する、または質問に答える。"
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s リンクまたはスクリーンショット。"
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "あなたの言語でAnna’s ArchiveのWikipediaページを改善する。他の言語のAAのWikipediaページや私たちのウェブサイトとブログから情報を含める。他の関連ページにAAへの参照を追加する。"
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "重要な貢献をした編集履歴へのリンク。"
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Z-LibraryやLibrary Genesisフォーラムでの本（または論文など）のリクエストを満たす。私たちには独自の本リクエストシステムはありませんが、これらのライブラリをミラーしているため、それらを改善することはAnna’s Archiveを改善することにもなります。"
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s 完了したリクエストのリンクまたはスクリーンショット。"
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "<a %(a_telegram)s>Telegramのボランティアチャット</a>に投稿された小さなタスク。通常はメンバーシップのため、時には小さな報奨金のため。"
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "タスクによる。"
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "報奨金"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "私たちは、堅実なプログラミングスキルや攻撃的なセキュリティスキルを持つ人々を常に求めています。あなたは人類の遺産を保存するために大きな貢献をすることができます。"
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "感謝の気持ちとして、堅実な貢献に対してメンバーシップを提供します。特に重要で困難なタスクに対しては、金銭的な報奨金を提供します。これは仕事の代替として見なされるべきではありませんが、追加のインセンティブとなり、発生した費用を補助することができます。"
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "私たちのコードのほとんどはオープンソースであり、報奨金を授与する際にはあなたのコードも同様にオープンソースであることを求めます。個別に議論できる例外もあります。"
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "報奨金はタスクを最初に完了した人に授与されます。報奨金チケットにコメントして、他の人にあなたが何かに取り組んでいることを知らせることができますので、他の人が待つか、あなたに連絡してチームを組むことができます。しかし、他の人もそれに取り組んであなたを追い越そうとすることは自由です。ただし、いい加減な仕事には報奨金を授与しません。高品質な提出物が近い時期（1日か2日以内）に提出された場合、私たちの裁量で両方に報奨金を授与することがあります。例えば、最初の提出物に100%%、2番目の提出物に50%%（合計150%%）を授与することがあります。"
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "大きな報奨金（特にスクレイピング報奨金）の場合、約5%%を完了し、その方法が全体のマイルストーンにスケールする自信がある場合は、私たちに連絡してください。方法を共有してフィードバックを受ける必要があります。また、この方法で複数の人が報奨金に近づいている場合にどうするかを決定できます。例えば、複数の人に報奨金を授与する、チームを組むことを奨励するなどです。"
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "警告：高額報奨金のタスクは<span %(bold)s>難しい</span>です—簡単なものから始めるのが賢明かもしれません。"
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "<a %(a_gitlab)s>Gitlabの問題リスト</a>に移動し、「ラベル優先度」で並べ替えてください。これにより、私たちが重視するタスクの順序が大まかに示されます。明示的な報奨金がないタスクでも、特に「Accepted」や「Anna’s favorite」とマークされたものはメンバーシップの対象となります。「スタータープロジェクト」から始めるのが良いかもしれません。"
@@ -6139,163 +6141,164 @@ msgstr "Anna’s Archiveはあなたの助けを必要としています！"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "多くの人が私たちを倒そうとしますが、私たちは戦い続けます。"
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 msgid "layout.index.header.nav.donate"
 msgstr "寄付"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "人類の知識を保存する: 素晴らしいホリデーギフトです!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.surprise"
 msgstr "愛する人を驚かせて、メンバーシップ付きのアカウントをプレゼントしましょう。"
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 #, fuzzy
 msgid "layout.index.header.banner.mirrors"
 msgstr "Anna’s Archiveのレジリエンスを高めるために、ミラーを運営するボランティアを募集しています。"
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "完璧なバレンタインギフト！"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "%(method_name)s という新しい寄付の方法をご用意しました。%(donate_link_open_tag)s寄付</a>を検討していただけるとありがたいです。 - このウェブサイトを運営するのは決して安くはありません。ありがとうございます。"
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "世界最大のコミックの影の図書館を<a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">支援</a>するための募金活動を行っております。貴方の協力に感謝いたします！<a href=\"/donate\">寄付</a>もし寄付ができなければ、あなたの友達に伝えることや、<a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a>、<a href=\"https://t.me/annasarchiveorg\">Telegram</a>で私達をフォローすることも考えていただけると幸いです。"
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 msgid "layout.index.header.recent_downloads"
 msgstr "最近のダウンロード："
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-msgid "layout.index.header.nav.search"
-msgstr "検索"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
-#, fuzzy
-msgid "layout.index.header.nav.faq"
-msgstr "よくある質問"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "メタデータを改善"
+msgid "layout.index.header.nav.search"
+msgstr "検索"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
 #, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "ボランティア & バウンティ"
+msgid "layout.index.header.nav.faq"
+msgstr "よくある質問"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
-msgid "layout.index.header.nav.datasets"
-msgstr "データセット"
+#, fuzzy
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "メタデータを改善"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrents"
+#, fuzzy
+msgid "layout.index.header.nav.volunteering"
+msgstr "ボランティア & バウンティ"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
-#, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "コードエクスプローラー"
+msgid "layout.index.header.nav.datasets"
+msgstr "データセット"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
-msgid "layout.index.header.nav.llm_data"
-msgstr "LLMデータ"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrents"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "コードエクスプローラー"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+msgid "layout.index.header.nav.llm_data"
+msgstr "LLMデータ"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 msgid "layout.index.header.nav.home"
 msgstr "ホーム"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 msgid "layout.index.header.nav.annassoftware"
 msgstr "アンナのソフトウェア↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 msgid "layout.index.header.nav.translate"
 msgstr "翻訳する ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 msgid "layout.index.header.nav.login_register"
 msgstr "ログイン/登録"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 msgid "layout.index.header.nav.account"
 msgstr "アカウント"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 msgid "layout.index.footer.list1.header"
 msgstr "アンナのアーカイブ"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 msgid "layout.index.footer.list2.header"
 msgstr "連絡を取る"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA/著作権主張"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "高度な"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 msgid "layout.index.header.nav.security"
 msgstr "セキュリティ"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 msgid "layout.index.footer.list3.header"
 msgstr "ミラーサイト"
 

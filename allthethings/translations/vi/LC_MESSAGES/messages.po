@@ -116,15 +116,15 @@ msgstr "Thích Lụm Đồ"
 msgid "common.membership.tier_name.5"
 msgstr "Lưu trữ viên tuyệt vời"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) tổng (theo đô la Mỹ)"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s tổng"
 
@@ -267,7 +267,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "liên hệ chúng tôi"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 msgid "page.donate.small_team"
 msgstr "Chúng tôi là một nhóm tình nguyện viên nhỏ. Chúng tôi có thể mất 1-2 tuần để phản hồi."
@@ -307,12 +307,12 @@ msgid "page.donate.payment.select_method"
 msgstr "Vui lòng chọn một phương thức thanh toán."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Thẻ quà tặng Amazon"
 
@@ -324,7 +324,7 @@ msgstr "Thẻ ngân hàng (sử dụng ứng dụng)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Tiền crypto %(bitcoin_icon)s"
 
@@ -353,8 +353,8 @@ msgstr "Thẻ tín dụng/ghi nợ/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
 
@@ -395,449 +395,451 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 msgid "page.donate.payment.buttons.wechat"
 msgstr "Wechat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay / WeChat"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(tạm thời không có)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 msgid "page.donate.payment.desc.crypto"
 msgstr "Với tiền điện tử, bạn có thể quyên góp thông qua BTC, ETH, XMR và SOL. Sử dụng tùy chọn này nếu bạn đã quen với tiền điện tử."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Với tiền điện tử, bạn có thể quyên góp bằng BTC, ETH, XMR, v.v."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Nếu bạn sử dụng tiền điện tử lần đầu tiên, chúng tôi đề nghị sử dụng %(options)s để mua và quyên góp Bitcoin (loại tiền điện tử đầu tiên và được sử dụng nhiều nhất)."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 msgid "page.donate.payment.desc.paypal"
 msgstr "Để quyên góp bằng PayPal US, chúng tôi phải sử dụng PayPal Crypto, vì lựa chọn này cho phép chúng tôi bảo đảm sự ẩn danh. Chúng tôi đề cao việc bạn dành thời gian tìm hiểu phương thức quyên góp này, vì nó vô cùng hữu ích với chúng tôi."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Đóng góp bằng PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Đóng góp bằng Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Nếu bạn có Cash App, đây là cách dễ nhất để đóng góp cho chúng tôi!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Lưu ý rằng đối với các giao dịch dưới %(amount)s, Cash App có thể tính phí %(fee)s. Đối với %(amount)s trở lên, miễn phí!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Quyên góp bằng Revolut."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Nếu bạn có Revolut, đây là cách dễ nhất để quyên góp!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Đóng góp thông qua thẻ tín dụng hoặc thẻ ghi nợ."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay và Apple Pay cũng có thể dùng được."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Lưu ý rằng đối với những khoản đóng góp nhỏ, phí thẻ tín dụng có thể loại bỏ khoản chiết khấu %(discount)s%% của chúng tôi, vì vậy chúng tôi khuyên bạn nên đăng ký dài hạn hơn."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Lưu ý rằng đối với những khoản quyên góp nhỏ thì phí sẽ cao, vì vậy chúng tôi khuyên bạn nên đăng ký lâu hơn."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Với Binance, bạn mua Bitcoin bằng thẻ tín dụng/thẻ ghi nợ hoặc tài khoản ngân hàng, sau đó quyên góp Bitcoin đó cho chúng tôi. Bằng cách này, chúng tôi có thể duy trì bảo mật và ẩn danh khi nhận quyên góp của bạn."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance có sẵn ở hầu hết các quốc gia và hỗ trợ hầu hết các ngân hàng và thẻ tín dụng/thẻ ghi nợ. Đây hiện là khuyến nghị chính của chúng tôi. Chúng tôi cảm kích bạn đã dành thời gian tìm hiểu cách quyên góp bằng phương pháp này, vì nó giúp chúng tôi rất nhiều."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Quyên góp bằng tài khoản PayPal thường xuyên của bạn."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Đóng góp bằng Alipay hoặc WeChat. Bạn có thể chọn giữa những cách chuyển tiền này trên trang tiếp theo."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Quyên góp bằng thẻ tín dụng/thẻ ghi nợ, PayPal, hoặc Venmo. Bạn có thể chọn giữa các phương thức này trên trang tiếp theo."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 msgid "page.donate.payment.desc.amazon"
 msgstr "Đóng góp bằng thẻ quà tặng Amazon."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Lưu ý rằng chúng tôi cần làm tròn số tiền lên một khoản được người bán lại chấp nhận (tối thiểu %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>QUAN TRỌNG:</strong> Chúng tôi chỉ hỗ trợ Amazon.com, không hỗ trợ các trang web Amazon khác. Ví dụ: .de, .co.uk, .ca KHÔNG được hỗ trợ."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Phương pháp này sử dụng nhà cung cấp tiền điện tử làm trung gian chuyển đổi. Điều này có thể hơi khó hiểu, vì vậy vui lòng chỉ sử dụng phương pháp này nếu các phương thức thanh toán khác không hoạt động. Nó cũng không hoạt động ở tất cả các quốc gia."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Quyên góp bằng thẻ tín dụng/thẻ ghi nợ, thông qua ứng dụng Alipay (rất dễ cài đặt)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Cài đặt ứng dụng Alipay"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "Cài đặt ứng dụng Alipay từ <a %(a_app_store)s>Apple App Store</a> hoặc <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Đăng ký bằng số điện thoại của bạn."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Không cần thêm thông tin cá nhân nào khác."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Thêm thẻ ngân hàng"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Hỗ trợ: Visa, MasterCard, JCB, Diners Club và Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Xem <a %(a_alipay)s>hướng dẫn này</a> để biết thêm thông tin."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Chúng tôi không thể hỗ trợ thẻ tín dụng/ghi nợ trực tiếp, vì các ngân hàng không muốn làm việc với chúng tôi. ☹ Tuy nhiên, có một số cách để sử dụng thẻ tín dụng/ghi nợ thông qua các phương thức thanh toán khác:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Gửi cho chúng tôi thẻ quà tặng Amazon.com bằng thẻ tín dụng/thẻ ghi nợ của bạn."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay hỗ trợ thẻ tín dụng/ghi nợ quốc tế. Xem <a %(a_alipay)s>hướng dẫn này</a> để biết thêm thông tin."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) hỗ trợ thẻ tín dụng/thẻ ghi nợ quốc tế. Trong ứng dụng WeChat, hãy truy cập “Tôi => Dịch vụ => Ví => Thêm thẻ”. Nếu bạn không thấy điều đó, hãy kích hoạt nó bằng cách sử dụng “Tôi => Cài đặt => Chung => Công cụ => Weixin Pay => Bật”."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 msgid "page.donate.ccexp.crypto"
 msgstr "Bạn có thể mua tiền điện tử bằng thẻ tín dụng/thẻ ghi nợ."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Dịch vụ tiền điện tử nhanh"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Dịch vụ nhanh tiện lợi, nhưng tính phí cao hơn."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Bạn có thể sử dụng dịch vụ này thay vì sàn giao dịch tiền điện tử nếu bạn muốn nhanh chóng thực hiện một khoản quyên góp lớn hơn và không ngại phí $5-10."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Hãy chắc chắn gửi đúng số tiền tiền điện tử được hiển thị trên trang quyên góp, không phải số tiền bằng $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Nếu không, phí sẽ bị trừ và chúng tôi không thể tự động xử lý gói thành viên của bạn."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(tối thiểu: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(tối thiểu: %(minimum)s tùy thuộc vào quốc gia, không cần xác minh cho giao dịch đầu tiên)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(tối thiểu: %(minimum)s, không cần xác minh cho giao dịch đầu tiên)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(tối thiểu: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(tối thiểu: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(tối thiểu: %(minimum)s, không cần xác minh cho giao dịch đầu tiên)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Nếu bất kỳ thông tin nào trong số này đã lỗi thời, vui lòng email cho chúng tôi để thông báo."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "Đối với thẻ tín dụng, thẻ ghi nợ, Apple Pay và Google Pay, chúng tôi sử dụng “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). Trong hệ thống của họ, một “cà phê” tương đương với $5, vì vậy khoản quyên góp của bạn sẽ được làm tròn đến bội số gần nhất của 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 msgid "page.donate.duration.intro"
 msgstr "Xác định khoảng thời gian bạn muốn đăng ký."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 msgid "page.donate.duration.1_mo"
 msgstr "1 tháng"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 msgid "page.donate.duration.3_mo"
 msgstr "3 tháng"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 msgid "page.donate.duration.6_mo"
 msgstr "6 tháng"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 msgid "page.donate.duration.12_mo"
 msgstr "12 tháng"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 msgid "page.donate.duration.24_mo"
 msgstr "24 tháng"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 tháng"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 tháng"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>sau <span %(span_discount)s></span> chiết khấu</div><div %(div_total)s></div> <div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 msgid "page.donate.payment.minimum_method"
 msgstr "Phương thức thanh toán này yêu cầu tối thiểu %(amount)s. Vui lòng chọn thời hạn hoặc phương thức thanh toán khác."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Quyên góp"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 msgid "page.donate.payment.maximum_method"
 msgstr "Cách chuyển khoản này chỉ cho phép tối đa %(amount)s. Hãy chọn một phương thức thanh toán khác hay chọn một thời lương đóng phí khác."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 msgid "page.donate.login2"
 msgstr "Để làm một thành viên, xin hãy <a%(a_login)s> Đăng nhập hoặc Đăng kí</a>. Cảm ơn vì sự đóng góp của bạn."
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 msgid "page.donate.payment.crypto_select"
 msgstr "Chọn loại tiền điện tử bạn mong muốn:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(khoản tiền thấp nhất có thể)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(sử dụng khi gửi Ethereum từ Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(cảnh báo: yêu cầu lượng tiền tối thiểu cao)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 msgid "page.donate.submit.confirm"
 msgstr "Bấm nút quyên góp để xác nhận khoản tiền sẽ cho."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 msgid "page.donate.submit.button"
 msgstr "Quyên góp <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 msgid "page.donate.submit.cancel_note"
 msgstr "Bạn vẫn có thể hủy quá trình quyên góp trong thủ tục thanh toán."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 msgid "page.donate.submit.success"
 msgstr "✅ Đang chuyển hướng tới trang quyên góp…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 msgid "page.donate.submit.failure"
 msgstr "❌ Đã xảy ra sự cố. Vui lòng tải lại trang và thử lại."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / tháng"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "trong 1 tháng"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "trong 3 tháng"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "trong 6 tháng"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "trong 12 tháng"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "trong 24 tháng"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "trong 48 tháng"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "trong 96 tháng"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "trong 1 tháng \"%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "trong 3 tháng \"%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "trong 6 tháng \"%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "trong 12 tháng \"%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "trong 24 tháng \"%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "trong 48 tháng “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "trong 96 tháng “%(tier_name)s”"
@@ -937,9 +939,9 @@ msgstr "<strong>Lưu ý quan trọng:</strong> Giá tiền điện tử có th�
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 msgid "page.donation.expired"
 msgstr "Khoản quyên góp này đã hết hạn. Vui lòng hủy và tạo một cái mới."
 
@@ -1006,9 +1008,9 @@ msgstr "Xem hướng dẫn từng bước dưới đây."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "Trạng thái:"
@@ -1019,9 +1021,9 @@ msgstr "Trạng thái:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Đang chờ xác nhận (làm mới trang để kiểm tra)…"
 
@@ -1031,9 +1033,9 @@ msgstr "Đang chờ xác nhận (làm mới trang để kiểm tra)…"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Đang chờ chuyển (làm mới trang để kiểm tra)…"
@@ -1044,9 +1046,9 @@ msgstr "Đang chờ chuyển (làm mới trang để kiểm tra)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "Thời gian còn lại:"
@@ -1057,9 +1059,9 @@ msgstr "Thời gian còn lại:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(bạn có thể muốn hủy và tạo một khoản quyên góp mới)"
@@ -1070,9 +1072,9 @@ msgstr "(bạn có thể muốn hủy và tạo một khoản quyên góp mới)
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "Để đặt lại bộ đếm thời gian, chỉ cần tạo một khoản quyên góp mới."
@@ -1084,15 +1086,15 @@ msgstr "Để đặt lại bộ đếm thời gian, chỉ cần tạo một kho�
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "Cập nhật trạng thái"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "Nếu bạn gặp bất kỳ vấn đề nào, vui lòng liên hệ với chúng tôi tại %(email)s và cung cấp càng nhiều thông tin càng tốt (chẳng hạn như ảnh chụp màn hình)."
@@ -1291,15 +1293,15 @@ msgstr "Ví dụ:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 msgid "page.donate.strange_account"
 msgstr "Lưu ý rằng tên hoặc hình ảnh tài khoản có thể trông lạ. Không cần phải lo lắng! Những tài khoản này được quản lý bởi các đối tác quyên góp của chúng tôi. Tài khoản của chúng tôi chưa bị hack."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Hướng dẫn sử dụng Alipay"
 
@@ -1314,137 +1316,137 @@ msgstr "<span %(span_circle)s>1</span>Quyên góp trên Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "Quyên góp tổng số tiền %(total)s bằng cách sử dụng <a %(a_account)s>tài khoản Alipay này</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Thật không may, trang Alipay thường chỉ truy cập được từ <strong>Trung Quốc đại lục</strong>. Bạn có thể cần tạm thời tắt VPN của mình, hoặc sử dụng VPN đến Trung Quốc đại lục (hoặc đôi khi Hồng Kông cũng hoạt động)."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Thực hiện quyên góp (quét mã QR hoặc nhấn nút)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Mở <a %(a_href)s>trang quyên góp mã QR</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Quét mã QR bằng ứng dụng Alipay, hoặc nhấn nút để mở ứng dụng Alipay."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Xin vui lòng kiên nhẫn; trang có thể mất một lúc để tải vì nó ở Trung Quốc."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Hướng dẫn WeChat"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Quyên góp trên WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Quyên góp tổng số tiền %(total)s bằng cách sử dụng <a %(a_account)s>tài khoản WeChat này</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 msgid "page.donation.payment.pix.top_header"
 msgstr "hướng dẫn pix"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Quyên góp trên Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 msgid "page.donation.payment.pix.text1"
 msgstr "Quyên góp tổng số tiền %(total)s bằng <a %(a_account)s>tài khoản Pix này"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Gửi biên lai cho chúng tôi qua email"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Gửi biên lai hoặc ảnh chụp màn hình đến địa chỉ xác minh cá nhân của bạn. KHÔNG sử dụng địa chỉ email này cho khoản quyên góp PayPal của bạn."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 msgid "page.donation.footer.text1"
 msgstr "Gửi biên lai hoặc ảnh chụp màn hình đến địa chỉ xác minh cá nhân của bạn:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 msgid "page.donation.footer.crypto_note"
 msgstr "Nếu tỷ giá hối đoái tiền điện tử biến động trong quá trình giao dịch, hãy đảm bảo bao gồm biên lai hiển thị tỷ giá hối đoái ban đầu. Chúng tôi thực sự đánh giá cao việc bạn đã chịu khó sử dụng tiền điện tử, nó giúp ích cho chúng tôi rất nhiều!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 msgid "page.donation.footer.text2"
 msgstr "Khi bạn đã gửi biên lai qua email, hãy nhấp vào nút này để Anna có thể xem lại theo cách thủ công (việc này có thể mất vài ngày):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 msgid "page.donation.footer.button"
 msgstr "Có, tôi đã gửi biên lai của mình qua email"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 msgid "page.donation.footer.success"
 msgstr "✅ Cảm ơn sự đóng góp của bạn! Anna sẽ tự kích hoạt tư cách thành viên của bạn trong vòng vài ngày."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 msgid "page.donation.footer.failure"
 msgstr "Có sự cố xảy ra.Xin tải lại trang và thử lại."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Hướng dẫn từng bước"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Một số bước đề cập đến ví tiền điện tử, nhưng đừng lo lắng, bạn không cần phải học bất cứ điều gì về tiền điện tử cho việc này."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Nhập email của bạn."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Chọn phương thức thanh toán của bạn."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Chọn lại phương thức thanh toán của bạn."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Chọn ví “Tự lưu trữ”."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Nhấp vào “Tôi xác nhận quyền sở hữu”."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Bạn sẽ nhận được biên lai qua email. Vui lòng gửi biên lai đó cho chúng tôi, và chúng tôi sẽ xác nhận quyên góp của bạn sớm nhất có thể."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Nếu bạn mắc lỗi trong quá trình thanh toán, chúng tôi không thể hoàn tiền, nhưng chúng tôi sẽ cố gắng khắc phục."
@@ -1589,9 +1591,9 @@ msgstr "Liên hệ với Anna tại %(email)s nếu bạn quan tâm đến việ
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 msgid "page.contact.title"
 msgstr "Địa chỉ email liên lạc"
 
@@ -1602,23 +1604,23 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Bạn có thể kết hợp nhiều gói thành viên (lượt tải nhanh mỗi 24 giờ sẽ được cộng dồn)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 msgid "layout.index.header.nav.public_profile"
 msgstr "Hồ sơ công khai"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Tệp đã tải"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 msgid "layout.index.header.nav.my_donations"
 msgstr "Các lần quyên góp của tôi"
 
@@ -2602,7 +2604,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Tải xuống nhanh</strong> Trở thành <a %(a_membership)s>thành viên</a> để hỗ trợ việc bảo quản lâu dài sách, giấy tờ, v.v. Để thể hiện lòng biết ơn của chúng tôi đối với sự hỗ trợ của bạn, bạn sẽ có được bản tải xuống nhanh chóng. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Nếu bạn quyên góp trong tháng này, bạn sẽ nhận được <strong>gấp đôi</strong> số lượt tải xuống nhanh."
@@ -2629,7 +2631,7 @@ msgid "page.md5.box.download.option"
 msgstr "Tùy chọn #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Giới thiệu bạn bè, và cả bạn và bạn của bạn sẽ nhận được %(percentage)s%% lượt tải nhanh thưởng!"
@@ -2641,11 +2643,11 @@ msgstr "Giới thiệu bạn bè, và cả bạn và bạn của bạn sẽ nh�
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "Tìm hiểu thêm…"
@@ -3574,7 +3576,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Chúng tôi cũng làm phong phú thêm bộ sưu tập của mình với các nguồn chỉ có dữ liệu số, mà chúng tôi có thể khớp với các tệp tin, ví dụ như sử dụng số ISBN hoặc các trường khác. Dưới đây là tổng quan về những nguồn đó. Một lần nữa, một số nguồn này hoàn toàn mở, trong khi với những nguồn khác chúng tôi phải thu thập dữ liệu."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4737,326 +4739,326 @@ msgstr "<div %(div_question)s>Tôi có thể nâng cấp tư cách thành viên 
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>Bạn có phương thức thanh toán khác không?</div> Hiện tại thì chúng tôi không có. Rất nhiều người không muốn những kho lưu trữ như thế này tồn tại nên chúng tôi phải cẩn thận. Nếu bạn có thể giúp chúng tôi thiết lập các phương thức thanh toán khác (thuận tiện hơn) một cách an toàn, vui lòng liên hệ theo số %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 #, fuzzy
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>Bạn chi tiêu các khoản quyên góp vào việc gì?</div> 100%% được sử dụng để bảo tồn và làm cho kiến thức và văn hóa của thế giới trở nên dễ tiếp cận. Hiện tại, chúng tôi chủ yếu chi tiêu vào máy chủ, lưu trữ và băng thông. Không có khoản tiền nào được chuyển đến bất kỳ thành viên nào trong nhóm."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>Tôi có thể quyên góp một số tiền lớn không?</div> Điều đó thật tuyệt vời! Để quyên góp trên vài nghìn đô la, vui lòng liên hệ trực tiếp với chúng tôi tại %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>Tôi có thể quyên góp mà không trở thành thành viên không?</div> Chắc chắn rồi. Chúng tôi chấp nhận các khoản quyên góp với bất kỳ số tiền nào tại địa chỉ Monero (XMR) này: %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 #, fuzzy
 msgid "page.faq.upload.title"
 msgstr "Làm thế nào để tôi tải lên sách mới?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 #, fuzzy
 msgid "page.upload.text1"
 msgstr "Hiện tại, chúng tôi đề xuất tải lên sách mới vào các nhánh của Library Genesis. Đây là <a %(a_guide)s>hướng dẫn tiện lợi</a>. Lưu ý rằng cả hai nhánh mà chúng tôi lập chỉ mục trên trang web này đều lấy từ hệ thống tải lên này."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 #, fuzzy
 msgid "common.libgen.email"
 msgstr "Nếu địa chỉ email của bạn không hoạt động trên diễn đàn Libgen, chúng tôi khuyên bạn nên sử dụng <a %(a_mail)s>Proton Mail</a> (miễn phí). Bạn cũng có thể <a %(a_manual)s>yêu cầu kích hoạt</a> tài khoản của mình thủ công."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "Lưu ý rằng mhut.org chặn một số dải IP nhất định, vì vậy có thể cần sử dụng VPN."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "Ngoài ra, bạn có thể tải chúng lên Z-Library <a %(a_upload)s>tại đây</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "Để tải lên các bài báo học thuật, vui lòng cũng (ngoài Library Genesis) tải lên <a %(a_stc_nexus)s>STC Nexus</a>. Họ là thư viện bóng tốt nhất cho các bài báo mới. Chúng tôi chưa tích hợp họ, nhưng sẽ làm điều đó vào một thời điểm nào đó. Bạn có thể sử dụng <a %(a_telegram)s>bot tải lên trên Telegram</a> của họ, hoặc liên hệ với địa chỉ được liệt kê trong tin nhắn ghim của họ nếu bạn có quá nhiều tệp để tải lên theo cách này."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 #, fuzzy
 msgid "page.upload.large.text"
 msgstr "Đối với các tải lên lớn (hơn 10.000 tệp) không được chấp nhận bởi Libgen hoặc Z-Library, vui lòng liên hệ với chúng tôi tại %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 #, fuzzy
 msgid "page.faq.request.title"
 msgstr "Làm thế nào để yêu cầu sách?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 #, fuzzy
 msgid "page.request.cannot_accomodate"
 msgstr "Hiện tại, chúng tôi không thể đáp ứng yêu cầu sách."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 #, fuzzy
 msgid "page.request.forums"
 msgstr "Vui lòng gửi yêu cầu của bạn trên các diễn đàn Z-Library hoặc Libgen."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 #, fuzzy
 msgid "page.request.dont_email"
 msgstr "Đừng gửi email yêu cầu sách cho chúng tôi."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "Bạn có thu thập dữ liệu số không?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "Chúng tôi thực sự có."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "Tôi đã tải xuống 1984 của George Orwell, liệu cảnh sát có đến gõ cửa nhà tôi không?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "Đừng lo lắng quá, có rất nhiều người tải xuống từ các trang web mà chúng tôi liên kết, và rất hiếm khi gặp rắc rối. Tuy nhiên, để an toàn, chúng tôi khuyên bạn nên sử dụng VPN (trả phí), hoặc <a %(a_tor)s>Tor</a> (miễn phí)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "Làm thế nào để lưu cài đặt tìm kiếm của tôi?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "Chọn các cài đặt bạn thích, để trống hộp tìm kiếm, nhấp vào “Tìm kiếm”, và sau đó đánh dấu trang bằng tính năng đánh dấu trang của trình duyệt của bạn."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "Bạn có ứng dụng di động không?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "Chúng tôi không có ứng dụng di động chính thức, nhưng bạn có thể cài đặt trang web này như một ứng dụng."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> Nhấp vào menu ba chấm ở góc trên bên phải, và chọn “Thêm vào Màn hình chính”."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> Nhấn nút “Chia sẻ” ở dưới cùng, và chọn “Thêm vào Màn hình chính”."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "Bạn có API không?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "Chúng tôi có một API JSON ổn định cho thành viên, để lấy URL tải xuống nhanh: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (tài liệu nằm trong JSON)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "Đối với các trường hợp sử dụng khác, chẳng hạn như lặp qua tất cả các tệp của chúng tôi, xây dựng tìm kiếm tùy chỉnh, v.v., chúng tôi khuyến nghị <a %(a_generate)s>tạo</a> hoặc <a %(a_download)s>tải xuống</a> cơ sở dữ liệu ElasticSearch và MariaDB của chúng tôi. Dữ liệu thô có thể được khám phá thủ công <a %(a_explore)s>thông qua các tệp JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "Danh sách torrent thô của chúng tôi cũng có thể được tải xuống dưới dạng <a %(a_torrents)s>JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "Câu hỏi thường gặp về Torrents"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "Tôi muốn giúp seed, nhưng tôi không có nhiều dung lượng đĩa."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "Sử dụng <a %(a_list)s>trình tạo danh sách torrent</a> để tạo danh sách các torrent cần seed nhất, trong giới hạn dung lượng lưu trữ của bạn."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "Các torrent quá chậm; tôi có thể tải dữ liệu trực tiếp từ bạn không?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "Có, xem trang <a %(a_llm)s>dữ liệu LLM</a>."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "Tôi có thể chỉ tải xuống một phần của các tệp, như chỉ một ngôn ngữ hoặc chủ đề cụ thể không?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "Hầu hết các torrent chứa các tệp trực tiếp, có nghĩa là bạn có thể hướng dẫn các ứng dụng torrent chỉ tải xuống các tệp cần thiết. Để xác định tệp nào cần tải xuống, bạn có thể <a %(a_generate)s>tạo</a> dữ liệu số của chúng tôi, hoặc <a %(a_download)s>tải xuống</a> cơ sở dữ liệu ElasticSearch và MariaDB của chúng tôi. Thật không may, một số bộ sưu tập torrent chứa các tệp .zip hoặc .tar ở gốc, trong trường hợp đó bạn cần tải xuống toàn bộ torrent trước khi có thể chọn các tệp riêng lẻ."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "Bạn xử lý các tệp trùng lặp trong các torrent như thế nào?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "Chúng tôi cố gắng giữ sự trùng lặp hoặc chồng chéo tối thiểu giữa các torrent trong danh sách này, nhưng điều này không phải lúc nào cũng đạt được, và phụ thuộc nhiều vào chính sách của các thư viện nguồn. Đối với các thư viện phát hành torrent của riêng họ, điều này nằm ngoài tầm kiểm soát của chúng tôi. Đối với các torrent do Anna’s Archive phát hành, chúng tôi chỉ loại bỏ trùng lặp dựa trên hash MD5, có nghĩa là các phiên bản khác nhau của cùng một cuốn sách sẽ không bị loại bỏ trùng lặp."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "Tôi có thể lấy danh sách torrent dưới dạng JSON không?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "Có."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "Tôi không thấy các tệp PDF hoặc EPUB trong torrents, chỉ có các tệp nhị phân? Tôi phải làm gì?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "Thực ra đây là các tệp PDF và EPUB, chúng chỉ không có phần mở rộng trong nhiều torrents của chúng tôi. Có hai nơi bạn có thể tìm thấy dữ liệu số cho các tệp torrent, bao gồm các loại tệp/phần mở rộng:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. Mỗi bộ sưu tập hoặc phát hành có dữ liệu số riêng. Ví dụ, <a %(a_libgen_nonfic)s>Libgen.rs torrents</a> có cơ sở dữ liệu dữ liệu số tương ứng được lưu trữ trên trang web Libgen.rs. Chúng tôi thường liên kết đến các tài nguyên dữ liệu số liên quan từ <a %(a_datasets)s>trang tập dữ liệu</a> của mỗi bộ sưu tập."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Chúng tôi khuyến nghị <a %(a_generate)s>tạo</a> hoặc <a %(a_download)s>tải xuống</a> cơ sở dữ liệu ElasticSearch và MariaDB của chúng tôi. Chúng chứa một ánh xạ cho mỗi bản ghi trong Anna’s Archive đến các tệp torrent tương ứng của nó (nếu có), dưới “torrent_paths” trong ElasticSearch JSON."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "Bạn có chương trình tiết lộ có trách nhiệm không?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "Chúng tôi hoan nghênh các nhà nghiên cứu bảo mật tìm kiếm các lỗ hổng trong hệ thống của chúng tôi. Chúng tôi là những người ủng hộ lớn của việc tiết lộ có trách nhiệm. Liên hệ với chúng tôi <a %(a_contact)s>tại đây</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "Hiện tại chúng tôi không thể trao thưởng cho các lỗi bảo mật, ngoại trừ các lỗ hổng có <a %(a_link)s>tiềm năng làm tổn hại đến tính ẩn danh của chúng tôi</a>, với mức thưởng từ $10k-50k. Chúng tôi mong muốn mở rộng phạm vi trao thưởng cho các lỗi bảo mật trong tương lai! Xin lưu ý rằng các cuộc tấn công kỹ thuật xã hội không nằm trong phạm vi này."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "Nếu bạn quan tâm đến bảo mật tấn công và muốn giúp lưu trữ kiến thức và văn hóa của thế giới, hãy liên hệ với chúng tôi. Có nhiều cách bạn có thể giúp đỡ."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "Có thêm tài nguyên nào về Anna’s Archive không?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Blog của Anna</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Subreddit</a> — cập nhật thường xuyên"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Phần mềm của Anna</a> — mã nguồn mở của chúng tôi"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Dịch trên Phần mềm của Anna</a> — hệ thống dịch thuật của chúng tôi"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Datasets</a> — về dữ liệu"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — các tên miền thay thế"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Wikipedia</a> — thêm về chúng tôi (vui lòng giúp cập nhật trang này, hoặc tạo một trang cho ngôn ngữ của bạn!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "Làm thế nào để báo cáo vi phạm bản quyền?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "Chúng tôi không lưu trữ bất kỳ tài liệu có bản quyền nào ở đây. Chúng tôi là một công cụ tìm kiếm, và do đó chỉ lập chỉ mục dữ liệu số đã có sẵn công khai. Khi tải xuống từ các nguồn bên ngoài này, chúng tôi khuyên bạn nên kiểm tra luật pháp tại khu vực của bạn về những gì được phép. Chúng tôi không chịu trách nhiệm về nội dung được lưu trữ bởi các trang web khác."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "Nếu bạn có khiếu nại về những gì bạn thấy ở đây, cách tốt nhất là liên hệ với trang web gốc. Chúng tôi thường xuyên cập nhật thay đổi của họ vào cơ sở dữ liệu của chúng tôi. Nếu bạn thực sự nghĩ rằng bạn có một khiếu nại DMCA hợp lệ mà chúng tôi nên phản hồi, vui lòng điền vào <a %(a_copyright)s>mẫu khiếu nại DMCA / Bản quyền</a>. Chúng tôi coi trọng khiếu nại của bạn và sẽ phản hồi sớm nhất có thể."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "Tôi ghét cách bạn điều hành dự án này!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "Chúng tôi cũng muốn nhắc nhở mọi người rằng tất cả mã và dữ liệu của chúng tôi hoàn toàn là mã nguồn mở. Điều này là duy nhất đối với các dự án như của chúng tôi — chúng tôi không biết bất kỳ dự án nào khác có danh mục khổng lồ tương tự mà cũng hoàn toàn là mã nguồn mở. Chúng tôi rất hoan nghênh bất kỳ ai nghĩ rằng chúng tôi điều hành dự án kém để lấy mã và dữ liệu của chúng tôi và thiết lập thư viện bóng của riêng họ! Chúng tôi không nói điều này vì ác ý hay gì đó — chúng tôi thực sự nghĩ rằng điều này sẽ tuyệt vời vì nó sẽ nâng cao tiêu chuẩn cho mọi người và bảo tồn tốt hơn di sản của nhân loại."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "Bạn có sử dụng công cụ giám sát thời gian hoạt động không?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Vui lòng xem <a %(a_href)s>dự án tuyệt vời này</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Anna là ai?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Bạn là Anna!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Những cuốn sách yêu thích của bạn là gì?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Dưới đây là một số cuốn sách có ý nghĩa đặc biệt đối với thế giới thư viện bóng và bảo tồn kỹ thuật số:"
@@ -5093,16 +5095,16 @@ msgstr "Tìm kiếm"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 #, fuzzy
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 msgid "layout.index.header.nav.beta"
 msgstr "bản beta"
 
@@ -5207,8 +5209,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Nếu bạn điều hành một bộ xử lý thanh toán ẩn danh có rủi ro cao, vui lòng liên hệ với chúng tôi. Chúng tôi cũng đang tìm kiếm những người muốn đặt quảng cáo nhỏ tinh tế. Tất cả số tiền thu được sẽ được sử dụng cho các nỗ lực bảo tồn của chúng tôi."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 msgid "layout.index.header.nav.annasblog"
 msgstr "Blog của Anna ↗"
 
@@ -5635,7 +5637,7 @@ msgstr "Nếu bạn đang sử dụng VPN, kết nối internet chia sẻ hoặc
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 msgid "layout.index.header.title"
 msgstr "Anna's Archive"
 
@@ -5727,7 +5729,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Dữ liệu số"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 msgid "common.search.placeholder"
 msgstr "Tên, tác giả, DOI, ISBN, MD5,.…"
 
@@ -6032,117 +6034,117 @@ msgstr "Tình nguyện nhẹ"
 msgid "page.volunteering.section.light.text1"
 msgstr "Nếu bạn có vài giờ rảnh rỗi, bạn có thể giúp đỡ theo nhiều cách. Hãy chắc chắn tham gia <a %(a_telegram)s>phòng chat tình nguyện trên Telegram</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Như một biểu hiện của sự cảm kích, chúng tôi thường tặng 6 tháng “Thủ Thư May Mắn” cho các cột mốc cơ bản, và nhiều hơn cho công việc tình nguyện liên tục. Tất cả các cột mốc đều yêu cầu công việc chất lượng cao — công việc cẩu thả gây hại cho chúng tôi nhiều hơn là giúp đỡ và chúng tôi sẽ từ chối nó. Vui lòng <a %(a_contact)s>email cho chúng tôi</a> khi bạn đạt được một cột mốc."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Nhiệm vụ"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Cột mốc"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Cải thiện dữ liệu số bằng cách <a %(a_metadata)s>liên kết</a> với Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s liên kết của các bản ghi bạn đã cải thiện."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Dịch</a> trang web."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Dịch hoàn toàn một ngôn ngữ (nếu nó chưa gần hoàn thành)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Lan truyền thông tin về Anna’s Archive trên mạng xã hội và các diễn đàn trực tuyến, bằng cách giới thiệu sách hoặc danh sách trên AA, hoặc trả lời câu hỏi."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s liên kết hoặc ảnh chụp màn hình."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Cải thiện trang Wikipedia cho Anna’s Archive bằng ngôn ngữ của bạn. Bao gồm thông tin từ trang Wikipedia của AA bằng các ngôn ngữ khác, và từ trang web và blog của chúng tôi. Thêm các tham chiếu đến AA trên các trang liên quan khác."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Liên kết đến lịch sử chỉnh sửa cho thấy bạn đã đóng góp đáng kể."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Đáp ứng yêu cầu sách (hoặc bài báo, v.v.) trên các diễn đàn Z-Library hoặc Library Genesis. Chúng tôi không có hệ thống yêu cầu sách riêng, nhưng chúng tôi phản chiếu các thư viện đó, vì vậy làm cho chúng tốt hơn cũng làm cho Anna’s Archive tốt hơn."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s liên kết hoặc ảnh chụp màn hình của các yêu cầu bạn đã hoàn thành."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Các nhiệm vụ nhỏ được đăng trên <a %(a_telegram)s>phòng chat tình nguyện trên Telegram</a> của chúng tôi. Thường là cho thành viên, đôi khi là cho các khoản tiền thưởng nhỏ."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Tùy thuộc vào nhiệm vụ."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Tiền thưởng"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Chúng tôi luôn tìm kiếm những người có kỹ năng lập trình vững chắc hoặc an ninh mạng tấn công để tham gia. Bạn có thể đóng góp quan trọng trong việc bảo tồn di sản của nhân loại."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Như một lời cảm ơn, chúng tôi tặng thành viên cho những đóng góp vững chắc. Như một lời cảm ơn lớn, chúng tôi tặng tiền thưởng cho những nhiệm vụ đặc biệt quan trọng và khó khăn. Điều này không nên được xem như là một công việc thay thế, nhưng nó là một động lực thêm và có thể giúp bù đắp chi phí phát sinh."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Hầu hết mã của chúng tôi là mã nguồn mở, và chúng tôi cũng sẽ yêu cầu mã của bạn là mã nguồn mở khi trao thưởng. Có một số ngoại lệ mà chúng tôi có thể thảo luận trên cơ sở từng cá nhân."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Tiền thưởng được trao cho người đầu tiên hoàn thành nhiệm vụ. Hãy thoải mái bình luận trên vé tiền thưởng để cho người khác biết bạn đang làm gì, để người khác có thể tạm dừng hoặc liên hệ với bạn để hợp tác. Nhưng hãy lưu ý rằng người khác vẫn có thể làm việc trên đó và cố gắng vượt qua bạn. Tuy nhiên, chúng tôi không trao thưởng cho công việc cẩu thả. Nếu có hai bài nộp chất lượng cao được thực hiện gần nhau (trong vòng một hoặc hai ngày), chúng tôi có thể chọn trao thưởng cho cả hai, theo quyết định của chúng tôi, ví dụ 100%% cho bài nộp đầu tiên và 50%% cho bài nộp thứ hai (tổng cộng là 150%%)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "Đối với các tiền thưởng lớn hơn (đặc biệt là tiền thưởng scraping), vui lòng liên hệ với chúng tôi khi bạn đã hoàn thành khoảng 5%% của nó, và bạn tự tin rằng phương pháp của bạn sẽ mở rộng đến cột mốc đầy đủ. Bạn sẽ phải chia sẻ phương pháp của mình với chúng tôi để chúng tôi có thể đưa ra phản hồi. Ngoài ra, bằng cách này chúng tôi có thể quyết định phải làm gì nếu có nhiều người đang tiến gần đến một tiền thưởng, chẳng hạn như có thể trao thưởng cho nhiều người, khuyến khích mọi người hợp tác, v.v."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "CẢNH BÁO: các nhiệm vụ có tiền thưởng cao <span %(bold)s>khó khăn</span> — có thể bạn nên bắt đầu với những nhiệm vụ dễ hơn."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Đi đến <a %(a_gitlab)s>danh sách vấn đề trên Gitlab</a> của chúng tôi và sắp xếp theo “Ưu tiên nhãn”. Điều này cho thấy thứ tự các nhiệm vụ mà chúng tôi quan tâm. Các nhiệm vụ không có tiền thưởng rõ ràng vẫn đủ điều kiện để nhận thành viên, đặc biệt là những nhiệm vụ được đánh dấu “Đã chấp nhận” và “Yêu thích của Anna”. Bạn có thể muốn bắt đầu với một “Dự án khởi đầu”."
@@ -6169,161 +6171,162 @@ msgstr "Lưu Trữ của Anna cần sự giúp đỡ của bạn!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Nhiều người cố gắng hạ gục chúng tôi, nhưng chúng tôi chống trả."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 msgid "layout.index.header.nav.donate"
 msgstr "Quyên góp"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "Tiết kiệm kiến thức nhân loại: Món quà tuyệt vời dịp nghỉ lễ!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 msgid "layout.index.header.banner.surprise"
 msgstr "Gây ngạc nhiên cho người thân yêu, cung cấp cho họ một tài khoản có tư cách thành viên."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 #, fuzzy
 msgid "layout.index.header.banner.mirrors"
 msgstr "Để tăng cường khả năng phục hồi của Lưu Trữ Anna, chúng tôi đang tìm kiếm các tình nguyện viên để chạy các bản sao lưu."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "Quà tặng này Valentine hoàn hảo!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Chúng tôi có một phương thức quyên góp mới: %(method_name)s. Vui lòng cân nhắc %(donate_link_open_tag)sviệc quyên góp</a> — việc điều hành trang web này không hề rẻ và khoản đóng góp của bạn thực sự tạo nên sự khác biệt. Cảm ơn bạn rất nhiều."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Chúng tôi đang tổ chức một chiến dịch gây quỹ để <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">hỗ trợ</a> lưu giữ bộ truyện tranh lớn nhất tren một thư viện chìm trên thế giới. Cảm ơn vì sự hỗ trợ của bạn! <a href=\"/donate\">Quyên góp.</a> Nếu bạn không thể quyên góp, hãy cân nhắc ủng hộ chúng tôi bằng cách giới thiệu với bạn bè của bạn và theo dõi chúng tôi trên <a href=\"https://www.reddit.com/r /Annas_Archive\">Reddit</a> hoặc <a href=\"https://t.me/annasarchiveorg\">Telegram</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 msgid "layout.index.header.recent_downloads"
 msgstr "Tải xuống gần đây:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-msgid "layout.index.header.nav.search"
-msgstr "Tìm kiếm"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
-msgid "layout.index.header.nav.faq"
-msgstr "Những câu hỏi thường gặp"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Cải thiện dữ liệu số"
+msgid "layout.index.header.nav.search"
+msgstr "Tìm kiếm"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
-#, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "Tình nguyện & Tiền thưởng"
+msgid "layout.index.header.nav.faq"
+msgstr "Những câu hỏi thường gặp"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
-msgid "layout.index.header.nav.datasets"
-msgstr "Bộ dữ liệu"
+#, fuzzy
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Cải thiện dữ liệu số"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
-msgid "layout.index.header.nav.torrents"
-msgstr "Tải về qua Torrent"
+#, fuzzy
+msgid "layout.index.header.nav.volunteering"
+msgstr "Tình nguyện & Tiền thưởng"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
-#, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "Khám phá Mã"
+msgid "layout.index.header.nav.datasets"
+msgstr "Bộ dữ liệu"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
-msgid "layout.index.header.nav.llm_data"
-msgstr "Dữ liệu cho mô hình ngôn ngữ lớn"
+msgid "layout.index.header.nav.torrents"
+msgstr "Tải về qua Torrent"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "Khám phá Mã"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+msgid "layout.index.header.nav.llm_data"
+msgstr "Dữ liệu cho mô hình ngôn ngữ lớn"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 msgid "layout.index.header.nav.home"
 msgstr "Trang Chủ"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Phần mềm của Anna ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 msgid "layout.index.header.nav.translate"
 msgstr "Phiên dịch ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 msgid "layout.index.header.nav.login_register"
 msgstr "Đăng nhập / Đăng ký"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 msgid "layout.index.header.nav.account"
 msgstr "Tài khoản"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 msgid "layout.index.footer.list1.header"
 msgstr "Kho lưu trữ của Anna"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 msgid "layout.index.footer.list2.header"
 msgstr "Liên hệ"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / khiếu nại bản quyền"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "Nâng cao"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 msgid "layout.index.header.nav.security"
 msgstr "Bảo mật"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 msgid "layout.index.footer.list3.header"
 msgstr "Dự phòng"
 

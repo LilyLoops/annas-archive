@@ -144,17 +144,17 @@ msgstr "Kaydiyaha Macluumaadka Quruxda Badan"
 msgid "common.membership.tier_name.5"
 msgstr "Kaydiyaha Cajiibka ah"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 #, fuzzy
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) guud ahaan"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 #, fuzzy
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 #, fuzzy
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s guud ahaan"
@@ -325,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "nala soo xiriir"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,13 +372,13 @@ msgid "page.donate.payment.select_method"
 msgstr "Fadlan dooro habka lacag bixinta."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Kaarka Hadiyadda Amazon"
@@ -391,7 +391,7 @@ msgstr "Kaarka bangiga (adigoo isticmaalaya app)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Crypto %(bitcoin_icon)s"
@@ -423,8 +423,8 @@ msgstr "Kaarka deynta/kaarka debit/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
@@ -470,498 +470,500 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(ku meel gaar ah lama heli karo)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "Iyada oo la isticmaalayo crypto waxaad ku deeqi kartaa BTC, ETH, XMR, iyo SOL. Isticmaal ikhtiyaarkan haddii aad horey u taqaanid cryptocurrency."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Iyada oo la isticmaalayo crypto waxaad ku deeqi kartaa BTC, ETH, XMR, iyo in ka badan."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Haddii aad isticmaalayso crypto markii ugu horreysay, waxaan kugula talineynaa inaad isticmaasho %(options)s si aad u iibsato oo ugu deeqdo Bitcoin (cryptocurrency-ga asalka ah ee ugu isticmaalka badan)."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "Si aad ugu deeqdo adoo isticmaalaya PayPal US, waxaan isticmaaleynaa PayPal Crypto, taasoo noo ogolaaneysa inaan qarsoodi ahaano. Waxaan kuugu mahadcelineynaa inaad waqti u qaadatid inaad barato sida loo deeqo adoo isticmaalaya habkan, maadaama ay naga caawineyso si weyn."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Ku deeq adoo isticmaalaya PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Ku deeq adoo isticmaalaya Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Haddii aad haysato Cash App, tani waa habka ugu fudud ee lagu deeqi karo!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Fadlan ogow in Cash App laga yaabo inay kugu soo rogto kharash %(fee)s haddii macaamilkaagu ka hooseeyo %(amount)s. Haddii uu yahay %(amount)s ama ka badan, waa bilaash!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Ku deeq adoo isticmaalaya Revolut."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Haddii aad haysato Revolut, tani waa habka ugu fudud ee lagu deeqi karo!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Ku deeq kaarka deynta ama kaarka debit-ka."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay iyo Apple Pay sidoo kale way shaqeyn karaan."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Fadlan ogow in deeqaha yaryar ay kharashka kaarka deynta baabi'in karaan %(discount)s%% qiimo dhimista, sidaas darteed waxaan kugula talineynaa rukumo dheer."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Fadlan ogow in deeqaha yaryar ay kharashkoodu sarreeyo, sidaas darteed waxaan kugula talineynaa rukumo dheer."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Iyada oo loo marayo Binance, waxaad ku iibsan kartaa Bitcoin kaarka deynta/debit-ka ama akoonka bangiga, ka dibna Bitcoin-kaas noogu deeq. Sidan ayaanu ku sii ahaan karnaa ammaan iyo qarsoodi marka aan aqbaleyno deeqdaada."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance waxaa laga heli karaa ku dhawaad dhammaan waddamada, waxayna taageertaa inta badan bangiyada iyo kaararka deynta/debit-ka. Tani waa talo bixintayada ugu weyn hadda. Waxaan kuugu mahadcelineynaa inaad waqti u qaadatay inaad barato sida loo deeqo adoo isticmaalaya habkan, maadaama ay naga caawinayso si weyn."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Ku deeq adoo isticmaalaya akoonkaaga caadiga ah ee PayPal."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Ku deeq adoo isticmaalaya Alipay ama WeChat. Waxaad ku dooran kartaa kuwaan bogga xiga."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Ku deeq adoo isticmaalaya kaarka deynta/debit-ka, PayPal, ama Venmo. Waxaad ku dooran kartaa kuwaan bogga xiga."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Ku deeq adoo isticmaalaya kaarka hadiyadda Amazon."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Fadlan ogow inaan u baahanahay inaan u wareejino qaddar ay aqbalaan iibiyeyaashayada (ugu yaraan %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>MUHIIM:</strong> Waxaan taageernaa kaliya Amazon.com, ma ahan bogagga kale ee Amazon. Tusaale ahaan, .de, .co.uk, .ca, MA taageersana."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Habkan wuxuu isticmaalaa bixiye cryptocurrency ah sida beddelka dhexe. Tani waxay noqon kartaa mid jahawareer leh, sidaas darteed fadlan isticmaal habkan kaliya haddii hababka kale ee lacag bixinta aysan shaqeyn. Sidoo kale ma shaqeyso dhammaan waddamada."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Ku deeq adigoo isticmaalaya kaarka deynta/kaarka deynta, adoo maraya app-ka Alipay (aad u fudud in la dejiyo)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Ku rakib app-ka Alipay"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "Ku rakib app-ka Alipay ee <a %(a_app_store)s>Apple App Store</a> ama <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Isdiiwaangeli adigoo isticmaalaya lambarkaaga telefoonka."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Faahfaahin kale oo shakhsi ah looma baahna."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Kudar kaarka bangiga"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "La taageeray: Visa, MasterCard, JCB, Diners Club iyo Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Eeg <a %(a_alipay)s>haggaankan</a> wixii macluumaad dheeraad ah."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Ma taageeri karno kaararka deynta/debit-ka si toos ah, sababtoo ah bangiyadu ma doonayaan inay nala shaqeeyaan. ☹ Si kastaba ha ahaatee, waxaa jira dhowr siyaabood oo aad u isticmaali karto kaararka deynta/debit-ka, adoo isticmaalaya hababka kale ee lacag bixinta:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Noogu soo dir kaararka hadiyadda Amazon.com adoo isticmaalaya kaarkaaga deynta/debit-ka."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay waxay taageertaa kaararka deynta/debit-ka caalamiga ah. Eeg <a %(a_alipay)s>haggaagan</a> wixii macluumaad dheeraad ah."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) waxay taageertaa kaararka deynta/debit-ka caalamiga ah. Barnaamijka WeChat, tag “Aniga => Adeegyada => Boorsada => Ku dar Kaar”. Haddii aadan arkin taas, ku shaqee adoo isticmaalaya “Aniga => Dejinta => Guud => Qalabka => Weixin Pay => Ku shaqee”."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "Waxaad iibsan kartaa crypto adoo isticmaalaya kaararka deynta/debit-ka."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Adeegyada crypto express"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Adeegyada express waa ku habboon yihiin, laakiin waxay qaadaan kharashyo sare."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Waxaad isticmaali kartaa tan halkii aad ka isticmaali lahayd is-weydaarsi crypto haddii aad raadinayso inaad si degdeg ah u sameyso deeq weyn oo aadan ka xumaan kharashka $5-10."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Hubi inaad dirto qadarka saxda ah ee crypto ee lagu muujiyay bogga deeqaha, maaha qadarka $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Haddii kale kharashka ayaa laga jarayaa mana awoodno inaan si toos ah u habayno xubinnimadaada."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(ugu yaraan: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(ugu yaraan: %(minimum)s iyadoo ku xiran waddanka, ma jiro xaqiijin macaamilka ugu horreeya)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(ugu yaraan: %(minimum)s, ma jiro xaqiijin macaamilka ugu horreeya)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(ugu yaraan: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(ugu yaraan: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(ugu yaraan: %(minimum)s, ma jiro xaqiijin macaamilka ugu horreeya)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Haddii macluumaadkan midkood uu duugoobo, fadlan noogu soo dir email si aad noogu soo sheegto."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "Kaararka deynta, kaararka debit-ka, Apple Pay, iyo Google Pay, waxaan u isticmaalnaa “Iibso Kafeega” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). Nidaamkooda, hal “kafeega” wuxuu u dhigmaa $5, sidaas darteed deeqdaada waxaa loo wareejin doonaa qaddarka ugu dhow ee 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "Dooro inta aad rabto inaad rukumo."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 bil"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 bil"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 bil"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 bil"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 bil"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 bil"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 bil"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>ka dib <span %(span_discount)s></span> qiimo dhimista</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "Habka lacag bixintaani wuxuu u baahan yahay ugu yaraan %(amount)s. Fadlan dooro mudda kale ama habka lacag bixinta."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Deeq"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "Habka lacag bixintaani wuxuu oggol yahay ugu badnaan %(amount)s. Fadlan dooro mudda kale ama habka lacag bixinta."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "Si aad xubin u noqoto, fadlan <a %(a_login)s>Gal ama Isdiiwaangeli</a>. Waad ku mahadsan tahay taageeradaada!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "Dooro lacagtaada crypto ee aad doorbideyso:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(qadarka ugu yar ee ugu hooseeya)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(isticmaal markaad dirayso Ethereum ka socda Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(digniin: qadarka ugu yar ee sareeya)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "Guji badhanka deeqda si aad u xaqiijiso deeqdan."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "Deeq <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "Waxaad weli joojin kartaa deeqda inta lagu jiro bixinta."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ Waxaa lagu wareejinayaa bogga deeqda…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ Waxbaa qaldamay. Fadlan dib u cusbooneysii bogga oo isku day mar kale."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / bishii"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "muddo 1 bil ah"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "muddo 3 bilood ah"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "muddo 6 bilood ah"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "muddo 12 bilood ah"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "muddo 24 bilood ah"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "muddo 48 bilood ah"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "muddo 96 bilood ah"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "muddo 1 bil ah “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "muddo 3 bilood ah “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "muddo 6 bilood ah “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "muddo 12 bilood ah “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "muddo 24 bilood ah “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "muddo 48 bilood ah “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "muddo 96 bilood ah “%(tier_name)s”"
@@ -1081,9 +1083,9 @@ msgstr "<strong>Ogeysiis muhiim ah:</strong> Qiimaha crypto wuxuu isbedeli karaa
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "Deeqdan waa dhacday. Fadlan jooji oo samee mid cusub."
@@ -1162,9 +1164,9 @@ msgstr "Eeg hagaha tallaabo-tallaabo ee hoose."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "Xaaladda:"
@@ -1175,9 +1177,9 @@ msgstr "Xaaladda:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Sugaya xaqiijin (cusbooneysii bogga si aad u hubiso)…"
@@ -1188,9 +1190,9 @@ msgstr "Sugaya xaqiijin (cusbooneysii bogga si aad u hubiso)…"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Sugaya wareejin (cusbooneysii bogga si aad u hubiso)…"
@@ -1201,9 +1203,9 @@ msgstr "Sugaya wareejin (cusbooneysii bogga si aad u hubiso)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "Waqtiga haray:"
@@ -1214,9 +1216,9 @@ msgstr "Waqtiga haray:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(waxaad dooneysaa inaad joojiso oo aad abuurto deeq cusub)"
@@ -1227,9 +1229,9 @@ msgstr "(waxaad dooneysaa inaad joojiso oo aad abuurto deeq cusub)"
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "Si aad dib ugu bilowdo wakhtiga, si fudud u samee deeq cusub."
@@ -1241,15 +1243,15 @@ msgstr "Si aad dib ugu bilowdo wakhtiga, si fudud u samee deeq cusub."
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "Cusbooneysii xaaladda"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "Haddii aad la kulanto wax dhibaato ah, fadlan nala soo xiriir %(email)s oo ku dar macluumaad intii suurtagal ah (sida sawirrada shaashadda)."
@@ -1448,16 +1450,16 @@ msgstr "Tusaale:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "Ogsoonow in magaca akoonka ama sawirka uu u ekaan karo mid aan caadi ahayn. Ha ka welwelin! Akoonadan waxaa maamula lamaanayaashayada deeqaha. Akoonadayada lama jabsanin."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 #, fuzzy
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Tilmaamaha Alipay"
@@ -1474,147 +1476,147 @@ msgstr "<span %(span_circle)s>1</span>Ku deeq Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "Ku deeq wadarta guud ee %(total)s adoo isticmaalaya <a %(a_account)s>akoontigan Alipay</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Nasiib darro, bogga Alipay inta badan waxaa laga heli karaa oo kaliya <strong>Shiinaha dhulka weyn</strong>. Waxaa laga yaabaa inaad u baahato inaad si ku meel gaar ah u joojiso VPN-kaaga, ama isticmaal VPN u socda Shiinaha dhulka weyn (ama Hong Kong mararka qaar sidoo kale wuu shaqeeyaa)."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Samee deeq (iskaan koodhka QR ama riix batoonka)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Fur <a %(a_href)s>bogga deeqaha ee QR-code</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Iskaan koodhka QR adigoo isticmaalaya app-ka Alipay, ama riix batoonka si aad u furto app-ka Alipay."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Fadlan samir; boggu wuxuu qaadan karaa waqti inuu soo dejiyo maadaama uu ku yaal Shiinaha."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Tilmaamaha WeChat"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Ku deeq WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Ku deeq wadarta guud ee %(total)s adoo isticmaalaya <a %(a_account)s>akoontigan WeChat</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Tilmaamaha Pix"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Ku deeq Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "Ku deeq wadarta guud ee %(total)s adoo isticmaalaya <a %(a_account)s>akoontigan Pix</a>"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Nala soo dir rasiidka"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "U dir rasiidka ama shaashadda cinwaankaaga xaqiijinta shaqsiga. Ha isticmaalin cinwaankan emailka ah ee deeqdaada PayPal."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "U dir rasiidka ama shaashadda sawirka cinwaankaaga xaqiijinta shakhsiyeed:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "Haddii heerka sarrifka crypto uu is beddelay inta lagu guda jiray macaamilka, hubi inaad ku darto rasiidka muujinaya heerka sarrifka asalka ah. Aad ayaan ugu mahadcelineynaa inaad dhibaatada u martay isticmaalka crypto, waxay naga caawisaa badan!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "Markaad soo dirtay rasiidkaaga, guji badhankan, si Anna ay gacanta ugu eegto (tani waxay qaadan kartaa maalmo):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "Haa, waxaan soo diray rasiidkayga"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ Mahadsanid deeqdaada! Anna waxay gacanta ku hawlgelin doontaa xubinnimadaada maalmo gudahood."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ Waxbaa qaldamay. Fadlan dib u cusbooneysii bogga oo isku day mar kale."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Tilmaamaha tallaabo-tallaabo"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Qaar ka mid ah tallaabooyinka waxay xusayaan boorsooyinka crypto, laakiin ha walwalin, uma baahnid inaad wax ka barato crypto tan."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Geli emailkaaga."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Xulo habka lacag bixinta."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Mar kale xulo habka lacag bixinta."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Xulo “Boorsada is-maamul”."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Guji “Waxaan xaqiijinayaa lahaanshaha”."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "Waxaad heli doontaa rasiidh email ah. Fadlan noo soo dir, waxaana xaqiijin doonaa deeqdaada sida ugu dhaqsaha badan."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Haddii aad khalad ka gashay lacag bixinta, ma bixin karno lacag celin, laakiin waxaan isku dayi doonaa inaan saxno."
@@ -1768,9 +1770,9 @@ msgstr "La xiriir Anna %(email)s haddii aad xiisaynayso inaad xubinimadaada u be
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 #, fuzzy
 msgid "page.contact.title"
 msgstr "Emailka xiriirka"
@@ -1782,25 +1784,25 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Waxaad isku dari kartaa xubinnimooyin badan (degsiyada degdega ah ee 24-kii saacba waa la isku dari doonaa)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 #, fuzzy
 msgid "layout.index.header.nav.public_profile"
 msgstr "Profile-ka dadweynaha"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 #, fuzzy
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Faylasha la soo dejiyey"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 #, fuzzy
 msgid "layout.index.header.nav.my_donations"
 msgstr "Deeqaha aan bixiyey"
@@ -2839,7 +2841,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Soo dejin degdeg ah</strong> Noqo <a %(a_membership)s>xubin</a> si aad u taageerto kaydinta muddada dheer ee buugaagta, waraaqaha, iyo in ka badan. Si aan ugu muujino mahadcelin taageeradaada, waxaad heli doontaa soo dejin degdeg ah. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Haddii aad ku deeqdo bishan, waxaad heli doontaa <strong>laba jeer</strong> tirada soo dejinta degdega ah."
@@ -2867,7 +2869,7 @@ msgid "page.md5.box.download.option"
 msgstr "Ikhtiyaarka #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Soo jeedi saaxiib, adiga iyo saaxiibkaagaba waxaad helaysaan %(percentage)s%% gunno soo dejin degdeg ah!"
@@ -2879,11 +2881,11 @@ msgstr "Soo jeedi saaxiib, adiga iyo saaxiibkaagaba waxaad helaysaan %(percentag
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "Wax dheeri ah baro…"
@@ -3822,7 +3824,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Waxaan sidoo kale kobcinnaa ururintayada iyada oo la adeegsanayo isha Metadata oo keliya, taas oo aan ku waafajin karno faylasha, tusaale ahaan, annagoo adeegsanayna lambarada ISBN ama meelaha kale. Hoos waxaa ku yaal dulmar ku saabsan kuwaas. Mar kale, qaar ka mid ah ishaas waa si buuxda u furan yihiin, halka kuwa kalena aan ka soo ururinno."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4993,327 +4995,327 @@ msgstr "<div %(div_question)s>Ma kor u qaadi karaa xubinnimadayda ama ma heli ka
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>Ma haysaa habab kale oo lacag bixin ah?</div> Hadda ma hayno. Dad badan ma doonayaan in kaydad sidan oo kale ah ay jiraan, sidaas darteed waa inaan taxaddarnaa. Haddii aad naga caawin karto inaan si ammaan ah u dejino habab kale (oo ku habboon) oo lacag bixin ah, fadlan nala soo xiriir %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 #, fuzzy
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>Maxaad ku bixisaa deeqaha?</div> 100%% waxaa loo isticmaalaa ilaalinta iyo ka dhigista aqoonta iyo dhaqanka adduunka mid la heli karo. Hadda waxaan inta badan ku bixinnaa server-yada, kaydinta, iyo bandwidth. Lacag ma tagto xubnaha kooxda shaqsi ahaan."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 #, fuzzy
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>Ma sameyn karaa deeq weyn?</div> Taasi waxay noqon lahayd wax cajiib ah! Wixii deeqo ah oo ka badan dhowr kun oo doolar, fadlan si toos ah nala soo xiriir %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>Ma sameyn karaa deeq anigoo aan xubin noqon?</div> Dabcan. Waxaan aqbalnaa deeqo kasta oo lacag ah cinwaankan Monero (XMR): %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 #, fuzzy
 msgid "page.faq.upload.title"
 msgstr "Sideen u soo geliyaa buugaag cusub?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 #, fuzzy
 msgid "page.upload.text1"
 msgstr "Hadda, waxaan kugula talineynaa inaad buugaag cusub ku soo geliso faracyada Library Genesis. Halkan waxaa ku yaal <a %(a_guide)s>hagis ku habboon</a>. Ogow in labada farac ee aan ku index-gareyno boggan ay ka soo jiidaan isla nidaamka soo gelinta."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 #, fuzzy
 msgid "common.libgen.email"
 msgstr "Haddii cinwaanka email-kaaga uusan ka shaqeynaynin forums-ka Libgen, waxaan kugula talineynaa inaad isticmaasho <a %(a_mail)s>Proton Mail</a> (bilaash). Waxaad sidoo kale <a %(a_manual)s>si gacanta ah u codsan kartaa</a> in akoonkaaga la hawlgeliyo."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "Ogsoonow in mhut.org ay xannibto qaar ka mid ah IP ranges, sidaas darteed waxaa laga yaabaa inaad u baahato VPN."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "Sidoo kale, waxaad ku soo gelin kartaa Z-Library <a %(a_upload)s>halkan</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "Si aad u soo geliso waraaqaha tacliinta, fadlan sidoo kale (marka laga reebo Library Genesis) ku soo geli <a %(a_stc_nexus)s>STC Nexus</a>. Waxay yihiin kaydka ugu fiican ee waraaqaha cusub. Weli ma aanan isku darin, laakiin mar uun waan sameyn doonaa. Waxaad isticmaali kartaa <a %(a_telegram)s>bot-kooda soo gelinta ee Telegram</a>, ama la xiriir cinwaanka ku qoran farriintooda la dhejiyay haddii aad haysato faylal badan oo aad sidan ku soo gelin karto."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 #, fuzzy
 msgid "page.upload.large.text"
 msgstr "Wixii soo gelin weyn (in ka badan 10,000 faylal) oo aan la aqbalin Libgen ama Z-Library, fadlan nala soo xiriir %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 #, fuzzy
 msgid "page.faq.request.title"
 msgstr "Sideen u codsadaa buugaag?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 #, fuzzy
 msgid "page.request.cannot_accomodate"
 msgstr "Waqtigan xaadirka ah, ma awoodno inaan buugaag codsiyo."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 #, fuzzy
 msgid "page.request.forums"
 msgstr "Fadlan codsiyadaaga ka samee Z-Library ama Libgen forums."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 #, fuzzy
 msgid "page.request.dont_email"
 msgstr "Ha noo soo dirin codsiyada buugaaga email ahaan."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "Ma ururisaa metadata?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "Haa, waan ururinaa."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "Waxaan soo dejiyey 1984 oo uu qoray George Orwell, booliisku ma ii iman doonaan guriga?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "Ha ka welwelin, waxaa jira dad badan oo ka soo dejinaya boggaga aan ku xirinay, waana arrin aad u dhif ah in dhibaato lagala kulmo. Si kastaba ha ahaatee, si aad u badbaado waxaan kugula talineynaa inaad isticmaasho VPN (lacag leh), ama <a %(a_tor)s>Tor</a> (bilaash)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "Sideen u keydiyaa dejinta raadinta?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "Xulo dejinta aad jeceshahay, ka dhig sanduuqa raadinta mid madhan, guji “Raadi”, ka dibna calaamadee bogga adoo isticmaalaya astaanta calaamadaynta ee biraawsarkaaga."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "Ma haysaa app mobile ah?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "Ma hayno app mobile rasmi ah, laakiin waxaad ku rakibi kartaa boggan sida app."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> Guji menu-ka saddexda dhibic ee ku yaal geeska sare midig, ka dibna dooro “Ku dar Shaashadda Guriga”."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> Guji badhanka “Wadaag” ee hoose, ka dibna dooro “Ku dar Shaashadda Guriga”."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "Ma haysaa API?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "Waxaan haynaa hal API JSON oo xasilloon oo loogu talagalay xubnaha, si loo helo URL degdeg ah oo soo dejin ah: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (dukumentiga ku jira JSON laftiisa)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "Isticmaalka kale, sida ku celcelinta dhammaan faylasha aan hayno, dhisidda raadinta gaarka ah, iyo wixii la mid ah, waxaan kugula talineynaa <a %(a_generate)s>soo saarista</a> ama <a %(a_download)s>soo dejinta</a> xogta ElasticSearch iyo MariaDB. Xogta saafiga ah waxaa si gacanta ah loo baari karaa <a %(a_explore)s>iyadoo loo marayo faylasha JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "Liiska torrents-ka saafiga ah waxaa sidoo kale lagu soo dejisan karaa <a %(a_torrents)s>JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "Torrents FAQ"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "Waxaan jeclaan lahaa inaan caawiyo seed-ka, laakiin ma haysto meel badan oo disk ah."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "Isticmaal <a %(a_list)s>abuuraha liiska torrent</a> si aad u abuurto liis torrents ah oo aad ugu baahan tahay inaad seed-ka sameyso, iyadoo la raacayo xaddidaadahaaga kaydinta."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "Torrents-ka waa kuwo aad u gaabis ah; ma ka soo dejisan karaa xogta si toos ah adinka?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "Haa, eeg <a %(a_llm)s>bogga xogta LLM</a>."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "Ma soo dejisan karaa qayb ka mid ah faylasha, sida kaliya luqad ama mowduuc gaar ah?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "Inta badan torrents-ka waxay si toos ah u haystaan faylasha, taasoo la micno ah inaad ku amri karto macaamiisha torrent-ka inay soo dejistaan faylasha loo baahan yahay oo kaliya. Si aad u go'aamiso faylasha aad soo dejisanayso, waxaad <a %(a_generate)s>soo saari kartaa</a> xogtayada metadata, ama <a %(a_download)s>soo dejisan kartaa</a> xogtayada ElasticSearch iyo MariaDB. Nasiib darro, tiro ka mid ah ururinta torrent-ka waxay ku jiraan faylasha .zip ama .tar ee xididka, taasoo la micno ah inaad u baahan tahay inaad soo dejiso torrent-ka oo dhan ka hor intaadan dooran faylasha gaarka ah."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "Sidee ayaad u maareysaan nuqulada ku jira torrents-ka?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "Waxaan isku daynaa inaan yareyno nuqulada ama is-dulsaarka u dhexeeya torrents-ka liiskan, laakiin mar walba lama gaari karo, waxayna si weyn ugu xiran tahay siyaasadaha maktabadaha ilaha. Maktabadaha soo saara torrents-kooda, ma awoodno inaan wax ka qabanno. Torrents-ka ay soo saarto Kaydka Anna, waxaan ku nuqul tirnaa oo kaliya MD5 hash, taasoo la micno ah in noocyada kala duwan ee isla buugga aysan noqon kuwo la nuqul tiray."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "Ma heli karaa liiska torrent-ka sida JSON?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "Haa."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "Ma arko PDFs ama EPUBs ku jira torrents-ka, kaliya faylasha binary? Maxaan sameeyaa?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "Kuwani dhab ahaantii waa PDFs iyo EPUBs, kaliya ma laha kordhin badan oo ku jira torrents-kayaga. Waxaa jira laba meelood oo aad ka heli karto metadata ee faylasha torrent-ka, oo ay ku jiraan noocyada faylasha/kordhinta:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. Ururinta kasta ama sii deynta waxay leedahay metadata u gaar ah. Tusaale ahaan, <a %(a_libgen_nonfic)s>Libgen.rs torrents</a> waxay leeyihiin xogta metadata ee ku habboon oo lagu martigeliyay bogga Libgen.rs. Waxaan caadi ahaan ku xirinaynaa ilaha metadata ee ku habboon bogga <a %(a_datasets)s>dataset-ka ururinta kasta</a>."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Waxaan kugula talineynaa <a %(a_generate)s>soo saarista</a> ama <a %(a_download)s>soo dejinta</a> xogtayada ElasticSearch iyo MariaDB. Kuwani waxay ka kooban yihiin khariidad u ah diiwaan kasta oo ku jira Kaydka Anna ilaa faylasha torrent-ka ee ku habboon (haddii la heli karo), hoosta \"torrent_paths\" ee ElasticSearch JSON."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "Ma haysaan barnaamijka mas'uuliyadda daah-furnaanta?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "Waxaan soo dhaweyneynaa cilmi-baarayaasha amniga inay baaraan nuglaanta nidaamyadayada. Waxaan nahay taageerayaal weyn oo daah-furnaanta mas'uuliyadda. Nala soo xiriir <a %(a_contact)s>halkan</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "Waqtigan xaadirka ah ma awoodno inaan bixino abaalmarinno bug bounties, marka laga reebo nuglaanta leh <a %(a_link)s>suurtagalnimada inay khatar galiyaan qarsoodidayada</a>, kuwaas oo aan ku bixino abaalmarinno u dhexeeya $10k-50k. Waxaan jeclaan lahayn inaan ballaarino baaxadda bug bounties mustaqbalka! Fadlan ogow in weerarada injineernimada bulshada aysan ku jirin baaxadda."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "Haddii aad xiisaynayso amniga weerarka, oo aad rabto inaad ka caawiso kaydinta aqoonta iyo dhaqanka adduunka, hubi inaad nala soo xiriirto. Waxaa jira siyaabo badan oo aad ku caawin karto."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "Ma jiraan ilo dheeraad ah oo ku saabsan Kaydka Anna?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Blog-ka Anna</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Subreddit</a> — cusboonaysiinta joogtada ah"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Software-ka Anna</a> — koodhka furan ee aan isticmaalno"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Tarjumida Software-ka Anna</a> — nidaamkayaga tarjumaadda"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Datasets</a> — ku saabsan xogta"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — boggagyo kale duwan"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Wikipedia</a> — wax badan oo naga saabsan (fadlan ka caawi inaad cusboonaysiiso boggan, ama mid u samee luqaddaada!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "Sideen u soo sheegi karaa xadgudubka xuquuqda daabacaadda?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "Halkan kuma martigelinno waxyaabo xuquuqda daabacaadda leh. Waxaan nahay mashiinka raadinta, sidaas darteed waxaan kaliya diiwaangelinnaa xogta metadata ee horeyba loo heli karo. Markaad ka soo dejisaneyso ilo dibadda ah, waxaan kugula talineynaa inaad hubiso sharcigaaga deegaanka ee ku saabsan waxa la oggol yahay. Annagu mas'uul kama nihin waxyaabaha ay martigeliyaan kuwa kale."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "Haddii aad cabasho ka qabto waxa aad halkan ku aragto, waxa ugu fiican ee aad sameyn karto waa inaad la xiriirto bogga asalka ah. Waxaan si joogto ah u soo jiidnaa isbeddeladooda xogtayada. Haddii aad dhab ahaan u maleyneyso inaad leedahay cabasho DMCA oo sax ah oo aan ka jawaabi karno, fadlan buuxi <a %(a_copyright)s>foomka cabashada DMCA / Xuquuqda daabacaadda</a>. Waxaan si dhab ah u qaadnaa cabashooyinkaaga, waxaana kuugu soo jawaabi doonaa sida ugu dhaqsaha badan."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "Waan necbahay sida aad mashruucan u wadaan!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "Waxaan sidoo kale rabnaa inaan xusuusino qof walba in dhammaan koodhka iyo xogtayadu ay si buuxda u furan yihiin. Tani waa mid gaar ah oo ku saabsan mashaariicda sida tan oo kale — ma naqaan mashruuc kale oo leh buuggaag aad u ballaaran oo sidoo kale si buuxda u furan. Waxaan si weyn u soo dhaweyneynaa qof kasta oo u maleynaya inaan si xun u maamulno mashruucan inuu qaato koodhka iyo xogtayada oo uu sameeyo maktabad hoos u socota! Ma nihin kuwa ka hadlaya xanaaq ama wax kale — si dhab ah ayaan u maleyneynaa in tani ay noqon doonto wax cajiib ah maadaama ay kor u qaadi doonto heerka qof walba, oo ay si fiican u ilaalin doonto dhaxalka aadanaha."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "Ma leedahay kormeeraha waqtiga shaqada?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Fadlan eeg <a %(a_href)s>mashruucan cajiibka ah</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Anna waa kuma?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Adiga ayaa Anna ah!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Waa maxay buugaagta aad ugu jeceshahay?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Halkan waxaa ku yaal buugaag leh muhiimad gaar ah oo ku saabsan adduunka maktabadaha hooska iyo ilaalinta dijitaalka:"
@@ -5351,16 +5353,16 @@ msgstr "Raadi"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 #, fuzzy
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 #, fuzzy
 msgid "layout.index.header.nav.beta"
 msgstr "beta"
@@ -5466,8 +5468,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Haddii aad maamusho habka lacag-bixinta qarsoodiga ah ee khatarta sare leh, fadlan nala soo xiriir. Waxaan sidoo kale raadinaynaa dad doonaya inay dhigaan xayaysiimo yar oo dhadhan leh. Dhammaan dakhliga wuxuu u socdaa dadaalladayada kaydinta."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 #, fuzzy
 msgid "layout.index.header.nav.annasblog"
 msgstr "Blog-ka Anna ↗"
@@ -5899,7 +5901,7 @@ msgstr "Haddii aad isticmaaleyso VPN, isku xirka internet-ka wadaaga, ama ISP-ga
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 #, fuzzy
 msgid "layout.index.header.title"
 msgstr "Kaydka Anna"
@@ -5996,7 +5998,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Metadata"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 #, fuzzy
 msgid "common.search.placeholder"
 msgstr "Cinwaan, qoraa, DOI, ISBN, MD5, …"
@@ -6353,117 +6355,117 @@ msgstr "Tabaruc fudud"
 msgid "page.volunteering.section.light.text1"
 msgstr "Haddii aad haysato dhowr saacadood oo firaaqo ah, waxaad naga caawin kartaa siyaabo kala duwan. Hubi inaad ku biirto <a %(a_telegram)s>sheekada tabaruceyaasha ee Telegram</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Sida calaamad mahadnaq ah, waxaan badiyaa bixinaa 6 bilood oo ah “Maktabada Nasiibka Leh” oo loogu talagalay heerarka aasaasiga ah, iyo wax ka badan shaqada tabaruca ee joogtada ah. Dhammaan heerarka waxay u baahan yihiin shaqo tayo sare leh — shaqo aan habboonayn waxay naga dhibaysaa intii ay naga caawin lahayd waxaana diidi doonaa. Fadlan <a %(a_contact)s>email noogu soo dir</a> markaad gaarto heer."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Hawl"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Heer"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Hagaaji metadata adiga oo <a %(a_metadata)s>ku xidhaya</a> Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s xiriirro diiwaanno aad hagaajisay."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Turjumida</a> bogga internetka."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Si buuxda u turjun luqad (haddii aysan horey u dhoweyn dhamaystirka.)"
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Faafinta warka Anna’s Archive ee baraha bulshada iyo golayaasha internetka, adiga oo ku talinaya buug ama liisyo AA, ama ka jawaabaya su’aalaha."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s xiriirro ama shaashado."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Hagaaji bogga Wikipedia ee Anna’s Archive ee luqaddaada. Ku dar macluumaad ka yimid bogga Wikipedia ee AA ee luqadaha kale, iyo boggayaga iyo baloogga. Ku dar tixraacyo AA boggaga kale ee khuseeya."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Xiriir taariikhda wax ka beddelka oo muujinaya inaad sameysay wax ku biirid muhiim ah."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Buuxinta codsiyada buug (ama warqad, iwm) ee golayaasha Z-Library ama Library Genesis. Annagu ma lihin nidaam codsi buug gaar ah, laakiin waxaan ka soo minguurinaa maktabadahaas, sidaas darteed ka dhigista iyaga mid wanaagsan waxay sidoo kale ka dhigeysaa Anna’s Archive mid wanaagsan."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s xiriirro ama shaashado codsiyo aad fulisay."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Hawlaha yar yar ee lagu soo dhajiyay <a %(a_telegram)s>sheekada tabaruceyaasha ee Telegram</a>. Badanaa xubinimo, mararka qaarna abaalmarinno yar yar."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Waxay ku xiran tahay hawsha."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Abaalmarin"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Waxaan had iyo jeer raadinaynaa dad leh xirfado adag oo barnaamijyo ama amniga weerarka si ay uga qaybqaataan. Waxaad samayn kartaa wax weyn oo lagu ilaaliyo dhaxalka aadanaha."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Si aan uga mahadcelinno, waxaan bixinnaa xubinnimo loogu talagalay waxqabadyo adag. Si aan uga mahadcelinno si weyn, waxaan bixinnaa abaalmarinno lacageed oo loogu talagalay hawlaha muhiimka ah iyo kuwa adag. Tani waa in aan loo arkin beddelka shaqo, laakiin waa dhiirigelin dheeraad ah oo kaa caawin karta kharashyada soo gala."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Inta badan koodhkeennu waa il furan, waxaana kaa codsan doonaa inaad sidoo kale koodhkaaga ka dhigto mid furan marka la abaalmarinayo abaalmarinta. Waxaa jira waxyaabo ka reeban oo aan ka wada hadli karno si gaar ah."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Abaalmarinnada waxaa la siiyaa qofka ugu horreeya ee dhammaystira hawsha. Si xor ah uga faallo abaalmarin si aad dadka kale u ogeysiiso inaad wax ka qabanayso, si kuwa kale ay u joojiyaan ama ay kula soo xiriiraan si ay ula shaqeeyaan. Laakiin ogow in dadka kale ay weli xor u yihiin inay ka shaqeeyaan oo ay isku dayaan inay kaa horreeyaan. Si kastaba ha ahaatee, ma siinno abaalmarinno shaqo aan hagaagsanayn. Haddii laba soo gudbin oo tayo sare leh la sameeyo waqti isku dhow (maalin ama laba gudahood), waxaan dooran karnaa inaan abaalmarinno siino labadaba, sida aan go'aansanno, tusaale ahaan 100%% oo loogu talagalay soo gudbinta koowaad iyo 50%% oo loogu talagalay soo gudbinta labaad (sidaas darteed 150%% guud ahaan)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "Abaalmarinnada waaweyn (gaar ahaan kuwa xoqidda), fadlan nala soo xiriir marka aad dhammaystirto ~5%% oo ka mid ah, oo aad ku kalsoon tahay in habkaagu uu gaari doono heerka buuxa. Waa inaad nala wadaagtaa habkaaga si aan u siino jawaab celin. Sidoo kale, sidan ayaan ku go'aansan karnaa waxa la sameeyo haddii ay jiraan dad badan oo ku dhow abaalmarinta, sida in la siiyo dad badan, in la dhiirrigeliyo dadka inay wada shaqeeyaan, iwm."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "DIGNIIN: hawlaha abaalmarinta sare leh waa <span %(bold)s>adag</span> — waxaa laga yaabaa inay caqli gal tahay inaad ku bilowdo kuwa fudud."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Tag <a %(a_gitlab)s>liiska arrimaha Gitlab</a> oo kala sooc “Label priority”. Tani waxay muujinaysaa qiyaastii nidaamka hawlaha aan danaynayno. Hawlaha aan lahayn abaalmarinno cad ayaa weli u qalma xubinnimo, gaar ahaan kuwa lagu calaamadeeyay “La aqbalay” iyo “Midka ugu jecel Anna”. Waxaa laga yaabaa inaad ku bilowdo “Mashruuc bilow ah”."
@@ -6493,184 +6495,185 @@ msgstr "Kaydka Anna wuxuu u baahan yahay caawimadaada!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Qaar badan ayaa isku dayaya inay naga soo ridaan, laakiin waan iska celinaa."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 #, fuzzy
 msgid "layout.index.header.nav.donate"
 msgstr "Ku deeq"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "Badbaadinta aqoonta aadanaha: hadiyad weyn oo fasax ah!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.surprise"
 msgstr "Layaabso qof aad jeceshahay, siiso akoon leh xubinnimo."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 #, fuzzy
 msgid "layout.index.header.banner.mirrors"
 msgstr "Si loo kordhiyo adkeysiga Kaydka Anna, waxaan raadinaynaa mutadawiciin si ay u maamulaan daydo."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "Hadiyadda ugu fiican ee Valentine!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 #, fuzzy
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Waxaan haynaa hab cusub oo deeq bixinta ah: %(method_name)s. Fadlan tixgeli %(donate_link_open_tag)sdeeq bixinta</a> — ma ahan mid raqiis ah in la maamulo boggan, deeqdaaduna runtii waxay sameyneysaa farqi weyn. Aad baad u mahadsantahay."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 #, fuzzy
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Waxaan wadnaa olole lacag ururin ah si aan <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">ugu taageerno</a> maktabadda ugu weyn ee hooska majaajilada adduunka. Waad ku mahadsantahay taageeradaada! <a href=\"/donate\">Deeq bixinta.</a> Haddii aadan wax bixin karin, tixgeli inaad na taageerto adigoo u sheegaya saaxiibbadaada, oo nagu raac <a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a>, ama <a href=\"https://t.me/annasarchiveorg\">Telegram</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 #, fuzzy
 msgid "layout.index.header.recent_downloads"
 msgstr "Soo dejinadii ugu dambeeyay:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-#, fuzzy
-msgid "layout.index.header.nav.search"
-msgstr "Raadi"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
 #, fuzzy
-msgid "layout.index.header.nav.faq"
-msgstr "Su'aalaha Inta Badan La Isweydiiyo"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Hagaaji xogta"
+msgid "layout.index.header.nav.search"
+msgstr "Raadi"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
 #, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "Tabarucaad & Abaalmarino"
+msgid "layout.index.header.nav.faq"
+msgstr "Su'aalaha Inta Badan La Isweydiiyo"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
 #, fuzzy
-msgid "layout.index.header.nav.datasets"
-msgstr "Datasets"
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Hagaaji xogta"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
 #, fuzzy
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrents"
+msgid "layout.index.header.nav.volunteering"
+msgstr "Tabarucaad & Abaalmarino"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
 #, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "Koodhka Baadhaha"
+msgid "layout.index.header.nav.datasets"
+msgstr "Datasets"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
 #, fuzzy
-msgid "layout.index.header.nav.llm_data"
-msgstr "Xogta LLM"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrents"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "Koodhka Baadhaha"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+#, fuzzy
+msgid "layout.index.header.nav.llm_data"
+msgstr "Xogta LLM"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 #, fuzzy
 msgid "layout.index.header.nav.home"
 msgstr "Bogga Hore"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 #, fuzzy
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Software-ka Anna ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 #, fuzzy
 msgid "layout.index.header.nav.translate"
 msgstr "Tarjum ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 #, fuzzy
 msgid "layout.index.header.nav.login_register"
 msgstr "Gal / Diiwaangeli"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 #, fuzzy
 msgid "layout.index.header.nav.account"
 msgstr "Akoonka"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 #, fuzzy
 msgid "layout.index.footer.list1.header"
 msgstr "Kaydka Anna"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 #, fuzzy
 msgid "layout.index.footer.list2.header"
 msgstr "La soco"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 #, fuzzy
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / sheegashooyinka xuquuqda daabacaadda"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "Horumar"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 #, fuzzy
 msgid "layout.index.header.nav.security"
 msgstr "Amniga"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 #, fuzzy
 msgid "layout.index.footer.list3.header"
 msgstr "Beddelka"

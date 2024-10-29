@@ -144,17 +144,17 @@ msgstr "Bailitheoir Sonraí Sármhaith"
 msgid "common.membership.tier_name.5"
 msgstr "Cartlannaí Iontach"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 #, fuzzy
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) iomlán"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 #, fuzzy
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 #, fuzzy
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s iomlán"
@@ -325,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "déan teagmháil linn"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,13 +372,13 @@ msgid "page.donate.payment.select_method"
 msgstr "Roghnaigh modh íocaíochta le do thoil."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "Cárta Bronntanais Amazon"
@@ -391,7 +391,7 @@ msgstr "Cárta bainc (ag úsáid aip)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "Crypto %(bitcoin_icon)s"
@@ -423,8 +423,8 @@ msgstr "Cárta creidmheasa/dochair/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "Alipay"
@@ -470,498 +470,500 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "Binance"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "Alipay 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(gan a bheith ar fáil go sealadach)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "Le crypto is féidir leat síntiús a thabhairt ag úsáid BTC, ETH, XMR, agus SOL. Úsáid an rogha seo má tá tú eolach cheana féin ar cryptocurrency."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "Le crypto is féidir leat síntiús a thabhairt ag úsáid BTC, ETH, XMR, agus níos mó."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "Má tá tú ag úsáid cripteo den chéad uair, molaimid %(options)s a úsáid chun Bitcoin (an bhun-airgeadra cripteo is mó a úsáidtear) a cheannach agus a bhronnadh."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "Binance"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "Chun síntiús a dhéanamh ag úsáid PayPal US, táimid chun PayPal Crypto a úsáid, rud a ligeann dúinn fanacht gan ainm. Táimid buíoch díot as an am a ghlacadh chun foghlaim conas síntiús a dhéanamh ag úsáid an mhodha seo, mar cabhraíonn sé go mór linn."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "Tabhair síntiús ag úsáid PayPal."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Déan síntiús ag úsáid Cash App."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "Má tá Cash App agat, is é seo an bealach is éasca chun síntiús a thabhairt!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "Tabhair faoi deara go bhféadfadh Cash App táille %(fee)s a ghearradh ar idirbhearta faoi bhun %(amount)s. Maidir le %(amount)s nó níos mó, tá sé saor in aisce!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Déan síntiús ag úsáid Revolut."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "Má tá Revolut agat, is é seo an bealach is éasca le síntiús a dhéanamh!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "Tabhair síntiús le cárta creidmheasa nó dochair."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "D’fhéadfadh Google Pay agus Apple Pay oibriú freisin."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "Tabhair faoi deara go bhféadfadh na táillí cárta creidmheasa na lascainí %(discount)s%% a bhaint amach do shíntiúis bheaga, mar sin molaimid síntiúis níos faide."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "Tabhair faoi deara go bhfuil na táillí ard do shíntiúis bheaga, mar sin molaimid síntiúis níos faide."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Le Binance, ceannaíonn tú Bitcoin le cárta creidmheasa/dochair nó cuntas bainc, agus ansin tugann tú an Bitcoin sin dúinn mar shíntiús. Ar an mbealach sin is féidir linn fanacht slán agus gan ainm agus do shíntiús á ghlacadh againn."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Tá Binance ar fáil i mbeagnach gach tír, agus tacaíonn sé le formhór na mbanc agus na gcártaí creidmheasa/dochair. Is é seo ár bpríomh-mholadh faoi láthair. Táimid buíoch díot as an am a thógáil chun foghlaim conas síntiús a thabhairt ag úsáid an mhodha seo, mar cabhraíonn sé go mór linn."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "Déan síntiús ag úsáid do ghnáthchuntas PayPal."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Tabhair síntiús ag úsáid Alipay nó WeChat. Is féidir leat rogha a dhéanamh idir iad seo ar an gcéad leathanach eile."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "Tabhair síntiús ag úsáid cárta creidmheasa/dochair, PayPal, nó Venmo. Is féidir leat rogha a dhéanamh idir iad seo ar an gcéad leathanach eile."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Tabhair síntiús ag úsáid cárta bronntanais Amazon."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "Tabhair faoi deara go gcaithfimid suimeanna a shlánú go dtí na suimeanna a ghlacann ár ndíoltóirí athdhíola (íosmhéid %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>TÁBHACHTACH:</strong> Ní thacaímid ach le Amazon.com, ní le suíomhanna eile Amazon. Mar shampla, ní thacaítear le .de, .co.uk, .ca."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "Úsáideann an modh seo soláthraí cript-airgeadra mar chomhshó idirmheánach. D’fhéadfadh sé seo a bheith beagán mearbhall, mar sin bain úsáid as an modh seo amháin mura n-oibríonn modhanna íocaíochta eile. Ní oibríonn sé i ngach tír freisin."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Déan síntiús ag úsáid cárta creidmheasa/dochair, tríd an aip Alipay (an-éasca le socrú)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Suiteáil aip Alipay"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "Suiteáil an aip Alipay ón <a %(a_app_store)s>Apple App Store</a> nó <a %(a_play_store)s>Google Play Store</a>."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "Cláraigh ag úsáid d’uimhir gutháin."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "Ní gá tuilleadh sonraí pearsanta."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Cuir cárta bainc leis"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Tacaítear le: Visa, MasterCard, JCB, Diners Club agus Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Féach <a %(a_alipay)s>an treoir seo</a> le haghaidh tuilleadh eolais."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Ní féidir linn cártaí creidmheasa/dochair a thacú go díreach, mar ní theastaíonn ó bhainc oibriú linn. ☹ Mar sin féin, tá roinnt bealaí ann chun cártaí creidmheasa/dochair a úsáid ar aon nós, ag baint úsáide as modhanna íocaíochta eile:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Seol cártaí bronntanais Amazon.com chugainn ag úsáid do chárta creidmheasa/dochair."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Tacaíonn Alipay le cártaí creidmheasa/dochair idirnáisiúnta. Féach <a %(a_alipay)s>an treoir seo</a> le haghaidh tuilleadh eolais."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "Tacaíonn WeChat (Weixin Pay) le cártaí creidmheasa/dochair idirnáisiúnta. Sa aip WeChat, téigh go “Me => Services => Wallet => Add a Card”. Mura bhfeiceann tú é sin, cuir ar chumas é ag úsáid “Me => Settings => General => Tools => Weixin Pay => Enable”."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "Is féidir leat crypto a cheannach ag úsáid cártaí creidmheasa/dochair."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Seirbhísí tapa crypto"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "Tá seirbhísí tapa áisiúil, ach gearrann siad táillí níos airde."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "Is féidir leat é seo a úsáid in ionad malartán crypto má tá tú ag iarraidh síntiús níos mó a dhéanamh go tapa agus mura miste leat táille de $5-10."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "Bí cinnte an méid cruinn crypto a thaispeántar ar an leathanach síntiúis a sheoladh, ní an méid i $USD."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Seachas sin, bainfear an táille agus ní féidir linn do bhallraíocht a phróiseáil go huathoibríoch."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(íosmhéid: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(íosmhéid: %(minimum)s ag brath ar an tír, gan fíorú don chéad idirbheart)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(íosmhéid: %(minimum)s, gan fíorú don chéad idirbheart)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(íosmhéid: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(íosmhéid: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(íosmhéid: %(minimum)s, gan fíorú don chéad idirbheart)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Má tá aon cheann den eolas seo as dáta, seol ríomhphost chugainn le cur in iúl dúinn."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "Maidir le cártaí creidmheasa, cártaí dochair, Apple Pay, agus Google Pay, úsáidimid “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). Ina gcóras, is ionann “caife” amháin agus $5, mar sin déanfar do dheonachán a shlánú go dtí an iolra is gaire de 5."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "Roghnaigh cé chomh fada is mian leat síntiús a ghlacadh."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 mhí"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 mhí"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 mhí"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 mhí"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 mhí"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 mí"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 mí"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>tar éis <span %(span_discount)s></span> lascainí</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "Éilíonn an modh íocaíochta seo íosmhéid de %(amount)s. Roghnaigh fad nó modh íocaíochta eile le do thoil."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Deonaigh"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "Ní cheadaíonn an modh íocaíochta seo ach uasmhéid de %(amount)s. Roghnaigh fad nó modh íocaíochta eile le do thoil."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "Chun bheith i do bhall, <a %(a_login)s>Logáil isteach nó Cláraigh</a> le do thoil. Go raibh maith agat as do thacaíocht!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "Roghnaigh do bhonn airgeadra cripte is fearr leat:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(an méid is ísle)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(úsáid nuair a sheolann Ethereum ó Coinbase)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(foláireamh: méid ard íosta)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "Cliceáil an cnaipe deonacháin chun an deonachán seo a dhearbhú."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "Deonaigh <span %(span_cost)s></span> <span %(span_label)s></span>"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "Is féidir leat an deonachán a chealú fós le linn an tseiceáil amach."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ Ag atreorú chuig an leathanach deonacháin…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ Tharla earráid. Athlódáil an leathanach agus déan iarracht arís."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / mí"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "ar feadh 1 mhí"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "ar feadh 3 mhí"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "ar feadh 6 mhí"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "ar feadh 12 mhí"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "ar feadh 24 mhí"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "ar feadh 48 mhí"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "ar feadh 96 mhí"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "ar feadh 1 mhí “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "ar feadh 3 mhí “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "ar feadh 6 mhí “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "ar feadh 12 mhí “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "ar feadh 24 mhí “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "ar feadh 48 mhí “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "ar feadh 96 mhí “%(tier_name)s”"
@@ -1081,9 +1083,9 @@ msgstr "<strong>Nóta tábhachtach:</strong> Is féidir le praghsanna crypto ath
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "Tá an síntiús seo imithe in éag. Cealaigh é le do thoil agus cruthaigh ceann nua."
@@ -1162,9 +1164,9 @@ msgstr "Féach an treoir céim ar chéim thíos."
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "Stádas:"
@@ -1175,9 +1177,9 @@ msgstr "Stádas:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "Ag fanacht le deimhniú (athnuaigh an leathanach chun seiceáil a dhéanamh)…"
@@ -1188,9 +1190,9 @@ msgstr "Ag fanacht le deimhniú (athnuaigh an leathanach chun seiceáil a dhéan
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "Ag fanacht le haistriú (athnuaigh an leathanach chun seiceáil)…"
@@ -1201,9 +1203,9 @@ msgstr "Ag fanacht le haistriú (athnuaigh an leathanach chun seiceáil)…"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "Am fágtha:"
@@ -1214,9 +1216,9 @@ msgstr "Am fágtha:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(b'fhéidir gur mhaith leat cealú agus síntiús nua a chruthú)"
@@ -1227,9 +1229,9 @@ msgstr "(b'fhéidir gur mhaith leat cealú agus síntiús nua a chruthú)"
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "Chun an t-amadóir a athshocrú, cruthaigh síntiús nua go simplí."
@@ -1241,15 +1243,15 @@ msgstr "Chun an t-amadóir a athshocrú, cruthaigh síntiús nua go simplí."
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "Stádas a nuashonrú"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "Má thagann tú ar aon fhadhbanna, déan teagmháil linn ag %(email)s agus cuir an oiread eolais agus is féidir san áireamh (cosúil le seatanna scáileáin)."
@@ -1448,16 +1450,16 @@ msgstr "Sampla:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "Tabhair faoi deara go bhféadfadh cuma aisteach a bheith ar ainm nó pictiúr an chuntais. Níl gá a bheith buartha! Tá na cuntais seo á mbainistiú ag ár gcomhpháirtithe deonacha. Níor sáraíodh ár gcuntais."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 #, fuzzy
 msgid "page.donation.payment.alipay.top_header"
 msgstr "Treoracha Alipay"
@@ -1474,147 +1476,147 @@ msgstr "<span %(span_circle)s>1</span>Deonaigh ar Alipay"
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "Deonaigh an méid iomlán de %(total)s ag úsáid <a %(a_account)s>an cuntas Alipay seo</a>"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "Ar an drochuair, is minic nach bhfuil an leathanach Alipay inrochtana ach ó <strong>mórthír na Síne</strong>. B’fhéidir go mbeidh ort do VPN a dhíchumasú go sealadach, nó VPN a úsáid go mórthír na Síne (nó oibríonn Hong Cong uaireanta freisin)."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>Déan síntiús (scan QR cód nó brúigh cnaipe)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "Oscail an <a %(a_href)s>leathanach síntiúis QR-cód</a>."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Scan an cód QR leis an aip Alipay, nó brúigh an cnaipe chun an aip Alipay a oscailt."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "Bí foighneach le do thoil; d’fhéadfadh sé go dtógfadh sé tamall ar an leathanach luchtú mar tá sé sa tSín."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "Treoracha WeChat"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>Deonaigh ar WeChat"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "Deonaigh an méid iomlán de %(total)s ag úsáid <a %(a_account)s>an cuntas WeChat seo</a>"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "Treoracha Pix"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>Deonaigh ar Pix"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "Deonaigh an méid iomlán de %(total)s ag úsáid <a %(a_account)s>an cuntas Pix seo"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>Seol an admháil chugainn"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "Seol admháil nó scáileánchur chuig do sheoladh fíoraithe pearsanta. Ná húsáid an seoladh ríomhphoist seo le haghaidh do dheonachán PayPal."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "Seol admháil nó scáileán chuig do sheoladh fíoraithe pearsanta:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "Má d’athraigh an ráta malairte crypto le linn na hidirbhearta, bí cinnte an admháil a thaispeánann an ráta malairte bunaidh a chur san áireamh. Is mór againn go mór an trioblóid a ghlacann tú le crypto a úsáid, cabhraíonn sé go mór linn!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "Nuair a bheidh tú tar éis do admháil a sheoladh, cliceáil an cnaipe seo, ionas gur féidir le Anna athbhreithniú láimhe a dhéanamh air (d’fhéadfadh sé seo cúpla lá a thógáil):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "Sea, sheol mé mo admháil"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ Go raibh maith agat as do dheonú! Cuirfidh Anna do bhallraíocht i ngníomh de láimh laistigh de chúpla lá."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ Chuaigh rud éigin mícheart. Athlódáil an leathanach agus déan iarracht arís."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "Treoir céim ar chéim"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "Luaitear sparán cripte i gcuid de na céimeanna, ach ná bí buartha, ní gá duit aon rud a fhoghlaim faoi chripe."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. Cuir isteach do r-phost."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. Roghnaigh do mhodh íocaíochta."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. Roghnaigh do mhodh íocaíochta arís."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. Roghnaigh sparán “Féin-óstáilte”."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. Cliceáil “Deimhním úinéireacht”."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. Ba cheart duit admháil r-phoist a fháil. Seol chugainn é sin, le do thoil, agus deimhneoimid do dheonú chomh luath agus is féidir."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "Má rinne tú botún le linn na híocaíochta, ní féidir linn aisíocaíochtaí a dhéanamh, ach déanfaimid iarracht é a chur ina cheart."
@@ -1768,9 +1770,9 @@ msgstr "Déan teagmháil le hAnna ag %(email)s má tá suim agat do bhallraíoch
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 #, fuzzy
 msgid "page.contact.title"
 msgstr "Ríomhphost teagmhála"
@@ -1782,25 +1784,25 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "Is féidir leat ilbhallraíochtaí a chomhcheangal (cuirfear íoslódálacha tapa in aghaidh 24 uair an chloig le chéile)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 #, fuzzy
 msgid "layout.index.header.nav.public_profile"
 msgstr "Próifíl phoiblí"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 #, fuzzy
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "Comhaid íoslódáilte"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 #, fuzzy
 msgid "layout.index.header.nav.my_donations"
 msgstr "Mo dheonacháin"
@@ -2839,7 +2841,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 Íoslódálacha tapa</strong> Bí i do <a %(a_membership)s>bhall</a> chun tacú le caomhnú fadtéarmach leabhar, páipéir, agus níos mó. Mar chomhartha buíochais as do thacaíocht, gheobhaidh tú íoslódálacha tapa. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Má dheonaíonn tú an mhí seo, gheobhaidh tú <strong>dhá oiread</strong> an líon íoslódálacha tapa."
@@ -2867,7 +2869,7 @@ msgid "page.md5.box.download.option"
 msgstr "Rogha #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "Tabhair cuireadh do chara, agus gheobhaidh tú féin agus do chara %(percentage)s%% breise íoslódálacha tapa!"
@@ -2879,11 +2881,11 @@ msgstr "Tabhair cuireadh do chara, agus gheobhaidh tú féin agus do chara %(per
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "Foghlaim níos mó…"
@@ -3828,7 +3830,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "Enrímid ár mbailiúchán freisin le foinsí meiteashonraí amháin, ar féidir linn a mheaitseáil le comhaid, m.sh. ag úsáid uimhreacha ISBN nó réimsí eile. Thíos tá forbhreathnú ar na foinsí sin. Arís, tá cuid de na foinsí seo go hiomlán oscailte, agus i gcásanna eile caithfimid iad a scrabhadh."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4999,327 +5001,327 @@ msgstr "<div %(div_question)s>An féidir liom mo bhallraíocht a uasghrádú nó
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>An bhfuil modhanna íocaíochta eile agat?</div> Faoi láthair níl. Ní theastaíonn ó go leor daoine go mbeadh cartlanna mar seo ann, mar sin caithfimid a bheith cúramach. Má tá tú in ann cabhrú linn modhanna íocaíochta eile (níos áisiúla) a chur ar bun go sábháilte, déan teagmháil linn ag %(email)s."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 #, fuzzy
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>Cad a chaitheann sibh bronntanais air?</div> Téann 100%% chun eolas agus cultúr an domhain a chaomhnú agus a chur ar fáil. Faoi láthair, caithimid é den chuid is mó ar fhreastalaithe, stóráil, agus bandaleithead. Ní théann aon airgead chuig aon bhall foirne go pearsanta."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 #, fuzzy
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>An féidir liom síntiús mór a dhéanamh?</div> Bheadh sé sin iontach! Le haghaidh síntiúis os cionn cúpla míle dollar, déan teagmháil linn go díreach ag %(email)s."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>An féidir liom síntiús a dhéanamh gan a bheith i mo bhall?</div> Cinnte. Glacaimid le síntiúis d'aon mhéid ag an seoladh Monero (XMR) seo: %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 #, fuzzy
 msgid "page.faq.upload.title"
 msgstr "Conas a uaslódálaim leabhair nua?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 #, fuzzy
 msgid "page.upload.text1"
 msgstr "Faoi láthair, molaimid leabhair nua a uaslódáil chuig forcanna Library Genesis. Seo <a %(a_guide)s>treoir áisiúil</a>. Tabhair faoi deara go dtarraingíonn an dá fhorc a ndéanaimid innéacsú orthu ar an suíomh gréasáin seo ón gcóras uaslódála céanna."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 #, fuzzy
 msgid "common.libgen.email"
 msgstr "Má tá do sheoladh ríomhphoist neamhbhailí ar na fóraim Libgen, molaimid <a %(a_mail)s>Proton Mail</a> (saor in aisce) a úsáid. Is féidir leat freisin <a %(a_manual)s>iarratas a dhéanamh de láimh</a> chun do chuntas a ghníomhachtú."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "Tabhair faoi deara go gcuireann mhut.org bac ar raonta IP áirithe, mar sin b'fhéidir go mbeidh gá le VPN."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "Mar mhalairt air sin, is féidir leat iad a uaslódáil chuig Z-Library <a %(a_upload)s>anseo</a>."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "Chun páipéir acadúla a uaslódáil, uaslódáil chuig <a %(a_stc_nexus)s>STC Nexus</a> chomh maith (chomh maith le Library Genesis). Is iad an leabharlann scáth is fearr le haghaidh páipéir nua. Níl muid tar éis iad a chomhtháthú fós, ach beidh muid ag pointe éigin. Is féidir leat a <a %(a_telegram)s>bot uaslódála ar Telegram</a> a úsáid, nó déan teagmháil leis an seoladh atá liostaithe ina dteachtaireacht bioráin má tá an iomarca comhad agat le híoslódáil ar an mbealach seo."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 #, fuzzy
 msgid "page.upload.large.text"
 msgstr "Le haghaidh uaslódálacha móra (os cionn 10,000 comhad) nach nglacann Libgen nó Z-Library leo, déan teagmháil linn ag %(a_email)s."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 #, fuzzy
 msgid "page.faq.request.title"
 msgstr "Conas a iarraim leabhair?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 #, fuzzy
 msgid "page.request.cannot_accomodate"
 msgstr "Faoi láthair, ní féidir linn freastal ar iarratais leabhar."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 #, fuzzy
 msgid "page.request.forums"
 msgstr "Déan do chuid iarratais ar fhóraim Z-Library nó Libgen."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 #, fuzzy
 msgid "page.request.dont_email"
 msgstr "Ná seol ríomhphost chugainn le d'iarratais leabhar."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "An mbailíonn sibh meiteashonraí?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "Bailímid cinnte."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "Íoslódáil mé 1984 le George Orwell, an dtiocfaidh na póilíní chuig mo dhoras?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "Ná bí buartha ró-mhór, tá go leor daoine ag íoslódáil ó shuíomhanna gréasáin a nascann muid leo, agus is annamh a bhíonn trioblóid ann. Mar sin féin, chun fanacht sábháilte molaimid VPN (íoctha) a úsáid, nó <a %(a_tor)s>Tor</a> (saor in aisce)."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "Conas a shábhálaim mo shocruithe cuardaigh?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "Roghnaigh na socruithe is maith leat, coinnigh an bosca cuardaigh folamh, cliceáil “Cuardaigh”, agus ansin cuir an leathanach le do leabharmharcanna ag úsáid gné leabharmharcála do bhrabhsálaí."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "An bhfuil aip soghluaiste agaibh?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "Níl aip oifigiúil soghluaiste againn, ach is féidir leat an suíomh gréasáin seo a shuiteáil mar aip."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> Cliceáil ar an roghchlár trí phonc sa chúinne ar dheis ar barr, agus roghnaigh “Cuir leis an Scáileán Baile”."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> Cliceáil ar an gcnaipe “Comhroinn” ag an mbun, agus roghnaigh “Cuir leis an Scáileán Baile”."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "An bhfuil API agat?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "Tá API JSON cobhsaí amháin againn do bhaill, chun URL íoslódála tapa a fháil: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (doiciméadú laistigh den JSON féin)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "Le haghaidh cásanna úsáide eile, mar shampla dul tríd ár gcomhaid go léir, cuardach saincheaptha a thógáil, agus mar sin de, molaimid <a %(a_generate)s>giniúint</a> nó <a %(a_download)s>íoslódáil</a> ár mbunachair sonraí ElasticSearch agus MariaDB. Is féidir na sonraí amh a iniúchadh de láimh <a %(a_explore)s>trí chomhaid JSON</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "Is féidir ár liosta amh de thorrents a íoslódáil mar <a %(a_torrents)s>JSON</a> freisin."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "CCanna Torrents"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "Ba mhaith liom cabhrú le síolú, ach níl mórán spáis diosca agam."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "Úsáid an <a %(a_list)s>gineadóir liosta torrent</a> chun liosta de thorrents a ghiniúint atá is mó a bhfuil gá le torrentáil, laistigh de theorainneacha do spáis stórála."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "Tá na torrents ró-mhall; an féidir liom na sonraí a íoslódáil go díreach uait?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "Sea, féach ar an leathanach <a %(a_llm)s>sonraí LLM</a>."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "An féidir liom fo-thacar de na comhaid a íoslódáil, cosúil le teanga nó ábhar ar leith amháin?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "Tá na comhaid go díreach i bhformhór na dtorrents, rud a chiallaíonn gur féidir leat treoir a thabhairt do chliaint torrent na comhaid riachtanacha amháin a íoslódáil. Chun a chinneadh cé na comhaid atá le híoslódáil, is féidir leat ár meiteashonraí a <a %(a_generate)s>ghiniúint</a>, nó ár mbunachair sonraí ElasticSearch agus MariaDB a <a %(a_download)s>íoslódáil</a>. Ar an drochuair, tá roinnt bailiúchán torrent ina bhfuil comhaid .zip nó .tar ag an bhfréamh, agus sa chás sin ní mór duit an torrent iomlán a íoslódáil sula mbeidh tú in ann comhaid aonair a roghnú."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "Conas a láimhseálann tú dúbailtí sna torrents?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "Déanaimid iarracht an dúbailt nó an forluí a choinneáil ar a laghad idir na torrents sa liosta seo, ach ní féidir é seo a bhaint amach i gcónaí, agus braitheann sé go mór ar bheartais na leabharlanna foinse. Maidir le leabharlanna a chuireann a dtorrents féin amach, tá sé as ár lámha. Maidir le torrents a scaoiltear ag Cartlann Anna, déanaimid dí-dhúbailt bunaithe ar hash MD5 amháin, rud a chiallaíonn nach ndéantar leaganacha éagsúla den leabhar céanna a dhí-dhúbailt."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "An féidir liom an liosta torrent a fháil mar JSON?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "Sea."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "Ní fheicim PDFs nó EPUBs sna torrents, ach comhaid dhénártha amháin? Cad a dhéanfaidh mé?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "Is PDFs agus EPUBs iad seo i ndáiríre, níl síneadh acu i go leor dár torrents. Tá dhá áit ann inar féidir leat na meiteashonraí do chomhaid torrent a fháil, lena n-áirítear na cineálacha/síneadh comhaid:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. Tá a meiteashonraí féin ag gach bailiúchán nó eisiúint. Mar shampla, tá bunachar sonraí meiteashonraí comhfhreagrach ag <a %(a_libgen_nonfic)s>Libgen.rs torrents</a> atá óstáilte ar shuíomh gréasáin Libgen.rs. De ghnáth nascann muid le hacmhainní meiteashonraí ábhartha ó leathanach <a %(a_datasets)s>tacair sonraí</a> gach bailiúcháin."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. Molaimid ár mbunachair sonraí ElasticSearch agus MariaDB a <a %(a_generate)s>ghiniúint</a> nó a <a %(a_download)s>íoslódáil</a>. Tá léarscáil ann do gach taifead i gCartlann Anna chuig a chomhaid torrent comhfhreagracha (más ann dóibh), faoi “torrent_paths” sa JSON ElasticSearch."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "An bhfuil clár nochtaithe freagrach agat?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "Cuirimid fáilte roimh thaighdeoirí slándála leochaileachtaí a chuardach inár gcórais. Is lucht tacaíochta móra muid de nochtadh freagrach. Déan teagmháil linn <a %(a_contact)s>anseo</a>."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "Faoi láthair, níl muid in ann luach saothair a bhronnadh as fabhtanna, ach amháin le haghaidh leochaileachtaí a bhfuil an <a %(a_link)s>poitéinseal acu ár n-ainmníocht a chur i mbaol</a>, as a dtugaimid luach saothair idir $10k-50k. Ba mhaith linn raon níos leithne a thairiscint le haghaidh luach saothair fabhtanna sa todhchaí! Tabhair faoi deara nach bhfuil ionsaithe innealtóireachta sóisialta san áireamh."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "Má tá suim agat i slándáil ionsaitheach, agus más mian leat cabhrú le heolas agus cultúr an domhain a chartlannú, bí cinnte teagmháil a dhéanamh linn. Tá go leor bealaí ann inar féidir leat cabhrú."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "An bhfuil níos mó acmhainní faoi Chartlann Anna?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>Blag Anna</a>, <a %(a_reddit_u)s>Reddit</a>, <a %(a_reddit_r)s>Fo-Reddit</a> — nuashonruithe rialta"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>Bogearraí Anna</a> — ár gcód foinse oscailte"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>Aistrigh ar Bhogearraí Anna</a> — ár gcóras aistriúcháin"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>Datasets</a> — faoin sonraí"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — fearainn mhalartacha"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>Vicipéid</a> — tuilleadh fúinn (cabhraigh leathanach seo a choinneáil cothrom le dáta, nó cruthaigh ceann do do theanga féin!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "Conas a thuairiscím sárú cóipchirt?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "Ní óstáilimid aon ábhair faoi chóipcheart anseo. Is inneall cuardaigh muid, agus mar sin ní innéacsaimid ach meiteashonraí atá ar fáil go poiblí cheana féin. Agus tú ag íoslódáil ó na foinsí seachtracha seo, mholfaimis duit dlíthe i do dhlínse a sheiceáil maidir le cad atá ceadaithe. Níl muid freagrach as ábhar a óstáiltear ag daoine eile."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "Má tá gearáin agat faoi cad a fheiceann tú anseo, is fearr teagmháil a dhéanamh leis an suíomh gréasáin bunaidh. Tarraingímid a n-athruithe isteach inár mbunachar sonraí go rialta. Má cheapann tú i ndáiríre go bhfuil gearán bailí DMCA agat ar cheart dúinn freagairt dó, líon isteach an <a %(a_copyright)s>foirm éilimh DMCA / Cóipchirt</a>. Tógaimid do ghearáin dáiríre, agus rachaidh muid i dteagmháil leat chomh luath agus is féidir."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "Is fuath liom an chaoi a bhfuil tú ag rith an tionscadail seo!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "Ba mhaith linn a chur i gcuimhne do chách freisin go bhfuil ár gcód agus ár sonraí go hiomlán foinse oscailte. Tá sé seo uathúil do thionscadail cosúil lenár gceann — níl a fhios againn faoi aon tionscadal eile le catalóg chomh ollmhór atá foinse oscailte chomh maith. Cuirimid fáilte mhór roimh aon duine a cheapann go bhfuil muid ag rith ár dtionscadal go dona chun ár gcód agus ár sonraí a thógáil agus a leabharlann scáth féin a bhunú! Nílimid á rá seo as drochmheas nó rud éigin — ceapaimid go mbeadh sé seo iontach mar go n-ardódh sé an caighdeán do chách, agus go gcaomhnódh sé oidhreacht an chine dhaonna níos fearr."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "An bhfuil monatóir am suas agat?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "Féach ar <a %(a_href)s>an tionscadal iontach seo</a>."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "Cé hé Anna?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "Is tú Anna!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "Cad iad na leabhair is fearr leat?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "Seo roinnt leabhar a bhfuil tábhacht ar leith acu do shaol na leabharlanna scáth agus caomhnú digiteach:"
@@ -5357,16 +5359,16 @@ msgstr "Cuardaigh"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 #, fuzzy
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 #, fuzzy
 msgid "layout.index.header.nav.beta"
 msgstr "béite"
@@ -5472,8 +5474,8 @@ msgid "page.home.payment_processor.body"
 msgstr "Má tá próiseálaí íocaíochta anaithnid ardriosca á rith agat, déan teagmháil linn le do thoil. Táimid ag lorg daoine freisin atá ag iarraidh fógraí beaga blasúla a chur. Téann gach ioncam chuig ár n-iarrachtaí caomhnaithe."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 #, fuzzy
 msgid "layout.index.header.nav.annasblog"
 msgstr "Blag Anna ↗"
@@ -5905,7 +5907,7 @@ msgstr "Má tá tú ag úsáid VPN, nasc idirlín roinnte, nó má roinneann do 
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 #, fuzzy
 msgid "layout.index.header.title"
 msgstr "Cartlann Anna"
@@ -6002,7 +6004,7 @@ msgid "page.search.tabs.metadata"
 msgstr "Meiteashonraí"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 #, fuzzy
 msgid "common.search.placeholder"
 msgstr "Teideal, údar, DOI, ISBN, MD5, …"
@@ -6359,117 +6361,117 @@ msgstr "Déanamh éadrom dheonach"
 msgid "page.volunteering.section.light.text1"
 msgstr "Má tá cúpla uair an chloig le spáráil agat, is féidir leat cabhrú ar bhealaí éagsúla. Bí cinnte go n-éireoidh leat sa <a %(a_telegram)s>comhrá dheonach ar Telegram</a>."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "Mar chomhartha buíochais, de ghnáth tugaimid 6 mhí de “Leabharlannaí Ádhúil” ar mhíreanna bunúsacha, agus níos mó ar obair dheonach leanúnach. Éilíonn gach mír obair ar ardchaighdeán — gortaíonn obair shuarach muid níos mó ná mar a chabhraíonn sé agus diúltóimid di. Cuir <a %(a_contact)s>ríomhphost chugainn</a> nuair a shroicheann tú mír."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "Tasc"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "Mír"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Feabhas a chur ar metadata trí <a %(a_metadata)s>nascadh</a> le Open Library."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "Naisc de thaifid a fheabhsaigh tú %(links)s."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>Aistriúchán</a> an tsuímh ghréasáin."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "Aistrigh teanga go hiomlán (mura raibh sé gar do chríochnú cheana féin)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "Scaipeadh an scéil faoi Chartlann Anna ar na meáin shóisialta agus ar fhóraim ar líne, trí leabhar nó liostaí a mholadh ar AA, nó trí cheisteanna a fhreagairt."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "Naisc nó seatanna scáileáin %(links)s."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "Feabhas a chur ar an leathanach Vicipéide do Chartlann Anna i do theanga. Cuir eolas ó leathanach Vicipéide AA i dteangacha eile, agus ónár suíomh gréasáin agus blag. Cuir tagairtí le AA ar leathanaigh ábhartha eile."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "Nasc chuig stair eagarthóireachta a thaispeánann gur chuir tú go mór leis."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Iarratais leabhar (nó páipéar, srl) a chomhlíonadh ar fhóraim Z-Library nó Library Genesis. Níl ár gcóras iarratais leabhar féin againn, ach scáthán muid na leabharlanna sin, mar sin déanann a bhfeabhsú Chartlann Anna níos fearr freisin."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "Naisc nó seatanna scáileáin de na hiarratais a chomhlíon tú %(links)s."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "Tascanna beaga a phostáiltear ar ár <a %(a_telegram)s>comhrá dheonach ar Telegram</a>. De ghnáth le haghaidh ballraíochta, uaireanta le haghaidh luach saothair beag."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "Braitheann sé ar an tasc."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "Duaiseanna"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "Táimid i gcónaí ag lorg daoine le scileanna láidre cláir nó slándála ionsaitheach chun páirt a ghlacadh. Is féidir leat tionchar mór a imirt ar oidhreacht an chine dhaonna a chaomhnú."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "Mar bhuíochas, tugaimid ballraíocht saor in aisce ar son ranníocaíochtaí láidre. Mar bhuíochas ollmhór, tugaimid duaiseanna airgid ar son tascanna thar a bheith tábhachtach agus deacair. Níor cheart é seo a fheiceáil mar ionadach do phost, ach is spreagadh breise é agus is féidir leis cabhrú le costais a thabhaítear."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "Tá an chuid is mó dár gcód foinse oscailte, agus iarrfaimid go mbeidh do chód mar an gcéanna nuair a bhronntar an duais. Tá roinnt eisceachtaí ann ar féidir linn plé a dhéanamh orthu ar bhonn aonair."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "Bronntar duaiseanna don chéad duine a chríochnaíonn tasc. Ná bíodh drogall ort trácht a dhéanamh ar thicéad duaise chun a chur in iúl do dhaoine eile go bhfuil tú ag obair ar rud éigin, ionas gur féidir le daoine eile fanacht nó teagmháil a dhéanamh leat chun foireann a dhéanamh. Ach bí ar an eolas go bhfuil cead ag daoine eile fós oibriú air freisin agus iarracht a dhéanamh tú a shárú. Mar sin féin, ní bhronntar duaiseanna ar obair shlachtmhar. Má dhéantar dhá chur isteach ar ardchaighdeán gar dá chéile (laistigh de lá nó dhó), d’fhéadfadh go roghnóimis duaiseanna a bhronnadh ar an mbeirt, de réir ár rogha féin, mar shampla 100%% don chéad chur isteach agus 50%% don dara chur isteach (mar sin 150%% san iomlán)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "Maidir leis na duaiseanna móra (go háirithe duaiseanna scrapála), déan teagmháil linn nuair a bheidh ~5%% de críochnaithe agat, agus tá tú muiníneach go n-éireoidh le do mhodh ar an gcéim iomlán. Beidh ort do mhodh a roinnt linn ionas gur féidir linn aiseolas a thabhairt. Chomh maith leis sin, ar an mbealach seo is féidir linn cinneadh a dhéanamh ar cad atá le déanamh má tá roinnt daoine ag druidim le duais, mar shampla é a bhronnadh ar roinnt daoine, daoine a spreagadh chun foireann a dhéanamh, srl."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "RABHADH: tá na tascanna ardmhaithe <span %(bold)s>deacair</span> — b’fhéidir go mbeadh sé ciallmhar tosú le cinn níos éasca."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "Téigh chuig ár <a %(a_gitlab)s>liosta saincheisteanna Gitlab</a> agus sórtáil de réir “Tosaíocht Lipéad”. Taispeánann sé seo thart ar an ord tascanna a bhfuil cúram orainn faoi. Tá tascanna gan duaiseanna sainráite fós incháilithe le haghaidh ballraíochta, go háirithe iad siúd marcáilte “Glactha” agus “Is fearr le Anna”. B’fhéidir gur mhaith leat tosú le “Tionscadal tosaithe”."
@@ -6499,184 +6501,185 @@ msgstr "Tá cabhair uait ag Cartlann Anna!"
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "Déanaimid troid ar ais in aghaidh na ndaoine a dhéanann iarracht muid a chur síos."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 #, fuzzy
 msgid "layout.index.header.nav.donate"
 msgstr "Deonaigh"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "Ag sábháil eolais dhaonna: bronntanas iontach saoire!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.surprise"
 msgstr "Ionadh a chur ar dhuine grá, tabhair cuntas dóibh le ballraíocht."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 #, fuzzy
 msgid "layout.index.header.banner.mirrors"
 msgstr "Chun athléimneacht Cartlann Anna a mhéadú, táimid ag lorg oibrithe deonacha chun scátháin a rith."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "An bronntanas foirfe do Lá Fhéile Vailintín!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 #, fuzzy
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "Tá modh nua deonacháin ar fáil againn: %(method_name)s. Smaoinigh ar %(donate_link_open_tag)sdeonú</a> — níl sé saor an suíomh gréasáin seo a rith, agus déanann do dheonú fíor-difríocht. Go raibh míle maith agat."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 #, fuzzy
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "Táimid ag rith tiomsaithe airgid chun <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">tacaíocht a thabhairt</a> don leabharlann scáthán grinn is mó ar domhan. Go raibh maith agat as do thacaíocht! <a href=\"/donate\">Deonaigh.</a> Mura féidir leat deonú, smaoinigh ar thacaíocht a thabhairt dúinn trí insint do do chairde, agus sinn a leanúint ar <a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a>, nó <a href=\"https://t.me/annasarchiveorg\">Telegram</a>."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 #, fuzzy
 msgid "layout.index.header.recent_downloads"
 msgstr "Íoslódálacha le déanaí:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-#, fuzzy
-msgid "layout.index.header.nav.search"
-msgstr "Cuardaigh"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
 #, fuzzy
-msgid "layout.index.header.nav.faq"
-msgstr "CC"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "Feabhas a chur ar mheitadata"
+msgid "layout.index.header.nav.search"
+msgstr "Cuardaigh"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
 #, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "Deonach & Luaíochtaí"
+msgid "layout.index.header.nav.faq"
+msgstr "CC"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
 #, fuzzy
-msgid "layout.index.header.nav.datasets"
-msgstr "Datasets"
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "Feabhas a chur ar mheitadata"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
 #, fuzzy
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrents"
+msgid "layout.index.header.nav.volunteering"
+msgstr "Deonach & Luaíochtaí"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
 #, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "Taiscéalaí Cód"
+msgid "layout.index.header.nav.datasets"
+msgstr "Datasets"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
 #, fuzzy
-msgid "layout.index.header.nav.llm_data"
-msgstr "Sonraí LLM"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrents"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "Taiscéalaí Cód"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+#, fuzzy
+msgid "layout.index.header.nav.llm_data"
+msgstr "Sonraí LLM"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 #, fuzzy
 msgid "layout.index.header.nav.home"
 msgstr "Baile"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 #, fuzzy
 msgid "layout.index.header.nav.annassoftware"
 msgstr "Bogearraí Anna ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 #, fuzzy
 msgid "layout.index.header.nav.translate"
 msgstr "Aistrigh ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 #, fuzzy
 msgid "layout.index.header.nav.login_register"
 msgstr "Logáil isteach / Cláraigh"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 #, fuzzy
 msgid "layout.index.header.nav.account"
 msgstr "Cuntas"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 #, fuzzy
 msgid "layout.index.footer.list1.header"
 msgstr "Cartlann Anna"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 #, fuzzy
 msgid "layout.index.footer.list2.header"
 msgstr "Fan i dteagmháil"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 #, fuzzy
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "Éilimh DMCA / cóipchirt"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.reddit"
 msgstr "Reddit"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.telegram"
 msgstr "Telegram"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "Casta"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 #, fuzzy
 msgid "layout.index.header.nav.security"
 msgstr "Slándáil"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 #, fuzzy
 msgid "layout.index.footer.list3.header"
 msgstr "Roghanna Eile"

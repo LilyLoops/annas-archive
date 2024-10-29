@@ -144,17 +144,17 @@ msgstr "चमकदार डेटा संकलक"
 msgid "common.membership.tier_name.5"
 msgstr "अद्भुत संग्रहकर्ता"
 
-#: allthethings/utils.py:623
+#: allthethings/utils.py:626
 #, fuzzy
 msgid "common.membership.format_currency.total_with_usd"
 msgstr "%(amount)s (%(amount_usd)s) एकूण"
 
-#: allthethings/utils.py:625 allthethings/utils.py:626
+#: allthethings/utils.py:628 allthethings/utils.py:629
 #, fuzzy
 msgid "common.membership.format_currency.amount_with_usd"
 msgstr "%(amount)s (%(amount_usd)s)"
 
-#: allthethings/utils.py:637
+#: allthethings/utils.py:640
 #, fuzzy
 msgid "common.membership.format_currency.total"
 msgstr "%(amount)s एकूण"
@@ -325,7 +325,7 @@ msgid "page.donate.expert.contact_us"
 msgstr "आमच्याशी संपर्क साधा"
 
 #: allthethings/account/templates/account/donate.html:101
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #: allthethings/page/templates/page/contact.html:21
 #, fuzzy
 msgid "page.donate.small_team"
@@ -372,13 +372,13 @@ msgid "page.donate.payment.select_method"
 msgstr "कृपया पेमेंट पद्धत निवडा."
 
 #: allthethings/account/templates/account/donate.html:132
-#: allthethings/account/templates/account/donate.html:419
+#: allthethings/account/templates/account/donate.html:426
 #, fuzzy
 msgid "page.donate.discount"
 msgstr "-%(percentage)s%%"
 
 #: allthethings/account/templates/account/donate.html:138
-#: allthethings/account/templates/account/donate.html:357
+#: allthethings/account/templates/account/donate.html:364
 #, fuzzy
 msgid "page.donate.payment.buttons.amazon"
 msgstr "अॅमेझॉन गिफ्ट कार्ड"
@@ -391,7 +391,7 @@ msgstr "बँक कार्ड (अ‍ॅप वापरून)"
 #: allthethings/account/templates/account/donate.html:140
 #: allthethings/account/templates/account/donate.html:150
 #: allthethings/account/templates/account/donate.html:151
-#: allthethings/account/templates/account/donate.html:366
+#: allthethings/account/templates/account/donate.html:373
 #, fuzzy
 msgid "page.donate.payment.buttons.crypto"
 msgstr "क्रिप्टो %(bitcoin_icon)s"
@@ -423,8 +423,8 @@ msgstr "क्रेडिट/डेबिट/Apple/Google (BMC)"
 
 #: allthethings/account/templates/account/donate.html:148
 #: allthethings/account/templates/account/donate.html:165
-#: allthethings/account/templates/account/donate.html:172
-#: allthethings/account/templates/account/donate.html:360
+#: allthethings/account/templates/account/donate.html:173
+#: allthethings/account/templates/account/donate.html:367
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay"
 msgstr "अलिपे"
@@ -470,498 +470,500 @@ msgid "page.donate.payment.buttons.binance"
 msgstr "बायनान्स"
 
 #: allthethings/account/templates/account/donate.html:164
-#: allthethings/account/templates/account/donate.html:173
-#: allthethings/account/templates/account/donate.html:363
+#: allthethings/account/templates/account/donate.html:174
+#: allthethings/account/templates/account/donate.html:370
 #, fuzzy
 msgid "page.donate.payment.buttons.wechat"
 msgstr "WeChat"
 
 #: allthethings/account/templates/account/donate.html:166
-#: allthethings/account/templates/account/donate.html:174
-#: allthethings/account/templates/account/donate.html:183
-#: allthethings/account/templates/account/donate.html:190
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:167
+#: allthethings/account/templates/account/donate.html:175
+#: allthethings/account/templates/account/donate.html:184
+#: allthethings/account/templates/account/donate.html:191
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.alipay_wechat"
 msgstr "अलिपे 支付宝 / WeChat 微信"
 
-#: allthethings/account/templates/account/donate.html:195
+#: allthethings/account/templates/account/donate.html:196
 #, fuzzy
 msgid "page.donate.payment.buttons.temporarily_unavailable"
 msgstr "(तात्पुरते अनुपलब्ध)"
 
-#: allthethings/account/templates/account/donate.html:213
+#: allthethings/account/templates/account/donate.html:214
 #, fuzzy
 msgid "page.donate.payment.desc.crypto"
 msgstr "क्रिप्टो वापरून आपण BTC, ETH, XMR, आणि SOL वापरून दान करू शकता. जर आपण क्रिप्टोकरन्सीशी परिचित असाल तर हा पर्याय वापरा."
 
-#: allthethings/account/templates/account/donate.html:217
+#: allthethings/account/templates/account/donate.html:218
 #, fuzzy
 msgid "page.donate.payment.desc.crypto2"
 msgstr "क्रिप्टो वापरून आपण BTC, ETH, XMR, आणि अधिक वापरून दान करू शकता."
 
-#: allthethings/account/templates/account/donate.html:220
-#: allthethings/account/templates/account/donate.html:368
+#: allthethings/account/templates/account/donate.html:221
+#: allthethings/account/templates/account/donate.html:375
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_suggestion_dynamic"
 msgstr "जर तुम्ही प्रथमच क्रिप्टो वापरत असाल, तर आम्ही %(options)s वापरून बिटकॉइन (मूळ आणि सर्वाधिक वापरली जाणारी क्रिप्टोकरन्सी) खरेदी आणि दान करण्याची शिफारस करतो."
 
-#: allthethings/account/templates/account/donate.html:223
-#: allthethings/account/templates/account/donate.html:371
+#: allthethings/account/templates/account/donate.html:224
+#: allthethings/account/templates/account/donate.html:378
 #, fuzzy
 msgid "page.donate.payment.processor.binance"
 msgstr "बायनान्स"
 
-#: allthethings/account/templates/account/donate.html:224
-#: allthethings/account/templates/account/donate.html:372
+#: allthethings/account/templates/account/donate.html:225
+#: allthethings/account/templates/account/donate.html:379
 #, fuzzy
 msgid "page.donate.payment.processor.coinbase"
 msgstr "Coinbase"
 
-#: allthethings/account/templates/account/donate.html:225
-#: allthethings/account/templates/account/donate.html:373
+#: allthethings/account/templates/account/donate.html:226
+#: allthethings/account/templates/account/donate.html:380
 #, fuzzy
 msgid "page.donate.payment.processor.kraken"
 msgstr "Kraken"
 
-#: allthethings/account/templates/account/donate.html:233
+#: allthethings/account/templates/account/donate.html:234
 #, fuzzy
 msgid "page.donate.payment.desc.paypal"
 msgstr "PayPal US वापरून दान करण्यासाठी, आम्ही PayPal Crypto वापरणार आहोत, ज्यामुळे आम्हाला गुप्त राहता येते. या पद्धतीने दान कसे करायचे हे शिकण्यासाठी वेळ दिल्याबद्दल आम्ही आपले आभारी आहोत, कारण यामुळे आम्हाला खूप मदत होते."
 
-#: allthethings/account/templates/account/donate.html:234
+#: allthethings/account/templates/account/donate.html:235
 #, fuzzy
 msgid "page.donate.payment.desc.paypal_short"
 msgstr "PayPal वापरून दान करा."
 
-#: allthethings/account/templates/account/donate.html:240
+#: allthethings/account/templates/account/donate.html:241
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp"
 msgstr "Cash App वापरून दान करा."
 
-#: allthethings/account/templates/account/donate.html:241
+#: allthethings/account/templates/account/donate.html:242
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_easy"
 msgstr "तुमच्याकडे Cash App असल्यास, हे दान करण्याचा सर्वात सोपा मार्ग आहे!"
 
-#: allthethings/account/templates/account/donate.html:244
-#: allthethings/account/templates/account/donate.html:254
+#: allthethings/account/templates/account/donate.html:245
+#: allthethings/account/templates/account/donate.html:255
 #, fuzzy
 msgid "page.donate.payment.desc.cashapp_fee"
 msgstr "कृपया लक्षात घ्या की %(amount)s पेक्षा कमी व्यवहारांसाठी, Cash App %(fee)s शुल्क आकारू शकते. %(amount)s किंवा त्याहून अधिकसाठी, हे मोफत आहे!"
 
-#: allthethings/account/templates/account/donate.html:250
+#: allthethings/account/templates/account/donate.html:251
 #, fuzzy
 msgid "page.donate.payment.desc.revolut"
 msgstr "Revolut वापरून दान करा."
 
-#: allthethings/account/templates/account/donate.html:251
+#: allthethings/account/templates/account/donate.html:252
 #, fuzzy
 msgid "page.donate.payment.desc.revolut_easy"
 msgstr "जर तुमच्याकडे Revolut असेल, तर दान करण्याचा हा सर्वात सोपा मार्ग आहे!"
 
-#: allthethings/account/templates/account/donate.html:260
-#: allthethings/account/templates/account/donate.html:314
+#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:321
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit"
 msgstr "क्रेडिट किंवा डेबिट कार्ड वापरून दान करा."
 
-#: allthethings/account/templates/account/donate.html:261
+#: allthethings/account/templates/account/donate.html:262
 #, fuzzy
 msgid "page.donate.payment.desc.google_apple"
 msgstr "Google Pay आणि Apple Pay देखील कार्य करू शकतात."
 
-#: allthethings/account/templates/account/donate.html:262
+#: allthethings/account/templates/account/donate.html:263
 #, fuzzy
 msgid "page.donate.payment.desc.elimate_discount"
 msgstr "कृपया लक्षात घ्या की लहान देणग्यांसाठी क्रेडिट कार्ड शुल्क आमचा %(discount)s%% सवलत रद्द करू शकते, त्यामुळे आम्ही दीर्घकालीन सदस्यत्वाची शिफारस करतो."
 
-#: allthethings/account/templates/account/donate.html:263
+#: allthethings/account/templates/account/donate.html:264
 #, fuzzy
 msgid "page.donate.payment.desc.longer_subs"
 msgstr "कृपया लक्षात घ्या की लहान देणग्यांसाठी शुल्क जास्त आहे, त्यामुळे आम्ही दीर्घकालीन सदस्यत्वाची शिफारस करतो."
 
-#: allthethings/account/templates/account/donate.html:269
+#: allthethings/account/templates/account/donate.html:270
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p1"
 msgstr "Binance सह, तुम्ही क्रेडिट/डेबिट कार्ड किंवा बँक खात्याचा वापर करून Bitcoin खरेदी करता आणि नंतर आम्हाला ते Bitcoin दान करता. अशा प्रकारे आम्ही तुमचे दान स्वीकारताना सुरक्षित आणि गुप्त राहू शकतो."
 
-#: allthethings/account/templates/account/donate.html:273
+#: allthethings/account/templates/account/donate.html:274
 #, fuzzy
 msgid "page.donate.payment.desc.binance_p2"
 msgstr "Binance जवळजवळ प्रत्येक देशात उपलब्ध आहे आणि बहुतेक बँका आणि क्रेडिट/डेबिट कार्डांना समर्थन देते. सध्या ही आमची मुख्य शिफारस आहे. या पद्धतीचा वापर करून दान कसे करावे हे शिकण्यासाठी तुम्ही वेळ घेतल्याबद्दल आम्ही तुमचे आभारी आहोत, कारण यामुळे आम्हाला खूप मदत होते."
 
-#: allthethings/account/templates/account/donate.html:279
+#: allthethings/account/templates/account/donate.html:280
 #, fuzzy
 msgid "page.donate.payment.desc.paypalreg"
 msgstr "तुमच्या नियमित PayPal खात्याचा वापर करून दान करा."
 
-#: allthethings/account/templates/account/donate.html:285
-#: allthethings/account/templates/account/donate.html:291
+#: allthethings/account/templates/account/donate.html:286
+#: allthethings/account/templates/account/donate.html:292
+#: allthethings/account/templates/account/donate.html:298
 #, fuzzy
 msgid "page.donate.payment.desc.alipay_wechat"
 msgstr "Alipay किंवा WeChat वापरून दान करा. पुढील पृष्ठावर तुम्ही यापैकी एक निवडू शकता."
 
-#: allthethings/account/templates/account/donate.html:297
+#: allthethings/account/templates/account/donate.html:304
 #, fuzzy
 msgid "page.donate.payment.desc.givebutter"
 msgstr "क्रेडिट/डेबिट कार्ड, PayPal किंवा Venmo वापरून दान करा. पुढील पृष्ठावर तुम्ही यापैकी एक निवडू शकता."
 
-#: allthethings/account/templates/account/donate.html:303
+#: allthethings/account/templates/account/donate.html:310
 #, fuzzy
 msgid "page.donate.payment.desc.amazon"
 msgstr "Amazon गिफ्ट कार्ड वापरून दान करा."
 
-#: allthethings/account/templates/account/donate.html:304
+#: allthethings/account/templates/account/donate.html:311
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_round"
 msgstr "कृपया लक्षात घ्या की आम्हाला आमच्या पुनर्विक्रेत्यांनी स्वीकारलेल्या रकमेपर्यंत गोल करणे आवश्यक आहे (किमान %(minimum)s)."
 
-#: allthethings/account/templates/account/donate.html:308
+#: allthethings/account/templates/account/donate.html:315
 #: allthethings/account/templates/account/donation.html:373
 #, fuzzy
 msgid "page.donate.payment.desc.amazon_com"
 msgstr "<strong>महत्त्वाचे:</strong> आम्ही फक्त Amazon.com ला समर्थन देतो, इतर Amazon वेबसाइट्सना नाही. उदाहरणार्थ, .de, .co.uk, .ca, समर्थित नाहीत."
 
-#: allthethings/account/templates/account/donate.html:315
+#: allthethings/account/templates/account/donate.html:322
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_backup"
 msgstr "ही पद्धत मध्यवर्ती रूपांतरणासाठी क्रिप्टोकरन्सी प्रदात्याचा वापर करते. हे थोडे गोंधळात टाकणारे असू शकते, त्यामुळे कृपया इतर पेमेंट पद्धती कार्य करत नसल्यासच ही पद्धत वापरा. हे सर्व देशांमध्ये कार्य करत नाही."
 
-#: allthethings/account/templates/account/donate.html:321
+#: allthethings/account/templates/account/donate.html:328
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app"
 msgstr "Alipay अ‍ॅपद्वारे क्रेडिट/डेबिट कार्ड वापरून देणगी द्या (सेट अप करणे खूप सोपे आहे)."
 
-#: allthethings/account/templates/account/donate.html:325
-#: allthethings/account/templates/account/donation.html:510
+#: allthethings/account/templates/account/donate.html:332
+#: allthethings/account/templates/account/donation.html:515
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.header"
 msgstr "<span %(style)s>1</span>Alipay अ‍ॅप इन्स्टॉल करा"
 
-#: allthethings/account/templates/account/donate.html:329
-#: allthethings/account/templates/account/donation.html:514
+#: allthethings/account/templates/account/donate.html:336
+#: allthethings/account/templates/account/donation.html:519
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc1"
 msgstr "<a %(a_app_store)s>Apple App Store</a> किंवा <a %(a_play_store)s>Google Play Store</a> वरून Alipay अ‍ॅप इन्स्टॉल करा."
 
-#: allthethings/account/templates/account/donate.html:333
-#: allthethings/account/templates/account/donation.html:518
+#: allthethings/account/templates/account/donate.html:340
+#: allthethings/account/templates/account/donation.html:523
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc2"
 msgstr "आपल्या फोन नंबरचा वापर करून नोंदणी करा."
 
-#: allthethings/account/templates/account/donate.html:334
-#: allthethings/account/templates/account/donation.html:519
+#: allthethings/account/templates/account/donate.html:341
+#: allthethings/account/templates/account/donation.html:524
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step1.desc3"
 msgstr "अधिक वैयक्तिक तपशील आवश्यक नाहीत."
 
-#: allthethings/account/templates/account/donate.html:338
-#: allthethings/account/templates/account/donation.html:523
+#: allthethings/account/templates/account/donate.html:345
+#: allthethings/account/templates/account/donation.html:528
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>बँक कार्ड जोडा"
 
-#: allthethings/account/templates/account/donate.html:346
-#: allthethings/account/templates/account/donation.html:531
+#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donation.html:536
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "समर्थित: Visa, MasterCard, JCB, Diners Club आणि Discover."
 
-#: allthethings/account/templates/account/donate.html:347
-#: allthethings/account/templates/account/donation.html:532
+#: allthethings/account/templates/account/donate.html:354
+#: allthethings/account/templates/account/donation.html:537
 #, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "अधिक माहितीसाठी <a %(a_alipay)s>हा मार्गदर्शक</a> पहा."
 
-#: allthethings/account/templates/account/donate.html:353
+#: allthethings/account/templates/account/donate.html:360
 #, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "आम्ही थेट क्रेडिट/डेबिट कार्डांना समर्थन देऊ शकत नाही, कारण बँका आमच्यासोबत काम करू इच्छित नाहीत. ☹ तथापि, इतर पेमेंट पद्धती वापरून क्रेडिट/डेबिट कार्डांचा वापर करण्याचे अनेक मार्ग आहेत:"
 
-#: allthethings/account/templates/account/donate.html:358
+#: allthethings/account/templates/account/donate.html:365
 #, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "तुमच्या क्रेडिट/डेबिट कार्डाचा वापर करून आम्हाला Amazon.com गिफ्ट कार्ड पाठवा."
 
-#: allthethings/account/templates/account/donate.html:361
+#: allthethings/account/templates/account/donate.html:368
 #, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay आंतरराष्ट्रीय क्रेडिट/डेबिट कार्डांना समर्थन देते. अधिक माहितीसाठी <a %(a_alipay)s>हा मार्गदर्शक</a> पहा."
 
-#: allthethings/account/templates/account/donate.html:364
+#: allthethings/account/templates/account/donate.html:371
 #, fuzzy
 msgid "page.donate.ccexp.wechat"
 msgstr "WeChat (Weixin Pay) आंतरराष्ट्रीय क्रेडिट/डेबिट कार्डांना समर्थन देते. WeChat अॅपमध्ये, “Me => Services => Wallet => Add a Card” वर जा. तुम्हाला ते दिसत नसल्यास, “Me => Settings => General => Tools => Weixin Pay => Enable” वापरून ते सक्षम करा."
 
-#: allthethings/account/templates/account/donate.html:367
+#: allthethings/account/templates/account/donate.html:374
 #, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "तुम्ही क्रेडिट/डेबिट कार्डांचा वापर करून क्रिप्टो खरेदी करू शकता."
 
-#: allthethings/account/templates/account/donate.html:377
+#: allthethings/account/templates/account/donate.html:384
 #, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "क्रिप्टो एक्सप्रेस सेवा"
 
-#: allthethings/account/templates/account/donate.html:379
+#: allthethings/account/templates/account/donate.html:386
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
 msgstr "एक्सप्रेस सेवा सोयीस्कर आहेत, परंतु उच्च शुल्क आकारतात."
 
-#: allthethings/account/templates/account/donate.html:380
+#: allthethings/account/templates/account/donate.html:387
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
 msgstr "जर तुम्हाला मोठी देणगी द्यायची असेल आणि $5-10 शुल्काची हरकत नसेल तर तुम्ही क्रिप्टो एक्सचेंजच्या ऐवजी हे वापरू शकता."
 
-#: allthethings/account/templates/account/donate.html:383
+#: allthethings/account/templates/account/donate.html:390
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
 msgstr "कृपया देणगी पृष्ठावर दर्शविलेली अचूक क्रिप्टो रक्कम पाठवा, $USD मध्ये रक्कम नाही."
 
-#: allthethings/account/templates/account/donate.html:384
+#: allthethings/account/templates/account/donate.html:391
 #, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "अन्यथा शुल्क वजा केले जाईल आणि आम्ही तुमची सदस्यता स्वयंचलितपणे प्रक्रिया करू शकत नाही."
 
-#: allthethings/account/templates/account/donate.html:387
+#: allthethings/account/templates/account/donate.html:394
 #: allthethings/account/templates/account/donation.html:304
 #, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(किमान: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:388
+#: allthethings/account/templates/account/donate.html:395
 #: allthethings/account/templates/account/donation.html:305
 #, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(किमान: %(minimum)s देशानुसार, पहिल्या व्यवहारासाठी कोणतीही पडताळणी नाही)"
 
-#: allthethings/account/templates/account/donate.html:389
+#: allthethings/account/templates/account/donate.html:396
 #: allthethings/account/templates/account/donation.html:306
 #, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(किमान: %(minimum)s, पहिल्या व्यवहारासाठी कोणतीही पडताळणी नाही)"
 
-#: allthethings/account/templates/account/donate.html:390
+#: allthethings/account/templates/account/donate.html:397
 #: allthethings/account/templates/account/donation.html:307
 #, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(किमान: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:391
+#: allthethings/account/templates/account/donate.html:398
 #: allthethings/account/templates/account/donation.html:308
 #, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(किमान: %(minimum)s)"
 
-#: allthethings/account/templates/account/donate.html:392
+#: allthethings/account/templates/account/donate.html:399
 #: allthethings/account/templates/account/donation.html:309
 #, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
 msgstr "(किमान: %(minimum)s, पहिल्या व्यवहारासाठी कोणतीही पडताळणी नाही)"
 
-#: allthethings/account/templates/account/donate.html:394
+#: allthethings/account/templates/account/donate.html:401
 #: allthethings/account/templates/account/donation.html:311
 #, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "कृपया आम्हाला ईमेल करून कळवा."
 
-#: allthethings/account/templates/account/donate.html:401
+#: allthethings/account/templates/account/donate.html:408
 #, fuzzy
 msgid "page.donate.payment.desc.bmc"
 msgstr "क्रेडिट कार्ड, डेबिट कार्ड, Apple Pay, आणि Google Pay साठी, आम्ही “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>) वापरतो. त्यांच्या प्रणालीमध्ये, एक “कॉफी” $5 च्या बरोबरीची असते, त्यामुळे तुमचे देणगी 5 च्या जवळच्या गुणकात गोल केले जाईल."
 
-#: allthethings/account/templates/account/donate.html:408
+#: allthethings/account/templates/account/donate.html:415
 #, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "तुम्हाला किती काळासाठी सदस्यता घ्यायची आहे ते निवडा."
 
-#: allthethings/account/templates/account/donate.html:425
+#: allthethings/account/templates/account/donate.html:432
 #, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 महिना"
 
-#: allthethings/account/templates/account/donate.html:426
+#: allthethings/account/templates/account/donate.html:433
 #, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 महिने"
 
-#: allthethings/account/templates/account/donate.html:427
+#: allthethings/account/templates/account/donate.html:434
 #, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 महिने"
 
-#: allthethings/account/templates/account/donate.html:428
+#: allthethings/account/templates/account/donate.html:435
 #, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 महिने"
 
-#: allthethings/account/templates/account/donate.html:429
+#: allthethings/account/templates/account/donate.html:436
 #, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 महिने"
 
-#: allthethings/account/templates/account/donate.html:430
+#: allthethings/account/templates/account/donate.html:437
 #, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 महिने"
 
-#: allthethings/account/templates/account/donate.html:431
+#: allthethings/account/templates/account/donate.html:438
 #, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 महिने"
 
-#: allthethings/account/templates/account/donate.html:434
+#: allthethings/account/templates/account/donate.html:441
 #, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s> <span %(span_discount)s></span> सवलतीनंतर</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
-#: allthethings/account/templates/account/donate.html:441
+#: allthethings/account/templates/account/donate.html:448
 #, fuzzy
 msgid "page.donate.payment.minimum_method"
 msgstr "या पेमेंट पद्धतीसाठी किमान %(amount)s आवश्यक आहे. कृपया वेगळी कालावधी किंवा पेमेंट पद्धत निवडा."
 
-#: allthethings/account/templates/account/donate.html:442
-#: allthethings/account/templates/account/donate.html:446
+#: allthethings/account/templates/account/donate.html:449
+#: allthethings/account/templates/account/donate.html:453
 #, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "देणगी द्या"
 
-#: allthethings/account/templates/account/donate.html:445
+#: allthethings/account/templates/account/donate.html:452
 #, fuzzy
 msgid "page.donate.payment.maximum_method"
 msgstr "या पेमेंट पद्धतीसाठी जास्तीत जास्त %(amount)s ची मर्यादा आहे. कृपया वेगळी कालावधी किंवा पेमेंट पद्धत निवडा."
 
-#: allthethings/account/templates/account/donate.html:452
+#: allthethings/account/templates/account/donate.html:459
 #, fuzzy
 msgid "page.donate.login2"
 msgstr "सदस्य होण्यासाठी, कृपया <a %(a_login)s>लॉग इन किंवा नोंदणी करा</a>. तुमच्या समर्थनाबद्दल धन्यवाद!"
 
-#: allthethings/account/templates/account/donate.html:459
+#: allthethings/account/templates/account/donate.html:466
 #, fuzzy
 msgid "page.donate.payment.crypto_select"
 msgstr "तुम्हाला आवडणारे क्रिप्टो कॉइन निवडा:"
 
-#: allthethings/account/templates/account/donate.html:464
+#: allthethings/account/templates/account/donate.html:471
 #, fuzzy
 msgid "page.donate.currency_lowest_minimum"
 msgstr "(सर्वात कमी किमान रक्कम)"
 
-#: allthethings/account/templates/account/donate.html:467
+#: allthethings/account/templates/account/donate.html:474
 #, fuzzy
 msgid "page.donate.coinbase_eth"
 msgstr "(Coinbase वरून Ethereum पाठवताना वापरा)"
 
-#: allthethings/account/templates/account/donate.html:479
-#: allthethings/account/templates/account/donate.html:480
-#: allthethings/account/templates/account/donate.html:484
 #: allthethings/account/templates/account/donate.html:486
+#: allthethings/account/templates/account/donate.html:487
+#: allthethings/account/templates/account/donate.html:491
+#: allthethings/account/templates/account/donate.html:493
 #, fuzzy
 msgid "page.donate.currency_warning_high_minimum"
 msgstr "(इशारा: उच्च किमान रक्कम)"
 
-#: allthethings/account/templates/account/donate.html:495
+#: allthethings/account/templates/account/donate.html:502
 #, fuzzy
 msgid "page.donate.submit.confirm"
 msgstr "ही देणगी पुष्टी करण्यासाठी देणगी बटणावर क्लिक करा."
 
-#: allthethings/account/templates/account/donate.html:503
+#: allthethings/account/templates/account/donate.html:510
 #, fuzzy
 msgid "page.donate.submit.button"
 msgstr "<span %(span_cost)s></span> <span %(span_label)s></span> देणगी द्या"
 
-#: allthethings/account/templates/account/donate.html:508
+#: allthethings/account/templates/account/donate.html:515
 #, fuzzy
 msgid "page.donate.submit.cancel_note"
 msgstr "तुम्ही चेकआउट दरम्यान देणगी रद्द करू शकता."
 
-#: allthethings/account/templates/account/donate.html:512
+#: allthethings/account/templates/account/donate.html:519
 #, fuzzy
 msgid "page.donate.submit.success"
 msgstr "✅ देणगी पृष्ठावर पुनर्निर्देशित करत आहे…"
 
-#: allthethings/account/templates/account/donate.html:513
+#: allthethings/account/templates/account/donate.html:520
 #, fuzzy
 msgid "page.donate.submit.failure"
 msgstr "❌ काहीतरी चूक झाली. कृपया पृष्ठ पुन्हा लोड करा आणि पुन्हा प्रयत्न करा."
 
-#: allthethings/account/templates/account/donate.html:567
+#: allthethings/account/templates/account/donate.html:574
 #, fuzzy
 msgid "page.donate.duration.summary.discount"
 msgstr "%(percentage)s%%"
 
-#: allthethings/account/templates/account/donate.html:568
+#: allthethings/account/templates/account/donate.html:575
 #, fuzzy
 msgid "page.donate.duration.summary.monthly_cost"
 msgstr "%(monthly_cost)s / महिना"
 
-#: allthethings/account/templates/account/donate.html:571
+#: allthethings/account/templates/account/donate.html:578
 #, fuzzy
 msgid "page.donate.duration.summary.duration.1_mo"
 msgstr "1 महिन्यासाठी"
 
-#: allthethings/account/templates/account/donate.html:572
+#: allthethings/account/templates/account/donate.html:579
 #, fuzzy
 msgid "page.donate.duration.summary.duration.3_mo"
 msgstr "3 महिन्यांसाठी"
 
-#: allthethings/account/templates/account/donate.html:573
+#: allthethings/account/templates/account/donate.html:580
 #, fuzzy
 msgid "page.donate.duration.summary.duration.6_mo"
 msgstr "6 महिन्यांसाठी"
 
-#: allthethings/account/templates/account/donate.html:574
+#: allthethings/account/templates/account/donate.html:581
 #, fuzzy
 msgid "page.donate.duration.summary.duration.12_mo"
 msgstr "12 महिन्यांसाठी"
 
-#: allthethings/account/templates/account/donate.html:575
+#: allthethings/account/templates/account/donate.html:582
 #, fuzzy
 msgid "page.donate.duration.summary.duration.24_mo"
 msgstr "24 महिन्यांसाठी"
 
-#: allthethings/account/templates/account/donate.html:576
+#: allthethings/account/templates/account/donate.html:583
 #, fuzzy
 msgid "page.donate.duration.summary.duration.48_mo"
 msgstr "48 महिन्यांसाठी"
 
-#: allthethings/account/templates/account/donate.html:577
+#: allthethings/account/templates/account/donate.html:584
 #, fuzzy
 msgid "page.donate.duration.summary.duration.96_mo"
 msgstr "96 महिन्यांसाठी"
 
-#: allthethings/account/templates/account/donate.html:581
+#: allthethings/account/templates/account/donate.html:588
 #, fuzzy
 msgid "page.donate.submit.button.label.1_mo"
 msgstr "1 महिन्यासाठी “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:582
+#: allthethings/account/templates/account/donate.html:589
 #, fuzzy
 msgid "page.donate.submit.button.label.3_mo"
 msgstr "3 महिन्यांसाठी “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:583
+#: allthethings/account/templates/account/donate.html:590
 #, fuzzy
 msgid "page.donate.submit.button.label.6_mo"
 msgstr "6 महिन्यांसाठी “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:584
+#: allthethings/account/templates/account/donate.html:591
 #, fuzzy
 msgid "page.donate.submit.button.label.12_mo"
 msgstr "12 महिन्यांसाठी “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:585
+#: allthethings/account/templates/account/donate.html:592
 #, fuzzy
 msgid "page.donate.submit.button.label.24_mo"
 msgstr "24 महिन्यांसाठी “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:586
+#: allthethings/account/templates/account/donate.html:593
 #, fuzzy
 msgid "page.donate.submit.button.label.48_mo"
 msgstr "48 महिन्यांसाठी “%(tier_name)s”"
 
-#: allthethings/account/templates/account/donate.html:587
+#: allthethings/account/templates/account/donate.html:594
 #, fuzzy
 msgid "page.donate.submit.button.label.96_mo"
 msgstr "96 महिन्यांसाठी “%(tier_name)s”"
@@ -1081,9 +1083,9 @@ msgstr "<strong>महत्त्वाची टीप:</strong> क्रि�
 #: allthethings/account/templates/account/donation.html:436
 #: allthethings/account/templates/account/donation.html:452
 #: allthethings/account/templates/account/donation.html:469
-#: allthethings/account/templates/account/donation.html:504
-#: allthethings/account/templates/account/donation.html:576
-#: allthethings/account/templates/account/donation.html:602
+#: allthethings/account/templates/account/donation.html:509
+#: allthethings/account/templates/account/donation.html:586
+#: allthethings/account/templates/account/donation.html:617
 #, fuzzy
 msgid "page.donation.expired"
 msgstr "ही देणगी कालबाह्य झाली आहे. कृपया रद्द करा आणि नवीन तयार करा."
@@ -1162,9 +1164,9 @@ msgstr "खालील चरण-दर-चरण मार्गदर्श�
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
 #: allthethings/account/templates/account/donation.html:383
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.status_header"
 msgstr "स्थिती:"
@@ -1175,9 +1177,9 @@ msgstr "स्थिती:"
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_confirmation_refresh"
 msgstr "पुष्टीकरणाची प्रतीक्षा करत आहे (तपासण्यासाठी पृष्ठ रीफ्रेश करा)…"
@@ -1188,9 +1190,9 @@ msgstr "पुष्टीकरणाची प्रतीक्षा कर�
 #: allthethings/account/templates/account/donation.html:280
 #: allthethings/account/templates/account/donation.html:323
 #: allthethings/account/templates/account/donation.html:352
-#: allthethings/account/templates/account/donation.html:489
-#: allthethings/account/templates/account/donation.html:561
-#: allthethings/account/templates/account/donation.html:588
+#: allthethings/account/templates/account/donation.html:494
+#: allthethings/account/templates/account/donation.html:571
+#: allthethings/account/templates/account/donation.html:603
 #, fuzzy
 msgid "page.donation.waiting_for_transfer_refresh"
 msgstr "हस्तांतरणाची प्रतीक्षा करत आहे (तपासण्यासाठी पृष्ठ रीफ्रेश करा)…"
@@ -1201,9 +1203,9 @@ msgstr "हस्तांतरणाची प्रतीक्षा कर�
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.time_left_header"
 msgstr "शिल्लक वेळ:"
@@ -1214,9 +1216,9 @@ msgstr "शिल्लक वेळ:"
 #: allthethings/account/templates/account/donation.html:281
 #: allthethings/account/templates/account/donation.html:324
 #: allthethings/account/templates/account/donation.html:353
-#: allthethings/account/templates/account/donation.html:490
-#: allthethings/account/templates/account/donation.html:562
-#: allthethings/account/templates/account/donation.html:589
+#: allthethings/account/templates/account/donation.html:495
+#: allthethings/account/templates/account/donation.html:572
+#: allthethings/account/templates/account/donation.html:604
 #, fuzzy
 msgid "page.donation.might_want_to_cancel"
 msgstr "(तुम्हाला रद्द करायचे असेल आणि नवीन दान तयार करायचे असेल)"
@@ -1227,9 +1229,9 @@ msgstr "(तुम्हाला रद्द करायचे असेल �
 #: allthethings/account/templates/account/donation.html:285
 #: allthethings/account/templates/account/donation.html:328
 #: allthethings/account/templates/account/donation.html:357
-#: allthethings/account/templates/account/donation.html:494
-#: allthethings/account/templates/account/donation.html:566
-#: allthethings/account/templates/account/donation.html:593
+#: allthethings/account/templates/account/donation.html:499
+#: allthethings/account/templates/account/donation.html:576
+#: allthethings/account/templates/account/donation.html:608
 #, fuzzy
 msgid "page.donation.reset_timer"
 msgstr "टायमर रीसेट करण्यासाठी, फक्त नवीन दान तयार करा."
@@ -1241,15 +1243,15 @@ msgstr "टायमर रीसेट करण्यासाठी, फक�
 #: allthethings/account/templates/account/donation.html:332
 #: allthethings/account/templates/account/donation.html:361
 #: allthethings/account/templates/account/donation.html:387
-#: allthethings/account/templates/account/donation.html:498
-#: allthethings/account/templates/account/donation.html:570
-#: allthethings/account/templates/account/donation.html:597
+#: allthethings/account/templates/account/donation.html:503
+#: allthethings/account/templates/account/donation.html:580
+#: allthethings/account/templates/account/donation.html:612
 #, fuzzy
 msgid "page.donation.refresh_status"
 msgstr "स्थिती अद्यतनित करा"
 
 #: allthethings/account/templates/account/donation.html:162
-#: allthethings/account/templates/account/donation.html:697
+#: allthethings/account/templates/account/donation.html:712
 #, fuzzy
 msgid "page.donation.footer.issues_contact"
 msgstr "कृपया %(email)s वर संपर्क साधा आणि शक्य तितकी माहिती (जसे की स्क्रीनशॉट्स) समाविष्ट करा."
@@ -1448,16 +1450,16 @@ msgstr "उदाहरण:"
 #: allthethings/account/templates/account/donation.html:431
 #: allthethings/account/templates/account/donation.html:448
 #: allthethings/account/templates/account/donation.html:464
-#: allthethings/account/templates/account/donation.html:485
-#: allthethings/account/templates/account/donation.html:557
-#: allthethings/account/templates/account/donation.html:614
+#: allthethings/account/templates/account/donation.html:490
+#: allthethings/account/templates/account/donation.html:567
+#: allthethings/account/templates/account/donation.html:629
 #, fuzzy
 msgid "page.donate.strange_account"
 msgstr "खात्याचे नाव किंवा चित्र विचित्र दिसू शकते हे लक्षात घ्या. काळजी करू नका! ही खाती आमच्या देणगी भागीदारांनी व्यवस्थापित केलेली आहेत. आमची खाती हॅक केलेली नाहीत."
 
 #: allthethings/account/templates/account/donation.html:455
 #: allthethings/account/templates/account/donation.html:472
-#: allthethings/account/templates/account/donation.html:507
+#: allthethings/account/templates/account/donation.html:512
 #, fuzzy
 msgid "page.donation.payment.alipay.top_header"
 msgstr "अलिपे सूचना"
@@ -1474,147 +1476,147 @@ msgstr "<span %(span_circle)s>1</span>अलिपे वर दान करा
 msgid "page.donation.payment.alipay.text1_new"
 msgstr "<a %(a_account)s>या अलिपे खात्यावर</a> %(total)s एकूण रक्कम दान करा"
 
-#: allthethings/account/templates/account/donation.html:481
-#: allthethings/account/templates/account/donation.html:553
+#: allthethings/account/templates/account/donation.html:486
+#: allthethings/account/templates/account/donation.html:563
 #, fuzzy
 msgid "page.donation.payment.alipay.error"
 msgstr "दुर्दैवाने, अलिपे पृष्ठ बहुतेक वेळा फक्त <strong>मुख्य भूमी चीन</strong> मधूनच प्रवेशयोग्य असते. तुम्हाला तुमचा VPN तात्पुरता अक्षम करावा लागेल, किंवा मुख्य भूमी चीन (किंवा कधी कधी हाँगकाँग) साठी VPN वापरावा लागेल."
 
-#: allthethings/account/templates/account/donation.html:536
+#: allthethings/account/templates/account/donation.html:541
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.header"
 msgstr "<span %(style)s>3</span>देणगी द्या (QR कोड स्कॅन करा किंवा बटण दाबा)"
 
-#: allthethings/account/templates/account/donation.html:540
+#: allthethings/account/templates/account/donation.html:545
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.1"
 msgstr "<a %(a_href)s>QR-कोड देणगी पृष्ठ</a> उघडा."
 
-#: allthethings/account/templates/account/donation.html:544
+#: allthethings/account/templates/account/donation.html:549
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.2"
 msgstr "Alipay अ‍ॅपसह QR कोड स्कॅन करा, किंवा Alipay अ‍ॅप उघडण्यासाठी बटण दाबा."
 
-#: allthethings/account/templates/account/donation.html:545
+#: allthethings/account/templates/account/donation.html:550
 #, fuzzy
 msgid "page.donation.bank_card_app.step3.desc.3"
 msgstr "कृपया धीरज धरा; पृष्ठ लोड होण्यास वेळ लागू शकतो कारण ते चीनमध्ये आहे."
 
-#: allthethings/account/templates/account/donation.html:579
+#: allthethings/account/templates/account/donation.html:589
 #, fuzzy
 msgid "page.donation.payment.wechat.top_header"
 msgstr "विचॅट सूचना"
 
-#: allthethings/account/templates/account/donation.html:581
+#: allthethings/account/templates/account/donation.html:591
 #, fuzzy
 msgid "page.donation.payment.wechat.header1"
 msgstr "<span %(span_circle)s>1</span>विचॅट वर दान करा"
 
-#: allthethings/account/templates/account/donation.html:584
+#: allthethings/account/templates/account/donation.html:594
 #, fuzzy
 msgid "page.donation.payment.wechat.text1"
 msgstr "<a %(a_account)s>या विचॅट खात्यावर</a> %(total)s एकूण रक्कम दान करा"
 
-#: allthethings/account/templates/account/donation.html:605
+#: allthethings/account/templates/account/donation.html:620
 #, fuzzy
 msgid "page.donation.payment.pix.top_header"
 msgstr "पिक्स सूचना"
 
-#: allthethings/account/templates/account/donation.html:607
+#: allthethings/account/templates/account/donation.html:622
 #, fuzzy
 msgid "page.donation.payment.pix.header1"
 msgstr "<span %(span_circle)s>1</span>पिक्स वर दान करा"
 
-#: allthethings/account/templates/account/donation.html:610
+#: allthethings/account/templates/account/donation.html:625
 #, fuzzy
 msgid "page.donation.payment.pix.text1"
 msgstr "<a %(a_account)s>या पिक्स खात्यावर</a> %(total)s एकूण रक्कम दान करा"
 
-#: allthethings/account/templates/account/donation.html:619
+#: allthethings/account/templates/account/donation.html:634
 #, fuzzy
 msgid "page.donation.footer.header"
 msgstr "<span %(span_circle)s>%(circle_number)s</span>आम्हाला पावती ईमेल करा"
 
-#: allthethings/account/templates/account/donation.html:623
+#: allthethings/account/templates/account/donation.html:638
 #, fuzzy
 msgid "page.donation.footer.verification"
 msgstr "तुमच्या वैयक्तिक सत्यापन पत्त्यावर पावती किंवा स्क्रीनशॉट पाठवा. कृपया या ईमेल पत्त्याचा PayPal देणगीसाठी वापर करू नका."
 
-#: allthethings/account/templates/account/donation.html:625
+#: allthethings/account/templates/account/donation.html:640
 #, fuzzy
 msgid "page.donation.footer.text1"
 msgstr "तुमच्या वैयक्तिक सत्यापन पत्त्यावर पावती किंवा स्क्रीनशॉट पाठवा:"
 
-#: allthethings/account/templates/account/donation.html:635
+#: allthethings/account/templates/account/donation.html:650
 #, fuzzy
 msgid "page.donation.footer.crypto_note"
 msgstr "जर व्यवहारादरम्यान क्रिप्टो विनिमय दर बदलला असेल, तर कृपया मूळ विनिमय दर दर्शविणारी पावती समाविष्ट करा. क्रिप्टो वापरण्याची तसदी घेतल्याबद्दल आम्ही तुमचे खूप आभारी आहोत, यामुळे आम्हाला खूप मदत होते!"
 
-#: allthethings/account/templates/account/donation.html:640
+#: allthethings/account/templates/account/donation.html:655
 #, fuzzy
 msgid "page.donation.footer.text2"
 msgstr "तुम्ही तुमची पावती ईमेल केल्यानंतर, हा बटण क्लिक करा, जेणेकरून अ‍ॅना ती मॅन्युअली पुनरावलोकन करू शकेल (यास काही दिवस लागू शकतात):"
 
-#: allthethings/account/templates/account/donation.html:650
+#: allthethings/account/templates/account/donation.html:665
 #, fuzzy
 msgid "page.donation.footer.button"
 msgstr "होय, मी माझी पावती ईमेल केली आहे"
 
-#: allthethings/account/templates/account/donation.html:653
+#: allthethings/account/templates/account/donation.html:668
 #, fuzzy
 msgid "page.donation.footer.success"
 msgstr "✅ तुमच्या दानाबद्दल धन्यवाद! अ‍ॅना काही दिवसांत तुमचे सदस्यत्व मॅन्युअली सक्रिय करेल."
 
-#: allthethings/account/templates/account/donation.html:654
+#: allthethings/account/templates/account/donation.html:669
 #, fuzzy
 msgid "page.donation.footer.failure"
 msgstr "❌ काहीतरी चूक झाली. कृपया पृष्ठ पुन्हा लोड करा आणि पुन्हा प्रयत्न करा."
 
-#: allthethings/account/templates/account/donation.html:659
+#: allthethings/account/templates/account/donation.html:674
 #, fuzzy
 msgid "page.donation.stepbystep"
 msgstr "चरण-दर-चरण मार्गदर्शक"
 
-#: allthethings/account/templates/account/donation.html:661
+#: allthethings/account/templates/account/donation.html:676
 #, fuzzy
 msgid "page.donation.crypto_dont_worry"
 msgstr "काही चरणांमध्ये क्रिप्टो वॉलेट्सचा उल्लेख आहे, परंतु काळजी करू नका, तुम्हाला क्रिप्टोबद्दल काही शिकण्याची गरज नाही."
 
-#: allthethings/account/templates/account/donation.html:663
+#: allthethings/account/templates/account/donation.html:678
 #, fuzzy
 msgid "page.donation.hoodpay.step1"
 msgstr "1. तुमचा ईमेल प्रविष्ट करा."
 
-#: allthethings/account/templates/account/donation.html:669
+#: allthethings/account/templates/account/donation.html:684
 #, fuzzy
 msgid "page.donation.hoodpay.step2"
 msgstr "2. आपली पेमेंट पद्धत निवडा."
 
-#: allthethings/account/templates/account/donation.html:675
+#: allthethings/account/templates/account/donation.html:690
 #, fuzzy
 msgid "page.donation.hoodpay.step3"
 msgstr "3. पुन्हा आपली पेमेंट पद्धत निवडा."
 
-#: allthethings/account/templates/account/donation.html:681
+#: allthethings/account/templates/account/donation.html:696
 #, fuzzy
 msgid "page.donation.hoodpay.step4"
 msgstr "4. “स्वयं-होस्टेड” वॉलेट निवडा."
 
-#: allthethings/account/templates/account/donation.html:687
+#: allthethings/account/templates/account/donation.html:702
 #, fuzzy
 msgid "page.donation.hoodpay.step5"
 msgstr "5. “मी मालकीची पुष्टी करतो” क्लिक करा."
 
-#: allthethings/account/templates/account/donation.html:693
+#: allthethings/account/templates/account/donation.html:708
 #, fuzzy
 msgid "page.donation.hoodpay.step6"
 msgstr "6. आपल्याला ईमेल पावती मिळेल. कृपया ती आम्हाला पाठवा, आणि आम्ही शक्य तितक्या लवकर आपले दान पुष्टी करू."
 
-#: allthethings/account/templates/account/donation.html:698
+#: allthethings/account/templates/account/donation.html:713
 msgid "page.donate.wait_new"
 msgstr ""
 
-#: allthethings/account/templates/account/donation.html:699
+#: allthethings/account/templates/account/donation.html:714
 #, fuzzy
 msgid "page.donate.mistake"
 msgstr "जर तुम्ही पेमेंट दरम्यान चूक केली असेल, तर आम्ही परतावा देऊ शकत नाही, परंतु आम्ही ते योग्य करण्याचा प्रयत्न करू."
@@ -1768,9 +1770,9 @@ msgstr "तुम्ही तुमचे सदस्यत्व उच्च
 #: allthethings/page/templates/page/home.html:90
 #: allthethings/page/templates/page/search.html:247
 #: allthethings/page/templates/page/search.html:346
-#: allthethings/templates/layouts/index.html:230
-#: allthethings/templates/layouts/index.html:234
-#: allthethings/templates/layouts/index.html:587
+#: allthethings/templates/layouts/index.html:232
+#: allthethings/templates/layouts/index.html:236
+#: allthethings/templates/layouts/index.html:589
 #, fuzzy
 msgid "page.contact.title"
 msgstr "संपर्क ईमेल"
@@ -1782,25 +1784,25 @@ msgid "page.account.logged_in.membership_multiple"
 msgstr "तुम्ही एकाधिक सदस्यत्वे एकत्र करू शकता (प्रति २४ तासांतील वेगवान डाउनलोड्स एकत्रित केले जातील)."
 
 #: allthethings/account/templates/account/index.html:41
-#: allthethings/templates/layouts/index.html:539
-#: allthethings/templates/layouts/index.html:546
-#: allthethings/templates/layouts/index.html:555
+#: allthethings/templates/layouts/index.html:541
+#: allthethings/templates/layouts/index.html:548
+#: allthethings/templates/layouts/index.html:557
 #, fuzzy
 msgid "layout.index.header.nav.public_profile"
 msgstr "सार्वजनिक प्रोफाइल"
 
 #: allthethings/account/templates/account/index.html:42
-#: allthethings/templates/layouts/index.html:540
-#: allthethings/templates/layouts/index.html:547
-#: allthethings/templates/layouts/index.html:556
+#: allthethings/templates/layouts/index.html:542
+#: allthethings/templates/layouts/index.html:549
+#: allthethings/templates/layouts/index.html:558
 #, fuzzy
 msgid "layout.index.header.nav.downloaded_files"
 msgstr "डाउनलोड केलेली फाइल्स"
 
 #: allthethings/account/templates/account/index.html:43
-#: allthethings/templates/layouts/index.html:541
-#: allthethings/templates/layouts/index.html:548
-#: allthethings/templates/layouts/index.html:557
+#: allthethings/templates/layouts/index.html:543
+#: allthethings/templates/layouts/index.html:550
+#: allthethings/templates/layouts/index.html:559
 #, fuzzy
 msgid "layout.index.header.nav.my_donations"
 msgstr "माझे देणगी"
@@ -2839,7 +2841,7 @@ msgid "page.md5.box.download.header_fast_no_member"
 msgstr "<strong>🚀 जलद डाउनलोड्स</strong> पुस्तके, कागदपत्रे आणि अधिक दीर्घकालीन जतन करण्यासाठी समर्थन देण्यासाठी <a %(a_membership)s>सदस्य</a> बना. तुमच्या समर्थनाबद्दल कृतज्ञता व्यक्त करण्यासाठी, तुम्हाला जलद डाउनलोड्स मिळतात. ❤️"
 
 #: allthethings/page/templates/page/aarecord.html:225
-#: allthethings/templates/layouts/index.html:215
+#: allthethings/templates/layouts/index.html:217
 #, fuzzy
 msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "जर तुम्ही या महिन्यात देणगी दिली, तर तुम्हाला <strong>दुप्पट</strong> जलद डाउनलोड्स मिळतील."
@@ -2867,7 +2869,7 @@ msgid "page.md5.box.download.option"
 msgstr "पर्याय #%(num)d: %(link)s %(extra)s"
 
 #: allthethings/page/templates/page/aarecord.html:235
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.refer"
 msgstr "मित्राला संदर्भित करा, आणि तुम्हाला आणि तुमच्या मित्राला %(percentage)s%% बोनस जलद डाउनलोड मिळतील!"
@@ -2879,11 +2881,11 @@ msgstr "मित्राला संदर्भित करा, आणि �
 #: allthethings/page/templates/page/home.html:120
 #: allthethings/page/templates/page/search.html:259
 #: allthethings/page/templates/page/search.html:323
-#: allthethings/templates/layouts/index.html:252
-#: allthethings/templates/layouts/index.html:258
-#: allthethings/templates/layouts/index.html:385
-#: allthethings/templates/layouts/index.html:386
+#: allthethings/templates/layouts/index.html:254
+#: allthethings/templates/layouts/index.html:260
 #: allthethings/templates/layouts/index.html:387
+#: allthethings/templates/layouts/index.html:388
+#: allthethings/templates/layouts/index.html:389
 #, fuzzy
 msgid "layout.index.header.learn_more"
 msgstr "अधिक जाणून घ्या…"
@@ -3822,7 +3824,7 @@ msgid "page.datasets.metadata_only_sources.text1"
 msgstr "आम्ही आमच्या संग्रहाला फक्त मेटाडेटा स्रोतांसह समृद्ध करतो, ज्यांना आम्ही फाइल्सशी जुळवू शकतो, उदा. ISBN क्रमांक किंवा इतर फील्ड वापरून. खाली त्यांचे विहंगावलोकन आहे. पुन्हा, यापैकी काही स्रोत पूर्णपणे खुले आहेत, तर काहींसाठी आम्हाला त्यांची स्क्रॅपिंग करावी लागते."
 
 #: allthethings/page/templates/page/datasets.html:506
-#: allthethings/page/templates/page/faq.html:187
+#: allthethings/page/templates/page/faq.html:192
 #: allthethings/page/templates/page/search.html:294
 #, fuzzy
 msgid "page.faq.metadata.inspiration"
@@ -4993,327 +4995,327 @@ msgstr "<div %(div_question)s>मी माझे सदस्यत्व अ�
 msgid "page.donate.faq.text_other_payment1"
 msgstr "<div %(div_question)s>आपल्याकडे इतर पेमेंट पद्धती आहेत का?</div> सध्या नाही. बरेच लोक अशा प्रकारच्या आर्काइव्स अस्तित्वात असाव्यात असे इच्छित नाहीत, त्यामुळे आम्हाला काळजी घ्यावी लागते. जर आपण आम्हाला इतर (अधिक सोयीस्कर) पेमेंट पद्धती सुरक्षितपणे सेट अप करण्यात मदत करू शकत असाल, तर कृपया %(email)s वर संपर्क साधा."
 
-#: allthethings/page/templates/page/faq.html:144
+#: allthethings/page/templates/page/faq.html:149
 #, fuzzy
 msgid "page.donate.faq.spend"
 msgstr "<div %(div_question)s>आपण देणग्या कशावर खर्च करता?</div> 100%% जागतिक ज्ञान आणि संस्कृतीचे जतन आणि उपलब्धतेसाठी खर्च केले जाते. सध्या आम्ही मुख्यतः सर्व्हर, स्टोरेज आणि बँडविड्थवर खर्च करतो. कोणत्याही टीम सदस्याला वैयक्तिकरित्या पैसे दिले जात नाहीत."
 
-#: allthethings/page/templates/page/faq.html:148
+#: allthethings/page/templates/page/faq.html:153
 #, fuzzy
 msgid "page.donate.faq.text_large_donation"
 msgstr "<div %(div_question)s>मी मोठी देणगी देऊ शकतो का?</div> ते अद्भुत होईल! काही हजार डॉलर्सपेक्षा जास्त देणग्यांसाठी, कृपया %(email)s वर थेट आमच्याशी संपर्क साधा."
 
-#: allthethings/page/templates/page/faq.html:152
+#: allthethings/page/templates/page/faq.html:157
 #, fuzzy
 msgid "page.donate.faq.non_member_donation"
 msgstr "<div %(div_question)s>सदस्य न होता मी देणगी देऊ शकतो का?</div> नक्कीच. आम्ही या Monero (XMR) पत्त्यावर कोणत्याही रकमेच्या देणग्या स्वीकारतो: %(address)s."
 
-#: allthethings/page/templates/page/faq.html:155
+#: allthethings/page/templates/page/faq.html:160
 #, fuzzy
 msgid "page.faq.upload.title"
 msgstr "मी नवीन पुस्तके कशी अपलोड करू?"
 
-#: allthethings/page/templates/page/faq.html:158
+#: allthethings/page/templates/page/faq.html:163
 #, fuzzy
 msgid "page.upload.text1"
 msgstr "सध्या, आम्ही नवीन पुस्तके Library Genesis forks वर अपलोड करण्याची शिफारस करतो. येथे एक <a %(a_guide)s>सुलभ मार्गदर्शक</a> आहे. लक्षात घ्या की आम्ही या वेबसाइटवर अनुक्रमित केलेले दोन्ही forks या एकाच अपलोड प्रणालीवरून खेचतात."
 
-#: allthethings/page/templates/page/faq.html:159
+#: allthethings/page/templates/page/faq.html:164
 #, fuzzy
 msgid "common.libgen.email"
 msgstr "जर आपला ईमेल पत्ता Libgen फोरमवर कार्य करत नसेल, तर आम्ही <a %(a_mail)s>Proton Mail</a> (मोफत) वापरण्याची शिफारस करतो. आपण आपले खाते सक्रिय करण्यासाठी <a %(a_manual)s>मॅन्युअली विनंती</a> देखील करू शकता."
 
-#: allthethings/page/templates/page/faq.html:160
+#: allthethings/page/templates/page/faq.html:165
 #, fuzzy
 msgid "page.faq.mhut_upload"
 msgstr "लक्षात घ्या की mhut.org काही IP श्रेणी अवरोधित करते, त्यामुळे VPN आवश्यक असू शकतो."
 
-#: allthethings/page/templates/page/faq.html:164
+#: allthethings/page/templates/page/faq.html:169
 #, fuzzy
 msgid "page.upload.zlib.text1"
 msgstr "पर्यायी, आपण त्यांना Z-Library वर <a %(a_upload)s>येथे</a> अपलोड करू शकता."
 
-#: allthethings/page/templates/page/faq.html:168
+#: allthethings/page/templates/page/faq.html:173
 #, fuzzy
 msgid "page.upload.zlib.text2"
 msgstr "शैक्षणिक पेपर अपलोड करण्यासाठी, कृपया (Library Genesis व्यतिरिक्त) <a %(a_stc_nexus)s>STC Nexus</a> वर देखील अपलोड करा. ते नवीन पेपर्ससाठी सर्वोत्तम शॅडो लायब्ररी आहेत. आम्ही त्यांना अद्याप एकत्रित केलेले नाही, परंतु आम्ही कधीतरी करू. आपण त्यांचा <a %(a_telegram)s>Telegram वर अपलोड बॉट</a> वापरू शकता, किंवा जर आपल्याकडे या मार्गाने अपलोड करण्यासाठी खूप फाइल्स असतील तर त्यांच्या पिन केलेल्या संदेशात सूचीबद्ध पत्त्यावर संपर्क साधू शकता."
 
-#: allthethings/page/templates/page/faq.html:172
+#: allthethings/page/templates/page/faq.html:177
 #, fuzzy
 msgid "page.upload.large.text"
 msgstr "मोठ्या अपलोडसाठी (10,000 फाइल्सपेक्षा जास्त) जे Libgen किंवा Z-Library द्वारे स्वीकारले जात नाहीत, कृपया %(a_email)s वर आमच्याशी संपर्क साधा."
 
-#: allthethings/page/templates/page/faq.html:175
+#: allthethings/page/templates/page/faq.html:180
 #, fuzzy
 msgid "page.faq.request.title"
 msgstr "मी पुस्तके कशी मागवू शकतो?"
 
-#: allthethings/page/templates/page/faq.html:178
+#: allthethings/page/templates/page/faq.html:183
 #, fuzzy
 msgid "page.request.cannot_accomodate"
 msgstr "सध्या, आम्ही पुस्तकांच्या मागण्या पूर्ण करू शकत नाही."
 
-#: allthethings/page/templates/page/faq.html:179
+#: allthethings/page/templates/page/faq.html:184
 #, fuzzy
 msgid "page.request.forums"
 msgstr "कृपया तुमच्या मागण्या Z-Library किंवा Libgen फोरमवर करा."
 
-#: allthethings/page/templates/page/faq.html:180
+#: allthethings/page/templates/page/faq.html:185
 #, fuzzy
 msgid "page.request.dont_email"
 msgstr "कृपया आम्हाला तुमच्या पुस्तकांच्या मागण्या ईमेल करू नका."
 
-#: allthethings/page/templates/page/faq.html:183
+#: allthethings/page/templates/page/faq.html:188
 #, fuzzy
 msgid "page.faq.metadata.title"
 msgstr "तुम्ही मेटाडेटा गोळा करता का?"
 
-#: allthethings/page/templates/page/faq.html:186
+#: allthethings/page/templates/page/faq.html:191
 #, fuzzy
 msgid "page.faq.metadata.indeed"
 msgstr "होय, आम्ही मेटाडेटा गोळा करतो."
 
-#: allthethings/page/templates/page/faq.html:193
+#: allthethings/page/templates/page/faq.html:198
 #, fuzzy
 msgid "page.faq.1984.title"
 msgstr "मी जॉर्ज ऑरवेलचे 1984 डाउनलोड केले, तर पोलीस माझ्या दारात येतील का?"
 
-#: allthethings/page/templates/page/faq.html:196
+#: allthethings/page/templates/page/faq.html:201
 #, fuzzy
 msgid "page.faq.1984.text"
 msgstr "जास्त काळजी करू नका, आमच्याशी लिंक केलेल्या वेबसाइट्सवरून अनेक लोक डाउनलोड करत आहेत, आणि अडचणीत येणे अत्यंत दुर्मिळ आहे. तथापि, सुरक्षित राहण्यासाठी आम्ही VPN (पेड) किंवा <a %(a_tor)s>Tor</a> (फ्री) वापरण्याची शिफारस करतो."
 
-#: allthethings/page/templates/page/faq.html:199
+#: allthethings/page/templates/page/faq.html:204
 #, fuzzy
 msgid "page.faq.save_search.title"
 msgstr "माझ्या शोध सेटिंग्ज कशा जतन करू?"
 
-#: allthethings/page/templates/page/faq.html:202
+#: allthethings/page/templates/page/faq.html:207
 #, fuzzy
 msgid "page.faq.save_search.text1"
 msgstr "तुम्हाला हवी असलेली सेटिंग्ज निवडा, शोध बॉक्स रिकामी ठेवा, “शोधा” क्लिक करा, आणि नंतर तुमच्या ब्राउझरच्या बुकमार्क फीचरचा वापर करून पृष्ठ बुकमार्क करा."
 
-#: allthethings/page/templates/page/faq.html:205
+#: allthethings/page/templates/page/faq.html:210
 #, fuzzy
 msgid "page.faq.mobile.title"
 msgstr "तुमच्याकडे मोबाइल अॅप आहे का?"
 
-#: allthethings/page/templates/page/faq.html:208
+#: allthethings/page/templates/page/faq.html:213
 #, fuzzy
 msgid "page.faq.mobile.text1"
 msgstr "आमच्याकडे अधिकृत मोबाइल अॅप नाही, परंतु तुम्ही हे वेबसाइट अॅप म्हणून इन्स्टॉल करू शकता."
 
-#: allthethings/page/templates/page/faq.html:209
+#: allthethings/page/templates/page/faq.html:214
 #, fuzzy
 msgid "page.faq.mobile.android"
 msgstr "<strong>Android:</strong> वरच्या उजव्या कोपऱ्यातील तीन-डॉट मेनूवर क्लिक करा, आणि “होम स्क्रीनवर जोडा” निवडा."
 
-#: allthethings/page/templates/page/faq.html:210
+#: allthethings/page/templates/page/faq.html:215
 #, fuzzy
 msgid "page.faq.mobile.ios"
 msgstr "<strong>iOS:</strong> तळाशी “शेअर” बटणावर क्लिक करा, आणि “होम स्क्रीनवर जोडा” निवडा."
 
-#: allthethings/page/templates/page/faq.html:213
+#: allthethings/page/templates/page/faq.html:218
 #, fuzzy
 msgid "page.faq.api.title"
 msgstr "तुमच्याकडे API आहे का?"
 
-#: allthethings/page/templates/page/faq.html:216
+#: allthethings/page/templates/page/faq.html:221
 #, fuzzy
 msgid "page.faq.api.text1"
 msgstr "आमच्याकडे सदस्यांसाठी एक स्थिर JSON API आहे, जलद डाउनलोड URL मिळवण्यासाठी: <a %(a_fast_download)s>/dyn/api/fast_download.json</a> (JSON मध्येच दस्तऐवजीकरण)."
 
-#: allthethings/page/templates/page/faq.html:220
+#: allthethings/page/templates/page/faq.html:225
 #, fuzzy
 msgid "page.faq.api.text2"
 msgstr "इतर वापरांसाठी, जसे की आमच्या सर्व फाइल्समधून पुनरावृत्ती करणे, कस्टम शोध तयार करणे, इत्यादी, आम्ही <a %(a_generate)s>जनरेट</a> किंवा <a %(a_download)s>डाउनलोड</a> करण्याची शिफारस करतो आमचे ElasticSearch आणि MariaDB डेटाबेस. कच्चे डेटा मॅन्युअली एक्सप्लोर केले जाऊ शकते <a %(a_explore)s>JSON फाइल्सद्वारे</a>."
 
-#: allthethings/page/templates/page/faq.html:224
+#: allthethings/page/templates/page/faq.html:229
 #, fuzzy
 msgid "page.faq.api.text3"
 msgstr "आमची कच्ची टॉरंट्स यादी <a %(a_torrents)s>JSON</a> म्हणून डाउनलोड केली जाऊ शकते."
 
-#: allthethings/page/templates/page/faq.html:227
+#: allthethings/page/templates/page/faq.html:232
 #, fuzzy
 msgid "page.faq.torrents.title"
 msgstr "टॉरंट्स FAQ"
 
-#: allthethings/page/templates/page/faq.html:230
+#: allthethings/page/templates/page/faq.html:235
 #, fuzzy
 msgid "page.faq.torrents.q1"
 msgstr "मला सीड करण्यात मदत करायची आहे, पण माझ्याकडे जास्त डिस्क स्पेस नाही."
 
-#: allthethings/page/templates/page/faq.html:232
+#: allthethings/page/templates/page/faq.html:237
 #, fuzzy
 msgid "page.faq.torrents.a1"
 msgstr "<a %(a_list)s>टोरेंट सूची जनरेटर</a> वापरून आपल्या स्टोरेज स्पेस मर्यादेत टोरेंटिंगसाठी सर्वाधिक आवश्यक असलेल्या टोरेंटची यादी तयार करा."
 
-#: allthethings/page/templates/page/faq.html:236
+#: allthethings/page/templates/page/faq.html:241
 #, fuzzy
 msgid "page.faq.torrents.q2"
 msgstr "टोरेंट खूप धीमे आहेत; मी डेटा थेट तुमच्याकडून डाउनलोड करू शकतो का?"
 
-#: allthethings/page/templates/page/faq.html:238
+#: allthethings/page/templates/page/faq.html:243
 #, fuzzy
 msgid "page.faq.torrents.a2"
 msgstr "होय, <a %(a_llm)s>LLM डेटा</a> पृष्ठ पहा."
 
-#: allthethings/page/templates/page/faq.html:242
+#: allthethings/page/templates/page/faq.html:247
 #, fuzzy
 msgid "page.faq.torrents.q3"
 msgstr "मी फक्त काही फाइल्स, जसे की विशिष्ट भाषा किंवा विषयाचे फाइल्स डाउनलोड करू शकतो का?"
 
-#: allthethings/page/templates/page/faq.html:244
+#: allthethings/page/templates/page/faq.html:249
 #, fuzzy
 msgid "page.faq.torrents.a3"
 msgstr "बहुतेक टोरेंटमध्ये फाइल्स थेट असतात, ज्याचा अर्थ असा की आपण टोरेंट क्लायंट्सना फक्त आवश्यक फाइल्स डाउनलोड करण्याचे निर्देश देऊ शकता. कोणत्या फाइल्स डाउनलोड करायच्या ते ठरवण्यासाठी, आपण आमचे मेटाडेटा <a %(a_generate)s>जनरेट</a> करू शकता, किंवा आमचे ElasticSearch आणि MariaDB डेटाबेस <a %(a_download)s>डाउनलोड</a> करू शकता. दुर्दैवाने, काही टोरेंट संग्रहांच्या मुळात .zip किंवा .tar फाइल्स असतात, अशा परिस्थितीत आपण वैयक्तिक फाइल्स निवडण्यापूर्वी संपूर्ण टोरेंट डाउनलोड करणे आवश्यक आहे."
 
-#: allthethings/page/templates/page/faq.html:248
+#: allthethings/page/templates/page/faq.html:253
 #, fuzzy
 msgid "page.faq.torrents.q4"
 msgstr "आपण टोरेंटमधील डुप्लिकेट्स कसे हाताळता?"
 
-#: allthethings/page/templates/page/faq.html:250
+#: allthethings/page/templates/page/faq.html:255
 #, fuzzy
 msgid "page.faq.torrents.a4"
 msgstr "आम्ही या यादीतील टोरेंटमध्ये कमीत कमी डुप्लिकेशन किंवा ओव्हरलॅप ठेवण्याचा प्रयत्न करतो, परंतु हे नेहमी साध्य होऊ शकत नाही आणि स्त्रोत लायब्ररीच्या धोरणांवर अवलंबून असते. ज्या लायब्ररी स्वतःचे टोरेंट प्रकाशित करतात, त्यांच्यासाठी हे आमच्या हातात नाही. अन्नाच्या आर्काइव्हद्वारे प्रकाशित केलेल्या टोरेंटसाठी, आम्ही फक्त MD5 हॅशच्या आधारे डुप्लिकेट काढतो, ज्याचा अर्थ असा की त्याच पुस्तकाच्या वेगवेगळ्या आवृत्त्या डुप्लिकेट होत नाहीत."
 
-#: allthethings/page/templates/page/faq.html:254
+#: allthethings/page/templates/page/faq.html:259
 #, fuzzy
 msgid "page.faq.torrents.q5"
 msgstr "मला टोरेंट यादी JSON स्वरूपात मिळू शकते का?"
 
-#: allthethings/page/templates/page/faq.html:256
+#: allthethings/page/templates/page/faq.html:261
 #, fuzzy
 msgid "page.faq.torrents.a5"
 msgstr "होय."
 
-#: allthethings/page/templates/page/faq.html:260
+#: allthethings/page/templates/page/faq.html:265
 #, fuzzy
 msgid "page.faq.torrents.q6"
 msgstr "मला टोरेंटमध्ये PDF किंवा EPUB दिसत नाहीत, फक्त बायनरी फाइल्स दिसतात? मी काय करू?"
 
-#: allthethings/page/templates/page/faq.html:262
+#: allthethings/page/templates/page/faq.html:267
 #, fuzzy
 msgid "page.faq.torrents.a6"
 msgstr "हे प्रत्यक्षात PDF आणि EPUB आहेत, फक्त आमच्या अनेक टोरेंटमध्ये त्यांना एक्सटेंशन नाही. टोरेंट फाइल्ससाठी मेटाडेटा शोधण्यासाठी दोन ठिकाणे आहेत, ज्यात फाइल प्रकार/एक्सटेंशन्स समाविष्ट आहेत:"
 
-#: allthethings/page/templates/page/faq.html:264
+#: allthethings/page/templates/page/faq.html:269
 #, fuzzy
 msgid "page.faq.torrents.a6.li1"
 msgstr "1. प्रत्येक संग्रह किंवा प्रकाशनाचे स्वतःचे मेटाडेटा असते. उदाहरणार्थ, <a %(a_libgen_nonfic)s>Libgen.rs टोरेंट्स</a> च्या संबंधित मेटाडेटा डेटाबेस Libgen.rs वेबसाइटवर होस्ट केलेले आहेत. आम्ही सामान्यतः प्रत्येक संग्रहाच्या <a %(a_datasets)s>डेटासेट पृष्ठावरून</a> संबंधित मेटाडेटा संसाधनांशी लिंक करतो."
 
-#: allthethings/page/templates/page/faq.html:266
+#: allthethings/page/templates/page/faq.html:271
 #, fuzzy
 msgid "page.faq.torrents.a6.li2"
 msgstr "2. आम्ही आमचे ElasticSearch आणि MariaDB डेटाबेस <a %(a_generate)s>जनरेट</a> किंवा <a %(a_download)s>डाउनलोड</a> करण्याची शिफारस करतो. यामध्ये अन्नाच्या आर्काइव्हमधील प्रत्येक रेकॉर्डसाठी त्याच्या संबंधित टोरेंट फाइल्सचे मॅपिंग समाविष्ट आहे (जर उपलब्ध असेल), ElasticSearch JSON मधील “torrent_paths” अंतर्गत."
 
-#: allthethings/page/templates/page/faq.html:269
+#: allthethings/page/templates/page/faq.html:274
 #, fuzzy
 msgid "page.faq.security.title"
 msgstr "आपल्याकडे जबाबदार प्रकटीकरण कार्यक्रम आहे का?"
 
-#: allthethings/page/templates/page/faq.html:272
+#: allthethings/page/templates/page/faq.html:277
 #, fuzzy
 msgid "page.faq.security.text1"
 msgstr "आम्ही सुरक्षा संशोधकांना आमच्या प्रणालींमध्ये असुरक्षा शोधण्यासाठी स्वागत करतो. आम्ही जबाबदार प्रकटीकरणाचे मोठे समर्थक आहोत. आमच्याशी <a %(a_contact)s>येथे</a> संपर्क साधा."
 
-#: allthethings/page/templates/page/faq.html:276
+#: allthethings/page/templates/page/faq.html:281
 #, fuzzy
 msgid "page.faq.security.text2"
 msgstr "आम्ही सध्या बग बाऊंटी देऊ शकत नाही, फक्त अशा असुरक्षांसाठी ज्यामुळे आमची अज्ञातता <a %(a_link)s>धोक्यात येऊ शकते</a>, ज्यासाठी आम्ही $10k-50k श्रेणीतील बाऊंटी देतो. भविष्यात बग बाऊंटीच्या व्यापक क्षेत्रासाठी ऑफर देण्याची आमची इच्छा आहे! कृपया लक्षात घ्या की सोशल इंजिनिअरिंग हल्ले क्षेत्राबाहेर आहेत."
 
-#: allthethings/page/templates/page/faq.html:280
+#: allthethings/page/templates/page/faq.html:285
 #, fuzzy
 msgid "page.faq.security.text3"
 msgstr "आपण आक्रमक सुरक्षेत स्वारस्य असल्यास, आणि जगाचे ज्ञान आणि संस्कृती संग्रहित करण्यात मदत करू इच्छित असल्यास, आमच्याशी संपर्क साधा. आपल्याला मदत करण्याचे अनेक मार्ग आहेत."
 
-#: allthethings/page/templates/page/faq.html:283
+#: allthethings/page/templates/page/faq.html:288
 #, fuzzy
 msgid "page.faq.resources.title"
 msgstr "अन्नाच्या आर्काइव्हबद्दल अधिक संसाधने आहेत का?"
 
-#: allthethings/page/templates/page/faq.html:286
+#: allthethings/page/templates/page/faq.html:291
 #, fuzzy
 msgid "page.faq.resources.annas_blog"
 msgstr "<a %(a_blog)s>अन्नाचा ब्लॉग</a>, <a %(a_reddit_u)s>रेडिट</a>, <a %(a_reddit_r)s>सबरेडिट</a> — नियमित अद्यतने"
 
-#: allthethings/page/templates/page/faq.html:287
+#: allthethings/page/templates/page/faq.html:292
 #, fuzzy
 msgid "page.faq.resources.annas_software"
 msgstr "<a %(a_software)s>अन्नाचे सॉफ्टवेअर</a> — आमचा ओपन सोर्स कोड"
 
-#: allthethings/page/templates/page/faq.html:288
+#: allthethings/page/templates/page/faq.html:293
 #, fuzzy
 msgid "page.faq.resources.translate"
 msgstr "<a %(a_translate)s>अन्नाच्या सॉफ्टवेअरवर भाषांतर करा</a> — आमची भाषांतर प्रणाली"
 
-#: allthethings/page/templates/page/faq.html:289
+#: allthethings/page/templates/page/faq.html:294
 #, fuzzy
 msgid "page.faq.resources.datasets"
 msgstr "<a %(a_datasets)s>डेटासेट्स</a> — डेटाबद्दल माहिती"
 
-#: allthethings/page/templates/page/faq.html:290
+#: allthethings/page/templates/page/faq.html:295
 #, fuzzy
 msgid "page.faq.resources.domains"
 msgstr "<a %(a_li)s>.li</a>, <a %(a_se)s>.se</a>, <a %(a_org)s>.org</a> — पर्यायी डोमेन"
 
-#: allthethings/page/templates/page/faq.html:291
+#: allthethings/page/templates/page/faq.html:296
 #, fuzzy
 msgid "page.faq.resources.wikipedia"
 msgstr "<a %(a_wikipedia)s>विकिपीडिया</a> — आमच्याबद्दल अधिक माहिती (कृपया ही पृष्ठ अद्ययावत ठेवण्यास मदत करा, किंवा आपल्या भाषेसाठी एक तयार करा!)"
 
-#: allthethings/page/templates/page/faq.html:294
+#: allthethings/page/templates/page/faq.html:299
 #, fuzzy
 msgid "page.faq.copyright.title"
 msgstr "मी कॉपीराइट उल्लंघनाची तक्रार कशी करू?"
 
-#: allthethings/page/templates/page/faq.html:297
+#: allthethings/page/templates/page/faq.html:302
 #, fuzzy
 msgid "page.faq.copyright.text1"
 msgstr "आम्ही येथे कोणतेही कॉपीराइट केलेले साहित्य होस्ट करत नाही. आम्ही एक शोध इंजिन आहोत, आणि म्हणूनच फक्त आधीच सार्वजनिकपणे उपलब्ध असलेल्या मेटाडेटाचे अनुक्रमण करतो. या बाह्य स्रोतांवरून डाउनलोड करताना, आपल्या अधिकारक्षेत्रातील कायद्यांची तपासणी करण्याची शिफारस करतो की काय अनुमत आहे. इतरांनी होस्ट केलेल्या सामग्रीसाठी आम्ही जबाबदार नाही."
 
-#: allthethings/page/templates/page/faq.html:301
+#: allthethings/page/templates/page/faq.html:306
 #, fuzzy
 msgid "page.faq.copyright.text2"
 msgstr "आपल्याला येथे जे काही दिसते त्याबद्दल तक्रारी असल्यास, मूळ वेबसाइटशी संपर्क साधणे सर्वोत्तम आहे. आम्ही नियमितपणे त्यांच्या बदलांना आमच्या डेटाबेसमध्ये समाविष्ट करतो. जर आपल्याला खरोखरच वाटत असेल की आपल्याकडे वैध DMCA तक्रार आहे ज्याला आम्ही प्रतिसाद द्यावा, कृपया <a %(a_copyright)s>DMCA / कॉपीराइट दावा फॉर्म</a> भरा. आम्ही आपल्याच्या तक्रारी गंभीरपणे घेतो आणि शक्य तितक्या लवकर आपल्याला उत्तर देऊ."
 
-#: allthethings/page/templates/page/faq.html:304
+#: allthethings/page/templates/page/faq.html:309
 #, fuzzy
 msgid "page.faq.hate.title"
 msgstr "मला हा प्रकल्प कसा चालवला जात आहे हे आवडत नाही!"
 
-#: allthethings/page/templates/page/faq.html:307
+#: allthethings/page/templates/page/faq.html:312
 #, fuzzy
 msgid "page.faq.hate.text1"
 msgstr "आम्ही सर्वांना हे देखील लक्षात आणून देऊ इच्छितो की आमचा सर्व कोड आणि डेटा पूर्णपणे ओपन सोर्स आहे. आमच्या सारख्या प्रकल्पांसाठी हे अद्वितीय आहे — आम्हाला कोणत्याही इतर प्रकल्पाची माहिती नाही ज्यात समान मोठा कॅटलॉग आहे जो पूर्णपणे ओपन सोर्स आहे. आम्ही कोणालाही आमचा प्रकल्प चुकीचा चालवतो असे वाटत असल्यास आमचा कोड आणि डेटा घेऊन स्वतःची शॅडो लायब्ररी सेट अप करण्याचे स्वागत करतो! आम्ही हे द्वेषाने किंवा काहीतरी म्हणत नाही — आम्हाला खरोखरच वाटते की हे छान होईल कारण यामुळे सर्वांसाठी मानक उंचावेल आणि मानवतेचा वारसा चांगल्या प्रकारे जतन होईल."
 
-#: allthethings/page/templates/page/faq.html:310
+#: allthethings/page/templates/page/faq.html:315
 #, fuzzy
 msgid "page.faq.uptime.title"
 msgstr "तुमच्याकडे अपटाइम मॉनिटर आहे का?"
 
-#: allthethings/page/templates/page/faq.html:313
+#: allthethings/page/templates/page/faq.html:318
 #, fuzzy
 msgid "page.faq.uptime.text1"
 msgstr "कृपया <a %(a_href)s>हा उत्कृष्ट प्रकल्प</a> पहा."
 
-#: allthethings/page/templates/page/faq.html:316
+#: allthethings/page/templates/page/faq.html:321
 #, fuzzy
 msgid "page.faq.anna.title"
 msgstr "अॅना कोण आहे?"
 
-#: allthethings/page/templates/page/faq.html:320
+#: allthethings/page/templates/page/faq.html:325
 #, fuzzy
 msgid "page.faq.anna.text1"
 msgstr "तुम्ही अॅना आहात!"
 
-#: allthethings/page/templates/page/faq.html:335
+#: allthethings/page/templates/page/faq.html:340
 #, fuzzy
 msgid "page.faq.favorite.title"
 msgstr "आपली आवडती पुस्तके कोणती आहेत?"
 
-#: allthethings/page/templates/page/faq.html:338
+#: allthethings/page/templates/page/faq.html:343
 #, fuzzy
 msgid "page.faq.favorite.text1"
 msgstr "येथे काही पुस्तके आहेत ज्यांना शॅडो लायब्ररी आणि डिजिटल जतनाच्या जगात विशेष महत्त्व आहे:"
@@ -5351,16 +5353,16 @@ msgstr "शोधा"
 #: allthethings/page/templates/page/home.html:19
 #: allthethings/page/templates/page/scidb_home.html:3
 #: allthethings/page/templates/page/scidb_home.html:6
-#: allthethings/templates/layouts/index.html:475
-#: allthethings/templates/layouts/index.html:488
-#: allthethings/templates/layouts/index.html:503
-#: allthethings/templates/layouts/index.html:570
+#: allthethings/templates/layouts/index.html:477
+#: allthethings/templates/layouts/index.html:490
+#: allthethings/templates/layouts/index.html:505
+#: allthethings/templates/layouts/index.html:572
 #, fuzzy
 msgid "page.home.scidb.header"
 msgstr "SciDB"
 
 #: allthethings/page/templates/page/home.html:19
-#: allthethings/templates/layouts/index.html:523
+#: allthethings/templates/layouts/index.html:525
 #, fuzzy
 msgid "layout.index.header.nav.beta"
 msgstr "बीटा"
@@ -5466,8 +5468,8 @@ msgid "page.home.payment_processor.body"
 msgstr "जर आपण उच्च-जोखमीच्या अनामिक पेमेंट प्रोसेसर चालवत असाल, तर कृपया आमच्याशी संपर्क साधा. आम्ही देखील आकर्षक लहान जाहिराती ठेवण्यास इच्छुक लोक शोधत आहोत. सर्व उत्पन्न आमच्या संरक्षण प्रयत्नांसाठी जाते."
 
 #: allthethings/page/templates/page/home.html:98
-#: allthethings/templates/layouts/index.html:511
-#: allthethings/templates/layouts/index.html:590
+#: allthethings/templates/layouts/index.html:513
+#: allthethings/templates/layouts/index.html:592
 #, fuzzy
 msgid "layout.index.header.nav.annasblog"
 msgstr "अ‍ॅनाचा ब्लॉग ↗"
@@ -5899,7 +5901,7 @@ msgstr "जर तुम्ही VPN, सामायिक इंटरने�
 
 #: allthethings/page/templates/page/scidb.html:14
 #: allthethings/page/templates/page/scidb.html:51
-#: allthethings/templates/layouts/index.html:359
+#: allthethings/templates/layouts/index.html:361
 #, fuzzy
 msgid "layout.index.header.title"
 msgstr "अॅनाचा संग्रह"
@@ -5996,7 +5998,7 @@ msgid "page.search.tabs.metadata"
 msgstr "मेटाडेटा"
 
 #: allthethings/page/templates/page/search.html:66
-#: allthethings/templates/layouts/index.html:519
+#: allthethings/templates/layouts/index.html:521
 #, fuzzy
 msgid "common.search.placeholder"
 msgstr "शीर्षक, लेखक, DOI, ISBN, MD5, …"
@@ -6353,117 +6355,117 @@ msgstr "हलके स्वयंसेवी काम"
 msgid "page.volunteering.section.light.text1"
 msgstr "जर तुमच्याकडे काही तास मोकळे असतील, तर तुम्ही अनेक प्रकारे मदत करू शकता. <a %(a_telegram)s>Telegram वर स्वयंसेवक चॅटमध्ये</a> सामील होण्याचे नक्की करा."
 
-#: allthethings/page/templates/page/volunteering.html:34
+#: allthethings/page/templates/page/volunteering.html:36
 #, fuzzy
 msgid "page.volunteering.section.light.text2"
 msgstr "कृतज्ञतेच्या प्रतीक म्हणून, आम्ही सामान्यतः मूलभूत टप्प्यांसाठी 6 महिन्यांचे “लकी लायब्रेरियन” देतो, आणि सतत स्वयंसेवी कामासाठी अधिक देतो. सर्व टप्प्यांसाठी उच्च दर्जाचे काम आवश्यक आहे — निष्काळजी काम आम्हाला मदत करण्याऐवजी अधिक हानी पोहोचवते आणि आम्ही ते नाकारू. कृपया <a %(a_contact)s>आम्हाला ईमेल करा</a> जेव्हा तुम्ही एखादा टप्पा गाठता."
 
-#: allthethings/page/templates/page/volunteering.html:39
+#: allthethings/page/templates/page/volunteering.html:41
 #, fuzzy
 msgid "page.volunteering.table.header.task"
 msgstr "कार्य"
 
-#: allthethings/page/templates/page/volunteering.html:40
+#: allthethings/page/templates/page/volunteering.html:42
 #, fuzzy
 msgid "page.volunteering.table.header.milestone"
 msgstr "माइलस्टोन"
 
-#: allthethings/page/templates/page/volunteering.html:43
+#: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
 msgid "page.volunteering.table.open_library.task"
 msgstr "Open Library सोबत <a %(a_metadata)s>लिंक करून</a> मेटाडेटा सुधारित करा."
 
-#: allthethings/page/templates/page/volunteering.html:44
+#: allthethings/page/templates/page/volunteering.html:46
 #, fuzzy
 msgid "page.volunteering.table.open_library.milestone_count"
 msgstr "%(links)s नोंदींच्या दुव्यांमध्ये तुम्ही सुधारणा केल्या."
 
-#: allthethings/page/templates/page/volunteering.html:47
+#: allthethings/page/templates/page/volunteering.html:49
 #, fuzzy
 msgid "page.volunteering.table.translate.task"
 msgstr "<a %(a_translate)s>वेबसाइटचे भाषांतर</a>."
 
-#: allthethings/page/templates/page/volunteering.html:48
+#: allthethings/page/templates/page/volunteering.html:50
 #, fuzzy
 msgid "page.volunteering.table.translate.milestone"
 msgstr "पूर्णपणे एका भाषेचे भाषांतर करा (जर ते आधीच पूर्ण होण्याच्या जवळ नसेल तर)."
 
-#: allthethings/page/templates/page/volunteering.html:51
+#: allthethings/page/templates/page/volunteering.html:53
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.task"
 msgstr "सोशल मीडियावर आणि ऑनलाइन फोरमवर Anna’s Archive बद्दल माहिती पसरवा, AA वर पुस्तक किंवा यादी शिफारस करून, किंवा प्रश्नांची उत्तरे देऊन."
 
-#: allthethings/page/templates/page/volunteering.html:52
+#: allthethings/page/templates/page/volunteering.html:54
 #, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s दुवे किंवा स्क्रीनशॉट्स."
 
-#: allthethings/page/templates/page/volunteering.html:55
+#: allthethings/page/templates/page/volunteering.html:57
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.task"
 msgstr "तुमच्या भाषेत Anna’s Archive साठी विकिपीडिया पृष्ठ सुधारित करा. इतर भाषांमधील AA च्या विकिपीडिया पृष्ठावरील माहिती, आणि आमच्या वेबसाइट आणि ब्लॉगमधून माहिती समाविष्ट करा. इतर संबंधित पृष्ठांवर AA चा संदर्भ जोडा."
 
-#: allthethings/page/templates/page/volunteering.html:56
+#: allthethings/page/templates/page/volunteering.html:58
 #, fuzzy
 msgid "page.volunteering.table.wikipedia.milestone"
 msgstr "तुम्ही महत्त्वपूर्ण योगदान दिले हे दर्शविणारे संपादन इतिहासाचे लिंक."
 
-#: allthethings/page/templates/page/volunteering.html:59
+#: allthethings/page/templates/page/volunteering.html:61
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.task"
 msgstr "Z-Library किंवा Library Genesis फोरमवर पुस्तक (किंवा पेपर, इ.) विनंत्या पूर्ण करणे. आमच्याकडे स्वतःचे पुस्तक विनंती प्रणाली नाही, परंतु आम्ही त्या लायब्ररींचे मिरर करतो, त्यामुळे त्यांना चांगले बनवणे Anna’s Archive ला चांगले बनवते."
 
-#: allthethings/page/templates/page/volunteering.html:60
+#: allthethings/page/templates/page/volunteering.html:62
 #, fuzzy
 msgid "page.volunteering.table.fulfill_requests.milestone_count"
 msgstr "%(links)s विनंत्या पूर्ण केल्याचे दुवे किंवा स्क्रीनशॉट्स."
 
-#: allthethings/page/templates/page/volunteering.html:64
+#: allthethings/page/templates/page/volunteering.html:66
 #, fuzzy
 msgid "page.volunteering.table.misc.task"
 msgstr "आमच्या <a %(a_telegram)s>Telegram वर स्वयंसेवक चॅटमध्ये</a> पोस्ट केलेले छोटे कार्य. सामान्यतः सदस्यत्वासाठी, कधीकधी लहान बक्षिसांसाठी."
 
-#: allthethings/page/templates/page/volunteering.html:65
+#: allthethings/page/templates/page/volunteering.html:67
 #, fuzzy
 msgid "page.volunteering.table.misc.milestone"
 msgstr "कार्यावर अवलंबून."
 
-#: allthethings/page/templates/page/volunteering.html:69
+#: allthethings/page/templates/page/volunteering.html:71
 #, fuzzy
 msgid "page.volunteering.section.bounties.heading"
 msgstr "बक्षिसे"
 
-#: allthethings/page/templates/page/volunteering.html:72
+#: allthethings/page/templates/page/volunteering.html:74
 #, fuzzy
 msgid "page.volunteering.section.bounties.text1"
 msgstr "आम्ही नेहमीच ठोस प्रोग्रामिंग किंवा ऑफेन्सिव्ह सिक्युरिटी कौशल्य असलेल्या लोकांना सहभागी होण्यासाठी शोधत असतो. तुम्ही मानवतेच्या वारशाचे जतन करण्यासाठी गंभीर योगदान देऊ शकता."
 
-#: allthethings/page/templates/page/volunteering.html:76
+#: allthethings/page/templates/page/volunteering.html:78
 #, fuzzy
 msgid "page.volunteering.section.bounties.text2"
 msgstr "धन्यवाद म्हणून, आम्ही ठोस योगदानासाठी सदस्यत्व देतो. मोठ्या धन्यवाद म्हणून, आम्ही विशेषतः महत्त्वाच्या आणि कठीण कामांसाठी आर्थिक बक्षिसे देतो. हे नोकरीचे पर्याय म्हणून पाहिले जाऊ नये, परंतु हे एक अतिरिक्त प्रोत्साहन आहे आणि झालेल्या खर्चात मदत करू शकते."
 
-#: allthethings/page/templates/page/volunteering.html:80
+#: allthethings/page/templates/page/volunteering.html:82
 #, fuzzy
 msgid "page.volunteering.section.bounties.text3"
 msgstr "आमचा बहुतेक कोड ओपन सोर्स आहे, आणि बक्षिस देताना आम्ही तुमच्या कोडसाठीही तेच मागू. काही अपवाद आहेत ज्यावर आम्ही वैयक्तिक पातळीवर चर्चा करू शकतो."
 
-#: allthethings/page/templates/page/volunteering.html:84
+#: allthethings/page/templates/page/volunteering.html:86
 #, fuzzy
 msgid "page.volunteering.section.bounties.text4"
 msgstr "बक्षिसे पहिल्यांदा काम पूर्ण करणाऱ्या व्यक्तीला दिली जातात. कृपया बक्षिसाच्या तिकिटावर टिप्पणी करा जेणेकरून इतरांना कळेल की तुम्ही काहीतरी काम करत आहात, त्यामुळे इतर थांबू शकतात किंवा तुमच्याशी संपर्क साधून टीम अप करू शकतात. परंतु लक्षात ठेवा की इतरांना देखील त्यावर काम करण्याची मुभा आहे आणि ते तुम्हाला हरवण्याचा प्रयत्न करू शकतात. तथापि, आम्ही खराब कामासाठी बक्षिसे देत नाही. जर दोन उच्च दर्जाचे सबमिशन एकमेकांच्या जवळ (एक किंवा दोन दिवसांच्या आत) केले गेले, तर आम्ही आमच्या विवेकबुद्धीनुसार दोघांनाही बक्षिसे देण्याचा निर्णय घेऊ शकतो, उदाहरणार्थ पहिल्या सबमिशनसाठी 100%% आणि दुसऱ्या सबमिशनसाठी 50%% (म्हणून एकूण 150%%)."
 
-#: allthethings/page/templates/page/volunteering.html:88
+#: allthethings/page/templates/page/volunteering.html:90
 #, fuzzy
 msgid "page.volunteering.section.bounties.text5"
 msgstr "मोठ्या बक्षिसांसाठी (विशेषतः स्क्रॅपिंग बक्षिसांसाठी), कृपया आम्हाला संपर्क साधा जेव्हा तुम्ही ~5%% पूर्ण केले असेल आणि तुम्हाला खात्री आहे की तुमची पद्धत पूर्ण माइलस्टोनपर्यंत वाढेल. तुम्हाला तुमची पद्धत आमच्यासोबत शेअर करावी लागेल जेणेकरून आम्ही अभिप्राय देऊ शकू. तसेच, या मार्गाने आम्ही निर्णय घेऊ शकतो की बक्षिसाच्या जवळ असलेल्या अनेक लोकांबद्दल काय करायचे, जसे की अनेक लोकांना बक्षिस देणे, लोकांना टीम अप करण्यास प्रोत्साहित करणे इ."
 
-#: allthethings/page/templates/page/volunteering.html:92
+#: allthethings/page/templates/page/volunteering.html:94
 #, fuzzy
 msgid "page.volunteering.section.bounties.text6"
 msgstr "इशारा: उच्च-बक्षिसाचे कार्य <span %(bold)s>कठीण</span> आहे — सोप्या कार्यांपासून सुरुवात करणे शहाणपणाचे ठरू शकते."
 
-#: allthethings/page/templates/page/volunteering.html:96
+#: allthethings/page/templates/page/volunteering.html:98
 #, fuzzy
 msgid "page.volunteering.section.bounties.text7"
 msgstr "आमच्या <a %(a_gitlab)s>Gitlab issues list</a> वर जा आणि “Label priority” द्वारे क्रमवारी लावा. हे साधारणपणे आम्हाला महत्त्वाच्या असलेल्या कार्यांचा क्रम दर्शवते. स्पष्ट बक्षिसांशिवाय कार्ये अद्याप सदस्यत्वासाठी पात्र आहेत, विशेषत: \"Accepted\" आणि \"Anna’s favorite\" म्हणून चिन्हांकित केलेली कार्ये. तुम्ही \"Starter project\" पासून सुरुवात करू इच्छिता."
@@ -6493,184 +6495,185 @@ msgstr "अ‍ॅनाच्या संग्रहाला तुमच्�
 msgid "layout.index.header.banner.fundraiser.takedown"
 msgstr "अनेकजण आम्हाला खाली आणण्याचा प्रयत्न करतात, पण आम्ही प्रतिकार करतो."
 
-#: allthethings/templates/layouts/index.html:215
-#: allthethings/templates/layouts/index.html:249
-#: allthethings/templates/layouts/index.html:515
-#: allthethings/templates/layouts/index.html:572
+#: allthethings/templates/layouts/index.html:216
+#: allthethings/templates/layouts/index.html:217
+#: allthethings/templates/layouts/index.html:251
+#: allthethings/templates/layouts/index.html:517
+#: allthethings/templates/layouts/index.html:574
 #, fuzzy
 msgid "layout.index.header.nav.donate"
 msgstr "देणगी द्या"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.holiday_gift"
 msgstr "मानवी ज्ञान जतन करणे: एक उत्तम सुट्टीची भेट!"
 
-#: allthethings/templates/layouts/index.html:249
+#: allthethings/templates/layouts/index.html:251
 #, fuzzy
 msgid "layout.index.header.banner.surprise"
 msgstr "एखाद्या प्रिय व्यक्तीला आश्चर्यचकित करा, त्यांना सदस्यत्वासह खाते द्या."
 
-#: allthethings/templates/layouts/index.html:252
+#: allthethings/templates/layouts/index.html:254
 #, fuzzy
 msgid "layout.index.header.banner.mirrors"
 msgstr "अ‍ॅनाच्या संग्रहाची स्थिरता वाढवण्यासाठी, आम्ही मिरर चालवण्यासाठी स्वयंसेवक शोधत आहोत."
 
-#: allthethings/templates/layouts/index.html:258
+#: allthethings/templates/layouts/index.html:260
 #, fuzzy
 msgid "layout.index.header.banner.valentine_gift"
 msgstr "परिपूर्ण व्हॅलेंटाईनची भेट!"
 
-#: allthethings/templates/layouts/index.html:277
+#: allthethings/templates/layouts/index.html:279
 #, fuzzy
 msgid "layout.index.header.banner.new_donation_method"
 msgstr "आमच्याकडे एक नवीन देणगी पद्धत उपलब्ध आहे: %(method_name)s. कृपया %(donate_link_open_tag)sदेणगी द्या</a> — ही वेबसाइट चालवणे स्वस्त नाही, आणि तुमची देणगी खरोखरच फरक करते. खूप खूप धन्यवाद."
 
-#: allthethings/templates/layouts/index.html:284
+#: allthethings/templates/layouts/index.html:286
 #, fuzzy
 msgid "layout.index.banners.comics_fundraiser.text"
 msgstr "आम्ही जगातील सर्वात मोठ्या कॉमिक्स शॅडो लायब्ररीच्या <a href=\"https://annas-blog.org/backed-up-the-worlds-largest-comics-shadow-lib.html\">बॅकअपसाठी</a> निधी गोळा करत आहोत. तुमच्या समर्थनाबद्दल धन्यवाद! <a href=\"/donate\">देणगी द्या.</a> जर तुम्ही देणगी देऊ शकत नसाल, तर कृपया तुमच्या मित्रांना सांगून आणि आम्हाला <a href=\"https://www.reddit.com/r/Annas_Archive\">Reddit</a>, किंवा <a href=\"https://t.me/annasarchiveorg\">Telegram</a> वर फॉलो करून आमचे समर्थन करा."
 
-#: allthethings/templates/layouts/index.html:391
+#: allthethings/templates/layouts/index.html:393
 #, fuzzy
 msgid "layout.index.header.recent_downloads"
 msgstr "अलीकडील डाउनलोड्स:"
-
-#: allthethings/templates/layouts/index.html:474
-#: allthethings/templates/layouts/index.html:487
-#: allthethings/templates/layouts/index.html:502
-#: allthethings/templates/layouts/index.html:569
-#, fuzzy
-msgid "layout.index.header.nav.search"
-msgstr "शोधा"
 
 #: allthethings/templates/layouts/index.html:476
 #: allthethings/templates/layouts/index.html:489
 #: allthethings/templates/layouts/index.html:504
 #: allthethings/templates/layouts/index.html:571
-#: allthethings/templates/layouts/index.html:597
 #, fuzzy
-msgid "layout.index.header.nav.faq"
-msgstr "FAQ"
-
-#: allthethings/templates/layouts/index.html:477
-#: allthethings/templates/layouts/index.html:490
-#: allthethings/templates/layouts/index.html:505
-#: allthethings/templates/layouts/index.html:598
-#, fuzzy
-msgid "layout.index.header.nav.improve_metadata"
-msgstr "मेटाडेटा सुधारित करा"
+msgid "layout.index.header.nav.search"
+msgstr "शोधा"
 
 #: allthethings/templates/layouts/index.html:478
 #: allthethings/templates/layouts/index.html:491
 #: allthethings/templates/layouts/index.html:506
+#: allthethings/templates/layouts/index.html:573
 #: allthethings/templates/layouts/index.html:599
 #, fuzzy
-msgid "layout.index.header.nav.volunteering"
-msgstr "स्वयंसेवा आणि बक्षिसे"
+msgid "layout.index.header.nav.faq"
+msgstr "FAQ"
 
 #: allthethings/templates/layouts/index.html:479
 #: allthethings/templates/layouts/index.html:492
 #: allthethings/templates/layouts/index.html:507
 #: allthethings/templates/layouts/index.html:600
 #, fuzzy
-msgid "layout.index.header.nav.datasets"
-msgstr "Datasets"
+msgid "layout.index.header.nav.improve_metadata"
+msgstr "मेटाडेटा सुधारित करा"
 
 #: allthethings/templates/layouts/index.html:480
 #: allthethings/templates/layouts/index.html:493
 #: allthethings/templates/layouts/index.html:508
 #: allthethings/templates/layouts/index.html:601
 #, fuzzy
-msgid "layout.index.header.nav.torrents"
-msgstr "Torrents"
+msgid "layout.index.header.nav.volunteering"
+msgstr "स्वयंसेवा आणि बक्षिसे"
 
 #: allthethings/templates/layouts/index.html:481
 #: allthethings/templates/layouts/index.html:494
 #: allthethings/templates/layouts/index.html:509
 #: allthethings/templates/layouts/index.html:602
 #, fuzzy
-msgid "layout.index.header.nav.codes"
-msgstr "कोड्स एक्सप्लोरर"
+msgid "layout.index.header.nav.datasets"
+msgstr "Datasets"
 
 #: allthethings/templates/layouts/index.html:482
 #: allthethings/templates/layouts/index.html:495
 #: allthethings/templates/layouts/index.html:510
 #: allthethings/templates/layouts/index.html:603
 #, fuzzy
-msgid "layout.index.header.nav.llm_data"
-msgstr "LLM डेटा"
+msgid "layout.index.header.nav.torrents"
+msgstr "Torrents"
 
 #: allthethings/templates/layouts/index.html:483
 #: allthethings/templates/layouts/index.html:496
-#: allthethings/templates/layouts/index.html:501
-#: allthethings/templates/layouts/index.html:568
+#: allthethings/templates/layouts/index.html:511
+#: allthethings/templates/layouts/index.html:604
+#, fuzzy
+msgid "layout.index.header.nav.codes"
+msgstr "कोड्स एक्सप्लोरर"
+
+#: allthethings/templates/layouts/index.html:484
+#: allthethings/templates/layouts/index.html:497
+#: allthethings/templates/layouts/index.html:512
+#: allthethings/templates/layouts/index.html:605
+#, fuzzy
+msgid "layout.index.header.nav.llm_data"
+msgstr "LLM डेटा"
+
+#: allthethings/templates/layouts/index.html:485
+#: allthethings/templates/layouts/index.html:498
+#: allthethings/templates/layouts/index.html:503
+#: allthethings/templates/layouts/index.html:570
 #, fuzzy
 msgid "layout.index.header.nav.home"
 msgstr "मुख्यपृष्ठ"
 
-#: allthethings/templates/layouts/index.html:512
-#: allthethings/templates/layouts/index.html:591
+#: allthethings/templates/layouts/index.html:514
+#: allthethings/templates/layouts/index.html:593
 #, fuzzy
 msgid "layout.index.header.nav.annassoftware"
 msgstr "अ‍ॅनाचे सॉफ्टवेअर ↗"
 
-#: allthethings/templates/layouts/index.html:513
-#: allthethings/templates/layouts/index.html:592
+#: allthethings/templates/layouts/index.html:515
+#: allthethings/templates/layouts/index.html:594
 #, fuzzy
 msgid "layout.index.header.nav.translate"
 msgstr "भाषांतर ↗"
 
-#: allthethings/templates/layouts/index.html:526
-#: allthethings/templates/layouts/index.html:530
-#: allthethings/templates/layouts/index.html:535
+#: allthethings/templates/layouts/index.html:528
+#: allthethings/templates/layouts/index.html:532
+#: allthethings/templates/layouts/index.html:537
 #, fuzzy
 msgid "layout.index.header.nav.login_register"
 msgstr "लॉग इन / नोंदणी करा"
 
-#: allthethings/templates/layouts/index.html:542
-#: allthethings/templates/layouts/index.html:549
-#: allthethings/templates/layouts/index.html:554
+#: allthethings/templates/layouts/index.html:544
+#: allthethings/templates/layouts/index.html:551
+#: allthethings/templates/layouts/index.html:556
 #, fuzzy
 msgid "layout.index.header.nav.account"
 msgstr "खाते"
 
-#: allthethings/templates/layouts/index.html:567
+#: allthethings/templates/layouts/index.html:569
 #, fuzzy
 msgid "layout.index.footer.list1.header"
 msgstr "अ‍ॅनाचे संग्रह"
 
-#: allthethings/templates/layouts/index.html:586
+#: allthethings/templates/layouts/index.html:588
 #, fuzzy
 msgid "layout.index.footer.list2.header"
 msgstr "संपर्कात रहा"
 
-#: allthethings/templates/layouts/index.html:588
+#: allthethings/templates/layouts/index.html:590
 #, fuzzy
 msgid "layout.index.footer.list2.dmca_copyright"
 msgstr "DMCA / कॉपीराइट दावे"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.reddit"
 msgstr "रेडिट"
 
-#: allthethings/templates/layouts/index.html:589
+#: allthethings/templates/layouts/index.html:591
 #, fuzzy
 msgid "layout.index.footer.list2.telegram"
 msgstr "टेलिग्राम"
 
-#: allthethings/templates/layouts/index.html:596
+#: allthethings/templates/layouts/index.html:598
 #, fuzzy
 msgid "layout.index.header.nav.advanced"
 msgstr "प्रगत"
 
-#: allthethings/templates/layouts/index.html:604
+#: allthethings/templates/layouts/index.html:606
 #, fuzzy
 msgid "layout.index.header.nav.security"
 msgstr "सुरक्षा"
 
-#: allthethings/templates/layouts/index.html:608
+#: allthethings/templates/layouts/index.html:610
 #, fuzzy
 msgid "layout.index.footer.list3.header"
 msgstr "पर्याय"
