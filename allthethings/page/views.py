@@ -7490,7 +7490,17 @@ def md5_fast_download(md5_input, path_index, domain_index):
             data_ip = allthethings.utils.canonical_ip_bytes(request.remote_addr)
             mariapersist_session.connection().execute(text('INSERT INTO mariapersist_fast_download_access (md5, ip, account_id) VALUES (:md5, :ip, :account_id)').bindparams(md5=data_md5, ip=data_ip, account_id=account_id))
             mariapersist_session.commit()
-        return redirect(url, code=302)
+        if request.args.get('no_redirect') == '1':
+            return render_template(
+                "page/partner_download.html",
+                header_active="search",
+                aarecords=[aarecord],
+                url=url,
+                canonical_md5=canonical_md5,
+                fast_partner=True,
+            )
+        else:
+            return redirect(url, code=302)
 
 def compute_download_speed(targeted_seconds, filesize, minimum, maximum):
     return min(maximum, max(minimum, int(filesize/1000/targeted_seconds)))

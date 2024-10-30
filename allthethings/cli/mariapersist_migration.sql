@@ -270,4 +270,5 @@ CREATE TABLE mariapersist_giftcards (
     UNIQUE INDEX (`link`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-
+INSERT INTO mariapersist_accounts (account_id, display_name) VALUES ("ANNATST", "ANNATST");
+INSERT INTO mariapersist_memberships (account_id, membership_tier, membership_expiration) VALUES ("ANNATST", 5, NOW() + INTERVAL 10 YEAR);

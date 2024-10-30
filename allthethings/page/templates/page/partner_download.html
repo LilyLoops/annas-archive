@@ -32,9 +32,13 @@
       {{ aarecord_list(aarecords) }}
     </div>
 
-    <p class="mb-4 mt-[-8px] text-sm italic">
-      {{gettext('common.md5.servers.slow_partner', number=slow_server_index)}}
-    </p>
+    {% if slow_server_index %}
+      <p class="mb-4 mt-[-8px] text-sm italic">
+        {{gettext('common.md5.servers.slow_partner', number=slow_server_index)}}
+      </p>
+    {% else %}
+      <p class="mb-2"></p>
+    {% endif %}
   {% endif %}
 
   {% if wait_seconds %}
@@ -47,19 +51,26 @@
     <p class="mb-4 text-xl font-bold">
       {{ gettext('page.partner_download.url', a_download=((' href="' + url + '"') | safe)) }}
     </p>
+
+    <p class="mb-4 text-xs">
+      {% from 'macros/copy_button.html' import copy_button %}
+      {{ url }} {{ copy_button(url) }}
+    </p>
   {% endif %}
 
-  <p>
-    {{ gettext('page.partner_download.li4') }}
-  </p>
+  {% if not fast_partner %}
+    <p>
+      {{ gettext('page.partner_download.li4') }}
+    </p>
 
-  <p>
-    {{ gettext('page.partner_download.faster_downloads', a_membership=(' href="/donate"' | safe)) }}
-  </p>
+    <p>
+      {{ gettext('page.partner_download.faster_downloads', a_membership=(' href="/donate"' | safe)) }}
+    </p>
 
-  <p class="mb-4">
-    {{ gettext('page.partner_download.bulk_mirroring', a_datasets=(' href="/datasets"' | safe), a_torrents=(' href="/torrents"' | safe)) }}
-  </p>
+    <p class="mb-4">
+      {{ gettext('page.partner_download.bulk_mirroring', a_datasets=(' href="/datasets"' | safe), a_torrents=(' href="/torrents"' | safe)) }}
+    </p>
+  {% endif %}
 
   {% if wait_seconds %}
     <div class="bg-[#f2f2f2] p-4 pb-3 rounded-lg mb-4">

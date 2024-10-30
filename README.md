@@ -54,6 +54,8 @@ To get Anna's Archive running locally:
   ./run flask cli dbreset
   ```
 
+  To login to a test account, note the value printed at "Login to ANNTST account with secret key:".
+
 5. **Restart the Application**
 
   Once the database is initialized, restart the Docker Compose process, by killing it (CTRL+C) and running again:

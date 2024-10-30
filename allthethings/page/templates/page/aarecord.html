@@ -230,7 +230,8 @@
 
         <ul class="list-inside mb-4 ml-1">
           {% for label, url, extra in aarecord.additional.fast_partner_urls %}
-            <li class="list-disc">{{ gettext('page.md5.box.download.option', num=loop.index, link=(("<a href='" + url + "'" + 'rel="noopener noreferrer nofollow" class="js-download-link">' + label + '</a>') | safe), extra=(extra | safe)) }}</li>
+            <!-- TODO:TRANSLATE -->
+            <li class="list-disc">{{ gettext('page.md5.box.download.option', num=loop.index, link=(("<a href='" + url + "'" + 'rel="noopener noreferrer nofollow" class="js-download-link">' + label + '</a>') | safe), extra=(((('<a class="text-xs" href="' + url + '?no_redirect=1">(no redirect)</a> ') | safe) + (extra | safe)) | safe )) }}</li>
           {% endfor %}
           <!-- <li class="list-disc">{{ gettext('layout.index.header.banner.refer', percentage=50) }} <a href="/refer">{{ gettext('layout.index.header.learn_more') }}</a></li> -->
         </ul>

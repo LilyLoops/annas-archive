@@ -1205,7 +1205,11 @@ def mariapersist_reset_internal():
         cursor.execute("SET FOREIGN_KEY_CHECKS = 1; COMMIT;")
 
     cursor.execute(pathlib.Path(os.path.join(__location__, 'mariapersist_migration.sql')).read_text())
+    cursor.execute("COMMIT")
     cursor.close()
+
+    annatst_secret_key = allthethings.utils.secret_key_from_account_id('ANNATST')
+    print(f"Login to ANNTST account with secret key: {annatst_secret_key}")
 
 #################################################################################################
 # Send test email
