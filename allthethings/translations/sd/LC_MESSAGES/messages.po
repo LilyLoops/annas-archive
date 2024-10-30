@@ -2325,7 +2325,7 @@ msgstr "تيز پارٽنر سرور #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ڪو به برائوزر تصديق يا انتظار جي فهرست ناهي)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 تيز ڊائون لوڊ</strong> توهان تازو ئي 
 msgid "page.md5.box.download.option"
 msgstr "آپشن #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "سڀ ڊائون لوڊ آپشنز ۾ ساڳي فائل آهي، ۽ استعمال ڪرڻ لاءِ محفوظ هجڻ گهرجي. اهو چيو، انٽرنيٽ تان فائلون ڊائون لوڊ ڪرڻ وقت هميشه محتاط رهو، خاص طور تي اينا جي آرڪائيو کان ٻاهرين سائيٽن کان. مثال طور، پنهنجي ڊوائيسز کي اپڊيٽ رکڻ کي يقيني بڻايو."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "وڏين فائلن لاءِ، اسان تجويز ڏيون ٿا ته ڊائون لوڊ مينيجر استعمال ڪيو وڃي ته جيئن رڪاوٽون نه اچن."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "سفارش ڪيل ڊائون لوڊ مينيجر: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(توهان کي آءِ پي ايف ايس سان ڪيترائي ڀيرا ڪوشش ڪرڻي پوندي)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 تيز ڊائون لوڊ حاصل ڪرڻ ۽ برائوزر چيڪس کي ڇڏي ڏيڻ لاءِ، <a %(a_membership)s>ممبر بڻجو</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 اسان جي مجموعي جي بلڪ مررنگ لاءِ، <a %(a_datasets)s>Datasets</a> ۽ <a %(a_torrents)s>Torrents</a> صفحا چيڪ ڪريو."
@@ -5863,52 +5867,52 @@ msgstr "❌ سست ڊائون لوڊ صرف سرڪاري ويب سائيٽ ذر�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ سست ڊائون لوڊ Cloudflare VPNs يا ٻي صورت ۾ Cloudflare IP پتيون ذريعي موجود نه آهن."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "مهرباني ڪري <span %(span_countdown)s>%(wait_seconds)s</span> سيڪنڊ انتظار ڪريو هن فائل کي ڊائونلوڊ ڪرڻ لاءِ."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 ڊائون لوڊ ڪرڻ لاءِ هيٺين URL استعمال ڪريو: <a %(a_download)s>هاڻي ڊائون لوڊ ڪريو</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "انتظار ڪرڻ لاءِ مهرباني، هي ويب سائيٽ کي هر ڪنهن لاءِ مفت ۾ رسائي لائق رکڻ ۾ مدد ڪري ٿو! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "هر ڪنهن کي مفت ۾ فائلون ڊائونلوڊ ڪرڻ جو موقعو ڏيڻ لاءِ، توهان کي هن فائل کي ڊائونلوڊ ڪرڻ کان اڳ انتظار ڪرڻو پوندو."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "مهرباني ڪري انا جو آرڪائيو کي مختلف ٽيب ۾ برائوز ڪرڻ جاري رکو جڏهن انتظار ڪري رهيا آهيو (جيڪڏهن توهان جو برائوزر پس منظر ٽيبز کي ريفريش ڪرڻ جي حمايت ڪري ٿو)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "مهرباني ڪري ڪيترن ئي ڊائون لوڊ صفحن کي هڪ ئي وقت لوڊ ڪرڻ لاءِ انتظار ڪريو (پر مهرباني ڪري هر سرور تي هڪ ئي وقت صرف هڪ فائل ڊائون لوڊ ڪريو)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "هڪ دفعو توهان کي ڊائون لوڊ لنڪ ملي ٿي ته اها ڪيترن ئي ڪلاڪن لاءِ صحيح آهي."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "خبردار: گذريل 24 ڪلاڪن ۾ توهان جي IP پتي مان ڪيترائي ڊائون لوڊ ٿي چڪا آهن. ڊائون لوڊ عام کان سست ٿي سگهن ٿا."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "گذريل 24 ڪلاڪن ۾ توهان جي IP پتي مان ڊائون لوڊ: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "جيڪڏهن توهان VPN، شيئر ٿيل انٽرنيٽ ڪنيڪشن استعمال ڪري رهيا آهيو، يا توهان جو ISP IPs شيئر ڪري ٿو، ته هي خبردار ان جي ڪري ٿي سگهي ٿو."

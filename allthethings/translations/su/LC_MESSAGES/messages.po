@@ -2325,7 +2325,7 @@ msgstr "Server Mitra Gancang #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(tanpa verifikasi browser atawa daptar antosan)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Unduhan gancang</strong> Anjeun parantos ngaunduh file ieu 
 msgid "page.md5.box.download.option"
 msgstr "Pilihan #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Sadaya pilihan undeuran gaduh file anu sami, sareng kedah aman dianggo. Sanajan kitu, sok waspada nalika ngundeur file tina internét, utamina tina situs anu sanés ti Arsipna Anna. Contona, pastikeun alat anjeun diropéa."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Pikeun file anu ageung, kami nyarankeun ngagunakeun manajer unduhan pikeun nyegah gangguan."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Manajer unduhan anu disarankeun: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(anjeun tiasa kedah nyobian sababaraha kali sareng IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Pikeun kéngingkeun unduhan anu langkung gancang sareng ngalangkungan pamariksaan browser, <a %(a_membership)s>jadi anggota</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Pikeun mirroring bulk kumpulan kami, parios halaman <a %(a_datasets)s>Datasets</a> sareng <a %(a_torrents)s>Torrents</a>."
@@ -5863,52 +5867,52 @@ msgstr "❌ Unduhan lambat ngan ukur sayogi ngalangkungan situs web resmi. Didat
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Unduhan lambat henteu sayogi ngalangkungan VPN Cloudflare atanapi alamat IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Mangga antosan <span %(span_countdown)s>%(wait_seconds)s</span> detik pikeun ngundeur file ieu."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Anggo URL ieu pikeun ngunduh: <a %(a_download)s>Unduh ayeuna</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Hatur nuhun parantos ngantosan, ieu ngajaga situs web tiasa diaksés gratis pikeun sadayana! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Pikeun masihan kasempetan ka sadayana pikeun ngundeur file sacara gratis, anjeun kedah ngantosan sateuacan tiasa ngundeur file ieu."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Mangga teraskeun ngotéktak Arsipna Anna dina tab anu béda nalika ngantosan (upami panyungsi anjeun ngadukung nyegerkeun tab latar tukang)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Mangga ngantosan sababaraha halaman unduhan pikeun dimuat dina waktos anu sami (tapi mangga ngan ukur ngunduh hiji file dina waktos anu sami per server)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Sakali anjeun kéngingkeun tautan unduhan éta valid pikeun sababaraha jam."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Peringatan: aya seueur unduhan ti alamat IP anjeun dina 24 jam terakhir. Unduhan tiasa langkung laun tibatan biasana."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Unduhan ti alamat IP anjeun dina 24 jam terakhir: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Upami anjeun nganggo VPN, sambungan internét anu dibagikeun, atanapi ISP anjeun ngabagi IP, peringatan ieu tiasa disababkeun ku éta."

@@ -1900,7 +1900,7 @@ msgstr "고속 파트너 서버 #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(브라우저 인증이나 대기 없음)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "저속 파트너 서버 #%(number)s"
@@ -2346,6 +2346,10 @@ msgstr "이 파일을 최근에 다운로드했습니다. 링크는 한동안 �
 msgid "page.md5.box.download.option"
 msgstr "옵션 #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2399,12 +2403,12 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "모든 다운로드 옵션은 동일한 파일을 제공하며, 사용하기에 안전합니다. 그렇지만 인터넷에서 파일을 다운로드할 때, 특히 Anna’s Archive가 아닌 외부 사이트에서 다운로드할 때는 항상 주의하십시오. 예를 들어, 기기가 최신 업데이트가 돼있는지 확인하세요."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 msgid "page.md5.box.download.dl_managers"
 msgstr "대용량 파일의 경우, 중도에 멈추는 것을 방지하기 위해 다운로드 매니저를 사용하는 것을 권장합니다."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "추천 다운로드 매니저: %(links)s"
 
@@ -4513,12 +4517,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(IPFS에서 여러 번 시도해야 할 수도 있습니다)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 더 빠른 다운로드와 브라우저 검사를 건너뛰려면, <a %(a_membership)s>회원이 되세요</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 우리의 컬렉션을 대량으로 미러링하려면 <a %(a_datasets)s>Datasets</a> 및 <a %(a_torrents)s>Torrents</a> 페이지를 확인하세요."
 
@@ -4795,43 +4799,43 @@ msgstr "❌ 저속 다운로드는 공식 웹사이트를 통해서만 가능합
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ 저속 다운로드는 Cloudflare VPN 또는 기타 Cloudflare IP 주소를 통해 사용할 수 없습니다."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 msgid "page.partner_download.wait_banner"
 msgstr "이 파일을 다운로드하려면 <span %(span_countdown)s>%(wait_seconds)s</span>초 기다려 주세요."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 msgid "page.partner_download.url"
 msgstr "📚 다운로드하려면 다음 URL을 사용하세요: <a %(a_download)s>지금 다운로드</a>"
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 msgid "page.partner_download.li4"
 msgstr "기다려 주셔서 감사합니다, 이는 모든 사람이 무료로 웹사이트에 접근할 수 있도록 합니다! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 msgid "page.partner_download.wait"
 msgstr "모두가 파일을 무료로 다운로드할 수 있는 기회를 제공하기 위해, 이 파일을 다운로드하기 전에 잠시 기다려야 합니다."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 msgid "page.partner_download.li1"
 msgstr "기다리는 동안 다른 탭에서 안나의 아카이브를 계속 탐색하세요 (브라우저가 백그라운드 탭 새로고침을 지원하는 경우)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 msgid "page.partner_download.li2"
 msgstr "여러 다운로드 페이지가 동시에 로드될 때까지 기다려도 됩니다 (하지만 서버당 한 번에 하나의 파일만 다운로드해 주세요)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 msgid "page.partner_download.li3"
 msgstr "다운로드 링크를 받으면 몇 시간 동안 유효합니다."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "경고: 지난 24시간 동안 귀하의 IP 주소에서 많은 다운로드가 있었습니다. 다운로드 속도가 평소보다 느릴 수 있습니다."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "지난 24시간 동안 귀하의 IP 주소에서 다운로드한 횟수: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "VPN, 공유 인터넷 연결을 사용 중이거나 ISP가 IP를 공유하는 경우, 이 경고가 발생할 수 있습니다."
 

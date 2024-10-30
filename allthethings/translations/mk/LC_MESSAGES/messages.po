@@ -2325,7 +2325,7 @@ msgstr "Брз партнерски сервер #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(без верификација на прелистувач или листи на чекање)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Брзи преземања</strong> Ја преземав�
 msgid "page.md5.box.download.option"
 msgstr "Опција #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Сите опции за преземање го имаат истиот фајл и треба да бидат безбедни за користење. Сепак, секогаш бидете внимателни кога преземате фајлови од интернет, особено од сајтови надвор од Архивата на Ана. На пример, бидете сигурни дека вашите уреди се ажурирани."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "За големи датотеки, препорачуваме користење на менаџер за преземање за да се спречат прекини."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Препорачани менаџери за преземање: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(можеби ќе треба да пробате повеќе пати со IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 За побрзи преземања и заобиколување на проверките на прелистувачот, <a %(a_membership)s>станете член</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 За масовно огледување на нашата колекција, проверете ги страниците <a %(a_datasets)s>Datasets</a> и <a %(a_torrents)s>Torrents</a>."
@@ -5863,52 +5867,52 @@ msgstr "❌ Бавните преземања се достапни само п�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Бавните преземања не се достапни преку Cloudflare VPN или од Cloudflare IP адреси."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Ве молиме почекајте <span %(span_countdown)s>%(wait_seconds)s</span> секунди за да го преземете овој фајл."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Користете ја следната URL за преземање: <a %(a_download)s>Преземете сега</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Ви благодариме што чекате, ова ја одржува веб-страницата достапна бесплатно за сите! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "За да им се даде можност на сите да преземаат фајлови бесплатно, треба да почекате пред да го преземете овој фајл."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Слободно продолжете да пребарувате во Архивот на Ана во друга табла додека чекате (ако вашиот прелистувач поддржува освежување на таблите во позадина)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Слободно почекајте повеќе страници за преземање да се вчитаат истовремено (но ве молиме преземете само една датотека истовремено по сервер)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Откако ќе добиете линк за преземање, тој е валиден неколку часа."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Предупредување: имало многу преземања од вашата IP адреса во последните 24 часа. Преземањата може да бидат побавни од вообичаено."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Преземања од вашата IP адреса во последните 24 часа: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Ако користите VPN, споделена интернет конекција или вашиот ISP споделува IP адреси, ова предупредување може да е поради тоа."

@@ -2325,7 +2325,7 @@ msgstr "ເຊີບເວີພັນທະມິດໄວ #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ບໍ່ມີການຢືນຢັນຜ່ານບຣາວເຊີ ຫຼື ລາຍຊື່ລໍຖ້າ)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 ດາວໂຫລດໄວ</strong> ທ່ານໄດ້�
 msgid "page.md5.box.download.option"
 msgstr "ຕົວເລືອກ #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "ທຸກຕົວເລືອກດາວໂຫລດມີໄຟລ໌ດຽວກັນ, ແລະຄວນຈະປອດໄພໃນການໃຊ້. ຢ່າງໃດກໍຕາມ, ຄວນລະມັດລະວັງເມື່ອດາວໂຫລດໄຟລ໌ຈາກອິນເຕີເນັດ, ພິເສດຢ່າງຍິ່ງຈາກເວັບໄຊທ໌ພາຍນອກຂອງ Anna’s Archive. ຕົວຢ່າງ, ຄວນຮັກສາອຸປະກອນຂອງທ່ານໃຫ້ອັບເດດຢູ່ເສມື່ອ."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "ສຳລັບໄຟລ໌ຂະໜາດໃຫຍ່, ພວກເຮົາແນະນຳໃຫ້ໃຊ້ຜູ້ຈັດການດາວໂຫລດເພື່ອປ້ອງກັນການຂັດຂ້ອງ."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "ຜູ້ຈັດການດາວໂຫລດທີ່ແນະນຳ: %(links)s"
@@ -5510,13 +5514,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(ທ່ານອາດຈະຕ້ອງລອງຫຼາຍເທື່ອກັບ IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 ເພື່ອໄດ້ຮັບການດາວໂຫລດທີ່ໄວກວ່າແລະຂ້າມການກວດສອບຜ່ານບຣາວເຊີ, <a %(a_membership)s>ກາຍເປັນສະມາຊິກ</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 ສຳລັບການສະທ້ອນຂໍ້ມູນຈຳນວນຫຼາຍຂອງພວກເຮົາ, ກະລຸນາກວດເບິ່ງ <a %(a_datasets)s>Datasets</a> ແລະ <a %(a_torrents)s>Torrents</a> ໜ້າ."
@@ -5861,52 +5865,52 @@ msgstr "❌ ການດາວໂຫຼດຊ້າມີພຽງແຕ່ຜ�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ ການດາວໂຫຼດຊ້າບໍ່ມີຜ່ານ Cloudflare VPN ຫຼືຈາກທີ່ຢູ່ IP ຂອງ Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "ກະລຸນາລໍຖ້າ <span %(span_countdown)s>%(wait_seconds)s</span> ວິນາທີເພື່ອດາວໂຫລດໄຟລ໌ນີ້."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 ໃຊ້ URL ຕໍ່ໄປນີ້ເພື່ອດາວໂຫຼດ: <a %(a_download)s>ດາວໂຫຼດດຽວນີ້</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "ຂອບໃຈທີ່ລໍຖ້າ, ນີ້ຊ່ວຍໃຫ້ເວັບໄຊທ໌ສາມາດເຂົ້າເຖິງໄດ້ໂດຍບໍ່ເສຍຄ່າສຳລັບທຸກຄົນ! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "ເພື່ອໃຫ້ທຸກຄົນມີໂອກາດດາວໂຫລດໄຟລ໌ໂດຍບໍ່ມີຄ່າໃຊ້ຈ່າຍ, ທ່ານຈະຕ້ອງລໍຖ້າກ່ອນທີ່ຈະດາວໂຫລດໄຟລ໌ນີ້."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "ກະລຸນາດຳເນີນການຄົ້ນຫາຄັງເກັບຂອງ Anna ໃນແຖບອື່ນໃນຂະນະທີ່ລໍຖ້າ (ຖ້າເບຣາວເຊີຂອງທ່ານສະໜັບສະໜູນການຟື້ນຟູແຖບພື້ນຫຼັງ)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "ກະລຸນາລໍຖ້າໃຫ້ໜ້າດາວໂຫຼດຫຼາຍໆໜ້າໂຫຼດພ້ອມກັນ (ແຕ່ກະລຸນາດາວໂຫຼດໄຟລ໌ພຽງແຕ່ໜຶ່ງໄຟລ໌ຕໍ່ເວັບເຊີເທົ່ານັ້ນ)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "ເມື່ອທ່ານໄດ້ລິ້ງດາວໂຫຼດແລ້ວ, ມັນຈະມີອາຍຸໃຊ້ງານຫຼາຍຊົ່ວໂມງ."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "ຄຳເຕືອນ: ມີການດາວໂຫຼດຈາກທີ່ຢູ່ IP ຂອງທ່ານຫຼາຍໃນ 24 ຊົ່ວໂມງຜ່ານມາ. ການດາວໂຫຼດອາດຈະຊ້າກວ່າປົກກະຕິ."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "ການດາວໂຫຼດຈາກທີ່ຢູ່ IP ຂອງທ່ານໃນ 24 ຊົ່ວໂມງຜ່ານມາ: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "ຖ້າທ່ານກຳລັງໃຊ້ VPN, ການແບ່ງປັນອິນເຕີເນັດຫຼືຜູ້ໃຫ້ບໍລິການ ISP ຂອງທ່ານແບ່ງປັນ IP, ຄຳເຕືອນນີ້ອາດຈະເປັນເພາະເຫດນັ້ນ."

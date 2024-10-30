@@ -1902,7 +1902,7 @@ msgstr "Върз сървър в партньорство с нас №%(number)
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(без проверка на браузъра или списъци на чакащи)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Бавен сървър в партньорство с нас №%(number)s"
@@ -2348,6 +2348,10 @@ msgstr "Изтеглили сте този файл наскоро. Връзки
 msgid "page.md5.box.download.option"
 msgstr "Опция №%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2401,12 +2405,12 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Всички сървъри огледало обслужват един и същ файл и трябва да са безопасни за използване. Въпреки това винаги бъдете внимателни, когато изтегляте файлове от интернет. Например, не забравяйте да актуализирате устройствата си."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 msgid "page.md5.box.download.dl_managers"
 msgstr "За големи файлове препоръчваме използването на мениджър за изтегляне, за да се предотвратят прекъсвания."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Препоръчани мениджъри за изтегляне: %(links)s"
 
@@ -4758,12 +4762,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(може да се наложи да пробвате няколко пъти с ИПФС)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "За да получите достъп до по-дързи изтегляния и за да пропуснете проверките на браузъра Ви, <a %(a_membership)s>станете член</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 За групово отразяване на нашата колекция вижте <a %(a_datasets)s>Набори от данни</a> и <a %(a_torrents)s>Торенти</a> страници."
 
@@ -5104,48 +5108,48 @@ msgstr "❌ Бавните изтегляния са достъпни само �
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Бавните изтегляния не са налични чрез Cloudflare VPN или от IP адреси на Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 msgid "page.partner_download.wait_banner"
 msgstr "Моля, изчакайте <span %(span_countdown)s>%(wait_seconds)s</span> секунди, за да изтеглите този файл."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 msgid "page.partner_download.url"
 msgstr "<a %(a_download)s>📚 Изтеглете сега</a>"
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Благодарим ви за търпението, това поддържа уебсайта безплатен за всички! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 msgid "page.partner_download.wait"
 msgstr "За да дадете възможност на всички да изтеглят файловете безплатно, трябва да изчакате, преди да можете да изтеглите този файл."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Чувствайте се свободни да продължите да разглеждате Архива на Анна в друг раздел, докато чакате (ако вашият браузър поддържа опресняване на фоновите раздели)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Чувствайте се свободни да изчакате зареждането на няколко страници за изтегляне едновременно (но моля, изтегляйте само един файл едновременно на сървър)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "След като получите линк за изтегляне, той е валиден за няколко часа."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Внимание: имаше много изтегляния от вашия IP адрес през последните 24 часа. Изтеглянията може да са по-бавни от обикновено."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Изтегляния от вашия IP адрес през последните 24 часа: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Ако използвате VPN, споделена интернет връзка или вашият интернет доставчик споделя IP адреси, това предупреждение може да се дължи на това."

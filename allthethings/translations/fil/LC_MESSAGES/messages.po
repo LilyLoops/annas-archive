@@ -2125,7 +2125,7 @@ msgstr "Mabilis na Partner Server #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(walang browser verification o waitlists)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2676,6 +2676,10 @@ msgstr "<strong>🚀 Mabilis na pag-download</strong> Na-download mo na ang file
 msgid "page.md5.box.download.option"
 msgstr "Opsyon #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2739,13 +2743,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Ang lahat ng mga opsyon sa pag-download ay may parehong file, at dapat ligtas gamitin. Gayunpaman, palaging mag-ingat kapag nagda-download ng mga file mula sa internet, lalo na mula sa mga site na panlabas sa Anna’s Archive. Halimbawa, tiyaking palaging updated ang iyong mga device."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Para sa malalaking file, inirerekomenda naming gumamit ng download manager upang maiwasan ang pagkaantala."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Inirerekomendang download managers: %(links)s"
@@ -5177,12 +5181,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(maaaring kailanganin mong subukan nang maraming beses gamit ang IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Para sa mas mabilis na pag-download at upang maiwasan ang mga pagsusuri ng browser, <a %(a_membership)s>maging miyembro</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Para sa maramihang pag-mirror ng aming koleksyon, tingnan ang mga pahina ng <a %(a_datasets)s>Datasets</a> at <a %(a_torrents)s>Torrents</a>."
 
@@ -5468,46 +5472,46 @@ msgstr "❌ Ang mabagal na pag-download ay available lamang sa opisyal na websit
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Ang mabagal na pag-download ay hindi available sa pamamagitan ng Cloudflare VPNs o mula sa mga Cloudflare IP address."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Mangyaring maghintay ng <span %(span_countdown)s>%(wait_seconds)s</span> segundo upang ma-download ang file na ito."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Gamitin ang sumusunod na URL upang mag-download: <a %(a_download)s>I-download ngayon</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 msgid "page.partner_download.li4"
 msgstr "Salamat sa paghihintay, ito ay nagpapanatili ng website na accessible nang libre para sa lahat! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Upang mabigyan ang lahat ng pagkakataon na mag-download ng mga file nang libre, kailangan mong maghintay bago mo ma-download ang file na ito."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 msgid "page.partner_download.li1"
 msgstr "Malaya kang magpatuloy sa pag-browse sa Anna’s Archive sa ibang tab habang naghihintay (kung sinusuportahan ng iyong browser ang pag-refresh ng mga background tab)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 msgid "page.partner_download.li2"
 msgstr "Malaya kang maghintay para sa maramihang mga pahina ng pag-download na mag-load nang sabay-sabay (ngunit mangyaring mag-download lamang ng isang file nang sabay-sabay bawat server)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 msgid "page.partner_download.li3"
 msgstr "Kapag nakakuha ka ng download link, ito ay valid sa loob ng ilang oras."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Babala: maraming pag-download mula sa iyong IP address sa nakalipas na 24 oras. Ang mga pag-download ay maaaring mas mabagal kaysa karaniwan."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Mga pag-download mula sa iyong IP address sa nakalipas na 24 oras: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Kung gumagamit ka ng VPN, shared internet connection, o ang iyong ISP ay nagbabahagi ng mga IP, maaaring dahil dito ang babalang ito."
 

@@ -2325,7 +2325,7 @@ msgstr "வேகமான கூட்டாளி சர்வர் #%(number
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(உலாவி சரிபார்ப்பு அல்லது காத்திருப்பு பட்டியல் இல்லை)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 வேகமான பதிவிறக்கங்கள�
 msgid "page.md5.box.download.option"
 msgstr "விருப்பம் #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "அனைத்து பதிவிறக்க விருப்பங்களிலும் ஒரே கோப்பு உள்ளது, மேலும் அவற்றைப் பயன்படுத்துவது பாதுகாப்பானது. அதற்குப் பிறகும், இணையத்திலிருந்து கோப்புகளை பதிவிறக்கும்போது எப்போதும் எச்சரிக்கையாக இருங்கள், குறிப்பாக Anna’s Archiveக்கு வெளியில் உள்ள தளங்களில் இருந்து. உதாரணமாக, உங்கள் சாதனங்களைப் புதுப்பித்துக் கொள்ளுங்கள்."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "பெரிய கோப்புகளுக்கு, இடையூறுகளைத் தவிர்க்க பதிவிறக்க மேலாளரைப் பயன்படுத்த பரிந்துரைக்கிறோம்."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "பரிந்துரைக்கப்பட்ட பதிவிறக்க மேலாளர்கள்: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(IPFS உடன் பல முறை முயற்சிக்க வேண்டியிருக்கும்)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 வேகமாக பதிவிறக்க மற்றும் உலாவி சரிபார்ப்புகளை தவிர்க்க, <a %(a_membership)s>உறுப்பினராக ஆகவும்</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 எங்கள் தொகுப்பின் மொத்த பிரதிகளைப் பெற, <a %(a_datasets)s>Datasets</a> மற்றும் <a %(a_torrents)s>Torrents</a> பக்கங்களைச் சரிபார்க்கவும்."
@@ -5863,52 +5867,52 @@ msgstr "❌ மந்தமான பதிவிறக்கங்கள் அ
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ மந்தமான பதிவிறக்கங்கள் Cloudflare VPNகள் அல்லது Cloudflare IP முகவரிகளிலிருந்து கிடைக்காது."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "தயவுசெய்து <span %(span_countdown)s>%(wait_seconds)s</span> விநாடிகள் காத்திருந்து இந்த கோப்பை பதிவிறக்கம் செய்யவும்."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 பதிவிறக்க URL ஐப் பயன்படுத்தவும்: <a %(a_download)s>இப்போது பதிவிறக்கவும்</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "நன்றி காத்திருந்ததற்கு, இது அனைவருக்கும் இணையதளத்தை இலவசமாக அணுகக்கூடியதாக வைத்திருக்கிறது! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "அனைவருக்கும் கோப்புகளை இலவசமாக பதிவிறக்கம் செய்ய வாய்ப்பு வழங்க, நீங்கள் இந்த கோப்பை பதிவிறக்கம் செய்ய முன் காத்திருக்க வேண்டும்."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "காத்திருக்கும் போது (உங்கள் உலாவி பின்னணி தாவல்கள் புதுப்பிக்க ஆதரிக்குமானால்) வேறு தாவலில் அன்னாவின் காப்பகத்தை உலாவுவதற்கு தயங்க வேண்டாம்."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "பல பதிவிறக்கப் பக்கங்களை ஒரே நேரத்தில் ஏற்றுவதற்கு தயங்க வேண்டாம் (ஆனால் ஒவ்வொரு சேவையகத்திலும் ஒரே நேரத்தில் ஒரு கோப்பை மட்டுமே பதிவிறக்கவும்)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "ஒரு பதிவிறக்க இணைப்பைப் பெற்றவுடன் அது பல மணி நேரங்களுக்கு செல்லுபடியாகும்."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "எச்சரிக்கை: கடந்த 24 மணி நேரத்தில் உங்கள் IP முகவரியில் இருந்து அதிகமான பதிவிறக்கங்கள் உள்ளன. பதிவிறக்கங்கள் வழக்கத்தைவிட மந்தமாக இருக்கலாம்."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "கடந்த 24 மணி நேரத்தில் உங்கள் IP முகவரியில் இருந்து பதிவிறக்கங்கள்: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "நீங்கள் VPN, பகிரப்பட்ட இணைய இணைப்பு அல்லது உங்கள் ISP IPகளைப் பகிர்ந்தால், இந்த எச்சரிக்கை அதனால் இருக்கலாம்."

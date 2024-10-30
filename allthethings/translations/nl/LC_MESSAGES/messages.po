@@ -1935,7 +1935,7 @@ msgstr "Snelle partnerserver #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(geen browser verificatie of wachtlijsten)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Langzame partnerserver #%(number)s"
@@ -2397,6 +2397,10 @@ msgstr "Je hebt dit bestand onlangs gedownload. Links blijven een tijdje geldig.
 msgid "page.md5.box.download.option"
 msgstr "Optie #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2450,13 +2454,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Alle download opties zouden veilig moeten zijn. Dat gezegd hebbende: wees altijd voorzichtig met het downloaden van bestanden van het internet. Zorg bijvoorbeeld altijd dat je apparaat geüpdatet is."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Voor grote bestanden raden we aan een downloadmanager te gebruiken om onderbrekingen te voorkomen."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Aanbevolen downloadmanagers: %(links)s"
@@ -4586,12 +4590,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(mogelijk moet je het een paar keer proberen met IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 <a %(a_membership)s>Word lid</a> om snellere downloads te krijgen en browsercontroles over te slaan."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Bekijk de pagina's <a %(a_datasets)s>Datasets</a> en <a %(a_torrents)s>Torrents</a> voor het spiegelen van onze collectie in bulk."
 
@@ -4868,46 +4872,46 @@ msgstr "❌ Trage downloads zijn alleen beschikbaar via de officiële website. B
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Trage downloads zijn niet beschikbaar via VPN's van Cloudflare of vanaf IP-adressen van Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Wacht alstublieft <span %(span_countdown)s>%(wait_seconds)s</span> seconden om dit bestand te downloaden."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Gebruik de volgende URL om te downloaden: <a %(a_download)s>nu downloaden</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 msgid "page.partner_download.li4"
 msgstr "Bedankt voor het wachten, dit houdt de website gratis toegankelijk voor iedereen! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Om iedereen de kans te geven om bestanden gratis te downloaden, moet u wachten voordat u dit bestand kunt downloaden."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 msgid "page.partner_download.li1"
 msgstr "Doorzoek Anna’s Archive in een ander tabblad terwijl je wacht (als uw browser het verversen van achtergrondtabbladen ondersteunt)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 msgid "page.partner_download.li2"
 msgstr "Voel je vrij om op het laden van meerdere downloadpagina's tegelijk te wachten (maar download alsjeblieft maar één bestand tegelijk per server)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 msgid "page.partner_download.li3"
 msgstr "Zodra je een downloadlink ontvangt, is deze enkele uren geldig."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Waarschuwing: In de afgelopen 24 uur zijn er veel downloads vanaf jouw IP-adres gedaan. Downloads kunnen trager zijn dan gebruikelijk."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Downloads vanaf jouw IP-adres in de afgelopen 24 uur: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Deze waarschuwing kan komen doordat je een VPN of gedeelde internetverbinding gebruikt, of als je internetprovider IP's deelt."
 

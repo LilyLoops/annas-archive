@@ -2014,7 +2014,7 @@ msgstr "Servidor Fast Partner #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(sen verificación do navegador nin listas de espera)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Servidor Partner lento #%(number)s"
@@ -2511,6 +2511,10 @@ msgstr "<strong>🚀 Descargas rápidas</strong> Vostede descargou este arquivo 
 msgid "page.md5.box.download.option"
 msgstr "Opción #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2566,13 +2570,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Todas as opcións de descarga teñen o mesmo arquivo e deberían ser seguras. Dito isto, ten sempre coidado ao descargar arquivos de Internet, especialmente de sitios externos a Anna's Archive. Por exemplo, asegúrate de manter actualizados os teus dispositivos."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Para arquivos grandes, recomendamos usar un xestor de descargas para evitar interrupcións."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Xestores de descargas recomendados: %(links)s"
@@ -5061,12 +5065,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(pode que teña que intentalo varias veces con IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Para conseguir descargas máis rápidas e saltar as comprobacións do navegador, <a %(a_membership)s>faite socio</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Para duplicar a nosa colección, consulta as páxinas <a %(a_datasets)s>Datasets</a> e <a %(a_torrents)s>Torrents</a>."
 
@@ -5405,50 +5409,50 @@ msgstr "❌ As descargas lentas só están dispoñibles a través do sitio web o
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ As descargas lentas non están dispoñibles a través de VPN de Cloudflare ou de outro modo desde direccións IP de Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Agarde <span %(span_countdown)s>%(wait_seconds)s</span> segundos para descargar este ficheiro."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Emprega a seguinte URL para descargar: <a %(a_download)s>Descargar agora</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Grazas por esperar, isto mantén o sitio web accesible de balde para todos! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Co fin de dar a todos a oportunidade de descargar ficheiros de balde, ten que agardar antes de poder descargar este ficheiro."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Podes seguir navegando polo Arquivo de Anna nunha pestana diferente mentres esperas (se o teu navegador admite a actualización de pestanas en segundo plano)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Non dubides en esperar a que se carguen varias páxinas de descarga ao mesmo tempo (pero por favor só descarga un ficheiro á vez por servidor)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Unha vez que obteñas unha ligazón de descarga, será válida durante varias horas."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Advertencia: producíronse moitas descargas dende a súa dirección IP nas últimas 24 horas. As descargas poden ser máis lentas do habitual."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Descargas dende a súa dirección IP nas últimas 24 horas: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Se estás a usar unha VPN, unha conexión a internet compartida ou o teu ISP comparte IPs, este aviso pode deberse a iso."

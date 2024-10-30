@@ -2015,7 +2015,7 @@ msgstr "Snabb partnerserver #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ingen webbläsarverifiering eller väntelistor)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Långsam partnerserver #%(number)s"
@@ -2519,6 +2519,10 @@ msgstr "<strong>🚀 Snabba nedladdningar</strong> Du har nyligen laddat ner den
 msgid "page.md5.box.download.option"
 msgstr "Alternativ #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2580,13 +2584,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Alla nedladdningsalternativ bör vara säkra att använda. Var dock alltid försiktig när du laddar ner filer från internet. Se till att hålla dina enheter uppdaterade."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "För stora filer rekommenderar vi att använda en nedladdningshanterare för att undvika avbrott."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Rekommenderade nedladdningshanterare: %(links)s"
@@ -5143,12 +5147,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(du kan behöva prova fler gånger med IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Om du vill ha snabbare nedladdningar och slippa webbläsarkontroll, <a %(a_membership)s>bli medlem</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 För bulk-spegling av vår samling, kolla in sidorna för <a %(a_datasets)s>Datasets</a> och <a %(a_torrents)s>Torrents</a>."
@@ -5492,51 +5496,51 @@ msgstr "❌ Långsamma nedladdningar är enbart tillgängliga genom den officiel
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Långsamma nedladdningar är inte tillgängliga via Cloudflare VPN eller från Cloudflare IP-adresser."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Vänligen vänta <span %(span_countdown)s>%(wait_seconds)s</span> sekunder för att ladda ner denna fil."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Använd denna URL för att ladda ner: <a %(a_download)s>Ladda ner nu</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Tack för att du väntar, detta håller webbplatsen tillgänglig gratis för alla! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "För att ge alla en möjlighet att ladda ner filer gratis, måste du vänta innan du kan ladda ner denna fil."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Fortsätt gärna att bläddra i Annas Arkiv i en annan flik medan du väntar (om din webbläsare stöder uppdatering av bakgrundsflikar)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Vänta gärna på att flera nedladdningssidor laddas samtidigt (men ladda bara ner en fil åt gången per server)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "När du får en nedladdningslänk är den giltig i flera timmar."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Varning: det har gjorts många nedladdningar från din IP-adress det senaste dygnet. Det kan därför gå långsammare än vanligt."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Nedladdningar från din IP-adress under de senaste 24 timmarna: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Om du använder en VPN, delad internetanslutning eller din ISP delar IP-adresser, kan denna varning bero på det."

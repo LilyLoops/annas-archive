@@ -2325,7 +2325,7 @@ msgstr "بەڕێوەبەری خێرا هاوپەیمان #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(بێ پشتڕاستکردنەوەی وێبگەڕ یان لیستی چاوەڕوان)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 داگرتنی خێرا</strong> تۆ ئەم پەڕگەیە
 msgid "page.md5.box.download.option"
 msgstr "هەڵبژاردن #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "هەموو هەڵبژاردنەکانی داگرتن هەمان پەڕگەیان هەیە، و دەبێت بە خۆشەویستی بەکاریان بهێنیت. بەڵام، هەمیشە کاتێک پەڕگە لە ئینتەرنێت دادەگریت، تایبەتمەندی بەرز بن، تایبەت لە ماڵپەڕەکانی دەرەوەی ئەرشیفی ئانا. بۆ نموونە، دڵنیابە کە ئامێرەکانت نوێکراوەتەوە."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "بۆ فایلە گەورەکان، پێشنیار دەکەین بەکارهێنانی بەڕێوەبەرێکی داگرتن بۆ ڕاگرتنی قەدەغەکردنەکان."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "بەڕێوەبەرانی داگرتنی پێشنیارکراو: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(لەوانەیە هەندێک جار هەوڵ بدەیت بە IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 بۆ داگرتنە خێراترەکان و تێپەڕبوونەوە لە پشکنینی وێبگەڕ، <a %(a_membership)s>بەشداربە</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 بۆ وێنەکردنی بەکۆمەڵەیەکەمان بە شێوەیەکی گشتی، پەڕەکانی <a %(a_datasets)s>Datasets</a> و <a %(a_torrents)s>Torrents</a> بپشکنە."
@@ -5863,52 +5867,52 @@ msgstr "❌ داگرتنە خاوەن خێرایەکان تەنها لە ڕێگ�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ داگرتنە خاوەن خێرایەکان بە ڤی پێ ئێنەکانی Cloudflare یان لە ڕێگەی ناونیشانی IPی Cloudflare بەردەست نین."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "تکایە <span %(span_countdown)s>%(wait_seconds)s</span> چرکە چاوەڕێ بکە بۆ داگرتنی ئەم پەڕگەیە."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 بە ئیمەی ئەم URL ـە بەکارهێنە بۆ داگرتن: <a %(a_download)s>ئێستا داگربە</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "سوپاس بۆ چاوەڕوانی، ئەمە وێبگەڕەکە بە بێ بەرامبەر بۆ هەموو کەسێک دەستڕەس پێدەکات! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "بۆ ئەوەی هەموو کەسێک بڕیار بێت بۆ داگرتنی پەڕگەکان بەخۆڕایی، پێویستە چاوەڕێ بکەیت پێش داگرتنی ئەم پەڕگەیە."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "بە ئاسانی دەتوانیت بە دووپاتەکردنەوەی تابیەکی جیاواز لە ئەرشیفی ئاننا بەردەوام بیت لە گەڕان (ئەگەر وێبگەڕەکەت پشتیوانی بکات لە نوێکردنەوەی تابیەکان لە پاشەکەوت)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "بە ئاسانی دەتوانیت چەند پەڕەی داگرتنەکان لە یەک کاتدا چالاک بکەیت (بەڵام تکایە تەنها یەک پەڕگە لە هەمان کاتدا لە هەر ڕاژەیەک داگربە)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "کاتێک بەستەرێکی داگرتن بەدەست دەهێنیت، بەرزەنگەیە بۆ چەند کاتژمێرێک."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "ئاگاداری: زۆر داگرتن لە ناونیشانی IP ـەکەت هەبووە لە 24 کاتژمێرێکدا. داگرتنەکان لەوانەیە خاوەن خێرایی کەمتر بن."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "داگرتنەکان لە ناونیشانی IP ـەکەت لە 24 کاتژمێرێکدا: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "ئەگەر VPN، بەشکراوی ئینتەرنێت، یان ISP ـەکەت IP ـەکان بەش بکات بەکاردەهێنیت، ئەم ئاگادارییە لەوانەیە بەهۆی ئەوە بێت."

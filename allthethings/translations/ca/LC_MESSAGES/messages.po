@@ -1985,7 +1985,7 @@ msgstr "Servidor ràpid associat núm. %(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(sense verificació del navegador ni llistes d'espera)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Servidor lent associat núm. %(number)s"
@@ -2464,6 +2464,10 @@ msgstr "<strong>🚀 Descàrregues ràpides</strong> Us heu descarregat aquest f
 msgid "page.md5.box.download.option"
 msgstr "Opció núm. %(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2518,13 +2522,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Totes les opcions de descàrrega tenen el mateix fitxer i són segures. Dit això, aneu amb compte quan baixeu fitxers d’internet. Per exemple, manteniu els dispositius actualitzats."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Per a fitxers grans, recomanem utilitzar un gestor de descàrregues per evitar interrupcions."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Gestors de descàrregues recomanats: %(links)s"
@@ -4954,12 +4958,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(és possible que calguin diversos intents si feu servir IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Per obtenir descàrregues més ràpides i evitar les comprovacions del navegador, <a %(a_membership)s>feu-vos membres de l’Arxiu de l’Anna</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Per descarregar en bloc la nostra col·lecció, consulteu les pàgines <a %(a_datasets)s>Conjunts de dades</a> i <a %(a_torrents)s>Torrents</a>."
 
@@ -5297,46 +5301,46 @@ msgstr "❌ Бавните изтегляния са достъпни само �
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Les descàrregues lentes no estan disponibles mitjançant les VPN Cloudflare o des de les adreces IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Si us plau, espereu <span %(span_countdown)s>%(wait_seconds)s</span> segons per descarregar aquest fitxer."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Feu servir l’URL següent per a descarregar: <a %(a_download)s>Descarrega ara</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 msgid "page.partner_download.li4"
 msgstr "Gràcies per esperar, això manté el lloc web accessible gratuïtament per a tothom! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Per tal de donar a tothom l'oportunitat de descarregar fitxers gratuïtament, heu d'esperar abans de poder descarregar aquest fitxer."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 msgid "page.partner_download.li1"
 msgstr "Podeu continuar navegant per l'Arxiu de l'Anna en una pestanya diferent mentre espereu (si el vostre navegador admet l'actualització de pestanyes en segon pla)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 msgid "page.partner_download.li2"
 msgstr "Podeu esperar que es carreguin diverses pàgines de descàrrega al mateix temps (però si us plau, descarregueu només un fitxer al mateix temps per servidor)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 msgid "page.partner_download.li3"
 msgstr "Un cop obtingueu un enllaç de descàrrega, és vàlid durant diverses hores."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Предупреждение: през последните 24 часа имаше много изтегляния от вашия IP адрес. Изтеглянията може да са по-бавни от обикновено."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Descàrregues des de la teva adreça IP en les darreres 24 hores: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Si esteu utilitzant una VPN, una connexió a internet compartida o el vostre ISP comparteix les IP, això podria ser la causa d'aquest avís."
 

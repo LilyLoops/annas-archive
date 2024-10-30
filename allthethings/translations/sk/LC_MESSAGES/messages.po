@@ -2310,7 +2310,7 @@ msgstr "Rýchly partnerský server #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(žiadne overovanie prehliadača ani čakacie zoznamy)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2854,6 +2854,10 @@ msgstr "<strong>🚀 Rýchle sťahovanie</strong> Tento súbor ste nedávno stia
 msgid "page.md5.box.download.option"
 msgstr "Možnosť #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2916,13 +2920,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Na všetkých zrkadlách je umiestnený rovnaký súbor a ich používanie by malo byť bezpečné. Napriek tomu buďte vždy opatrný pri sťahovaní súborov z internetu. Napríklad nezabudnite aktualizovať softvér na vašich zariadeniach."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Pre veľké súbory odporúčame použiť správcu sťahovania, aby sa predišlo prerušeniam."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Odporúčaní správcovia sťahovania: %(links)s"
@@ -5483,13 +5487,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(pre IPFS je niekedy potrebné vyskúšať stiahnutie viackrát)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Ak chcete rýchlejšie sťahovanie a preskočiť kontroly prehliadača, <a %(a_membership)s>staňte sa členom</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Pre hromadné zrkadlenie našej zbierky si pozrite stránky <a %(a_datasets)s>Datasets</a> a <a %(a_torrents)s>Torrents</a>."
@@ -5834,52 +5838,52 @@ msgstr "❌ Pomalé sťahovanie je dostupné iba cez oficiálnu webovú stránku
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Pomalé sťahovanie nie je dostupné cez Cloudflare VPN alebo z Cloudflare IP adries."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Počkajte <span %(span_countdown)s>%(wait_seconds)s</span> sekúnd na stiahnutie tohto súboru."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Použite nasledujúcu URL na stiahnutie: <a %(a_download)s>Stiahnuť teraz</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Ďakujeme, že ste počkali, týmto udržiavate webovú stránku prístupnú zadarmo pre všetkých! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Aby sme dali každému príležitosť sťahovať súbory zadarmo, musíte počkať, kým si môžete tento súbor stiahnuť."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Pokojne pokračujte v prehliadaní Anna’s Archive na inej karte, kým čakáte (ak váš prehliadač podporuje obnovovanie kariet na pozadí)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Neváhajte počkať, kým sa načíta viacero stránok na stiahnutie súčasne (ale prosím, sťahujte len jeden súbor naraz na server)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Akonáhle získate odkaz na stiahnutie, je platný niekoľko hodín."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Upozornenie: za posledných 24 hodín bolo z vašej IP adresy stiahnutých veľa súborov. Sťahovanie môže byť pomalšie ako obvykle."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Stiahnutia z vašej IP adresy za posledných 24 hodín: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Ak používate VPN, zdieľané internetové pripojenie alebo váš ISP zdieľa IP adresy, toto varovanie môže byť kvôli tomu."

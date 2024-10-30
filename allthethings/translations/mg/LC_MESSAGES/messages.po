@@ -2325,7 +2325,7 @@ msgstr "Serivera mpiara-miasa haingana #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(tsy misy fanamarinana amin'ny navigateur na lisitra fiandrasana)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Fandefasana haingana</strong> Naka ity rakitra ity ianao va
 msgid "page.md5.box.download.option"
 msgstr "Safidy #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Ny safidy fandefasana rehetra dia manana ny rakitra mitovy, ary tokony ho azo antoka ny fampiasana azy. Na izany aza, mitandrema foana rehefa misintona rakitra avy amin'ny aterineto, indrindra fa avy amin'ny tranokala ivelan'ny Anna’s Archive. Ohatra, ataovy azo antoka fa havaozina ny fitaovanao."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Ho an'ny rakitra lehibe, dia manoro hevitra ny fampiasana mpitantana fampidinana izahay mba hisorohana ny fanelingelenana."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Mpitantana fampidinana atolotra: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(mety mila miezaka imbetsaka amin'ny IPFS ianao)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Mba hahazoana fisintomana haingana kokoa sy hisorohana ny fanamarinana navigateur, <a %(a_membership)s>midira mpikambana</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Raha te-haka ny tahirin-kevitra betsaka amin'ny fanangonana anay ianao, jereo ny pejy <a %(a_datasets)s>Datasets</a> sy <a %(a_torrents)s>Torrents</a>."
@@ -5863,52 +5867,52 @@ msgstr "❌ Ny fisintomana miadana dia azo alaina ihany amin'ny alalan'ny tranok
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Ny fisintomana miadana dia tsy azo alaina amin'ny alalan'ny Cloudflare VPNs na avy amin'ny adiresy IP an'ny Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Miangavy anao hiandry <span %(span_countdown)s>%(wait_seconds)s</span> segondra mba hisintona ity rakitra ity."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Ampiasao ity URL manaraka ity hisintomana: <a %(a_download)s>Sintomy izao</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Misaotra anao niandry, manampy amin'ny fitazonana ny tranokala ho azo idirana maimaim-poana ho an'ny rehetra izany! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Mba hahafahan'ny rehetra misintona rakitra maimaim-poana, dia mila miandry ianao alohan'ny ahafahanao misintona ity rakitra ity."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Aza misalasala mitety ny Anna’s Archive amin'ny tabilao hafa raha miandry (raha manohana ny fanavaozana tabilao ao aoriana ny navigateur-nao)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Aza misalasala miandry ny pejy fisintomana maromaro hiseho miaraka (fa azafady misintona rakitra iray ihany isaky ny mpizara)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Rehefa mahazo rohy fisintomana ianao dia manan-kery mandritra ny ora maromaro izany."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Fampitandremana: nisy fisintomana maro avy amin'ny adiresy IP-nao tao anatin'ny 24 ora farany. Mety ho miadana kokoa noho ny mahazatra ny fisintomana."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Fisintomana avy amin'ny adiresy IP-nao tao anatin'ny 24 ora farany: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Raha mampiasa VPN ianao, mizara fifandraisana Internet, na mizara IP ny ISP-nao, mety noho izany io fampitandremana io."

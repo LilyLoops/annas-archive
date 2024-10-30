@@ -2325,7 +2325,7 @@ msgstr "ఫాస్ట్ పార్ట్నర్ సర్వర్ #%(num
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(బ్రౌజర్ ధృవీకరణ లేదా వేచివుండే జాబితాలు లేవు)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 వేగవంతమైన డౌన్‌లోడ్ల�
 msgid "page.md5.box.download.option"
 msgstr "ఎంపిక #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "అన్ని డౌన్‌లోడ్ ఎంపికలు ఒకే ఫైల్ కలిగి ఉంటాయి మరియు ఉపయోగించడానికి సురక్షితం కావాలి. అయినప్పటికీ, ఇంటర్నెట్ నుండి ఫైళ్లను డౌన్‌లోడ్ చేయేటప్పుడు ఎల్లప్పుడూ జాగ్రత్తగా ఉండండి, ముఖ్యంగా అన్నా యొక్క ఆర్కైవ్‌కు బాహ్యమైన సైట్ల నుండి. ఉదాహరణకు, మీ పరికరాలను నవీకరించడంలో జాగ్రత్త వహించండి."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "పెద్ద ఫైళ్ల కోసం, అంతరాయాలు లేకుండా డౌన్‌లోడ్ మేనేజర్‌ను ఉపయోగించమని సిఫార్సు చేస్తున్నాము."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "సిఫార్సు చేసిన డౌన్‌లోడ్ మేనేజర్లు: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(IPFS తో మీరు బహుశా అనేక సార్లు ప్రయత్నించాల్సి రావచ్చు)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 వేగవంతమైన డౌన్‌లోడ్లను పొందడానికి మరియు బ్రౌజర్ తనిఖీలను దాటవేయడానికి, <a %(a_membership)s>సభ్యుడిగా మారండి</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 మా సేకరణ యొక్క బల్క్ మిర్రరింగ్ కోసం, <a %(a_datasets)s>Datasets</a> మరియు <a %(a_torrents)s>Torrents</a> పేజీలను చూడండి."
@@ -5863,52 +5867,52 @@ msgstr "❌ నెమ్మదిగా డౌన్‌లోడ్లు కే
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ నెమ్మదిగా డౌన్‌లోడ్లు Cloudflare VPNల ద్వారా లేదా Cloudflare IP చిరునామాల నుండి అందుబాటులో లేవు."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "దయచేసి <span %(span_countdown)s>%(wait_seconds)s</span> సెకన్లు వేచి ఈ ఫైల్‌ను డౌన్‌లోడ్ చేసుకోండి."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 డౌన్‌లోడ్ చేయడానికి ఈ URLని ఉపయోగించండి: <a %(a_download)s>ఇప్పుడు డౌన్‌లోడ్ చేయండి</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "వేచి ఉన్నందుకు ధన్యవాదాలు, ఇది ప్రతి ఒక్కరికీ ఉచితంగా వెబ్‌సైట్‌ను అందుబాటులో ఉంచుతుంది! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "ప్రతి ఒక్కరికీ ఉచితంగా ఫైళ్లను డౌన్‌లోడ్ చేసుకునే అవకాశం ఇవ్వడానికి, మీరు ఈ ఫైల్‌ను డౌన్‌లోడ్ చేసుకునే ముందు వేచి ఉండాలి."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "వేచి ఉండే సమయంలో (మీ బ్రౌజర్ బ్యాక్‌గ్రౌండ్ ట్యాబ్‌లను రిఫ్రెష్ చేయడాన్ని మద్దతు ఇస్తే) వేరే ట్యాబ్‌లో అన్నా యొక్క ఆర్కైవ్‌ను బ్రౌజ్ చేయడానికి సంకోచించకండి."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "ఒకేసారి బహుళ డౌన్‌లోడ్ పేజీలను లోడ్ చేయడానికి సంకోచించకండి (కానీ దయచేసి ఒక సర్వర్‌కు ఒకేసారి ఒక ఫైల్ మాత్రమే డౌన్‌లోడ్ చేయండి)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "మీకు డౌన్‌లోడ్ లింక్ లభించిన తర్వాత అది కొన్ని గంటల పాటు చెల్లుబాటు అవుతుంది."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "హెచ్చరిక: గత 24 గంటల్లో మీ IP చిరునామా నుండి అనేక డౌన్‌లోడ్‌లు జరిగాయి. డౌన్‌లోడ్‌లు సాధారణంగా కంటే నెమ్మదిగా ఉండవచ్చు."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "గత 24 గంటల్లో మీ IP చిరునామా నుండి డౌన్‌లోడ్‌లు: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "మీరు VPN, షేర్డ్ ఇంటర్నెట్ కనెక్షన్ లేదా మీ ISP IPలను షేర్ చేస్తే, ఈ హెచ్చరిక దానికి కారణం కావచ్చు."

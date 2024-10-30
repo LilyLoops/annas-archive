@@ -2291,7 +2291,7 @@ msgstr "Хуткі партнёрскі сервер №%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(без праверкі браўзера або спісаў чакання)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2826,6 +2826,10 @@ msgstr "<strong>🚀 Хуткія загрузкі</strong> Вы нядаўна 
 msgid "page.md5.box.download.option"
 msgstr "Варыянт #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2886,13 +2890,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Усе крыніцы ўтрымліваюць той жа файл і павінны быць бяспечнымі. Аднак будзьце асцярожныя пры загрузцы файлаў з інтэрнэту. Пераканайцеся што ваша прылада і дадатак абноўленыя да апошняй версіі для бяспекі вашых дадзеных."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Для вялікіх файлаў мы рэкамендуем выкарыстоўваць мэнэджар загрузак, каб пазбегнуць перапынкаў."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Рэкамендаваныя мэнэджары загрузак: %(links)s"
@@ -5439,12 +5443,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(магчыма, вам прыйдзецца паспрабаваць некалькі разоў з IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Каб павялічыць хуткасць загрузак, <a %(a_membership)s>падпішыцеся на сайт</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Для масавага люстравання нашай калекцыі, азнаёмцеся з <a %(a_datasets)s>Datasets</a> і <a %(a_torrents)s>Torrents</a> старонкамі."
@@ -5789,52 +5793,52 @@ msgstr "❌ Павольныя загрузкі даступныя толькі 
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Павольныя загрузкі недаступныя праз Cloudflare VPN або з IP-адрасоў Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Калі ласка, пачакайце <span %(span_countdown)s>%(wait_seconds)s</span> секунд, каб загрузіць гэты файл."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Выкарыстоўвайце наступны URL для загрузкі: <a %(a_download)s>Загрузіць зараз</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Дзякуй за чаканне, гэта дазваляе зрабіць сайт даступным бясплатна для ўсіх! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Каб даць усім магчымасць бясплатна загружаць файлы, вам трэба пачакаць, перш чым вы зможаце загрузіць гэты файл."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Не саромейцеся працягваць праглядаць архіў Анны ў іншай укладцы, пакуль чакаеце (калі ваш браўзер падтрымлівае абнаўленне фонавых укладак)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Не саромейцеся чакаць, пакуль загружаюцца некалькі старонак загрузкі адначасова (але, калі ласка, загружайце толькі адзін файл адначасова з аднаго сервера)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Пасля атрымання спасылкі для загрузкі яна будзе дзейнічаць на працягу некалькіх гадзін."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Папярэджанне: за апошнія 24 гадзіны з вашага IP-адраса было шмат загрузак. Загрузкі могуць быць павольнейшымі, чым звычайна."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Запампоўкі з вашага IP-адраса за апошнія 24 гадзіны: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Калі вы карыстаецеся VPN, агульным падключэннем да Інтэрнэту або ваш інтэрнэт-правайдэр дзеліць IP-адрасы, гэта папярэджанне можа быць звязана з гэтым."

@@ -1974,7 +1974,7 @@ msgstr "Rychlý partnerský server #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(bez ověření prohlížeče, či waitlistu)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Pomalý partnerský server #%(number)s"
@@ -2450,6 +2450,10 @@ msgstr "Tento soubor jste nedávno stáhli. Odkaz zůstává po určitou dobu pl
 msgid "page.md5.box.download.option"
 msgstr "Varianta #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2504,13 +2508,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Všechny odkazy vedou na stejný soubor a měly by být bezpečné. Přesto buďte při stahování opatrní, obzvláště ze stránek mimo Annin archiv. Například se ujistěte, že je software na vašem zařízení aktualizovaný."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Pro velké soubory doporučujeme použít správce stahování, aby nedošlo k přerušením."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Doporučení správci stahování: %(links)s"
@@ -4939,12 +4943,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(stažení skrze IPFS může vyžadovat více pokusů)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Pokud chcete získat přístup k rychlejšímu stahování a vyhnout se kontrolám prohlížeče, <a %(a_membership)s>staňte se členem</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Pokud chcete hromadně zrcadlit naši kolekci, více informací naleznete na stránkách <a %(a_datasets)s>Datasety</a> a <a %(a_torrents)s>Torrenty</a> pages."
 
@@ -5266,46 +5270,46 @@ msgstr "❌ Pomalé stahování je dostupné pouze přes oficiální web. Návš
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Pomalé stahování není dostupné prostřednictvím VPN Cloudflare ani z jiných IP adres Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Počkejte prosím <span %(span_countdown)s>%(wait_seconds)s</span> sekund, než si stáhnete tento soubor."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Ke stažení použijte následující URL: <a %(a_download)s>Stáhnout</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 msgid "page.partner_download.li4"
 msgstr "Děkujeme za trpělivost, díky ní je web přístupný zdarma pro všechny! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Abychom všem poskytli možnost stahovat soubory zdarma, musíte před stažením tohoto souboru počkat."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 msgid "page.partner_download.li1"
 msgstr "Během čekání můžete pokračovat v prohlížení Annina archivu v jiné kartě prohlížeče (pokud váš prohlížeč podporuje obnovování karet na pozadí)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 msgid "page.partner_download.li2"
 msgstr "Není problém čekat na načtení více stránek ke stažení najednou (z jednoho serveru však stahujte simultánně pouze jeden soubor)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 msgid "page.partner_download.li3"
 msgstr "Jakmile získáte odkaz ke stažení, je platný několik hodin."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Upozornění: za posledních 24 hodin došlo k velkému množství stahování z vaší IP adresy. Stahování může být pomalejší než obvykle."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Stažení z vaší IP adresy za posledních 24 hodin: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Toto varování se zobrazuje například kvůli používání VPN, sdílenému připojení k internetu nebo váš poskytovatel internetu sdílí IP adresy."
 

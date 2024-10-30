@@ -2325,7 +2325,7 @@ msgstr "Freastalaí Comhpháirtí Tapa #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(gan fíorú brabhsálaí nó liostaí feithimh)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Íoslódálacha tapa</strong> Íoslódáil tú an comhad se
 msgid "page.md5.box.download.option"
 msgstr "Rogha #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Tá an comhad céanna ag gach rogha íoslódála, agus ba cheart go mbeadh siad sábháilte le húsáid. É sin ráite, bí cúramach i gcónaí agus comhaid á n-íoslódáil ón idirlíon, go háirithe ó shuíomhanna seachtracha ar Chartlann Anna. Mar shampla, bí cinnte go gcoinníonn tú do ghléasanna cothrom le dáta."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Maidir le comhaid mhóra, molaimid bainisteoir íoslódála a úsáid chun cur isteach a chosc."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Bainisteoirí íoslódála molta: %(links)s"
@@ -5518,13 +5522,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(b'fhéidir go mbeidh ort iarracht a dhéanamh arís agus arís eile le IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Chun íoslódálacha níos tapúla a fháil agus na seiceálacha brabhsálaí a scipeáil, <a %(a_membership)s>bí i do bhall</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Le haghaidh scáthán mórchóir dár mbailiúchán, féach ar na leathanaigh <a %(a_datasets)s>Datasets</a> agus <a %(a_torrents)s>Torrents</a>."
@@ -5869,52 +5873,52 @@ msgstr "❌ Níl íoslódálacha mall ar fáil ach tríd an suíomh Gréasáin o
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Níl íoslódálacha mall ar fáil trí VPNanna Cloudflare nó ó sheoltaí IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Fan le do thoil <span %(span_countdown)s>%(wait_seconds)s</span> soicind chun an comhad seo a íoslódáil."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Úsáid an URL seo a leanas chun íoslódáil: <a %(a_download)s>Íoslódáil anois</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Go raibh maith agat as fanacht, coinníonn sé seo an suíomh Gréasáin inrochtana saor in aisce do chách! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Chun deis a thabhairt do gach duine comhaid a íoslódáil saor in aisce, ní mór duit fanacht sula féidir leat an comhad seo a íoslódáil."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Bí saor chun leanúint ar aghaidh ag brabhsáil Cartlann Anna i gcluaisín difriúil agus tú ag fanacht (má thacaíonn do bhrabhsálaí le cluaisíní cúlra a athnuachan)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Bí saor chun fanacht go luchtóidh leathanaigh íoslódála iolracha ag an am céanna (ach íoslódáil comhad amháin ag an am amháin in aghaidh an fhreastalaí le do thoil)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Nuair a fhaigheann tú nasc íoslódála tá sé bailí ar feadh roinnt uaireanta."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Rabhadh: tá a lán íoslódálacha déanta ó do sheoladh IP le 24 uair an chloig anuas. D’fhéadfadh íoslódálacha a bheith níos moille ná mar is gnách."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Íoslódálacha ó do sheoladh IP le 24 uair an chloig anuas: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Má tá tú ag úsáid VPN, nasc idirlín roinnte, nó má roinneann do ISP seoltaí IP, d’fhéadfadh an rabhadh seo a bheith mar gheall air sin."

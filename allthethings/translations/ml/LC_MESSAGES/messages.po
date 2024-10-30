@@ -2224,7 +2224,7 @@ msgstr "വേഗത്തിലുള്ള പങ്കാളി സെർവ�
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ബ്രൗസർ സ്ഥിരീകരണവും കാത്തിരിപ്പു പട്ടികയും ഇല്ല)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2776,6 +2776,10 @@ msgstr "<strong>🚀 വേഗത്തിലുള്ള ഡൗൺലോഡു�
 msgid "page.md5.box.download.option"
 msgstr "ഓപ്ഷൻ #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2839,13 +2843,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "എല്ലാ ഡൗൺലോഡ് ഓപ്ഷനുകളും ഒരേ ഫയലാണ്, ഉപയോഗിക്കാൻ സുരക്ഷിതമായിരിക്കണം. എന്നിരുന്നാലും, Anna’s Archive-ൽ നിന്ന് പുറത്ത് ഉള്ള സൈറ്റുകളിൽ നിന്ന് ഫയലുകൾ ഡൗൺലോഡ് ചെയ്യുമ്പോൾ എപ്പോഴും ജാഗ്രത പാലിക്കുക. ഉദാഹരണത്തിന്, നിങ്ങളുടെ ഉപകരണങ്ങൾ അപ്‌ഡേറ്റ് ചെയ്തിരിക്കുന്നുവെന്ന് ഉറപ്പാക്കുക."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "വലിയ ഫയലുകൾക്കായി, തടസ്സങ്ങൾ ഒഴിവാക്കാൻ ഡൗൺലോഡ് മാനേജർ ഉപയോഗിക്കാൻ ഞങ്ങൾ ശുപാർശ ചെയ്യുന്നു."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "ശുപാർശ ചെയ്യുന്ന ഡൗൺലോഡ് മാനേജർമാർ: %(links)s"
@@ -5406,13 +5410,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(IPFS ഉപയോഗിച്ച് പല തവണ ശ്രമിക്കേണ്ടി വരാം)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 വേഗത്തിൽ ഡൗൺലോഡ് ചെയ്യാനും ബ്രൗസർ പരിശോധനകൾ ഒഴിവാക്കാനും, <a %(a_membership)s>അംഗമാകുക</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 ഞങ്ങളുടെ ശേഖരത്തിന്റെ ബൾക്ക് മിററിംഗ് ചെയ്യാൻ, <a %(a_datasets)s>Datasets</a>  മറ്റും <a %(a_torrents)s>Torrents</a> പേജുകളും പരിശോധിക്കുക."
@@ -5757,52 +5761,52 @@ msgstr "❌ മന്ദഗതിയിലുള്ള ഡൗൺലോഡുക�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ ക്ലൗഡ്ഫ്ലെയർ VPNകൾ വഴിയോ അല്ലെങ്കിൽ ക്ലൗഡ്ഫ്ലെയർ IP വിലാസങ്ങളിൽ നിന്ന് സ്ലോ ഡൗൺലോഡുകൾ ലഭ്യമല്ല."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "ദയവായി ഈ ഫയൽ ഡൗൺലോഡ് ചെയ്യാൻ <span %(span_countdown)s>%(wait_seconds)s</span> സെക്കൻഡ് കാത്തിരിക്കുക."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 ഡൗൺലോഡ് ചെയ്യാൻ ഈ URL ഉപയോഗിക്കുക: <a %(a_download)s>ഇപ്പോൾ ഡൗൺലോഡ് ചെയ്യൂ</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "കാത്തിരുന്നതിന് നന്ദി, ഇത് വെബ്സൈറ്റ് എല്ലാവർക്കും സൗജന്യമായി ആക്സസിബിൾ ആക്കുന്നു! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "എല്ലാവർക്കും ഫയലുകൾ സൗജന്യമായി ഡൗൺലോഡ് ചെയ്യാനുള്ള അവസരം നൽകുന്നതിനായി, ഈ ഫയൽ ഡൗൺലോഡ് ചെയ്യുന്നതിന് മുമ്പ് നിങ്ങൾ കാത്തിരിക്കേണ്ടതുണ്ട്."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "കാത്തിരിക്കുമ്പോൾ (നിങ്ങളുടെ ബ്രൗസർ പശ്ചാത്തല ടാബുകൾ പുതുക്കുന്നത് പിന്തുണയ്ക്കുന്നുവെങ്കിൽ) മറ്റൊരു ടാബിൽ അന്നയുടെ ആർക്കൈവ് ബ്രൗസ് ചെയ്യാൻ മടിക്കേണ്ടതില്ല."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "ഒരേ സമയം ഒന്നിലധികം ഡൗൺലോഡ് പേജുകൾ ലോഡ് ചെയ്യാൻ കാത്തിരിക്കാം (എന്നാൽ ദയവായി ഓരോ സെർവറിലും ഒരേസമയം ഒരു ഫയൽ മാത്രമേ ഡൗൺലോഡ് ചെയ്യൂ)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "ഡൗൺലോഡ് ലിങ്ക് ലഭിച്ചാൽ അത് പല മണിക്കൂറുകൾക്കായി സാധുവായിരിക്കും."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "മുന്നറിയിപ്പ്: കഴിഞ്ഞ 24 മണിക്കൂറിനുള്ളിൽ നിങ്ങളുടെ IP വിലാസത്തിൽ നിന്ന് നിരവധി ഡൗൺലോഡുകൾ ഉണ്ടായിട്ടുണ്ട്. ഡൗൺലോഡുകൾ സാധാരണയേക്കാൾ മന്ദഗതിയിലായിരിക്കും."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "കഴിഞ്ഞ 24 മണിക്കൂറിനുള്ളിൽ നിങ്ങളുടെ IP വിലാസത്തിൽ നിന്ന് ഡൗൺലോഡുകൾ: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "നിങ്ങൾ VPN, പങ്കിടുന്ന ഇന്റർനെറ്റ് കണക്ഷൻ, അല്ലെങ്കിൽ നിങ്ങളുടെ ISP IP-കൾ പങ്കിടുന്നുണ്ടെങ്കിൽ, ഈ മുന്നറിയിപ്പ് അതിനാൽ ഉണ്ടായിരിക്കാം."

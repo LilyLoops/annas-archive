@@ -2325,7 +2325,7 @@ msgstr "Gweinydd Partner Cyflym #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(dim dilysiad porwr na rhestrau aros)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Lawrlwythiadau cyflym</strong> Rydych wedi lawrlwytho'r ffe
 msgid "page.md5.box.download.option"
 msgstr "Dewis #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Mae gan bob opsiwn lawrlwytho yr un ffeil, ac mae'n ddiogel i'w defnyddio. Wedi dweud hynny, byddwch bob amser yn ofalus wrth lawrlwytho ffeiliau o'r rhyngrwyd, yn enwedig o safleoedd allanol i Archif Anna. Er enghraifft, sicrhewch eich bod yn cadw eich dyfeisiau wedi'u diweddaru."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Ar gyfer ffeiliau mawr, rydym yn argymell defnyddio rheolwr lawrlwytho i atal tarfu."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Rheolwyr lawrlwytho a argymhellir: %(links)s"
@@ -5518,13 +5522,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(efallai y bydd angen i chi geisio sawl gwaith gyda IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 I gael lawrlwythiadau cyflymach a hepgor y gwiriadau porwr, <a %(a_membership)s>dewch yn aelod</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Ar gyfer drych swmpus o'n casgliad, edrychwch ar y tudalennau <a %(a_datasets)s>Datasets</a> a <a %(a_torrents)s>Torrents</a>."
@@ -5869,52 +5873,52 @@ msgstr "❌ Dim ond trwy'r wefan swyddogol y mae lawrlwythiadau araf ar gael. Ew
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Nid yw lawrlwythiadau araf ar gael trwy VPNs Cloudflare neu fel arall o gyfeiriadau IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Arhoswch <span %(span_countdown)s>%(wait_seconds)s</span> eiliad i lawrlwytho'r ffeil hon."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Defnyddiwch yr URL canlynol i lawrlwytho: <a %(a_download)s>Lawrlwytho nawr</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Diolch am aros, mae hyn yn cadw'r wefan yn hygyrch am ddim i bawb! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Er mwyn rhoi cyfle i bawb lawrlwytho ffeiliau am ddim, mae angen i chi aros cyn y gallwch lawrlwytho'r ffeil hon."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Mae croeso i chi barhau i bori Archif Anna mewn tab gwahanol tra'n aros (os yw eich porwr yn cefnogi adnewyddu tabiau cefndir)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Mae croeso i chi aros i dudalennau lawrlwytho lluosog lwytho ar yr un pryd (ond lawrlwythwch un ffeil ar y tro fesul gweinydd yn unig)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Unwaith y byddwch yn cael dolen lawrlwytho mae'n ddilys am sawl awr."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Rhybudd: bu llawer o lawrlwythiadau o'ch cyfeiriad IP yn y 24 awr diwethaf. Efallai y bydd lawrlwythiadau'n arafach nag arfer."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Lawrlwythiadau o'ch cyfeiriad IP yn y 24 awr diwethaf: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Os ydych yn defnyddio VPN, cysylltiad rhyngrwyd a rennir, neu os yw eich ISP yn rhannu IPs, efallai mai dyna'r rheswm am y rhybudd hwn."

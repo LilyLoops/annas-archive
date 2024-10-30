@@ -2325,7 +2325,7 @@ msgstr "Сервери Шарики Суръатбахш #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(бе санҷиши браузер ё рӯйхати интизорӣ)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Зеркашиҳои зуд</strong> Шумо ин файл
 msgid "page.md5.box.download.option"
 msgstr "Имконият #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Ҳамаи имконоти зеркашӣ як файли якхела доранд ва бояд бехатар бошанд. Бо вуҷуди ин, ҳамеша ҳангоми зеркашии файлҳо аз интернет эҳтиёт бошед, махсусан аз сайтҳои беруна ба Анна’s Archive. Масалан, боварӣ ҳосил кунед, ки дастгоҳҳои шумо навсозӣ шудаанд."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Барои файлҳои калон, мо тавсия медиҳем, ки аз менеҷери зеркашӣ истифода баред, то қатъ нашаванд."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Менеҷерҳои тавсияшудаи зеркашӣ: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(шояд лозим шавад, ки бо IPFS якчанд маротиба кӯшиш кунед)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Барои зеркашиҳои тезтар ва гузаштан аз санҷишҳои браузер, <a %(a_membership)s>аъзо шавед</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Барои нусхабардории оммавии маҷмӯаи мо, саҳифаҳои <a %(a_datasets)s>Datasets</a> ва <a %(a_torrents)s>Torrents</a>-ро санҷед."
@@ -5863,52 +5867,52 @@ msgstr "❌ Зеркашиҳои суст танҳо тавассути вебс
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Зеркашиҳои суст тавассути VPN-ҳои Cloudflare ё аз суроғаҳои IP-и Cloudflare дастрас нестанд."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Лутфан <span %(span_countdown)s>%(wait_seconds)s</span> сония интизор шавед, то ин файлро боргирӣ кунед."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Барои зеркашӣ URL-и зеринро истифода баред: <a %(a_download)s>Ҳозир зеркашӣ кунед</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Ташаккур барои интизор шудан, ин вебсайтро барои ҳама ройгон дастрас нигоҳ медорад! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Барои додани имконият ба ҳама барои боргирии файлҳо ройгон, шумо бояд пеш аз боргирии ин файл интизор шавед."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Шумо метавонед дар як ҷадвали дигар Архиви Аннаро давом диҳед (агар браузери шумо дастгирии навсозии ҷадвалҳои пасзаминаро дошта бошад)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Шумо метавонед интизор шавед, ки якчанд саҳифаҳои зеркашӣ якбора бор шаванд (аммо лутфан танҳо як файлро дар як вақт аз як сервер зеркашӣ кунед)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Пас аз гирифтани пайванди зеркашӣ, он барои якчанд соат эътибор дорад."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Огоҳӣ: дар 24 соати охир аз суроғаи IP-и шумо зеркашиҳои зиёде анҷом дода шудаанд. Зеркашиҳо метавонанд аз одат сусттар бошанд."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Зеркашиҳо аз суроғаи IP-и шумо дар 24 соати охир: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Агар шумо VPN, пайвасти интернети муштарак ё ISP-и шумо IP-ҳоро тақсим кунад, ин огоҳӣ метавонад аз он сабаб бошад."

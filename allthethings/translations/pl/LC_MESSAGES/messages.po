@@ -2024,7 +2024,7 @@ msgstr "Szybki serwer partnera #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(brak weryfikacji przeglądarki ani list oczekujących)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Wolny serwer partnera #%(number)s"
@@ -2525,6 +2525,10 @@ msgstr "<strong> 🚀 Szybkie pobierania</strong> Plik został pobrany niedawno.
 msgid "page.md5.box.download.option"
 msgstr "Opcja #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2581,13 +2585,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Wszystkie serwery lustrzane obsługują ten sam plik i powinny być bezpieczne w użyciu. To powiedziawszy, zawsze zachowaj ostrożność podczas pobierania plików z Internetu. Na przykład pamiętaj, aby aktualizować swoje urządzenia."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "W przypadku dużych plików zalecamy użycie menedżera pobierania, aby zapobiec przerwom."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Zalecane menedżery pobierania: %(links)s"
@@ -5103,12 +5107,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(udane pobranie przez IPFS może wymagać kilku prób)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Aby uzyskać szybkie pobieranie oraz pominąć weryfikacji przeglądarki, <a %(a_membership)s>uzyskaj członkostwo</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 W celu wykonywania kopii lustrzanych naszej kolekcji, przejdź do stron: <%(a_datasets)s>Zbiory danych</a> lub <%(a_torrents)s>Pliki Torrent</a>."
 
@@ -5449,51 +5453,51 @@ msgstr "❌ Powolne pobieranie jest dostępne tylko za pośrednictwem oficjalnej
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Powolne pobieranie nie jest dostępne przez VPN-y Cloudflare ani z adresów IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Proszę poczekać <span %(span_countdown)s>%(wait_seconds)s</span> sekund, aby pobrać ten plik."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Użyj linku, aby pobrać: <a %(a_download)s>Pobierz teraz</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Dziękujemy za cierpliwość, to pozwala utrzymać stronę dostępną za darmo dla wszystkich! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Aby dać każdemu możliwość pobierania plików za darmo, musisz poczekać, zanim będziesz mógł pobrać ten plik."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Możesz kontynuować przeglądanie Archiwum Anny w innej karcie, czekając (jeśli Twoja przeglądarka obsługuje odświeżanie kart w tle)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Możesz poczekać, aż załaduje się kilka stron pobierania jednocześnie (ale prosimy o pobieranie tylko jednego pliku na raz z każdego serwera)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Po uzyskaniu linku do pobrania jest on ważny przez kilka godzin."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Ostrzeżenie: w ciągu ostatnich 24 godzin z tego adresu IP pobrano zbyt wiele plików. Pobieranie może być wolniejsze niż zwykle."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Pobrane pliki z Twojego adresu IP w ciągu ostatnich 24 godzin: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Jeśli używasz VPN, współdzielonego połączenia internetowego lub Twój dostawca usług internetowych udostępnia adresy IP, to ostrzeżenie może być z tym związane."

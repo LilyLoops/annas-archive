@@ -1,19 +1,3 @@
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 18:40+0000\n"
-"PO-Revision-Date: 2024-10-30 18:40+0000\n"
-"Last-Translator: OpenAI <noreply-mt-openai@weblate.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: fa\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8.1\n"
-
 #: allthethings/app.py:190
 #, fuzzy
 msgid "layout.index.invalid_request"
@@ -2313,7 +2297,7 @@ msgstr "سرور شریک سریع #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(بدون تأیید مرورگر یا لیست انتظار)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2855,6 +2839,10 @@ msgstr "<strong>🚀 دانلودهای سریع</strong> شما این فایل
 msgid "page.md5.box.download.option"
 msgstr "گزینه #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2918,13 +2906,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "تمام گزینه‌های دانلود دارای فایل یکسانی هستند و باید ایمن باشند. با این حال، همیشه هنگام دانلود فایل‌ها از اینترنت، به ویژه از سایت‌های خارجی به آرشیو آنا، احتیاط کنید. به عنوان مثال، مطمئن شوید که دستگاه‌های خود را به‌روز نگه دارید."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "برای فایل‌های بزرگ، توصیه می‌کنیم از یک مدیر دانلود استفاده کنید تا از قطع شدن جلوگیری شود."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "مدیران دانلود پیشنهادی: %(links)s"
@@ -3264,7 +3252,6 @@ msgstr "وب‌سایت"
 msgid "page.codes.record_starting_with"
 msgid_plural "page.codes.records_starting_with"
 msgstr[0] ""
-msgstr[1] "ضبط‌های %(count)s مطابق با “%(prefix_label)s”"
 
 #: allthethings/page/templates/page/codes.html:77
 #, fuzzy
@@ -3526,7 +3513,6 @@ msgstr "غیرداستانی و داستانی"
 msgid "page.datasets.file"
 msgid_plural "page.datasets.files"
 msgstr[0] ""
-msgstr[1] "ضبط‌های %(count)s مطابق با “[X28X]”"
 
 #: allthethings/page/templates/page/datasets.html:61
 #, fuzzy
@@ -5473,12 +5459,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(برای دانلود با IPFS ممکن است نیاز باشد چند بار تلاش کنید)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 برای دریافت سریعتر دانلودها و رد شدن از چک مرورگر، <a %(a_membership)s>عضو شوید</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 برای آینه‌سازی عمده مجموعه ما، صفحات <a %(a_datasets)s>Datasets</a> و <a %(a_torrents)s>Torrents</a> را بررسی کنید."
@@ -5821,52 +5807,52 @@ msgstr "❌ دانلودهای کند فقط از طریق وب‌سایت رس�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ دانلودهای کند از طریق VPNهای Cloudflare یا به هر صورت از آدرس‌های IP Cloudflare در دسترس نیستند."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "لطفاً <span %(span_countdown)s>%(wait_seconds)s</span> ثانیه صبر کنید تا این فایل دانلود شود."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 از آدرس زیر برای دانلود استفاده کنید: <a %(a_download)s>لینک دانلود</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "از صبر شما متشکریم، این کار دسترسی رایگان به وب‌سایت را برای همه فراهم می‌کند! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "برای اینکه به همه فرصت دانلود رایگان فایل‌ها داده شود، باید قبل از دانلود این فایل صبر کنید."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "در حین انتظار، می‌توانید به مرور آرشیو آنا در یک تب دیگر ادامه دهید (اگر مرورگر شما از تازه‌سازی تب‌های پس‌زمینه پشتیبانی می‌کند)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "احساس راحتی کنید و منتظر بمانید تا چندین صفحه دانلود به طور همزمان بارگذاری شوند (اما لطفاً فقط یک فایل را به طور همزمان از هر سرور دانلود کنید)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "پس از دریافت لینک دانلود، آن برای چندین ساعت معتبر است."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "هشدار: در ۲۴ ساعت گذشته دانلودهای زیادی از آدرس IP شما انجام شده است. دانلودها ممکن است کندتر از حد معمول باشند."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "دانلودها از آدرس IP شما در ۲۴ ساعت گذشته: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "اگر از VPN، اتصال اینترنت مشترک، یا ISP که IPها را به اشتراک می‌گذارد استفاده می‌کنید، این هشدار ممکن است به دلیل آن باشد."
@@ -7221,3 +7207,4 @@ msgstr "بعدی"
 
 #~ msgid "page.codes.search_archive"
 #~ msgstr "جستجوی آرشیو آنا برای “%(term)s”"
+

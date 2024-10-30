@@ -2325,7 +2325,7 @@ msgstr "Server-ka Wada-hawlgalayaasha Degdega #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ma jiro xaqiijin biraawsar ama liis sugitaan)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Soo degdeg ah</strong> Waxaad dhawaan soo dejisay faylkan. 
 msgid "page.md5.box.download.option"
 msgstr "Ikhtiyaarka #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Dhammaan xulashooyinka soo dejinta waxay leeyihiin fayl isku mid ah, waana inay noqdaan kuwo ammaan ah in la isticmaalo. Taas oo la sheegay, had iyo jeer taxaddar markaad soo dejinayso faylasha internetka, gaar ahaan goobaha ka baxsan Kaydka Anna. Tusaale ahaan, hubi inaad cusboonaysiiso qalabkaaga."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Faylasha waaweyn, waxaan kugula talineynaa inaad isticmaasho maareeye soo dejin si aad uga hortagto carqaladaha."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Maareeyayaasha soo dejinta ee la soo jeediyay: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(waxaa laga yaabaa inaad isku daydo dhowr jeer oo IPFS ah)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Si aad u hesho soo dejin degdeg ah oo aad uga boodo hubinta biraawsarka, <a %(a_membership)s>noqo xubin</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Si aad u sameysid nuqul ballaaran oo ururintayada ah, eeg bogagga <a %(a_datasets)s>Datasets</a> iyo <a %(a_torrents)s>Torrents</a>."
@@ -5863,52 +5867,52 @@ msgstr "❌ Soo dejinta gaabiska ah waxaa kaliya laga heli karaa bogga rasmiga a
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Soo dejinta gaabiska ah lagama heli karo VPN-yada Cloudflare ama IP-yada Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Fadlan sug <span %(span_countdown)s>%(wait_seconds)s</span> ilbiriqsi si aad u soo dejiso faylkan."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Isticmaal URL-kan soo socda si aad u soo dejiso: <a %(a_download)s>Soo dejiso hadda</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Waad ku mahadsan tahay sugitaanka, tani waxay ka dhigeysaa bogga mid bilaash ah oo qof walba heli karo! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Si aan qof walba fursad ugu siino inuu si bilaash ah u soo dejiyo faylasha, waa inaad sugtaa ka hor intaadan soo dejisan faylkan."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Si xor ah u sii wad daalacashada Kaydka Anna tab kale inta aad sugayso (haddii biraawsarkaagu taageero cusboonaysiinta tab-yada asalka ah)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Si xor ah u sug bogag badan oo soo dejin ah inay isla waqti isku mar ku shubmaan (laakiin fadlan hal fayl oo keliya ku soo dejiso hal server mar kasta)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Markaad hesho xiriir soo dejin ah wuxuu ansax yahay saacado badan."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Digniin: waxaa jiray soo dejin badan oo ka timid cinwaankaaga IP-ga 24-kii saac ee la soo dhaafay. Soo dejintu waxay noqon kartaa mid ka gaabis badan sidii caadiga ahayd."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Soo dejinta cinwaankaaga IP-ga 24-kii saac ee la soo dhaafay: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Haddii aad isticmaaleyso VPN, isku xirka internet-ka wadaaga, ama ISP-gaagu wadaago IP-yada, digniintan waxaa laga yaabaa inay sabab u tahay taas."

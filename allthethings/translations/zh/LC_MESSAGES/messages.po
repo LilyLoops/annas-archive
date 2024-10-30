@@ -1921,7 +1921,7 @@ msgstr "高速服务器（合作方提供） #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "（无需浏览器验证或排队等候）"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "低速服务器（合作方提供） #%(number)s"
@@ -2383,6 +2383,10 @@ msgstr "你最近下载过此文件。链接在一段时间内仍然有效。"
 msgid "page.md5.box.download.option"
 msgstr "选项 #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2436,13 +2440,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "所有选项下载的文件都相同，应该可以安全使用。即使这样，从互联网下载文件时始终要小心。例如，确保您的设备更新及时。"
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "对于大文件，我们建议使用下载管理器以防止中断。"
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "推荐的下载管理器：%(links)s"
@@ -4695,12 +4699,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "（使用 IPFS 时您可能需要多次尝试）"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀要获得更快的下载并跳过浏览器检查，<a %(a_membership)s >成为会员</a>。"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡对于我们集合的批量镜像，请查看<a %(a_datasets)s >数据集</a>和<a %(a_torrents)s>Torrents</a>页面。"
 
@@ -4992,43 +4996,43 @@ msgstr "❌ 下载速度慢只能通过官方网站进行。 访问 %(websites)s
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ 无法通过 Cloudflare VPN 或其他方式从 Cloudflare IP 地址进行缓慢下载。"
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 msgid "page.partner_download.wait_banner"
 msgstr "请<span %(span_countdown)s>%(wait_seconds)s</span> 秒后下载此文件。"
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 msgid "page.partner_download.url"
 msgstr "<a %(a_download)s>📚立即下载</a >"
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 msgid "page.partner_download.li4"
 msgstr "感谢您的等待，这使得网站对所有人免费开放！😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 msgid "page.partner_download.wait"
 msgstr "为了让所有人都可以免费下载文件，你需要等待一段时间才能下载此文件。"
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 msgid "page.partner_download.li1"
 msgstr "在等待时，您可以在不同的标签页中继续浏览安娜的档案（如果您的浏览器支持后台标签页刷新）。"
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 msgid "page.partner_download.li2"
 msgstr "可以同时等待多个下载页面加载（但请每个服务器上每次只下载一个文件）。"
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 msgid "page.partner_download.li3"
 msgstr "获得的下载链接在数小时内有效。"
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "警告：过去 24 小时内，您的 IP 地址有大量下载。 下载可能比平常慢。"
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "过去 24 小时内从您的 IP 地址下载的次数：%(count)s。"
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "如果您使用 VPN、共享互联网连接或您的 ISP 共享 IP，那么这个警告可能是由于这些原因引起的。"
 

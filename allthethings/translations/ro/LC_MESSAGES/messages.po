@@ -2162,7 +2162,7 @@ msgstr "Server Partener Rapid #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(fără verificare în browser sau liste de așteptare)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2701,6 +2701,10 @@ msgstr "<strong>🚀 Descărcări rapide</strong> Ați descărcat acest fișier 
 msgid "page.md5.box.download.option"
 msgstr "Opțiunea #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2763,13 +2767,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Toate opțiunile descărcate ar trebui să fie sigure pentru folosire. Acestea fiind spuse, te rugăm să fii precaut când descarci fișiere de pe internet. De exemplu, asigură-te că dispozitivele tale sunt updatate la zi."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Pentru fișiere mari, vă recomandăm să folosiți un manager de descărcare pentru a preveni întreruperile."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Manageri de descărcare recomandați: %(links)s"
@@ -5325,13 +5329,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(este posibil să fie nevoie să încerci de mai multe ori cu IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Pentru a obține descărcări mai rapide și a sări peste verificările browserului, <a %(a_membership)s>deveniți membru</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Pentru oglindirea în masă a colecției noastre, consultați paginile <a %(a_datasets)s>Datasets</a> și <a %(a_torrents)s>Torrents</a>."
@@ -5676,52 +5680,52 @@ msgstr "❌ Descărcările lente sunt disponibile doar prin site-ul oficial. Viz
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Descărcările lente nu sunt disponibile prin VPN-urile Cloudflare sau de la adresele IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Vă rugăm să așteptați <span %(span_countdown)s>%(wait_seconds)s</span> secunde pentru a descărca acest fișier."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Utilizați următorul URL pentru a descărca: <a %(a_download)s>Descarcă acum</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Mulțumim pentru așteptare, acest lucru menține site-ul accesibil gratuit pentru toată lumea! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Pentru a oferi tuturor oportunitatea de a descărca fișiere gratuit, trebuie să așteptați înainte de a putea descărca acest fișier."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Simțiți-vă liber să continuați să navigați în Arhiva Annei într-o filă diferită în timp ce așteptați (dacă browserul dvs. suportă reîmprospătarea filelor de fundal)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Simțiți-vă liber să așteptați încărcarea mai multor pagini de descărcare în același timp (dar vă rugăm să descărcați doar un fișier la un moment dat pe server)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Odată ce obțineți un link de descărcare, acesta este valabil pentru câteva ore."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Avertisment: au fost multe descărcări de la adresa dvs. IP în ultimele 24 de ore. Descărcările ar putea fi mai lente decât de obicei."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Descărcări de la adresa dvs. IP în ultimele 24 de ore: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Dacă utilizați un VPN, o conexiune la internet partajată sau ISP-ul dvs. partajează IP-uri, acest avertisment ar putea fi din cauza asta."

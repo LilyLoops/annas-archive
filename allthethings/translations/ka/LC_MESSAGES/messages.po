@@ -2325,7 +2325,7 @@ msgstr "სწრაფი პარტნიორი სერვერი #%(
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ბრაუზერის ვერიფიკაციის ან ლოდინის სიის გარეშე)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 სწრაფი ჩამოტვირთვები<
 msgid "page.md5.box.download.option"
 msgstr "ვარიანტი #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "ყველა ჩამოტვირთვის ვარიანტს აქვს იგივე ფაილი და უნდა იყოს უსაფრთხო გამოსაყენებლად. მიუხედავად ამისა, ყოველთვის იყავით ფრთხილად ინტერნეტიდან ფაილების ჩამოტვირთვისას, განსაკუთრებით ანას არქივის გარეთ საიტებიდან. მაგალითად, დარწმუნდით, რომ თქვენი მოწყობილობები განახლებულია."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "დიდი ფაილებისთვის, რეკომენდებულია ჩამოტვირთვის მენეჯერის გამოყენება, რათა თავიდან აიცილოთ შეწყვეტები."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "რეკომენდებული ჩამოტვირთვის მენეჯერები: %(links)s"
@@ -5510,13 +5514,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(შეიძლება დაგჭირდეთ რამდენიმე მცდელობა IPFS-თან)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 უფრო სწრაფი ჩამოტვირთვისთვის და ბრაუზერის შემოწმებების გამოტოვებისთვის, <a %(a_membership)s>გახდით წევრი</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 ჩვენი კოლექციის მასობრივი ასლებისთვის, გადახედეთ <a %(a_datasets)s>Datasets</a> და <a %(a_torrents)s>Torrents</a> გვერდებს."
@@ -5861,52 +5865,52 @@ msgstr "❌ ნელი ჩამოტვირთვები ხელმი
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ ნელი ჩამოტვირთვები არ არის ხელმისაწვდომი Cloudflare VPN-ებით ან Cloudflare IP მისამართებიდან."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "გთხოვთ დაელოდოთ <span %(span_countdown)s>%(wait_seconds)s</span> წამი ამ ფაილის ჩამოსატვირთად."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 გამოიყენეთ შემდეგი URL ჩამოტვირთვისთვის: <a %(a_download)s>ჩამოტვირთეთ ახლა</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "გმადლობთ ლოდინისთვის, ეს ინარჩუნებს ვებგვერდს უფასოდ ყველასთვის! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "იმისათვის, რომ ყველას მიეცეს შესაძლებლობა, უფასოდ ჩამოტვირთოს ფაილები, საჭიროა დაელოდოთ, სანამ შეძლებთ ამ ფაილის ჩამოტვირთვას."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "გთხოვთ, განაგრძეთ Anna’s Archive-ის დათვალიერება სხვა ჩანართში ლოდინის დროს (თუ თქვენი ბრაუზერი მხარს უჭერს ფონური ჩანართების განახლებას)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "გთხოვთ, დაელოდოთ რამდენიმე ჩამოტვირთვის გვერდის ჩატვირთვას ერთდროულად (მაგრამ გთხოვთ, მხოლოდ ერთი ფაილი ჩამოტვირთეთ ერთდროულად თითო სერვერზე)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "როდესაც მიიღებთ ჩამოტვირთვის ბმულს, ის მოქმედებს რამდენიმე საათის განმავლობაში."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "გაფრთხილება: ბოლო 24 საათის განმავლობაში თქვენი IP მისამართიდან ბევრი ჩამოტვირთვა განხორციელდა. ჩამოტვირთვები შეიძლება იყოს ნელი ჩვეულებრივზე."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "ბოლო 24 საათის განმავლობაში თქვენი IP მისამართიდან ჩამოტვირთვები: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "თუ იყენებთ VPN-ს, გაზიარებულ ინტერნეტ კავშირს, ან თქვენი ISP იზიარებს IP-ებს, ეს გაფრთხილება შეიძლება ამის გამო იყოს."

@@ -2325,7 +2325,7 @@ msgstr "Ọrụ Ngwa Ngwa Ngwa #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(enweghị nkwenye nchọgharị ma ọ bụ ndepụta echere)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Nbudata ngwa ngwa</strong> Ị budatara faịlụ a n'oge n
 msgid "page.md5.box.download.option"
 msgstr "Nhọrọ #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Nhọrọ nbudata niile nwere faịlụ ahụ, ma kwesịrị ịdị mma iji. Otú ọ dị, na-agbalịsi ike mgbe niile mgbe ị na-ebudata faịlụ site na ịntanetị, karịsịa site na saịtị mpụga Anna’s Archive. Dịka ọmụmaatụ, jide n'aka na ị na-emelite ngwaọrụ gị mgbe niile."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Maka nnukwu faịlụ, anyị na-akwado iji onye njikwa nbudata iji gbochie nkwụsị."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Onye njikwa nbudata akwadoro: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(ị nwere ike ịchọ ịnwale ọtụtụ oge na IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Iji nweta nbudata ngwa ngwa ma gbanwee nyocha nchọgharị, <a %(a_membership)s>ghọọ onye otu</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Maka ịmepụta ọtụtụ ihe n'ịntanetị nke nchịkọta anyị, lelee <a %(a_datasets)s>Datasets</a> na <a %(a_torrents)s>Torrents</a> ibe."
@@ -5863,52 +5867,52 @@ msgstr "❌ Nbudata nwayọ dị naanị site na weebụsaịtị gọọmentị
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Nbudata nwayọ adịghị site na VPNs Cloudflare ma ọ bụ site na adreesị IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Biko chere <span %(span_countdown)s>%(wait_seconds)s</span> sekọnd iji budata faịlụ a."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Jiri URL na-esonụ ibudata: <a %(a_download)s>Budata ugbu a</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Daalụ maka ichere, nke a na-eme ka weebụsaịtị dịrị n'efu maka onye ọ bụla! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Iji nye onye ọ bụla ohere ibudata faịlụ n'efu, ị ga-echere tupu ị nwee ike ibudata faịlụ a."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Nwere ike ịga n'ihu na-agagharị na Arịkọ Anna na taabụ dị iche mgbe ị na-eche (ọ bụrụ na nchọgharị gị na-akwado ịmịgharị taabụ ndabere)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Nwere ike ịtụfu ọtụtụ ibe nbudata ka ha na-ebufe n'otu oge (ma biko budata naanị otu faịlụ n'otu oge na sava ọ bụla)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Ozugbo ị nwetara njikọ nbudata ọ dị irè maka ọtụtụ awa."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Ịdọ aka ná ntị: e nwere ọtụtụ nbudata site na adreesị IP gị n'ime awa 24 gara aga. Nbudata nwere ike ịdị nwayọ karịa ka ọ dị na mbụ."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Nbudata site na adreesị IP gị n'ime awa 24 gara aga: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Ọ bụrụ na ị na-eji VPN, njikọ ịntanetị kesara, ma ọ bụ ISP gị kesara IPs, ịdọ aka ná ntị a nwere ike ịbụ n'ihi nke ahụ."

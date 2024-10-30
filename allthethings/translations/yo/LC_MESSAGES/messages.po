@@ -2325,7 +2325,7 @@ msgstr "Olùjọ̀wọ́ Ìbáṣepọ̀ Títẹ́ #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(kò sí ìfíhàn àwòrán tàbí àkójọpọ̀)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Gbigba lati ayelujara tó yara</strong> Ẹ ti gbà fáìl�
 msgid "page.md5.box.download.option"
 msgstr "Àṣàyàn #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Gbogbo awọn aṣayan igbasilẹ ni faili kanna, ati pe o yẹ ki o jẹ ailewu lati lo. Ti o sọ bẹ, nigbagbogbo ṣọra nigbati o ba n gba awọn faili lati ayelujara, paapaa lati awọn aaye ita si Igbasilẹ Anna. Fun apẹẹrẹ, rii daju lati tọju awọn ẹrọ rẹ ni imudojuiwọn."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Fun awọn faili nla, a ṣeduro lilo oluṣakoso igbasilẹ lati ṣe idiwọ awọn idilọwọ."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Awọn oluṣakoso igbasilẹ ti a ṣeduro: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(ó lè jẹ́ pé o ní láti gbìyànjú ní ìgbà púpọ̀ pẹ̀lú IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Lati gba awọn igbasilẹ yiyara ati foju awọn ayewo aṣawakiri, <a %(a_membership)s>di ọmọ ẹgbẹ</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Fun didakọ pupọ ti ikojọpọ wa, ṣayẹwo awọn oju-iwe <a %(a_datasets)s>Datasets</a> ati <a %(a_torrents)s>Torrents</a>."
@@ -5863,52 +5867,52 @@ msgstr "❌ Awọn igbasilẹ lọra nikan wa nipasẹ oju opo wẹẹbu osise. 
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Awọn igbasilẹ lọra ko wa nipasẹ awọn VPN Cloudflare tabi bibẹẹkọ lati awọn adirẹsi IP Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Jọwọ duro <span %(span_countdown)s>%(wait_seconds)s</span> iṣẹju-aaya lati ṣe igbasilẹ faili yii."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Lo URL atẹle lati gba lati ayelujara: <a %(a_download)s>Gba lati ayelujara bayi</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "O ṣeun fun nduro, eyi n jẹ ki oju opo wẹẹbu wa ni wiwọle fun ọfẹ fun gbogbo eniyan! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Lati le fun gbogbo eniyan ni anfaani lati ṣe igbasilẹ awọn faili fun ọfẹ, o nilo lati duro ṣaaju ki o to le ṣe igbasilẹ faili yii."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Lero ọfẹ lati tẹsiwaju lilọ kiri ni Ile-ikawe Anna ni taabu miiran lakoko ti o nduro (ti aṣawakiri rẹ ba ṣe atilẹyin imudojuiwọn awọn taabu abẹlẹ)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Lero ọfẹ lati duro fun ọpọlọpọ awọn oju-iwe igbasilẹ lati kojọpọ ni akoko kanna (ṣugbọn jọwọ gba faili kan nikan ni akoko kanna fun olupin kọọkan)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Ni kete ti o ba gba ọna asopọ igbasilẹ o wulo fun awọn wakati pupọ."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Ikilọ: ọpọlọpọ awọn igbasilẹ ti wa lati adirẹsi IP rẹ ni awọn wakati 24 to kọja. Awọn igbasilẹ le jẹ lọra ju deede lọ."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Awọn igbasilẹ lati adirẹsi IP rẹ ni awọn wakati 24 to kọja: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Ti o ba nlo VPN, asopọ intanẹẹti ti a pin, tabi ISP rẹ pin awọn IPs, ikilọ yii le jẹ nitori iyẹn."

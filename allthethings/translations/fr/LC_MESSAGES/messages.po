@@ -1954,7 +1954,7 @@ msgstr "Serveur Partenaire Rapide #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(pas de vérification du navigateur ou de listes d'attente)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 msgid "common.md5.servers.slow_partner"
 msgstr "Serveur Partenaire lent #%(number)s"
@@ -2424,6 +2424,10 @@ msgstr "Vous avez téléchargé ce fichier récemment. Les liens restent valides
 msgid "page.md5.box.download.option"
 msgstr "Option #%(num)d : %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 msgid "layout.index.header.banner.refer"
@@ -2477,13 +2481,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Toutes les options de téléchargement devraient pouvoir être utilisées en toute sécurité. Cela dit, soyez toujours prudent lorsque vous téléchargez des fichiers depuis internet. Par exemple, veillez à maintenir vos appareils à jour."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Pour les fichiers volumineux, nous recommandons d'utiliser un gestionnaire de téléchargement pour éviter les interruptions."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Gestionnaires de téléchargement recommandés : %(links)s"
@@ -4852,12 +4856,12 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(vous devrez peut-être essayer plusieurs fois avec IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Pour obtenir des téléchargements plus rapides et passer la vérification navigateur, <a %(a_membership)s>devenez membre</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Pour la reproduction massive de notre collection en archives-miroir, consultez les pages <a %(a_datasets)s>Jeux de données</a> et <a %(a_torrents)s>Torrents</a>."
 
@@ -5167,46 +5171,46 @@ msgstr "❌ Les téléchargements lents ne sont disponibles que via le site offi
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Les téléchargements lents ne sont pas disponibles via les VPN de Cloudflare ou par les adresses IP qu'ils utilisent."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Veuillez patienter <span %(span_countdown)s>%(wait_seconds)s</span> secondes pour télécharger ce fichier."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Utilisez l'URL suivante pour télécharger : <a %(a_download)s>Télécharger maintenant</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 msgid "page.partner_download.li4"
 msgstr "Merci d'avoir attendu, cela permet de garder le site accessible gratuitement pour tout le monde ! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Afin de donner à chacun l'opportunité de télécharger des fichiers gratuitement, vous devez attendre avant de pouvoir télécharger ce fichier."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 msgid "page.partner_download.li1"
 msgstr "N'hésitez pas à continuer de naviguer sur les Archives d'Anna dans un autre onglet en attendant (si votre navigateur prend en charge l'actualisation des onglets en arrière-plan)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 msgid "page.partner_download.li2"
 msgstr "N'hésitez pas à laisser plusieurs pages de téléchargement se charger en simultané (mais veuillez ne télécharger qu'un seul fichier à la fois par serveur)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 msgid "page.partner_download.li3"
 msgstr "Une fois que vous obtenez un lien de téléchargement, ce dernier est valable pendant plusieurs heures."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Attention : de nombreux téléchargements ont été effectués depuis votre adresse IP au cours des dernières 24 heures. Les téléchargements peuvent être plus lents que d'habitude."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Téléchargements depuis votre adresse IP depuis les dernières 24 heures :%(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Si vous utilisez un VPN, une connexion internet partagée ou si votre FAI partage des IP, cet avertissement peut en être la cause."
 

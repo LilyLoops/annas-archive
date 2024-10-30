@@ -2325,7 +2325,7 @@ msgstr "Nopea Kumppanipalvelin #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ei selaimen vahvistusta tai jonotuslistoja)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Nopeat lataukset</strong> Olet ladannut tämän tiedoston �
 msgid "page.md5.box.download.option"
 msgstr "Vaihtoehto #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Kaikissa latausvaihtoehdoissa on sama tiedosto, ja niiden pitäisi olla turvallisia käyttää. Siitä huolimatta ole aina varovainen ladatessasi tiedostoja internetistä, erityisesti Anna’s Archiven ulkopuolisilta sivustoilta. Esimerkiksi varmista, että laitteesi ovat ajan tasalla."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Suurten tiedostojen kohdalla suosittelemme lataushallinnan käyttöä keskeytysten estämiseksi."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Suositellut lataushallinnat: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(saatat joutua yrittämään useita kertoja IPFS:n kanssa)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Saadaksesi nopeammat lataukset ja ohittaaksesi selainvarmistukset, <a %(a_membership)s>liity jäseneksi</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Massapeilauksen osalta tutustu <a %(a_datasets)s>Datasets</a> ja <a %(a_torrents)s>Torrents</a> sivuihin."
@@ -5863,52 +5867,52 @@ msgstr "❌ Hitaita latauksia on saatavilla vain virallisen verkkosivuston kautt
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Hitaat lataukset eivät ole saatavilla Cloudflare VPN:ien tai muiden Cloudflare IP-osoitteiden kautta."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Odota <span %(span_countdown)s>%(wait_seconds)s</span> sekuntia ladataksesi tämän tiedoston."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Käytä seuraavaa URL-osoitetta ladataksesi: <a %(a_download)s>Lataa nyt</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Kiitos odottamisesta, tämä pitää verkkosivuston ilmaisena kaikille! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Jotta kaikilla olisi mahdollisuus ladata tiedostoja ilmaiseksi, sinun on odotettava ennen kuin voit ladata tämän tiedoston."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Voit jatkaa Anna's Archiven selaamista toisessa välilehdessä odottaessasi (jos selaimesi tukee taustavälilehtien päivittämistä)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Voit odottaa useiden lataussivujen latautumista samanaikaisesti (mutta lataa vain yksi tiedosto kerrallaan per palvelin)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Kun saat latauslinkin, se on voimassa useita tunteja."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Varoitus: IP-osoitteestasi on ladattu paljon viimeisen 24 tunnin aikana. Lataukset voivat olla tavallista hitaampia."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Lataukset IP-osoitteestasi viimeisen 24 tunnin aikana: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Jos käytät VPN:ää, jaettua internet-yhteyttä tai internet-palveluntarjoajasi jakaa IP-osoitteita, tämä varoitus saattaa johtua siitä."

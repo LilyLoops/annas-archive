@@ -2325,7 +2325,7 @@ msgstr "तेज पार्टनर सर्वर #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(कोनो ब्राउजर सत्यापन या प्रतीक्षा सूची नै)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 तेज डाउनलोड</strong> अहाँ ए�
 msgid "page.md5.box.download.option"
 msgstr "विकल्प #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "सभ डाउनलोड विकल्प में एके फाइल अछि, आ उपयोग करबाक लेल सुरक्षित होयबाक चाही। तथापि, इंटरनेट सँ फाइल डाउनलोड करबाक समय सदैव सतर्क रहू, विशेष रूप सँ Anna’s Archive सँ बाहरी साइट सँ। उदाहरण स्वरूप, अपन डिवाइस केँ अद्यतन राखू।"
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "बड़का फाइल सभ लेल, हम अहाँ के डाउनलोड मैनेजर के उपयोग करबाक सिफारिश करैत छी ताकि बाधा नहि होय।"
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "सिफारिश कएल गेल डाउनलोड मैनेजर: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(IPFS संग अहाँ क' कतेको बेर प्रयास कर' पड़ि सकैत अछि)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 तेज डाउनलोड आ ब्राउजर चेक्स छोड़बाक लेल, <a %(a_membership)s>सदस्य बनू</a>।"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 हमर संग्रहक बल्क मिररिंग लेल, <a %(a_datasets)s>Datasets</a> आ <a %(a_torrents)s>Torrents</a> पेज देखू।"
@@ -5863,52 +5867,52 @@ msgstr "❌ धीमा डाउनलोड केवल आधिकार�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ धीमा डाउनलोड Cloudflare VPNs या अन्यथा Cloudflare IP पतों सँ उपलब्ध नहि अछि।"
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "कृपया इस फाइल को डाउनलोड करने के लिए <span %(span_countdown)s>%(wait_seconds)s</span> सेकंड प्रतीक्षा करें।"
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 डाउनलोड करबाक लेल निम्नलिखित URL प्रयोग करू: <a %(a_download)s>अभी डाउनलोड करू</a>।"
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "प्रतीक्षा करबाक लेल धन्यवाद, ई वेबसाइट केँ सभकेँ लेल मुफ्त में सुलभ राखैत अछि! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "सभी को मुफ्त में फाइलें डाउनलोड करने का अवसर देने के लिए, आपको इस फाइल को डाउनलोड करने से पहले प्रतीक्षा करनी होगी।"
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "अन्ना’क आर्काइव केँ अलग टैब में ब्राउज करबाक लेल स्वतंत्र महसूस करू प्रतीक्षा करैत (यदि अहाँक ब्राउजर बैकग्राउंड टैब्स केँ रिफ्रेश करबाक समर्थन करैत अछि)।"
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "कृपया एकहि समय में एक सँ अधिक डाउनलोड पेज लोड करबाक लेल स्वतंत्र महसूस करू (मुदा कृपया एकहि समय में प्रति सर्वर केवल एक फाइल डाउनलोड करू)।"
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "एक बेर अहाँ केँ डाउनलोड लिंक भेटि जाए, तऽ ई किछु घंटा लेल मान्य रहैत अछि।"
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "चेतावनी: अहाँक IP पता सँ अंतिम 24 घंटा में बहुत सारा डाउनलोड भेल अछि। डाउनलोड सामान्य सँ धीमा भऽ सकैत अछि।"
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "अहाँक IP पता सँ अंतिम 24 घंटा में डाउनलोड: %(count)s।"
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "यदि अहाँ VPN, साझा इंटरनेट कनेक्शन, या अहाँक ISP IPs साझा करैत अछि, तऽ ई चेतावनी एहि कारण सँ भऽ सकैत अछि।"

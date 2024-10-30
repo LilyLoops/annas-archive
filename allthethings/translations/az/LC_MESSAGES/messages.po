@@ -2325,7 +2325,7 @@ msgstr "Sürətli Tərəfdaş Serveri #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(brauzer təsdiqi və ya gözləmə siyahıları yoxdur)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Sürətli yükləmələr</strong> Bu faylı son zamanlarda 
 msgid "page.md5.box.download.option"
 msgstr "Seçim #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Bütün yükləmə seçimlərində eyni fayl var və istifadəsi təhlükəsiz olmalıdır. Bununla belə, internetdən faylları yükləyərkən, xüsusən də Anna Arxivindən kənar saytlardan ehtiyatlı olun. Məsələn, cihazlarınızı yeniləməyə əmin olun."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Böyük fayllar üçün yükləmə menecerindən istifadə etməyi tövsiyə edirik ki, kəsilmələrin qarşısını alasınız."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Tövsiyə olunan yükləmə menecerləri: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(IPFS ilə bir neçə dəfə cəhd etməli ola bilərsiniz)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Daha sürətli yükləmələr və brauzer yoxlamalarından keçməmək üçün <a %(a_membership)s>üzv olun</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Kolleksiyamızın toplu güzgülənməsi üçün <a %(a_datasets)s>Datasets</a> və <a %(a_torrents)s>Torrents</a> səhifələrinə baxın."
@@ -5863,52 +5867,52 @@ msgstr "❌ Yavaş yükləmələr yalnız rəsmi vebsayt vasitəsilə mümkünd�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Yavaş yükləmələr Cloudflare VPN-ləri və ya Cloudflare IP ünvanlarından mümkün deyil."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Zəhmət olmasa bu faylı yükləmək üçün <span %(span_countdown)s>%(wait_seconds)s</span> saniyə gözləyin."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Yükləmək üçün aşağıdakı URL-dən istifadə edin: <a %(a_download)s>İndi yükləyin</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Gözlədiyiniz üçün təşəkkür edirik, bu, vebsaytı hər kəs üçün pulsuz əlçatan edir! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Hər kəsə faylları pulsuz yükləmək imkanı vermək üçün bu faylı yükləməzdən əvvəl gözləməlisiniz."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Gözləyərkən (əgər brauzeriniz arxa planda yeniləməyi dəstəkləyirsə) Anna’nın Arxivi-ni başqa bir tabda gəzməyə davam edə bilərsiniz."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Bir neçə yükləmə səhifəsinin eyni vaxtda yüklənməsini gözləməkdən çəkinməyin (amma zəhmət olmasa hər server üçün eyni vaxtda yalnız bir fayl yükləyin)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Yükləmə linkini aldıqdan sonra o, bir neçə saat ərzində etibarlıdır."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Xəbərdarlıq: Son 24 saat ərzində IP ünvanınızdan çoxlu yükləmələr olub. Yükləmələr adi haldan daha yavaş ola bilər."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Son 24 saat ərzində IP ünvanınızdan yükləmələr: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "VPN, paylaşılan internet bağlantısı və ya ISP-niz IP-ləri paylaşırsa, bu xəbərdarlıq buna görə ola bilər."

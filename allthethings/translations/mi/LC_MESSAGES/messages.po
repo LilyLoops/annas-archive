@@ -2325,7 +2325,7 @@ msgstr "Tūmau Hoa Tere #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(kāore he manatoko pūtirotiro, kāore he rārangi tatari)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Tikiake tere</strong> Kua tikiakehia e koe tēnei kōnae in
 msgid "page.md5.box.download.option"
 msgstr "Kōwhiringa #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "He kōnae kotahi ngā kōwhiringa tikiake katoa, ā, me noho haumaru ki te whakamahi. Ahakoa tēnā, kia tūpato i ngā wā katoa i a koe e tikiake ana i ngā kōnae mai i te ipurangi, inarā mai i ngā pae waho o te Anna’s Archive. Hei tauira, kia mau tonu ngā whakahōutanga o ō taputapu."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Mō ngā kōnae nui, ka tūtohu mātou kia whakamahi i tētahi kaiwhakahaere tikiake hei aukati i ngā aukatinga."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Ngā kaiwhakahaere tikiake tūtohua: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(ka hiahia pea koe ki te whakamātau i ngā wā maha me IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Kia tere ake te tikiake me te karo i ngā manatoko pūtirotiro, <a %(a_membership)s>whakauru hei mema</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Mō te tāruatanga nui o tā mātou kohinga, tirohia te whārangi <a %(a_datasets)s>Datasets</a> me te whārangi <a %(a_torrents)s>Torrents</a>."
@@ -5863,52 +5867,52 @@ msgstr "❌ Ko ngā tikiake pōturi anake e wātea ana mā te paetukutuku mana. 
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Kāore ngā tikiake pōturi e wātea ana mā ngā VPN Cloudflare, mā ngā wāhitau IP Cloudflare rānei."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Tēnā koa tatari mō te <span %(span_countdown)s>%(wait_seconds)s</span> hēkona hei tikiake i tēnei kōnae."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Whakamahia te URL e whai ake nei ki te tikiake: <a %(a_download)s>Tikiake ināianei</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Ngā mihi mō te tatari, ka āwhina tēnei kia wātea te paetukutuku mō te kore utu ki te katoa! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Hei tuku i te katoa he whai wāhitanga ki te tikiake kōnae mō te kore utu, me tatari koe i mua i tō tikiake i tēnei kōnae."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Kaua e āwangawanga ki te tirotiro tonu i a Anna’s Archive i tētahi ripa rerekē i a koe e tatari ana (mēnā ka tautokona e tō pūtirotiro te whakahou ripa papamuri)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Kaua e āwangawanga ki te tatari mō ngā whārangi tikiake maha kia uta i te wā kotahi (engari tēnā koa, tikiake kotahi anake kōnae i te wā kotahi mō ia tūmau)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Ka whiwhi koe i tētahi hononga tikiake, ka whaimana mō ngā haora maha."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Whakatūpato: he maha ngā tikiake mai i tō wāhitau IP i roto i ngā haora 24 kua hipa. Tērā pea ka pōturi ake ngā tikiake i te tikanga."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Ngā tikiake mai i tō wāhitau IP i roto i ngā haora 24 kua hipa: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Mēnā kei te whakamahi koe i tētahi VPN, hononga ipurangi tiritahi, kei te tiritiri rānei tō ISP i ngā wāhitau IP, tērā pea nā tēnei te whakatūpato."

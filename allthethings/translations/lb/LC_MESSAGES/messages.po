@@ -2325,7 +2325,7 @@ msgstr "Schnelle Partner Server #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(keen Browserverifikatioun oder Waardelëschten)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Schnell Downloads</strong> Du hues dës Datei viru kuerzem 
 msgid "page.md5.box.download.option"
 msgstr "Optioun #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "All Download-Optiounen hunn déi selwecht Datei a solle sécher sinn ze benotzen. Dat gesot, sidd ëmmer virsiichteg wann Dir Dateien vum Internet erofluet, besonnesch vu Siten ausserhalb vun Anna’s Archive. Zum Beispill, gitt sécher datt Är Geräter aktualiséiert sinn."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Fir grouss Dateien empfeele mir e Download-Manager ze benotzen, fir Ënnerbriechungen ze verhënneren."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Empfohlene Download-Manager: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(et kann néideg sinn, méi Versich mat IPFS ze maachen)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Fir méi séier Downloads a fir d'Browserkontrollen ze iwwersprangen, <a %(a_membership)s>gitt Member</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Fir bulk Spigelung vun eiser Sammlung, kuckt op d' <a %(a_datasets)s>Datasets</a> an <a %(a_torrents)s>Torrents</a> Säiten."
@@ -5863,52 +5867,52 @@ msgstr "❌ Lues Eroflueden sinn nëmmen iwwer déi offiziell Websäit verfügba
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Lues Eroflueden sinn net iwwer Cloudflare VPNs oder soss vu Cloudflare IP Adressen verfügbar."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "W.e.g. waart <span %(span_countdown)s>%(wait_seconds)s</span> Sekonnen fir dës Datei erofzelueden."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Benotzt déi folgend URL fir erofzelueden: <a %(a_download)s>Elo eroflueden</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Merci fir d'Waarden, dëst hält d'Websäit gratis fir jiddereen zougänglech! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Fir jidderengem d'Méiglechkeet ze ginn, Dateien gratis erofzelueden, musst Dir waarden, ier Dir dës Datei erofluede kënnt."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Fillt Iech fräi, Anna’s Archive an engem aneren Tab weider ze duerchsichen wärend Dir waart (wann Äre Browser d'Aktualiséierung vu Hannergrondtabs ënnerstëtzt)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Fillt Iech fräi, op méi Erofluedsäiten gläichzäiteg ze waarden (awer w.e.g. nëmmen eng Datei gläichzäiteg pro Server eroflueden)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Wann Dir en Erofluedlink kritt, ass en e puer Stonnen gëlteg."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Warnung: et goufen vill Erofluede vun Ärer IP Adress an de leschten 24 Stonnen. Erofluede kéinte méi lues sinn wéi gewinnt."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Erofluede vun Ärer IP Adress an de leschten 24 Stonnen: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Wann Dir e VPN, eng gedeelt Internetverbindung benotzt, oder Ären ISP IPs deelt, kéint dës Warnung doduerch verursaacht ginn."

@@ -2325,7 +2325,7 @@ msgstr "ម៉ាស៊ីនមេដៃគូរហ័ស #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(គ្មានការផ្ទៀងផ្ទាត់កម្មវិធីរុករក ឬបញ្ជីរង់ចាំ)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 ទាញយកបានលឿន</strong> អ្នកប�
 msgid "page.md5.box.download.option"
 msgstr "ជម្រើស #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "ជម្រើសទាញយកទាំងអស់មានឯកសារដូចគ្នា ហើយគួរតែមានសុវត្ថិភាពក្នុងការប្រើប្រាស់។ ទោះជាយ៉ាងណា សូមប្រុងប្រយ័ត្នជានិច្ចនៅពេលទាញយកឯកសារពីអ៊ីនធឺណិត ជាពិសេសពីតំបន់បណ្តាញខាងក្រៅនៃបណ្ណាល័យរបស់ Anna។ ឧទាហរណ៍ សូមប្រាកដថាឧបករណ៍របស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាព។"
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "សម្រាប់​ឯកសារ​ធំៗ យើង​ផ្ដល់​អនុសាសន៍​ឲ្យ​ប្រើ​កម្មវិធី​គ្រប់គ្រង​ទាញយក ដើម្បី​ការពារ​ការ​ផ្អាក។"
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "កម្មវិធី​គ្រប់គ្រង​ទាញយក​ដែល​ផ្ដល់​អនុសាសន៍៖ %(links)s"
@@ -5510,13 +5514,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(អ្នកអាចត្រូវសាកល្បងម្តងហើយម្តងទៀតជាមួយ IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 ដើម្បីទទួលបានការទាញយកលឿន និងរំលងការត្រួតពិនិត្យកម្មវិធីរុករក, <a %(a_membership)s>ចូលជាសមាជិក</a>។"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 សម្រាប់ការបញ្ចាក់ច្រើននៃការប្រមូលផ្តុំរបស់យើង, សូមពិនិត្យមើលទំព័រ <a %(a_datasets)s>Datasets</a> និង <a %(a_torrents)s>Torrents</a>។"
@@ -5861,52 +5865,52 @@ msgstr "❌ ការទាញយកយឺតគឺអាចប្រើបា�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ ការទាញយកយឺតមិនអាចប្រើបានតាមរយៈ VPN របស់ Cloudflare ឬពីអាសយដ្ឋាន IP របស់ Cloudflare ទេ។"
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "សូមរង់ចាំ <span %(span_countdown)s>%(wait_seconds)s</span> វិនាទីដើម្បីទាញយកឯកសារនេះ។"
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 ប្រើ URL ខាងក្រោមដើម្បីទាញយក: <a %(a_download)s>ទាញយកឥឡូវនេះ</a>។"
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "សូមអរគុណសម្រាប់ការរង់ចាំ វាធ្វើឱ្យគេហទំព័រនេះអាចចូលប្រើបានដោយឥតគិតថ្លៃសម្រាប់គ្រប់គ្នា! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "ដើម្បីផ្តល់ឱកាសដល់គ្រប់គ្នាដើម្បីទាញយកឯកសារដោយឥតគិតថ្លៃ អ្នកត្រូវតែរង់ចាំមុនពេលអ្នកអាចទាញយកឯកសារនេះ។"
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "សូមអរគុណដែលបន្តរុករកបណ្ណាល័យរបស់ Anna នៅក្នុងផ្ទាំងផ្សេងទៀតខណៈពេលរង់ចាំ (ប្រសិនបើកម្មវិធីរុករករបស់អ្នកគាំទ្រការផ្ទុកផ្ទាំងនៅផ្ទៃខាងក្រោយ)។"
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "សូមអរគុណដែលរង់ចាំការផ្ទុកទំព័រទាញយកច្រើននៅពេលតែមួយ (ប៉ុន្តែសូមទាញយកឯកសារតែមួយក្នុងមួយម៉ោងសម្រាប់ម៉ាស៊ីនមេមួយ)។"
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "ពេលអ្នកទទួលបានតំណភ្ជាប់ទាញយក វាមានសុពលភាពរយៈពេលប៉ុន្មានម៉ោង។"
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "ការព្រមាន: មានការទាញយកច្រើនពីអាសយដ្ឋាន IP របស់អ្នកក្នុងរយៈពេល 24 ម៉ោងចុងក្រោយ។ ការទាញយកអាចយឺតជាងធម្មតា។"
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "ការទាញយកពីអាសយដ្ឋាន IP របស់អ្នកក្នុងរយៈពេល 24 ម៉ោងចុងក្រោយ៖ %(count)s។"
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "ប្រសិនបើអ្នកកំពុងប្រើ VPN, ការតភ្ជាប់អ៊ីនធឺណិតចែករំលែក, ឬ ISP របស់អ្នកចែករំលែក IPs, ការព្រមាននេះអាចបណ្តាលមកពីហេតុផលនោះ។"

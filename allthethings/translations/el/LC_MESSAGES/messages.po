@@ -2287,7 +2287,7 @@ msgstr "Γρήγορος Διακομιστής Συνεργάτη #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(χωρίς επαλήθευση προγράμματος περιήγησης ή λίστες αναμονής)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2827,6 +2827,10 @@ msgstr "<strong>🚀 Γρήγορες λήψεις</strong> Κατεβάσατε
 msgid "page.md5.box.download.option"
 msgstr "Επιλογή #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2889,13 +2893,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Όλοι τα mirrors εξυπηρετούν το ίδιο αρχείο και θα πρέπει είναι ασφαλείς για χρήση. Ωστόσο, να είστε πάντα προσεκτικοί κατά τη λήψη αρχείων από το Διαδίκτυο. Για παράδειγμα, φροντίστε να διατηρείτε τις συσκευές σας ενημερωμένες."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Για μεγάλα αρχεία, συνιστούμε τη χρήση ενός διαχειριστή λήψεων για να αποφύγετε διακοπές."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Συνιστώμενοι διαχειριστές λήψεων: %(links)s"
@@ -5452,13 +5456,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(ίσως χρειαστεί να δοκιμάσετε πολλές φορές με το IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Για ταχύτερες λήψεις και παράκαμψη των ελέγχων του προγράμματος περιήγησης, <a %(a_membership)s>γίνετε μέλος</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Για μαζική αντιγραφή της συλλογής μας, δείτε τις σελίδες <a %(a_datasets)s>Datasets</a> και <a %(a_torrents)s>Torrents</a>."
@@ -5803,52 +5807,52 @@ msgstr "❌ Οι αργές λήψεις είναι διαθέσιμες μόν�
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Οι αργές λήψεις δεν είναι διαθέσιμες μέσω των VPN του Cloudflare ή από διευθύνσεις IP του Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Παρακαλώ περιμένετε <span %(span_countdown)s>%(wait_seconds)s</span> δευτερόλεπτα για να κατεβάσετε αυτό το αρχείο."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Χρησιμοποιήστε τον ακόλουθο σύνδεσμο για λήψη: <a %(a_download)s>Κατεβάστε τώρα</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Ευχαριστούμε που περιμένατε, αυτό κρατά την ιστοσελίδα προσβάσιμη δωρεάν για όλους! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Για να δώσουμε σε όλους την ευκαιρία να κατεβάσουν αρχεία δωρεάν, πρέπει να περιμένετε πριν μπορέσετε να κατεβάσετε αυτό το αρχείο."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Μπορείτε να συνεχίσετε την περιήγηση στο Αρχείο της Άννας σε διαφορετική καρτέλα ενώ περιμένετε (αν ο περιηγητής σας υποστηρίζει την ανανέωση καρτελών στο παρασκήνιο)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Μπορείτε να περιμένετε να φορτωθούν πολλές σελίδες λήψης ταυτόχρονα (αλλά παρακαλούμε να κατεβάζετε μόνο ένα αρχείο τη φορά ανά διακομιστή)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Μόλις λάβετε έναν σύνδεσμο λήψης, είναι έγκυρος για αρκετές ώρες."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Προειδοποίηση: έχουν γίνει πολλές λήψεις από τη διεύθυνση IP σας τις τελευταίες 24 ώρες. Οι λήψεις μπορεί να είναι πιο αργές από το συνηθισμένο."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Λήψεις από τη διεύθυνση IP σας τις τελευταίες 24 ώρες: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Αν χρησιμοποιείτε VPN, κοινή σύνδεση στο διαδίκτυο ή ο ISP σας μοιράζει IPs, αυτή η προειδοποίηση μπορεί να οφείλεται σε αυτό."

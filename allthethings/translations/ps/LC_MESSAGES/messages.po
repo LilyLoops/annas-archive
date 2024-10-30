@@ -2325,7 +2325,7 @@ msgstr "چټک شریک سرور #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(نه د براوزر تایید او نه د انتظار لیستونه)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 چټک ډاونلوډونه</strong> تاسو دا فایل
 msgid "page.md5.box.download.option"
 msgstr "اختیار #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "ټولې ډاونلوډ اختیارونه ورته فایل لري، او باید د کارولو لپاره خوندي وي. دا وویل، تل د انټرنیټ څخه د فایلونو ډاونلوډ کولو پر مهال محتاط اوسئ، په ځانګړي توګه د Anna’s Archive څخه بهر سایټونو څخه. د مثال په توګه، ډاډ ترلاسه کړئ چې ستاسو وسایل تازه وساتئ."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "د لویو فایلونو لپاره، موږ د ډاونلوډ مدیر کارول وړاندیز کوو ترڅو د خنډونو مخه ونیسي."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "سپارښتنه شوي ډاونلوډ مدیران: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(تاسو ممکن څو ځله د IPFS سره هڅه وکړئ)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 د چټکو ډاونلوډونو او د براوزر چیکونو څخه د مخنیوي لپاره، <a %(a_membership)s>غړی شئ</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 زموږ د ټولګې د ډله ایز عکس العمل لپاره، <a %(a_datasets)s>Datasets</a> او <a %(a_torrents)s>Torrents</a> پاڼې وګورئ."
@@ -5863,52 +5867,52 @@ msgstr "❌ ورو ډاونلوډونه یوازې د رسمي ویب پاڼې �
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ ورو ډاونلوډونه د Cloudflare VPNs یا د Cloudflare IP پتې څخه شتون نلري."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "مهرباني وکړئ <span %(span_countdown)s>%(wait_seconds)s</span> ثانیې انتظار وکړئ ترڅو دا فایل ډاونلوډ کړئ."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 د ډاونلوډ لپاره لاندې URL وکاروئ: <a %(a_download)s>اوس ډاونلوډ کړئ</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "د انتظار لپاره مننه، دا ویب پاڼه د هرچا لپاره وړیا لاسرسی ساتي! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "د دې لپاره چې هر چا ته د فایلونو وړیا ډاونلوډ کولو فرصت ورکړل شي، تاسو اړتیا لرئ چې مخکې له دې چې دا فایل ډاونلوډ کړئ انتظار وکړئ."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "مهرباني وکړئ د انا آرشیف په بل ټب کې د لټون کولو ته دوام ورکړئ پداسې حال کې چې انتظار کوئ (که ستاسو براوزر د شالید ټبونو تازه کولو ملاتړ کوي)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "مهرباني وکړئ د ډیری ډاونلوډ پاڼو د بارولو لپاره انتظار وکړئ په یو وخت کې (خو مهرباني وکړئ په یو وخت کې یوازې یو فایل ډاونلوډ کړئ په هر سرور کې)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "یوځل چې تاسو د ډاونلوډ لینک ترلاسه کړئ دا د څو ساعتونو لپاره معتبر دی."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "خبرتیا: ستاسو د IP پتې څخه په تیرو 24 ساعتونو کې ډیری ډاونلوډونه شوي دي. ډاونلوډونه ممکن د معمول په پرتله ورو وي."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "په تیرو 24 ساعتونو کې ستاسو د IP پتې څخه ډاونلوډونه: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "که تاسو VPN، شریکه انټرنیټ اړیکه کاروئ، یا ستاسو ISP IPs شریکوي، دا خبرتیا ممکن د دې له امله وي."

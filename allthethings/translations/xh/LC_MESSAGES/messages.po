@@ -2325,7 +2325,7 @@ msgstr "Iseva yoMlingani oKhawulezayo #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(akukho kuqinisekiswa kwesiphequluli okanye uluhlu lokulinda)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 Ukukhuphela ngokukhawuleza</strong> Uye wakhuphela le fayil
 msgid "page.md5.box.download.option"
 msgstr "Ukhetho #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "Zonke iindlela zokukhuphela zinefayile enye, kwaye kufuneka zikhuseleke ukuyisebenzisa. Oko kuthethwayo, soloko ulumkile xa ukhuphela iifayile kwi-intanethi, ngakumbi kwiisayithi ezingaphandle kweAnna’s Archive. Umzekelo, qiniseka ukuba izixhobo zakho zihlaziywa."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "Kwifayila iifayile ezinkulu, sincoma ukusebenzisa umphathi wokukhuphela ukuze kuthintelwe ukuphazamiseka."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "Abaphathi bokukhuphela abacetyiswayo: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(ungadinga ukuzama izikhathi eziningi nge-IPFS)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 Ukuze uthole ukulanda okusheshayo futhi ugweme ukuhlolwa kwesiphequluli, <a %(a_membership)s>yiba yilungu</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 Ukuze ulingise ngobuningi iqoqo lethu, hlola amakhasi <a %(a_datasets)s>eDatasets</a> kanye <a %(a_torrents)s>amaTorrents</a>."
@@ -5863,52 +5867,52 @@ msgstr "❌ Ukukhuphela okucothayo kufumaneka kuphela kwiwebhusayithi esemthethw
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Ukukhuphela okucothayo akufumaneki ngee-VPNs ze-Cloudflare okanye kwezinye iidilesi ze-IP ze-Cloudflare."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "Nceda ulinde <span %(span_countdown)s>%(wait_seconds)s</span> imizuzwana ukukhuphela le fayile."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 Sebenzisa i-URL elandelayo ukulanda: <a %(a_download)s>Landa manje</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "Enkosi ngokulinda, oku kugcina iwebhusayithi ifumaneka simahla kubo bonke! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "Ukuze wonke umntu afumane ithuba lokukhuphela iifayile simahla, kufuneka ulinde ngaphambi kokuba ukwazi ukukhuphela le fayile."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "Zizwe ukhululekile ukuqhubeka upheqa i-Archive ka-Anna kuthebhu ehlukile ngenkathi ulinda (uma isiphequluli sakho sisekela ukuvuselela amakhasi angemuva)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "Zizwe ukhululekile ukulinda amakhasi amaningi okulanda ukuthi alayishe ngesikhathi esisodwa (kodwa sicela ulayishe ifayela elilodwa ngesikhathi ngeserver ngayinye)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "Uma usuthole isixhumanisi sokulanda sivumelekile amahora ambalwa."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "Isixwayiso: kube nokulanda okuningi kusuka ku-IP yakho emahoreni angama-24 adlule. Ukulanda kungase kube kancane kunokujwayelekile."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "Ukukhuphela kwi-ID yakho ye-IP kwiiyure ezingama-24 ezidlulileyo: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "Ukuba usebenzisa i-VPN, unxibelelwano lwe-intanethi olwabiweyo, okanye i-ISP yakho yabelana ngee-IP, esi silumkiso sinokubangelwa yiyo loo nto."

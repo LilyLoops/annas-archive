@@ -2325,7 +2325,7 @@ msgstr "تېز ھەمكارلىق سېرۋېرى #%(number)s"
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
 msgstr "(ھېچقانداق تور كۆرگۈچ تەكشۈرۈشى ياكى كۈتۈش تىزىملىكى يوق)"
 
-#: allthethings/page/templates/page/partner_download.html:36
+#: allthethings/page/templates/page/partner_download.html:37
 #: allthethings/page/views.py:6614 allthethings/page/views.py:6616
 #, fuzzy
 msgid "common.md5.servers.slow_partner"
@@ -2877,6 +2877,10 @@ msgstr "<strong>🚀 تېز چۈشۈرۈش</strong> بۇ ھۆججەتنى يېق
 msgid "page.md5.box.download.option"
 msgstr "تاللاش #%(num)d: %(link)s %(extra)s"
 
+#: allthethings/page/templates/page/aarecord.html:233
+msgid "page.md5.box.download.no_redirect"
+msgstr ""
+
 #: allthethings/page/templates/page/aarecord.html:235
 #: allthethings/templates/layouts/index.html:260
 #, fuzzy
@@ -2940,13 +2944,13 @@ msgid "page.md5.box.download.no_issues_notice"
 msgstr "بارلىق چۈشۈرۈش تاللاشلىرى بىر خىل ھۆججەتنى ئۆز ئىچىگە ئالىدۇ، ئىشلىتىشكە بىخەتەر بولۇشى كېرەك. شۇنداق بولسىمۇ، ئاپتورۇمنىڭ ئەرشىپىدىن سىرتقى تور بېكەتلىرىدىن ھۆججەت چۈشۈرگەندە ھەر دائىم ئېھتىياتچان بولۇڭ. مەسىلەن، ئۈسكۈنىلىرىڭىزنى يېڭىلاپ تۇرىڭ."
 
 #: allthethings/page/templates/page/aarecord.html:298
-#: allthethings/page/templates/page/partner_download.html:72
+#: allthethings/page/templates/page/partner_download.html:83
 #, fuzzy
 msgid "page.md5.box.download.dl_managers"
 msgstr "چوڭ ھۆججەتلەر ئۈچۈن، ئۇزۇلۇشلارنىڭ ئالدىنى ئېلىش ئۈچۈن چۈشۈرۈش باشقۇرغۇچىنى ئىشلىتىشنى تەۋسىيە قىلىمىز."
 
 #: allthethings/page/templates/page/aarecord.html:299
-#: allthethings/page/templates/page/partner_download.html:73
+#: allthethings/page/templates/page/partner_download.html:84
 #, fuzzy
 msgid "page.md5.box.download.dl_managers.links"
 msgstr "تەۋسىيە قىلىنغان چۈشۈرۈش باشقۇرغۇچىلار: %(links)s"
@@ -5512,13 +5516,13 @@ msgid "page.md5.box.download.ipfs_gateway_extra"
 msgstr "(IPFS بىلەن بىر قانچە قېتىم سىناپ بېقىشىڭىز كېرەك بولۇشى مۇمكىن)"
 
 #: allthethings/page/templates/page/ipfs_downloads.html:23
-#: allthethings/page/templates/page/partner_download.html:57
+#: allthethings/page/templates/page/partner_download.html:67
 #, fuzzy
 msgid "page.partner_download.faster_downloads"
 msgstr "🚀 تېزراق چۈشۈرۈش ۋە تور كۆرگۈچ تەكشۈرۈشىدىن ئۆتۈش ئۈچۈن، <a %(a_membership)s>ئەزا بولۇڭ</a>."
 
 #: allthethings/page/templates/page/ipfs_downloads.html:27
-#: allthethings/page/templates/page/partner_download.html:61
+#: allthethings/page/templates/page/partner_download.html:71
 #, fuzzy
 msgid "page.partner_download.bulk_mirroring"
 msgstr "📡 توپ تارقىتىش ئۈچۈن، <a %(a_datasets)s>Datasets</a> ۋە <a %(a_torrents)s>Torrents</a> بەتلىرىنى كۆرۈڭ."
@@ -5863,52 +5867,52 @@ msgstr "❌ ئاستا چۈشۈرۈش پەقەت رەسمىي تور بەت ئا
 msgid "page.partner_download.slow_downloads_cloudflare"
 msgstr "❌ Cloudflare VPNلىرى ياكى Cloudflare IP ئادرىسلىرى ئارقىلىق ئېغىر چۈشۈرۈش مەۋجۇت ئەمەس."
 
-#: allthethings/page/templates/page/partner_download.html:42
+#: allthethings/page/templates/page/partner_download.html:46
 #, fuzzy
 msgid "page.partner_download.wait_banner"
 msgstr "بۇ ھۆججەتنى چۈشۈرۈش ئۈچۈن <span %(span_countdown)s>%(wait_seconds)s</span> سېكۇنت كۈتۈڭ."
 
-#: allthethings/page/templates/page/partner_download.html:48
+#: allthethings/page/templates/page/partner_download.html:52
 #, fuzzy
 msgid "page.partner_download.url"
 msgstr "📚 چۈشۈرۈش ئۈچۈن تۆۋەندىكى URL نى ئىشلىتىڭ: <a %(a_download)s>ھازىر چۈشۈرۈڭ</a>."
 
-#: allthethings/page/templates/page/partner_download.html:53
+#: allthethings/page/templates/page/partner_download.html:63
 #, fuzzy
 msgid "page.partner_download.li4"
 msgstr "كۈتكەنلىكىڭىز ئۈچۈن رەھمەت، بۇ تور بەتنى ھەمىشە ھەقسىز قىلىپ ساقلاپ قالىدۇ! 😊"
 
-#: allthethings/page/templates/page/partner_download.html:67
+#: allthethings/page/templates/page/partner_download.html:78
 #, fuzzy
 msgid "page.partner_download.wait"
 msgstr "ھەممە ئادەمگە ھۆججەتلەرنى ھەقسىز چۈشۈرۈش پۇرسىتى بېرىش ئۈچۈن، بۇ ھۆججەتنى چۈشۈرۈشتىن بۇرۇن كۈتۈشىڭىز كېرەك."
 
-#: allthethings/page/templates/page/partner_download.html:68
+#: allthethings/page/templates/page/partner_download.html:79
 #, fuzzy
 msgid "page.partner_download.li1"
 msgstr "كۈتۈۋاتقاندا، باشقا بەتتە ئاننانىڭ ئەرشىپىنى كۆرۈپ بېقىڭ (ئەگەر تور كۆرگۈچىڭىز ئارقا بەتلەرنى يېڭىلاشنى قوللىسا)."
 
-#: allthethings/page/templates/page/partner_download.html:69
+#: allthethings/page/templates/page/partner_download.html:80
 #, fuzzy
 msgid "page.partner_download.li2"
 msgstr "بىر ۋاقىتتا بىر نەچچە چۈشۈرۈش بەتلىرىنى يۈكلەشنى كۈتۈۋېلىڭ (بىرلا ۋاقىتتا بىرلا مۇلازىمېتىردىن بىرلا ھۆججەتنى چۈشۈرۈڭ)."
 
-#: allthethings/page/templates/page/partner_download.html:70
+#: allthethings/page/templates/page/partner_download.html:81
 #, fuzzy
 msgid "page.partner_download.li3"
 msgstr "چۈشۈرۈش ئۇلانمىسىنى ئالغاندا ئۇ بىرنەچچە سائەت ئىچىدە ئىناۋەتلىك بولىدۇ."
 
-#: allthethings/page/templates/page/partner_download.html:109
+#: allthethings/page/templates/page/partner_download.html:120
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads"
 msgstr "ئاگاھلاندۇرۇش: ئاخىرقى 24 سائەت ئىچىدە IP ئادرىسىڭىزدىن كۆپ چۈشۈرۈش بولدى. چۈشۈرۈش ئادەتتىكىدىن ئاستا بولۇشى مۇمكىن."
 
-#: allthethings/page/templates/page/partner_download.html:110
+#: allthethings/page/templates/page/partner_download.html:121
 #, fuzzy
 msgid "page.partner_download.downloads_last_24_hours"
 msgstr "ئاخىرقى 24 سائەت ئىچىدە IP ئادرىسىڭىزدىن چۈشۈرۈلگەن: %(count)s."
 
-#: allthethings/page/templates/page/partner_download.html:111
+#: allthethings/page/templates/page/partner_download.html:122
 #, fuzzy
 msgid "page.partner_download.warning_many_downloads2"
 msgstr "VPN, ئورتاق تور باغلىنىشى ياكى ISP IP ئادرىسلىرىنى ئورتاقلىشىدىغان بولسا، بۇ ئاگاھلاندۇرۇش شۇنىڭدىن بولۇشى مۇمكىن."
