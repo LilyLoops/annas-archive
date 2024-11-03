@@ -187,9 +187,7 @@ def scidb_info(aarecord, additional=None):
     if len(scihub_dois) > 0:
         scihub_link = f"https://sci-hub.ru/{scihub_dois[0]['doi']}"
 
-    # TODO:SOURCE remove backwards compatibility.
-    content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
-    if (content_type != "journal_article") and (scihub_link is None):
+    if (aarecord['file_unified_data']['content_type_best'] != "journal_article") and (scihub_link is None):
         return None
 
     path_info = None
@@ -558,10 +556,10 @@ MEMBERSHIP_EXCHANGE_RATE_RMB = 7.25
 
 def get_is_membership_double():
     now = datetime.datetime.now(tz=datetime.timezone.utc)
-    return now.strftime("%Y-%m") == '2024-10'
+    return now.strftime("%Y-%m") == '2024-10' # Remember to set to ONE MONTH LATER a few lines below
 def get_is_membership_double_with_leeway():
     now = datetime.datetime.now(tz=datetime.timezone.utc)
-    return get_is_membership_double() or (now.strftime("%Y-%m") == '2024-10' and now.day <= 2)
+    return get_is_membership_double() or (now.strftime("%Y-%m") == '2024-11' and now.day <= 1)
 
 def get_account_fast_download_info(mariapersist_session, account_id):
     mariapersist_session.connection().connection.ping(reconnect=True)
@@ -1154,56 +1152,24 @@ UNIFIED_CLASSIFICATIONS = {
     "ia_collection": { "label": "IA Collection", "url": "https://archive.org/details/%s", "description": "Internet Archive collection which this file is part of.", "website": "https://help.archive.org/help/collections-a-basic-guide/" },
     "lang": { "label": "Language", "website": "https://en.wikipedia.org/wiki/IETF_language_tag", "description": "IETF language tag." },
     "year": { "label": "Year", "description": "Publication year." },
-    # TODO:SOURCE Remove on index refresh.
-    "duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
     "date_duxiu_filegen": { "label": "DuXiu File Generated", "website": "/datasets/duxiu", "description": "Date Anna’s Archive generated the file in the DuXiu collection." },
-    # TODO:SOURCE Remove on index refresh.
-    "duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date Anna’s Archive scraped the DuXiu collection." },
     "date_duxiu_meta_scrape": { "label": "DuXiu Source Scrape Date", "website": "/datasets/duxiu", "description": "Date Anna’s Archive scraped the DuXiu collection." },
-    # TODO:SOURCE Remove on index refresh.
-    "file_created_date": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
     "date_file_created": { "label": "File Exiftool Created Date", "website": "/datasets/upload", "description": "Date of creation from the file’s own metadata." },
-    # TODO:SOURCE Remove on index refresh.
-    "ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
     "date_ia_file_scrape": { "label": "IA File Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the file from the Internet Archive." },
     "date_ia_record_scrape": { "label": "IA Record Scraped", "website": "/datasets/ia", "description": "Date Anna’s Archive scraped the record from the Internet Archive." },
-    # TODO:SOURCE Remove on index refresh.
-    "ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
     "date_ia_source": { "label": "IA 'publicdate' Date", "website": "/datasets/ia", "description": "The 'publicdate' metadata field on the Internet Archive website, which usually indicates when they published the file, usually shortly after scanning." },
-    # TODO:SOURCE Remove on index refresh.
-    "isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
     "date_isbndb_scrape": { "label": "ISBNdb Scrape Date", "website": "/datasets/isbndb", "description": "The date that Anna’s Archive scraped this ISBNdb record." },
-    # TODO:SOURCE Remove on index refresh.
-    "lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
     "date_lgli_source": { "label": "Libgen.li Source Date", "website": "/datasets/lgli", "description": "Date Libgen.li published this file." },
-    # TODO:SOURCE Remove on index refresh.
-    "lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
     "date_lgrsfic_source": { "label": "Libgen.rs Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Fiction published this file." },
-    # TODO:SOURCE Remove on index refresh.
-    "lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
     "date_lgrsnf_source": { "label": "Libgen.rs Non-Fiction Date", "website": "/datasets/lgrs", "description": "Date Libgen.rs Non_Fiction published this file." },
-    # TODO:SOURCE Remove on index refresh.
-    "oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
     "date_oclc_scrape": { "label": "OCLC Scrape Date", "website": "/datasets/oclc", "description": "The date that Anna’s Archive scraped this OCLC/WorldCat record." },
-    # TODO:SOURCE Remove on index refresh.
-    "ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
     "date_ol_source": { "label": "OpenLib 'created' Date", "website": "/datasets/ol", "description": "The 'created' metadata field on the Open Library, indicating when the first version of this record was created." },
-    # TODO:SOURCE Remove on index refresh.
-    "upload_record_date": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
     "date_upload_record": { "label": "Upload Collection Date", "website": "/datasets/upload", "description": "Date Anna’s Archive indexed this file in our 'upload' collection." },
-    # TODO:SOURCE Remove on index refresh.
-    "zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
     "date_zlib_source": { "label": "Z-Library Source Date", "website": "/datasets/zlib", "description": "Date Z-Library published this file." },
     "magzdb_pub": { "label": "MagzDB Publication ID", "url": "http://magzdb.org/j/%s", "description": "ID of a publication in MagzDB.", "website": "/datasets/magzdb" },
-    # TODO:SOURCE Remove on index refresh.
-    "magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date Anna’s Archive scraped the MagzDB metadata." },
     "date_magzdb_meta_scrape": { "label": "MagzDB Source Scrape Date", "website": "/datasets/magzdb", "description": "Date Anna’s Archive scraped the MagzDB metadata." },
     "magzdb_keyword": { "label": "MagzDB Keyword", "url": "", "description": "Publication keyword in MagzDB (in Russian).", "website": "/datasets/magzdb" },
-    # TODO:SOURCE Remove on index refresh.
-    "nexusstc_source_issued_at_date": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
     "date_nexusstc_source_issued_at": { "label": "Nexus/STC Source issued_at Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC reports in their issued_at field, which is the “issuing time of the item described by record.”" },
-    # TODO:SOURCE Remove on index refresh.
-    "nexusstc_source_update_date": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "date_nexusstc_source_update": { "label": "Nexus/STC Source Updated Date", "website": "/datasets/nexusstc", "description": "Date Nexus/STC last updated this record." },
     "nexusstc_tag": { "label": "Nexus/STC Tag", "url": "", "description": "Tag in Nexus/STC.", "website": "/datasets/nexusstc" },
     "orcid": { "label": "ORCID", "url": "https://orcid.org/%s", "description": "Open Researcher and Contributor ID.", "website": "https://orcid.org/" },

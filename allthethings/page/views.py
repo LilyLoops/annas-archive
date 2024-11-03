@@ -6404,8 +6404,7 @@ def get_aarecords_mysql(session, aarecord_ids):
             aarecord['file_unified_data']['has_meaningful_problems'] = 1 if len(aarecord['file_unified_data']['problems']) > 0 else 0
             aarecord['file_unified_data']['ol_is_primary_linked'] = additional['ol_is_primary_linked']
             if additional['has_aa_downloads']:
-                # TODO:SOURCE remove backwards compatbility (`get`)
-                aarecord['file_unified_data']['has_meaningful_problems'] = 1 if any([not problem.get('only_if_no_partner_server') for problem in aarecord['file_unified_data']['problems']]) else 0
+                aarecord['file_unified_data']['has_meaningful_problems'] = 1 if any([not problem['only_if_no_partner_server'] for problem in aarecord['file_unified_data']['problems']]) else 0
             for torrent_path in additional['torrent_paths']:
                 allthethings.utils.add_classification_unified(aarecord['file_unified_data'], 'torrent', torrent_path['torrent_path'])
             for partner_url_path in additional['partner_url_paths']:
@@ -6632,42 +6631,7 @@ def max_length_with_word_boundary(sentence, max_len):
     else:
         return ' '.join(str_split[0:output_index]).strip()
 
-# TODO:SOURCE Remove backwards compatibility.
-def make_source_record(aarecord, source_type):
-    orig = aarecord.get(source_type)
-    if orig is None:
-        return []
-    elif type(orig) is list:
-        return [{"source_type": source_type, "source_record": record} for record in orig]
-    else:
-        return [{"source_type": source_type, "source_record": orig}]
-def make_source_records(aarecord):
-    return [
-        *make_source_record(aarecord, 'lgrsnf_book'),
-        *make_source_record(aarecord, 'lgrsfic_book'),
-        *make_source_record(aarecord, 'lgli_file'),
-        *make_source_record(aarecord, 'zlib_book'),
-        *make_source_record(aarecord, 'aac_zlib3_book'),
-        *make_source_record(aarecord, 'ia_record'),
-        *make_source_record(aarecord, 'ia_records_meta_only'),
-        *make_source_record(aarecord, 'isbndb'),
-        *make_source_record(aarecord, 'ol'),
-        *make_source_record(aarecord, 'scihub_doi'),
-        *make_source_record(aarecord, 'oclc'),
-        *make_source_record(aarecord, 'duxiu'),
-        *make_source_record(aarecord, 'aac_upload'),
-        *make_source_record(aarecord, 'aac_magzdb'),
-        *make_source_record(aarecord, 'aac_nexusstc'),
-        *make_source_record(aarecord, 'ol_book_dicts_primary_linked'),
-        *make_source_record(aarecord, 'duxius_nontransitive_meta_only'),
-        *make_source_record(aarecord, 'aac_edsebk'),
-    ]
-
 def get_additional_for_aarecord(aarecord):
-    # TODO:SOURCE Remove backwards compatibility.
-    if 'source_records' not in aarecord:
-        aarecord['source_records'] = make_source_records(aarecord)
-
     source_records_by_type = allthethings.utils.groupby(aarecord['source_records'], 'source_type', 'source_record')
     aarecord_id_split = aarecord['id'].split(':', 1)
 
@@ -6886,12 +6850,10 @@ def get_additional_for_aarecord(aarecord):
     for source_record in source_records_by_type['aac_nexusstc']:
         additional['download_urls'].append((gettext('page.md5.box.download.nexusstc'), f"https://libstc.cc/#/stc/nid:{source_record['id']}", gettext('page.md5.box.download.nexusstc_unreliable')))
 
-    # TODO:SOURCE remove backwards compatibility.
-    ipfs_infos = aarecord['file_unified_data'].get('ipfs_infos') or aarecord.get('ipfs_infos') or []
-    if (len(ipfs_infos) > 0) and (aarecord_id_split[0] in ['md5', 'nexusstc_download']):
-        # additional['download_urls'].append((gettext('page.md5.box.download.ipfs_gateway', num=1), f"https://ipfs.eth.aragon.network/ipfs/{ipfs_infos[0]['ipfs_cid'].lower()}?filename={additional['filename_without_annas_archive']}", gettext('page.md5.box.download.ipfs_gateway_extra')))
+    if (len(aarecord['file_unified_data']['ipfs_infos']) > 0) and (aarecord_id_split[0] in ['md5', 'nexusstc_download']):
+        # additional['download_urls'].append((gettext('page.md5.box.download.ipfs_gateway', num=1), f"https://ipfs.eth.aragon.network/ipfs/{aarecord['file_unified_data']['ipfs_infos'][0]['ipfs_cid'].lower()}?filename={additional['filename_without_annas_archive']}", gettext('page.md5.box.download.ipfs_gateway_extra')))
 
-        for ipfs_info in ipfs_infos:
+        for ipfs_info in aarecord['file_unified_data']['ipfs_infos']:
             additional['ipfs_urls'].append({ "name": "w3s.link", "url": f"https://w3s.link/ipfs/{ipfs_info['ipfs_cid']}?filename={additional['filename_without_annas_archive']}", "from": ipfs_info['from'] })
             additional['ipfs_urls'].append({ "name": "cf-ipfs.com", "url": f"https://cf-ipfs.com/ipfs/{ipfs_info['ipfs_cid']}?filename={additional['filename_without_annas_archive']}", "from": ipfs_info['from'] })
             additional['ipfs_urls'].append({ "name": "ipfs.eth.aragon.network", "url": f"https://ipfs.eth.aragon.network/ipfs/{ipfs_info['ipfs_cid']}?filename={additional['filename_without_annas_archive']}", "from": ipfs_info['from'] })
@@ -7007,9 +6969,6 @@ def get_additional_for_aarecord(aarecord):
         additional['slow_partner_urls'] = [(gettext('page.md5.box.download.scidb'), f"/scidb?doi={additional['scidb_info']['doi']}", gettext('common.md5.servers.no_browser_verification'))] + additional['slow_partner_urls']
         additional['has_scidb'] = 1
 
-    # TODO:SOURCE remove backwards compatibility.
-    content_type = aarecord['file_unified_data'].get('content_type_best') or aarecord['file_unified_data'].get('content_type') or ''
-
     additional['ol_is_primary_linked'] = any(source_record['source_type'] == 'ol_book_dicts_primary_linked' for source_record in aarecord['source_records'])
 
     additional['top_box'] = {
@@ -7033,7 +6992,7 @@ def get_additional_for_aarecord(aarecord):
                     *aarecord_sources(aarecord)
                 ])),
                 format_filesize(aarecord['file_unified_data']['filesize_best']) if aarecord['file_unified_data']['filesize_best'] > 0 else '',
-                md5_content_type_mapping[content_type],
+                md5_content_type_mapping[aarecord['file_unified_data']['content_type_best']],
                 aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
                 gettext('page.md5.top_row.isbndb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbndb' else '',
                 gettext('page.md5.top_row.oclc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'oclc' else '',

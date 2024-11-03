@@ -1128,7 +1128,6 @@ def elastic_build_aarecords_forcemerge_internal():
 def mysql_build_aarecords_codes_numbers():
     mysql_build_aarecords_codes_numbers_internal()
 def mysql_build_aarecords_codes_numbers_internal():
-    processed_rows = 0
     with engine.connect() as connection:
         connection.connection.ping(reconnect=True)
         cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
@@ -1162,7 +1161,7 @@ def mysql_build_aarecords_codes_numbers_internal():
         cursor.execute('COMMIT')
         cursor.execute('ALTER TABLE aarecords_codes_prefixes_new RENAME aarecords_codes_prefixes')
         cursor.execute('COMMIT')
-    print(f"Done! {processed_rows=}")
+    print(f"Done!")
 
 #################################################################################################
 # Add a better primary key to the aarecords_codes_* tables so we get better diffs in bin/check-dumps.
