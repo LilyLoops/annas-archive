@@ -68,37 +68,6 @@
       <span class="sm:hidden"><span class="js-spinner hidden opacity-50 mb-[-0px] ml-2 text-xl text-[#555] inline-block icon-[svg-spinners--ring-resize]"></span></span>
     </div>
 
-    <div class="text-xs flex flex-wrap mb-4 sm:hidden">
-      {% if search_dict.search_desc %}
-        <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab py-0.5 bg-[#ccc] px-1" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'">{{ gettext('page.search.advanced.description_comments') }}</span></a>
-      {% endif %}
-
-      {% for term_type, term_val in search_dict.specific_search_fields %}
-        <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ term_type }}</span><span class="py-0.5">{{ term_val }}</span></a>
-      {% endfor %}
-
-      {% if (search_dict.aggregations.search_content_type | selectattr("selected") | list | length) > 0 %}
-        <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.content.header') }}</span><span class="py-0.5">{% for bucket in search_dict.aggregations.search_content_type | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span></a>
-      {% endif %}
-      {% if search_dict.search_index_short == '' %}
-        {% if (search_dict.aggregations.search_extension | selectattr("selected") | list | length) > 0 %}
-          <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.filetype.header') }}</span><span class="py-0.5">{% for bucket in search_dict.aggregations.search_extension | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span></a>
-        {% endif %}
-      {% endif %}
-      {% if (search_dict.aggregations.search_access_types | selectattr("selected") | list | length) > 0 %}
-        <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.access.header') }}</span><span class="py-0.5">{% for bucket in search_dict.aggregations.search_access_types | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{% if bucket.key == 'aa_download' %}🚀 {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span></a>
-      {% endif %}
-      {% if (search_dict.aggregations.search_record_sources | selectattr("selected") | list | length) > 0 %}
-        <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.source.header') }}</span><span class="py-0.5">{% for bucket in search_dict.aggregations.search_record_sources | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} [{{ bucket.key }}] ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span></a>
-      {% endif %}
-      {% if search_dict.sort_value != '' %}
-        <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.order_by.header') }}</span><span class="py-0.5">{% if search_dict.sort_value == 'newest' %}{{ gettext('page.search.filters.sorting.newest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span>{% endif %}{% if search_dict.sort_value == 'oldest' %}{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span>{% endif %}{% if search_dict.sort_value == 'largest' %}{{ gettext('page.search.filters.sorting.largest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span>{% endif %}{% if search_dict.sort_value == 'smallest' %}{{ gettext('page.search.filters.sorting.smallest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span>{% endif %}</span>{% if search_dict.sort_value == 'newest_added' %}{{ gettext('page.search.filters.sorting.newest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span>{% endif %}{% if search_dict.sort_value == 'oldest_added' %}{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span>{% endif %}</a>
-      {% endif %}
-      {% if (search_dict.aggregations.search_most_likely_language_code | selectattr("selected") | list | length) > 0 %}
-        <a href="#" class="rounded-sm flex mb-1 mr-1 pr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a js-md5-codes-tabs-tab" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.language.header') }}</span><span class="py-0.5">{% for bucket in search_dict.aggregations.search_most_likely_language_code | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span></a>
-      {% endif %}
-    </div>
-
     <div class="flex w-full">
       <div aria-labelledby="{{ gettext('page.search.search_settings') }}" class="max-sm:hidden sm:text-sm max-sm:cursor-pointer js-search-filter-settings max-sm:fixed max-sm:top-0 max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:z-[999999999] max-sm:bg-[rgba(230,230,230,0.7)] max-sm:p-4 sm:w-1/4 sm:max-w-[240px] sm:shrink-0 md:pr-6 sm:pr-3" onclick="if(event.target === event.currentTarget) { event.preventDefault(); event.stopPropagation(); document.querySelector('.js-search-filter-settings').classList.add('max-sm:hidden'); document.body.style.overflow = 'unset' }">
         <div class="max-sm:cursor-auto max-sm:shadow-2xl max-sm:rounded-xl max-sm:absolute max-sm:top-4 max-sm:bottom-4 max-sm:left-4 max-sm:right-4 max-sm:bg-white max-sm:p-4 max-sm:overflow-y-auto max-sm:mx-auto max-sm:max-w-[700px]">
@@ -233,6 +202,41 @@
       </div>
 
       <div class="min-w-[0] w-full">
+        <div class="text-xs flex flex-wrap mb-4">
+          {% macro search_badge() -%}
+            <a href="#" class="sm:hidden rounded-sm flex mb-1 mr-1 border border-[#ccc] opacity-60 hover:opacity-80 aria-selected:opacity-100 custom-a" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'">{{ caller() }}</a><span class="max-sm:hidden rounded-sm flex mb-1 mr-1 border border-[#ccc] opacity-60">{{ caller() }}</span>
+          {%- endmacro %}
+
+          {% if search_dict.search_desc %}
+            {% call search_badge() %}<span class="py-0.5 bg-[#ccc] px-1">{{ gettext('page.search.advanced.description_comments') }}</span>{% endcall %}
+          {% endif %}
+
+          {% for term_type, term_val in search_dict.specific_search_fields %}
+            {% call search_badge() %}<span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ term_type }}</span><span class="py-0.5 pr-1">{{ term_val }}</span>{% endcall %}
+          {% endfor %}
+
+          {% if (search_dict.aggregations.search_content_type | selectattr("selected") | list | length) > 0 %}
+            {% call search_badge() %}<span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.content.header') }}</span><span class="py-0.5 pr-1">{% for bucket in search_dict.aggregations.search_content_type | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span>{% endcall %}
+          {% endif %}
+          {% if search_dict.search_index_short == '' %}
+            {% if (search_dict.aggregations.search_extension | selectattr("selected") | list | length) > 0 %}
+              {% call search_badge() %}<span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.filetype.header') }}</span><span class="py-0.5 pr-1">{% for bucket in search_dict.aggregations.search_extension | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span>{% endcall %}
+            {% endif %}
+          {% endif %}
+          {% if (search_dict.aggregations.search_access_types | selectattr("selected") | list | length) > 0 %}
+            {% call search_badge() %}<span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.access.header') }}</span><span class="py-0.5 pr-1">{% for bucket in search_dict.aggregations.search_access_types | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{% if bucket.key == 'aa_download' %}🚀 {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span>{% endcall %}
+          {% endif %}
+          {% if (search_dict.aggregations.search_record_sources | selectattr("selected") | list | length) > 0 %}
+            {% call search_badge() %}<span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.source.header') }}</span><span class="py-0.5 pr-1">{% for bucket in search_dict.aggregations.search_record_sources | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} [{{ bucket.key }}] ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span>{% endcall %}
+          {% endif %}
+          {% if search_dict.sort_value != '' %}
+            {% call search_badge() %}<span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.order_by.header') }}</span><span class="py-0.5 pr-1">{% if search_dict.sort_value == 'newest' %}{{ gettext('page.search.filters.sorting.newest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span>{% endif %}{% if search_dict.sort_value == 'oldest' %}{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span>{% endif %}{% if search_dict.sort_value == 'largest' %}{{ gettext('page.search.filters.sorting.largest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span>{% endif %}{% if search_dict.sort_value == 'smallest' %}{{ gettext('page.search.filters.sorting.smallest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span>{% endif %}</span>{% if search_dict.sort_value == 'newest_added' %}{{ gettext('page.search.filters.sorting.newest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span>{% endif %}{% if search_dict.sort_value == 'oldest_added' %}{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span>{% endif %}{% endcall %}
+          {% endif %}
+          {% if (search_dict.aggregations.search_most_likely_language_code | selectattr("selected") | list | length) > 0 %}
+            {% call search_badge() %}<span class="py-0.5 bg-[#ccc] mr-1 px-1">{{ gettext('page.search.filters.language.header') }}</span><span class="py-0.5 pr-1">{% for bucket in search_dict.aggregations.search_most_likely_language_code | selectattr("selected") %}{% if loop.index0 > 0 %}, {% endif %}{{ bucket.label }} ({% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}){% endfor %}</span>{% endcall %}
+          {% endif %}
+        </div>
+
         {% if ((search_input | length) == 0) and ((search_dict.specific_search_fields | length) == 0) %}
           <div class="mb-4 p-6 overflow-hidden bg-black/5 break-words rounded">
             {% if search_dict.search_index_short == '' %}
