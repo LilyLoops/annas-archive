@@ -15,6 +15,8 @@
   <td class="p-0"></td><td colspan="5" class="p-0 text-xs">The above torrent file is partially broken, but still in use. It can never get to 100% seeding, so leechers are treated as seeders.</td>
 </tr>{% endif %}{% if (not small_file.aa_currently_seeding) and ('/scihub/' not in small_file.file_path) %}<tr class="{% if small_file.obsolete %}line-through{% endif %}">
   <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Not currently seeded by Anna’s Archive.</td>
+</tr>{% endif %}{% if 'aa_derived_mirror_metadata_20241104' in small_file.file_path %}<tr>
+  <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Latest dump with consistent aarecords_codes table. Help with <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/230">this ticket</a> to ensure all dumps have consistent aarecords_codes tables.</td>
 </tr>{% endif %}{% if 'peoples-daily-rmrb.tar.zst' in small_file.file_path %}<tr>
   <td class="p-0"></td><td colspan="5" class="p-0 text-xs">Seems a web-based database of the “People’s Daily”, and maybe more. Someone wrote a <a href="https://github.com/liuzhiliangpc/third_corpus?search=1#111-%E4%BA%BA%E6%B0%91%E6%97%A5%E6%8A%A5%E6%96%B0%E9%97%BB%E6%95%B0%E6%8D%AE">script</a> to extract the text, but not actual good PDFs. Can someone help make good PDFs from this?</td>
 </tr>{% endif %}{% if 'skqs-isos.tar.zst' in small_file.file_path %}<tr>
