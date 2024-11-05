@@ -52,14 +52,14 @@
     <div class="float-right w-[25%] ml-4 pb-4 aspect-[0.64] relative">
       <img class="w-full max-h-full absolute" src="{{aarecord.additional.top_box.cover_url}}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.removeChild(this)" onload="cbg = document.querySelector('.js-cover-background'); cbg.style.aspectRatio = this.clientWidth / this.clientHeight; cbg.style.marginTop = 0" loading="lazy" decoding="async"/>
       <div class="w-full aspect-[0.85] mt-[7%] js-cover-background" style="background-color: hsl({{ aarecord.additional.top_box.cover_missing_hue_deg }}deg 43% 73%)"></div>
-      {% if (aarecord.ol_book_dicts_primary_linked or []) | length > 0 %}
+      {% if (aarecord.additional.ol_primary_linked_source_records) | length > 0 %}
         <div class="mt-2 text-xs text-right">
           <div>✅ {{ gettext('page.md5.text.linked_metadata') }}</div>
-          <a href="https://openlibrary.org/books/{{ aarecord.ol_book_dicts_primary_linked[0].ol_edition }}" class="block">{{ gettext('page.md5.text.linked_metadata_openlib') }}</a>
-          {% if aarecord.ol_book_dicts_primary_linked | length > 1 %}
+          <a href="https://openlibrary.org/books/{{ aarecord.additional.ol_primary_linked_source_records[0].ol_edition }}" class="block">{{ gettext('page.md5.text.linked_metadata_openlib') }}</a>
+          {% if aarecord.additional.ol_primary_linked_source_records | length > 1 %}
             <div>
               {{ gettext('page.md5.warning.multiple_links') }}
-              {% for ol_linked in aarecord.ol_book_dicts_primary_linked %}
+              {% for ol_linked in aarecord.additional.ol_primary_linked_source_records %}
                 <a href="https://openlibrary.org/books/{{ ol_linked.ol_edition }}">[{{ loop.index }}]</a>
               {% endfor %}
             </div>

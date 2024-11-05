@@ -82,7 +82,7 @@
       {{ aarecord_list(aarecords[0:3]) }}
       {% if (aarecords | length) > 3 %}
         <div class="js-codes-aarecord-list-more hidden">
-          {{ aarecord_list(aarecords[4:]) }}
+          {{ aarecord_list(aarecords[3:]) }}
         </div>
         <a href="#" onclick="event.preventDefault(); document.querySelector('.js-codes-aarecord-list-more').classList.remove('hidden'); this.classList.add('hidden'); return false">More…</a>
       {% endif %}

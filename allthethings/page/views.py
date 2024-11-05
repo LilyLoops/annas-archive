@@ -6969,7 +6969,54 @@ def get_additional_for_aarecord(aarecord):
         additional['slow_partner_urls'] = [(gettext('page.md5.box.download.scidb'), f"/scidb?doi={additional['scidb_info']['doi']}", gettext('common.md5.servers.no_browser_verification'))] + additional['slow_partner_urls']
         additional['has_scidb'] = 1
 
-    additional['ol_is_primary_linked'] = any(source_record['source_type'] == 'ol_book_dicts_primary_linked' for source_record in aarecord['source_records'])
+    additional['ol_primary_linked_source_records'] = [source_record['source_record'] for source_record in aarecord['source_records'] if source_record['source_type'] == 'ol_book_dicts_primary_linked']
+    additional['ol_is_primary_linked'] = len(additional['ol_primary_linked_source_records']) > 0
+
+    additional['table_row'] = {
+        'title': aarecord['file_unified_data']['title_best'] or additional['original_filename_best_name_only'],
+        'author': aarecord['file_unified_data']['author_best'],
+        'publisher_and_edition': ", ".join(item for item in [
+            aarecord['file_unified_data']['publisher_best'],
+            aarecord['file_unified_data']['edition_varia_best'],
+        ] if item != ''),
+        'year': aarecord['file_unified_data']['year_best'],
+        'languages': ", ".join(aarecord['file_unified_data']['most_likely_language_codes'][0:3]),
+        'extension': aarecord['file_unified_data']['extension_best'],
+        'sources': "/".join(filter(len, [
+            "🧬" if additional['has_scidb'] == 1 else "",
+            "🚀" if additional['has_aa_downloads'] == 1 else "",
+            *aarecord_sources(aarecord)
+        ])),
+        'filesize': format_filesize(aarecord['file_unified_data']['filesize_best']) if aarecord['file_unified_data']['filesize_best'] > 0 else '',
+        'content_type': md5_content_type_mapping[aarecord['file_unified_data']['content_type_best']],
+        'id_name': "".join([ # Note, not actually necessary to join, should be mutually exclusive.
+            aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
+            gettext('page.md5.top_row.isbndb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbndb' else '',
+            gettext('page.md5.top_row.oclc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'oclc' else '',
+            gettext('page.md5.top_row.duxiu_ssid', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'duxiu_ssid' else '',
+            # TODO:TRANSLATE
+            f"CADAL SSNO {aarecord_id_split[1]}" if aarecord_id_split[0] == 'cadal_ssno' else '',
+            gettext('page.md5.top_row.magzdb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'magzdb' else '',
+            gettext('page.md5.top_row.nexusstc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'nexusstc' else '',
+            gettext('page.md5.top_row.edsebk', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'edsebk' else '',
+            gettext('page.md5.top_row.cerlalc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'cerlalc' else '',
+            gettext('page.md5.top_row.czech_oo42hcks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'czech_oo42hcks' else '',
+            gettext('page.md5.top_row.gbooks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'gbooks' else '',
+            gettext('page.md5.top_row.goodreads', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'goodreads' else '',
+            gettext('page.md5.top_row.isbngrp', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbngrp' else '',
+            gettext('page.md5.top_row.libby', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'libby' else '',
+            gettext('page.md5.top_row.rgb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'rgb' else '',
+            gettext('page.md5.top_row.trantor', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'trantor' else '',
+        ]),
+        'filename': aarecord['file_unified_data']['original_filename_best'],
+        'original_filename_additional': aarecord['file_unified_data']['original_filename_additional'][0:1],
+        'title_additional': aarecord['file_unified_data']['title_additional'][0:3],
+        'author_additional': aarecord['file_unified_data']['author_additional'][0:3],
+        'publisher_additional': aarecord['file_unified_data']['publisher_additional'][0:2],
+        'edition_varia_additional': aarecord['file_unified_data']['edition_varia_additional'][0:2],
+        'extension_additional': aarecord['file_unified_data']['extension_additional'][0:3],
+        'year_additional': aarecord['file_unified_data']['year_additional'][0:3],
+    }
 
     additional['top_box'] = {
         'meta_information': [item for item in [
@@ -6985,39 +7032,16 @@ def get_additional_for_aarecord(aarecord):
         'top_row': ("✅ " if additional['ol_is_primary_linked'] else "") + ", ".join(item for item in [
                 gettext('page.datasets.sources.metadata.header') if allthethings.utils.get_aarecord_id_prefix_is_metadata(aarecord_id_split[0]) else "",
                 *additional['most_likely_language_names'][0:3],
-                f".{aarecord['file_unified_data']['extension_best']}" if len(aarecord['file_unified_data']['extension_best']) > 0 else '',
-                "/".join(filter(len, [
-                    "🧬" if additional['has_scidb'] == 1 else "",
-                    "🚀" if additional['has_aa_downloads'] == 1 else "",
-                    *aarecord_sources(aarecord)
-                ])),
-                format_filesize(aarecord['file_unified_data']['filesize_best']) if aarecord['file_unified_data']['filesize_best'] > 0 else '',
-                md5_content_type_mapping[aarecord['file_unified_data']['content_type_best']],
-                aarecord_id_split[1] if aarecord_id_split[0] in ['ia', 'ol'] else '',
-                gettext('page.md5.top_row.isbndb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbndb' else '',
-                gettext('page.md5.top_row.oclc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'oclc' else '',
-                gettext('page.md5.top_row.duxiu_ssid', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'duxiu_ssid' else '',
-                # TODO:TRANSLATE
-                f"CADAL SSNO {aarecord_id_split[1]}" if aarecord_id_split[0] == 'cadal_ssno' else '',
-                gettext('page.md5.top_row.magzdb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'magzdb' else '',
-                gettext('page.md5.top_row.nexusstc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'nexusstc' else '',
-                gettext('page.md5.top_row.edsebk', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'edsebk' else '',
-                gettext('page.md5.top_row.cerlalc', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'cerlalc' else '',
-                gettext('page.md5.top_row.czech_oo42hcks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'czech_oo42hcks' else '',
-                gettext('page.md5.top_row.gbooks', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'gbooks' else '',
-                gettext('page.md5.top_row.goodreads', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'goodreads' else '',
-                gettext('page.md5.top_row.isbngrp', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'isbngrp' else '',
-                gettext('page.md5.top_row.libby', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'libby' else '',
-                gettext('page.md5.top_row.rgb', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'rgb' else '',
-                gettext('page.md5.top_row.trantor', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'trantor' else '',
-                aarecord['file_unified_data']['original_filename_best'],
+                f".{additional['table_row']['extension']}" if len(additional['table_row']['extension']) > 0 else '',
+                additional['table_row']['sources'],
+                additional['table_row']['filesize'],
+                additional['table_row']['content_type'],
+                additional['table_row']['id_name'],
+                additional['table_row']['filename'],
             ] if item != ''),
-        'title': aarecord['file_unified_data']['title_best'] or additional['original_filename_best_name_only'],
-        'publisher_and_edition': ", ".join(item for item in [
-                aarecord['file_unified_data']['publisher_best'],
-                aarecord['file_unified_data']['edition_varia_best'],
-            ] if item != ''),
-        'author': aarecord['file_unified_data']['author_best'],
+        'title': additional['table_row']['title'],
+        'publisher_and_edition': additional['table_row']['publisher_and_edition'],
+        'author': additional['table_row']['author'],
         'freeform_fields': [item for item in [
             (gettext('page.md5.box.descr_title'), strip_description(aarecord['file_unified_data']['stripped_description_best'])),
             *[(gettext('page.md5.box.alternative_filename'), row) for row in (aarecord['file_unified_data']['original_filename_additional'])],
@@ -7716,6 +7740,7 @@ def search_page():
     except Exception:
         pass
     sort_value = request.args.get("sort", "").strip()
+    display_value = request.args.get("display", "").strip()
     search_index_short = request.args.get("index", "").strip()
     if search_index_short not in allthethings.utils.SEARCH_INDEX_SHORT_LONG_MAPPING:
         search_index_short = ""
@@ -8053,6 +8078,7 @@ def search_page():
     search_dict['primary_hits_total_obj'] = primary_hits_total_obj
     search_dict['max_display_results'] = max_display_results
     search_dict['search_desc'] = search_desc
+    search_dict['display_value'] = display_value
     search_dict['specific_search_fields'] = specific_search_fields
     search_dict['specific_search_fields_mapping'] = specific_search_fields_mapping
 

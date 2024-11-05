@@ -1,4 +1,4 @@
-{% macro aarecord_list(aarecords=[], max_show_immediately=10) -%}
+{% macro aarecord_list(aarecords=[], max_show_immediately=10, table=False) -%}
   <script>
     // We can't do this in Jinja because of https://github.com/pallets/jinja/issues/1693 :(
     if (!window.aarecord_list_code_loaded) {
@@ -54,31 +54,63 @@
     }
   </script>
 
-  {% for aarecord in aarecords %}
-    <div class="h-[110px] flex flex-col justify-center {% if loop.index0 > max_show_immediately %}js-scroll-hidden{% endif %}">
-      {% if loop.index0 > max_show_immediately %}<!--{% endif %}
-      <a href="{{ aarecord.additional.path }}" class="js-vim-focus h-[110px] custom-a flex items-center relative left-[-10px] w-[calc(100%+20px)] px-2.5 outline-offset-[-2px] outline-2 rounded-[3px] hover:bg-black/6.7 focus:outline {% if aarecord.file_unified_data.has_meaningful_problems %}opacity-40{% endif %}">
-        <div class="flex-none">
-          <div class="relative overflow-hidden w-[72px] h-[100px] flex flex-col justify-center">
-            <div class="absolute w-full h-[94px] js-img-background-{{ md5(aarecord.additional.top_box.cover_url or '') }}" style="background-color: hsl({{ aarecord.additional.top_box.cover_missing_hue_deg }}deg 43% 73%)"></div>
-            {% if aarecord.additional.top_box.cover_url %}
-              <img class="relative inline-block" src="{{ aarecord.additional.top_box.cover_url }}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.removeChild(this)" onload="for (let el of document.querySelectorAll('.js-img-background-{{ md5(aarecord.additional.top_box.cover_url or '') }}')) { el.parentNode.removeChild(el); }" loading="lazy" decoding="async"/>
-            {% endif %}
-            {% if aarecord.extra_download_timestamp %}
-              <div class="absolute bottom-0 p-1 text-[10px] bg-[rgba(200,200,200,0.9)] leading-none"><span title="{{ gettext('page.search.results.download_time') }}">{{ aarecord.extra_download_timestamp }}</span>{% if aarecord.extra_was_fast_download %}<span title="{{ gettext('page.search.results.fast_download') }}"> ⭐️</span>{% endif %}</div>
-            {% endif %}
+  {% if table %}
+    <table class="text-sm w-full mt-4 h-fit">
+      {% for aarecord in aarecords %}
+        <tr class="h-full even:bg-[#f2f2f2] even:hover:bg-[#eee] odd:hover:bg-[#fafafa] cursor-pointer relative {% if aarecord.file_unified_data.has_meaningful_problems %} opacity-40 {% endif %}">
+          <td class="h-full w-[22px]">
+            <a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">
+              <span class="relative overflow-hidden w-[22px] h-[30px] flex flex-col justify-center">
+                <span class="block absolute w-full h-[28px] js-img-background-{{ md5(aarecord.additional.top_box.cover_url or '') }}" style="background-color: hsl({{ aarecord.additional.top_box.cover_missing_hue_deg }}deg 43% 73%)"></span>
+                {% if aarecord.additional.top_box.cover_url %}
+                  <img class="relative inline-block" src="{{ aarecord.additional.top_box.cover_url }}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.removeChild(this)" onload="for (let el of document.querySelectorAll('.js-img-background-{{ md5(aarecord.additional.top_box.cover_url or '') }}')) { el.parentNode.removeChild(el); }" loading="lazy" decoding="async"/>
+                {% endif %}
+              </span>
+            </a>
+
+            <a href="{{ aarecord.additional.path }}" class="js-vim-focus custom-a absolute w-full h-full top-0 left-0 outline-offset-[-2px] outline-2 rounded-[3px] focus:outline pointer-events-none"></a>
+          </td>
+          <td class="h-full"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.title}}{% for item in aarecord.additional.table_row.title_additional %}<span class="block text-xs text-gray-500">{{ item }}</span>{% endfor %}{% if aarecord.file_unified_data.has_meaningful_problems %}<span class="block text-xs text-gray-500">{{ gettext('page.search.results.issues') }}</span>{% endif %}</a></td>
+          <td class="h-full"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.author}}{% for item in aarecord.additional.table_row.author_additional %}<span class="block text-xs text-gray-500">{{ item }}</span>{% endfor %}</a></td>
+          <td class="h-full"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.publisher_and_edition}}{% for item in aarecord.additional.table_row.publisher_additional %}<span class="block text-xs text-gray-500">{{ item }}</span>{% endfor %}{% for item in aarecord.additional.table_row.edition_varia_additional %}<span class="block text-xs text-gray-500">{{ item }}</span>{% endfor %}</a></td>
+          <td class="h-full"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.year}}{% for item in aarecord.additional.table_row.year_additional %}<span class="block text-xs text-gray-500">{{ item }}</span>{% endfor %}</a></td>
+          <td class="h-full break-all text-xs"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.filename}}{% for item in aarecord.additional.table_row.original_filename_additional %}<span class="block text-xs text-gray-500">{{ item }}</span>{% endfor %}</a></td>
+          <td class="h-full text-xs"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.sources | replace('/', '<wbr>/' | safe)}}</a></td>
+          <td class="h-full text-xs"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.languages}}</a></td>
+          <td class="h-full text-xs"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.extension}}{% for item in aarecord.additional.table_row.extension_additional %}<span class="block text-xs text-gray-500">{{ item }}</span>{% endfor %}</a></td>
+          <td class="h-full text-xs"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.filesize}}</a></td>
+          <td class="h-full text-xs"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.content_type}}</a></td>
+          <td class="h-full text-xs"><a href="{{ aarecord.additional.path }}" tabindex="-1" aria-disabled="true" style="overflow-wrap: break-word;" class="custom-a flex flex-col h-full justify-center px-[0.5px]">{{aarecord.additional.table_row.id_name}}</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    {% for aarecord in aarecords %}
+      <div class="h-[110px] flex flex-col justify-center {% if loop.index0 > max_show_immediately %}js-scroll-hidden{% endif %}">
+        {% if loop.index0 > max_show_immediately %}<!--{% endif %}
+        <a href="{{ aarecord.additional.path }}" class="js-vim-focus h-[110px] custom-a flex items-center relative left-[-10px] w-[calc(100%+20px)] px-2.5 outline-offset-[-2px] outline-2 rounded-[3px] hover:bg-black/6.7 focus:outline {% if aarecord.file_unified_data.has_meaningful_problems %}opacity-40{% endif %}">
+          <div class="flex-none">
+            <div class="relative overflow-hidden w-[72px] h-[100px] flex flex-col justify-center">
+              <div class="absolute w-full h-[94px] js-img-background-{{ md5(aarecord.additional.top_box.cover_url or '') }}" style="background-color: hsl({{ aarecord.additional.top_box.cover_missing_hue_deg }}deg 43% 73%)"></div>
+              {% if aarecord.additional.top_box.cover_url %}
+                <img class="relative inline-block" src="{{ aarecord.additional.top_box.cover_url }}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.removeChild(this)" onload="for (let el of document.querySelectorAll('.js-img-background-{{ md5(aarecord.additional.top_box.cover_url or '') }}')) { el.parentNode.removeChild(el); }" loading="lazy" decoding="async"/>
+              {% endif %}
+              {% if aarecord.extra_download_timestamp %}
+                <div class="absolute bottom-0 p-1 text-[10px] bg-[rgba(200,200,200,0.9)] leading-none"><span title="{{ gettext('page.search.results.download_time') }}">{{ aarecord.extra_download_timestamp }}</span>{% if aarecord.extra_was_fast_download %}<span title="{{ gettext('page.search.results.fast_download') }}"> ⭐️</span>{% endif %}</div>
+              {% endif %}
+            </div>
           </div>
-        </div>
-        <div class="relative top-[-1] pl-4 grow overflow-hidden">
-          <div class="line-clamp-[2] leading-[1.2] text-[10px] lg:text-xs text-gray-500">{{ aarecord.additional.top_box.top_row }}</div>
-          <h3 class="max-lg:line-clamp-[2] lg:truncate leading-[1.2] lg:leading-[1.35] text-md lg:text-xl font-bold">{{aarecord.additional.top_box.title}}</h3>
-          <div class="truncate leading-[1.2] lg:leading-[1.35] max-lg:text-xs">{{aarecord.additional.top_box.publisher_and_edition}}</div>
-          <div class="max-lg:line-clamp-[2] lg:truncate leading-[1.2] lg:leading-[1.35] max-lg:text-sm italic">{{aarecord.additional.top_box.author}}</div>
-          {% if aarecord.file_unified_data.has_meaningful_problems %}<div class="text-xs lg:text-sm">{{ gettext('page.search.results.issues') }}</div>{% endif %}
-          <div class="hidden">base score: {{ aarecord.search_only_fields.search_score_base_rank }}, final score: {{ aarecord._score }}</div>
-        </div>
-      </a>
-      {% if loop.index0 > max_show_immediately %}-->{% endif %}
-    </div>
-  {% endfor %}
+          <div class="relative top-[-1] pl-4 grow overflow-hidden">
+            <div class="line-clamp-[2] leading-[1.2] text-[10px] lg:text-xs text-gray-500">{{ aarecord.additional.top_box.top_row }}</div>
+            <h3 class="max-lg:line-clamp-[2] lg:truncate leading-[1.2] lg:leading-[1.35] text-md lg:text-xl font-bold">{{aarecord.additional.top_box.title}}</h3>
+            <div class="truncate leading-[1.2] lg:leading-[1.35] max-lg:text-xs">{{aarecord.additional.top_box.publisher_and_edition}}</div>
+            <div class="max-lg:line-clamp-[2] lg:truncate leading-[1.2] lg:leading-[1.35] max-lg:text-sm italic">{{aarecord.additional.top_box.author}}</div>
+            {% if aarecord.file_unified_data.has_meaningful_problems %}<div class="text-xs lg:text-sm">{{ gettext('page.search.results.issues') }}</div>{% endif %}
+            <div class="hidden">base score: {{ aarecord.search_only_fields.search_score_base_rank }}, final score: {{ aarecord._score }}</div>
+          </div>
+        </a>
+        {% if loop.index0 > max_show_immediately %}-->{% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
 {%- endmacro %}

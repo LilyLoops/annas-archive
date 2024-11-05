@@ -9,6 +9,14 @@
 {% endblock %}
 
 {% block body %}
+  {% if search_dict.display_value in ['wide', 'table'] %}
+    <style>
+      .main {
+        max-width: none !important;
+      }
+    </style>
+  {% endif %}
+
   <form action="/search" method="get" role="search" class="js-search-form" onsubmit="for (el of document.querySelectorAll('.js-spinner')) { el.classList.remove('hidden'); }">
     <input type="hidden" name="index" value="{{ search_dict.search_index_short }}" class="js-search-form-index">
     <input type="hidden" name="page" value="1">
@@ -168,16 +176,6 @@
               <label class="flex cursor-pointer items-start {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><input type="checkbox" class="mr-1 mt-1.5 sm:mt-1" name="src" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}><div class="flex-grow flex flex-col"><div class="flex-grow flex"><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}} [{{ bucket.key }}]</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></div>{% if bucket.key in ["zlib","ia","isbndb","oclc","duxiu"] and search_dict.search_index_short != 'digital_lending' %}<div class="text-xs text-gray-500">{{ gettext('page.search.filters.source.scraped') }}</div>{% endif %}</div></label>
             {% endfor %}
           </div>
-          <div class="font-bold mb-1">{{ gettext('page.search.filters.order_by.header') }}</div>
-          <select class="pr-8 mb-4 bg-black/6.7 px-2 py-1 rounded max-w-full" name="sort">
-            <option value="">{{ gettext('page.search.filters.sorting.most_relevant') }}</option>
-            <option value="newest" {% if search_dict.sort_value == 'newest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.newest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span></option>
-            <option value="oldest" {% if search_dict.sort_value == 'oldest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span></option>
-            <option value="largest" {% if search_dict.sort_value == 'largest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.largest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span></option>
-            <option value="smallest" {% if search_dict.sort_value == 'smallest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.smallest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span></option>
-            <option value="newest_added" {% if search_dict.sort_value == 'newest_added' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.newest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span></option>
-            <option value="oldest_added" {% if search_dict.sort_value == 'oldest_added' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span></option>
-          </select>
           {% if (search_dict.aggregations.search_most_likely_language_code | length) > 0 %}
             <div class="font-bold mb-1">{{ gettext('page.search.filters.language.header') }}</div>
             <div class="mb-4">
@@ -189,6 +187,29 @@
               {% endif %}
             </div>
           {% endif %}
+
+          <div class="font-bold mb-1">{{ gettext('page.search.filters.order_by.header') }}</div>
+          <div>
+            <select class="pr-8 mb-4 bg-black/6.7 px-2 py-1 rounded max-w-full" name="sort">
+              <option value="">{{ gettext('page.search.filters.sorting.most_relevant') }}</option>
+              <option value="newest" {% if search_dict.sort_value == 'newest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.newest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span></option>
+              <option value="oldest" {% if search_dict.sort_value == 'oldest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_publication_year') }}</span></option>
+              <option value="largest" {% if search_dict.sort_value == 'largest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.largest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span></option>
+              <option value="smallest" {% if search_dict.sort_value == 'smallest' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.smallest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_filesize') }}</span></option>
+              <option value="newest_added" {% if search_dict.sort_value == 'newest_added' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.newest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span></option>
+              <option value="oldest_added" {% if search_dict.sort_value == 'oldest_added' %}selected{% endif %}>{{ gettext('page.search.filters.sorting.oldest') }} <span class="text-sm text-gray-500">{{ gettext('page.search.filters.sorting.note_open_sourced') }}</span></option>
+            </select>
+          </div>
+
+          <!-- TODO:TRANSLATE -->
+          <div class="font-bold mb-1">Display</div>
+          <div>
+            <select class="pr-8 mb-4 bg-black/6.7 px-2 py-1 rounded max-w-full" name="display">
+              <option value="">Compact</option>
+              <option value="wide" {% if search_dict.display_value == 'wide' %}selected{% endif %}>Wide</option>
+              <option value="table" {% if search_dict.display_value == 'table' %}selected{% endif %}>Table</option>
+            </select>
+          </div>
           
           <button class="px-4 py-1 bg-[#0195ff] text-white rounded hover:bg-blue-600 mb-2" type="submit">{{ gettext('page.search.submit') }}</button>
           <span class="js-spinner hidden opacity-50 mb-[-5px] ml-1 text-xl text-[#555] inline-block icon-[svg-spinners--ring-resize]"></span>
@@ -383,14 +404,14 @@
 
           <div class="mb-4">
             {% from 'macros/aarecord_list.html' import aarecord_list %}
-            {{ aarecord_list(search_dict.search_aarecords) }}
+            {{ aarecord_list(search_dict.search_aarecords, table=(search_dict.display_value == 'table')) }}
 
             {% if (search_dict.additional_search_aarecords | length) > 0 %}
               <div class="mt-8">
                 <div class="bg-gray-100 mx-[-10px] px-[10px] overflow-hidden">
                   <div class="italic mt-2">{% if search_dict.max_additional_search_aarecords_reached %}{{ gettext('page.search.results.partial_more', num=(search_dict.additional_search_aarecords | length)) }}{% else %}{{ gettext('page.search.results.partial', num=(search_dict.additional_search_aarecords | length)) }}{% endif %}</div>
 
-                  {{ aarecord_list(search_dict.additional_search_aarecords, max_show_immediately=0) }}
+                  {{ aarecord_list(search_dict.additional_search_aarecords, max_show_immediately=0, table=(search_dict.display_value == 'table')) }}
                 </div>
               </div>
             {% endif %}
