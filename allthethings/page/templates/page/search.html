@@ -408,7 +408,7 @@
 
             {% if (search_dict.additional_search_aarecords | length) > 0 %}
               <div class="mt-8">
-                <div class="bg-gray-100 mx-[-10px] px-[10px] overflow-hidden">
+                <div class="bg-gray-100 mx-[-10px] px-[10px]">
                   <div class="italic mt-2">{% if search_dict.max_additional_search_aarecords_reached %}{{ gettext('page.search.results.partial_more', num=(search_dict.additional_search_aarecords | length)) }}{% else %}{{ gettext('page.search.results.partial', num=(search_dict.additional_search_aarecords | length)) }}{% endif %}</div>
 
                   {{ aarecord_list(search_dict.additional_search_aarecords, max_show_immediately=0, table=(search_dict.display_value == 'table')) }}

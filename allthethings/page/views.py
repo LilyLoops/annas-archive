@@ -7009,13 +7009,13 @@ def get_additional_for_aarecord(aarecord):
             gettext('page.md5.top_row.trantor', id=aarecord_id_split[1]) if aarecord_id_split[0] == 'trantor' else '',
         ]),
         'filename': aarecord['file_unified_data']['original_filename_best'],
-        'original_filename_additional': aarecord['file_unified_data']['original_filename_additional'][0:1],
-        'title_additional': aarecord['file_unified_data']['title_additional'][0:3],
-        'author_additional': aarecord['file_unified_data']['author_additional'][0:3],
-        'publisher_additional': aarecord['file_unified_data']['publisher_additional'][0:2],
-        'edition_varia_additional': aarecord['file_unified_data']['edition_varia_additional'][0:2],
-        'extension_additional': aarecord['file_unified_data']['extension_additional'][0:3],
-        'year_additional': aarecord['file_unified_data']['year_additional'][0:3],
+        'original_filename_additional': aarecord['file_unified_data']['original_filename_additional'][0:5],
+        'title_additional': aarecord['file_unified_data']['title_additional'][0:5],
+        'author_additional': aarecord['file_unified_data']['author_additional'][0:5],
+        'publisher_additional': aarecord['file_unified_data']['publisher_additional'][0:5],
+        'edition_varia_additional': aarecord['file_unified_data']['edition_varia_additional'][0:5],
+        'extension_additional': aarecord['file_unified_data']['extension_additional'][0:5],
+        'year_additional': aarecord['file_unified_data']['year_additional'][0:5],
     }
 
     additional['top_box'] = {
