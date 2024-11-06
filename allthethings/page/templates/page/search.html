@@ -200,11 +200,11 @@
           </div>
 
           <!-- TODO:TRANSLATE -->
-          <div class="font-bold mb-1">Display</div>
+          <div class="font-bold mb-1">{{ gettext('page.search.filters.display.header') }}</div>
           <div>
             <select class="pr-8 mb-4 bg-black/6.7 px-2 py-1 rounded max-w-full" name="display">
-              <option value="">List</option>
-              <option value="table" {% if search_dict.display_value == 'table' %}selected{% endif %}>Table</option>
+              <option value="">{{ gettext('page.search.filters.display.list') }}</option>
+              <option value="table" {% if search_dict.display_value == 'table' %}selected{% endif %}>{{ gettext('page.search.filters.display.table') }}</option>
             </select>
           </div>
           
