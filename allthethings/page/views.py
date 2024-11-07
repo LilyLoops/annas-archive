@@ -6994,7 +6994,6 @@ def get_additional_for_aarecord(aarecord):
             gettext('page.md5.toprow.isbndb', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'isbndb' else '',
             gettext('page.md5.toprow.oclc', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'oclc' else '',
             gettext('page.md5.toprow.duxiu_ssid', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'duxiu_ssid' else '',
-            #
             gettext('page.md5.toprow.cadal_ssno', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'cadal_ssno' else '',
             gettext('page.md5.toprow.magzdb', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'magzdb' else '',
             gettext('page.md5.toprow.nexusstc', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'nexusstc' else '',
