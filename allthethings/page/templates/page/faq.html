@@ -89,7 +89,7 @@
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="help">{{ gettext('page.faq.help.title') }} <a href="#help" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
   <ol class="list-inside mb-4">
-    {{ gettext('page.about.help.text') | replace('https://annas-software.org', 'https://software.annas-archive.li') }}
+    {{ gettext('page.about.help.text') | replace('https://annas-software.org', 'https://software.annas-archive.li') | replace('https://translate.annas-software.org', 'https://translate.annas-archive.li') }}
     <li>{{ gettext('page.about.help.text6', a_security=(a.faqs_security | xmlattr)) }}</li>
     <li>{{ gettext('page.about.help.text7') }}</li>
     <li>{{ gettext('page.about.help.text8') }}</li>

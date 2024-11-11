@@ -199,9 +199,10 @@ def scidb_info(aarecord, additional=None):
         ipfs_url = additional['ipfs_urls'][0]['url']
 
     nexusstc_id = None
-    aac_nexusstcs = [source_record['source_record'] for source_record in aarecord['source_records'] if source_record['source_type'] == 'aac_nexusstc']
-    if len(aac_nexusstcs) > 0:
-        nexusstc_id = aac_nexusstcs[0]['id']
+    # TODO: re-enable when Nexus/STC is more reliable
+    # aac_nexusstcs = [source_record['source_record'] for source_record in aarecord['source_records'] if source_record['source_type'] == 'aac_nexusstc']
+    # if len(aac_nexusstcs) > 0:
+    #     nexusstc_id = aac_nexusstcs[0]['id']
 
     if path_info:
         priority = 1
