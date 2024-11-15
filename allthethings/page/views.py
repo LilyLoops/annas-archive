@@ -42,7 +42,8 @@ HASHED_DOWNLOADS_SECRET_KEY = hashlib.sha256(DOWNLOADS_SECRET_KEY.encode()).dige
 
 page = Blueprint("page", __name__, template_folder="templates")
 
-ES_TIMEOUT_PRIMARY = "200ms"
+ES_TIMEOUT_PRIMARY = "400ms"
+ES_TIMEOUT_PRIMARY_METADATA  = "2000ms"
 ES_TIMEOUT_ALL_AGG = "20s"
 ES_TIMEOUT = "100ms"
 
@@ -3442,6 +3443,7 @@ def get_duxiu_dicts(session, key, values, include_deep_transitive_md5s_size_path
                     duxiu_dict['aa_duxiu_derived']['added_date_unified']['date_duxiu_filegen'] = datetime.datetime.strptime(aac_record['generated_file_aacid'].split('__')[2], "%Y%m%dT%H%M%SZ").isoformat().split('T', 1)[0]
 
                     # Only check for problems when we have generated_file_aacid, since that indicates this is the main file record.
+                    # TODO: actually index the final pdfs, and check if pdg_broken_files are indeed missing from the pdf (e.g. https://annas-archive.org/md5/9ee19234549c1ce47bf3cd9baeca506a is a false positive).
                     if len(aac_record['metadata']['record']['pdg_broken_files']) > 3:
                         duxiu_dict['aa_duxiu_derived']['problems_infos'].append({
                             'duxiu_problem_type': 'pdg_broken_files',
@@ -6731,7 +6733,7 @@ def get_additional_for_aarecord(aarecord):
                 date = source_record['aa_ia_file']['data_folder'].split('__')[3][0:8]
                 datetime = source_record['aa_ia_file']['data_folder'].split('__')[3][0:16]
                 if date in ['20240701', '20240702']:
-                    server = 'o'
+                    server = ''
                 elif date in ['20240823', '20240824']:
                     server = 'z'
                     if datetime in ['20240823T234037Z', '20240823T234109Z', '20240823T234117Z', '20240823T234126Z', '20240823T234134Z', '20240823T234143Z', '20240823T234153Z', '20240823T234203Z', '20240823T234214Z', '20240823T234515Z', '20240823T234534Z', '20240823T234555Z', '20240823T234615Z', '20240823T234637Z', '20240823T234658Z', '20240823T234720Z']:
@@ -6740,11 +6742,14 @@ def get_additional_for_aarecord(aarecord):
                         server = 'w'
                 elif date in ['20241105']:
                     server = 'ga'
-                partner_path = make_temp_anon_aac_path(f"{server}/ia2_acsmpdf_files", source_record['aa_ia_file']['aacid'], source_record['aa_ia_file']['data_folder'])
+                partner_path = ''
+                if server != '':
+                    partner_path = make_temp_anon_aac_path(f"{server}/ia2_acsmpdf_files", source_record['aa_ia_file']['aacid'], source_record['aa_ia_file']['data_folder'])
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['aa_ia_file']['data_folder']}.torrent", "file_level1": source_record['aa_ia_file']['aacid'], "file_level2": "" })
             else:
                 raise Exception(f"Unknown ia_record file type: {ia_file_type}")
-            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional)
+            if partner_path != '':
+                add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional)
     for source_record in source_records_by_type['duxiu']:
         if source_record.get('duxiu_file') is not None:
             data_folder = source_record['duxiu_file']['data_folder']
@@ -6893,11 +6898,12 @@ def get_additional_for_aarecord(aarecord):
             server = 'u'
             date = source_record['file_data_folder'].split('__')[3][0:8]
             if date in ['20240807', '20240823']:
-                server = 'o'
+                server = ''
             if date in ['20241105']:
                 server = 'ga'
-            zlib_path = make_temp_anon_aac_path(f"{server}/zlib3_files", source_record['file_aacid'], source_record['file_data_folder'])
-            add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional)
+            if server != '':
+                zlib_path = make_temp_anon_aac_path(f"{server}/zlib3_files", source_record['file_aacid'], source_record['file_data_folder'])
+                add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional)
             additional['torrent_paths'].append({ "collection": "zlib", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['file_data_folder']}.torrent", "file_level1": source_record['file_aacid'], "file_level2": "" })
         additional['download_urls'].append((gettext('page.md5.box.download.zlib'), f"https://z-lib.gs/md5/{source_record['md5_reported'].lower()}", ""))
         additional['download_urls'].append((gettext('page.md5.box.download.zlib_tor'), f"http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/md5/{source_record['md5_reported'].lower()}", gettext('page.md5.box.download.zlib_tor_extra')))
@@ -6908,9 +6914,6 @@ def get_additional_for_aarecord(aarecord):
 
     for source_record in source_records_by_type['aac_magzdb']:
         additional['download_urls'].append((gettext('page.md5.box.download.magzdb'), f"http://magzdb.org/num/{source_record['id']}", ""))
-
-    for source_record in source_records_by_type['aac_edsebk']:
-        additional['download_urls'].append((gettext('page.md5.box.download.edsebk'), f"https://library.macewan.ca/full-record/edsebk/{source_record['edsebk_id']}", ""))
 
     for source_record in source_records_by_type['ia_record']:
         ia_id = source_record['ia_id']
@@ -6965,6 +6968,9 @@ def get_additional_for_aarecord(aarecord):
         if 'duxiu_dxid' in aarecord['file_unified_data']['identifiers_unified']:
             for duxiu_dxid in aarecord['file_unified_data']['identifiers_unified']['duxiu_dxid']:
                 additional['download_urls'].append((gettext('page.md5.box.download.aa_dxid'), f'/search?q="duxiu_dxid:{duxiu_dxid}"', ""))
+    if aarecord_id_split[0] == 'aac_edsebk':
+        for source_record in source_records_by_type['aac_edsebk']:
+            additional['download_urls'].append((gettext('page.md5.box.download.edsebk'), f"https://library.macewan.ca/full-record/edsebk/{source_record['edsebk_id']}", ""))
 
     additional['has_scidb'] = 0
     additional['scidb_info'] = allthethings.utils.scidb_info(aarecord, additional)
@@ -7875,7 +7881,7 @@ def search_page():
             "post_filter": { "bool": { "filter": post_filter } },
             "sort": custom_search_sorting,
             # "track_total_hits": False, # Set to default
-            "timeout": ES_TIMEOUT_PRIMARY,
+            "timeout": (ES_TIMEOUT_PRIMARY_METADATA if es_handle == es_aux else ES_TIMEOUT_PRIMARY),
             # "knn": { "field": "search_only_fields.search_e5_small_query", "query_vector": list(map(float, get_e5_small_model().encode(f"query: {search_input}", normalize_embeddings=True))), "k": 10, "num_candidates": 1000 },
         },
     ]

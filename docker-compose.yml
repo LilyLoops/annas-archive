@@ -219,8 +219,12 @@ services:
       - "ES_SETTING_TRANSPORT_PORT=9300"
       - "ES_SETTING_DISCOVERY_TYPE=single-node"
       - "ES_SETTING_BOOTSTRAP_MEMORY__LOCK=true"
-      # - "ES_JAVA_OPTS=-Xms8g -Xmx8g"
+      - "ES_JAVA_OPTS=${ES_JAVA_OPTS_ELASTICSEARCH:-}"
       - "ES_SETTING_XPACK_SECURITY_ENABLED=false"
+    deploy:
+      resources:
+        limits:
+          memory: "${DOCKER_MAX_MEMORY_ELASTICSEARCH:-10G}"
     cap_add:
       - IPC_LOCK
     ulimits:
@@ -250,8 +254,12 @@ services:
       - "ES_SETTING_TRANSPORT_PORT=9301"
       - "ES_SETTING_DISCOVERY_TYPE=single-node"
       - "ES_SETTING_BOOTSTRAP_MEMORY__LOCK=true"
-      # - "ES_JAVA_OPTS=-Xms8g -Xmx8g"
+      - "ES_JAVA_OPTS=${ES_JAVA_OPTS_ELASTICSEARCHAUX:-}"
       - "ES_SETTING_XPACK_SECURITY_ENABLED=false"
+    deploy:
+      resources:
+        limits:
+          memory: "${DOCKER_MAX_MEMORY_ELASTICSEARCHAUX:-10G}"
     cap_add:
       - IPC_LOCK
     ulimits:

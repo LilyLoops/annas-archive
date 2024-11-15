@@ -140,7 +140,7 @@ Try it out by going to `http://es.localtest.me:8000`
 Be sure to exclude a bunch of stuff, most importantly `docker-compose.override.yml` which is just for local use. E.g.:
 
 ```bash
-rsync --exclude=.git --exclude=.env --exclude=.env-data-imports --exclude=.DS_Store --exclude=docker-compose.override.yml -av --delete ..
+rsync --exclude=.git --exclude=.env --exclude=.env-data-imports --exclude=.DS_Store --exclude=docker-compose.override.yml --exclude=/.pytest_cache/ --exclude=/.ruff_cache/ -av --delete ..
 ```
 
 To set up mariapersistreplica and mariabackup, check out `mariapersistreplica-conf/README.txt`.
