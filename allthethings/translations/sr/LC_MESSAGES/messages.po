@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-16 14:27+0000\n"
-"PO-Revision-Date: 2024-11-16 14:35+0000\n"
-"Last-Translator: Dule Savić <milan.ramsak.markovic@gmail.com>\n"
+"PO-Revision-Date: 2024-11-17 15:18+0000\n"
+"Last-Translator: Luka Đorđević <lukadordevi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -1121,7 +1121,7 @@ msgstr "Пошаљите Bitcoin на нашу адресу"
 
 #: allthethings/account/templates/account/donation.html:223
 msgid "page.donation.cash_app_btc.step2.transfer"
-msgstr "Кликните на дугме „Пошаљи Биткоин“ да бисте извршили „повлачење“.  Пребаците се са долара на БТЦ притиском на икону %(icon)s. Унесите БТЦ износ испод и кликните на „Пошаљи“.  Погледајте <a %(help_video)s>овај видео</a> ако запнете."
+msgstr "Кликните на дугме „Пошаљи Биткоин“ да бисте извршили „повлачење“. Пребаците се са долара на БТЦ притиском на икону %(icon)s. Унесите БТЦ износ испод и кликните на „Пошаљи“. Погледајте <a %(help_video)s>овај видео</a> ако запнете."
 
 #: allthethings/account/templates/account/donation.html:231
 msgid "page.donation.cash_app_btc.step2.rush_priority"
@@ -2432,19 +2432,16 @@ msgid "layout.index.header.banner.fundraiser.this_month"
 msgstr "Ako donirate ovog meseca, dobijate <strong>duplo</strong> više brzih preuzimanja."
 
 #: allthethings/page/templates/page/aarecord.html:227
-#, fuzzy
 msgid "page.md5.box.download.header_fast_member"
-msgstr "<strong>🚀 Брза преузимања</strong> Преостало вам је %(remaining)s данас. Хвала што сте члан! ❤"
+msgstr "Преостало вам је %(remaining)s данас. Хвала ти што си члан! ❤"
 
 #: allthethings/page/templates/page/aarecord.html:228
-#, fuzzy
 msgid "page.md5.box.download.header_fast_member_no_remaining_new"
-msgstr "<strong>🚀 Брза преузимања</strong> Понестало ти је брзих преузимања за данас."
+msgstr "Понестало ти је брзих преузимања за данас."
 
 #: allthethings/page/templates/page/aarecord.html:229
-#, fuzzy
 msgid "page.md5.box.download.header_fast_member_valid_for"
-msgstr "<strong>🚀 Брза преузимања</strong> Недавно сте преузели ову датотеку. Линкови остају важећи неко време."
+msgstr "Недавно сте преузели ову датотеку. Линкови остају важећи неко време."
 
 #: allthethings/page/templates/page/aarecord.html:233
 #: allthethings/page/templates/page/aarecord.html:247
@@ -2849,12 +2846,11 @@ msgid "page.codes.code_website"
 msgstr "Вебсајт"
 
 #: allthethings/page/templates/page/codes.html:73
-#, fuzzy
 msgid "page.codes.record_starting_with"
 msgid_plural "page.codes.records_starting_with"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] "%(count)s снима који одговарају „%(prefix_label)s”"
+msgstr[0] "%(count)s податак који одговара „%(prefix_label)s”"
+msgstr[1] "%(count)s податка који одговарају „%(prefix_label)s”"
+msgstr[2] "%(count)s података који одговарају „%(prefix_label)s”"
 
 #: allthethings/page/templates/page/codes.html:77
 #, fuzzy
@@ -3106,12 +3102,11 @@ msgstr "Стручна литература и Белетристика"
 #: allthethings/page/templates/page/datasets.html:183
 #: allthethings/page/templates/page/datasets.html:199
 #: allthethings/page/templates/page/datasets.html:216
-#, fuzzy
 msgid "page.datasets.file"
 msgid_plural "page.datasets.files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] "%(count)s fajlovi"
+msgstr[0] "%(count)s fajl"
+msgstr[1] "%(count)s fajlovа"
+msgstr[2] "%(count)s fajlovа"
 
 #: allthethings/page/templates/page/datasets.html:61
 #, fuzzy
@@ -3271,7 +3266,7 @@ msgstr "%(icon)s Торенти података доступни <a %(scihub1)s
 #: allthethings/page/templates/page/datasets_scihub.html:49
 #, fuzzy
 msgid "page.datasets.sources.scihub.files2"
-msgstr "%(icon)s Неки нови фајлови се <a %(libgenrs)s>додају</a> у Libgen-ов „scimag”, али не довољно да би се оправдали нови торенти"
+msgstr "%(icon)s Неке нове фајлове <a %(libgenrs)s>јесу</a> <a %(libgenrs)s>додаване</a> у Libgen-ов „scimag”, али не довољно да би се оправдали нови торенти"
 
 #: allthethings/page/templates/page/datasets.html:322
 #: allthethings/page/templates/page/datasets_lgli.html:34
@@ -4701,9 +4696,8 @@ msgid "page.faq.torrents.q3"
 msgstr "Mogu li preuzeti samo podskup fajlova, kao što su samo određeni jezik ili tema?"
 
 #: allthethings/page/templates/page/faq.html:248
-#, fuzzy
 msgid "page.faq.torrents.a3"
-msgstr "Većina torrenta sadrži fajlove direktno, što znači da možete uputiti torrent klijente da preuzmu samo potrebne fajlove. Da biste odredili koje fajlove da preuzmete, možete <a %(a_generate)s>generisati</a> naše мета-подаци, ili <a %(a_download)s>preuzeti</a> naše ElasticSearch i MariaDB baze podataka. Nažalost, broj torrent kolekcija sadrži .zip ili .tar fajlove u korenu, u kom slučaju morate preuzeti ceo torrent pre nego što budete mogli da izaberete pojedinačne fajlove"
+msgstr "Većina torrenta sadrži fajlove direktno, što znači da možete uputiti torrent klijente da preuzmu samo potrebne fajlove. Da biste odredili koje fajlove da preuzmete, možete <a %(a_generate)s>generisati</a> naše мета-подаци, ili <a %(a_download)s>preuzeti</a> naše ElasticSearch i MariaDB baze podataka. Nažalost, broj torrent kolekcija sadrži .zip ili .tar fajlove u korenu, u kom slučaju morate preuzeti ceo torrent pre nego što budete mogli da izaberete pojedinačne fajlove."
 
 #: allthethings/page/templates/page/faq.html:252
 #, fuzzy
