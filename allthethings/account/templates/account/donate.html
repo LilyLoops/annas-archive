@@ -149,7 +149,7 @@
         {% if g.domain_lang_code in ['it'] %}
           {{ donate_button('amazon_it', 'Amazon.it gift card', discount_percent=0, large=True) }}
         {% endif %}
-        {{ donate_button('amazon_com', 'Amazon.com gift card', discount_percent=0, large=True) }}
+        {{ donate_button('amazon', 'Amazon.com gift card', discount_percent=0, large=True) }}
 
         {{ donate_button('payment3a_cc', gettext('page.donate.payment.buttons.bank_card_app'), discount_percent=0, large=True) }}
         {{ donate_button('payment2', gettext('page.donate.payment.buttons.crypto', bitcoin_icon=''), discount_percent=10, large=True) }}
@@ -301,7 +301,7 @@
       </p>
     </div>
 
-    <div class="js-membership-descr js-membership-descr-amazon_com">
+    <div class="js-membership-descr js-membership-descr-amazon">
       <p class="mb-4">
         {{ gettext('page.donate.payment.desc.amazon') }}
         {{ gettext('page.donate.payment.desc.amazon_round', minimum='$10') }}

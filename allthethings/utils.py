@@ -480,7 +480,7 @@ MEMBERSHIP_METHOD_DISCOUNTS = {
     "payment2revolut": 10,
 
     "paypalreg": 0,
-    "amazon_com": 0,
+    "amazon": 0,
     "amazon_co_uk": 0,
     "amazon_fr": 0,
     "amazon_it": 0,
@@ -526,7 +526,7 @@ MEMBERSHIP_METHOD_MINIMUM_CENTS_USD = {
     "payment2revolut": 2500,
     "payment2cc": 0,
     "paypalreg": 0,
-    "amazon_com": 1000,
+    "amazon": 1000,
     "amazon_co_uk": 1000,
     "amazon_fr": 1000,
     "amazon_it": 1000,
@@ -555,7 +555,7 @@ MEMBERSHIP_METHOD_MAXIMUM_CENTS_NATIVE = {
     "payment3a": 150000,
     "payment3a_cc": 150000,
     "payment3b": 500000,
-    "amazon_com": 20000,
+    "amazon": 20000,
     "amazon_co_uk": 5000,
     "amazon_fr": 5000,
     "amazon_it": 5000,
@@ -677,7 +677,7 @@ def membership_costs_data(locale):
         # elif method == 'bmc':
         #     native_currency_code = 'COFFEE'
         #     cost_cents_native_currency = round(cost_cents_usd / 500)
-        elif method in ['amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es']:
+        elif method in ['amazon', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es']:
             if method in ['amazon_co_uk']:
                 cost_cents_native_currency = math.ceil(cost_cents_usd * 0.8)
                 if cost_cents_usd > 2300 and cost_cents_usd < 3000:
@@ -851,7 +851,7 @@ def confirm_membership(cursor, donation_id, data_key, data_value):
     #     return False
 
     donation_json = orjson.loads(donation['json'])
-    if donation_json['method'] not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
+    if donation_json['method'] not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
         print(f"Warning: failed {data_key} request because method is not valid: {donation_id}")
         return False
 
