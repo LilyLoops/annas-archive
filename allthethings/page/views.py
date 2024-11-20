@@ -6971,7 +6971,7 @@ def get_additional_for_aarecord(aarecord):
         if 'duxiu_dxid' in aarecord['file_unified_data']['identifiers_unified']:
             for duxiu_dxid in aarecord['file_unified_data']['identifiers_unified']['duxiu_dxid']:
                 additional['download_urls'].append((gettext('page.md5.box.download.aa_dxid'), f'/search?q="duxiu_dxid:{duxiu_dxid}"', ""))
-    if aarecord_id_split[0] == 'aac_edsebk':
+    if aarecord_id_split[0] == 'edsebk':
         for source_record in source_records_by_type['aac_edsebk']:
             additional['download_urls'].append((gettext('page.md5.box.download.edsebk'), f"https://library.macewan.ca/full-record/edsebk/{source_record['edsebk_id']}", ""))
 
