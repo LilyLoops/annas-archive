@@ -4,8 +4,6 @@ import os
 SECRET_KEY = os.getenv("SECRET_KEY", None)
 DOWNLOADS_SECRET_KEY = os.getenv("DOWNLOADS_SECRET_KEY", None)
 MEMBERS_TELEGRAM_URL = os.getenv("MEMBERS_TELEGRAM_URL", None)
-PAYMENT1_ID = os.getenv("PAYMENT1_ID", None)
-PAYMENT1_KEY = os.getenv("PAYMENT1_KEY", None)
 PAYMENT1B_ID = os.getenv("PAYMENT1B_ID", None)
 PAYMENT1B_KEY = os.getenv("PAYMENT1B_KEY", None)
 PAYMENT1C_ID = os.getenv("PAYMENT1C_ID", None)

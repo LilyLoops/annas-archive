@@ -166,35 +166,6 @@
       {{ donate_button('payment1b', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体R)</span>' | safe, discount_percent=0) }}
       {{ donate_button('payment1c', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体S)</span>' | safe, discount_percent=0) }}
     </div>
-
-    <div class="flex flex-wrap w-full">
-      <!-- Payment 1b always at end -->
-      <!-- <div class="flex flex-wrap w-full {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}">
-        <button class="js-membership-method js-membership-method-payment1_alipay self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment1_alipay')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code != 'zh' %}{{ gettext('page.donate.payment.buttons.alipay') }}{% endif %} 支付宝</button>
-        <button class="js-membership-method js-membership-method-payment1_wechat self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment1_wechat')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code != 'zh' %}{{ gettext('page.donate.payment.buttons.wechat') }}{% endif %} 微信支付</button>
-        <button class="js-membership-method js-membership-method-payment1b self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment1b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay_wechat') }} <span class="whitespace-nowrap text-xs">(变体R)</span></button>
-        <button class="js-membership-method js-membership-method-payment1bb self-center text-xs relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1" aria-selected="false" onclick="window.membershipMethodToggle('payment1bb')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-sm align-text-bottom"></span> </span>{% if g.domain_lang_code == 'zh' %}<span class="whitespace-nowrap">QQ钱包</span> / <span class="whitespace-nowrap">云闪付</span>{% else %}<span class="whitespace-nowrap">QQ 钱包</span> / <span class="whitespace-nowrap">UnionPay 云闪付</span>{% endif %}</button>
-      </div> -->
-
-      <!-- Payment 1 with variants -->
-      <!-- {% if (days_parity % 4) == 0 %}
-        <button class="js-membership-method js-membership-method-payment1b self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code == 'zh' %}<span class="whitespace-nowrap">支付宝</span> / <span class="whitespace-nowrap">微信支付</span> / <span class="whitespace-nowrap">QQ钱包</span> / <span class="whitespace-nowrap">云闪付</span>{% else %}<span class="whitespace-nowrap">Alipay 支付宝</span> / <span class="whitespace-nowrap">WeChat 微信支付</span> / <span class="whitespace-nowrap">QQ 钱包</span> / <span class="whitespace-nowrap">UnionPay 云闪付</span>{% endif %} <span class="whitespace-nowrap text-xs">(变体S)</span></button>
-      {% endif %}
-
-      <button class="js-membership-method js-membership-method-payment1 self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay_wechat') }} <span class="whitespace-nowrap text-xs">(变体R)</span></button>
-
-      {% if (days_parity % 4) != 0 %}
-        <button class="js-membership-method js-membership-method-payment1b self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code == 'zh' %}<span class="whitespace-nowrap">支付宝</span> / <span class="whitespace-nowrap">微信支付</span> / <span class="whitespace-nowrap">QQ钱包</span> / <span class="whitespace-nowrap">云闪付</span>{% else %}<span class="whitespace-nowrap">Alipay 支付宝</span> / <span class="whitespace-nowrap">WeChat 微信支付</span> / <span class="whitespace-nowrap">QQ 钱包</span> / <span class="whitespace-nowrap">UnionPay 云闪付</span>{% endif %} <span class="whitespace-nowrap text-xs">(变体S)</span></button>
-      {% endif %} -->
-
-      <!-- Only payment1, no variants -->
-      <!-- <button class="js-membership-method js-membership-method-payment1 self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay_wechat') }}</button> -->
-
-      <!-- Only payment1b, no variants -->
-      <!-- <button class="js-membership-method js-membership-method-payment1b self-center relative mb-1 bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false" onclick="window.membershipMethodToggle('payment1b')"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{% if g.domain_lang_code == 'zh' %}<span class="whitespace-nowrap">支付宝</span> / <span class="whitespace-nowrap">微信支付</span> / <span class="whitespace-nowrap">QQ钱包</span> / <span class="whitespace-nowrap">云闪付</span>{% else %}<span class="whitespace-nowrap">Alipay 支付宝</span> / <span class="whitespace-nowrap">WeChat 微信支付</span> / <span class="whitespace-nowrap">QQ 钱包</span> / <span class="whitespace-nowrap">UnionPay 云闪付</span>{% endif %} <span class="whitespace-nowrap text-xs">(变体S)</span></button> -->
-
-      <!-- <button class="text-gray-500 relative mb-1 bg-gray-300 px-2 py-1 rounded-md mr-1 {% if g.domain_lang_code == 'zh' %}order-[-1]{% endif %}" aria-selected="false"><span class="[[aria-selected=false]_&]:hidden"><span class="icon-[ion--checkmark-circle-sharp] text-lg align-text-bottom"></span> </span>{{ gettext('page.donate.payment.buttons.alipay_wechat') }} {{ gettext('page.donate.payment.buttons.temporarily_unavailable') }}</button> -->
-    </div>
   </div>
 
   {# spacer #}
@@ -278,12 +249,6 @@
     <div class="js-membership-descr js-membership-descr-paypalreg">
       <p class="mb-4">
         {{ gettext('page.donate.payment.desc.paypalreg') }}
-      </p>
-    </div>
-
-    <div class="js-membership-descr js-membership-descr-payment1">
-      <p class="mb-4">
-        {{ gettext('page.donate.payment.desc.alipay_wechat') }}
       </p>
     </div>
 
