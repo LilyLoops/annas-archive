@@ -329,11 +329,14 @@ def get_order_processing_status_labels(locale):
 
 def make_donation_dict(donation):
     donation_json = orjson.loads(donation['json'])
+    monthly_amount_usd = babel.numbers.format_currency(donation_json['monthly_cents'] / 100.0, 'USD', locale=get_locale())
+    if monthly_amount_usd.startswith('$') and 'US' not in monthly_amount_usd:
+        monthly_amount_usd = 'US' + monthly_amount_usd
     return {
         **donation,
         'json': donation_json,
         'total_amount_usd': babel.numbers.format_currency(donation['cost_cents_usd'] / 100.0, 'USD', locale=get_locale()),
-        'monthly_amount_usd': babel.numbers.format_currency(donation_json['monthly_cents'] / 100.0, 'USD', locale=get_locale()),
+        'monthly_amount_usd': monthly_amount_usd,
         'receipt_id': allthethings.utils.donation_id_to_receipt_id(donation['donation_id']),
         'formatted_native_currency': allthethings.utils.membership_format_native_currency(get_locale(), donation['native_currency_code'], donation['cost_cents_native_currency'], donation['cost_cents_usd']),
     }
@@ -351,6 +354,8 @@ def donation_page(donation_id):
     donation_time_left_not_much = False
     donation_time_expired = False
     donation_pay_amount = ""
+    donation_amazon_domain_replace = None
+    donation_amazon_form = None
 
     with Session(mariapersist_engine) as mariapersist_session:
         cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
@@ -416,10 +421,30 @@ def donation_page(donation_id):
             if hoodpay_status['status'] in ['PENDING', 'PROCESSING']:
                 donation_confirming = True
 
+        if donation_json['method'] in ['amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es']:
+            donation_amazon_domain_replace = {
+                'amazon_com': '.com',
+                'amazon_co_uk': '.co.uk',
+                'amazon_fr': '.fr',
+                'amazon_it': '.it',
+                'amazon_ca': '.ca',
+                'amazon_de': '.de',
+                'amazon_es': '.es',
+            }[donation_json['method']]
+            donation_amazon_form = {
+                'amazon_com': 'https://www.amazon.com/gp/product/B0BRSDM1XK',
+                'amazon_co_uk': 'https://www.amazon.co.uk/gp/product/B07S6C1DZ6',
+                'amazon_fr': 'https://www.amazon.fr/gp/product/B004MYH1YI',
+                'amazon_it': 'https://www.amazon.it/gp/product/B00H7G1B3A',
+                'amazon_ca': 'https://www.amazon.ca/gp/product/B004M5HIQI',
+                'amazon_de': 'https://www.amazon.de/gp/product/B0B2Q4ZRDW',
+                'amazon_es': 'https://www.amazon.es/gp/product/BT00EWOU4C',
+            }[donation_json['method']]
+
         donation_dict = make_donation_dict(donation)
 
         donation_email = f"AnnaReceipts+{donation_dict['receipt_id']}@proton.me"
-        if donation_json['method'] == 'amazon':
+        if donation_json['method'] in ['amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es']:
             donation_email = f"giftcards+{donation_dict['receipt_id']}@annas-archive.li"
 
         # # No need to call get_referral_account_id here, because we have already verified, and we don't want to take away their bonus because
@@ -440,6 +465,8 @@ def donation_page(donation_id):
             donation_time_expired=donation_time_expired,
             donation_pay_amount=donation_pay_amount,
             donation_email=donation_email,
+            donation_amazon_domain_replace=donation_amazon_domain_replace,
+            donation_amazon_form=donation_amazon_form,
             account_secret_key=allthethings.utils.secret_key_from_account_id(account_id),
             # ref_account_dict=ref_account_dict,
         )

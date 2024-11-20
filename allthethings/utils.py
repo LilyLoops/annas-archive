@@ -480,7 +480,13 @@ MEMBERSHIP_METHOD_DISCOUNTS = {
     "payment2revolut": 10,
 
     "paypalreg": 0,
-    "amazon": 0,
+    "amazon_com": 0,
+    "amazon_co_uk": 0,
+    "amazon_fr": 0,
+    "amazon_it": 0,
+    "amazon_ca": 0,
+    "amazon_de": 0,
+    "amazon_es": 0,
     # "bmc":    0,
     # "alipay": 0,
     # "pix":    0,
@@ -520,7 +526,13 @@ MEMBERSHIP_METHOD_MINIMUM_CENTS_USD = {
     "payment2revolut": 2500,
     "payment2cc": 0,
     "paypalreg": 0,
-    "amazon": 1000,
+    "amazon_com": 1000,
+    "amazon_co_uk": 1000,
+    "amazon_fr": 1000,
+    "amazon_it": 1000,
+    "amazon_ca": 1000,
+    "amazon_de": 1000,
+    "amazon_es": 1000,
     # "bmc":    0,
     # "alipay": 0,
     # "pix":    0,
@@ -536,14 +548,20 @@ MEMBERSHIP_METHOD_MINIMUM_CENTS_USD = {
     "ccexp": 99999999,
 }
 MEMBERSHIP_METHOD_MAXIMUM_CENTS_NATIVE = {
-    "payment1b_alipay": 100000,
-    "payment1b_wechat": 100000,
+    "payment1b_alipay": 300000,
+    "payment1b_wechat": 300000,
     "payment1c_alipay": 100000,
-    "payment1c_wechat": 100000,
+    "payment1c_wechat": 200000,
     "payment3a": 150000,
     "payment3a_cc": 150000,
     "payment3b": 500000,
-    "amazon": 20000,
+    "amazon_com": 20000,
+    "amazon_co_uk": 5000,
+    "amazon_fr": 5000,
+    "amazon_it": 5000,
+    "amazon_ca": 20000,
+    "amazon_de": 20000,
+    "amazon_es": 5000,
 }
 MEMBERSHIP_MAX_BONUS_DOWNLOADS = 10000
 
@@ -614,7 +632,14 @@ def format_currency(cost_cents_native_currency, native_currency_code, locale):
 
 def membership_format_native_currency(locale, native_currency_code, cost_cents_native_currency, cost_cents_usd):
     with force_locale(locale):
-        if native_currency_code != 'USD':
+        if native_currency_code in ['USD', 'CAD', 'EUR', 'GBP']: # Don't show USD comparison for these.
+            return {
+                'cost_cents_native_currency_str_calculator': gettext('common.membership.format_currency.total', amount=format_currency(cost_cents_native_currency, native_currency_code, locale)),
+                'cost_cents_native_currency_str_button': f"{format_currency(cost_cents_native_currency, native_currency_code, locale)}",
+                'cost_cents_native_currency_str_donation_page_formal': f"{format_currency(cost_cents_native_currency, native_currency_code, locale)}",
+                'cost_cents_native_currency_str_donation_page_instructions': f"{format_currency(cost_cents_native_currency, native_currency_code, locale)}",
+            }
+        else:
             return {
                 'cost_cents_native_currency_str_calculator': gettext('common.membership.format_currency.total_with_usd', amount=format_currency(cost_cents_native_currency, native_currency_code, locale), amount_usd=format_currency(cost_cents_usd, 'USD', locale)),
                 'cost_cents_native_currency_str_button': f"{format_currency(cost_cents_native_currency, native_currency_code, locale)}",
@@ -628,13 +653,6 @@ def membership_format_native_currency(locale, native_currency_code, cost_cents_n
         #         'cost_cents_native_currency_str_donation_page_formal': f"{format_currency(cost_cents_native_currency * 5, 'USD', locale)} ({cost_cents_native_currency} ☕️)",
         #         'cost_cents_native_currency_str_donation_page_instructions': f"{cost_cents_native_currency} “coffee” ({format_currency(cost_cents_native_currency * 5, 'USD', locale)})",
         #     }
-        else:
-            return {
-                'cost_cents_native_currency_str_calculator': gettext('common.membership.format_currency.total', amount=format_currency(cost_cents_usd, 'USD', locale)),
-                'cost_cents_native_currency_str_button': f"{format_currency(cost_cents_native_currency, 'USD', locale)}",
-                'cost_cents_native_currency_str_donation_page_formal': f"{format_currency(cost_cents_native_currency, 'USD', locale)}",
-                'cost_cents_native_currency_str_donation_page_instructions': f"{format_currency(cost_cents_native_currency, 'USD', locale)}",
-            }
 
 @cachetools.cached(cache=cachetools.TTLCache(maxsize=1024, ttl=60*60), lock=threading.Lock())
 def membership_costs_data(locale):
@@ -659,28 +677,48 @@ def membership_costs_data(locale):
         # elif method == 'bmc':
         #     native_currency_code = 'COFFEE'
         #     cost_cents_native_currency = round(cost_cents_usd / 500)
-        elif method == 'amazon':
-            if cost_cents_usd <= 500:
-                cost_cents_usd = 500
-            elif cost_cents_usd <= 700:
-                cost_cents_usd = 700
-            elif cost_cents_usd <= 1000:
-                cost_cents_usd = 1000
-            elif cost_cents_usd <= 1500:
-                cost_cents_usd = 1500
-            elif cost_cents_usd <= 2200:
-                cost_cents_usd = 2000
-            elif cost_cents_usd <= 2700:
-                cost_cents_usd = 2500
-            elif cost_cents_usd <= 10000:
-                cost_cents_usd = (cost_cents_usd // 500) * 500
-            elif cost_cents_usd <= 100000:
-                cost_cents_usd = round(cost_cents_usd / 1000) * 1000
-            elif cost_cents_usd <= 200000:
-                cost_cents_usd = math.ceil(cost_cents_usd / 5000) * 5000
+        elif method in ['amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es']:
+            if method in ['amazon_co_uk']:
+                cost_cents_native_currency = math.ceil(cost_cents_usd * 0.8)
+                if cost_cents_usd > 2300 and cost_cents_usd < 3000:
+                    cost_cents_native_currency = 2000
+                native_currency_code = 'GBP'
+            elif method in ['amazon_ca']:
+                cost_cents_native_currency = math.ceil(cost_cents_usd * 1.4)
+                if cost_cents_usd > 1800 and cost_cents_usd < 2300:
+                    cost_cents_native_currency = 3000
+                native_currency_code = 'CAD'
+            elif method in ['amazon_fr', 'amazon_it', 'amazon_de', 'amazon_es']:
+                cost_cents_native_currency = cost_cents_usd
+                native_currency_code = 'EUR'
+            else:    
+                cost_cents_native_currency = cost_cents_usd
+            if cost_cents_native_currency <= 500:
+                cost_cents_native_currency = 500
+            elif cost_cents_native_currency <= 700:
+                cost_cents_native_currency = 700
+            elif cost_cents_native_currency <= 1000:
+                cost_cents_native_currency = 1000
+            elif cost_cents_native_currency <= 1500:
+                cost_cents_native_currency = 1500
+            elif cost_cents_native_currency <= 2200:
+                cost_cents_native_currency = 2000
+            elif cost_cents_native_currency <= 2700:
+                cost_cents_native_currency = 2500
+            elif cost_cents_native_currency <= 10000:
+                cost_cents_native_currency = (cost_cents_native_currency // 500) * 500
+            elif cost_cents_native_currency <= 100000:
+                cost_cents_native_currency = round(cost_cents_native_currency / 1000) * 1000
+            elif cost_cents_native_currency <= 200000:
+                cost_cents_native_currency = math.ceil(cost_cents_native_currency / 5000) * 5000
             else:
-                cost_cents_usd = math.ceil(cost_cents_usd / 10000) * 10000
-            cost_cents_native_currency = cost_cents_usd
+                cost_cents_native_currency = math.ceil(cost_cents_native_currency / 10000) * 10000
+            if method in ['amazon_co_uk']:
+                cost_cents_usd = round(cost_cents_native_currency / 0.8)
+            elif method in ['amazon_ca']:
+                cost_cents_usd = round(cost_cents_native_currency / 1.4)
+            else:    
+                cost_cents_usd = cost_cents_native_currency
         elif method == 'pix':
             native_currency_code = 'BRL'
             cost_cents_native_currency = round(cost_cents_usd * usd_currency_rates['BRL'] / 100) * 100
@@ -813,7 +851,7 @@ def confirm_membership(cursor, donation_id, data_key, data_value):
     #     return False
 
     donation_json = orjson.loads(donation['json'])
-    if donation_json['method'] not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
+    if donation_json['method'] not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
         print(f"Warning: failed {data_key} request because method is not valid: {donation_id}")
         return False
 

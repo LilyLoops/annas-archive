@@ -868,7 +868,7 @@ def account_buy_membership():
         raise Exception("Invalid costCentsUsdVerification")
 
     donation_type = 0 # manual
-    if method in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
+    if method in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
         donation_type = 1
 
     with Session(mariapersist_engine) as mariapersist_session:
@@ -1244,38 +1244,70 @@ def gc_notify():
         if "dkim=pass" not in auth_results:
             return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong auth_results: {auth_results}")
 
-        if (re.search(r'<gc-orders@gc\.email\.amazon\.com>$', message['From'].strip()) is None) and (re.search(r'<do-not-reply@amazon\.com>$', message['From'].strip()) is None):
+        if (re.search(r'<gc-orders@gc\.email\.amazon\.(com|co\.uk|fr|it|ca|de|es)>$', message['From'].strip()) is None) and (re.search(r'<do-not-reply@amazon\.(com|co\.uk|fr|it|ca|de|es)>$', message['From'].strip()) is None):
             return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong From: {message['From']}")
 
-        if not (message['Subject'].strip().endswith('sent you an Amazon Gift Card!') or message['Subject'].strip().endswith('is waiting')):
+        suffixes = [
+            'sent you an Amazon Gift Card!',
+            'is waiting',
+            'une carte cadeau Amazon !',
+            'vous attend',
+            'un buono regalo Amazon!',
+            'ti aspetta',
+            'Amazon Geschenkgutschein geschickt!',
+            'wartet auf Sie.',
+            'Tarjeta regalo de Amazon.',
+            'esperando',
+        ]
+        subject_stripped = message['Subject'].strip()
+        if not any([subject_stripped.endswith(suffix) for suffix in suffixes]):
             return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong Subject: {message['Subject']}")
 
-        potential_money = re.findall(r"\n\$([0123456789]+\.[0123456789]{2})", message_body)
+        potential_money = re.findall(r"\n[$€£][ ]?([0123456789]+[.,][0123456789]{2})", message_body)
+        if len(potential_money) == 0:
+            potential_money = re.findall(r"\n([0123456789]+[.,][0123456789]{2})[ ]?[$€£]", message_body)
         if len(potential_money) == 0:
             return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for potential_money")
 
-        links = [str(link) for link in re.findall(r'(https://www.amazon.com/gp/r.html?[^\n)>"]+)', message_body)]
+        links = [str(link[0]) for link in re.findall(r'(https://www.amazon.(com|co\.uk|fr|it|ca|de|es)/gp/r.html?[^\n)>"]+)', message_body)]
         if len(links) == 0:
             return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for links")
 
         # Keep in sync!
         main_link = None
+        domain = None
         for potential_link in links:
-            if 'https%3A%2F%2Fwww.amazon.com%2Fg%2F' in potential_link:
+            if '%2Fg%2F' in potential_link:
                 main_link = potential_link
                 break
         if main_link is not None:
-            main_link = main_link.split('https%3A%2F%2Fwww.amazon.com%2Fg%2F', 1)[1]
+            domain = re.findall(r'amazon.(com|co\.uk|fr|it|ca|de|es)', main_link)[0]
+            main_link = main_link.split('%2Fg%2F', 1)[1]
             main_link = main_link.split('%3F', 1)[0]
-            main_link = f"https://www.amazon.com/g/{main_link}"
+            main_link = f"https://www.amazon.{domain}/g/{main_link}"
         cursor.execute('INSERT IGNORE INTO mariapersist_giftcards (donation_id, link, email_data) VALUES (%(donation_id)s, %(link)s, %(email_data)s)', { 'donation_id': donation_id, 'link': main_link, 'email_data': request_data })
         cursor.execute('COMMIT')
 
+        if main_link is None:
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for main_link")
+        if domain is None:
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for domain")
+
+        # Allow currencies with equal or higher exchange rate.
+        allowed_domains_for_currency = {
+            'USD': ['com', 'co.uk', 'fr', 'it', 'de', 'es'],
+            'GBP': ['co.uk'],
+            'EUR': ['com', 'co.uk', 'fr', 'it', 'de', 'es'],
+            'CAD': ['ca', 'com', 'co.uk', 'fr', 'it', 'de', 'es'],
+        }[donation['native_currency_code']]
+        if domain not in allowed_domains_for_currency:
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with invalid domain for current currency {domain=} {donation['native_currency_code']=} {allowed_domains_for_currency=}")
+
         # Keep in sync!
-        money = float(potential_money[-1])
+        money = float(potential_money[-1].replace(',', '.'))
         # Allow for 5% margin
-        if money * 105 < int(donation['cost_cents_usd']):
-            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with too small amount gift card {money*110} < {donation['cost_cents_usd']}")
+        if money * 105 < int(donation['cost_cents_native_currency']):
+            return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with too small amount gift card {money*110} < {donation['cost_cents_native_currency']}")
 
         sig = request.headers['X-GC-NOTIFY-SIG']
         if sig != GC_NOTIFY_SIG:

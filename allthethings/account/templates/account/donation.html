@@ -361,22 +361,27 @@
           <button onclick="window.location.reload()" class="bg-[#0195ff] hover:bg-blue-600 px-4 py-1 rounded-md text-white mb-1">{{ gettext('page.donation.refresh_status') }}</button>
         </p>
       {% endif %}
-    {% elif donation_dict.json.method == 'amazon' %}
+    {% elif donation_dict.json.method in ['amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es'] %}
       <p class="mb-4 font-bold">{{ gettext('page.donation.amazon.header') }}</p>
 
         <p class="mb-4">
-          {{ gettext('page.donation.amazon.form_instructions', a_form=(' href="https://www.amazon.com/gp/product/B0BRSDM1XK" rel="noopener noreferrer nofollow" target="_blank" ' | safe), amount=(('<strong>' + donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions + '</strong>') | safe)) }}
-          {{ gettext('page.donation.amazon.only_official') }}
+          {{ gettext('page.donation.amazon.form_instructions', a_form=(((' href="' | safe) + (donation_amazon_form | safe) + ('" rel="noopener noreferrer nofollow" target="_blank" ' | safe)) | safe), amount=(('<strong>' + donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions + '</strong>') | safe)) | replace('.com', donation_amazon_domain_replace) }}
+          {{ gettext('page.donation.amazon.only_official') | replace('.com', donation_amazon_domain_replace) }}
         </p>
 
         <ul class="list-inside mb-4 ml-1">
-          <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_com') }}</li>
+          <!-- <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_com') }}</li> -->
           <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_message') }}</li>
         </ul>
 
         <p class="mb-4">
           {{ gettext('page.donation.amazon.form_to') }} <span class="font-mono font-bold text-sm">giftcards+{{ donation_dict.receipt_id }}@annas-archive.li{{ copy_button('giftcards+' + donation_dict.receipt_id + '@annas-archive.li') }}</span>
-          <br><span class="text-sm text-gray-500">{{ gettext('page.donation.amazon.unique') }}</span>
+          <br>
+          <span class="text-sm text-gray-500">
+            {{ gettext('page.donation.amazon.unique') }}
+            <!-- TODO:TRANSLATE -->
+            Only use once.
+          </span>
         </p>
 
         <p class="mb-4">
@@ -627,7 +632,7 @@
       </p> -->
     {% endif %}
 
-    {% if donation_dict.json.method not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b'] %}
+    {% if donation_dict.json.method not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon_com', 'amazon_co_uk', 'amazon_fr', 'amazon_it', 'amazon_ca', 'amazon_de', 'amazon_es', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b'] %}
       <p class="mt-8 mb-4 font-bold">{{ gettext('page.donation.footer.header', span_circle=(' class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5"' | safe), circle_number=(3 if donation_dict.json.method in ['paypal', 'binance'] else 2)) }}
 
       <p class="mb-4">

@@ -42,16 +42,16 @@
       <th class="align-bottom px-4 py-1 ">{{ gettext('page.volunteering.table.header.milestone') }}</th>
     </tr>
     <tr class="even:bg-[#f2f2f2]">
+      <td class="p-4"><!--TODO:TRANSLATE--> Spreading the word of Anna’s Archive. For example, by recommending books on AA, linking to our blog posts, or generally directing people to our website.</td>
+      <td class="p-4">{{ gettext('page.volunteering.table.spread_the_word.milestone_count', links=30) }} <!-- TODO:TRANSLATE -->These should show you letting someone know about Anna’s Archive, and them thanking you.</td>
+    </tr>
+    <tr class="even:bg-[#f2f2f2]">
       <td class="p-4">{{ gettext('page.volunteering.table.open_library.task', a_metadata=(a.metadata|xmlattr)) }}</td>
       <td class="p-4">{{ gettext('page.volunteering.table.open_library.milestone_count', links=30) }}</td>
     </tr>
     <tr class="even:bg-[#f2f2f2]">
       <td class="p-4">{{ gettext('page.volunteering.table.translate.task', a_translate=(a.annas_translations|xmlattr)) }}</td>
       <td class="p-4">{{ gettext('page.volunteering.table.translate.milestone') }}</td>
-    </tr>
-    <tr class="even:bg-[#f2f2f2]">
-      <td class="p-4">{{ gettext('page.volunteering.table.spread_the_word.task') }}</td>
-      <td class="p-4">{{ gettext('page.volunteering.table.spread_the_word.milestone_count', links=30) }}</td>
     </tr>
     <tr class="even:bg-[#f2f2f2]">
       <td class="p-4">{{ gettext('page.volunteering.table.wikipedia.task') }}</td>
