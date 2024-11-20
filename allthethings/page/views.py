@@ -6599,7 +6599,7 @@ def format_filesize(num):
             num /= 1000.0
         return f"{num:.1f}YB"
 
-def add_partner_servers(path, modifier, aarecord, additional):
+def add_partner_servers(path, modifier, aarecord, additional, temporarily_unavailable=False):
     additional['has_aa_downloads'] = 1
     targeted_seconds = 200
     if modifier == 'aa_exclusive':
@@ -6607,9 +6607,15 @@ def add_partner_servers(path, modifier, aarecord, additional):
         additional['has_aa_exclusive_downloads'] = 1
     if modifier == 'scimag':
         targeted_seconds = 10
+    if temporarily_unavailable:
+        # TODO:TRANSLATE
+        additional['fast_partner_urls'].append(('', '', 'Partner downloads for this file are temporarily unavailable. They should be back soon.'))
+        additional['slow_partner_urls'].append(('', '', 'Partner downloads for this file are temporarily unavailable. They should be back soon.'))
+        return
     # When changing the domains, don't forget to change md5_fast_download and md5_slow_download.
     for index in range(len(allthethings.utils.FAST_DOWNLOAD_DOMAINS)):
-        additional['fast_partner_urls'].append((gettext("common.md5.servers.fast_partner", number=len(additional['fast_partner_urls'])+1), '/fast_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.no_browser_verification_or_waitlists") if len(additional['fast_partner_urls']) == 0 else ''))
+        # TODO:TRANSLATE
+        additional['fast_partner_urls'].append(((gettext("common.md5.servers.fast_partner", number=len(additional['fast_partner_urls'])+1) + ((' ' + '(recommended)') if len(additional['fast_partner_urls']) == 0 else '')), '/fast_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.no_browser_verification_or_waitlists") if len(additional['fast_partner_urls']) == 0 else ''))
     for index in range(len(allthethings.utils.SLOW_DOWNLOAD_DOMAINS)):
         if allthethings.utils.SLOW_DOWNLOAD_DOMAINS_SLIGHTLY_FASTER[index]:
             additional['slow_partner_urls'].append((gettext("common.md5.servers.slow_partner", number=len(additional['slow_partner_urls'])+1), '/slow_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.faster_with_waitlist")))
@@ -6710,6 +6716,7 @@ def get_additional_for_aarecord(aarecord):
             ia_id = source_record['aa_ia_file']['ia_id']
             extension = source_record['aa_ia_file']['extension']
             ia_file_type = source_record['aa_ia_file']['type']
+            server = ''
             if ia_file_type == 'acsm':
                 directory = 'other'
                 if bool(re.match(r"^[a-z]", ia_id)):
@@ -6733,7 +6740,7 @@ def get_additional_for_aarecord(aarecord):
                 date = source_record['aa_ia_file']['data_folder'].split('__')[3][0:8]
                 datetime = source_record['aa_ia_file']['data_folder'].split('__')[3][0:16]
                 if date in ['20240701', '20240702']:
-                    server = ''
+                    server = 'o'
                 elif date in ['20240823', '20240824']:
                     server = 'z'
                     if datetime in ['20240823T234037Z', '20240823T234109Z', '20240823T234117Z', '20240823T234126Z', '20240823T234134Z', '20240823T234143Z', '20240823T234153Z', '20240823T234203Z', '20240823T234214Z', '20240823T234515Z', '20240823T234534Z', '20240823T234555Z', '20240823T234615Z', '20240823T234637Z', '20240823T234658Z', '20240823T234720Z']:
@@ -6742,14 +6749,11 @@ def get_additional_for_aarecord(aarecord):
                         server = 'w'
                 elif date in ['20241105']:
                     server = 'ga'
-                partner_path = ''
-                if server != '':
-                    partner_path = make_temp_anon_aac_path(f"{server}/ia2_acsmpdf_files", source_record['aa_ia_file']['aacid'], source_record['aa_ia_file']['data_folder'])
+                partner_path = make_temp_anon_aac_path(f"{server}/ia2_acsmpdf_files", source_record['aa_ia_file']['aacid'], source_record['aa_ia_file']['data_folder'])
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['aa_ia_file']['data_folder']}.torrent", "file_level1": source_record['aa_ia_file']['aacid'], "file_level2": "" })
             else:
                 raise Exception(f"Unknown ia_record file type: {ia_file_type}")
-            if partner_path != '':
-                add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional)
+            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional, temporarily_unavailable=(server == 'o'))
     for source_record in source_records_by_type['duxiu']:
         if source_record.get('duxiu_file') is not None:
             data_folder = source_record['duxiu_file']['data_folder']
@@ -6898,12 +6902,11 @@ def get_additional_for_aarecord(aarecord):
             server = 'u'
             date = source_record['file_data_folder'].split('__')[3][0:8]
             if date in ['20240807', '20240823']:
-                server = ''
+                server = 'o'
             if date in ['20241105']:
                 server = 'ga'
-            if server != '':
-                zlib_path = make_temp_anon_aac_path(f"{server}/zlib3_files", source_record['file_aacid'], source_record['file_data_folder'])
-                add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional)
+            zlib_path = make_temp_anon_aac_path(f"{server}/zlib3_files", source_record['file_aacid'], source_record['file_data_folder'])
+            add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional, temporarily_unavailable=(server == 'o'))
             additional['torrent_paths'].append({ "collection": "zlib", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['file_data_folder']}.torrent", "file_level1": source_record['file_aacid'], "file_level2": "" })
         additional['download_urls'].append((gettext('page.md5.box.download.zlib'), f"https://z-lib.gs/md5/{source_record['md5_reported'].lower()}", ""))
         additional['download_urls'].append((gettext('page.md5.box.download.zlib_tor'), f"http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/md5/{source_record['md5_reported'].lower()}", gettext('page.md5.box.download.zlib_tor_extra')))

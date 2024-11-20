@@ -230,7 +230,11 @@
 
         <ul class="list-inside mb-4 ml-1">
           {% for label, url, extra in aarecord.additional.fast_partner_urls %}
-            <li class="list-disc">{{ gettext('page.md5.box.download.option', num=loop.index, link=(("<a href='" + url + "'" + 'rel="noopener noreferrer nofollow" class="js-download-link">' + label + '</a>') | safe), extra=((((('<a class="text-xs" href="' | safe) + url + ('?no_redirect=1">' | safe) + gettext('page.md5.box.download.no_redirect') + ('</a> ') | safe) | safe) + (extra | safe)) | safe )) }}</li>
+            {% if label %}
+              <li class="list-disc">{{ gettext('page.md5.box.download.option', num=loop.index, link=(("<a href='" + url + "'" + 'rel="noopener noreferrer nofollow" class="js-download-link">' + label + '</a>') | safe), extra=((((('<a class="text-xs" href="' | safe) + url + ('?no_redirect=1">' | safe) + gettext('page.md5.box.download.no_redirect') + ('</a> ') | safe) | safe) + (extra | safe)) | safe )) }}</li>
+            {% else %}
+              <li class="list-disc">{{ extra | safe }}</li>
+            {% endif %}
           {% endfor %}
           <!-- <li class="list-disc">{{ gettext('layout.index.header.banner.refer', percentage=50) }} <a href="/refer">{{ gettext('layout.index.header.learn_more') }}</a></li> -->
         </ul>
@@ -254,14 +258,12 @@
     {% endif %}
 
     {% if aarecord_id_split[0] in ['md5','doi','nexusstc_download'] %}
-      <div class="mb-4">
-        {% if (aarecord.additional.fast_partner_urls | length) > 0 %}
-          <div class="mb-4"><a href="#" class="text-sm js-show-external-button" onClick="event.preventDefault(); window.showExternalDownloads()">{{ gettext('page.md5.box.external_downloads') }}</a></div>
-          <h3 class="mt-4 mb-1 text-xl font-bold js-show-external hidden">{{ gettext('page.md5.box.download.header_external') }}</h3>
-        {% else %}
-          {# no heading needed, because this list is now right under the "Downloads" tab #}
-        {% endif %}
-      </div>
+      {% if (aarecord.additional.fast_partner_urls | length) > 0 %}
+        <div class="mb-4"><a href="#" class="text-sm js-show-external-button" onClick="event.preventDefault(); window.showExternalDownloads()">{{ gettext('page.md5.box.external_downloads') }}</a></div>
+        <h3 class="mt-4 mb-1 text-xl font-bold js-show-external hidden">{{ gettext('page.md5.box.download.header_external') }}</h3>
+      {% else %}
+        {# no heading needed, because this list is now right under the "Downloads" tab #}
+      {% endif %}
 
       <script>
         window.showExternalDownloads = function() {

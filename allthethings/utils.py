@@ -2025,6 +2025,7 @@ def build_pagination_pages_with_dots(primary_hits_pages, page_value, large):
 def escape_mysql_like(input_string):
     return input_string.replace('%', '\\%').replace('_', '\\_')
 
+# Keep in sync.
 def extract_ssid_or_ssno_from_filepath(filepath):
     for part in reversed(filepath.split('/')):
         ssid_match_underscore = re.search(r'_(\d{8})(?:\D|$)', part)
