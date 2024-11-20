@@ -484,8 +484,10 @@ MEMBERSHIP_METHOD_DISCOUNTS = {
     # "bmc":    0,
     # "alipay": 0,
     # "pix":    0,
-    "payment1b": 0,
-    "payment1c": 0,
+    "payment1b_alipay": 0,
+    "payment1b_wechat": 0,
+    "payment1c_alipay": 0,
+    "payment1c_wechat": 0,
     "payment3a": 0,
     "payment3a_cc": 0,
     "payment3b": 0,
@@ -522,8 +524,10 @@ MEMBERSHIP_METHOD_MINIMUM_CENTS_USD = {
     # "bmc":    0,
     # "alipay": 0,
     # "pix":    0,
-    "payment1b": 0,
-    "payment1c": 0,
+    "payment1b_alipay": 0,
+    "payment1b_wechat": 0,
+    "payment1c_alipay": 0,
+    "payment1c_wechat": 0,
     "payment3a": 0,
     "payment3a_cc": 0,
     "payment3b": 0,
@@ -532,8 +536,10 @@ MEMBERSHIP_METHOD_MINIMUM_CENTS_USD = {
     "ccexp": 99999999,
 }
 MEMBERSHIP_METHOD_MAXIMUM_CENTS_NATIVE = {
-    "payment1b": 100000,
-    "payment1c": 100000,
+    "payment1b_alipay": 100000,
+    "payment1b_wechat": 100000,
+    "payment1c_alipay": 100000,
+    "payment1c_wechat": 100000,
     "payment3a": 150000,
     "payment3a_cc": 150000,
     "payment3b": 500000,
@@ -647,7 +653,7 @@ def membership_costs_data(locale):
 
         native_currency_code = 'USD'
         cost_cents_native_currency = cost_cents_usd
-        if method in ['alipay', 'payment1b', 'payment1c', 'payment3a', 'payment3b']:
+        if method in ['alipay', 'payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment3a', 'payment3b']:
             native_currency_code = 'CNY'
             cost_cents_native_currency = math.floor(cost_cents_usd * MEMBERSHIP_EXCHANGE_RATE_RMB / 100) * 100
         # elif method == 'bmc':
@@ -807,7 +813,7 @@ def confirm_membership(cursor, donation_id, data_key, data_value):
     #     return False
 
     donation_json = orjson.loads(donation['json'])
-    if donation_json['method'] not in ['payment1b', 'payment1c', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
+    if donation_json['method'] not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b']:
         print(f"Warning: failed {data_key} request because method is not valid: {donation_id}")
         return False
 

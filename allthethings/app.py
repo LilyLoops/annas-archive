@@ -10,6 +10,7 @@ import multiprocessing
 import ipaddress
 import datetime
 import calendar
+import random
 
 from celery import Celery
 from flask import Flask, request, g, redirect
@@ -98,6 +99,18 @@ def get_static_file_contents(filepath):
 def jinja_md5(s):
     return hashlib.md5(s.encode()).hexdigest()
 
+def jinja_urlsafe_b64encode(string):
+    return base64.urlsafe_b64encode(string.encode()).decode()
+
+def jinja_format_list(lst, style='standard'):
+    return babel_list.format_list(lst, style=style, locale=get_locale())
+
+# https://stackoverflow.com/a/31608030
+def jinja_shuffle_stable_day(l):
+    result = list(l)
+    random.Random(datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y-%m-%d")).shuffle(result)
+    return result
+
 def extensions(app):
     """
     Register 0 or more extensions (mutates the app passed in).
@@ -136,14 +149,9 @@ def extensions(app):
     app.jinja_env.globals['make_code_for_display'] = allthethings.utils.make_code_for_display
     app.jinja_env.globals['md5'] = jinja_md5
     app.jinja_env.globals['FEATURE_FLAGS'] = allthethings.utils.FEATURE_FLAGS
-
-    def urlsafe_b64encode(string):
-        return base64.urlsafe_b64encode(string.encode()).decode()
-    app.jinja_env.globals['urlsafe_b64encode'] = urlsafe_b64encode
-
-    def format_list(lst, style='standard'):
-        return babel_list.format_list(lst, style=style, locale=get_locale())
-    app.jinja_env.globals['format_list'] = format_list
+    app.jinja_env.globals['urlsafe_b64encode'] = jinja_urlsafe_b64encode
+    app.jinja_env.globals['format_list'] = jinja_format_list
+    app.jinja_env.globals['shuffle_stable_day'] = jinja_shuffle_stable_day
 
     # https://stackoverflow.com/a/18095320
     hash_cache = {}

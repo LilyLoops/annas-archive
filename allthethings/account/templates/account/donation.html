@@ -8,7 +8,6 @@
 
   <div class="mb-4 p-6 overflow-hidden bg-black/5 break-words rounded">
     <div class="font-bold">{{ gettext('page.donation.title') }}</div>
-    <div>{{ gettext('page.donation.header.id', id=('+' + donation_dict.receipt_id)) }}</div>
     <div>{{ gettext('page.donation.header.date', date=(donation_dict.created | dateformat(format='long'))) }}</div>
     <div>
       {% if donation_dict.json.discounts > 0 %}
@@ -26,13 +25,14 @@
       </div> -->
     {% endif %}
     <div>{{ gettext('page.donation.header.status', label=order_processing_status_labels[donation_dict.processing_status], span_label=(' class="italic"' | safe)) }}</div>
+    <div class="text-xs text-gray-500">{{ gettext('page.donation.header.id', id=('+' + donation_dict.receipt_id)) }}</div>
 
     {% if donation_dict.processing_status in [0, 4] %}
       <div class="mt-2">
         <form onsubmit='window.submitForm(event, "/dyn/account/cancel_donation/" + {{ donation_dict.donation_id | tojson }})'>
           <fieldset>
-            <button class="button bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white" onclick="document.querySelector('.js-donation-cancel').classList.remove('hidden'); this.classList.add('hidden'); event.preventDefault()">{{ gettext('page.donation.header.cancel.button') }}</button>
-            <span class="js-donation-cancel hidden">{{ gettext('page.donation.header.cancel.confirm.msg') }} <button type="submit" class="button bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white">{{ gettext('page.donation.header.cancel.confirm.button') }}</button></span>
+            <button class="button text-sm bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white" onclick="document.querySelector('.js-donation-cancel').classList.remove('hidden'); this.classList.add('hidden'); event.preventDefault()">{{ gettext('page.donation.header.cancel.button') }}</button>
+            <span class="js-donation-cancel hidden">{{ gettext('page.donation.header.cancel.confirm.msg') }} <button type="submit" class="button text-sm bg-gray-500 hover:bg-gray-600 aria-selected:bg-[#09008e] px-2 py-1 rounded-md text-white">{{ gettext('page.donation.header.cancel.confirm.button') }}</button></span>
           </fieldset>
           <div class="hidden js-success">{{ gettext('page.donation.header.cancel.success') }} <a href="/donate?tier={{ donation_dict.json.tier }}&method={{ donation_dict.json.method }}&duration={{ donation_dict.json.duration }}">{{ gettext('page.donation.header.cancel.new_donation') }}</a></div>
           <div class="hidden js-failure">{{ gettext('page.donation.header.cancel.failure') }}</div>
@@ -463,7 +463,7 @@
       <p class="mb-4">
         {{ gettext('page.donate.strange_account') }}
       </p> -->
-    {% elif donation_dict.json.method == 'payment3a' %}
+    {% elif donation_dict.json.method in ['payment1b_alipay', 'payment1c_alipay', 'payment3a'] %}
       {% if donation_time_expired %}
         <p class="mb-4">
           {{ gettext('page.donation.expired') }}
@@ -474,7 +474,7 @@
         <p class="mb-4 font-bold">{{ gettext('page.donation.payment.alipay.header1', span_circle=(' class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5"' | safe)) }}</p>
 
         <p class="mb-4">
-          {{ gettext('page.donation.payment.alipay.text1_new', total=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions, a_account=((' href="' | safe) + (donation_dict.json.payment3_request.data.url | safe) + ('" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank"' | safe) | safe)) }}
+          {{ gettext('page.donation.payment.alipay.text1_new', total=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions, a_account=((' href="' | safe) + ((donation_dict.json.payment1_url or donation_dict.json.payment3_request.data.url or '') | safe) + ('" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank"' | safe) | safe)) }}
         </p>
 
         <p class="mb-4">
@@ -578,7 +578,7 @@
           <button onclick="window.location.reload()" class="bg-[#0195ff] hover:bg-blue-600 px-4 py-1 rounded-md text-white mb-1">{{ gettext('page.donation.refresh_status') }}</button>
         </p>
       {% endif %}
-    {% elif donation_dict.json.method == 'payment3b' %}
+    {% elif donation_dict.json.method in ['payment1b_wechat', 'payment1c_wechat', 'payment3b'] %}
       {% if donation_time_expired %}
         <p class="mb-4">
           {{ gettext('page.donation.expired') }}
@@ -589,7 +589,7 @@
         <p class="mb-4 font-bold">{{ gettext('page.donation.payment.wechat.header1', span_circle=(' class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5"' | safe)) }}</p>
 
         <p class="mb-4">
-          {{ gettext('page.donation.payment.wechat.text1', total=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions, a_account=((' href="' | safe) + (donation_dict.json.payment3_request.data.url | safe) + ('" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank"' | safe) | safe)) }}
+          {{ gettext('page.donation.payment.wechat.text1', total=donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions, a_account=((' href="' | safe) + ((donation_dict.json.payment1_url or donation_dict.json.payment3_request.data.url or '') | safe) + ('" class="font-bold" style="color: #0095ff" rel="noopener noreferrer nofollow" target="_blank"' | safe) | safe)) }}
         </p>
 
         <p class="mb-4">
@@ -627,7 +627,7 @@
       </p> -->
     {% endif %}
 
-    {% if donation_dict.json.method not in ['payment1b', 'payment1c', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b'] %}
+    {% if donation_dict.json.method not in ['payment1b_alipay', 'payment1b_wechat', 'payment1c_alipay', 'payment1c_wechat', 'payment2', 'payment2paypal', 'payment2cashapp', 'payment2revolut', 'payment2cc', 'amazon', 'hoodpay', 'payment3a', 'payment3a_cc', 'payment3b'] %}
       <p class="mt-8 mb-4 font-bold">{{ gettext('page.donation.footer.header', span_circle=(' class="inline-block font-light rounded-full text-white bg-[#0195ff] w-[1.5em] h-[1.5em] text-center mr-1.5"' | safe), circle_number=(3 if donation_dict.json.method in ['paypal', 'binance'] else 2)) }}
 
       <p class="mb-4">
