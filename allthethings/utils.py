@@ -571,10 +571,10 @@ MEMBERSHIP_EXCHANGE_RATE_RMB = 7.25
 
 def get_is_membership_double():
     now = datetime.datetime.now(tz=datetime.timezone.utc)
-    return now.strftime("%Y-%m") == '2024-10' # Remember to set to ONE MONTH LATER a few lines below
+    return now.strftime("%Y-%m") == '2024-12' # Remember to set to ONE MONTH LATER a few lines below
 def get_is_membership_double_with_leeway():
     now = datetime.datetime.now(tz=datetime.timezone.utc)
-    return get_is_membership_double() or (now.strftime("%Y-%m") == '2024-11' and now.day <= 1)
+    return get_is_membership_double() or (now.strftime("%Y-%m") == '2025-01' and now.day <= 2)
 
 def get_account_fast_download_info(mariapersist_session, account_id):
     mariapersist_session.connection().connection.ping(reconnect=True)
