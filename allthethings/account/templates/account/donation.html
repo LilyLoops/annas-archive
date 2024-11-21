@@ -371,6 +371,8 @@
 
         <ul class="list-inside mb-4 ml-1">
           <!-- <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_com') }}</li> -->
+          <!-- TODO:TRANSLATE -->
+          <li class="list-disc">Enter the exact amount: {{ ('<strong>' + donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions + '</strong>') | safe }}</li>
           <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_message') }}</li>
         </ul>
 

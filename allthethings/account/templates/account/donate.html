@@ -140,16 +140,15 @@
         {% if g.domain_lang_code in ['de'] %}
           {{ donate_button('amazon_de', 'Amazon.de gift card', discount_percent=0, large=True) }}
         {% endif %}
-        {% if g.domain_lang_code in ['es'] %}
-          {{ donate_button('amazon_es', 'Amazon.es gift card', discount_percent=0, large=True) }}
-        {% endif %}
         {% if g.domain_lang_code in ['fr'] %}
           {{ donate_button('amazon_fr', 'Amazon.fr gift card', discount_percent=0, large=True) }}
         {% endif %}
         {% if g.domain_lang_code in ['it'] %}
           {{ donate_button('amazon_it', 'Amazon.it gift card', discount_percent=0, large=True) }}
         {% endif %}
-        {{ donate_button('amazon', 'Amazon.com gift card', discount_percent=0, large=True) }}
+        {% if g.domain_lang_code not in ['de', 'fr', 'it'] %}
+          {{ donate_button('amazon', 'Amazon.com gift card', discount_percent=0, large=True) }}
+        {% endif %}
 
         {{ donate_button('payment3a_cc', gettext('page.donate.payment.buttons.bank_card_app'), discount_percent=0, large=True) }}
         {{ donate_button('payment2', gettext('page.donate.payment.buttons.crypto', bitcoin_icon=''), discount_percent=10, large=True) }}
@@ -176,34 +175,43 @@
       </div>
 
       <div class="flex flex-wrap w-full">  
-        <!-- TODO:TRANSLATE -->
-        {{ donate_button('amazon_co_uk', 'Amazon.co.uk gift card', discount_percent=0) }}
-        {{ donate_button('amazon_ca', 'Amazon.ca gift card', discount_percent=0) }}
+        {% if g.domain_lang_code in ['de', 'fr', 'it'] %}
+          {{ donate_button('amazon', 'Amazon.com', discount_percent=0) }}
+        {% endif %}
+        {% if g.domain_lang_code in ['es'] %}
+          {{ donate_button('amazon_es', 'Amazon.es', discount_percent=0) }}
+        {% endif %}
+        {{ donate_button('amazon_co_uk', 'Amazon.co.uk', discount_percent=0) }}
+        {{ donate_button('amazon_ca', 'Amazon.ca', discount_percent=0) }}
         {% if g.domain_lang_code not in ['de'] %}
-          {{ donate_button('amazon_de', 'Amazon.de gift card', discount_percent=0) }}
+          {{ donate_button('amazon_de', 'Amazon.de', discount_percent=0) }}
         {% endif %}
         {% if g.domain_lang_code not in ['es'] %}
-          {{ donate_button('amazon_es', 'Amazon.es gift card', discount_percent=0) }}
+          {{ donate_button('amazon_es', 'Amazon.es', discount_percent=0) }}
         {% endif %}
         {% if g.domain_lang_code not in ['fr'] %}
-          {{ donate_button('amazon_fr', 'Amazon.fr gift card', discount_percent=0) }}
+          {{ donate_button('amazon_fr', 'Amazon.fr', discount_percent=0) }}
         {% endif %}
         {% if g.domain_lang_code not in ['it'] %}
-          {{ donate_button('amazon_it', 'Amazon.it gift card', discount_percent=0) }}
+          {{ donate_button('amazon_it', 'Amazon.it', discount_percent=0) }}
         {% endif %}
       </div>
 
       <div class="flex flex-wrap w-full {% if g.domain_lang_code in ['zh','tw','ko','ja','th','ms'] %}-order-1{% endif %}">
+        {{ donate_button('payment3a', gettext('page.donate.payment.buttons.alipay') + ' <span class="whitespace-nowrap text-xs">变体K</span>' | safe, discount_percent=0, large=True) }}
         {{ donate_button('payment3b', gettext('page.donate.payment.buttons.wechat') + ' <span class="whitespace-nowrap text-xs">变体K</span>' | safe, discount_percent=0, large=True) }}
-        {{ donate_button('payment1b_alipay', gettext('page.donate.payment.buttons.alipay') + ' <span class="whitespace-nowrap text-xs">变体R</span>' | safe, discount_percent=0, large=True) }}
+        {{
+          shuffle_stable_day([
+            donate_button('payment1b_alipay', gettext('page.donate.payment.buttons.alipay') + ' <span class="whitespace-nowrap text-xs">变体R</span>' | safe, discount_percent=0),
+            donate_button('payment1c_alipay', gettext('page.donate.payment.buttons.alipay') + ' <span class="whitespace-nowrap text-xs">变体S</span>' | safe, discount_percent=0),
+          ]) | join('')
+        }}
         {{
           shuffle_stable_day([
             donate_button('payment1b_wechat', gettext('page.donate.payment.buttons.wechat') + ' <span class="whitespace-nowrap text-xs">变体R</span>' | safe, discount_percent=0),
             donate_button('payment1c_wechat', gettext('page.donate.payment.buttons.wechat') + ' <span class="whitespace-nowrap text-xs">变体S</span>' | safe, discount_percent=0),
           ]) | join('')
         }}
-        {{ donate_button('payment3a',        gettext('page.donate.payment.buttons.alipay') + ' <span class="whitespace-nowrap text-xs">变体K</span>' | safe, discount_percent=0) }}
-        {{ donate_button('payment1c_alipay', gettext('page.donate.payment.buttons.alipay') + ' <span class="whitespace-nowrap text-xs">变体S</span>' | safe, discount_percent=0) }}
 
         <!-- {{ donate_button('payment1b', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体R)</span>' | safe, discount_percent=0) }} -->
         <!-- {{ donate_button('payment1c', gettext('page.donate.payment.buttons.alipay_wechat') + ' <span class="whitespace-nowrap text-xs">(变体S)</span>' | safe, discount_percent=0) }} -->

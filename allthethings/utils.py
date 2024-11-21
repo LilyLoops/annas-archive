@@ -552,10 +552,10 @@ MEMBERSHIP_METHOD_MAXIMUM_CENTS_NATIVE = {
     "payment1b_wechat": 300000,
     "payment1c_alipay": 100000,
     "payment1c_wechat": 200000,
-    "payment3a": 150000,
-    "payment3a_cc": 150000,
+    "payment3a": 500000,
+    "payment3a_cc": 500000,
     "payment3b": 500000,
-    "amazon": 20000,
+    "amazon": 35000,
     "amazon_co_uk": 5000,
     "amazon_fr": 5000,
     "amazon_it": 5000,
@@ -705,9 +705,9 @@ def membership_costs_data(locale):
                 cost_cents_native_currency = 2000
             elif cost_cents_native_currency <= 2700:
                 cost_cents_native_currency = 2500
-            elif cost_cents_native_currency <= 10000:
+            elif (cost_cents_native_currency <= 10000) and (method in ['amazon']): # The others don't support increments of 5
                 cost_cents_native_currency = (cost_cents_native_currency // 500) * 500
-            elif cost_cents_native_currency <= 100000:
+            elif cost_cents_native_currency <= 20200:
                 cost_cents_native_currency = round(cost_cents_native_currency / 1000) * 1000
             elif cost_cents_native_currency <= 200000:
                 cost_cents_native_currency = math.ceil(cost_cents_native_currency / 5000) * 5000

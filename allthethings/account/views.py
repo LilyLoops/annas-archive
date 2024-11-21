@@ -376,10 +376,16 @@ def donation_page(donation_id):
             if donation_time_left < datetime.timedelta():
                 donation_time_expired = True
 
-            if donation_json['payment2_request']['pay_amount']*100 == int(donation_json['payment2_request']['pay_amount']*100):
-                donation_pay_amount = f"{donation_json['payment2_request']['pay_amount']:.2f}"
+            if donation_json['method'] in ['payment2revolut']:
+                # Revolut subtracts fees from the final amount instead of from the source balance.
+                pay_amount_raw = round(donation_json['payment2_request']['pay_amount'] * 1.12, 8)
             else:
-                donation_pay_amount = f"{donation_json['payment2_request']['pay_amount']}"
+                pay_amount_raw = donation_json['payment2_request']['pay_amount']
+
+            if donation_json['payment2_request']['pay_amount']*100 == int(donation_json['payment2_request']['pay_amount']*100):
+                donation_pay_amount = f"{pay_amount_raw:.2f}"
+            else:
+                donation_pay_amount = f"{pay_amount_raw}"
 
             mariapersist_session.connection().connection.ping(reconnect=True)
             cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
