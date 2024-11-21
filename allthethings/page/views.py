@@ -6608,9 +6608,8 @@ def add_partner_servers(path, modifier, aarecord, additional, temporarily_unavai
     if modifier == 'scimag':
         targeted_seconds = 10
     if temporarily_unavailable:
-        # TODO:TRANSLATE
-        additional['fast_partner_urls'].append(('', '', 'Partner downloads for this file are temporarily unavailable. They should be back soon.'))
-        additional['slow_partner_urls'].append(('', '', 'Partner downloads for this file are temporarily unavailable. They should be back soon.'))
+        additional['fast_partner_urls'].append(('', '', gettext('page.md5.box.download.temporarily_unavailable')))
+        additional['slow_partner_urls'].append(('', '', gettext('page.md5.box.download.temporarily_unavailable')))
         return
     # When changing the domains, don't forget to change md5_fast_download and md5_slow_download.
     for index in range(len(allthethings.utils.FAST_DOWNLOAD_DOMAINS)):
@@ -6704,8 +6703,6 @@ def get_additional_for_aarecord(aarecord):
     linked_dois = set()
 
     torrents_json_aa_currently_seeding_by_torrent_path = allthethings.utils.get_torrents_json_aa_currently_seeding_by_torrent_path()
-
-    _temporarily_unavailable = gettext('page.md5.box.download.temporarily_unavailable') # Keeping translation
 
     for source_record in source_records_by_type['scihub_doi']:
         doi = source_record['doi']
