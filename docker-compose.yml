@@ -184,6 +184,10 @@ services:
       start_period: "180s"
       retries: 3
     profiles: ["web"]
+    deploy:
+      resources:
+        limits:
+          memory: "${DOCKER_MAX_MEMORY_WEB:-10G}"
 
   # worker:
   #   <<: *default-app
