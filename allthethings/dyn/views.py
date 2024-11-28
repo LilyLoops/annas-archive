@@ -388,20 +388,8 @@ def md5_summary(md5_input):
 
         data_md5 = bytes.fromhex(canonical_md5)
 
-        cursor.execute('SELECT COUNT(*) FROM mariapersist_md5_report WHERE md5 = %(md5_digest)s LIMIT 1', { 'md5_digest': data_md5 })
-        reports_count = allthethings.utils.fetch_one_field(cursor)
-
-        cursor.execute('SELECT COUNT(*) FROM mariapersist_comments WHERE resource = %(resource)s LIMIT 1', { 'resource': f"md5:{canonical_md5}" })
-        comments_count = allthethings.utils.fetch_one_field(cursor)
-
-        cursor.execute('SELECT COUNT(*) FROM mariapersist_list_entries WHERE resource = %(resource)s LIMIT 1', { 'resource': f"md5:{canonical_md5}" })
-        lists_count = allthethings.utils.fetch_one_field(cursor)
-
-        cursor.execute('SELECT count FROM mariapersist_downloads_total_by_md5 WHERE md5 = %(md5_digest)s LIMIT 1', { 'md5_digest': data_md5 })
-        downloads_total = allthethings.utils.fetch_one_field(cursor)
-
-        cursor.execute('SELECT COUNT(*) FROM mariapersist_reactions WHERE resource = %(resource)s LIMIT 1', { 'resource': f"md5:{canonical_md5}" })
-        great_quality_count = allthethings.utils.fetch_one_field(cursor)
+        cursor.execute('(SELECT COUNT(*) FROM mariapersist_md5_report WHERE md5 = %(md5_digest)s LIMIT 1) UNION ALL (SELECT COUNT(*) FROM mariapersist_comments WHERE resource = %(resource)s LIMIT 1) UNION ALL (SELECT COUNT(*) FROM mariapersist_list_entries WHERE resource = %(resource)s LIMIT 1) UNION ALL (SELECT COALESCE(SUM(count), 0) FROM mariapersist_downloads_total_by_md5 WHERE md5 = %(md5_digest)s LIMIT 1) UNION ALL (SELECT COUNT(*) FROM mariapersist_reactions WHERE resource = %(resource)s LIMIT 1)', { 'md5_digest': data_md5, 'resource': f"md5:{canonical_md5}" })
+        [reports_count, comments_count, lists_count, downloads_total, great_quality_count] = allthethings.utils.fetch_scalars(cursor)
 
         user_reaction = None
         downloads_left = 0
@@ -417,7 +405,7 @@ def md5_summary(md5_input):
                 downloads_left = account_fast_download_info['downloads_left']
                 if canonical_md5 in account_fast_download_info['recently_downloaded_md5s']:
                     download_still_active = 1
-        return orjson.dumps({ "reports_count": reports_count, "comments_count": comments_count, "lists_count": lists_count, "downloads_total": downloads_total, "great_quality_count": great_quality_count, "user_reaction": user_reaction, "downloads_left": downloads_left, "is_member": is_member, "download_still_active": download_still_active })
+        return orjson.dumps({ "reports_count": int(reports_count), "comments_count": int(comments_count), "lists_count": int(lists_count), "downloads_total": int(downloads_total), "great_quality_count": int(great_quality_count), "user_reaction": user_reaction, "downloads_left": downloads_left, "is_member": is_member, "download_still_active": download_still_active })
 
 
 @dyn.put("/md5_report/<string:md5_input>")
@@ -1224,9 +1212,11 @@ def gc_notify():
             print(f"Warning: gc_notify message '{message['X-Original-To']}' donation_id not found {donation_id}")
             return "", 404
 
-        if int(donation['processing_status']) == 1:
-            # Already confirmed.
-            return "", 404
+        # Don't bail out yet, because confirm_membership handles this case properly, and if we
+        # bail out here we don't handle multiple gift cards sent to the same address.
+        # if int(donation['processing_status']) == 1:
+        #     # Already confirmed.
+        #     return "", 404
 
         donation_json = orjson.loads(donation['json'])
         donation_json['gc_notify_debug'] = (donation_json.get('gc_notify_debug') or [])

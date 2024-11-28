@@ -6601,9 +6601,9 @@ def format_filesize(num):
 
 def add_partner_servers(path, modifier, aarecord, additional, temporarily_unavailable=False):
     additional['has_aa_downloads'] = 1
-    targeted_seconds = 200
+    targeted_seconds = 60
     if modifier == 'aa_exclusive':
-        targeted_seconds = 300
+        targeted_seconds = 120
         additional['has_aa_exclusive_downloads'] = 1
     if modifier == 'scimag':
         targeted_seconds = 10
@@ -6784,26 +6784,30 @@ def get_additional_for_aarecord(aarecord):
     for source_record in source_records_by_type['lgrsnf_book']:
         lgrsnf_thousands_dir = (source_record['id'] // 1000) * 1000
         lgrsnf_torrent_path = f"external/libgen_rs_non_fic/r_{lgrsnf_thousands_dir:03}.torrent"
-        lgrsnf_manually_synced = (lgrsnf_thousands_dir <= 4391000)
         lgrsnf_filename = source_record['md5'].lower()
-        if lgrsnf_manually_synced or (lgrsnf_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path):
-            additional['torrent_paths'].append({ "collection": "libgen_rs_non_fic", "torrent_path": lgrsnf_torrent_path, "file_level1": lgrsnf_filename, "file_level2": "" })
-        if lgrsnf_manually_synced or ((lgrsnf_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path) and (torrents_json_aa_currently_seeding_by_torrent_path[lgrsnf_torrent_path])):
+        if lgrsnf_thousands_dir <= 4391000:
             lgrsnf_path = f"e/lgrsnf/{lgrsnf_thousands_dir}/{lgrsnf_filename}"
             add_partner_servers(lgrsnf_path, '', aarecord, additional)
+        if lgrsnf_thousands_dir <= 4428000:
+            lgrsnf_path = f"ga/lgrsnf/{lgrsnf_thousands_dir}/{lgrsnf_filename}"
+            add_partner_servers(lgrsnf_path, '', aarecord, additional)
+        if lgrsnf_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path:
+            additional['torrent_paths'].append({ "collection": "libgen_rs_non_fic", "torrent_path": lgrsnf_torrent_path, "file_level1": lgrsnf_filename, "file_level2": "" })
 
         additional['download_urls'].append((gettext('page.md5.box.download.lgrsnf'), f"http://library.lol/main/{source_record['md5'].lower()}", gettext('page.md5.box.download.extra_also_click_get') if shown_click_get else gettext('page.md5.box.download.extra_click_get')))
         shown_click_get = True
     for source_record in source_records_by_type['lgrsfic_book']:
         lgrsfic_thousands_dir = (source_record['id'] // 1000) * 1000
         lgrsfic_torrent_path = f"external/libgen_rs_fic/f_{lgrsfic_thousands_dir}.torrent" # Note: no leading zeroes
-        lgrsfic_manually_synced = (lgrsfic_thousands_dir <= 3039000)
         lgrsfic_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
-        if lgrsfic_manually_synced or (lgrsfic_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path):
-            additional['torrent_paths'].append({ "collection": "libgen_rs_fic", "torrent_path": lgrsfic_torrent_path, "file_level1": lgrsfic_filename, "file_level2": "" })
-        if lgrsfic_manually_synced or ((lgrsfic_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path) and (torrents_json_aa_currently_seeding_by_torrent_path[lgrsfic_torrent_path])):
+        if lgrsfic_thousands_dir <= 3039000:
             lgrsfic_path = f"e/lgrsfic/{lgrsfic_thousands_dir}/{lgrsfic_filename}"
             add_partner_servers(lgrsfic_path, '', aarecord, additional)
+        if lgrsfic_thousands_dir <= 3060000:
+            lgrsfic_path = f"ga/lgrsfic/{lgrsfic_thousands_dir}/{lgrsfic_filename}"
+            add_partner_servers(lgrsfic_path, '', aarecord, additional)
+        if lgrsfic_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path:
+            additional['torrent_paths'].append({ "collection": "libgen_rs_fic", "torrent_path": lgrsfic_torrent_path, "file_level1": lgrsfic_filename, "file_level2": "" })
 
         additional['download_urls'].append((gettext('page.md5.box.download.lgrsfic'), f"http://library.lol/fiction/{source_record['md5'].lower()}", gettext('page.md5.box.download.extra_also_click_get') if shown_click_get else gettext('page.md5.box.download.extra_click_get')))
         shown_click_get = True
@@ -6836,12 +6840,14 @@ def get_additional_for_aarecord(aarecord):
             add_partner_servers(scimag_path, 'scimag', aarecord, additional)
 
         lglicomics_id = source_record['comics_id']
-        if lglicomics_id > 0 and lglicomics_id < 2566000:
+        if lglicomics_id > 0 and lglicomics_id < 2792000: # 004_lgli_upload_hardlink.sh
             lglicomics_thousands_dir = (lglicomics_id // 1000) * 1000
             lglicomics_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
-            lglicomics_path = f"a/comics/{lglicomics_thousands_dir}/{lglicomics_filename}"
-            add_partner_servers(lglicomics_path, '', aarecord, additional)
-            additional['torrent_paths'].append({ "collection": "libgen_li_comics", "torrent_path": f"external/libgen_li_comics/c_{lglicomics_thousands_dir}.torrent", "file_level1": lglicomics_filename, "file_level2": "" }) # Note: no leading zero
+            if lglicomics_id < 2566000:
+                add_partner_servers(f"a/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional)
+                additional['torrent_paths'].append({ "collection": "libgen_li_comics", "torrent_path": f"external/libgen_li_comics/c_{lglicomics_thousands_dir}.torrent", "file_level1": lglicomics_filename, "file_level2": "" }) # Note: no leading zero
+            else:
+                add_partner_servers(f"gi/lglihard/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional)
 
         lglimagz_id = source_record['magz_id']
         if lglimagz_id > 0 and lglimagz_id < 1363000:
@@ -6851,6 +6857,18 @@ def get_additional_for_aarecord(aarecord):
             add_partner_servers(lglimagz_path, '', aarecord, additional)
             if lglimagz_id < 1000000:
                 additional['torrent_paths'].append({ "collection": "libgen_li_magazines", "torrent_path": f"external/libgen_li_magazines/m_{lglimagz_thousands_dir}.torrent", "file_level1": lglimagz_filename, "file_level2": "" }) # Note: no leading zero
+
+        lglifiction_rus_id = source_record['fiction_rus_id']
+        if lglifiction_rus_id > 0 and lglifiction_rus_id < 1716000: # 004_lgli_upload_hardlink.sh
+            lglifiction_rus_thousands_dir = (lglifiction_rus_id // 1000) * 1000
+            lglifiction_rus_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
+            add_partner_servers(f"gi/lglihard/fiction_rus/repository/{lglifiction_rus_thousands_dir}/{lglifiction_rus_filename}", '', aarecord, additional)
+
+        lglistandarts_id = source_record['standarts_id']
+        if lglistandarts_id > 0 and lglistandarts_id < 999000: # 004_lgli_upload_hardlink.sh
+            lglistandarts_thousands_dir = (lglistandarts_id // 1000) * 1000
+            lglistandarts_filename = source_record['md5'].lower()
+            add_partner_servers(f"gi/lglihard/standarts/repository/{lglistandarts_thousands_dir}/{lglistandarts_filename}", '', aarecord, additional)
 
         additional['download_urls'].append((gettext('page.md5.box.download.lgli'), f"http://libgen.li/ads.php?md5={source_record['md5'].lower()}", (gettext('page.md5.box.download.extra_also_click_get') if shown_click_get else gettext('page.md5.box.download.extra_click_get')) + ' <div style="margin-left: 24px" class="text-sm text-gray-500">' + gettext('page.md5.box.download.libgen_ads') + '</div>'))
         shown_click_get = True
@@ -7301,13 +7319,14 @@ def scidb_page(doi_input):
         if path_info:
             domain = random.choice(allthethings.utils.SCIDB_SLOW_DOWNLOAD_DOMAINS)
             targeted_seconds_multiplier = 1.0
-            minimum = 100
-            maximum = 500
+            # minimum = 100
+            # maximum = 500
             if fast_scidb:
                 domain = random.choice(allthethings.utils.SCIDB_FAST_DOWNLOAD_DOMAINS)
-                minimum = 1000
-                maximum = 5000
-            speed = compute_download_speed(path_info['targeted_seconds']*targeted_seconds_multiplier, aarecord['file_unified_data']['filesize_best'], minimum, maximum)
+                # minimum = 1000
+                # maximum = 5000
+            # speed = compute_download_speed(path_info['targeted_seconds']*targeted_seconds_multiplier, aarecord['file_unified_data']['filesize_best'], minimum, maximum)
+            speed = 10000 # doesn't do anything.
             pdf_url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(False, speed, path_info['path'], aarecord['additional']['filename'], domain)
             download_url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(True, speed, path_info['path'], aarecord['additional']['filename'], domain)
 
@@ -7501,13 +7520,13 @@ def md5_fast_download(md5_input, path_index, domain_index):
 def compute_download_speed(targeted_seconds, filesize, minimum, maximum):
     return min(maximum, max(minimum, int(filesize/1000/targeted_seconds)))
 
-@cachetools.cached(cache=cachetools.TTLCache(maxsize=50000, ttl=30*60), lock=threading.Lock())
-def get_daily_download_count_from_ip(data_pseudo_ipv4):
-    with Session(mariapersist_engine) as mariapersist_session:
-        data_hour_since_epoch = int(time.time() / 3600)
-        cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT SUM(count) AS count FROM mariapersist_slow_download_access_pseudo_ipv4_hourly WHERE pseudo_ipv4 = %(pseudo_ipv4)s AND hour_since_epoch > %(hour_since_epoch)s LIMIT 1', { "pseudo_ipv4": data_pseudo_ipv4, "hour_since_epoch": data_hour_since_epoch-24 })
-        return ((cursor.fetchone() or {}).get('count') or 0)
+# @cachetools.cached(cache=cachetools.TTLCache(maxsize=50000, ttl=30*60), lock=threading.Lock())
+# def get_daily_download_count_from_ip(data_pseudo_ipv4):
+#     with Session(mariapersist_engine) as mariapersist_session:
+#         data_hour_since_epoch = int(time.time() / 3600)
+#         cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
+#         cursor.execute('SELECT SUM(count) AS count FROM mariapersist_slow_download_access_pseudo_ipv4_hourly WHERE pseudo_ipv4 = %(pseudo_ipv4)s AND hour_since_epoch > %(hour_since_epoch)s LIMIT 1', { "pseudo_ipv4": data_pseudo_ipv4, "hour_since_epoch": data_hour_since_epoch-24 })
+#         return ((cursor.fetchone() or {}).get('count') or 0)
 
 @page.get("/slow_download/<string:md5_input>/<int:path_index>/<int:domain_index>")
 @page.post("/slow_download/<string:md5_input>/<int:path_index>/<int:domain_index>")
@@ -7541,7 +7560,8 @@ def md5_slow_download(md5_input, path_index, domain_index):
         return redirect(f"/md5/{md5_input}", code=302)
 
     data_pseudo_ipv4 = allthethings.utils.pseudo_ipv4_bytes(request.remote_addr)
-    account_id = allthethings.utils.get_account_id(request.cookies)
+
+    # account_id = allthethings.utils.get_account_id(request.cookies)
 
     aarecords = get_aarecords_elasticsearch([f"md5:{canonical_md5}"])
     if aarecords is None:
@@ -7551,37 +7571,41 @@ def md5_slow_download(md5_input, path_index, domain_index):
     aarecord = aarecords[0]
     try:
         domain_slow = allthethings.utils.SLOW_DOWNLOAD_DOMAINS[domain_index]
-        domain_slowest = allthethings.utils.SLOWEST_DOWNLOAD_DOMAINS[domain_index]
+        # domain_slowest = allthethings.utils.SLOWEST_DOWNLOAD_DOMAINS[domain_index]
         path_info = aarecord['additional']['partner_url_paths'][path_index]
     except Exception:
         return redirect(f"/md5/{md5_input}", code=302)
 
-    daily_download_count_from_ip = get_daily_download_count_from_ip(data_pseudo_ipv4)
+    # daily_download_count_from_ip = get_daily_download_count_from_ip(data_pseudo_ipv4)
+    daily_download_count_from_ip = 0
 
     # minimum = 10
     # maximum = 100
-    # minimum = 100
+    # minimum = 20
     # maximum = 300
     # targeted_seconds_multiplier = 1.0
     warning = False
-    # These waitlist_max_wait_time_seconds values must be multiples, under the current modulo scheme.
-    # Also WAITLIST_DOWNLOAD_WINDOW_SECONDS gets subtracted from it.
-    waitlist_max_wait_time_seconds = 15*60
+    # # These waitlist_max_wait_time_seconds values must be multiples, under the current modulo scheme.
+    # # Also WAITLIST_DOWNLOAD_WINDOW_SECONDS gets subtracted from it.
+    waitlist_max_wait_time_seconds = 10*60
     domain = domain_slow
-    if daily_download_count_from_ip >= 50:
-        # targeted_seconds_multiplier = 2.0
-        # minimum = 20
-        # maximum = 100
-        # waitlist_max_wait_time_seconds *= 2
-        # warning = True
-        domain = domain_slowest
-    elif daily_download_count_from_ip >= 20:
-        domain = domain_slowest
+    # if daily_download_count_from_ip >= 50:
+    #     # targeted_seconds_multiplier = 2.0
+    #     # minimum = 20
+    #     # maximum = 100
+    #     # waitlist_max_wait_time_seconds *= 2
+    #     # warning = True
+    #     domain = domain_slowest
+    # elif daily_download_count_from_ip >= 20:
+    #     domain = domain_slowest
 
     slow_server_index = (path_index*len(allthethings.utils.SLOW_DOWNLOAD_DOMAINS)) + domain_index + 1
 
     if allthethings.utils.SLOW_DOWNLOAD_DOMAINS_SLIGHTLY_FASTER[domain_index]:
-        WAITLIST_DOWNLOAD_WINDOW_SECONDS = 2*60
+        # minimum = 100
+        # targeted_seconds_multiplier = 0.2
+
+        WAITLIST_DOWNLOAD_WINDOW_SECONDS = 90
         hashed_md5_bytes = int.from_bytes(hashlib.sha256(bytes.fromhex(canonical_md5) + HASHED_DOWNLOADS_SECRET_KEY).digest(), byteorder='big')
         seconds_since_epoch = int(time.time())
         wait_seconds = ((hashed_md5_bytes-seconds_since_epoch) % waitlist_max_wait_time_seconds) - WAITLIST_DOWNLOAD_WINDOW_SECONDS
@@ -7596,18 +7620,18 @@ def md5_slow_download(md5_input, path_index, domain_index):
                 daily_download_count_from_ip=daily_download_count_from_ip,
             )
 
-    # speed = compute_download_speed(path_info['targeted_seconds']*targeted_seconds_multiplier, aarecord['file_unified_data']['filesize_best'], minimum, maximum)
-    speed = 10000
+    # speed = compute_download_speed(path_info['targeted_seconds']*targeted_seconds_multiplier, aarecord['file_unified_data']['filesize_best'], minimum, 10000)
+    speed = 10000 # doesn't do anything.
 
     url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(True, speed, path_info['path'], aarecord['additional']['filename'], domain)
 
-    data_md5 = bytes.fromhex(canonical_md5)
-    with Session(mariapersist_engine) as mariapersist_session:
-        mariapersist_session.connection().execute(text('INSERT IGNORE INTO mariapersist_slow_download_access (md5, ip, account_id, pseudo_ipv4) VALUES (:md5, :ip, :account_id, :pseudo_ipv4)').bindparams(md5=data_md5, ip=data_ip, account_id=account_id, pseudo_ipv4=data_pseudo_ipv4))
-        mariapersist_session.commit()
-        data_hour_since_epoch = int(time.time() / 3600)
-        mariapersist_session.connection().execute(text('INSERT INTO mariapersist_slow_download_access_pseudo_ipv4_hourly (pseudo_ipv4, hour_since_epoch, count) VALUES (:pseudo_ipv4, :hour_since_epoch, 1) ON DUPLICATE KEY UPDATE count = count + 1').bindparams(hour_since_epoch=data_hour_since_epoch, pseudo_ipv4=data_pseudo_ipv4))
-        mariapersist_session.commit()
+    # data_md5 = bytes.fromhex(canonical_md5)
+    # with Session(mariapersist_engine) as mariapersist_session:
+    #     mariapersist_session.connection().execute(text('INSERT IGNORE INTO mariapersist_slow_download_access (md5, ip, account_id, pseudo_ipv4) VALUES (:md5, :ip, :account_id, :pseudo_ipv4)').bindparams(md5=data_md5, ip=data_ip, account_id=account_id, pseudo_ipv4=data_pseudo_ipv4))
+    #     mariapersist_session.commit()
+    #     data_hour_since_epoch = int(time.time() / 3600)
+    #     mariapersist_session.connection().execute(text('INSERT INTO mariapersist_slow_download_access_pseudo_ipv4_hourly (pseudo_ipv4, hour_since_epoch, count) VALUES (:pseudo_ipv4, :hour_since_epoch, 1) ON DUPLICATE KEY UPDATE count = count + 1').bindparams(hour_since_epoch=data_hour_since_epoch, pseudo_ipv4=data_pseudo_ipv4))
+    #     mariapersist_session.commit()
 
     return render_template(
         "page/partner_download.html",

@@ -35,7 +35,7 @@ FAST_DOWNLOAD_DOMAINS = [x for x in [FAST_PARTNER_SERVER1, 'nrzr.li', 'wbsg8v.xy
 # SLOW_DOWNLOAD_DOMAINS = ['momot.rs', 'ktxr.rs', 'nrzr.li']
 SLOW_DOWNLOAD_DOMAINS_SLIGHTLY_FASTER = [True, True, False] # KEEP SAME LENGTH
 SLOW_DOWNLOAD_DOMAINS = ['momot.rs', 'wbsg8v.xyz', 'nrzr.li'] # KEEP SAME LENGTH
-SLOWEST_DOWNLOAD_DOMAINS = ['nrzr.li', 'momot.rs', 'momot.rs'] # KEEP SAME LENGTH
+# SLOWEST_DOWNLOAD_DOMAINS = ['nrzr.li', 'momot.rs', 'momot.rs'] # KEEP SAME LENGTH
 SCIDB_SLOW_DOWNLOAD_DOMAINS = ['wbsg8v.xyz']
 SCIDB_FAST_DOWNLOAD_DOMAINS = [FAST_PARTNER_SERVER1 if FAST_PARTNER_SERVER1 is not None else 'nrzr.li']
 
@@ -767,7 +767,7 @@ def fetch_one_field(cursor):
     return row[next(iter(row))]
 
 
-def fetch_scalars(cursor) -> list | tuple:
+def fetch_scalars(cursor) -> list:
     """
     Fetches value of the first column from all the rows using the cursor
     :return: A list of values of the first column.
