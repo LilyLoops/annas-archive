@@ -6788,9 +6788,10 @@ def get_additional_for_aarecord(aarecord):
         if lgrsnf_thousands_dir <= 4391000:
             lgrsnf_path = f"e/lgrsnf/{lgrsnf_thousands_dir}/{lgrsnf_filename}"
             add_partner_servers(lgrsnf_path, '', aarecord, additional, temporarily_unavailable=True)
-        if lgrsnf_thousands_dir <= 4428000:
+        elif lgrsnf_thousands_dir <= 4428000:
             lgrsnf_path = f"ga/lgrsnf/{lgrsnf_thousands_dir}/{lgrsnf_filename}"
             add_partner_servers(lgrsnf_path, '', aarecord, additional)
+
         if lgrsnf_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path:
             additional['torrent_paths'].append({ "collection": "libgen_rs_non_fic", "torrent_path": lgrsnf_torrent_path, "file_level1": lgrsnf_filename, "file_level2": "" })
 
@@ -6803,9 +6804,10 @@ def get_additional_for_aarecord(aarecord):
         if lgrsfic_thousands_dir <= 3039000:
             lgrsfic_path = f"e/lgrsfic/{lgrsfic_thousands_dir}/{lgrsfic_filename}"
             add_partner_servers(lgrsfic_path, '', aarecord, additional, temporarily_unavailable=True)
-        if lgrsfic_thousands_dir <= 3060000:
+        elif lgrsfic_thousands_dir <= 3060000:
             lgrsfic_path = f"ga/lgrsfic/{lgrsfic_thousands_dir}/{lgrsfic_filename}"
             add_partner_servers(lgrsfic_path, '', aarecord, additional)
+        
         if lgrsfic_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path:
             additional['torrent_paths'].append({ "collection": "libgen_rs_fic", "torrent_path": lgrsfic_torrent_path, "file_level1": lgrsfic_filename, "file_level2": "" })
 
