@@ -234,7 +234,7 @@
               {% elif group == 'upload' %}
                 <div class="mb-1 text-sm">Sets of files that were uploaded to Anna’s Archive by volunteers, which are too small to warrant their own datasets page, but together make for a formidable collection. <a href="/torrents/upload">full list</a><span class="text-xs text-gray-500"> / </span><a href="/datasets/upload">dataset</a></div>
               {% elif group == 'aa_derived_mirror_metadata' %}
-                <div class="mb-1 text-sm">Our raw metadata database (ElasticSearch and MariaDB), published occasionally to make it easier to set up mirrors. All this data can be generated from scratch using our <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md">open source code</a>, but this can take a while. At this time you do still need to run the AAC-related scripts. These files have been created using the data-imports/scripts/dump_*.sh scripts in our codebase. <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md#importing-from-aa_derived_mirror_metadata">This section</a> describes how to load them. Documentation for the ElasticSearch records can be found inline in our <a href="https://annas-archive.li/db/aarecord/md5:8336332bf5877e3adbfb60ac70720cd5.json">example JSON</a>. (<a href="https://annas-archive.listmirror.org/torrents/other_aa/aa_derived_mirror_metadata">list mirror</a>)</div>
+                <div class="mb-1 text-sm">Our raw metadata database (ElasticSearch and MariaDB), published occasionally to make it easier to set up mirrors. All this data can be generated from scratch using our <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md">open source code</a>, but this can take a while. At this time you do still need to run the AAC-related scripts. These files have been created using the data-imports/scripts/dump_*.sh scripts in our codebase. <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/blob/main/data-imports/README.md#importing-from-aa_derived_mirror_metadata">This section</a> describes how to load them. Documentation for the ElasticSearch records can be found inline in our <a href="https://annas-archive.li/db/aarecord/md5:8336332bf5877e3adbfb60ac70720cd5.json">example JSON</a>. <a href="/torrents/aa_derived_mirror_metadata">full list</a></div>
               {% elif group == 'magzdb' %}
                 <div class="mb-1 text-sm">MagzDB metadata (content files are in the <a href="/torrents#upload">upload</a> collection). <a href="/torrents/magzdb">full list</a><span class="text-xs text-gray-500"> / </span><a href="/datasets/magzdb">dataset</a></div>
               {% elif group == 'nexusstc' %}
@@ -247,7 +247,7 @@
                 {{ small_file_row(small_file, 'regular') }}
               {% endfor %}
             {% else %}
-              {% for small_file in small_files[0:20] %}
+              {% for small_file in (small_files | reverse | list)[0:7] %}
                 {{ small_file_row(small_file, 'regular') }}
               {% endfor %}
               <td colspan="100" class=""><a class="text-sm" href="/torrents/{{ group }}">full list for “{{ group }}” ({{ small_files | length }} {{ 'torrent' if (small_files | length == 1) else 'torrents' }})</a>
