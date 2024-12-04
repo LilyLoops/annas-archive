@@ -6718,7 +6718,7 @@ def get_additional_for_aarecord(aarecord):
                 directory = 'other'
                 if bool(re.match(r"^[a-z]", ia_id)):
                     directory = ia_id[0]
-                partner_path = f"u/ia/annas-archive-ia-2023-06-acsm/{directory}/{ia_id}.{extension}"
+                partner_path = f"g2/ia1acsm/{directory}/{ia_id}.{extension}"
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/ia/annas-archive-ia-acsm-{directory}.tar.torrent", "file_level1": f"annas-archive-ia-acsm-{directory}.tar", "file_level2": f"{ia_id}.{extension}" })
             elif ia_file_type == 'lcpdf':
                 directory = 'other'
@@ -6730,27 +6730,20 @@ def get_additional_for_aarecord(aarecord):
                     directory = 'per_'
                 elif bool(re.match(r"^[a-z]", ia_id)):
                     directory = ia_id[0]
-                partner_path = f"u/ia/annas-archive-ia-2023-06-lcpdf/{directory}/{ia_id}.{extension}"
+                partner_path = f"g2/ia1lcpdf/{directory}/{ia_id}.{extension}"
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/ia/annas-archive-ia-lcpdf-{directory}.tar.torrent", "file_level1": f"annas-archive-ia-lcpdf-{directory}.tar", "file_level2": f"{ia_id}.{extension}" })
             elif ia_file_type == 'ia2_acsmpdf':
-                server = 'i'
+                server = 'g3'
                 date = source_record['aa_ia_file']['data_folder'].split('__')[3][0:8]
                 datetime = source_record['aa_ia_file']['data_folder'].split('__')[3][0:16]
-                if date in ['20240701', '20240702']:
-                    server = 'o'
-                elif date in ['20240823', '20240824']:
-                    server = 'z'
-                    if datetime in ['20240823T234037Z', '20240823T234109Z', '20240823T234117Z', '20240823T234126Z', '20240823T234134Z', '20240823T234143Z', '20240823T234153Z', '20240823T234203Z', '20240823T234214Z', '20240823T234515Z', '20240823T234534Z', '20240823T234555Z', '20240823T234615Z', '20240823T234637Z', '20240823T234658Z', '20240823T234720Z']:
-                        server = 'i'
-                    elif datetime in ['20240823T234225Z', '20240823T234238Z', '20240823T234250Z', '20240823T234304Z', '20240823T234318Z', '20240823T234333Z', '20240823T234348Z', '20240823T234404Z', '20240823T234805Z', '20240823T234421Z', '20240823T234438Z']:
-                        server = 'w'
-                elif date in ['20241105']:
+                if date in ['20241105']:
                     server = 'ga'
                 partner_path = make_temp_anon_aac_path(f"{server}/ia2_acsmpdf_files", source_record['aa_ia_file']['aacid'], source_record['aa_ia_file']['data_folder'])
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['aa_ia_file']['data_folder']}.torrent", "file_level1": source_record['aa_ia_file']['aacid'], "file_level2": "" })
             else:
                 raise Exception(f"Unknown ia_record file type: {ia_file_type}")
             add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional, temporarily_unavailable=True)
+            # add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional, temporarily_unavailable=((not partner_path.startswith('ga/')) and (not partner_path.startswith('g2/'))))
     for source_record in source_records_by_type['duxiu']:
         if source_record.get('duxiu_file') is not None:
             data_folder = source_record['duxiu_file']['data_folder']
@@ -6774,20 +6767,17 @@ def get_additional_for_aarecord(aarecord):
     for source_record in source_records_by_type['aac_upload']:
         for aac_upload_file in source_record['files']:
             additional['torrent_paths'].append({ "collection": "upload", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{aac_upload_file['data_folder']}.torrent", "file_level1": aac_upload_file['aacid'], "file_level2": "" })
-            server = 'v'
-            if 'upload_files_misc__20240510' in aac_upload_file['data_folder']:
-                server = 'w'
             data_folder_split = aac_upload_file['data_folder'].split('__')
             directory = f"{data_folder_split[2]}_{data_folder_split[3][0:8]}" # Different than make_temp_anon_aac_path!
-            partner_path = f"{server}/upload_files/{directory}/{aac_upload_file['data_folder']}/{aac_upload_file['aacid']}"
-            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional, temporarily_unavailable=True)
+            partner_path = f"g5/upload_files/{directory}/{aac_upload_file['data_folder']}/{aac_upload_file['aacid']}"
+            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional)
     for source_record in source_records_by_type['lgrsnf_book']:
         lgrsnf_thousands_dir = (source_record['id'] // 1000) * 1000
         lgrsnf_torrent_path = f"external/libgen_rs_non_fic/r_{lgrsnf_thousands_dir:03}.torrent"
         lgrsnf_filename = source_record['md5'].lower()
         if lgrsnf_thousands_dir <= 4391000:
-            lgrsnf_path = f"e/lgrsnf/{lgrsnf_thousands_dir}/{lgrsnf_filename}"
-            add_partner_servers(lgrsnf_path, '', aarecord, additional, temporarily_unavailable=True)
+            lgrsnf_path = f"g4/libgenrs_nonfiction/{lgrsnf_thousands_dir}/{lgrsnf_filename}"
+            add_partner_servers(lgrsnf_path, '', aarecord, additional)
         elif lgrsnf_thousands_dir <= 4428000:
             lgrsnf_path = f"ga/lgrsnf/{lgrsnf_thousands_dir}/{lgrsnf_filename}"
             add_partner_servers(lgrsnf_path, '', aarecord, additional)
@@ -6802,12 +6792,12 @@ def get_additional_for_aarecord(aarecord):
         lgrsfic_torrent_path = f"external/libgen_rs_fic/f_{lgrsfic_thousands_dir}.torrent" # Note: no leading zeroes
         lgrsfic_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
         if lgrsfic_thousands_dir <= 3039000:
-            lgrsfic_path = f"e/lgrsfic/{lgrsfic_thousands_dir}/{lgrsfic_filename}"
-            add_partner_servers(lgrsfic_path, '', aarecord, additional, temporarily_unavailable=True)
+            lgrsfic_path = f"g3/libgenrs_fiction/{lgrsfic_thousands_dir}/{lgrsfic_filename}"
+            add_partner_servers(lgrsfic_path, '', aarecord, additional)
         elif lgrsfic_thousands_dir <= 3060000:
             lgrsfic_path = f"ga/lgrsfic/{lgrsfic_thousands_dir}/{lgrsfic_filename}"
             add_partner_servers(lgrsfic_path, '', aarecord, additional)
-        
+
         if lgrsfic_torrent_path in torrents_json_aa_currently_seeding_by_torrent_path:
             additional['torrent_paths'].append({ "collection": "libgen_rs_fic", "torrent_path": lgrsfic_torrent_path, "file_level1": lgrsfic_filename, "file_level2": "" })
 
@@ -6845,8 +6835,8 @@ def get_additional_for_aarecord(aarecord):
         if lglicomics_id > 0 and lglicomics_id < 2792000: # 004_lgli_upload_hardlink.sh
             lglicomics_thousands_dir = (lglicomics_id // 1000) * 1000
             lglicomics_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
-            if lglicomics_id < 2566000:
-                add_partner_servers(f"a/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional, temporarily_unavailable=True)
+            if lglicomics_id <= 2566000:
+                add_partner_servers(f"g2/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional, temporarily_unavailable=True)
                 additional['torrent_paths'].append({ "collection": "libgen_li_comics", "torrent_path": f"external/libgen_li_comics/c_{lglicomics_thousands_dir}.torrent", "file_level1": lglicomics_filename, "file_level2": "" }) # Note: no leading zero
             else:
                 add_partner_servers(f"gi/lglihard/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional)
@@ -6855,10 +6845,9 @@ def get_additional_for_aarecord(aarecord):
         if lglimagz_id > 0 and lglimagz_id < 1363000:
             lglimagz_thousands_dir = (lglimagz_id // 1000) * 1000
             lglimagz_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
-            lglimagz_path = f"y/magz/{lglimagz_thousands_dir}/{lglimagz_filename}"
-            add_partner_servers(lglimagz_path, '', aarecord, additional, temporarily_unavailable=True)
-            if lglimagz_id < 1000000:
-                additional['torrent_paths'].append({ "collection": "libgen_li_magazines", "torrent_path": f"external/libgen_li_magazines/m_{lglimagz_thousands_dir}.torrent", "file_level1": lglimagz_filename, "file_level2": "" }) # Note: no leading zero
+            lglimagz_path = f"g4/magz/{lglimagz_thousands_dir}/{lglimagz_filename}"
+            add_partner_servers(lglimagz_path, '', aarecord, additional)
+            additional['torrent_paths'].append({ "collection": "libgen_li_magazines", "torrent_path": f"external/libgen_li_magazines/m_{lglimagz_thousands_dir}.torrent", "file_level1": lglimagz_filename, "file_level2": "" }) # Note: no leading zero
 
         lglifiction_rus_id = source_record['fiction_rus_id']
         if lglifiction_rus_id > 0 and lglifiction_rus_id < 1716000: # 004_lgli_upload_hardlink.sh
@@ -6908,7 +6897,7 @@ def get_additional_for_aarecord(aarecord):
     for source_record in source_records_by_type['zlib_book']:
         if (source_record['pilimi_torrent'] or '') != '':
             zlib_path = make_temp_anon_zlib_path(source_record['zlibrary_id'], source_record['pilimi_torrent'])
-            add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional, temporarily_unavailable=('g1/zlib2' not in zlib_path))
+            add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional)
             if "-zlib2-" in source_record['pilimi_torrent']:
                 additional['torrent_paths'].append({ "collection": "zlib", "torrent_path": f"managed_by_aa/zlib/{source_record['pilimi_torrent']}", "file_level1": source_record['pilimi_torrent'].replace('.torrent', '.tar'), "file_level2": str(source_record['zlibrary_id']) })
             else:
@@ -6916,14 +6905,12 @@ def get_additional_for_aarecord(aarecord):
 
     for source_record in source_records_by_type['aac_zlib3_book']:
         if source_record['file_aacid'] is not None:
-            server = 'u'
+            server = 'g3'
             date = source_record['file_data_folder'].split('__')[3][0:8]
-            if date in ['20240807', '20240823']:
-                server = 'o'
             if date in ['20241105']:
                 server = 'ga'
             zlib_path = make_temp_anon_aac_path(f"{server}/zlib3_files", source_record['file_aacid'], source_record['file_data_folder'])
-            add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional, temporarily_unavailable=(server != 'ga'))
+            add_partner_servers(zlib_path, 'aa_exclusive' if (len(additional['fast_partner_urls']) == 0) else '', aarecord, additional)
             additional['torrent_paths'].append({ "collection": "zlib", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['file_data_folder']}.torrent", "file_level1": source_record['file_aacid'], "file_level2": "" })
         additional['download_urls'].append((gettext('page.md5.box.download.zlib'), f"https://z-lib.gs/md5/{source_record['md5_reported'].lower()}", ""))
         additional['download_urls'].append((gettext('page.md5.box.download.zlib_tor'), f"http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/md5/{source_record['md5_reported'].lower()}", gettext('page.md5.box.download.zlib_tor_extra')))

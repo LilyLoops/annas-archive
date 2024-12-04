@@ -16,10 +16,11 @@
       {{ gettext('page.contact.checkboxes.text2') }}
     </div>
     <!-- <div><label><input class="js-email-checkbox align-[-1px]" type="checkbox"> {{ gettext('page.contact.checkboxes.copyright') }}</label></div> -->
+    <div><label><input class="js-email-checkbox align-[-1px]" type="checkbox"> {{ gettext('layout.index.header.banner.issues.partners_closed') }} <div class="ml-4 font-bold underline">{{ gettext('layout.index.header.banner.issues.memberships_extended') }}</div></label></div>
     <div><label><input class="js-email-checkbox align-[-1px]" type="checkbox"> {{ gettext('layout.index.footer.dont_email', a_request=('href="/faq#request"' | safe), a_upload=('href="/faq#upload"' | safe)) | replace ('<br>' | safe, ' ') | replace ('<br >' | safe, ' ') }}</label></div>
     <div><label><input class="js-email-checkbox align-[-1px]" type="checkbox"> {{ gettext('page.donate.please_include') }}</label></div>
     <div><label><input class="js-email-checkbox align-[-1px]" type="checkbox"> {{ gettext('page.donate.small_team') }}</label></div>
     <button class="px-4 py-1 bg-[#0195ff] text-white rounded hover:bg-blue-600 mb-4" onclick="if (Array.from(document.querySelectorAll('.js-email-checkbox')).every((el) => el.checked)) { document.querySelector('.js-email-field').classList.remove('hidden') }">{{ gettext('page.contact.checkboxes.show_email_button') }}</button>
-    <div class="hidden js-email-field"><a href="mailto:{{ AA_EMAIL }}">{{ AA_EMAIL }}</a></div>
+    <div class="hidden js-email-field">{{ gettext('layout.index.header.banner.issues.partners_closed') }} <div class="ml-4 font-bold underline">{{ gettext('layout.index.header.banner.issues.memberships_extended') }}</div> <a href="mailto:{{ AA_EMAIL }}">{{ AA_EMAIL }}</a></div>
   </p>
 {% endblock %}

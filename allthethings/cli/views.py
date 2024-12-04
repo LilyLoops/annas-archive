@@ -16,6 +16,8 @@ import more_itertools
 import indexed_zstd
 import hashlib
 import zstandard
+import datetime
+import io
 
 import allthethings.utils
 
@@ -1222,3 +1224,81 @@ def mariapersist_reset_internal():
 def send_test_email(email_addr):
     email_msg = flask_mail.Message(subject="Hello", body="Hi there, this is a test!", recipients=[email_addr])
     mail.send(email_msg)
+
+#################################################################################################
+# Dump `isbn13:` codes to a file.
+#
+# Format is bencoded file (compressed with zstd), with the following layout:
+#
+# * dictionary with `aarecord_id_prefix` string mapped to bitmap of 2 million ISBNs (978 and 979).
+#   * bitmap specification: pairs of 32 bit numbers (<isbn_streak> <gap_size>)* followed by a
+#     single final <isbn_streak>.
+#     * "isbn_streak" represents how many ISBNs we have in a row (starting with 9780000000002).
+#       When iterating ISBNs we omit the final check digit, so in the 978* and 979* ranges we
+#       find 1 billion ISBNs each, or 2 billion total.
+#     * "gap_size" represents how many ISBNs are missing in a row. The last one is implied and
+#       therefore omitted.
+#   * `aarecord_id_prefix` values without any `isbn13:` codes are not included.
+#
+# We considered the [binsparse spec](https://graphblas.org/binsparse-specification/) but it's not
+# mature enough.
+#
+# ./run flask cli dump_isbn13_codes_benc
+@cli.cli.command('dump_isbn13_codes_benc')
+def dump_isbn13_codes_benc():
+    with engine.connect() as connection:
+        connection.connection.ping(reconnect=True)
+        cursor = connection.connection.cursor(pymysql.cursors.SSDictCursor)
+
+        timestamp = datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        filename = f"/exports/codes_benc/aa_isbn13_codes_{timestamp}.benc.zst"
+        print(f"Writing to {filename}...")
+
+        with open(filename, "wb") as fh:
+            with zstandard.ZstdCompressor(level=22, threads=-1).stream_writer(fh) as compressor:
+                compressor.write(b'd')
+
+                cursor.execute('SELECT DISTINCT aarecord_id_prefix FROM aarecords_codes')
+                aarecord_id_prefixes = [s.decode() for s in allthethings.utils.fetch_scalars(cursor)]
+                print(f"{aarecord_id_prefixes=}")
+
+                for aarecord_id_prefix in aarecord_id_prefixes:
+                    print(f"Processing aarecord_id_prefix '{aarecord_id_prefix}'...")
+
+                    cursor.execute('SELECT code FROM aarecords_codes WHERE code LIKE "isbn13:%%" AND aarecord_id_prefix = %(aarecord_id_prefix)s LIMIT 1', {"aarecord_id_prefix": aarecord_id_prefix});
+                    if len(list(cursor.fetchall())) == 0:
+                        print(f"No isbn13: codes in '{aarecord_id_prefix}', skipping...")
+                        continue
+
+                    compressor.write(f"{len(aarecord_id_prefix)}:{aarecord_id_prefix}".encode())
+
+                    prefix_buffer = io.BytesIO()
+                    last_isbn = 978000000000-1
+                    isbn_streak = 0
+                    with tqdm.tqdm(total=2000000000, bar_format='{l_bar}{bar}{r_bar} {eta}') as pbar:
+                        while True:
+                            cursor.execute('SELECT DISTINCT code FROM aarecords_codes WHERE aarecord_id_prefix = %(aarecord_id_prefix)s AND code > CONCAT("isbn13:", %(last_isbn)s, "Z") AND code LIKE "isbn13:%%" ORDER BY code LIMIT 10000', { "aarecord_id_prefix": aarecord_id_prefix, "last_isbn": str(last_isbn) })
+                            # Strip off "isbn13:" and check digit, then deduplicate.
+                            isbns = list(dict.fromkeys([int(code[7:-1]) for code in allthethings.utils.fetch_scalars(cursor)]))
+                            if len(isbns) == 0:
+                                break
+                            for isbn in isbns:
+                                gap_size = isbn-last_isbn-1
+                                # print(f"{isbn=} {last_isbn=} {gap_size=}")
+                                if gap_size == 0:
+                                    isbn_streak += 1
+                                else:
+                                    prefix_buffer.write(isbn_streak.to_bytes(4, byteorder='little', signed=False))
+                                    prefix_buffer.write(gap_size.to_bytes(4, byteorder='little', signed=False))
+                                    isbn_streak = 1
+                                pbar.update(isbn - last_isbn)
+                                last_isbn = isbn
+                        pbar.update((978000000000+2000000000-1) - last_isbn)
+                        prefix_buffer.write(isbn_streak.to_bytes(4, byteorder='little', signed=False))
+
+                    prefix_buffer_bytes = prefix_buffer.getvalue()
+                    compressor.write(f"{len(prefix_buffer_bytes)}:".encode())
+                    compressor.write(prefix_buffer_bytes)
+                compressor.write(b'e')
+                print("Done")
+
