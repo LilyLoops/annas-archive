@@ -58,10 +58,10 @@
     <input type="hidden" name="page" value="1">
 
     <div class="flex flex-wrap mb-1 text-black/64" role="tablist" aria-label="file tabs">
-      <a href="/search" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold" aria-selected="{{ 'true' if search_dict.search_index_short == '' else 'false' }}" tabindex="0" onclick="event.preventDefault(); document.querySelector('.js-search-form-index').value = ''; document.querySelector('.js-search-form').submit()">{{ gettext('page.search.tabs.download') }} <span class="js-search-tab-count-aarecords"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
-      <a href="/search?index=journals" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold" aria-selected="{{ 'true' if search_dict.search_index_short == 'journals' else 'false' }}" tabindex="0" onclick="event.preventDefault(); document.querySelector('.js-search-form-index').value = 'journals'; document.querySelector('.js-search-form').submit()">{{ gettext('page.search.tabs.journals') }} <span class="js-search-tab-count-aarecords_journals"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
-      <a href="/search?index=digital_lending" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold" aria-selected="{{ 'true' if search_dict.search_index_short == 'digital_lending' else 'false' }}" tabindex="0" onclick="event.preventDefault(); document.querySelector('.js-search-form-index').value = 'digital_lending'; document.querySelector('.js-search-form').submit()">{{ gettext('page.search.tabs.digital_lending') }} <span class="js-search-tab-count-aarecords_digital_lending"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
-      <a href="/search?index=meta" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold" aria-selected="{{ 'true' if search_dict.search_index_short == 'meta' else 'false' }}" tabindex="0" onclick="event.preventDefault(); document.querySelector('.js-search-form-index').value = 'meta'; document.querySelector('.js-search-form').submit()">{{ gettext('page.search.tabs.metadata') }} <span class="js-search-tab-count-aarecords_metadata"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
+      <a href="/search?q=" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold js-search-top-tab" aria-selected="{{ 'true' if search_dict.search_index_short == '' else 'false' }}" tabindex="0">{{ gettext('page.search.tabs.download') }} <span class="js-search-tab-count-aarecords"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
+      <a href="/search?index=journals&q=" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold js-search-top-tab" aria-selected="{{ 'true' if search_dict.search_index_short == 'journals' else 'false' }}" tabindex="0">{{ gettext('page.search.tabs.journals') }} <span class="js-search-tab-count-aarecords_journals"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
+      <a href="/search?index=digital_lending&q=" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold js-search-top-tab" aria-selected="{{ 'true' if search_dict.search_index_short == 'digital_lending' else 'false' }}" tabindex="0">{{ gettext('page.search.tabs.digital_lending') }} <span class="js-search-tab-count-aarecords_digital_lending"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
+      <a href="/search?index=meta&q=" class="custom-a mr-4 mb-2 border-b-[3px] border-transparent aria-selected:border-[#0095ff] aria-selected:text-black aria-selected:font-bold js-search-top-tab" aria-selected="{{ 'true' if search_dict.search_index_short == 'meta' else 'false' }}" tabindex="0">{{ gettext('page.search.tabs.metadata') }} <span class="js-search-tab-count-aarecords_metadata"><span class="mb-[-1px] text-sm text-[#555] inline-block icon-[svg-spinners--ring-resize] opacity-50 mx-1"></span></span></a>
     </div>
 
     <script>
@@ -107,7 +107,21 @@
 
     <div class="flex mb-2 items-center">
       <a href="#" class="custom-a sm:hidden text-lg mr-2 opacity-50 hover:opacity-100" alt="Filter settings" title="Filter settings" onclick="event.preventDefault(); document.querySelector('.js-search-filter-settings').classList.remove('max-sm:hidden'); document.body.style.overflow = 'hidden'"><span class="icon-[mingcute--settings-6-line]"></span></a>
-      <input type="search" name="q" placeholder="{{ gettext('common.search.placeholder') }}" value="{{search_input}}" class="js-slash-focus grow bg-black/6.7 px-2 py-1 mr-2 rounded" {% if search_input == '' %}autofocus{% endif %}>
+      <input type="search" name="q" placeholder="{{ gettext('common.search.placeholder') }}" value="{{search_input}}" class="js-slash-focus js-search-main-input grow bg-black/6.7 px-2 py-1 mr-2 rounded" {% if search_input == '' %}autofocus{% endif %}>
+      <script>
+        (function() {
+          const searchEl = document.querySelector('.js-search-main-input');
+          function updateSearchTabs() {
+            for (var el of document.querySelectorAll('.js-search-top-tab')) { 
+              el.href = el.href.substr(0, el.href.indexOf('q=')) + 'q=' + searchEl.value;
+            }
+          }
+          searchEl.addEventListener('change', updateSearchTabs);
+          searchEl.addEventListener('keydown', updateSearchTabs);
+          searchEl.addEventListener('keyup', updateSearchTabs);
+          updateSearchTabs();
+        })();
+      </script>
       <button class="sm:hidden px-4 py-1 bg-[#0195ff] text-white rounded hover:bg-blue-600" type="submit">{{ gettext('common.search.submit') }}</button>
       <span class="sm:hidden"><span class="js-spinner hidden opacity-50 mb-[-0px] ml-2 text-xl text-[#555] inline-block icon-[svg-spinners--ring-resize]"></span></span>
     </div>
@@ -440,7 +454,7 @@
 
             {% if search_dict.search_index_short == '' %}
               <div class="mt-4 js-not-found-additional hidden">
-                {{ gettext('page.search.found_matches.main', a_request=('href="/faq#request"' | safe), in=((('<a class="hidden js-not-found-journals" href="/search?index=journals" onclick="event.preventDefault(); document.querySelector(\'.js-search-form-index\').value = \'journals\'; document.querySelector(\'.js-search-form\').submit()">' | safe) + gettext('page.search.found_matches.journals', count=('<span class="js-not-found-journals-count">1</span>' | safe)) + ('</a><a class="hidden js-not-found-digital_lending" href="/search?index=digital_lending" onclick="event.preventDefault(); document.querySelector(\'.js-search-form-index\').value = \'digital_lending\'; document.querySelector(\'.js-search-form\').submit()">' | safe) + gettext('page.search.found_matches.digital_lending', count=('<span class="js-not-found-digital_lending-count">1</span>' | safe)) + ('</a><a class="hidden js-not-found-meta" href="/search?index=meta" onclick="event.preventDefault(); document.querySelector(\'.js-search-form-index\').value = \'meta\'; document.querySelector(\'.js-search-form\').submit()">') | safe + gettext('page.search.found_matches.metadata', count=('<span class="js-not-found-meta-count">1</span>' | safe)) + ('</a>' | safe)) | safe)) }}
+                {{ gettext('page.search.found_matches.main', a_request=('href="/faq#request"' | safe), in=(((('<a class="hidden js-not-found-journals" href="/search?index=journals&q=' + (search_input | urlencode) + '">') | safe) + gettext('page.search.found_matches.journals', count=('<span class="js-not-found-journals-count">1</span>' | safe)) + (('</a><a class="hidden js-not-found-digital_lending" href="/search?index=digital_lending&q=' + (search_input | urlencode) + '">') | safe) + gettext('page.search.found_matches.digital_lending', count=('<span class="js-not-found-digital_lending-count">1</span>' | safe)) + ('</a><a class="hidden js-not-found-meta" href="/search?index=meta&q=' + (search_input | urlencode) + '">') | safe + gettext('page.search.found_matches.metadata', count=('<span class="js-not-found-meta-count">1</span>' | safe)) + ('</a>' | safe)) | safe)) }}
               </div>
             {% endif %}
           {% endif %}
