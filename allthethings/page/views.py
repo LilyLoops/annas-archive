@@ -7510,13 +7510,13 @@ def md5_fast_download(md5_input, path_index, domain_index):
 def compute_download_speed(targeted_seconds, filesize, minimum, maximum):
     return min(maximum, max(minimum, int(filesize/1000/targeted_seconds)))
 
-# @cachetools.cached(cache=cachetools.TTLCache(maxsize=50000, ttl=30*60), lock=threading.Lock())
-# def get_daily_download_count_from_ip(data_pseudo_ipv4):
-#     with Session(mariapersist_engine) as mariapersist_session:
-#         data_hour_since_epoch = int(time.time() / 3600)
-#         cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
-#         cursor.execute('SELECT SUM(count) AS count FROM mariapersist_slow_download_access_pseudo_ipv4_hourly WHERE pseudo_ipv4 = %(pseudo_ipv4)s AND hour_since_epoch > %(hour_since_epoch)s LIMIT 1', { "pseudo_ipv4": data_pseudo_ipv4, "hour_since_epoch": data_hour_since_epoch-24 })
-#         return ((cursor.fetchone() or {}).get('count') or 0)
+@cachetools.cached(cache=cachetools.TTLCache(maxsize=50000, ttl=30*60), lock=threading.Lock())
+def get_daily_download_count_from_ip(data_pseudo_ipv4):
+    with Session(mariapersist_engine) as mariapersist_session:
+        data_hour_since_epoch = int(time.time() / 3600)
+        cursor = mariapersist_session.connection().connection.cursor(pymysql.cursors.DictCursor)
+        cursor.execute('SELECT SUM(count) AS count FROM mariapersist_slow_download_access_pseudo_ipv4_hourly WHERE pseudo_ipv4 = %(pseudo_ipv4)s AND hour_since_epoch > %(hour_since_epoch)s LIMIT 1', { "pseudo_ipv4": data_pseudo_ipv4, "hour_since_epoch": data_hour_since_epoch-24 })
+        return ((cursor.fetchone() or {}).get('count') or 0)
 
 @page.get("/slow_download/<string:md5_input>/<int:path_index>/<int:domain_index>")
 @page.post("/slow_download/<string:md5_input>/<int:path_index>/<int:domain_index>")
@@ -7537,21 +7537,21 @@ def md5_slow_download(md5_input, path_index, domain_index):
 
     # We blocked Cloudflare because otherwise VPN users circumvent the CAPTCHA.
     # But it also blocks some TOR users who get Cloudflare exit nodes.
-    # Perhaps not as necessary anymore now that we have waitlists, and extra throttling by IP.
-    # if allthethings.utils.is_canonical_ip_cloudflare(data_ip):
-    #     return render_template(
-    #         "page/partner_download.html",
-    #         header_active="search",
-    #         no_cloudflare=True,
-    #         canonical_md5=canonical_md5,
-    #     )
+    # Perhaps not as necessary anymore now that we have waitlists, and extra throttling by IP?
+    if allthethings.utils.is_canonical_ip_cloudflare(data_ip):
+        return render_template(
+            "page/partner_download.html",
+            header_active="search",
+            no_cloudflare=True,
+            canonical_md5=canonical_md5,
+        )
 
     if not allthethings.utils.validate_canonical_md5s([canonical_md5]) or canonical_md5 != md5_input:
         return redirect(f"/md5/{md5_input}", code=302)
 
     data_pseudo_ipv4 = allthethings.utils.pseudo_ipv4_bytes(request.remote_addr)
 
-    # account_id = allthethings.utils.get_account_id(request.cookies)
+    account_id = allthethings.utils.get_account_id(request.cookies)
 
     aarecords = get_aarecords_elasticsearch([f"md5:{canonical_md5}"])
     if aarecords is None:
@@ -7561,13 +7561,12 @@ def md5_slow_download(md5_input, path_index, domain_index):
     aarecord = aarecords[0]
     try:
         domain_slow = allthethings.utils.SLOW_DOWNLOAD_DOMAINS[domain_index]
-        # domain_slowest = allthethings.utils.SLOWEST_DOWNLOAD_DOMAINS[domain_index]
+        domain_slowest = allthethings.utils.SLOWEST_DOWNLOAD_DOMAINS[domain_index]
         path_info = aarecord['additional']['partner_url_paths'][path_index]
     except Exception:
         return redirect(f"/md5/{md5_input}", code=302)
 
-    # daily_download_count_from_ip = get_daily_download_count_from_ip(data_pseudo_ipv4)
-    daily_download_count_from_ip = 0
+    daily_download_count_from_ip = get_daily_download_count_from_ip(data_pseudo_ipv4)
 
     # minimum = 10
     # maximum = 100
@@ -7579,13 +7578,13 @@ def md5_slow_download(md5_input, path_index, domain_index):
     # # Also WAITLIST_DOWNLOAD_WINDOW_SECONDS gets subtracted from it.
     waitlist_max_wait_time_seconds = 10*60
     domain = domain_slow
-    # if daily_download_count_from_ip >= 50:
+    if daily_download_count_from_ip >= 10:
+        domain = domain_slowest
+    #     # waitlist_max_wait_time_seconds *= 2
     #     # targeted_seconds_multiplier = 2.0
     #     # minimum = 20
     #     # maximum = 100
-    #     # waitlist_max_wait_time_seconds *= 2
     #     # warning = True
-    #     domain = domain_slowest
     # elif daily_download_count_from_ip >= 20:
     #     domain = domain_slowest
 
@@ -7615,13 +7614,13 @@ def md5_slow_download(md5_input, path_index, domain_index):
 
     url = 'https://' + domain + '/' + allthethings.utils.make_anon_download_uri(True, speed, path_info['path'], aarecord['additional']['filename'], domain)
 
-    # data_md5 = bytes.fromhex(canonical_md5)
-    # with Session(mariapersist_engine) as mariapersist_session:
-    #     mariapersist_session.connection().execute(text('INSERT IGNORE INTO mariapersist_slow_download_access (md5, ip, account_id, pseudo_ipv4) VALUES (:md5, :ip, :account_id, :pseudo_ipv4)').bindparams(md5=data_md5, ip=data_ip, account_id=account_id, pseudo_ipv4=data_pseudo_ipv4))
-    #     mariapersist_session.commit()
-    #     data_hour_since_epoch = int(time.time() / 3600)
-    #     mariapersist_session.connection().execute(text('INSERT INTO mariapersist_slow_download_access_pseudo_ipv4_hourly (pseudo_ipv4, hour_since_epoch, count) VALUES (:pseudo_ipv4, :hour_since_epoch, 1) ON DUPLICATE KEY UPDATE count = count + 1').bindparams(hour_since_epoch=data_hour_since_epoch, pseudo_ipv4=data_pseudo_ipv4))
-    #     mariapersist_session.commit()
+    data_md5 = bytes.fromhex(canonical_md5)
+    with Session(mariapersist_engine) as mariapersist_session:
+        mariapersist_session.connection().execute(text('INSERT IGNORE INTO mariapersist_slow_download_access (md5, ip, account_id, pseudo_ipv4) VALUES (:md5, :ip, :account_id, :pseudo_ipv4)').bindparams(md5=data_md5, ip=data_ip, account_id=account_id, pseudo_ipv4=data_pseudo_ipv4))
+        mariapersist_session.commit()
+        data_hour_since_epoch = int(time.time() / 3600)
+        mariapersist_session.connection().execute(text('INSERT INTO mariapersist_slow_download_access_pseudo_ipv4_hourly (pseudo_ipv4, hour_since_epoch, count) VALUES (:pseudo_ipv4, :hour_since_epoch, 1) ON DUPLICATE KEY UPDATE count = count + 1').bindparams(hour_since_epoch=data_hour_since_epoch, pseudo_ipv4=data_pseudo_ipv4))
+        mariapersist_session.commit()
 
     return render_template(
         "page/partner_download.html",
