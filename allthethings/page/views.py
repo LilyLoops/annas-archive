@@ -7778,15 +7778,10 @@ def search_page():
     for key, values in filter_values.items():
         if len(values) == 0:
             continue
+        if any([(value.startswith('anti__')) for value in values]):
+            post_filter.append({ "bool": { "must_not": { "terms": { f"search_only_fields.{key}": [value[len('anti__'):] if value != 'anti___empty' else '' for value in values if value.startswith('anti__')] } } } })
         if any([(not value.startswith('anti__')) for value in values]):
             post_filter.append({ "terms": { f"search_only_fields.{key}": [value if value != '_empty' else '' for value in values if not value.startswith('anti__')] } })
-        else:
-            for value in values:
-                assert(value.startswith('anti__'))
-                value = value[len('anti__'):]
-                if value == '_empty':
-                    value = ''
-                post_filter.append({ "bool": { "must_not": { "terms": { f"search_only_fields.{key}": [value] } } } })
 
     custom_search_sorting = ['_score']
     if sort_value == "newest":
