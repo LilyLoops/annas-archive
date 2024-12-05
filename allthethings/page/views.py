@@ -6835,7 +6835,7 @@ def get_additional_for_aarecord(aarecord):
         if lglicomics_id > 0 and lglicomics_id < 2792000: # 004_lgli_upload_hardlink.sh
             lglicomics_thousands_dir = (lglicomics_id // 1000) * 1000
             lglicomics_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
-            if lglicomics_id <= 2566000:
+            if lglicomics_id < 2567000:
                 add_partner_servers(f"g2/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional, temporarily_unavailable=True)
                 additional['torrent_paths'].append({ "collection": "libgen_li_comics", "torrent_path": f"external/libgen_li_comics/c_{lglicomics_thousands_dir}.torrent", "file_level1": lglicomics_filename, "file_level2": "" }) # Note: no leading zero
             else:
@@ -6860,6 +6860,7 @@ def get_additional_for_aarecord(aarecord):
             lglistandarts_thousands_dir = (lglistandarts_id // 1000) * 1000
             lglistandarts_filename = source_record['md5'].lower()
             add_partner_servers(f"gi/lglihard/standarts/repository/{lglistandarts_thousands_dir}/{lglistandarts_filename}", '', aarecord, additional)
+            additional['torrent_paths'].append({ "collection": "libgen_li_standarts", "torrent_path": f"external/libgen_li_standarts/s_{lglistandarts_thousands_dir}.torrent", "file_level1": lglistandarts_filename, "file_level2": "" }) # Note: no leading zero
 
         additional['download_urls'].append((gettext('page.md5.box.download.lgli'), f"http://libgen.li/ads.php?md5={source_record['md5'].lower()}", (gettext('page.md5.box.download.extra_also_click_get') if shown_click_get else gettext('page.md5.box.download.extra_click_get')) + ' <div style="margin-left: 24px" class="text-sm text-gray-500">' + gettext('page.md5.box.download.libgen_ads') + '</div>'))
         shown_click_get = True

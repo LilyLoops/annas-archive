@@ -331,18 +331,12 @@
           ) }}
         </div>
         <div class="my-2 first:mt-0 last:mb-0">
-          {{ gettext('page.datasets.sources.libgen_li.files2', icon='🙃',
-              libgenli=(dict(href="https://libgen.li/torrents/fiction/") | xmlattr),
-          ) }}
+          <!-- TODO:TRANSLATE -->
+          👩‍💻 Anna’s Archive and Libgen.li collaboratively manage collections of <a {{ dict(href="/torrents#libgen_li_comics") | xmlattr }}>comic books</a>, <a {{ dict(href="/torrents#libgen_li_magazines") | xmlattr }}>magazines</a>, <a {{ dict(href="/torrents#libgen_li_standarts") | xmlattr }}>standard documents</a>, and <a {{ dict(href="/torrents#libgen_li_fiction") | xmlattr }}>fiction (diverged from Libgen.rs)</a>.
         </div>
         <div class="my-2 first:mt-0 last:mb-0">
-          {{ gettext('page.datasets.sources.libgen_li.files3', icon='👩‍💻',
-              comics=(dict(href="/torrents#libgen_li_comics") | xmlattr),
-              magazines=(dict(href="/torrents#libgen_li_magazines") | xmlattr),
-          ) }}
-        </div>
-        <div class="my-2 first:mt-0 last:mb-0">
-          {{ gettext('page.datasets.sources.libgen_li.files4', icon='❌') }}
+          <!-- TODO:TRANSLATE -->
+          🙃 Their “fiction_rus” collection (Russian fiction) has no dedicated torrents, but is covered by torrents from others, and we keep a <a {{ dict(href="/torrents#libgen_li_fiction_rus") | xmlattr }}>mirror</a>.
         </div>
       </td>
     </tr>

@@ -43,18 +43,12 @@
             ) }}
           </div>
           <div class="my-2 first:mt-0 last:mb-0">
-            {{ gettext('page.datasets.sources.libgen_li.files2', icon='🙃',
-                libgenli=(dict(href="https://libgen.li/torrents/fiction/") | xmlattr),
-            ) }}
+            <!-- TODO:TRANSLATE -->
+            👩‍💻 Anna’s Archive and Libgen.li collaboratively manage collections of <a {{ dict(href="/torrents#libgen_li_comics") | xmlattr }}>comic books</a>, <a {{ dict(href="/torrents#libgen_li_magazines") | xmlattr }}>magazines</a>, <a {{ dict(href="/torrents#libgen_li_standarts") | xmlattr }}>standard documents</a>, and <a {{ dict(href="/torrents#libgen_li_fiction") | xmlattr }}>fiction (diverged from Libgen.rs)</a>.
           </div>
           <div class="my-2 first:mt-0 last:mb-0">
-            {{ gettext('page.datasets.sources.libgen_li.files3', icon='👩‍💻',
-                comics=(dict(href="/torrents#libgen_li_comics") | xmlattr),
-                magazines=(dict(href="/torrents#libgen_li_magazines") | xmlattr),
-            ) }}
-          </div>
-          <div class="my-2 first:mt-0 last:mb-0">
-            {{ gettext('page.datasets.sources.libgen_li.files4', icon='❌') }}
+            <!-- TODO:TRANSLATE -->
+            🙃 Their “fiction_rus” collection (Russian fiction) has no dedicated torrents, but is covered by torrents from others, and we keep a <a {{ dict(href="/torrents#libgen_li_fiction_rus") | xmlattr }}>mirror</a>.
           </div>
         </td>
       </tr>
@@ -66,15 +60,21 @@
   </p>
   
   <p class="mb-4">
-    {{ gettext('page.datasets.libgen_li.description2', a_scihub=(dict(href="/datasets/scihub") | xmlattr)) }}
+    {{ gettext('page.datasets.libgen_li.description3', a_libgen_li=dbdumps_https, a_ftp=dbdumps_ftp) }}
   </p>
   
   <p class="mb-4">
-    {{ gettext('page.datasets.libgen_li.description3', a_libgen_li=dbdumps_https, a_ftp=dbdumps_ftp) }}
+    {{ gettext('page.datasets.libgen_li.description2', a_scihub=(dict(href="/datasets/scihub") | xmlattr)) }} 
   </p>
     
   <p class="mb-4">
-    {{ gettext('page.datasets.libgen_li.description4', fiction_starting_point=("<code>f_2201000.torrent</code>" | safe)) }}
+    <!-- TODO:TRANSLATE -->
+    Torrents are available for most of the additional content, most notably torrents for comics, magazines, and standard documents have been released in collaboration with Anna’s Archive. The fiction collection has its own torrents (divergent from <a {{ dict(href="/datasets/lgrs") | xmlattr}}>Libgen.rs</a>) starting at <code>f_2201000.torrent</code>. According to the Libgen.li administrator, the “fiction_rus” (Russian fiction) collection should be covered by regularly released torrents from <a href="https://booktracker.org/index.php?c=18">booktracker.org</a>, most notably the <a href="https://flibusta.is/">flibusta</a> and <a href="https://lib.rus.ec/">lib.rus.ec</a> torrents (which we mirror <a href="/torrents#libgen_li_fiction_rus">here</a>, though we haven't yet established which torrents correspond to which files). Statistics for all collections can be found <a href="https://libgen.li/stat.php">here</a>.
+  </p>
+
+  <p class="mb-4">
+    <!-- TODO:TRANSLATE -->
+    Certain ranges without torrents (such as fiction ranges f_3463000 to f_4260000) are likely Z-Library (or other duplicate) files, though we might want to do some deduplication and make torrents for lgli-unique files in these ranges.
   </p>
   
   <p class="mb-4">
@@ -94,6 +94,9 @@
     <li class="list-disc"><a href="/torrents#libgen_li_fic">{{ gettext('page.datasets.libgen_li.fiction_torrents') }}</a></li>
     <li class="list-disc"><a href="/torrents#libgen_li_comics">{{ gettext('page.datasets.libgen_li.comics_torrents') }}</a></li>
     <li class="list-disc"><a href="/torrents#libgen_li_magazines">{{ gettext('page.datasets.libgen_li.magazines_torrents') }}</a></li>
+    <!-- TODO:TRANSLATE -->
+    <li class="list-disc"><a href="/torrents#libgen_li_standarts">Standard document torrents on Anna’s Archive</a></li>
+    <li class="list-disc"><a href="/torrents#libgen_li_fiction_rus">Russian fiction torrents on Anna’s Archive</a></li>
     <li class="list-disc"><a href="/db/raw/lgli/4663167.json">{{ gettext('page.datasets.common.aa_example_record') }}</a></li>
     <li class="list-disc"><a href="https://libgen.li/">{{ gettext('page.datasets.common.main_website', source=gettext('page.datasets.libgen_li.title')) }}</a></li>
     <li class="list-disc"><a {{ dbdumps_https }}>{{ gettext('page.datasets.libgen_li.link_metadata') }}</a></li>
