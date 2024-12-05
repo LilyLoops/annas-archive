@@ -7750,11 +7750,11 @@ def search_page():
 
     search_input = request.args.get("q", "").strip()
     filter_values = {
-        'search_most_likely_language_code': [val.strip()[0:15] for val in request.args.getlist("lang")],
-        'search_content_type': [val.strip()[0:25] for val in request.args.getlist("content")],
-        'search_extension': [val.strip()[0:10] for val in request.args.getlist("ext")],
-        'search_access_types': [val.strip()[0:50] for val in request.args.getlist("acc")],
-        'search_record_sources': [val.strip()[0:20] for val in request.args.getlist("src")],
+        'search_most_likely_language_code': [val.strip()[0:20] for val in request.args.getlist("lang")],
+        'search_content_type': [val.strip()[0:30] for val in request.args.getlist("content")],
+        'search_extension': [val.strip()[0:15] for val in request.args.getlist("ext")],
+        'search_access_types': [val.strip()[0:55] for val in request.args.getlist("acc")],
+        'search_record_sources': [val.strip()[0:25] for val in request.args.getlist("src")],
     }
     search_desc = (request.args.get("desc", "").strip() == "1")
     page_value_str = request.args.get("page", "").strip()
@@ -7769,18 +7769,25 @@ def search_page():
     if search_index_short not in allthethings.utils.SEARCH_INDEX_SHORT_LONG_MAPPING:
         search_index_short = ""
     search_index_long = allthethings.utils.SEARCH_INDEX_SHORT_LONG_MAPPING[search_index_short]
-    if search_index_short == 'digital_lending':
-        filter_values['search_extension'] = []
 
-    # Correct ISBN by removing spaces so our search for them actually works.
+    # Correct ISBN by removing dashes so our search for them actually works.
     potential_isbn = search_input.replace('-', '')
     if search_input != potential_isbn and (isbnlib.is_isbn13(potential_isbn) or isbnlib.is_isbn10(potential_isbn)):
         return redirect(f"/search?q={potential_isbn}", code=302)
 
     post_filter = []
     for key, values in filter_values.items():
-        if values != []:
-            post_filter.append({ "terms": { f"search_only_fields.{key}": [value if value != '_empty' else '' for value in values] } })
+        if len(values) == 0:
+            continue
+        if any([(not value.startswith('anti__')) for value in values]):
+            post_filter.append({ "terms": { f"search_only_fields.{key}": [value if value != '_empty' else '' for value in values if not value.startswith('anti__')] } })
+        else:
+            for value in values:
+                assert(value.startswith('anti__'))
+                value = value[len('anti__'):]
+                if value == '_empty':
+                    value = ''
+                post_filter.append({ "bool": { "must_not": { "terms": { f"search_only_fields.{key}": [value] } } } })
 
     custom_search_sorting = ['_score']
     if sort_value == "newest":
@@ -7972,28 +7979,33 @@ def search_page():
     aggregations = {}
     aggregations['search_most_likely_language_code'] = [{
             **bucket,
-            'doc_count': doc_counts['search_most_likely_language_code'].get(bucket['key'], 0),
-            'selected':  (bucket['key'] in filter_values['search_most_likely_language_code']),
+            'doc_count':    doc_counts['search_most_likely_language_code'].get(bucket['key'], 0),
+            'selected':     (bucket['key'] in filter_values['search_most_likely_language_code']),
+            'antiselected': (f"anti__{bucket['key']}" in filter_values['search_most_likely_language_code']),
         } for bucket in all_aggregations['search_most_likely_language_code']]
     aggregations['search_content_type'] = [{
             **bucket,
-            'doc_count': doc_counts['search_content_type'].get(bucket['key'], 0),
-            'selected':  (bucket['key'] in filter_values['search_content_type']),
+            'doc_count':    doc_counts['search_content_type'].get(bucket['key'], 0),
+            'selected':     (bucket['key'] in filter_values['search_content_type']),
+            'antiselected': (f"anti__{bucket['key']}" in filter_values['search_content_type']),
         } for bucket in all_aggregations['search_content_type']]
     aggregations['search_extension'] = [{
             **bucket,
-            'doc_count': doc_counts['search_extension'].get(bucket['key'], 0),
-            'selected':  (bucket['key'] in filter_values['search_extension']),
+            'doc_count':    doc_counts['search_extension'].get(bucket['key'], 0),
+            'selected':     (bucket['key'] in filter_values['search_extension']),
+            'antiselected': (f"anti__{bucket['key']}" in filter_values['search_extension']),
         } for bucket in all_aggregations['search_extension']]
     aggregations['search_access_types'] = [{
             **bucket,
-            'doc_count': doc_counts['search_access_types'].get(bucket['key'], 0),
-            'selected':  (bucket['key'] in filter_values['search_access_types']),
+            'doc_count':    doc_counts['search_access_types'].get(bucket['key'], 0),
+            'selected':     (bucket['key'] in filter_values['search_access_types']),
+            'antiselected': (f"anti__{bucket['key']}" in filter_values['search_access_types']),
         } for bucket in all_aggregations['search_access_types']]
     aggregations['search_record_sources'] = [{
             **bucket,
-            'doc_count': doc_counts['search_record_sources'].get(bucket['key'], 0),
-            'selected':  (bucket['key'] in filter_values['search_record_sources']),
+            'doc_count':    doc_counts['search_record_sources'].get(bucket['key'], 0),
+            'selected':     (bucket['key'] in filter_values['search_record_sources']),
+            'antiselected': (f"anti__{bucket['key']}" in filter_values['search_record_sources']),
         } for bucket in all_aggregations['search_record_sources']]
 
     # Only sort languages, for the other lists we want consistency.

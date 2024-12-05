@@ -15,6 +15,44 @@
     }
   </style>
 
+  <script>
+    window.makeTristateCheckbox = function(name) {
+      var yesEl = document.querySelector('.js-tristate-yes--' + name);
+      var noEl = document.querySelector('.js-tristate-no--' + name);
+      var buttonEl = document.querySelector('.js-tristate-button--' + name);
+      var iconEl = document.querySelector('.js-tristate-icon--' + name);
+
+      function renderIcon() {
+        if (yesEl.checked) {
+          // TODO:TRANSLATE
+          iconEl.innerHTML = '<span title="Include only" class="text-[#0095ff] icon-[fluent-mdl2--box-checkmark-solid]"></span>';
+        } else if (noEl.checked) {
+          // TODO:TRANSLATE
+          iconEl.innerHTML = '<span title="Exclude" class="text-red-500 icon-[fluent-mdl2--box-multiply-solid]"></span>';
+        } else {
+          // TODO:TRANSLATE
+          iconEl.innerHTML = '<span title="Unchecked" class="icon-[fluent-mdl2--checkbox]"></span>';
+        }
+      }
+      renderIcon();
+
+      buttonEl.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (yesEl.checked) {
+          yesEl.checked = false;
+          noEl.checked = true;
+        } else if (noEl.checked) {
+          yesEl.checked = false;
+          noEl.checked = false;
+        } else {
+          yesEl.checked = true;
+          noEl.checked = false;
+        }
+        renderIcon();
+      });
+    };
+  </script>
+
   <form action="/search" method="get" role="search" class="js-search-form" onsubmit="for (el of document.querySelectorAll('.js-spinner')) { el.classList.remove('hidden'); }">
     <input type="hidden" name="index" value="{{ search_dict.search_index_short }}" class="js-search-form-index">
     <input type="hidden" name="page" value="1">
@@ -159,34 +197,49 @@
           <div class="font-bold mb-1">{{ gettext('page.search.filters.content.header') }}</div>
           <div class="mb-4">
             {% for bucket in search_dict.aggregations.search_content_type %}
-              <label class="flex cursor-pointer items-start {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><input type="checkbox" class="mr-1 mt-1.5 sm:mt-1" name="content" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></label>
+              <input type="checkbox" class="hidden js-tristate-yes--content--{{bucket.key}}" name="content" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}>
+              <input type="checkbox" class="hidden js-tristate-no--content--{{bucket.key}}" name="content" value="anti__{{bucket.key}}" {% if bucket.antiselected %}checked{% endif %}>
+              <button class="flex w-full text-left cursor-pointer items-start js-tristate-button--content--{{bucket.key}} {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><span class="mr-1 pt-[1px] js-tristate-icon--content--{{bucket.key}}"></span><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></button>
+              <script>window.makeTristateCheckbox('content--' + {{ bucket.key | tojson }});</script>
             {% endfor %}
           </div>
           {% if search_dict.search_index_short == '' %}
             <div class="font-bold mb-1">{{ gettext('page.search.filters.filetype.header') }}</div>
             <div class="mb-4">
               {% for bucket in search_dict.aggregations.search_extension %}
-                <label class="flex cursor-pointer items-start {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><input type="checkbox" class="mr-1 mt-1.5 sm:mt-1" name="ext" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></label>
+                <input type="checkbox" class="hidden js-tristate-yes--ext--{{bucket.key}}" name="ext" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}>
+                <input type="checkbox" class="hidden js-tristate-no--ext--{{bucket.key}}" name="ext" value="anti__{{bucket.key}}" {% if bucket.antiselected %}checked{% endif %}>
+                <button class="flex w-full text-left cursor-pointer items-start js-tristate-button--ext--{{bucket.key}} {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><span class="mr-1 pt-[2px] js-tristate-icon--ext--{{bucket.key}}"></span><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></button>
+                <script>window.makeTristateCheckbox('ext--' + {{ bucket.key | tojson }});</script>
               {% endfor %}
             </div>
           {% endif %}
           <div class="font-bold mb-1">{{ gettext('page.search.filters.access.header') }}</div>
           <div class="mb-4">
             {% for bucket in search_dict.aggregations.search_access_types %}
-              <label class="flex cursor-pointer items-start {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><input type="checkbox" class="mr-1 mt-1.5 sm:mt-1" name="acc" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}><span class="mr-1 flex-grow">{% if bucket.key == 'aa_download' %}🚀 {% endif %}{{bucket.label | replace('-', '&#8209;')}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></label>
+              <input type="checkbox" class="hidden js-tristate-yes--acc--{{bucket.key}}" name="acc" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}>
+              <input type="checkbox" class="hidden js-tristate-no--acc--{{bucket.key}}" name="acc" value="anti__{{bucket.key}}" {% if bucket.antiselected %}checked{% endif %}>
+              <button class="flex w-full text-left cursor-pointer items-start js-tristate-button--acc--{{bucket.key}} {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><span class="mr-1 pt-[2px] js-tristate-icon--acc--{{bucket.key}}"></span><span class="mr-1 flex-grow">{% if bucket.key == 'aa_download' %}🚀 {% endif %}{{bucket.label | replace('-', '&#8209;')}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></button>
+              <script>window.makeTristateCheckbox('acc--' + {{ bucket.key | tojson }});</script>
             {% endfor %}
           </div>
           <div class="font-bold mb-1">{{ gettext('page.search.filters.source.header') }}</div>
           <div class="mb-4">
             {% for bucket in search_dict.aggregations.search_record_sources %}
-              <label class="flex cursor-pointer items-start {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><input type="checkbox" class="mr-1 mt-1.5 sm:mt-1" name="src" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}><div class="flex-grow flex flex-col"><div class="flex-grow flex"><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}} [{{ bucket.key }}]</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></div>{% if bucket.key in ["zlib","ia","isbndb","oclc","duxiu"] and search_dict.search_index_short != 'digital_lending' %}<div class="text-xs text-gray-500">{{ gettext('page.search.filters.source.scraped') }}</div>{% endif %}</div></label>
+              <input type="checkbox" class="hidden js-tristate-yes--src--{{bucket.key}}" name="src" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}>
+              <input type="checkbox" class="hidden js-tristate-no--src--{{bucket.key}}" name="src" value="anti__{{bucket.key}}" {% if bucket.antiselected %}checked{% endif %}>
+              <button class="flex w-full text-left cursor-pointer items-start js-tristate-button--src--{{bucket.key}} {% if bucket.doc_count == 0 %}opacity-60{% endif %}"><span class="mr-1 pt-[2px] js-tristate-icon--src--{{bucket.key}}"></span><div class="flex-grow flex flex-col"><div class="flex-grow flex"><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}} [{{ bucket.key }}]</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></div>{% if bucket.key in ["zlib","ia","isbndb","oclc","duxiu"] and search_dict.search_index_short != 'digital_lending' %}<div class="text-xs text-gray-500">{{ gettext('page.search.filters.source.scraped') }}</div>{% endif %}</div></button>
+              <script>window.makeTristateCheckbox('src--' + {{ bucket.key | tojson }});</script>
             {% endfor %}
           </div>
           {% if (search_dict.aggregations.search_most_likely_language_code | length) > 0 %}
             <div class="font-bold mb-1">{{ gettext('page.search.filters.language.header') }}</div>
             <div class="mb-4">
               {% for bucket in search_dict.aggregations.search_most_likely_language_code %}
-                <label class="flex cursor-pointer items-start {% if bucket.doc_count == 0 %}opacity-60{% endif %} {% if (loop.index > 10) and (not bucket.selected) %}hidden js-language-hidden{% endif %}"><input type="checkbox" class="mr-1 mt-1.5 sm:mt-1" name="lang" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></label>
+                <input type="checkbox" class="hidden js-tristate-yes--lang--{{bucket.key}}" name="lang" value="{{bucket.key}}" {% if bucket.selected %}checked{% endif %}>
+                <input type="checkbox" class="hidden js-tristate-no--lang--{{bucket.key}}" name="lang" value="anti__{{bucket.key}}" {% if bucket.antiselected %}checked{% endif %}>
+                <button class="flex w-full text-left cursor-pointer items-start js-tristate-button--lang--{{bucket.key}} {% if bucket.doc_count == 0 %}opacity-60{% endif %} {% if (loop.index > 10) and (not bucket.selected) %}hidden js-language-hidden{% endif %}"><span class="mr-1 pt-[2px] js-tristate-icon--lang--{{bucket.key}}"></span><span class="mr-1 flex-grow">{{bucket.label | replace('-', '&#8209;' | safe)}}</span><span class="mt-0.5 text-sm sm:text-xs text-gray-500">{% if search_dict.had_primary_es_timeout %}~{% endif %}{{'{0:,}'.format(bucket.doc_count)}}</span></button>
+                <script>window.makeTristateCheckbox('lang--' + {{ bucket.key | tojson }});</script>
               {% endfor %}
               {% if search_dict.aggregations.search_most_likely_language_code | length > 10 %}
                 <a href="#" onclick="event.preventDefault(); event.stopPropagation(); for(var el of document.querySelectorAll('.js-language-hidden')) { el.classList.remove('hidden') }; event.currentTarget.classList.add('hidden')">{{ gettext('page.search.more') }}</a>
