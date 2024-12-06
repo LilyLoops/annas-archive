@@ -621,8 +621,8 @@
     <script>
       (function() {
         // Possible domains we can encounter:
-        const domainsToReplace = ["annas-" + "archive.org", "annas-" + "archive.se", "annas-" + "archive.li", "localtest.me:8000", "localtest.me", window.baseDomain];
-        const validDomains = ["annas-" + "archive.org", "annas-" + "archive.se", "annas-" + "archive.li", "localtest.me:8000", "localtest.me"];
+        const validDomains = {{ g.valid_other_domains | tojson }};
+        const domainsToReplace = [...validDomains, window.baseDomain];
         // For checking and redirecting if our current host is down (but if Cloudflare still responds).
         const initialCheckMs = 0;
         const intervalCheckOtherDomains = 10000;
