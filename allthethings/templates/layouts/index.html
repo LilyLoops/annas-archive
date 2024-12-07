@@ -629,9 +629,9 @@
               {% if 'localhost' not in domain %}
               {% if '-' in domain %}
                 {% set domain_parts = domain.split('-') %}
-                "{{ domain_parts[0] }}-" + "{{ domain_parts[1] }}"{% if not loop.last %}, {% endif %}
+                "{{ domain_parts[0] }}-" + "{{ domain_parts[1] }}",
               {% else %}
-                "{{ domain }}"{% if not loop.last %}, {% endif %}
+                "{{ domain }}",
               {% endif %}
               {% endif %}
           {% endfor %}
@@ -666,7 +666,7 @@
         }
 
         {% for domain in g.valid_other_domains %}
-        {% if 'localhost' not in domain %}
+        {% if ('localhost' not in domain) and 'localtest' not in domain %}
         for (const el of document.querySelectorAll(".js-{{ domain.replace('.', '-') }}")) {
           {% if '-' in domain %}
             {% set domain_parts = domain.split('-') %}
