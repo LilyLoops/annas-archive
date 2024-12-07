@@ -6713,12 +6713,11 @@ def get_additional_for_aarecord(aarecord):
             ia_id = source_record['aa_ia_file']['ia_id']
             extension = source_record['aa_ia_file']['extension']
             ia_file_type = source_record['aa_ia_file']['type']
-            server = ''
             if ia_file_type == 'acsm':
                 directory = 'other'
                 if bool(re.match(r"^[a-z]", ia_id)):
                     directory = ia_id[0]
-                partner_path = f"g2/ia1acsm/{directory}/{ia_id}.{extension}"
+                partner_path = f"g6/ia1acsm/{directory}/{ia_id}.{extension}"
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/ia/annas-archive-ia-acsm-{directory}.tar.torrent", "file_level1": f"annas-archive-ia-acsm-{directory}.tar", "file_level2": f"{ia_id}.{extension}" })
             elif ia_file_type == 'lcpdf':
                 directory = 'other'
@@ -6730,7 +6729,7 @@ def get_additional_for_aarecord(aarecord):
                     directory = 'per_'
                 elif bool(re.match(r"^[a-z]", ia_id)):
                     directory = ia_id[0]
-                partner_path = f"g2/ia1lcpdf/{directory}/{ia_id}.{extension}"
+                partner_path = f"g6/ia1lcpdf/{directory}/{ia_id}.{extension}"
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/ia/annas-archive-ia-lcpdf-{directory}.tar.torrent", "file_level1": f"annas-archive-ia-lcpdf-{directory}.tar", "file_level2": f"{ia_id}.{extension}" })
             elif ia_file_type == 'ia2_acsmpdf':
                 server = 'g3'
@@ -6742,28 +6741,27 @@ def get_additional_for_aarecord(aarecord):
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{source_record['aa_ia_file']['data_folder']}.torrent", "file_level1": source_record['aa_ia_file']['aacid'], "file_level2": "" })
             else:
                 raise Exception(f"Unknown ia_record file type: {ia_file_type}")
-            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional, temporarily_unavailable=True)
-            # add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional, temporarily_unavailable=((not partner_path.startswith('ga/')) and (not partner_path.startswith('g2/'))))
+            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional)
     for source_record in source_records_by_type['duxiu']:
         if source_record.get('duxiu_file') is not None:
             data_folder = source_record['duxiu_file']['data_folder']
             additional['torrent_paths'].append({ "collection": "duxiu", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{data_folder}.torrent", "file_level1": source_record['duxiu_file']['aacid'], "file_level2": "" })
             server = None
             if data_folder >= 'annas_archive_data__aacid__duxiu_files__20240613T170516Z--20240613T170517Z' and data_folder <= 'annas_archive_data__aacid__duxiu_files__20240613T171624Z--20240613T171625Z':
-                server = 'w'
+                server = 'g1'
             elif data_folder >= 'annas_archive_data__aacid__duxiu_files__20240613T171757Z--20240613T171758Z' and data_folder <= 'annas_archive_data__aacid__duxiu_files__20240613T190311Z--20240613T190312Z':
-                server = 'v'
+                server = 'g1'
             elif data_folder >= 'annas_archive_data__aacid__duxiu_files__20240613T190428Z--20240613T190429Z' and data_folder <= 'annas_archive_data__aacid__duxiu_files__20240613T204954Z--20240613T204955Z':
-                server = 'w'
+                server = 'g1'
             elif data_folder >= 'annas_archive_data__aacid__duxiu_files__20240613T205835Z--20240613T205836Z' and data_folder <= 'annas_archive_data__aacid__duxiu_files__20240613T223234Z--20240613T223235Z':
-                server = 'w'
+                server = 'g1'
             else:
                 if AACID_SMALL_DATA_IMPORTS:
-                    server = 'w'
+                    server = 'g1'
                 else:
                     raise Exception(f"Warning: Unknown duxiu range: {data_folder=}")
             partner_path = make_temp_anon_aac_path(f"{server}/duxiu_files", source_record['duxiu_file']['aacid'], data_folder)
-            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional, temporarily_unavailable=True)
+            add_partner_servers(partner_path, 'aa_exclusive', aarecord, additional)
     for source_record in source_records_by_type['aac_upload']:
         for aac_upload_file in source_record['files']:
             additional['torrent_paths'].append({ "collection": "upload", "torrent_path": f"managed_by_aa/annas_archive_data__aacid/{aac_upload_file['data_folder']}.torrent", "file_level1": aac_upload_file['aacid'], "file_level2": "" })
