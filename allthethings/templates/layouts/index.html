@@ -199,7 +199,7 @@
             <div class="bg-[#ff005b] hidden js-fundraiser-banner">
               <div class="max-w-[1050px] mx-auto px-4 py-2 text-[#fff] flex justify-center">
                 <div>
-                  <!-- <div>
+                  <div>
                     {{ gettext('layout.index.header.banner.fundraiser.help') }}
                     {{ gettext('layout.index.header.banner.fundraiser.takedown') }}
                   </div>
@@ -211,13 +211,8 @@
                       <div style="position: absolute; left: 0; top: 0; width: 16px; height: 16px; background: #0095ff66; border-radius: 100%; animation: header-ping 1.5s cubic-bezier(0,0,.2,1) infinite"></div>
                       <div style="position: absolute; left: 0; top: 0; width: 16px; height: 16px; background: white; border-radius: 100%; box-shadow: 0 0 3px #00000069;"></div>
                     </div>
-                  </div> -->
-                  <div>
-                    {{ gettext('layout.index.header.banner.issues.partners_closed') }}
-                    {{ gettext('layout.index.header.banner.issues.memberships_extended') }}
                   </div>
                   <div>➡️ {{ gettext('layout.index.header.banner.fundraiser.this_month') | replace('<strong>' | safe, '<strong style="color:#a0d7ff">' | safe) }} <a class="custom-a text-[#fff] hover:text-[#ddd] underline" href="/donate">{{ gettext('layout.index.header.nav.donate') }}</a></div>
-                  <!-- <div>➡️ {{ gettext('layout.index.header.banner.fundraiser.now') | replace('<strong>' | safe, '<strong style="color:#a0d7ff">' | safe) }} {{ gettext('layout.index.header.banner.fundraiser.valid_end_of_month') }} <a class="custom-a text-[#fff] hover:text-[#ddd] underline" href="/donate">{{ gettext('layout.index.header.nav.donate') }}</a></div> -->
                 </div>
                 <div>
                   <a href="#" class="custom-a ml-2 text-[#fff] hover:text-[#ddd] js-fundraiser-banner-close">✕</a>
@@ -621,12 +616,22 @@
     <script>
       (function() {
         // Possible domains we can encounter:
-        const validDomains = {{ g.valid_other_domains | tojson }};
+        const validDomains = [
+          {% for domain in g.valid_other_domains %}
+              {% if '-' in domain %}
+                {% set domain_parts = domain.split('-') %}
+                "{{ domain_parts[0] }}-" + "{{ domain_parts[1] }}"{% if not loop.last %}, {% endif %}
+              {% else %}
+                "{{ domain }}"{% if not loop.last %}, {% endif %}
+              {% endif %}
+          {% endfor %}
+        ];
+
         const domainsToReplace = [...validDomains, window.baseDomain];
         // For checking and redirecting if our current host is down (but if Cloudflare still responds).
         const initialCheckMs = 0;
         const intervalCheckOtherDomains = 10000;
-        const domainsToNavigateTo = ["annas-" + "archive.li", "annas-" + "archive.se", "annas-" + "archive.org"];
+        const domainsToNavigateTo = validDomains;
         // For testing:
         // const domainsToNavigateTo = ["localtest.me:8000", "testing_redirects.localtest.me:8000"];
 
