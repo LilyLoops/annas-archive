@@ -621,12 +621,24 @@
     <script>
       (function() {
         // Possible domains we can encounter:
-        const domainsToReplace = ["annas-" + "archive.org", "annas-" + "archive.se", "annas-" + "archive.li", "localtest.me:8000", "localtest.me", window.baseDomain];
-        const validDomains = ["annas-" + "archive.org", "annas-" + "archive.se", "annas-" + "archive.li", "localtest.me:8000", "localtest.me"];
+        const validDomains = [
+          {% for domain in g.valid_other_domains %}
+              {% if 'localhost' not in domain %}
+              {% if '-' in domain %}
+                {% set domain_parts = domain.split('-') %}
+                "{{ domain_parts[0] }}-" + "{{ domain_parts[1] }}"{% if not loop.last %}, {% endif %}
+              {% else %}
+                "{{ domain }}"{% if not loop.last %}, {% endif %}
+              {% endif %}
+              {% endif %}
+          {% endfor %}
+        ];
+
+        const domainsToReplace = [...validDomains, window.baseDomain];
         // For checking and redirecting if our current host is down (but if Cloudflare still responds).
         const initialCheckMs = 0;
         const intervalCheckOtherDomains = 10000;
-        const domainsToNavigateTo = ["annas-" + "archive.li", "annas-" + "archive.se", "annas-" + "archive.org"];
+        const domainsToNavigateTo = validDomains;
         // For testing:
         // const domainsToNavigateTo = ["localtest.me:8000", "testing_redirects.localtest.me:8000"];
 
@@ -649,15 +661,20 @@
             break;
           }
         }
-        for (const el of document.querySelectorAll(".js-annas-archive-org")) {
-          el.href = loc.replace(currentDomainToReplace, "annas-" + "archive.org");
+
+        {% for domain in g.valid_other_domains %}
+        {% if 'localhost' not in domain %}
+        for (const el of document.querySelectorAll(".js-{{ domain.replace('.', '-') }}")) {
+          {% if '-' in domain %}
+            {% set domain_parts = domain.split('-') %}
+          el.href = loc.replace(currentDomainToReplace, "{{ domain_parts[0] }}-" + "{{ domain_parts[1] }}");
+          {% else %}
+          el.href = loc.replace(currentDomainToReplace, "{{ domain }}");
+          {% endif %}
         }
-        for (const el of document.querySelectorAll(".js-annas-archive-se")) {
-          el.href = loc.replace(currentDomainToReplace, "annas-" + "archive.se");
-        }
-        for (const el of document.querySelectorAll(".js-annas-archive-li")) {
-          el.href = loc.replace(currentDomainToReplace, "annas-" + "archive.li");
-        }
+        {% endif %}
+        {% endfor %}
+
 
         // Use the new domain in all links and forms.
         let areUsingOtherDomain = false;
