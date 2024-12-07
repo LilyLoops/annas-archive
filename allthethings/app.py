@@ -26,7 +26,7 @@ from allthethings.page.views import page, all_search_aggs
 from allthethings.dyn.views import dyn
 from allthethings.cli.views import cli
 from allthethings.extensions import engine, mariapersist_engine, babel, debug_toolbar, flask_static_digest, mail
-from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, X_AA_SECRET
+from config.settings import SECRET_KEY, DOWNLOADS_SECRET_KEY, X_AA_SECRET, VALID_OTHER_DOMAINS
 
 import allthethings.utils
 
@@ -206,16 +206,16 @@ def extensions(app):
 
         g.app_debug = app.debug
         g.base_domain = 'annas-archive.li'
-        valid_other_domains = os.getenv('VALID_OTHER_DOMAINS').split(',')
-        g.valid_other_domains = valid_other_domains
+        valid_other_domains = VALID_OTHER_DOMAINS
         if app.debug:
-            valid_other_domains.append('localtest.me:8000')
+            valid_other_domains.extend(['localtest.me:8000', 'localtest'])
         # Not just for app.debug, but also for Docker health check.
         valid_other_domains.append('localhost:8000')
         for valid_other_domain in valid_other_domains:
             if request.headers['Host'].endswith(valid_other_domain):
                 g.base_domain = valid_other_domain
                 break
+        g.valid_other_domains = valid_other_domains
 
         g.domain_lang_code = allthethings.utils.get_domain_lang_code(get_locale())
         g.full_lang_code = allthethings.utils.get_full_lang_code(get_locale())
