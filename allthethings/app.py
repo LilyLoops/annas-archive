@@ -210,7 +210,8 @@ def extensions(app):
         if app.debug:
             valid_other_domains.extend(['localtest.me:8000', 'localtest'])
         # Not just for app.debug, but also for Docker health check.
-        valid_other_domains.append('localhost:8000')
+        if 'localhost:8000' not in valid_other_domains:
+            valid_other_domains.append('localhost:8000')
         for valid_other_domain in valid_other_domains:
             if request.headers['Host'].endswith(valid_other_domain):
                 g.base_domain = valid_other_domain
