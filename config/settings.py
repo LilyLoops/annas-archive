@@ -21,6 +21,8 @@ HOODPAY_AUTH = os.getenv("HOODPAY_AUTH", None)
 FAST_PARTNER_SERVER1 = os.getenv("FAST_PARTNER_SERVER1", None)
 X_AA_SECRET = os.getenv("X_AA_SECRET", None)
 AA_EMAIL = os.getenv("AA_EMAIL", "")
+VALID_OTHER_DOMAINS = os.getenv("VALID_OTHER_DOMAINS", "annas-archive.org,annas-archive.se").split(',')
+
 
 # Redis.
 # REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")

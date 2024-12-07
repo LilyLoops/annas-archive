@@ -26,6 +26,8 @@ To get Anna's Archive running locally:
   cp data-imports/.env-data-imports.dev data-imports/.env-data-imports
   ```
 
+  Be sure to edit `VALID_OTHER_DOMAINS` in your `.env` file to include any of your own production domains.
+
 3. **Build and Start the Application**
 
   Use Docker Compose to build and start the application:
@@ -174,3 +176,4 @@ If you are changing any translations, you should also run `./run check-translati
 ## License
 
 Released in the public domain under the terms of [CC0](./LICENSE). By contributing you agree to license your code under the same license.
+
