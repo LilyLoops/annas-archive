@@ -76,6 +76,12 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project
+# Install playwright's dependencies
+RUN --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=tmpfs,target=/usr/share/doc \
+    --mount=type=tmpfs,target=/usr/share/man \
+    playwright install chromium --with-deps
 
 # Download models
 RUN echo 'import fast_langdetect; fast_langdetect.detect("dummy")' | python3

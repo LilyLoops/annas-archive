@@ -55,7 +55,7 @@
     <h2 class="mt-4 mb-4 text-3xl font-bold">{{ gettext('page.account.logged_out.title') }}</h2>
 
     {% if request.args.get('key') %}
-      <p class="mb-4">{{ gettext('page.account.logged_out.registered.text1', key=(request.args.get('key') + copy_button(request.args.get('key')) ), span_key=('class="font-bold underline"' | safe)) }}</p>
+      <p class="mb-4">{{ gettext('page.account.logged_out.registered.text1', key=(request.args.get('key') + copy_button(request.args.get('key')) ), span_key=('class="font-bold underline" data-testid="secret-key"' | safe)) }}</p>
 
       <p class="mb-4">
         {{ gettext('page.account.logged_out.registered.text2') }}
