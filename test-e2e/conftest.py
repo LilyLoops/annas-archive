@@ -1,7 +1,7 @@
 from typing import Generator
-import re
 import pytest
 from playwright.sync_api import Page, Playwright, APIRequestContext, expect
+import urllib
 
 
 @pytest.fixture(scope="session")
@@ -15,11 +15,9 @@ def api_request_context(playwright: Playwright) -> Generator[APIRequestContext, 
 def account_id(api_request_context: APIRequestContext) -> Generator[str, None, None]:
     account = api_request_context.post("/account/register")
     assert account.ok
-    body = account.text()
-    needle = ">/account/?key="
-    start = body.index(needle)
-    end = body.index('<', start)
-    secret_key = body[start + len(needle):end]
+    parsed = urllib.parse.urlparse(account.url)
+    query = urllib.parse.parse_qs(parsed.query)
+    secret_key = query["key"][0]
     yield secret_key
 
 
@@ -28,9 +26,6 @@ def authenticated_page(account_id: str, page: Page) -> Generator[Page, None, Non
     page.goto("http://localtest.me:8000/account")
     page.get_by_role("textbox", name="Secret key").fill(account_id)
     page.get_by_role("button", name="Log in").click()
-    # bypass the flask-debug page
-    expect(page).to_have_url(re.compile(r"/account/$"))
-    page.get_by_role("link").click()
     expect(page.get_by_text("Membership: None")).to_be_visible()
     page.goto("http://localtest.me:8000/")
     yield page
