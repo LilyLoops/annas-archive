@@ -3445,6 +3445,21 @@ msgstr "The metadata for this library is freely available <a %(a_libgen_li)s>at 
 msgid "page.datasets.libgen_li.description4"
 msgstr "There are no torrents available for the additional content. The torrents that are on the Libgen.li website are mirrors of other torrents listed here. The one exception is fiction torrents starting at %(fiction_starting_point)s. The comics and magazines torrents are released as a collaboration between Anna’s Archive and Libgen.li."
 
+msgid "page.datasets.libgen_li.description.torrents"
+msgstr "Torrents are available for most of the additional content, most notably torrents for comics, magazines, and standard documents have been released in collaboration with Anna’s Archive."
+
+msgid "page.datasets.libgen_li.description.fiction_torrents"
+msgstr "The fiction collection has its own torrents (divergent from <a %(a_href)s>Libgen.rs</a>) starting at %(start)s."
+
+msgid "page.datasets.libgen_li.description.fiction_rus"
+msgstr "According to the Libgen.li administrator, the “fiction_rus” (Russian fiction) collection should be covered by regularly released torrents from <a %(a_booktracker)s>booktracker.org</a>, most notably the <a %(a_flibusta)s>flibusta</a> and <a %(a_librusec)s>lib.rus.ec</a> torrents (which we mirror <a %(a_torrents)s>here</a>, though we haven't yet established which torrents correspond to which files)."
+
+msgid "page.datasets.libgen_li.description.stats"
+msgstr "Statistics for all collections can be found <a %(a_href)s>on libgen's website</a>."
+
+msgid "page.datasets.libgen_li.description.omissions"
+msgstr "Certain ranges without torrents (such as fiction ranges f_3463000 to f_4260000) are likely Z-Library (or other duplicate) files, though we might want to do some deduplication and make torrents for lgli-unique files in these ranges."
+
 #: allthethings/page/templates/page/datasets_lgli.html:81
 msgid "page.datasets.libgen_li.description5"
 msgstr "Note that the torrent files referring to “libgen.is” are explicitly mirrors of <a %(a_libgen)s>Libgen.rs</a> (“.is” is a different domain used by Libgen.rs)."
@@ -3464,6 +3479,12 @@ msgstr "Comics torrents on Anna’s Archive"
 #: allthethings/page/templates/page/datasets_lgli.html:96
 msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Magazine torrents on Anna’s Archive"
+
+msgid "page.datasets.libgen_li.standarts_torrents"
+msgstr "Standard document torrents on Anna’s Archive"
+
+msgid "page.datasets.libgen_li.fiction_rus_torrents"
+msgstr "Russian fiction torrents on Anna’s Archive"
 
 #: allthethings/page/templates/page/datasets_lgli.html:99
 msgid "page.datasets.libgen_li.link_metadata"
@@ -5269,6 +5290,9 @@ msgstr "Light volunteering"
 msgid "page.volunteering.section.light.text1"
 msgstr "If you have a few hours to spare, you can help out in a number of ways. Be sure to join the <a %(a_telegram)s>volunteers chat on Telegram</a>."
 
+msgid "page.volunteering.section.light.matrix"
+msgstr "We now also have a synced Matrix channel at %(matrix)s."
+
 #: allthethings/page/templates/page/volunteering.html:36
 msgid "page.volunteering.section.light.text2"
 msgstr "As a token of appreciation, we typically give out 6 months of “Lucky Librarian” for basic milestones, and more for continued volunteering work. All milestones require high quality work — sloppy work hurts us more than it helps and we’ll reject it. Please <a %(a_contact)s>email us</a> when you reach a milestone."
@@ -5281,9 +5305,15 @@ msgstr "Task"
 msgid "page.volunteering.table.header.milestone"
 msgstr "Milestone"
 
+msgid "page.volunteering.table.spread_the_word.task.alt1"
+msgstr "Spreading the word of Anna’s Archive. For example, by recommending books on AA, linking to our blog posts, or generally directing people to our website."
+
 #: allthethings/page/templates/page/volunteering.html:46
 msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s links or screenshots."
+
+msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
+msgstr "These should show you letting someone know about Anna’s Archive, and them thanking you."
 
 #: allthethings/page/templates/page/volunteering.html:49
 msgid "page.volunteering.table.open_library.task"

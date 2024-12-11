@@ -28,8 +28,7 @@
 
   <p class="mb-4">
     {{ gettext('page.volunteering.section.light.text1', a_telegram=(a.telegram_volunteers|xmlattr)) }}
-    <!-- TODO:TRANSLATE -->
-    We now also have a synced Matrix channel at #annas:archivecommunication.org.
+    {{ gettext('page.volunteering.section.light.matrix', matrix="#annas:archivecommunication.org") }}
   </p>
 
   <p class="mb-4">
@@ -42,8 +41,8 @@
       <th class="align-bottom px-4 py-1 ">{{ gettext('page.volunteering.table.header.milestone') }}</th>
     </tr>
     <tr class="even:bg-[#f2f2f2]">
-      <td class="p-4"><!--TODO:TRANSLATE--> Spreading the word of Anna’s Archive. For example, by recommending books on AA, linking to our blog posts, or generally directing people to our website.</td>
-      <td class="p-4">{{ gettext('page.volunteering.table.spread_the_word.milestone_count', links=30) }} <!-- TODO:TRANSLATE -->These should show you letting someone know about Anna’s Archive, and them thanking you.</td>
+      <td class="p-4">{{ gettext('page.volunteering.table.spread_the_word.task.alt1') }}</td>
+      <td class="p-4">{{ gettext('page.volunteering.table.spread_the_word.milestone_count', links=30) }} {{ gettext('page.volunteering.table.spread_the_word.milestone.let_them_know') }}</td>
     </tr>
     <tr class="even:bg-[#f2f2f2]">
       <td class="p-4">{{ gettext('page.volunteering.table.open_library.task', a_metadata=(a.metadata|xmlattr)) }}</td>
