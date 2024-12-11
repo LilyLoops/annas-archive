@@ -6613,8 +6613,7 @@ def add_partner_servers(path, modifier, aarecord, additional, temporarily_unavai
         return
     # When changing the domains, don't forget to change md5_fast_download and md5_slow_download.
     for index in range(len(allthethings.utils.FAST_DOWNLOAD_DOMAINS)):
-        # TODO:TRANSLATE
-        additional['fast_partner_urls'].append(((gettext("common.md5.servers.fast_partner", number=len(additional['fast_partner_urls'])+1) + ((' ' + '(recommended)') if len(additional['fast_partner_urls']) == 0 else '')), '/fast_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.no_browser_verification_or_waitlists") if len(additional['fast_partner_urls']) == 0 else ''))
+        additional['fast_partner_urls'].append(((gettext("common.md5.servers.fast_partner", number=len(additional['fast_partner_urls'])+1) + ((' ' + gettext("common.md5.servers.fast_partner.recommended")) if len(additional['fast_partner_urls']) == 0 else '')), '/fast_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.no_browser_verification_or_waitlists") if len(additional['fast_partner_urls']) == 0 else ''))
     for index in range(len(allthethings.utils.SLOW_DOWNLOAD_DOMAINS)):
         if allthethings.utils.SLOW_DOWNLOAD_DOMAINS_SLIGHTLY_FASTER[index]:
             additional['slow_partner_urls'].append((gettext("common.md5.servers.slow_partner", number=len(additional['slow_partner_urls'])+1), '/slow_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.faster_with_waitlist")))
@@ -7010,8 +7009,7 @@ def get_additional_for_aarecord(aarecord):
             gettext('page.md5.top_row.isbndb', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'isbndb' else '',
             gettext('page.md5.top_row.oclc', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'oclc' else '',
             gettext('page.md5.top_row.duxiu_ssid', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'duxiu_ssid' else '',
-            # TODO:TRANSLATE
-            f"CADAL SSNO {aarecord_id_split[1]}" if aarecord_id_split[0] == 'cadal_ssno' else '',
+            gettext('page.md5.top_row.cadal_ssno', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'cadal_ssno' else '',
             gettext('page.md5.top_row.magzdb', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'magzdb' else '',
             gettext('page.md5.top_row.nexusstc', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'nexusstc' else '',
             gettext('page.md5.top_row.edsebk', id=aarecord_id_split[1]).replace('}','') if aarecord_id_split[0] == 'edsebk' else '',

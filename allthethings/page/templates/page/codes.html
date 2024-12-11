@@ -35,8 +35,7 @@
     </div>
     <button class="px-4 py-1 bg-[#0195ff] text-white rounded hover:bg-blue-600 text-sm" type="submit">{{ gettext('common.form.go') }}</button>
     <a href="/member_codes" class="custom-a bg-[#777] hover:bg-[#999] text-white py-1 px-3 rounded text-sm">{{ gettext('common.form.reset') }}</a>
-    <!-- TODO:TRANSLATE -->
-    <a class="custom-a bg-[#777] hover:bg-[#999] text-white py-1 px-3 rounded text-sm" {{ dict(href='/search?q="{}"'.format(prefix_label)) | xmlattr }}>Search Anna’s Archive</a>
+    <a class="custom-a bg-[#777] hover:bg-[#999] text-white py-1 px-3 rounded text-sm" {{ dict(href='/search?q="{}"'.format(prefix_label)) | xmlattr }}>{{ gettext('page.codes.search_archive_start') }}</a>
   </form>
 
   {% if bad_unicode %}

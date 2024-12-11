@@ -24,14 +24,11 @@
 
       function renderIcon() {
         if (yesEl.checked) {
-          // TODO:TRANSLATE
-          iconEl.innerHTML = '<span title="Include only" class="text-[#0095ff] icon-[fluent-mdl2--box-checkmark-solid]"></span>';
+          iconEl.innerHTML = '<span title="{{ gettext("page.search.icon.include_only") }}" class="text-[#0095ff] icon-[fluent-mdl2--box-checkmark-solid]"></span>';
         } else if (noEl.checked) {
-          // TODO:TRANSLATE
-          iconEl.innerHTML = '<span title="Exclude" class="text-red-500 icon-[fluent-mdl2--box-multiply-solid]"></span>';
+          iconEl.innerHTML = '<span title="{{ gettext("page.search.icon.exclude") }}" class="text-red-500 icon-[fluent-mdl2--box-multiply-solid]"></span>';
         } else {
-          // TODO:TRANSLATE
-          iconEl.innerHTML = '<span title="Unchecked" class="icon-[fluent-mdl2--checkbox]"></span>';
+          iconEl.innerHTML = '<span title="{{ gettext("page.search.icon.unchecked") }}" class="icon-[fluent-mdl2--checkbox]"></span>';
         }
       }
       renderIcon();

@@ -139,18 +139,14 @@
         <!-- Temporary unavailable text: -->
         <!-- {{ gettext('page.donate.payment.buttons.temporarily_unavailable') }} -->
 
-        <!-- TODO:TRANSLATE -->
         {% if g.domain_lang_code in ['de'] %}
-          {{ donate_button('amazon_de', 'Amazon.de gift card', discount_percent=0, large=True) }}
-        {% endif %}
-        {% if g.domain_lang_code in ['fr'] %}
-          {{ donate_button('amazon_fr', 'Amazon.fr gift card', discount_percent=0, large=True) }}
-        {% endif %}
-        {% if g.domain_lang_code in ['it'] %}
-          {{ donate_button('amazon_it', 'Amazon.it gift card', discount_percent=0, large=True) }}
-        {% endif %}
-        {% if g.domain_lang_code not in ['de', 'fr', 'it'] %}
-          {{ donate_button('amazon', 'Amazon.com gift card', discount_percent=0, large=True) }}
+          {{ donate_button('amazon_de', gettext('page.donate.payment.buttons.amazon_cc', amazon='AmazonAmazon.de'), discount_percent=0, large=True) }}
+        {% elif g.domain_lang_code in ['fr'] %}
+          {{ donate_button('amazon_fr', gettext('page.donate.payment.buttons.amazon_cc', amazon='AmazonAmazon.fr'), discount_percent=0, large=True) }}
+        {% elif g.domain_lang_code in ['it'] %}
+          {{ donate_button('amazon_it', gettext('page.donate.payment.buttons.amazon_cc', amazon='AmazonAmazon.it'), discount_percent=0, large=True) }}
+        {% elif g.domain_lang_code %}
+          {{ donate_button('amazon', gettext('page.donate.payment.buttons.amazon_cc', amazon='Amazon.com'), discount_percent=0, large=True) }}
         {% endif %}
 
         {{ donate_button('payment3a_cc', gettext('page.donate.payment.buttons.bank_card_app'), discount_percent=0, large=True) }}
@@ -320,9 +316,7 @@
 
       <p class="mb-4">
         <!-- {{ gettext('page.donate.payment.desc.amazon_com') }} -->
-        <!-- TODO:TRANSLATE -->
-        <strong>IMPORTANT:</strong> This option is for Amazon.com.
-        If you want to use another Amazon website, select it above.
+        {{ gettext('page.donate.payment.desc.amazon_cc', amazon='Amazon.com') }}
       </p>
     </div>
 
@@ -334,9 +328,7 @@
 
       <p class="mb-4">
         <!-- {{ gettext('page.donate.payment.desc.amazon_com') }} -->
-        <!-- TODO:TRANSLATE -->
-        <strong>IMPORTANT:</strong> This option is for Amazon.co.uk.
-        If you want to use another Amazon website, select it above.
+        {{ gettext('page.donate.payment.desc.amazon_cc', amazon='Amazon.co.uk') }}
       </p>
     </div>
 
@@ -348,9 +340,7 @@
 
       <p class="mb-4">
         <!-- {{ gettext('page.donate.payment.desc.amazon_com') }} -->
-        <!-- TODO:TRANSLATE -->
-        <strong>IMPORTANT:</strong> This option is for Amazon.fr.
-        If you want to use another Amazon website, select it above.
+        {{ gettext('page.donate.payment.desc.amazon_cc', amazon='Amazon.fr') }}
       </p>
     </div>
 
@@ -362,9 +352,7 @@
 
       <p class="mb-4">
         <!-- {{ gettext('page.donate.payment.desc.amazon_com') }} -->
-        <!-- TODO:TRANSLATE -->
-        <strong>IMPORTANT:</strong> This option is for Amazon.it.
-        If you want to use another Amazon website, select it above.
+        {{ gettext('page.donate.payment.desc.amazon_cc', amazon='Amazon.it') }}
       </p>
     </div>
 
@@ -376,9 +364,7 @@
 
       <p class="mb-4">
         <!-- {{ gettext('page.donate.payment.desc.amazon_com') }} -->
-        <!-- TODO:TRANSLATE -->
-        <strong>IMPORTANT:</strong> This option is for Amazon.ca.
-        If you want to use another Amazon website, select it above.
+        {{ gettext('page.donate.payment.desc.amazon_cc', amazon='Amazon.ca') }}
       </p>
     </div>
 
@@ -390,9 +376,7 @@
 
       <p class="mb-4">
         <!-- {{ gettext('page.donate.payment.desc.amazon_com') }} -->
-        <!-- TODO:TRANSLATE -->
-        <strong>IMPORTANT:</strong> This option is for Amazon.de.
-        If you want to use another Amazon website, select it above.
+        {{ gettext('page.donate.payment.desc.amazon_cc', amazon='Amazon.de') }}
       </p>
     </div>
 
@@ -404,9 +388,7 @@
 
       <p class="mb-4">
         <!-- {{ gettext('page.donate.payment.desc.amazon_com') }} -->
-        <!-- TODO:TRANSLATE -->
-        <strong>IMPORTANT:</strong> This option is for Amazon.es.
-        If you want to use another Amazon website, select it above.
+        {{ gettext('page.donate.payment.desc.amazon_cc', amazon='Amazon.es') }}
       </p>
     </div>
 
