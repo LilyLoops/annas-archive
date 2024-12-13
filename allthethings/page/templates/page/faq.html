@@ -327,11 +327,10 @@
     Asking about moving to another chat platform will result in one warning, then a ban.
   </p> -->
 
-  <!-- TODO:TRANSLATE -->
-  <h3 class="group mt-4 mb-1 text-xl font-bold" id="physical">How do I donate books or other physical materials? <a href="#physical" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
+  <h3 class="group mt-4 mb-1 text-xl font-bold" id="physical">{{ gettext('page.faq.physical.title') }} <a href="#physical" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
 
   <p class="mb-4">
-    Please send them to the <a href="https://help.archive.org/help/how-do-i-make-a-physical-donation-to-the-internet-archive/" rel="noopener noreferrer" target="_blank">Internet Archive</a>. They will properly preserve them.
+    {{ gettext( 'page.faq.physical.text1', a_archive=(dict(href="https://help.archive.org/help/how-do-i-make-a-physical-donation-to-the-internet-archive/", **a.external_link) | xmlattr) ) }}
   </p>
   
   <h3 class="group mt-4 mb-1 text-xl font-bold" id="anna">{{ gettext('page.faq.anna.title') }} <a href="#anna" class="custom-a invisible group-hover:visible text-gray-400 hover:text-gray-500 font-normal text-sm align-[2px]">§</a></h3>
