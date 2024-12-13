@@ -23,6 +23,8 @@ import indexed_zstd
 import threading
 import traceback
 import time
+import email
+import email.policy
 
 from flask_babel import gettext, get_babel, force_locale
 
@@ -832,6 +834,120 @@ def split_columns(rows: list[dict], column_count: list[int]) -> list[tuple]:
 def get_account_by_id(cursor, account_id: str) -> dict | tuple | None:
     cursor.execute('SELECT * FROM mariapersist_accounts WHERE account_id = %(account_id)s LIMIT 1', {'account_id': account_id})
     return cursor.fetchone()
+
+
+def gc_notify(cursor, request_data, dont_store_errors=False):
+    message = email.message_from_bytes(request_data, policy=email.policy.default)
+    
+    if message['Subject'] is None:
+        print(f"Warning: gc_notify missing Subject for {message=}")
+        return "", 404
+
+    to_split = message['X-Original-To'].replace('+', '@').split('@')
+    if len(to_split) != 3:
+        print(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong X-Original-To: {message['X-Original-To']}")
+        return "", 404
+    donation_id = receipt_id_to_donation_id(to_split[1])
+
+    cursor.execute('SELECT * FROM mariapersist_donations WHERE donation_id=%(donation_id)s LIMIT 1', { 'donation_id': donation_id })
+    donation = cursor.fetchone()
+    if donation is None:
+        print(f"Warning: gc_notify message '{message['X-Original-To']}' donation_id not found {donation_id}")
+        return "", 404
+
+    # Don't bail out yet, because confirm_membership handles this case properly, and if we
+    # bail out here we don't handle multiple gift cards sent to the same address.
+    # if int(donation['processing_status']) == 1:
+    #     # Already confirmed.
+    #     return "", 404
+
+    donation_json = orjson.loads(donation['json'])
+    donation_json['gc_notify_debug'] = (donation_json.get('gc_notify_debug') or [])
+
+    message_body = "\n\n".join([item.get_payload(decode=True).decode() for item in message.get_payload() if item is not None])
+
+    def exec_err(error_txt):
+        if not dont_store_errors:
+            donation_json['gc_notify_debug'].append({ "error": error_txt, "message_body": message_body, "email_data": request_data.decode() })
+            cursor.execute('UPDATE mariapersist_donations SET json=%(json)s WHERE donation_id = %(donation_id)s LIMIT 1', { 'donation_id': donation_id, 'json': orjson.dumps(donation_json) })
+            cursor.execute('COMMIT')
+        print(error_txt)
+        return "", 404
+
+    auth_results = "\n\n".join(message.get_all('Authentication-Results'))
+    if "dkim=pass" not in auth_results:
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong auth_results: {auth_results}")
+
+    if (re.search(r'<gc-orders@gc\.email\.amazon\.(com|co\.uk|fr|it|ca|de|es)>$', message['From'].strip()) is None) and (re.search(r'<do-not-reply@(gift-cards\.)?amazon\.(com|co\.uk|fr|it|ca|de|es)>$', message['From'].strip()) is None):
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong From: {message['From']}")
+
+    suffixes = [
+        'sent you an Amazon Gift Card!',
+        'is waiting',
+        'une carte cadeau Amazon !',
+        'vous attend',
+        'un buono regalo Amazon!',
+        'ti aspetta',
+        'Amazon Geschenkgutschein geschickt!',
+        'wartet auf Sie.',
+        'Tarjeta regalo de Amazon.',
+        'esperando',
+    ]
+    subject_stripped = message['Subject'].strip()
+    if not any([subject_stripped.endswith(suffix) for suffix in suffixes]):
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with wrong Subject: {message['Subject']}")
+
+    potential_money = re.findall(r"\n[$€£][ ]?([0123456789]+[.,][0123456789]{2})", message_body)
+    if len(potential_money) == 0:
+        potential_money = re.findall(r"\n([0123456789]+[.,][0123456789]{2})[ ]?[$€£]", message_body)
+    if len(potential_money) == 0:
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for potential_money")
+
+    links = [str(link[0]) for link in re.findall(r'(https://www.amazon.(com|co\.uk|fr|it|ca|de|es)/gp/r.html?[^\n)>"]+)', message_body)]
+    if len(links) == 0:
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for links")
+
+    # Keep in sync!
+    main_link = None
+    domain = None
+    for potential_link in links:
+        if '%2Fg%2F' in potential_link:
+            main_link = potential_link
+            break
+    if main_link is not None:
+        domain = re.findall(r'amazon.(com|co\.uk|fr|it|ca|de|es)', main_link)[0]
+        main_link = main_link.split('%2Fg%2F', 1)[1]
+        main_link = main_link.split('%3F', 1)[0]
+        main_link = f"https://www.amazon.{domain}/g/{main_link}"
+    cursor.execute('INSERT IGNORE INTO mariapersist_giftcards (donation_id, link, email_data) VALUES (%(donation_id)s, %(link)s, %(email_data)s)', { 'donation_id': donation_id, 'link': main_link, 'email_data': request_data })
+    cursor.execute('COMMIT')
+
+    if main_link is None:
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for main_link")
+    if domain is None:
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with no matches for domain")
+
+    # Allow currencies with equal or higher exchange rate.
+    allowed_domains_for_currency = {
+        'USD': ['com', 'co.uk', 'fr', 'it', 'de', 'es'],
+        'GBP': ['co.uk'],
+        'EUR': ['com', 'co.uk', 'fr', 'it', 'de', 'es'],
+        'CAD': ['ca', 'com', 'co.uk', 'fr', 'it', 'de', 'es'],
+    }[donation['native_currency_code']]
+    if domain not in allowed_domains_for_currency:
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with invalid domain for current currency {domain=} {donation['native_currency_code']=} {allowed_domains_for_currency=}")
+
+    # Keep in sync!
+    money = float(potential_money[-1].replace(',', '.'))
+    # Allow for 5% margin
+    if money * 105 < int(donation['cost_cents_native_currency']):
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' with too small amount gift card {money*110} < {donation['cost_cents_native_currency']}")
+
+    data_value = { "links": links, "money": money }
+    if not confirm_membership(cursor, donation_id, 'amazon_gc_done', data_value):
+        return exec_err(f"Warning: gc_notify message '{message['X-Original-To']}' confirm_membership failed")
+
+    return ""
 
 
 # Keep in sync.

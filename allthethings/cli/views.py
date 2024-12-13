@@ -22,7 +22,7 @@ import io
 import allthethings.utils
 
 from flask import Blueprint
-from allthethings.extensions import engine, mariadb_url_no_timeout, mail, mariapersist_url
+from allthethings.extensions import engine, mariadb_url_no_timeout, mail, mariapersist_url, mariapersist_engine
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from pymysql.constants import CLIENT
@@ -1224,6 +1224,22 @@ def mariapersist_reset_internal():
 def send_test_email(email_addr):
     email_msg = flask_mail.Message(subject="Hello", body="Hi there, this is a test!", recipients=[email_addr])
     mail.send(email_msg)
+
+#################################################################################################
+# Send test email
+# ./run flask cli reprocess_gift_cards <since_days>
+@cli.cli.command('reprocess_gift_cards')
+@click.argument("since_days")
+def reprocess_gift_cards(since_days):
+    with Session(mariapersist_engine) as mariapersist_session:
+        cursor = allthethings.utils.get_cursor_ping(mariapersist_session)
+        datetime_from = datetime.datetime.now(tz=datetime.timezone.utc) - datetime.timedelta(days=int(since_days))
+        cursor.execute('SELECT * FROM mariapersist_donations WHERE created >= %(datetime_from)s AND processing_status IN (0,1,2,3,4) AND json LIKE \'%%"gc_notify_debug"%%\'', { "datetime_from": datetime_from })
+        donations = list(cursor.fetchall())
+        for donation in tqdm.tqdm(donations, bar_format='{l_bar}{bar}{r_bar} {eta}'):
+            for debug_data in orjson.loads(donation['json'])['gc_notify_debug']:
+                if 'email_data' in debug_data:
+                    allthethings.utils.gc_notify(cursor, debug_data['email_data'].encode(), dont_store_errors=True)
 
 #################################################################################################
 # Dump `isbn13:` codes to a file.
