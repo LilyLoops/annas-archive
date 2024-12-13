@@ -140,11 +140,11 @@
         <!-- {{ gettext('page.donate.payment.buttons.temporarily_unavailable') }} -->
 
         {% if g.domain_lang_code in ['de'] %}
-          {{ donate_button('amazon_de', gettext('page.donate.payment.buttons.amazon_cc', amazon='AmazonAmazon.de'), discount_percent=0, large=True) }}
+          {{ donate_button('amazon_de', gettext('page.donate.payment.buttons.amazon_cc', amazon='Amazon.de'), discount_percent=0, large=True) }}
         {% elif g.domain_lang_code in ['fr'] %}
-          {{ donate_button('amazon_fr', gettext('page.donate.payment.buttons.amazon_cc', amazon='AmazonAmazon.fr'), discount_percent=0, large=True) }}
+          {{ donate_button('amazon_fr', gettext('page.donate.payment.buttons.amazon_cc', amazon='Amazon.fr'), discount_percent=0, large=True) }}
         {% elif g.domain_lang_code in ['it'] %}
-          {{ donate_button('amazon_it', gettext('page.donate.payment.buttons.amazon_cc', amazon='AmazonAmazon.it'), discount_percent=0, large=True) }}
+          {{ donate_button('amazon_it', gettext('page.donate.payment.buttons.amazon_cc', amazon='Amazon.it'), discount_percent=0, large=True) }}
         {% elif g.domain_lang_code %}
           {{ donate_button('amazon', gettext('page.donate.payment.buttons.amazon_cc', amazon='Amazon.com'), discount_percent=0, large=True) }}
         {% endif %}
