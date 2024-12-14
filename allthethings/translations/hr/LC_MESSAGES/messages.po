@@ -311,8 +311,9 @@ msgstr "(privremeno nedostupno)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s poklon kartica"
 
 #: allthethings/account/templates/account/donate.html:152
 msgid "page.donate.payment.buttons.bank_card_app"
@@ -525,8 +526,9 @@ msgstr "<strong>VAŽNO:</strong> Podržavamo samo Amazon.com, a ne druge Amazon 
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>VAŽNO:</strong> Ova opcija je za %(amazon)s. Ako želite koristiti drugu Amazon web stranicu, odaberite je iznad."
 
 #: allthethings/account/templates/account/donate.html:399
 msgid "page.donate.payment.desc.credit_debit_backup"
@@ -558,24 +560,20 @@ msgstr "Nisu potrebni dodatni osobni podaci."
 
 #: allthethings/account/templates/account/donate.html:422
 #: allthethings/account/templates/account/donation.html:532
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.header"
 msgstr "<span %(style)s>2</span>Dodajte bankovnu karticu"
 
 #: allthethings/account/templates/account/donate.html:430
 #: allthethings/account/templates/account/donation.html:540
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc1"
 msgstr "Podržano: Visa, MasterCard, JCB, Diners Club i Discover."
 
 #: allthethings/account/templates/account/donate.html:431
 #: allthethings/account/templates/account/donation.html:541
-#, fuzzy
 msgid "page.donate.payment.desc.bank_card_app.step2.desc2"
 msgstr "Pogledajte <a %(a_alipay)s>ovaj vodič</a> za više informacija."
 
 #: allthethings/account/templates/account/donate.html:437
-#, fuzzy
 msgid "page.donate.payment.desc.credit_debit_explained"
 msgstr "Ne možemo izravno podržati kreditne/debitne kartice jer banke ne žele surađivati s nama. ☹ Međutim, postoji nekoliko načina za korištenje kreditnih/debitnih kartica putem drugih metoda plaćanja:"
 
@@ -584,150 +582,122 @@ msgid "page.donate.payment.buttons.amazon"
 msgstr "Amazon poklon kartica"
 
 #: allthethings/account/templates/account/donate.html:442
-#, fuzzy
 msgid "page.donate.ccexp.amazon_com"
 msgstr "Pošaljite nam Amazon.com poklon kartice koristeći svoju kreditnu/debitnu karticu."
 
 #: allthethings/account/templates/account/donate.html:445
-#, fuzzy
 msgid "page.donate.ccexp.alipay"
 msgstr "Alipay podržava međunarodne kreditne/debitne kartice. Pogledajte <a %(a_alipay)s>ovaj vodič</a> za više informacija."
 
 #: allthethings/account/templates/account/donate.html:448
-#, fuzzy
 msgid "page.donate.ccexp.wechat"
-msgstr "WeChat (Weixin Pay) podržava međunarodne kreditne/debitne kartice. U aplikaciji WeChat idite na “Me → Services → Wallet → Add a Card”. Ako to ne vidite, omogućite ga putem “Me → Settings → General → Tools → Weixin Pay → Enable”."
+msgstr "WeChat (Weixin Pay) podržava međunarodne kreditne/debitne kartice. U aplikaciji WeChat idite na “Me → Services → Wallet → Add a Card”. Ako to ne vidite, omogućite opciju putem “Me → Settings → General → Tools → Weixin Pay → Enable”."
 
 #: allthethings/account/templates/account/donate.html:451
-#, fuzzy
 msgid "page.donate.ccexp.crypto"
 msgstr "Možete kupiti kriptovalute koristeći kreditne/debitne kartice."
 
 #: allthethings/account/templates/account/donate.html:461
-#, fuzzy
 msgid "page.donate.payment.desc.crypto_express_services"
 msgstr "Kripto ekspresne usluge"
 
 #: allthethings/account/templates/account/donate.html:463
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.1"
-msgstr "Ekspresne usluge su praktične, ali naplaćuju veće naknade."
+msgstr "Ekspresne usluge su praktične, ali naplaćuju se veće naknade."
 
 #: allthethings/account/templates/account/donate.html:464
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.2"
-msgstr "Možete koristiti ovo umjesto kripto mjenjačnice ako želite brzo napraviti veću donaciju i ne smeta vam naknada od $5-10."
+msgstr "Možete koristiti ovo umjesto kripto mjenjačnice ako želite brzo napraviti veću donaciju i ne smeta vam naknada od 5-10$."
 
 #: allthethings/account/templates/account/donate.html:467
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.3"
-msgstr "Obavezno pošaljite točan iznos kriptovalute prikazan na stranici za donacije, a ne iznos u $USD."
+msgstr "Obavezno pošaljite točan iznos kriptovalute prikazan na stranici za donacije, a ne iznos u dolarima ($)."
 
 #: allthethings/account/templates/account/donate.html:468
-#, fuzzy
 msgid "page.donation.ccexp.crypto_express_services.4"
 msgstr "Inače će naknada biti oduzeta i ne možemo automatski obraditi vaše članstvo."
 
 #: allthethings/account/templates/account/donate.html:471
 #: allthethings/account/templates/account/donation.html:304
-#, fuzzy
 msgid "page.donation.payment2cc.method.paybis"
 msgstr "(minimum: %(minimum)s)"
 
 #: allthethings/account/templates/account/donate.html:472
 #: allthethings/account/templates/account/donation.html:305
-#, fuzzy
 msgid "page.donation.payment2cc.method.switchere"
 msgstr "(minimum: %(minimum)s ovisno o zemlji, bez provjere za prvu transakciju)"
 
 #: allthethings/account/templates/account/donate.html:473
 #: allthethings/account/templates/account/donation.html:306
-#, fuzzy
 msgid "page.donation.payment2cc.method.munzen"
 msgstr "(minimum: %(minimum)s, bez provjere za prvu transakciju)"
 
 #: allthethings/account/templates/account/donate.html:474
 #: allthethings/account/templates/account/donation.html:307
-#, fuzzy
 msgid "page.donation.payment2cc.method.mercuryo"
 msgstr "(minimum: %(minimum)s)"
 
 #: allthethings/account/templates/account/donate.html:475
 #: allthethings/account/templates/account/donation.html:308
-#, fuzzy
 msgid "page.donation.payment2cc.method.moonpay"
 msgstr "(minimalno: %(minimum)s)"
 
 #: allthethings/account/templates/account/donate.html:476
 #: allthethings/account/templates/account/donation.html:309
-#, fuzzy
 msgid "page.donation.payment2cc.method.coingate"
-msgstr "(minimum: %(minimum)s)"
+msgstr "(najmanje: %(minimum)s)"
 
 #: allthethings/account/templates/account/donate.html:478
 #: allthethings/account/templates/account/donation.html:311
-#, fuzzy
 msgid "page.donation.payment2cc.cc2btc.outdated"
 msgstr "Ako su bilo koje od ovih informacija zastarjele, molimo pošaljite nam email kako bismo znali."
 
 #: allthethings/account/templates/account/donate.html:485
-#, fuzzy
 msgid "page.donate.payment.desc.bmc"
-msgstr "Za kreditne kartice, debitne kartice, Apple Pay i Google Pay koristimo “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). U njihovom sustavu, jedna “kava” je jednaka $5, tako da će vaša donacija biti zaokružena na najbliži višekratnik od 5."
+msgstr "Za kreditne kartice, debitne kartice, Apple Pay i Google Pay koristimo “Buy Me a Coffee” (BMC <span class=\"icon-[ph--coffee-fill] text-lg align-text-bottom\"></span>). U njihovom sustavu, jedna “kava” je jednaka 5$, tako da će vaša donacija biti zaokružena na najbliži višekratnik od 5."
 
 #: allthethings/account/templates/account/donate.html:492
-#, fuzzy
 msgid "page.donate.duration.intro"
 msgstr "Odaberite koliko dugo želite pretplatu."
 
 #: allthethings/account/templates/account/donate.html:509
-#, fuzzy
 msgid "page.donate.duration.1_mo"
 msgstr "1 mjesec"
 
 #: allthethings/account/templates/account/donate.html:510
-#, fuzzy
 msgid "page.donate.duration.3_mo"
 msgstr "3 mjeseca"
 
 #: allthethings/account/templates/account/donate.html:511
-#, fuzzy
 msgid "page.donate.duration.6_mo"
 msgstr "6 mjeseci"
 
 #: allthethings/account/templates/account/donate.html:512
-#, fuzzy
 msgid "page.donate.duration.12_mo"
 msgstr "12 mjeseci"
 
 #: allthethings/account/templates/account/donate.html:513
-#, fuzzy
 msgid "page.donate.duration.24_mo"
 msgstr "24 mjeseca"
 
 #: allthethings/account/templates/account/donate.html:514
-#, fuzzy
 msgid "page.donate.duration.48_mo"
 msgstr "48 mjeseci"
 
 #: allthethings/account/templates/account/donate.html:515
-#, fuzzy
 msgid "page.donate.duration.96_mo"
 msgstr "96 mjeseci"
 
 #: allthethings/account/templates/account/donate.html:518
-#, fuzzy
 msgid "page.donate.duration.summary"
 msgstr "<div %(div_monthly_cost)s></div><div %(div_after)s>nakon <span %(span_discount)s></span> popusta</div><div %(div_total)s></div><div %(div_duration)s></div>"
 
 #: allthethings/account/templates/account/donate.html:525
-#, fuzzy
 msgid "page.donate.payment.minimum_method"
-msgstr "Ova metoda plaćanja zahtijeva minimalno %(amount)s. Molimo odaberite drugačije trajanje ili metodu plaćanja."
+msgstr "Ova metoda plaćanja zahtijeva najmanje %(amount)s. Molimo odaberite drugo razdoblje ili metodu plaćanja."
 
 #: allthethings/account/templates/account/donate.html:526
 #: allthethings/account/templates/account/donate.html:530
-#, fuzzy
 msgid "page.donate.buttons.donate"
 msgstr "Donirajte"
 
@@ -1311,8 +1281,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Ne možemo prihvatiti druge metode poklon kartica, <strong>samo poslane izravno s službenog obrasca na Amazon.com</strong>. Ne možemo vratiti vašu poklon karticu ako ne koristite ovaj obrazac."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Unesite točan iznos: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1330,8 +1301,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Jedinstveno za vaš račun, ne dijelite."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Koristite samo jednom."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2231,8 +2203,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Brzi partnerski poslužitelj #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2458,8 +2431,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3157,8 +3131,9 @@ msgid "common.form.reset"
 msgstr "Poništi"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Pretraži Anninu Arhivu"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3663,13 +3638,15 @@ msgstr "%(icon)s Non-Fiction torrenti se dijele s Libgen.rs (i zrcale <a %(libge
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Annina Arhiva i Libgen.li zajednički upravljaju zbirkama <a %(comics)s>stripova</a>, <a %(magazines)s>časopisa</a>, <a %(standarts)s>standardnih dokumenata</a> i <a %(fiction)s>fikcije (odvojeno od Libgen.rs)</a>."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s Njihova zbirka “fiction_rus” (ruska fikcija) nema posvećene torrente, ali je pokrivena torrentima drugih, a mi držimo <a %(fiction_rus)s>zrcalo</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4075,24 +4052,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Metapodaci za ovu knjižnicu su slobodno dostupni <a %(a_libgen_li)s>na libgen.li</a>. Međutim, ovaj server je spor i ne podržava nastavak prekinutih veza. Iste datoteke su također dostupne na <a %(a_ftp)s>FTP serveru</a>, koji radi bolje."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "Torrenti su dostupni za većinu dodatnog sadržaja, a posebno su torrenti za stripove, časopise i standardne dokumente objavljeni u suradnji s Anninom Arhivom."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "Zbirka fikcije ima svoje torrente (odvojeno od <a %(a_href)s>Libgen.rs</a>) počevši od %(start)s."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Prema administratoru Libgen.li, zbirka “fiction_rus” (ruska fikcija) trebala bi biti pokrivena redovito objavljivanim torrentima s <a %(a_booktracker)s>booktracker.org</a>, posebno torrentima <a %(a_flibusta)s>flibusta</a> i <a %(a_librusec)s>lib.rus.ec</a> (koje zrcalimo <a %(a_torrents)s>ovdje</a>, iako još nismo utvrdili koji torrenti odgovaraju kojim datotekama)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Statistike za sve zbirke mogu se pronaći <a %(a_href)s>na web stranici libgena</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Određeni rasponi bez torrenta (kao što su rasponi fikcije f_3463000 do f_4260000) vjerojatno su Z-Library (ili druge duplicirane) datoteke, iako bismo možda trebali napraviti deduplikaciju i izraditi torrente za lgli-jedinstvene datoteke u tim rasponima."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4120,12 +4102,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Torrenti časopisa na Aninoj Arhivi"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Standardni dokumenti torrenti na Anninoj Arhivi"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Ruski fikcijski torrenti na Anninoj Arhivi"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5265,12 +5249,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Molimo pogledajte <a %(a_href)s>ovaj izvrstan projekt</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Kako mogu donirati knjige ili druge fizičke materijale?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Molimo pošaljite ih <a %(a_archive)s>Internet Archive</a>. Oni će ih pravilno sačuvati."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5950,16 +5936,19 @@ msgid "page.search.title.new"
 msgstr "Novo pretraživanje"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Uključite samo"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Isključite"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Nije provjereno"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6360,8 +6349,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Ako imate nekoliko sati viška, možete pomoći na više načina. Obavezno se pridružite <a %(a_telegram)s>chatu volontera na Telegramu</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Sada također imamo sinkronizirani Matrix kanal na %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6379,8 +6369,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Prekretnica"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Širenje vijesti o Anninoj Arhivi. Na primjer, preporučivanjem knjiga na AA, povezivanjem na naše blog objave ili općenito usmjeravanjem ljudi na našu web stranicu."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6388,8 +6379,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s poveznice ili snimke zaslona."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "Ovo bi trebalo pokazati kako nekome govorite o Anninoj Arhivi, a oni vam zahvaljuju."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6699,12 +6691,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Alternative"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "nepovezan"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

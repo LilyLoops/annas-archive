@@ -386,8 +386,9 @@ msgstr "(کاتییەوە نییە)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s کارتی پێشکەش"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -642,8 +643,9 @@ msgstr "<strong>گرنگ:</strong> تەنها Amazon.com پشتیوانی دەک
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>گرنگ:</strong> ئەم هەڵبژاردنە بۆ %(amazon)s. ئەگەر دەتەوێت ماڵپەڕی ئامازۆنی تر بەکاربهێنیت، لەسەرەوە هەڵبژێرە."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1439,8 +1441,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "ئێمە ناتوانین ڕێگای تر بۆ کارتە دۆرەوەکان بپەسین، <strong>تەنها نێردراوە بە شێوەیەکی ڕاستەوخۆ لە فۆڕمی فەرمی Amazon.com</strong>. ناتوانین کارتە دۆرەوەکەت بگەڕێنینەوە ئەگەر ئەم فۆڕمە بەکارنەهێنیت."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "بەها بە دروستی بنووسە: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1458,8 +1461,9 @@ msgid "page.donation.amazon.unique"
 msgstr "تایبەتی هەژمارەکەت، پەخش مەکە."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "تەنها جارێک بەکاربهێنە."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2359,8 +2363,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "بەڕێوەبەری خێرا هاوپەیمان #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2586,8 +2591,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3285,8 +3291,9 @@ msgid "common.form.reset"
 msgstr "ریسێت"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "گەڕان لە ئەرشیڤی ئانا"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3792,13 +3799,15 @@ msgstr "%(icon)s تورەنتەکانی غەیرە-ھەواڵ پەیوەندید
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s ئەرشیڤی ئانا و Libgen.li بە هاوبەشی کۆمەڵەی <a %(comics)s>کتێب وێنەییەکان</a>، <a %(magazines)s>کۆمەڵەی گۆڤارەکان</a>، <a %(standarts)s>بەڵگەنامەی ستانداردەکان</a>، و <a %(fiction)s>ئەدەبیات (جیاکراوە لە Libgen.rs)</a> بەڕێوە دەبەن."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s کۆمەڵەی “fiction_rus” یان (ئەدەبیاتی ڕووسی) تورەی تایبەتی نییە، بەڵام بە تورەکان لە لایەن ئەوانی تر داگیرکراوە، و ئێمە <a %(fiction_rus)s>وەرگێڕ</a>ێک هەیە."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4204,24 +4213,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "زانیاریەکانی ئەم کتێبخانەیە بەخۆڕایی بەردەستە <a %(a_libgen_li)s>لە libgen.li</a>. بەڵام، ئەم سێرڤەرە خاوەن خێرایی نییە و پشتیوانی لە گەڕاندنەوەی پەیوەندیە شکستیەکان ناکات. هەمان پەڕگەکانیش لە <a %(a_ftp)s>سێرڤەری FTP</a> بەردەستن، کە باشتر کار دەکات."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "تورەکان بۆ زۆربەی ناوەڕۆکی زیادە بەردەستە، بەتایبەتی تورەکان بۆ کتێب وێنەکان، گۆڤارەکان، و بەڵگەنامەی ستانداردەکان بە هاوبەشی لەگەڵ ئەرشیڤی ئانا بڵاوکراونەتەوە."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "کۆمەڵەی ئەدەبیات تورەی تایبەتی خۆی هەیە (جیاکراوە لە <a %(a_href)s>Libgen.rs</a>) لە %(start)s دەستپێدەکات."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "بەپێی بەڕێوەبەری Libgen.li، کۆمەڵەی “fiction_rus” (ئەدەبیاتی ڕووسی) دەبێت بە تورەکان بە شێوەیەکی ئاسایی بڵاوکراوە لە <a %(a_booktracker)s>booktracker.org</a>، بەتایبەتی تورەکانی <a %(a_flibusta)s>flibusta</a> و <a %(a_librusec)s>lib.rus.ec</a> (کە ئێمە وەرگێڕی ئەمانە <a %(a_torrents)s>لێرە</a> دەکەین، هەرچۆنێکەش ئێمە هێشتا نەزانین کە تورەکان بە کەیفایلی پەیوەندیدارە)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "ئامارەکان بۆ هەموو کۆمەڵەکان دەتوانرێت <a %(a_href)s>لە ماڵپەڕی libgen</a> بدۆزرێتەوە."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "هەندێک مەودای بێ تورە (وەک مەودای ئەدەبیاتی f_3463000 بۆ f_4260000) بە گومان زۆر زۆرە زانیاریەکانی Z-Library (یان فایلە دووبارەکراوەکان) بێت، هەرچۆنێکەش ئێمە دەتوانین هەندێک دووبارەکردنەوە بکەین و تورەکان بۆ فایلە تایبەتی lgli لە ئەم مەودایەدا دروست بکەین."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4249,12 +4263,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "تورێنەکانی گۆڤارە لە ئەرشیفی ئەنە"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "تورەکانی بەڵگەنامەی ستاندارد لە ئەرشیڤی ئانا"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "تورەکانی ئەدەبیاتی ڕووسی لە ئەرشیڤی ئانا"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5394,12 +5410,14 @@ msgid "page.faq.uptime.text1"
 msgstr "تکایە <a %(a_href)s>ئەم پرۆژەی بەرزە</a> ببینە."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "چۆن دەتوانم کتێب یان موادە فیزیکییەکی تر پێشکەشم بکەم؟"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "تکایە بۆ <a %(a_archive)s>ئەرشیڤی ئینتەرنێت</a> بنێرن. ئەوان بە شێوەیەکی ڕاستەقینە پاراستن دەکەن."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -6079,16 +6097,19 @@ msgid "page.search.title.new"
 msgstr "گەڕانی نوێ"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "تەنها تێبکە"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "لاببرن"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "نەکەوتوو"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6489,8 +6510,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "ئەگەر چەند کاتێکت بەسەرە، دەتوانیت بە شێوەیەکی زۆر یارمەتی بدەیت. دڵنیابە لە بەشداربوون لە <a %(a_telegram)s>چاتی بەخۆبەخشەکان لە Telegram</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "ئێستا هەروەها کانالی ماتریکسی هاوتاڤمان هەیە لە %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6508,8 +6530,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "بەنەڕەت"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "بڵاوبوونەوەی وشەی ئەرشەی ئاننا. بۆ نموونە، بە پێشنیارکردنی کتێبەکان لە AA، بەستن بە بابەتەکانی بلۆگمان، یان بە گشتی ڕەوانەکردنی کەسان بۆ ماڵپەڕەکەمان."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6517,8 +6540,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "لینکەکان یان وێنەکان %(links)s."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "ئەمەکان دەبێت نیشانی ئەوە بدەن کە تۆ کەسێکت ئاگادار دەکەیت لەسەر ئەرشەی ئاننا، و ئەوانیش سوپاسی تۆ دەکەن."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6829,12 +6853,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "هەڵبژاردەکان"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "بەبەستە"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

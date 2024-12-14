@@ -321,8 +321,9 @@ msgstr "(začasno nedosegljivo)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s darilna kartica"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -553,8 +554,9 @@ msgstr "<strong>POMEMBNO:</strong> Podpiramo samo Amazon.com, ne pa drugih splet
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>POMEMBNO:</strong> Ta možnost je za %(amazon)s. Če želite uporabiti drugo spletno stran Amazon, jo izberite zgoraj."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1270,8 +1272,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Ne moremo sprejeti drugih načinov darilnih kartic, <strong>samo poslanih neposredno iz uradnega obrazca na Amazon.com</strong>. Vaše darilne kartice ne moremo vrniti, če ne uporabite tega obrazca."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Vnesite točen znesek: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 msgid "page.donate.payment.desc.amazon_message"
@@ -1286,8 +1289,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Edinstveno za vaš račun, ne delite."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Uporabite samo enkrat."
 
 #: allthethings/account/templates/account/donation.html:388
 msgid "page.donation.amazon.waiting_gift_card"
@@ -2074,8 +2078,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Hitri partnerski strežnik #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2278,8 +2283,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -2940,8 +2946,9 @@ msgid "common.form.reset"
 msgstr "Ponastavi"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Išči po Anninem arhivu"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3444,13 +3451,15 @@ msgstr "%(icon)s Nefikcijski torrenti so deljeni z Libgen.rs (in zrcaljeni <a %(
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Annin arhiv in Libgen.li skupaj upravljata zbirke <a %(comics)s>stripov</a>, <a %(magazines)s>revij</a>, <a %(standarts)s>standardnih dokumentov</a> in <a %(fiction)s>leposlovja (ločeno od Libgen.rs)</a>."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s Njihova zbirka \"fiction_rus\" (rusko leposlovje) nima posebnih torrentov, vendar je pokrita s torrenti drugih, mi pa ohranjamo <a %(fiction_rus)s>zrcalo</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -3856,24 +3865,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Meta podatki za to knjižnico so prosto dostopni <a %(a_libgen_li)s>na libgen.li</a>. Vendar je ta strežnik počasen in ne podpira nadaljevanja prekinjenih povezav. Iste datoteke so na voljo tudi na <a %(a_ftp)s>FTP strežniku</a>, ki deluje bolje."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "Torrenti so na voljo za večino dodatne vsebine, še posebej torrenti za stripe, revije in standardne dokumente so bili izdani v sodelovanju z Anninim arhivom."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "Zbirka leposlovja ima svoje torrente (ločeno od <a %(a_href)s>Libgen.rs</a>) od %(start)s naprej."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Po besedah administratorja Libgen.li naj bi zbirka \"fiction_rus\" (rusko leposlovje) bila pokrita z redno izdanimi torrenti iz <a %(a_booktracker)s>booktracker.org</a>, še posebej torrenti <a %(a_flibusta)s>flibusta</a> in <a %(a_librusec)s>lib.rus.ec</a> (ki jih zrcalimo <a %(a_torrents)s>tukaj</a>, čeprav še nismo ugotovili, kateri torrenti ustrezajo katerim datotekam)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Statistike za vse zbirke so na voljo <a %(a_href)s>na spletni strani libgen</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Določeni razponi brez torrentov (kot so razponi leposlovja f_3463000 do f_4260000) so verjetno datoteke Z-Library (ali druge podvojene) datoteke, čeprav bi morda želeli narediti nekaj deduplikacije in ustvariti torrente za lgli-edinstvene datoteke v teh razponih."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -3901,12 +3915,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Revijalni torrenti na Anninem Arhivu"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Standardni dokumentni torrenti na Anninem arhivu"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Ruski leposlovni torrenti na Anninem arhivu"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5019,12 +5035,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Prosimo, oglejte si <a %(a_href)s>ta odličen projekt</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Kako lahko doniram knjige ali druge fizične materiale?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Prosimo, pošljite jih na <a %(a_archive)s>Internet Archive</a>. Tam jih bodo ustrezno ohranili."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5667,16 +5685,19 @@ msgid "page.search.title.new"
 msgstr "Novo iskanje"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Vključite samo"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Izključite"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Nepreverjeno"
 
 #: allthethings/page/templates/page/search.html:58
 msgid "page.search.tabs.download"
@@ -6033,8 +6054,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Če imate nekaj ur na voljo, lahko pomagate na več načinov. Bodite prepričani, da se pridružite <a %(a_telegram)s>prostovoljnemu klepetu na Telegramu</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Zdaj imamo tudi sinhroniziran Matrix kanal na %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6052,8 +6074,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Mejnik"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Širjenje besede o Anninem arhivu. Na primer, z priporočanjem knjig na AA, povezovanjem na naše objave na blogu ali splošnim usmerjanjem ljudi na našo spletno stran."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6061,8 +6084,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s povezav ali posnetkov zaslona."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "To bi moralo pokazati, da nekomu poveste o Anninem arhivu, in da se vam zahvalijo."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6345,12 +6369,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Alternative"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "nepovezan"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

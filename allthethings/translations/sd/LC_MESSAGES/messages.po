@@ -386,8 +386,9 @@ msgstr "(عارضي طور تي دستياب ناهي)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s تحفي تحفي"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -642,8 +643,9 @@ msgstr "<strong>اهم: </strong> اسان صرف Amazon.com کي سپورٽ ڪ�
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>اهم: </strong> هي آپشن %(amazon)s لاءِ آهي. جيڪڏهن توهان ٻئي Amazon ويب سائيٽ استعمال ڪرڻ چاهيو ٿا، ته مٿي چونڊيو."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1439,8 +1441,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "اسان ٻين طريقن جا گفٽ ڪارڊ قبول نٿا ڪري سگهون، <strong>صرف سرڪاري فارم ذريعي سڌو Amazon.com تان موڪليل</strong>. جيڪڏهن توهان هي فارم استعمال نٿا ڪريو ته اسان توهان جو گفٽ ڪارڊ واپس نٿا ڪري سگهون."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "صحيح رقم داخل ڪريو: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1458,8 +1461,9 @@ msgid "page.donation.amazon.unique"
 msgstr "توهان جي اڪائونٽ لاءِ منفرد، شيئر نه ڪريو."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "صرف هڪ ڀيرو استعمال ڪريو."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2359,8 +2363,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "تيز پارٽنر سرور #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2586,8 +2591,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3285,8 +3291,9 @@ msgid "common.form.reset"
 msgstr "ري سيٽ"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "انا جي آرڪائيو کي ڳوليو"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3792,13 +3799,15 @@ msgstr "%(icon)s غير افسانوي ٽورنٽ Libgen.rs سان شيئر ڪي
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s انا جي آرڪائيو ۽ Libgen.li گڏجي <a %(comics)s>ڪامڪ ڪتابن</a>, <a %(magazines)s>ميگزين</a>, <a %(standarts)s>معياري دستاويزن</a>, ۽ <a %(fiction)s>افسانه (Libgen.rs کان الڳ ٿيل)</a> جي مجموعن کي منظم ڪن ٿا."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s انهن جي \"fiction_rus\" مجموعي (روسي افسانه) لاءِ ڪو خاص ٽورينٽ نه آهي، پر اهو ٻين جي ٽورينٽن سان ڍڪيل آهي، ۽ اسان هڪ <a %(fiction_rus)s>آئينو</a> رکون ٿا."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4204,24 +4213,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "هن لائبريري جي ميٽا ڊيٽا مفت ۾ موجود آهي <a %(a_libgen_li)s>libgen.li تي</a>. بهرحال، هي سرور سست آهي ۽ ٽٽل ڪنيڪشن کي ٻيهر شروع ڪرڻ جي حمايت نٿو ڪري. ساڳيون فائلون پڻ موجود آهن <a %(a_ftp)s>هڪ FTP سرور تي</a>، جيڪو بهتر ڪم ڪري ٿو."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "اضافي مواد لاءِ ٽورينٽ موجود آهن، خاص طور تي ڪامڪس، ميگزين، ۽ معياري دستاويزن لاءِ ٽورينٽ انا جي آرڪائيو سان تعاون ۾ جاري ڪيا ويا آهن."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "افسانه مجموعي جا پنهنجا ٽورينٽ آهن (الڳ ٿيل <a %(a_href)s>Libgen.rs</a> کان) %(start)s تي شروع ٿين ٿا."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Libgen.li جي منتظم مطابق، \"fiction_rus\" (روسي افسانه) مجموعي کي <a %(a_booktracker)s>booktracker.org</a> کان باقاعده جاري ڪيل ٽورينٽن سان ڍڪيل هجڻ گهرجي، خاص طور تي <a %(a_flibusta)s>flibusta</a> ۽ <a %(a_librusec)s>lib.rus.ec</a> ٽورينٽ (جنهن کي اسان <a %(a_torrents)s>هتي</a> آئينو رکون ٿا، جيتوڻيڪ اسان اڃا تائين اهو طئي نه ڪيو آهي ته ڪهڙا ٽورينٽ ڪهڙن فائلن سان مطابقت رکن ٿا)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "سڀني مجموعن جي شماريات <a %(a_href)s>libgen جي ويب سائيٽ تي</a> ملي سگهن ٿيون."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "ڪجهه حدون بغير ٽورينٽن جي (جهڙوڪ افسانه حدون f_3463000 کان f_4260000 تائين) شايد Z-Library (يا ٻيا نقل ٿيل) فائلون آهن، جيتوڻيڪ اسان کي شايد ڪجهه نقل ختم ڪرڻ ۽ انهن حدن ۾ lgli-منفرد فائلن لاءِ ٽورينٽ ٺاهڻ گهرجن."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4249,12 +4263,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Anna’s Archive تي ميگزين ٽورينٽ"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "انا جي آرڪائيو تي معياري دستاويزن جا ٽورينٽ"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "انا جي آرڪائيو تي روسي افسانه جا ٽورينٽ"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5394,12 +5410,14 @@ msgid "page.faq.uptime.text1"
 msgstr "مهرباني ڪري <a %(a_href)s>هن شاندار پروجيڪٽ</a> کي ڏسو."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "مان ڪيئن ڪتاب يا ٻيو جسماني مواد عطيو ڪري سگهان ٿو؟"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "مهرباني ڪري انهن کي <a %(a_archive)s>انٽرنيٽ آرڪائيو</a> ڏانهن موڪليو. اهي انهن کي صحيح طريقي سان محفوظ ڪندا."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -6079,16 +6097,19 @@ msgid "page.search.title.new"
 msgstr "نئين ڳولا"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "صرف شامل ڪريو"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "خارج ڪريو"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "اڻ چيڪ ٿيل"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6489,8 +6510,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "جيڪڏهن توهان وٽ ڪجهه ڪلاڪ آهن، ته توهان ڪيترن ئي طريقن سان مدد ڪري سگهو ٿا. پڪ ڪريو ته <a %(a_telegram)s>Telegram تي رضاڪارن جي چيٽ</a> ۾ شامل ٿيو."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "اسان وٽ هاڻي هڪ هم وقت ٿيل ميٽرڪس چينل پڻ آهي %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6508,8 +6530,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "سنگ ميل"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "انا جي آرڪائيو جو پيغام ڦهلائڻ. مثال طور، AA تي ڪتابن جي سفارش ڪندي، اسان جي بلاگ پوسٽن سان ڳنڍيندي، يا عام طور تي ماڻهن کي اسان جي ويب سائيٽ ڏانهن هدايت ڪندي."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6517,8 +6540,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s لنڪس يا اسڪرين شاٽس."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "اهي توهان کي انا جي آرڪائيو بابت ڪنهن کي ٻڌائيندي ۽ انهن جو توهان کي شڪريو ادا ڪندي ڏيکارڻ گهرجن."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6829,12 +6853,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "متبادل"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "غير منسلڪ"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

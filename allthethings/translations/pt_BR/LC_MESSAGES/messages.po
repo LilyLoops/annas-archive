@@ -314,8 +314,9 @@ msgstr "(temporariamente indisponível)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s cartão-presente"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -542,8 +543,9 @@ msgstr "<strong>IMPORTANTE:</strong> Oferecemos suporte apenas para Amazon.com, 
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>IMPORTANTE:</strong> Esta opção é para %(amazon)s. Se você deseja usar outro site da Amazon, selecione-o acima."
 
 #: allthethings/account/templates/account/donate.html:399
 msgid "page.donate.payment.desc.credit_debit_backup"
@@ -1245,8 +1247,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Nós não podemos aceitar outros métodos de gift cards, <strong> somente os enviados diretamente do formulário oficial da Amazon.com</strong>. Nós não podemos devolver o seu gift card se você não fizer uso deste formulário."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Insira o valor exato: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 msgid "page.donate.payment.desc.amazon_message"
@@ -1261,8 +1264,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Único para sua conta, não compartilhe."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Use apenas uma vez."
 
 #: allthethings/account/templates/account/donation.html:388
 msgid "page.donation.amazon.waiting_gift_card"
@@ -2019,8 +2023,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Servidor Parceiro Rápido #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 msgid "common.md5.servers.no_browser_verification_or_waitlists"
@@ -2212,8 +2217,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -2853,8 +2859,9 @@ msgid "common.form.reset"
 msgstr "Redefinir"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Pesquisar Arquivo da Anna"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3352,13 +3359,15 @@ msgstr "%(icon)s Torrents de Não-Ficção são compartilhados com o Libgen.rs (
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Arquivo da Anna e Libgen.li gerenciam colaborativamente coleções de <a %(comics)s>quadrinhos</a>, <a %(magazines)s>revistas</a>, <a %(standarts)s>documentos padrão</a> e <a %(fiction)s>ficção (divergente do Libgen.rs)</a>."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s A coleção “fiction_rus” deles (ficção russa) não possui torrents dedicados, mas é coberta por torrents de outros, e mantemos um <a %(fiction_rus)s>espelho</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -3764,24 +3773,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Os metadados desta biblioteca estão disponíveis gratuitamente <a %(a_libgen_li)s>em libgen.li</a>. No entanto, este servidor é lento e não suporta a retomada de conexões interrompidas. Os mesmos arquivos também estão disponíveis em <a %(a_ftp)s>um servidor FTP</a>, que funciona melhor."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "Torrents estão disponíveis para a maioria do conteúdo adicional, especialmente torrents para quadrinhos, revistas e documentos padrão foram lançados em colaboração com o Arquivo da Anna."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "A coleção de ficção tem seus próprios torrents (divergente do <a %(a_href)s>Libgen.rs</a>) começando em %(start)s."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "De acordo com o administrador do Libgen.li, a coleção “fiction_rus” (ficção russa) deve ser coberta por torrents lançados regularmente de <a %(a_booktracker)s>booktracker.org</a>, especialmente os torrents de <a %(a_flibusta)s>flibusta</a> e <a %(a_librusec)s>lib.rus.ec</a> (que espelhamos <a %(a_torrents)s>aqui</a>, embora ainda não tenhamos estabelecido quais torrents correspondem a quais arquivos)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Estatísticas para todas as coleções podem ser encontradas <a %(a_href)s>no site do libgen</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Certas faixas sem torrents (como as faixas de ficção f_3463000 a f_4260000) são provavelmente arquivos da Z-Library (ou outros duplicados), embora possamos querer fazer alguma desduplicação e criar torrents para arquivos exclusivos do lgli nessas faixas."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -3809,12 +3823,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Torrents de revistas no Arquivo da Anna"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Torrents de documentos padrão no Arquivo da Anna"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Torrents de ficção russa no Arquivo da Anna"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -4866,12 +4882,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Por favor, veja <a %(a_href)s>este excelente projeto</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Como posso doar livros ou outros materiais físicos?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Por favor, envie-os para o <a %(a_archive)s>Internet Archive</a>. Eles os preservarão adequadamente."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5478,16 +5496,19 @@ msgid "page.search.title.new"
 msgstr "Nova busca"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Incluir apenas"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Excluir"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Não verificado"
 
 #: allthethings/page/templates/page/search.html:58
 msgid "page.search.tabs.download"
@@ -5831,8 +5852,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Se você tem algumas horas livres, pode ajudar de várias maneiras. Certifique-se de participar do <a %(a_telegram)s>chat de voluntários no Telegram</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Agora também temos um canal Matrix sincronizado em %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -5850,8 +5872,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Marco"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Divulgando o Arquivo da Anna. Por exemplo, recomendando livros no AA, compartilhando links para nossas postagens no blog ou, de modo geral, direcionando pessoas para nosso site."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -5859,8 +5882,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s links ou capturas de tela."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "Esses devem mostrar você informando alguém sobre o Arquivo da Anna, e essa pessoa agradecendo."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6137,12 +6161,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Alternativas"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "não afiliado"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

@@ -386,8 +386,9 @@ msgstr "(დროებით მიუწვდომელია)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s სასაჩუქრე ბარათი"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -642,8 +643,9 @@ msgstr "<strong>მნიშვნელოვანი:</strong> ჩვენ �
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>მნიშვნელოვანი:</strong> ეს ვარიანტი განკუთვნილია %(amazon)s-ისთვის. თუ გსურთ გამოიყენოთ სხვა Amazon-ის ვებსაიტი, აირჩიეთ ის ზემოთ."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1439,8 +1441,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "ჩვენ არ შეგვიძლია მივიღოთ სხვა მეთოდებით საჩუქრის ბარათები, <strong>მხოლოდ პირდაპირ გაგზავნილი ოფიციალური ფორმიდან Amazon.com-ზე</strong>. ჩვენ არ შეგვიძლია დავაბრუნოთ თქვენი საჩუქრის ბარათი თუ არ გამოიყენებთ ამ ფორმას."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "შეიყვანეთ ზუსტი თანხა: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1458,8 +1461,9 @@ msgid "page.donation.amazon.unique"
 msgstr "უნიკალური თქვენი ანგარიშისთვის, არ გააზიაროთ."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "გამოიყენეთ მხოლოდ ერთხელ."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2359,8 +2363,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "სწრაფი პარტნიორი სერვერი #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2586,8 +2591,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3285,8 +3291,9 @@ msgid "common.form.reset"
 msgstr "გადატვირთვა"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "მოძებნეთ ანას არქივი"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3790,13 +3797,15 @@ msgstr "%(icon)s არამხატვრული ლიტერატუ�
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s ანას არქივი და Libgen.li ერთობლივად მართავენ <a %(comics)s>კომიქსების</a>, <a %(magazines)s>ჟურნალების</a>, <a %(standarts)s>სტანდარტული დოკუმენტების</a> და <a %(fiction)s>ფიქციის (განსხვავებული Libgen.rs-დან)</a> კოლექციებს."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s მათი „fiction_rus“ კოლექცია (რუსული ფიქცია) არ აქვს სპეციალური ტორენტები, მაგრამ დაფარულია სხვა ტორენტებით, და ჩვენ ვამზადებთ <a %(fiction_rus)s>სარკეს</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4202,24 +4211,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "ამ ბიბლიოთეკის მეტამონაცემები თავისუფლად ხელმისაწვდომია <a %(a_libgen_li)s>libgen.li-ზე</a>. თუმცა, ეს სერვერი ნელია და არ უჭერს მხარს გაწყვეტილი კავშირების აღდგენას. იგივე ფაილები ასევე ხელმისაწვდომია <a %(a_ftp)s>FTP სერვერზე</a>, რომელიც უკეთ მუშაობს."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "ტორენტები ხელმისაწვდომია დამატებითი კონტენტის უმეტესობისთვის, განსაკუთრებით კომიქსების, ჟურნალების და სტანდარტული დოკუმენტების ტორენტები გამოქვეყნებულია ანას არქივთან თანამშრომლობით."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "ფიქციის კოლექციას აქვს საკუთარი ტორენტები (განსხვავებული <a %(a_href)s>Libgen.rs</a>-დან) დაწყებული %(start)s-დან."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Libgen.li-ის ადმინისტრატორის თქმით, „fiction_rus“ (რუსული ფიქცია) კოლექცია უნდა იყოს დაფარული რეგულარულად გამოქვეყნებული ტორენტებით <a %(a_booktracker)s>booktracker.org</a>-დან, განსაკუთრებით <a %(a_flibusta)s>flibusta</a> და <a %(a_librusec)s>lib.rus.ec</a> ტორენტებით (რომლებსაც ჩვენ ვამზადებთ <a %(a_torrents)s>აქ</a>, თუმცა ჯერ არ დაგვიმტკიცებია რომელი ტორენტები შეესაბამება რომელ ფაილებს)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "სტატისტიკა ყველა კოლექციისთვის შეგიძლიათ იხილოთ <a %(a_href)s>libgen-ის ვებსაიტზე</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "ზოგიერთი დიაპაზონი ტორენტების გარეშე (როგორიცაა ფიქციის დიაპაზონები f_3463000-დან f_4260000-მდე) სავარაუდოდ Z-Library (ან სხვა დუბლირებული) ფაილებია, თუმცა შეიძლება გვინდოდეს დუბლიკაციის შემცირება და ტორენტების შექმნა lgli-უნიკალური ფაილებისთვის ამ დიაპაზონებში."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4247,12 +4261,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "ჟურნალების ტორენტები Anna’s Archive-ზე"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "სტანდარტული დოკუმენტების ტორენტები ანას არქივზე"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "რუსული ფიქციის ტორენტები ანას არქივზე"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5392,12 +5408,14 @@ msgid "page.faq.uptime.text1"
 msgstr "გთხოვთ, იხილეთ <a %(a_href)s>ეს შესანიშნავი პროექტი</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "როგორ შემიძლია წიგნების ან სხვა ფიზიკური მასალების შეწირვა?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "გთხოვთ, გააგზავნეთ ისინი <a %(a_archive)s>ინტერნეტ არქივში</a>. ისინი სწორად შეინახავენ მათ."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -6077,16 +6095,19 @@ msgid "page.search.title.new"
 msgstr "ახალი ძიება"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "მოიცავს მხოლოდ"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "გამორიცხავს"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "შეუმოწმებელი"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6487,8 +6508,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "თუ რამდენიმე საათი გაქვთ თავისუფალი, შეგიძლიათ დაგვეხმაროთ სხვადასხვა გზით. დარწმუნდით, რომ შეუერთდით <a %(a_telegram)s>მოხალისეების ჩათს Telegram-ზე</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "ახლა ჩვენ გვაქვს სინქრონიზებული Matrix არხი %(matrix)s-ზე."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6506,8 +6528,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "ეტაპი"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "ანა არქივის შესახებ ინფორმაციის გავრცელება. მაგალითად, AA-ზე წიგნების რეკომენდაციით, ჩვენი ბლოგის პოსტებზე ბმულებით ან ზოგადად ჩვენი ვებსაიტისკენ ხალხის მიმართვით."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6515,8 +6538,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s ბმულები ან სკრინშოტები."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "ეს უნდა აჩვენებდეს, რომ აცნობებთ ვინმეს ანა არქივის შესახებ და ისინი მადლობას გიხდიან."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6827,12 +6851,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "ალტერნატივები"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "არასამთავრობო"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

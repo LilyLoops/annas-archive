@@ -324,8 +324,9 @@ msgstr "(momentan indisponibil)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s card cadou"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -556,8 +557,9 @@ msgstr "<strong>IMPORTANT:</strong> Acceptăm doar Amazon.com, nu alte site-uri 
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>IMPORTANT:</strong> Această opțiune este pentru %(amazon)s. Dacă doriți să utilizați un alt site Amazon, selectați-l mai sus."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1307,8 +1309,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Nu putem accepta alte metode de carduri cadou, <strong>doar trimise direct din formularul oficial de pe Amazon.com</strong>. Nu putem returna cardul cadou dacă nu folosiți acest formular."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Introduceți suma exactă: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1326,8 +1329,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Unic pentru contul dvs., nu împărtășiți."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Utilizați o singură dată."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2197,8 +2201,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Server Partener Rapid #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2415,8 +2420,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3106,8 +3112,9 @@ msgid "common.form.reset"
 msgstr "Resetează"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Căutați Arhiva Annei"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3615,13 +3622,15 @@ msgstr "%(icon)s Torrentele de non-ficțiune sunt partajate cu Libgen.rs (și og
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Arhiva Annei și Libgen.li gestionează împreună colecții de <a %(comics)s>benzi desenate</a>, <a %(magazines)s>reviste</a>, <a %(standarts)s>documente standard</a> și <a %(fiction)s>ficțiune (divergentă de Libgen.rs)</a>."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s Colecția lor „fiction_rus” (ficțiune rusă) nu are torrente dedicate, dar este acoperită de torrente de la alții, iar noi păstrăm o <a %(fiction_rus)s>oglindă</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4027,24 +4036,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Metadatele pentru această bibliotecă sunt disponibile gratuit <a %(a_libgen_li)s>la libgen.li</a>. Cu toate acestea, acest server este lent și nu suportă reluarea conexiunilor întrerupte. Aceleași fișiere sunt disponibile și pe <a %(a_ftp)s>un server FTP</a>, care funcționează mai bine."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "Torrentele sunt disponibile pentru majoritatea conținutului suplimentar, cele mai notabile fiind torrentele pentru benzi desenate, reviste și documente standard, lansate în colaborare cu Arhiva Annei."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "Colecția de ficțiune are propriile sale torrente (divergente de <a %(a_href)s>Libgen.rs</a>) începând de la %(start)s."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Conform administratorului Libgen.li, colecția „fiction_rus” (ficțiune rusă) ar trebui să fie acoperită de torrentele lansate regulat de <a %(a_booktracker)s>booktracker.org</a>, cele mai notabile fiind torrentele <a %(a_flibusta)s>flibusta</a> și <a %(a_librusec)s>lib.rus.ec</a> (pe care le oglindim <a %(a_torrents)s>aici</a>, deși nu am stabilit încă ce torrente corespund cu ce fișiere)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Statisticile pentru toate colecțiile pot fi găsite <a %(a_href)s>pe site-ul libgen</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Anumite intervale fără torrente (cum ar fi intervalele de ficțiune f_3463000 până la f_4260000) sunt probabil fișiere Z-Library (sau alte duplicate), deși am putea dori să facem o deduplicare și să creăm torrente pentru fișierele unice lgli din aceste intervale."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4072,12 +4086,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Torrente de reviste pe Arhiva Annei"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Torrente de documente standard pe Arhiva Annei"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Torrente de ficțiune rusă pe Arhiva Annei"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5211,12 +5227,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Vă rugăm să vedeți <a %(a_href)s>acest proiect excelent</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Cum pot dona cărți sau alte materiale fizice?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Vă rugăm să le trimiteți la <a %(a_archive)s>Internet Archive</a>. Ei le vor păstra corespunzător."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5890,16 +5908,19 @@ msgid "page.search.title.new"
 msgstr "Căutare nouă"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Includeți doar"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Excludeți"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Necorespunzător"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6286,8 +6307,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Dacă ai câteva ore libere, poți ajuta în mai multe moduri. Asigură-te că te alături <a %(a_telegram)s>chatului voluntarilor pe Telegram</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Avem acum și un canal Matrix sincronizat la %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6305,8 +6327,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Realizare"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Răspândirea veștii despre Arhiva Annei. De exemplu, prin recomandarea de cărți pe AA, legături către postările noastre de pe blog sau, în general, direcționarea oamenilor către site-ul nostru."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6314,8 +6337,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s linkuri sau capturi de ecran."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "Acestea ar trebui să arate cum informați pe cineva despre Arhiva Annei, iar acea persoană vă mulțumește."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6611,12 +6635,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Alternative"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "neafiliat"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

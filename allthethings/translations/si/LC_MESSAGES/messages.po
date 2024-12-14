@@ -386,8 +386,9 @@ msgstr "(තාවකාලිකව නොමැත)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s තෑගි කාඩ්පත"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -642,8 +643,9 @@ msgstr "<strong>වැදගත්:</strong> අපි Amazon.com පමණක�
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>වැදගත්:</strong> මෙම විකල්පය %(amazon)s සඳහා වේ. ඔබ වෙනත් ඇමසන් වෙබ් අඩවියක් භාවිතා කිරීමට අවශ්‍ය නම්, එය ඉහත තෝරන්න."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1439,8 +1441,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "අපි වෙනත් ක්‍රමවලින් තෑගි කාඩ්පත් පිළිගත නොහැක, <strong>නිල Amazon.com පෝරමයෙන් සෘජුවම එවූ</strong> තෑගි කාඩ්පත් පමණක්. මෙම පෝරමය භාවිතා නොකරන්නේ නම් ඔබේ තෑගි කාඩ්පත ආපසු ලබා දිය නොහැක."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "නිවැරදි මුදල ඇතුළත් කරන්න: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1458,8 +1461,9 @@ msgid "page.donation.amazon.unique"
 msgstr "ඔබේ ගිණුමට අද්විතීය, බෙදා ගන්න එපා."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "එක වරක් පමණක් භාවිතා කරන්න."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2359,8 +2363,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "ඉක්මන් හවුල්කරු සේවාදායකය #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2586,8 +2591,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3285,8 +3291,9 @@ msgid "common.form.reset"
 msgstr "නැවත සකසන්න"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "ආනාගේ අභිලේඛය සොයන්න"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3792,13 +3799,15 @@ msgstr "%(icon)s නොකල්පනාකාරී ධාරා Libgen.rs ස
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s ආනාගේ අභිලේඛය සහ Libgen.li එක්ව <a %(comics)s>කොමික පොත්</a>, <a %(magazines)s>සඟරා</a>, <a %(standarts)s>සම්මත ලේඛන</a>, සහ <a %(fiction)s>කල්පිත (Libgen.rs වෙතින් වෙනස්වූ)</a> එකතුවන් කළමනාකරණය කරයි."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s ඔවුන්ගේ “fiction_rus” එකතුව (රුසියානු කල්පිත) සඳහා විශේෂිත ටොරන්ට් නොමැති නමුත්, වෙනත් ටොරන්ට් මගින් ආවරණය වන අතර, අපි <a %(fiction_rus)s>ප්‍රතිබිම්බයක්</a> තබා ගනිමු."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4204,24 +4213,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "මෙම පුස්තකාලයේ metadata නිදහස්ව <a %(a_libgen_li)s>libgen.li</a> හි ලබා ගත හැක. කෙසේ වෙතත්, මෙම සේවාදායකය මන්දගාමී වන අතර කැඩුණු සම්බන්ධතා නැවත ආරම්භ කිරීම සහය නොදක්වයි. ඒම ගොනු <a %(a_ftp)s>FTP සේවාදායකයක</a>ද ලබා ගත හැක, එය වඩා හොඳින් ක්‍රියා කරයි."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "අමතර අන්තර්ගතය සඳහා බොහෝ විට ටොරන්ට් ලබා ගත හැක, විශේෂයෙන් කොමික, සඟරා, සහ සම්මත ලේඛන සඳහා ටොරන්ට් ආනාගේ අභිලේඛය සමඟ එක්ව නිකුත් කර ඇත."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "කල්පිත එකතුවට %(start)s සිට තමන්ගේම ටොරන්ට් ඇත (Libgen.rs වෙතින් වෙනස්වූ)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Libgen.li පරිපාලකයාට අනුව, “fiction_rus” (රුසියානු කල්පිත) එකතුව <a %(a_booktracker)s>booktracker.org</a> වෙතින් නිතර නිකුත් කරන ටොරන්ට් මගින් ආවරණය විය යුතුය, විශේෂයෙන් <a %(a_flibusta)s>flibusta</a> සහ <a %(a_librusec)s>lib.rus.ec</a> ටොරන්ට් (අපි <a %(a_torrents)s>මෙහි</a> ප්‍රතිබිම්බනය කරමු, නමුත් අපට තවමත් කුමන ටොරන්ට් කුමන ගොනු වලට අදාළද යන්න ස්ථාපිත කර නැත)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "සියලු එකතුවන් සඳහා සංඛ්‍යාලේඛන <a %(a_href)s>libgen වෙබ් අඩවියේ</a> සොයා ගත හැක."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "ටොරන්ට් නොමැති විශේෂිත පරාස (උදාහරණයක් ලෙස කල්පිත පරාස f_3463000 සිට f_4260000 දක්වා) Z-Library (හෝ වෙනත් අනුපිටපත්) ගොනු විය හැක, නමුත් අපට මෙම පරාසවල lgli-අද්විතීය ගොනු සඳහා ටොරන්ට් සාදන අතර අනුපිටපත් ඉවත් කිරීමට අවශ්‍ය විය හැක."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4249,12 +4263,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Anna’s Archive හි සඟරා ටොරන්ට්"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "ආනාගේ අභිලේඛයේ සම්මත ලේඛන ටොරන්ට්"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "ආනාගේ අභිලේඛයේ රුසියානු කල්පිත ටොරන්ට්"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5394,12 +5410,14 @@ msgid "page.faq.uptime.text1"
 msgstr "කරුණාකර <a %(a_href)s>මෙම විශිෂ්ට ව්‍යාපෘතිය</a> බලන්න."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "මම පොත් හෝ වෙනත් භෞතික ද්‍රව්‍ය පරිත්‍යාගය කරන්නේ කෙසේද?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "කරුණාකර ඒවා <a %(a_archive)s>Internet Archive</a> වෙත යවන්න. ඔවුන් ඒවා නිසි ලෙස සුරැකීම් කරනු ඇත."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -6079,16 +6097,19 @@ msgid "page.search.title.new"
 msgstr "නව සෙවීම"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "පමණක් ඇතුළත් කරන්න"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "ඉවත් කරන්න"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "අනියම්"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6489,8 +6510,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "ඔබට කීප පැය වෙන් කිරීමට හැකි නම්, ඔබට බොහෝ ආකාරවලින් උදව් කළ හැක. <a %(a_telegram)s>Telegram හි ස්වේච්ඡා සේවකයින්ගේ සංවාදයට</a> එක්වන්න."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "අපට දැන් %(matrix)s හි සංකලිත Matrix නාලිකාවක් ද ඇත."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6508,8 +6530,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "මීලක්කය"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Anna’s Archive පිළිබඳව වචන පැතිරවීම. උදාහරණයක් ලෙස, AA හි පොත් නිර්දේශ කිරීම, අපගේ බ්ලොග් ලිපි සබැඳි කිරීම, හෝ සාමාන්‍යයෙන් අපගේ වෙබ් අඩවියට පුද්ගලයින් යොමු කිරීම."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6517,8 +6540,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s සබැඳි හෝ තිර රූප."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "මෙම දේවල් ඔබ Anna’s Archive පිළිබඳව කෙනෙකුට දැනුම් දෙන ආකාරය, සහ ඔවුන් ඔබට ස්තූති කරන ආකාරය පෙන්විය යුතුය."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6829,12 +6853,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "විකල්ප"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "අනුබද්ධ නොවූ"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

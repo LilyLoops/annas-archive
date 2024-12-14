@@ -347,8 +347,9 @@ msgstr "(সাময়িকভাবে অনুপলভ্য)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s উপহার কার্ড"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -595,8 +596,9 @@ msgstr "<strong>গুরুত্বপূর্ণ:</strong> আমরা শ�
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>গুরুত্বপূর্ণ:</strong> এই বিকল্পটি %(amazon)s এর জন্য। আপনি যদি অন্য কোনো Amazon ওয়েবসাইট ব্যবহার করতে চান, তাহলে উপরে নির্বাচন করুন।"
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1373,8 +1375,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "আমরা উপহার কার্ডের অন্যান্য পদ্ধতি গ্রহণ করতে পারি না, <strong>শুধুমাত্র Amazon.com এর অফিসিয়াল ফর্ম থেকে সরাসরি পাঠানো হয়েছে</strong>। আপনি যদি এই ফর্মটি ব্যবহার না করেন তবে আমরা আপনার উপহার কার্ড ফেরত দিতে পারব না।"
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "নির্দিষ্ট পরিমাণ লিখুন: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1392,8 +1395,9 @@ msgid "page.donation.amazon.unique"
 msgstr "আপনার অ্যাকাউন্টের জন্য অনন্য, শেয়ার করবেন না।"
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "শুধুমাত্র একবার ব্যবহার করুন।"
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2246,8 +2250,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "দ্রুতগতির সহযোগী সার্ভার #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2460,8 +2465,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3144,8 +3150,9 @@ msgid "common.form.reset"
 msgstr "রিসেট"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "আন্নার আর্কাইভ অনুসন্ধান করুন"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3651,13 +3658,15 @@ msgstr "%(icon)s অকল্পিত টরেন্টগুলি Libgen.rs 
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s আন্নার আর্কাইভ এবং Libgen.li যৌথভাবে <a %(comics)s>কমিক বই</a>, <a %(magazines)s>ম্যাগাজিন</a>, <a %(standarts)s>মানক নথি</a>, এবং <a %(fiction)s>কল্পকাহিনী (Libgen.rs থেকে পৃথক)</a> সংগ্রহ পরিচালনা করে।"
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s তাদের “fiction_rus” সংগ্রহ (রাশিয়ান কল্পকাহিনী) এর জন্য কোনো নির্দিষ্ট টরেন্ট নেই, তবে এটি অন্যদের টরেন্ট দ্বারা আচ্ছাদিত, এবং আমরা একটি <a %(fiction_rus)s>মিরর</a> রাখি।"
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4063,24 +4072,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "এই লাইব্রেরির মেটাডেটা <a %(a_libgen_li)s>libgen.li</a> এ বিনামূল্যে উপলব্ধ। তবে, এই সার্ভারটি ধীর এবং ভাঙা সংযোগগুলি পুনরায় শুরু করার সমর্থন করে না। একই ফাইলগুলি <a %(a_ftp)s>একটি FTP সার্ভার</a> এও উপলব্ধ, যা ভাল কাজ করে।"
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "অতিরিক্ত সামগ্রীর জন্য টরেন্ট উপলব্ধ, বিশেষত কমিক, ম্যাগাজিন এবং মানক নথির জন্য টরেন্ট আন্নার আর্কাইভের সাথে সহযোগিতায় প্রকাশিত হয়েছে।"
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "কল্পকাহিনী সংগ্রহের নিজস্ব টরেন্ট রয়েছে (যা <a %(a_href)s>Libgen.rs</a> থেকে পৃথক) %(start)s থেকে শুরু করে।"
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Libgen.li প্রশাসকের মতে, “fiction_rus” (রাশিয়ান কল্পকাহিনী) সংগ্রহটি নিয়মিত প্রকাশিত টরেন্ট দ্বারা <a %(a_booktracker)s>booktracker.org</a> থেকে আচ্ছাদিত হওয়া উচিত, বিশেষত <a %(a_flibusta)s>flibusta</a> এবং <a %(a_librusec)s>lib.rus.ec</a> টরেন্ট (যা আমরা <a %(a_torrents)s>এখানে</a> মিরর করি, যদিও আমরা এখনও নির্ধারণ করিনি কোন টরেন্ট কোন ফাইলের সাথে মিলে যায়)।"
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "সমস্ত সংগ্রহের পরিসংখ্যান <a %(a_href)s>libgen এর ওয়েবসাইটে</a> পাওয়া যাবে।"
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "কিছু পরিসীমা টরেন্ট ছাড়া (যেমন কল্পকাহিনী পরিসীমা f_3463000 থেকে f_4260000) সম্ভবত Z-Library (অথবা অন্যান্য ডুপ্লিকেট) ফাইল, যদিও আমরা কিছু ডিডুপ্লিকেশন করতে চাই এবং এই পরিসীমায় lgli-অনন্য ফাইলের জন্য টরেন্ট তৈরি করতে চাই।"
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4108,12 +4122,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "আন্নার আর্কাইভে ম্যাগাজিন টরেন্ট"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "আন্নার আর্কাইভে মানক নথি টরেন্ট"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "আন্নার আর্কাইভে রাশিয়ান কল্পকাহিনী টরেন্ট"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5247,12 +5263,14 @@ msgid "page.faq.uptime.text1"
 msgstr "<a %(a_href)s>এই চমৎকার প্রকল্পটি</a> দেখুন।"
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "আমি কীভাবে বই বা অন্যান্য শারীরিক উপকরণ দান করব?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "দয়া করে সেগুলি <a %(a_archive)s>ইন্টারনেট আর্কাইভ</a> এ পাঠান। তারা সেগুলি সঠিকভাবে সংরক্ষণ করবে।"
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5916,16 +5934,19 @@ msgid "page.search.title.new"
 msgstr "নতুন অনুসন্ধান"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "শুধুমাত্র অন্তর্ভুক্ত করুন"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "বর্জন করুন"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "অপরীক্ষিত"
 
 #: allthethings/page/templates/page/search.html:58
 msgid "page.search.tabs.download"
@@ -6306,8 +6327,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "যদি আপনার হাতে কয়েক ঘন্টা সময় থাকে, আপনি বিভিন্ন উপায়ে সাহায্য করতে পারেন। <a %(a_telegram)s>Telegram-এ স্বেচ্ছাসেবকদের চ্যাটে</a> যোগ দিতে ভুলবেন না।"
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "এখন আমাদের একটি সিঙ্ক করা ম্যাট্রিক্স চ্যানেলও রয়েছে %(matrix)s।"
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6325,8 +6347,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "মাইলফলক"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "আন্নার আর্কাইভের কথা ছড়িয়ে দেওয়া। উদাহরণস্বরূপ, AA-তে বই সুপারিশ করে, আমাদের ব্লগ পোস্টগুলির লিঙ্ক দিয়ে, বা সাধারণভাবে আমাদের ওয়েবসাইটে লোকেদের নির্দেশ করে।"
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6334,8 +6357,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s লিঙ্ক বা স্ক্রিনশট।"
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "এগুলি আপনাকে আন্নার আর্কাইভ সম্পর্কে কাউকে জানাতে এবং তাদের আপনাকে ধন্যবাদ জানাতে দেখানো উচিত।"
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6625,12 +6649,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "বিকল্প"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "এসএলইউএম (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "অসংযুক্ত"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

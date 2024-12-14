@@ -386,8 +386,9 @@ msgstr "(በጊዜያዊነት አልተገኘም)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s የስጦታ ካርድ"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -642,8 +643,9 @@ msgstr "<strong>አስፈላጊ:</strong> እኛ አማዞን.comን ብቻ እ�
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>አስተዋጽኦ:</strong> ይህ አማራጭ ለ%(amazon)s ነው። ሌላ የአማዞን ድረ ገጽ መጠቀም ከፈለጉ ከላይ ይምረጡት።"
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1439,8 +1441,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "ሌሎች የስጦታ ካርዶችን መቀበል አንችልም፣ <strong>በአማዞን ኦፊሻል ቅጽ ብቻ በቀጥታ የተላኩ ካርዶችን ብቻ</strong> እንቀበላለን። ይህን ቅጽ ካልጠቀሙ ስጦታ ካርድዎን መመለስ አንችልም።"
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "ትክክለኛውን መጠን ያስገቡ፡ %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1458,8 +1461,9 @@ msgid "page.donation.amazon.unique"
 msgstr "በአካውንትዎ ልዩ የሆነ፣ አብሮ አትካፈሉት።"
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "አንድ ጊዜ ብቻ ይጠቀሙት።"
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2359,8 +2363,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "ፈጣን አጋር ሰርቨር # %(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2586,8 +2591,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3285,8 +3291,9 @@ msgid "common.form.reset"
 msgstr "እንደገና አስጀምር"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "አና አርካይቭን ይፈልጉ"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3792,13 +3799,15 @@ msgstr "%(icon)s የማይገኙ የሆኑ የእውነተኛ ታሪኮች በLi
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s አና አርካይቭና Libgen.li በመተባበር የ<a %(comics)s>ኮሚክ መጽሐፍት</a>፣ <a %(magazines)s>መጽሔቶች</a>፣ <a %(standarts)s>መደበኛ ሰነዶች</a>፣ እና <a %(fiction)s>ልብ ወለድ (ከLibgen.rs የተለየ)</a> ስብስቦችን ያስተዳድራሉ።"
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s የእነሱ “fiction_rus” ስብስብ (የሩሲያ ልብ ወለድ) የተለየ ቶረንቶች የለውም፣ ነገር ግን በሌሎች ቶረንቶች ይከፈላል፣ እኛም <a %(fiction_rus)s>መስተካከል</a> እንቀጥላለን።"
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4204,24 +4213,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "የዚህ ቤተ-መፅሀፍት ሜታዳታ በነፃ <a %(a_libgen_li)s>በ libgen.li</a> ላይ ይገኛል። ሆኖም፣ ይህ ሰርቨር ዝግ ነው እና ተቋማዊ ግንኙነቶችን መቀጠል አይደግፍም። እንዲሁም እነዚህ ተመሳሳይ ፋይሎች በ <a %(a_ftp)s>ኤፍቲፒ ሰርቨር</a> ላይ ይገኛሉ፣ ይህም ይሻላል።"
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "ቶረንቶች ለአብዛኛው ተጨማሪ ይዘት ይገኛሉ፣ በተለይም ቶረንቶች ለኮሚኮች፣ መጽሔቶች፣ እና መደበኛ ሰነዶች ከአና አርካይቭ ጋር በመተባበር ተለቀቁ።"
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "የልብ ወለድ ስብስብ ራሱ የተለየ ቶረንቶች አለው (ከ<a %(a_href)s>Libgen.rs</a> የተለየ) ከ%(start)s ጀምሮ።"
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "እንደ Libgen.li አስተዳዳሪ ማስታወሻ፣ የ“fiction_rus” (የሩሲያ ልብ ወለድ) ስብስብ በተደጋጋሚ የተለቀቁ ቶረንቶች በ<a %(a_booktracker)s>booktracker.org</a> ይከፈላል፣ በተለይም <a %(a_flibusta)s>flibusta</a> እና <a %(a_librusec)s>lib.rus.ec</a> ቶረንቶች (እኛ እነዚህን <a %(a_torrents)s>እዚህ</a> እንመስተካከላለን፣ ነገር ግን የቶረንቶች የተመለከቱት ማህደሮች ምን እንደሆኑ አልተወሰነም።"
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "ስብስቦች ሁሉ የተመረጡ ስታቲስቲኮችን <a %(a_href)s>በlibgen ድረ ገጽ</a> ላይ ማግኘት ይቻላል።"
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "አንዳንድ ክልሎች ያልተለቀቁ ቶረንቶች (እንደ ልብ ወለድ ክልሎች f_3463000 እስከ f_4260000) የZ-መጋቢት (ወይም ሌላ የተደጋጋ ማህደር) ማህደሮች ሊሆኑ ይችላሉ፣ ነገር ግን አንዳንድ የተደጋጋ ማህደሮችን ማስወገድ እና ለlgli-የተለየ ማህደር ቶረንቶች ማድረግ ሊኖር ይችላል።"
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4249,12 +4263,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "በአና አርካይቭ ላይ የመጽሔት ቶረንቶች"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "በአና አርካይቭ ላይ የመደበኛ ሰነዶች ቶረንቶች"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "በአና አርካይቭ ላይ የሩሲያ ልብ ወለድ ቶረንቶች"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5394,12 +5410,14 @@ msgid "page.faq.uptime.text1"
 msgstr "እባኮትን <a %(a_href)s>ይህን በጣም ጥሩ ፕሮጀክት</a> ይመልከቱ።"
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "መጽሐፍት ወይም ሌላ የአካል እቃዎችን እንዴት ማቅረብ እችላለሁ?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "እባኮትን ወደ <a %(a_archive)s>ኢንተርኔት አርካይቭ</a> ይላኩአቸው። በትክክል ያስቀምጣቸዋል።"
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -6079,16 +6097,19 @@ msgid "page.search.title.new"
 msgstr "አዲስ ፍለጋ"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "ብቻ ያካትቱ"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "ያልካተቱ"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "ያልተረጋገጠ"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6489,8 +6510,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "ጥቂት ሰዓታት ካሉዎት በብዙ መንገዶች ሊረዱን ይችላሉ። በ <a %(a_telegram)s>በበጎ ፈቃደኞች ቻት በቴሌግራም</a> ለመቀላቀል እርግጠኛ ይሁኑ።"
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "አሁን በ%(matrix)s የተዛመደ የማትሪክስ ቻናል አለን።"
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6508,8 +6530,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "አሰራር"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "የአና አርካይቭን ቃል ማሰራጨት። ለምሳሌ፣ በAA መጽሐፍትን በመመከር፣ ወይም ወደ ብሎግ ልጥፎቻችን በመገናኘት፣ ወይም በአጠቃላይ ሰዎችን ወደ ድረ ገጻችን በመምራት።"
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6517,8 +6540,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s አገኘዋል ወይም ስክሪንሹቶች።"
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "እነዚህ ሰውን ስለ አና አርካይቭ ማሳወቅ እና እነሱም ስላሳወቅክ ማመስገን እንደሚያሳዩ መሆን አለባቸው።"
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6829,12 +6853,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "አማራጮች"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "ስሉም (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "ያልተያያዘ"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

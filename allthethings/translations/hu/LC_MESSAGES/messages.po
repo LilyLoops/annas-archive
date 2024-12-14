@@ -337,8 +337,9 @@ msgstr "(átmenetileg nem elérhető)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s ajándékkártya"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -570,8 +571,9 @@ msgstr "<strong>FONTOS:</strong> Csak az Amazon.com-ot támogatjuk, más Amazon-
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>FONTOS:</strong> Ez az opció a %(amazon)s számára van. Ha egy másik Amazon weboldalt szeretne használni, válassza ki fent."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1290,8 +1292,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Más ajándékkártyákat nem tudunk elfogadni, <strong>csak közvetlenül az Amazon.com hivatalos űrlapjáról</strong> küldött ajándékkártyákat. Nem tudjuk visszaküldeni az ajándékkártyát, ha nem ezt az űrlapot használja."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Adja meg a pontos összeget: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 msgid "page.donate.payment.desc.amazon_message"
@@ -1306,8 +1309,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Egyedi a fiókodhoz, ne oszd meg."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Csak egyszer használható."
 
 #: allthethings/account/templates/account/donation.html:388
 msgid "page.donation.amazon.waiting_gift_card"
@@ -2102,8 +2106,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Gyors Partner Szerver #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2306,8 +2311,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -2979,8 +2985,9 @@ msgid "common.form.reset"
 msgstr "Visszaállítás"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Anna Archívum keresése"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3483,13 +3490,15 @@ msgstr "%(icon)s Nem-fikciós torrentek megosztva a Libgen.rs-sel (és tükrözv
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Az Anna Archívum és a Libgen.li közösen kezelik a <a %(comics)s>képregények</a>, <a %(magazines)s>magazinok</a>, <a %(standarts)s>szabványos dokumentumok</a> és <a %(fiction)s>szépirodalom (eltér a Libgen.rs-től)</a> gyűjteményeit."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s Az ő „fiction_rus” gyűjteményüknek (orosz szépirodalom) nincs dedikált torrentje, de mások torrentjei lefedik, és mi tartunk egy <a %(fiction_rus)s>tükröt</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -3895,24 +3904,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Ennek a könyvtárnak a metaadatai szabadon elérhetők <a %(a_libgen_li)s>a libgen.li oldalon</a>. Azonban ez a szerver lassú és nem támogatja a megszakadt kapcsolatok folytatását. Ugyanezek a fájlok elérhetők egy <a %(a_ftp)s>FTP szerveren</a> is, amely jobban működik."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "A legtöbb további tartalomhoz elérhetők torrentek, különösen a képregények, magazinok és szabványos dokumentumok torrentjei jelentek meg az Anna Archívummal együttműködésben."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "A szépirodalmi gyűjteménynek saját torrentjei vannak (eltérő a <a %(a_href)s>Libgen.rs</a>-től) %(start)s-től kezdődően."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "A Libgen.li adminisztrátora szerint a „fiction_rus” (orosz szépirodalom) gyűjteményt a <a %(a_booktracker)s>booktracker.org</a> rendszeresen kiadott torrentjei kell, hogy lefedjék, különösen a <a %(a_flibusta)s>flibusta</a> és <a %(a_librusec)s>lib.rus.ec</a> torrentek (amelyeket itt tükrözünk <a %(a_torrents)s>, bár még nem állapítottuk meg, mely torrentek mely fájloknak felelnek meg)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Az összes gyűjtemény statisztikái megtalálhatók <a %(a_href)s>a libgen weboldalán</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Bizonyos tartományok, amelyekhez nincsenek torrentek (mint például a f_3463000-től f_4260000-ig terjedő szépirodalmi tartományok), valószínűleg Z-Library (vagy más duplikált) fájlok, bár érdemes lehet némi deduplikációt végezni, és torrenteket készíteni az lgli-egyedi fájlokhoz ezekben a tartományokban."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -3940,12 +3954,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Magazin torrentek az Anna Archívumában"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Szabványos dokumentum torrentek az Anna Archívumban"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Orosz szépirodalmi torrentek az Anna Archívumban"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5062,12 +5078,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Kérjük, tekintse meg <a %(a_href)s>ezt a kiváló projektet</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Hogyan adományozhatok könyveket vagy más fizikai anyagokat?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Kérjük, küldje el őket az <a %(a_archive)s>Internet Archive</a>-nak. Ők megfelelően megőrzik azokat."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5711,16 +5729,19 @@ msgid "page.search.title.new"
 msgstr "Új Keresés"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Csak tartalmazza"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Kizárja"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Ellenőrizetlen"
 
 #: allthethings/page/templates/page/search.html:58
 msgid "page.search.tabs.download"
@@ -6078,8 +6099,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Ha van néhány szabad órád, többféleképpen is segíthetsz. Csatlakozz a <a %(a_telegram)s>önkéntesek csevegéséhez a Telegramon</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Most már van egy szinkronizált Matrix csatornánk is a %(matrix)s címen."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6097,8 +6119,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Mérföldkő"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Anna Archívumának hírét terjesztjük. Például könyvek ajánlásával az AA-n, blogbejegyzéseink linkelésével, vagy általában az emberek irányításával a weboldalunkra."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6106,8 +6129,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s linkek vagy képernyőképek."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "Ezeknek azt kellene mutatniuk, hogy tájékoztatsz valakit Anna Archívumáról, és ő megköszöni neked."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6394,12 +6418,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Alternatívák"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "független"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

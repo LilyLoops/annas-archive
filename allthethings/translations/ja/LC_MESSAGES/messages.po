@@ -336,8 +336,9 @@ msgstr "(一時利用不可)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s ギフトカード"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -569,8 +570,9 @@ msgstr "<strong>重要：</strong>Amazon.comにのみ対応しております。
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>重要：</strong> このオプションは%(amazon)s用です。他のAmazonウェブサイトを使用したい場合は、上で選択してください。"
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1289,8 +1291,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "<strong>Amazon.comの公式フォームから送信されたもの</strong>以外のギフト券は認証できません。このフォームを使用しなかった場合でも、私達は返金を行えません。"
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "正確な金額を入力してください: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 msgid "page.donate.payment.desc.amazon_message"
@@ -1305,8 +1308,9 @@ msgid "page.donation.amazon.unique"
 msgstr "あなたの専用アカウントです。アカウントの共有はしないでください。"
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "一度だけ使用してください。"
 
 #: allthethings/account/templates/account/donation.html:388
 msgid "page.donation.amazon.waiting_gift_card"
@@ -2103,8 +2107,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "高速な内部のサーバー#%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2309,8 +2314,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -2986,8 +2992,9 @@ msgid "common.form.reset"
 msgstr "リセット"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "アンナのアーカイブを検索"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3491,13 +3498,15 @@ msgstr "%(icon)s ノンフィクショントレントはLibgen.rsと共有され
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s アンナのアーカイブとLibgen.liは共同で<a %(comics)s>コミック</a>、<a %(magazines)s>雑誌</a>、<a %(standarts)s>標準文書</a>、および<a %(fiction)s>フィクション（Libgen.rsから分岐）</a>のコレクションを管理しています。"
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s 彼らの「fiction_rus」コレクション（ロシアのフィクション）は専用のトレントがありませんが、他のトレントでカバーされており、私たちは<a %(fiction_rus)s>ミラー</a>を保持しています。"
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -3903,24 +3912,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "このライブラリのメタデータは<a %(a_libgen_li)s>libgen.liで</a>無料で利用できます。ただし、このサーバーは遅く、接続が切れた場合の再開をサポートしていません。同じファイルは<a %(a_ftp)s>FTPサーバー</a>でも利用可能で、こちらの方が動作が良好です。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "追加コンテンツのほとんどにはトレントが利用可能で、特にコミック、雑誌、標準文書のトレントはアンナのアーカイブとの共同でリリースされています。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "フィクションコレクションには独自のトレントがあり（<a %(a_href)s>Libgen.rs</a>から分岐）、%(start)sから始まります。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Libgen.liの管理者によると、「fiction_rus」（ロシアのフィクション）コレクションは、<a %(a_booktracker)s>booktracker.org</a>から定期的にリリースされるトレントでカバーされるべきであり、特に<a %(a_flibusta)s>flibusta</a>と<a %(a_librusec)s>lib.rus.ec</a>のトレント（私たちは<a %(a_torrents)s>ここ</a>でミラーしていますが、どのトレントがどのファイルに対応しているかはまだ確立していません）。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "すべてのコレクションの統計は<a %(a_href)s>libgenのウェブサイト</a>で見つけることができます。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "トレントのない特定の範囲（例えば、フィクションの範囲f_3463000からf_4260000）は、おそらくZ-Library（または他の重複）ファイルである可能性が高いですが、これらの範囲でlgli-ユニークなファイルのために重複排除を行い、トレントを作成したいかもしれません。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -3948,12 +3962,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Anna’s Archiveの雑誌トレント"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "アンナのアーカイブの標準文書トレント"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "アンナのアーカイブのロシアのフィクショントレント"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5077,12 +5093,14 @@ msgid "page.faq.uptime.text1"
 msgstr "<a %(a_href)s>この素晴らしいプロジェクト</a>をご覧ください。"
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "本や他の物理的な資料を寄付するにはどうすればいいですか？"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "<a %(a_archive)s>Internet Archive</a>に送ってください。彼らが適切に保存します。"
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5743,16 +5761,19 @@ msgid "page.search.title.new"
 msgstr "新規検索"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "のみを含める"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "除外する"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "未確認"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6139,8 +6160,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "数時間の余裕がある場合、さまざまな方法で手助けすることができます。<a %(a_telegram)s>Telegramのボランティアチャット</a>に参加することを忘れないでください。"
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "現在、%(matrix)sで同期されたMatrixチャンネルもあります。"
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6158,8 +6180,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "マイルストーン"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "アンナのアーカイブを広めること。例えば、AAで本を推薦したり、ブログ記事にリンクしたり、一般的に私たちのウェブサイトに人々を誘導したりすることです。"
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6167,8 +6190,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s リンクまたはスクリーンショット。"
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "これらは、アンナのアーカイブについて誰かに知らせ、その人が感謝している様子を示すべきです。"
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6454,12 +6478,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "ミラーサイト"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "非提携"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

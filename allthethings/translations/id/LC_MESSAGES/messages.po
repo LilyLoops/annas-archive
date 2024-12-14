@@ -320,8 +320,9 @@ msgstr "(sementara tidak tersedia)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s kartu hadiah"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -553,8 +554,9 @@ msgstr "<strong>PENTING:</strong> Kami hanya mendukung Amazon.com, tidak menduku
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>PENTING:</strong> Opsi ini untuk %(amazon)s. Jika Anda ingin menggunakan situs web Amazon lainnya, pilih di atas."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1267,8 +1269,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Kami tidak dapat menerima metode lain untuk kartu hadiah, <strong>hanya yang dikirimkan langsung melalui formulir resmi di Amazon.com</strong>. Kami tidak dapat mengembalikan kartu hadiah Anda jika Anda tidak menggunakan formulir ini."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Masukkan jumlah yang tepat: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 msgid "page.donate.payment.desc.amazon_message"
@@ -1283,8 +1286,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Unik untuk akun Anda, jangan dibagikan."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Hanya gunakan sekali."
 
 #: allthethings/account/templates/account/donation.html:388
 msgid "page.donation.amazon.waiting_gift_card"
@@ -2057,8 +2061,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Unduhan jalur cepat rekan #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2256,8 +2261,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -2913,8 +2919,9 @@ msgid "common.form.reset"
 msgstr "Atur Ulang"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Cari Arsip Anna"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3413,13 +3420,15 @@ msgstr "%(icon)s Torrent Non-Fiksi dibagikan dengan Libgen.rs (dan dicerminkan <
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Arsip Anna dan Libgen.li secara kolaboratif mengelola koleksi <a %(comics)s>buku komik</a>, <a %(magazines)s>majalah</a>, <a %(standarts)s>dokumen standar</a>, dan <a %(fiction)s>fiksi (berbeda dari Libgen.rs)</a>."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s Koleksi “fiction_rus” mereka (fiksi Rusia) tidak memiliki torrent khusus, tetapi tercakup oleh torrent dari pihak lain, dan kami menyimpan <a %(fiction_rus)s>mirror</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -3825,24 +3834,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Metadata untuk perpustakaan ini tersedia secara gratis <a %(a_libgen_li)s>di libgen.li</a>. Namun, server ini lambat dan tidak mendukung melanjutkan koneksi yang terputus. File yang sama juga tersedia di <a %(a_ftp)s>server FTP</a>, yang bekerja lebih baik."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "Torrent tersedia untuk sebagian besar konten tambahan, terutama torrent untuk komik, majalah, dan dokumen standar telah dirilis dalam kolaborasi dengan Arsip Anna."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "Koleksi fiksi memiliki torrent sendiri (berbeda dari <a %(a_href)s>Libgen.rs</a>) mulai dari %(start)s."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Menurut administrator Libgen.li, koleksi “fiction_rus” (fiksi Rusia) harus tercakup oleh torrent yang dirilis secara teratur dari <a %(a_booktracker)s>booktracker.org</a>, terutama torrent <a %(a_flibusta)s>flibusta</a> dan <a %(a_librusec)s>lib.rus.ec</a> (yang kami mirror <a %(a_torrents)s>di sini</a>, meskipun kami belum menetapkan torrent mana yang sesuai dengan file mana)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Statistik untuk semua koleksi dapat ditemukan <a %(a_href)s>di situs web libgen</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Rentang tertentu tanpa torrent (seperti rentang fiksi f_3463000 hingga f_4260000) kemungkinan adalah file Z-Library (atau duplikat lainnya), meskipun kami mungkin ingin melakukan deduplikasi dan membuat torrent untuk file unik lgli dalam rentang ini."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -3870,12 +3884,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Torrent majalah di Arsip Anna"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Torrent dokumen standar di Arsip Anna"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Torrent fiksi Rusia di Arsip Anna"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -4980,12 +4996,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Silakan lihat <a %(a_href)s>proyek yang luar biasa ini</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Bagaimana cara menyumbangkan buku atau bahan fisik lainnya?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Silakan kirim ke <a %(a_archive)s>Internet Archive</a>. Mereka akan menyimpannya dengan baik."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5627,16 +5645,19 @@ msgid "page.search.title.new"
 msgstr "Pencarian baru"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Hanya sertakan"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Kecualikan"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Belum diperiksa"
 
 #: allthethings/page/templates/page/search.html:58
 msgid "page.search.tabs.download"
@@ -5984,8 +6005,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Jika Anda memiliki beberapa jam luang, Anda dapat membantu dengan berbagai cara. Pastikan untuk bergabung dengan <a %(a_telegram)s>obrolan sukarelawan di Telegram</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Kami sekarang juga memiliki saluran Matrix yang disinkronkan di %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6003,8 +6025,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Pencapaian"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Menyebarkan informasi tentang Arsip Anna. Misalnya, dengan merekomendasikan buku di AA, menautkan ke posting blog kami, atau secara umum mengarahkan orang ke situs web kami."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6012,8 +6035,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s tautan atau tangkapan layar."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "Ini harus menunjukkan Anda memberi tahu seseorang tentang Arsip Anna, dan mereka berterima kasih kepada Anda."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6297,12 +6321,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Alternatif"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "tidak terafiliasi"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

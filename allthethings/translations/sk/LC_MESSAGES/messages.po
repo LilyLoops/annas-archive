@@ -382,8 +382,9 @@ msgstr "(dočasne nedostupné)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s darčeková karta"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -638,8 +639,9 @@ msgstr "<strong>DÔLEŽITÉ:</strong> Podporujeme iba Amazon.com, nie iné webov
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>DÔLEŽITÉ:</strong> Táto možnosť je pre %(amazon)s. Ak chcete použiť inú webovú stránku Amazonu, vyberte ju vyššie."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1435,8 +1437,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Nemôžeme prijať iné metódy darčekových kariet, <strong>iba tie, ktoré sú zaslané priamo z oficiálneho formulára na Amazon.com</strong>. Nemôžeme vrátiť vašu darčekovú kartu, ak nepoužijete tento formulár."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Zadajte presnú sumu: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1454,8 +1457,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Unikátne pre váš účet, nezdieľajte."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Použiť iba raz."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2344,8 +2348,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Rýchly partnerský server #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2566,8 +2571,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3258,8 +3264,9 @@ msgid "common.form.reset"
 msgstr "Resetovať"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Vyhľadať Annin archív"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3767,13 +3774,15 @@ msgstr "%(icon)s Torrenty nefikcie sú zdieľané s Libgen.rs (a zrkadlené <a %
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Annin archív a Libgen.li spoločne spravujú zbierky <a %(comics)s>komiksov</a>, <a %(magazines)s>časopisov</a>, <a %(standarts)s>štandardných dokumentov</a> a <a %(fiction)s>beletrie (odlišná od Libgen.rs)</a>."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s Ich zbierka „fiction_rus“ (ruská beletria) nemá vlastné torrenty, ale je pokrytá torrentmi od iných, a my udržiavame <a %(fiction_rus)s>zrkadlo</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4179,24 +4188,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Metadáta pre túto knižnicu sú voľne dostupné <a %(a_libgen_li)s>na libgen.li</a>. Tento server je však pomalý a nepodporuje obnovenie prerušených pripojení. Rovnaké súbory sú tiež dostupné na <a %(a_ftp)s>FTP serveri</a>, ktorý funguje lepšie."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "Torrenty sú dostupné pre väčšinu ďalšieho obsahu, najmä torrenty pre komiksy, časopisy a štandardné dokumenty boli vydané v spolupráci s Anniným archívom."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "Zbierka beletrie má vlastné torrenty (odlišné od <a %(a_href)s>Libgen.rs</a>) začínajúce na %(start)s."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Podľa administrátora Libgen.li by mala byť zbierka „fiction_rus“ (ruská beletria) pokrytá pravidelne vydávanými torrentmi z <a %(a_booktracker)s>booktracker.org</a>, najmä torrentmi <a %(a_flibusta)s>flibusta</a> a <a %(a_librusec)s>lib.rus.ec</a> (ktoré zrkadlíme <a %(a_torrents)s>tu</a>, hoci sme ešte nezistili, ktoré torrenty zodpovedajú ktorým súborom)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Štatistiky pre všetky zbierky nájdete <a %(a_href)s>na webovej stránke libgenu</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Určité rozsahy bez torrentov (ako rozsahy beletrie f_3463000 až f_4260000) sú pravdepodobne súbory Z-Library (alebo iné duplikáty), hoci by sme mohli chcieť vykonať deduplikáciu a vytvoriť torrenty pre súbory jedinečné pre lgli v týchto rozsahoch."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4224,12 +4238,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Torrenty časopisov na Anninom Archíve"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Torrenty štandardných dokumentov na Anninom archíve"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Torrenty ruskej beletrie na Anninom archíve"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5366,12 +5382,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Pozrite si <a %(a_href)s>tento vynikajúci projekt</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Ako môžem darovať knihy alebo iné fyzické materiály?"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Prosím, pošlite ich do <a %(a_archive)s>Internet Archive</a>. Správne ich uchovajú."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -6047,16 +6065,19 @@ msgid "page.search.title.new"
 msgstr "Nové vyhľadávanie"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Zahrnúť iba"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Vylúčiť"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Nezačiarknuté"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6445,8 +6466,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Ak máte pár hodín voľného času, môžete pomôcť rôznymi spôsobmi. Nezabudnite sa pripojiť k <a %(a_telegram)s>dobrovoľníckemu chatu na Telegrame</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Teraz máme aj synchronizovaný Matrix kanál na %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6464,8 +6486,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Míľnik"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Šírenie povedomia o Anninom archíve. Napríklad odporúčaním kníh na AA, odkazovaním na naše blogové príspevky alebo všeobecným smerovaním ľudí na našu webovú stránku."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6473,8 +6496,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "Odkazy %(links)s alebo snímky obrazovky."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "Tieto by mali ukázať, že niekomu hovoríte o Anninom archíve a oni vám ďakujú."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6771,12 +6795,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Alternatívy"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "nepridružený"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

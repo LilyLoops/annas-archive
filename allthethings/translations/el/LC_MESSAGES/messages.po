@@ -364,8 +364,9 @@ msgstr "(προσωρινά μη διαθέσιμο)"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s δωροκάρτα"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -619,8 +620,9 @@ msgstr "<strong>ΣΗΜΑΝΤΙΚΟ:</strong> Υποστηρίζουμε μόνο
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>ΣΗΜΑΝΤΙΚΟ:</strong> Αυτή η επιλογή είναι για %(amazon)s. Αν θέλετε να χρησιμοποιήσετε άλλη ιστοσελίδα της Amazon, επιλέξτε την παραπάνω."
 
 #: allthethings/account/templates/account/donate.html:399
 #, fuzzy
@@ -1416,8 +1418,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "Δεν μπορούμε να δεχτούμε άλλες μεθόδους δωροκαρτών, <strong>μόνο αυτές που αποστέλλονται απευθείας από την επίσημη φόρμα στο Amazon.com</strong>. Δεν μπορούμε να επιστρέψουμε τη δωροκάρτα σας αν δεν χρησιμοποιήσετε αυτήν τη φόρμα."
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "Εισάγετε το ακριβές ποσό: %(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 #, fuzzy
@@ -1435,8 +1438,9 @@ msgid "page.donation.amazon.unique"
 msgstr "Μοναδικό για τον λογαριασμό σας, μην το μοιράζεστε."
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "Χρησιμοποιήστε μόνο μία φορά."
 
 #: allthethings/account/templates/account/donation.html:388
 #, fuzzy
@@ -2321,8 +2325,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "Γρήγορος Διακομιστής Συνεργάτη #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2540,8 +2545,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -3231,8 +3237,9 @@ msgid "common.form.reset"
 msgstr "Επαναφορά"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "Αναζήτηση στο Αρχείο της Άννας"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3738,13 +3745,15 @@ msgstr "%(icon)s Τα torrents Μη-Φαντασίας μοιράζονται μ
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Το Αρχείο της Άννας και το Libgen.li διαχειρίζονται από κοινού συλλογές από <a %(comics)s>κόμικς</a>, <a %(magazines)s>περιοδικά</a>, <a %(standarts)s>τυπικά έγγραφα</a> και <a %(fiction)s>λογοτεχνία (αποκλίνουσα από το Libgen.rs)</a>."
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s Η συλλογή τους “fiction_rus” (Ρωσική λογοτεχνία) δεν έχει αφιερωμένα torrents, αλλά καλύπτεται από torrents άλλων, και διατηρούμε έναν <a %(fiction_rus)s>καθρέφτη</a>."
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -4150,24 +4159,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "Τα μεταδεδομένα για αυτήν τη βιβλιοθήκη είναι ελεύθερα διαθέσιμα <a %(a_libgen_li)s>στο libgen.li</a>. Ωστόσο, αυτός ο διακομιστής είναι αργός και δεν υποστηρίζει την επανεκκίνηση σπασμένων συνδέσεων. Τα ίδια αρχεία είναι επίσης διαθέσιμα σε <a %(a_ftp)s>έναν διακομιστή FTP</a>, ο οποίος λειτουργεί καλύτερα."
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "Torrents είναι διαθέσιμα για το μεγαλύτερο μέρος του επιπλέον περιεχομένου, πιο συγκεκριμένα torrents για κόμικς, περιοδικά και τυπικά έγγραφα έχουν κυκλοφορήσει σε συνεργασία με το Αρχείο της Άννας."
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "Η συλλογή λογοτεχνίας έχει τα δικά της torrents (αποκλίνουσα από το <a %(a_href)s>Libgen.rs</a>) ξεκινώντας από %(start)s."
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "Σύμφωνα με τον διαχειριστή του Libgen.li, η συλλογή “fiction_rus” (Ρωσική λογοτεχνία) θα πρέπει να καλύπτεται από τακτικά κυκλοφορούμενα torrents από το <a %(a_booktracker)s>booktracker.org</a>, πιο συγκεκριμένα τα torrents <a %(a_flibusta)s>flibusta</a> και <a %(a_librusec)s>lib.rus.ec</a> (τα οποία καθρεφτίζουμε <a %(a_torrents)s>εδώ</a>, αν και δεν έχουμε ακόμη καθορίσει ποια torrents αντιστοιχούν σε ποια αρχεία)."
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "Στατιστικά για όλες τις συλλογές μπορούν να βρεθούν <a %(a_href)s>στην ιστοσελίδα του libgen</a>."
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "Ορισμένα εύρη χωρίς torrents (όπως τα εύρη λογοτεχνίας f_3463000 έως f_4260000) είναι πιθανότατα αρχεία Z-Library (ή άλλα διπλότυπα), αν και ίσως θέλουμε να κάνουμε κάποια αποδιπλοποίηση και να δημιουργήσουμε torrents για μοναδικά αρχεία lgli σε αυτά τα εύρη."
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -4195,12 +4209,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Torrents περιοδικών στο Αρχείο της Άννας"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Torrents τυπικών εγγράφων στο Αρχείο της Άννας"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Torrents ρωσικής λογοτεχνίας στο Αρχείο της Άννας"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -5336,12 +5352,14 @@ msgid "page.faq.uptime.text1"
 msgstr "Παρακαλώ δείτε <a %(a_href)s>αυτό το εξαιρετικό έργο</a>."
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "Πώς μπορώ να δωρίσω βιβλία ή άλλα φυσικά υλικά;"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "Παρακαλώ στείλτε τα στο <a %(a_archive)s>Internet Archive</a>. Θα τα διατηρήσουν σωστά."
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -6016,16 +6034,19 @@ msgid "page.search.title.new"
 msgstr "Νέα Αναζήτηση"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "Συμπεριλάβετε μόνο"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "Εξαιρέστε"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "Ανεξέλεγκτο"
 
 #: allthethings/page/templates/page/search.html:58
 #, fuzzy
@@ -6415,8 +6436,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "Αν έχετε λίγες ώρες διαθέσιμες, μπορείτε να βοηθήσετε με διάφορους τρόπους. Φροντίστε να συμμετάσχετε στη <a %(a_telegram)s>συνομιλία εθελοντών στο Telegram</a>."
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "Τώρα έχουμε επίσης ένα συγχρονισμένο κανάλι Matrix στο %(matrix)s."
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -6434,8 +6456,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "Ορόσημο"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "Διαδίδοντας τη φήμη του Αρχείου της Άννας. Για παράδειγμα, προτείνοντας βιβλία στο AA, συνδέοντας τις αναρτήσεις του ιστολογίου μας ή γενικά κατευθύνοντας τους ανθρώπους στον ιστότοπό μας."
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -6443,8 +6466,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s σύνδεσμοι ή στιγμιότυπα οθόνης."
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "Αυτά θα πρέπει να δείχνουν ότι ενημερώνετε κάποιον για το Αρχείο της Άννας και εκείνος σας ευχαριστεί."
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6743,12 +6767,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "Εναλλακτικές"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "μη συνδεδεμένο"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125

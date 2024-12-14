@@ -311,8 +311,9 @@ msgstr "（暫時無法使用）"
 #: allthethings/account/templates/account/donate.html:145
 #: allthethings/account/templates/account/donate.html:147
 #: allthethings/account/templates/account/donate.html:149
+#, fuzzy
 msgid "page.donate.payment.buttons.amazon_cc"
-msgstr ""
+msgstr "%(amazon)s 禮品卡"
 
 #: allthethings/account/templates/account/donate.html:152
 #, fuzzy
@@ -527,8 +528,9 @@ msgstr "<strong>重要提示：</strong>我們只支持 Amazon.com，不支援�
 #: allthethings/account/templates/account/donate.html:367
 #: allthethings/account/templates/account/donate.html:379
 #: allthethings/account/templates/account/donate.html:391
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_cc"
-msgstr ""
+msgstr "<strong>重要：</strong> 此選項適用於 %(amazon)s。如果您想使用其他的亞馬遜網站，請在上方選擇。"
 
 #: allthethings/account/templates/account/donate.html:399
 msgid "page.donate.payment.desc.credit_debit_backup"
@@ -1211,8 +1213,9 @@ msgid "page.donation.amazon.only_official"
 msgstr "我們不接受其他方式的禮品卡，<strong>僅直接從 Amazon.com 上的官方表格發送</strong>。如果您不使用此表格，我們將無法退還您的禮品卡。"
 
 #: allthethings/account/templates/account/donation.html:374
+#, fuzzy
 msgid "page.donate.payment.desc.amazon_message_1"
-msgstr ""
+msgstr "輸入確切金額：%(amount)s"
 
 #: allthethings/account/templates/account/donation.html:375
 msgid "page.donate.payment.desc.amazon_message"
@@ -1227,8 +1230,9 @@ msgid "page.donation.amazon.unique"
 msgstr "您的帳號獨有，請勿分享。"
 
 #: allthethings/account/templates/account/donation.html:383
+#, fuzzy
 msgid "page.donation.amazon.only_use_once"
-msgstr ""
+msgstr "僅限使用一次。"
 
 #: allthethings/account/templates/account/donation.html:388
 msgid "page.donation.amazon.waiting_gift_card"
@@ -1997,8 +2001,9 @@ msgid "common.md5.servers.fast_partner"
 msgstr "合作伙伴快速伺服器 #%(number)s"
 
 #: allthethings/page/views.py:6616
+#, fuzzy
 msgid "common.md5.servers.fast_partner.recommended"
-msgstr ""
+msgstr "(%(recommended)s)"
 
 #: allthethings/page/views.py:6616
 #, fuzzy
@@ -2196,8 +2201,9 @@ msgid "page.md5.top_row.duxiu_ssid"
 msgstr "DuXiu SSID %(id)s}"
 
 #: allthethings/page/views.py:7012
+#, fuzzy
 msgid "page.md5.top_row.cadal_ssno"
-msgstr ""
+msgstr "CADAL SSNO %(id)s}"
 
 #: allthethings/page/views.py:7013
 #, fuzzy
@@ -2853,8 +2859,9 @@ msgid "common.form.reset"
 msgstr "重置"
 
 #: allthethings/page/templates/page/codes.html:38
+#, fuzzy
 msgid "page.codes.search_archive_start"
-msgstr ""
+msgstr "搜尋 Anna 的檔案庫"
 
 #: allthethings/page/templates/page/codes.html:43
 #, fuzzy
@@ -3351,13 +3358,15 @@ msgstr "%(icon)s 非小說種子與 Libgen.rs 共享（並在<a %(libgenli)s>這
 
 #: allthethings/page/templates/page/datasets.html:334
 #: allthethings/page/templates/page/datasets_lgli.html:46
+#, fuzzy
 msgid "page.datasets.sources.libgen_li.collab"
-msgstr ""
+msgstr "%(icon)s Anna的檔案和Libgen.li共同管理<a %(comics)s>漫畫書</a>、<a %(magazines)s>雜誌</a>、<a %(standarts)s>標準文件</a>和<a %(fiction)s>小說（從Libgen.rs分支出來）</a>的收藏。"
 
 #: allthethings/page/templates/page/datasets.html:342
 #: allthethings/page/templates/page/datasets_lgli.html:54
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus"
-msgstr ""
+msgstr "%(icon)s 他們的“fiction_rus”收藏（俄羅斯小說）沒有專門的種子，但由其他種子覆蓋，我們保留了一個<a %(fiction_rus)s>鏡像</a>。"
 
 #: allthethings/page/templates/page/datasets.html:357
 #: allthethings/page/templates/page/datasets_zlib.html:30
@@ -3763,24 +3772,29 @@ msgid "page.datasets.libgen_li.description3"
 msgstr "此圖書館的元數據可在 <a %(a_libgen_li)s>libgen.li</a> 免費獲取。然而，這個服務器速度很慢，且不支持恢復中斷的連接。相同的文件也可以在 <a %(a_ftp)s>一個 FTP 服務器</a> 上獲取，效果更好。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:76
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.torrents"
-msgstr ""
+msgstr "大多數額外內容都有提供種子，尤其是漫畫、雜誌和標準文件的種子已與 Anna 的檔案庫合作發布。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:77
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_torrents"
-msgstr ""
+msgstr "小說收藏有其自己的種子（與 <a %(a_href)s>Libgen.rs</a> 不同）從 %(start)s 開始。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:81
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.fiction_rus"
-msgstr ""
+msgstr "根據 Libgen.li 管理員的說法，“fiction_rus”（俄羅斯小說）收藏應由 <a %(a_booktracker)s>booktracker.org</a> 定期發布的種子涵蓋，尤其是 <a %(a_flibusta)s>flibusta</a> 和 <a %(a_librusec)s>lib.rus.ec</a> 的種子（我們在<a %(a_torrents)s>這裡</a>鏡像，但我們尚未確定哪些種子對應哪些文件）。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:87
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.stats"
-msgstr ""
+msgstr "所有收藏的統計數據可以在 <a %(a_href)s>libgen 的網站</a>上找到。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:91
+#, fuzzy
 msgid "page.datasets.libgen_li.description4.omissions"
-msgstr ""
+msgstr "某些範圍沒有種子（例如小說範圍 f_3463000 到 f_4260000）可能是 Z-Library（或其他重複）文件，儘管我們可能需要進行一些去重，並為這些範圍內的 lgli 獨有文件製作種子。"
 
 #: allthethings/page/templates/page/datasets_lgli.html:95
 #, fuzzy
@@ -3808,12 +3822,14 @@ msgid "page.datasets.libgen_li.magazines_torrents"
 msgstr "Anna’s Archive 上的雜誌 torrent"
 
 #: allthethings/page/templates/page/datasets_lgli.html:111
+#, fuzzy
 msgid "page.datasets.libgen_li.standarts_torrents"
-msgstr ""
+msgstr "Anna 的檔案庫上的標準文件種子"
 
 #: allthethings/page/templates/page/datasets_lgli.html:112
+#, fuzzy
 msgid "page.datasets.libgen_li.fiction_rus_torrents"
-msgstr ""
+msgstr "Anna 的檔案庫上的俄羅斯小說種子"
 
 #: allthethings/page/templates/page/datasets_lgli.html:115
 #, fuzzy
@@ -4915,12 +4931,14 @@ msgid "page.faq.uptime.text1"
 msgstr "請參閱<a %(a_href)s>這個出色的項目</a>。"
 
 #: allthethings/page/templates/page/faq.html:330
+#, fuzzy
 msgid "page.faq.physical.title"
-msgstr ""
+msgstr "我如何捐贈書籍或其他實體材料？"
 
 #: allthethings/page/templates/page/faq.html:333
+#, fuzzy
 msgid "page.faq.physical.text1"
-msgstr ""
+msgstr "請將它們寄送到 <a %(a_archive)s>Internet Archive</a>。他們會妥善保存。"
 
 #: allthethings/page/templates/page/faq.html:336
 #, fuzzy
@@ -5556,16 +5574,19 @@ msgid "page.search.title.new"
 msgstr "新的搜索"
 
 #: allthethings/page/templates/page/search.html:27
+#, fuzzy
 msgid "page.search.icon.include_only"
-msgstr ""
+msgstr "僅包含"
 
 #: allthethings/page/templates/page/search.html:29
+#, fuzzy
 msgid "page.search.icon.exclude"
-msgstr ""
+msgstr "排除"
 
 #: allthethings/page/templates/page/search.html:31
+#, fuzzy
 msgid "page.search.icon.unchecked"
-msgstr ""
+msgstr "未檢查"
 
 #: allthethings/page/templates/page/search.html:58
 msgid "page.search.tabs.download"
@@ -5910,8 +5931,9 @@ msgid "page.volunteering.section.light.text1"
 msgstr "如果您有幾個小時的空閒時間，您可以通過多種方式幫助我們。請務必加入<a %(a_telegram)s>Telegram上的志願者聊天</a>。"
 
 #: allthethings/page/templates/page/volunteering.html:31
+#, fuzzy
 msgid "page.volunteering.section.light.matrix"
-msgstr ""
+msgstr "我們現在也有一個同步的 Matrix 頻道在 %(matrix)s。"
 
 #: allthethings/page/templates/page/volunteering.html:35
 #, fuzzy
@@ -5929,8 +5951,9 @@ msgid "page.volunteering.table.header.milestone"
 msgstr "里程碑"
 
 #: allthethings/page/templates/page/volunteering.html:44
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.task.alt1"
-msgstr ""
+msgstr "宣傳 Anna 的檔案庫。例如，推薦 AA 上的書籍，鏈接到我們的博客文章，或一般性地引導人們到我們的網站。"
 
 #: allthethings/page/templates/page/volunteering.html:45
 #, fuzzy
@@ -5938,8 +5961,9 @@ msgid "page.volunteering.table.spread_the_word.milestone_count"
 msgstr "%(links)s 條連結或截圖。"
 
 #: allthethings/page/templates/page/volunteering.html:45
+#, fuzzy
 msgid "page.volunteering.table.spread_the_word.milestone.let_them_know"
-msgstr ""
+msgstr "這些應該顯示您告訴某人關於 Anna 的檔案庫，並且他們感謝您。"
 
 #: allthethings/page/templates/page/volunteering.html:48
 #, fuzzy
@@ -6222,12 +6246,14 @@ msgid "layout.index.footer.list3.header"
 msgstr "備擇方案"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.slum"
-msgstr ""
+msgstr "SLUM (%(unaffiliated)s)"
 
 #: allthethings/templates/layouts/index.html:618
+#, fuzzy
 msgid "layout.index.footer.list3.link.unaffiliated"
-msgstr ""
+msgstr "無關聯"
 
 #: allthethings/templates/macros/aarecord_list.html:90
 #: allthethings/templates/macros/aarecord_list.html:125
