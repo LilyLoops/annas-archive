@@ -6716,7 +6716,7 @@ def get_additional_for_aarecord(aarecord):
                 directory = 'other'
                 if bool(re.match(r"^[a-z]", ia_id)):
                     directory = ia_id[0]
-                partner_path = f"g6/ia1acsm/{directory}/{ia_id}.{extension}"
+                partner_path = f"g2/ia1acsm/{directory}/{ia_id}.{extension}"
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/ia/annas-archive-ia-acsm-{directory}.tar.torrent", "file_level1": f"annas-archive-ia-acsm-{directory}.tar", "file_level2": f"{ia_id}.{extension}" })
             elif ia_file_type == 'lcpdf':
                 directory = 'other'
@@ -6728,7 +6728,7 @@ def get_additional_for_aarecord(aarecord):
                     directory = 'per_'
                 elif bool(re.match(r"^[a-z]", ia_id)):
                     directory = ia_id[0]
-                partner_path = f"g6/ia1lcpdf/{directory}/{ia_id}.{extension}"
+                partner_path = f"g2/ia1lcpdf/{directory}/{ia_id}.{extension}"
                 additional['torrent_paths'].append({ "collection": "ia", "torrent_path": f"managed_by_aa/ia/annas-archive-ia-lcpdf-{directory}.tar.torrent", "file_level1": f"annas-archive-ia-lcpdf-{directory}.tar", "file_level2": f"{ia_id}.{extension}" })
             elif ia_file_type == 'ia2_acsmpdf':
                 server = 'g3'
@@ -6825,15 +6825,15 @@ def get_additional_for_aarecord(aarecord):
             scimag_torrent_path = f"external/scihub/sm_{scimag_hundredthousand_dir:03}00000-{scimag_hundredthousand_dir:03}99999.torrent"
             additional['torrent_paths'].append({ "collection": "scihub", "torrent_path": scimag_torrent_path, "file_level1": f"libgen.scimag{scimag_thousand_dir:05}000-{scimag_thousand_dir:05}999.zip", "file_level2": scimag_filename })
 
-            scimag_path = f"i/scimag/{scimag_hundredthousand_dir:03}00000/{scimag_thousand_dir:05}000/{scimag_filename}"
-            add_partner_servers(scimag_path, 'scimag', aarecord, additional, temporarily_unavailable=True)
+            scimag_path = f"g4/scimag/{scimag_hundredthousand_dir:03}00000/{scimag_thousand_dir:05}000/{scimag_filename}"
+            add_partner_servers(scimag_path, 'scimag', aarecord, additional)
 
         lglicomics_id = source_record['comics_id']
         if lglicomics_id > 0 and lglicomics_id < 2792000: # 004_lgli_upload_hardlink.sh
             lglicomics_thousands_dir = (lglicomics_id // 1000) * 1000
             lglicomics_filename = f"{source_record['md5'].lower()}.{aarecord['file_unified_data']['extension_best']}"
             if lglicomics_id < 2567000:
-                add_partner_servers(f"g2/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional, temporarily_unavailable=True)
+                add_partner_servers(f"g2/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional)
                 additional['torrent_paths'].append({ "collection": "libgen_li_comics", "torrent_path": f"external/libgen_li_comics/c_{lglicomics_thousands_dir}.torrent", "file_level1": lglicomics_filename, "file_level2": "" }) # Note: no leading zero
             else:
                 add_partner_servers(f"gi/lglihard/comics/{lglicomics_thousands_dir}/{lglicomics_filename}", '', aarecord, additional)

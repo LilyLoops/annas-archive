@@ -1197,5 +1197,5 @@ def gc_notify():
         print(f"Warning: gc_notify message has incorrect signature: {sig=}")
         return "", 404
     with mariapersist_engine.connect() as connection:
-        return allthethings.utils.gc_notify(get_cursor_ping_conn(connection), request.get_data())
+        return allthethings.utils.gc_notify(allthethings.utils.get_cursor_ping_conn(connection), request.get_data())
 
