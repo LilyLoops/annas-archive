@@ -365,13 +365,13 @@
       <p class="mb-4 font-bold">{{ gettext('page.donation.amazon.header') }}</p>
 
         <p class="mb-4">
-          {{ gettext('page.donation.amazon.form_instructions', a_form=(((' href="' | safe) + (donation_amazon_form | safe) + ('" rel="noopener noreferrer nofollow" target="_blank" ' | safe)) | safe), amount=(('<strong>' + donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions + '</strong>') | safe)) | replace('.com', donation_amazon_domain_replace) }}
+          {{ gettext('page.donation.amazon.form_instructions', a_form=(((' href="' | safe) + (donation_amazon_form | safe) + ('" rel="noopener noreferrer nofollow" target="_blank" ' | safe)) | safe), amount=((('<strong>' | safe) + donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions + ('</strong>' | safe)) | safe)) | replace('.com', donation_amazon_domain_replace) }}
           {{ gettext('page.donation.amazon.only_official') | replace('.com', donation_amazon_domain_replace) }}
         </p>
 
         <ul class="list-inside mb-4 ml-1">
           <!-- <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_com') }}</li> -->
-          <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_message_1', amount=('<strong>' + donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions + '</strong>')) }}</li>
+          <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_message_1', amount=(('<strong>' | safe) + donation_dict.formatted_native_currency.cost_cents_native_currency_str_donation_page_instructions + ('</strong>' | safe)) | safe) }}</li>
           <li class="list-disc">{{ gettext('page.donate.payment.desc.amazon_message') }}</li>
         </ul>
 
