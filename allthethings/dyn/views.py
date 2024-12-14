@@ -1196,6 +1196,12 @@ def gc_notify():
     if sig != GC_NOTIFY_SIG:
         print(f"Warning: gc_notify message has incorrect signature: {sig=}")
         return "", 404
+    if '.org' in g.base_domain:
+        time.sleep(0)
+    elif '.se' in g.base_domain:
+        time.sleep(2)
+    elif '.li' in g.base_domain:
+        time.sleep(5)
     with mariapersist_engine.connect() as connection:
         return allthethings.utils.gc_notify(allthethings.utils.get_cursor_ping_conn(connection), request.get_data())
 
