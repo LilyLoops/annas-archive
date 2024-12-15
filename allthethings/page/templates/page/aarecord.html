@@ -289,12 +289,6 @@
       {% endfor %}
     </ul>
 
-    <script>
-      if (window.showExternalDownloads) {
-        window.showExternalDownloads(); // TODO: Remove
-      }
-    </script>
-
     {% if aarecord_id_split[0] in ['md5','doi','nexusstc_download'] %}
       {% if (aarecord.file_unified_data.problems | length) == 0 %}
         <div class="mb-4 text-sm text-gray-500">{{ gettext('page.md5.box.download.no_issues_notice') }}</div>
