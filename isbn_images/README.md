@@ -20,6 +20,12 @@ To dump all ISBNs from the "md5" set:
 python3 print_md5_isbns.py
 ```
 
+To calculate what percentage the "md5" set is of all ISBNs:
+
+```sh
+python3 calculate_percentage_md5.py
+```
+
 To generate ISBN images:
 
 ```sh

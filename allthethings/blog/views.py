@@ -11,6 +11,14 @@ blog = Blueprint("blog", __name__, template_folder="templates", url_prefix="/blo
 def index():
     return render_template("blog/index.html")
 
+@blog.get("/all-isbns.html")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def all_isbns():
+    return render_template("blog/all-isbns.html")
+@blog.get("/all-isbns-chinese.html")
+@allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
+def all_isbns_chinese():
+    return render_template("blog/all-isbns-chinese.html")
 @blog.get("/critical-window.html")
 @allthethings.utils.public_cache(minutes=5, cloudflare_minutes=60*3)
 def critical_window():
@@ -151,9 +159,9 @@ def rss_xml():
             pubDate = datetime.datetime(2023,8,15),
         ),
         Item(
-            title = "1.3B WorldCat scrape & data science mini-competition",
+            title = "1.3B WorldCat scrape",
             link = "https://annas-archive.li/blog/worldcat-scrape.html",
-            description = "Anna’s Archive scraped all of WorldCat to make a TODO list of books that need to be preserved, and is hosting a data science mini-competition.",
+            description = "Anna’s Archive scraped all of WorldCat to make a TODO list of books that need to be preserved.",
             author = "Anna and the team",
             pubDate = datetime.datetime(2023,10,3),
         ),
@@ -170,6 +178,13 @@ def rss_xml():
             description = "How can we claim to preserve our collections in perpetuity, when they are already approaching 1 PB?",
             author = "Anna and the team",
             pubDate = datetime.datetime(2024,7,16),
+        ),
+        Item(
+            title = "Visualizing All ISBNs — $10,000 bounty by 2025-01-31",
+            link = "https://annas-archive.li/blog/all-isbns.html",
+            description = "This picture represents the largest fully open “list of books” ever assembled in the history of humanity.",
+            author = "Anna and the team",
+            pubDate = datetime.datetime(2024,12,15),
         ),
     ]
 

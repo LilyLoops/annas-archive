@@ -1,15 +1,15 @@
 {% extends "layouts/blog.html" %}
 
-{% block title %}1.3B WorldCat scrape & data science mini-competition{% endblock %}
+{% block title %}1.3B WorldCat scrape{% endblock %}
 
 {% block meta_tags %}
-<meta name="description" content="Anna’s Archive scraped all of WorldCat to make a TODO list of books that need to be preserved, and is hosting a data science mini-competition." />
+<meta name="description" content="Anna’s Archive scraped all of WorldCat to make a TODO list of books that need to be preserved." />
 <meta name="twitter:card" value="summary">
-<meta property="og:title" content="1.3B WorldCat scrape & data science mini-competition" />
+<meta property="og:title" content="1.3B WorldCat scrape" />
 <meta property="og:image" content="https://annas-archive.li/blog/worldcat_redesign.png" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://annas-archive.li/blog/annas-archive-containers.html" />
-<meta property="og:description" content="Anna’s Archive scraped all of WorldCat to make a TODO list of books that need to be preserved, and is hosting a data science mini-competition." />
+<meta property="og:description" content="Anna’s Archive scraped all of WorldCat to make a TODO list of books that need to be preserved." />
 <style>
   code { word-break: break-all; font-size: 89%; letter-spacing: -0.3px; }
 
@@ -33,13 +33,13 @@
 {% endblock %}
 
 {% block body %}
-  <h1 style="margin-bottom: 0">1.3B WorldCat scrape & data science mini-competition</h1>
+  <h1 style="margin-bottom: 0">1.3B WorldCat scrape</h1>
   <p style="margin-top: 0; font-style: italic">
     annas-archive.li/blog, 2023-10-03
   </p>
 
   <p style="background: #f4f4f4; padding: 1em; margin: 1.5em 0; border-radius: 4px">
-    <em><strong>TL;DR:</strong> Anna’s Archive scraped all of WorldCat (the world’s largest library metadata collection) to make a TODO list of books that need to be preserved, and is hosting a data science mini-competition.</em>
+    <em><strong>TL;DR:</strong> Anna’s Archive scraped all of WorldCat (the world’s largest library metadata collection) to make a TODO list of books that need to be preserved.</em>
   </p>
 
   <p>
@@ -99,28 +99,6 @@
     <li><strong>Primary key?</strong> The IDs of WorldCat records are known as “OCLC IDs”, and appear to be incrementing numbers, ranging from 1 to (when we started our scrape) about 1,350,000,000, which is the range we scraped for. However, due to how some of our scraping methods work, we also found other ranges, that seem different from the main set starting at 1.</li>
     <li><strong>Examples?</strong> Canoncial URLs of these records are of the form <code>worldcat.org/oclc/:id</code>, which currently redirects to <code>worldcat.org/title/:id</code>. For example, <a href="https://worldcat.org/oclc/528432361">https://worldcat.org/oclc/528432361</a>.</li>
   </ul>
-
-  <h2>Competition</h2>
-
-  <p>
-    Before we dive into the data, we have to acknowledge that we haven’t had a chance yet to dive very deep into this massive dataset. That’s why we’re inviting the world to have a go at it, in a mini-competition. We’re curious what you will discover!
-  </p>
-
-  <p>
-    <strong>The 3 best submissions by 2023-12-01 will win a year-long membership of Anna’s Archive</strong> at the highest tier (“Amazing Archivist”), which includes the ability to include your own name or message in one of our torrent filenames. We will also feature your work in a blog post.
-  </p>
-
-  <p>
-    For this mini-competition, anything goes, as long as you share your analysis publicly, e.g. in an open source repository or notebook. Send your submissions to our email. We will pick the three submissions we think are most interesing, inspiring, and insightful.
-  </p>
-
-  <p>
-    Join us in the <a href="https://t.me/+GNQxkFPt1xkzY2Zk">devs & translators Telegram group</a> to discuss what you’re working on! And check out our <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/tree/main/data-imports">data imports</a> scripts, for comparing against various other metadata datasets.
-  </p>
-
-  <p>
-    If instead of data science, you’re more interested in helping us do more scrapes like this, then definitely contact us right away. We’re always looking for programmers, offensive security researchers (hackers), and so on.
-  </p>
 
   <h2>Data</h2>
 
@@ -1311,7 +1289,7 @@
   </p>
 
   <p>
-    Join us: enter in our mini-competition to analyze these data, help seed our torrents, scan and upload some books, help build Anna’s Archive, help scrape more collections, or simply become a member. We’ve already met dozens of incredible volunteers, and <em>you too</em> can help preserve humanity’s legacy.
+    Join us: help seed our torrents, scan and upload some books, help build Anna’s Archive, help scrape more collections, or simply become a member. We’ve already met dozens of incredible volunteers, and <em>you too</em> can help preserve humanity’s legacy.
   </p>
 
   <p>
