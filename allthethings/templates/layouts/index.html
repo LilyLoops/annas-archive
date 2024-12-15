@@ -615,7 +615,7 @@
             <a class="custom-a hover:text-[#333] js-annas-archive-li" href="https://annas-archive.li">annas-archive.li</a><br>
             <a class="custom-a hover:text-[#333] js-annas-archive-se" href="https://annas-archive.se">annas-archive.se</a><br>
             <a class="custom-a hover:text-[#333] js-annas-archive-org" href="https://annas-archive.org">annas-archive.org</a><br>
-            <a class="custom-a hover:text-[#333]" href="https://open-slum.org/">{{ gettext('layout.index.footer.list3.link.slum', unaffiliated=(('<span>' + gettext('layout.index.footer.list3.link.unaffiliated')) + '</span>') | safe) }}</a><br>
+            <a class="custom-a hover:text-[#333]" href="https://open-slum.org/">{{ gettext('layout.index.footer.list3.link.slum', unaffiliated=((('<span class="text-xs">[' | safe) + gettext('layout.index.footer.list3.link.unaffiliated')) + (']</span>' | safe)) | safe) | replace('(','') | replace(')', '') }}</a><br>
           </div>
         </div>
       </footer>
