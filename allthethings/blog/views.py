@@ -180,7 +180,7 @@ def rss_xml():
             pubDate = datetime.datetime(2024,7,16),
         ),
         Item(
-            title = "Visualizing All ISBNs — $10,000 bounty by 2025-01-31",
+            title = "Visualizing All ISBNs — $10k by 2025-01-31",
             link = "https://annas-archive.li/blog/all-isbns.html",
             description = "This picture represents the largest fully open “list of books” ever assembled in the history of humanity.",
             author = "Anna and the team",
