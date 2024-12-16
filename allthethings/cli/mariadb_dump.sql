@@ -2754,7 +2754,7 @@ INSERT INTO `scihub_dois` VALUES
 ('10.1007/0-306-47595-2'),
 ('10.1036/0071438289'),
 ('10.1385/1592591930'),
-('10.1002/(sici)(1997)5:1<1::aid-nt1>3.0.co;2-8'),
+('10.1002/(SICI)(1997)5:1<1::aid-nt1>3.0.co;2-8'), # Modified to capital letters "SICI" to test DOI case insensitivity.
 ('10.5822/978-1-61091-843-5_15');
 /*!40000 ALTER TABLE `scihub_dois` ENABLE KEYS */;
 UNLOCK TABLES;
