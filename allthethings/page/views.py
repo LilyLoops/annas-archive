@@ -6633,7 +6633,7 @@ def add_partner_servers(path, modifier, aarecord, additional, temporarily_unavai
         return
     # When changing the domains, don't forget to change md5_fast_download and md5_slow_download.
     for index in range(len(allthethings.utils.FAST_DOWNLOAD_DOMAINS)):
-        additional['fast_partner_urls'].append(((gettext("common.md5.servers.fast_partner", number=len(additional['fast_partner_urls'])+1) + ((' ' + gettext("common.md5.servers.fast_partner.recommended")) if len(additional['fast_partner_urls']) == 0 else '')), '/fast_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.no_browser_verification_or_waitlists") if len(additional['fast_partner_urls']) == 0 else ''))
+        additional['fast_partner_urls'].append(((gettext("common.md5.servers.fast_partner", number=len(additional['fast_partner_urls'])+1) + ((' ' + gettext("common.md5.servers.fast_partner.recommended2")) if len(additional['fast_partner_urls']) == 0 else '')), '/fast_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.no_browser_verification_or_waitlists") if len(additional['fast_partner_urls']) == 0 else ''))
     for index in range(len(allthethings.utils.SLOW_DOWNLOAD_DOMAINS)):
         if allthethings.utils.SLOW_DOWNLOAD_DOMAINS_SLIGHTLY_FASTER[index]:
             additional['slow_partner_urls'].append((gettext("common.md5.servers.slow_partner", number=len(additional['slow_partner_urls'])+1), '/slow_download/' + aarecord['id'][len("md5:"):] + '/' + str(len(additional['partner_url_paths'])) + '/' + str(index), gettext("common.md5.servers.faster_with_waitlist")))
