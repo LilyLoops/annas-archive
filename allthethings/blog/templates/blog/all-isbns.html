@@ -61,6 +61,24 @@
 
   <p>Besides one overview image, we can also look at visualizations of the individual datasets we’ve acquired. Use the dropdown and buttons to switch between, to compare.</p>
 
+  <img src="isbn_images/all_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/md5_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/cadal_ssno_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/cerlalc_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/duxiu_ssid_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/edsebk_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/gbooks_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/goodreads_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/ia_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/isbndb_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/isbngrp_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/libby_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/nexusstc_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/oclc_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/ol_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/rgb_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+  <img src="isbn_images/trantor_isbns_smaller.png" style="position:absolute; visibility:hidden; width:1px">
+
   <p>
     <script>window.prevIndex = window.curIndex = 0;</script>
     <select class="js-switcher-select" onchange="document.querySelector('.js-switcher-img').src = document.querySelector('.js-switcher-link').href = 'isbn_images/' + this.value; if (this.selectedIndex !== window.curIndex) { window.prevIndex = window.curIndex; window.curIndex = this.selectedIndex; }">
@@ -100,7 +118,7 @@
 
   <h2 style="margin-top: 1.5em;">$10,000 bounty</h2>
 
-  <p>There is much to explore here, so we’re announcing a bounty for improving the visualization above. Unlike most of our bounties, this one is time-bound. You have to submit your merge request (or git diff) on our Gitlab (publicly) by 2025-01-31 (23:59 UTC). All your code has to be open source.</p>
+  <p>There is much to explore here, so we’re announcing a bounty for improving the visualization above. Unlike most of our bounties, this one is time-bound. You have to <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/244">submit</a> your open source code by 2025-01-31 (23:59 UTC).</p>
 
   <p>The best submission will get $6,000, second place is $3,000, and third place is $1,000. All bounties will be awarded using Monero (XMR).</p>
 
@@ -130,6 +148,10 @@
 
   <p>
     You MAY completely veer off from the minimal criteria, and do a completely different visualization. If it’s really spectacular, then that qualifies for the bounty, but at our discretion.
+  </p>
+
+  <p>
+    Make submissions by posting a comment to <a href="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/244">this issue</a> with a link to your forked repo, merge request, or diff.
   </p>
 
   <h2 style="margin-top: 1.5em;">Code</h2>
