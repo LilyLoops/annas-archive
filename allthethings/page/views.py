@@ -5806,7 +5806,9 @@ def get_aarecords_mysql(session, aarecord_ids):
             source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'ol', 'source_record': ol_book_dict})
     for code_full, ol_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_ol_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13', 'ocaid']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for ol_book_dict in ol_book_dicts:
+            if len(ol_book_dicts) > 10:
+                print(f"WARNING: {len(ol_book_dicts)=} > 10 for {aarecord_id=}")
+            for ol_book_dict in ol_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['ol_edition'] == ol_book_dict['ol_edition'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'ol']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'ol', 'source_record': ol_book_dict})
@@ -5817,13 +5819,17 @@ def get_aarecords_mysql(session, aarecord_ids):
             source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'oclc', 'source_record': oclc_dict})
     for code_full, oclc_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_oclc_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for oclc_dict in oclc_dicts:
+            if len(oclc_dicts) > 10:
+                print(f"WARNING: {len(oclc_dicts)=} > 10 for {aarecord_id=}")
+            for oclc_dict in oclc_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['oclc_id'] == oclc_dict['oclc_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'oclc']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'oclc', 'source_record': oclc_dict})
     for code_full, edsebk_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_edsebk_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for edsebk_dict in edsebk_dicts:
+            if len(edsebk_dicts) > 10:
+                print(f"WARNING: {len(edsebk_dicts)=} > 10 for {aarecord_id=}")
+            for edsebk_dict in edsebk_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['edsebk_id'] == edsebk_dict['edsebk_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_edsebk']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_edsebk', 'source_record': edsebk_dict})
@@ -5849,49 +5855,63 @@ def get_aarecords_mysql(session, aarecord_ids):
             source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'duxius_nontransitive_meta_only', 'source_record': duxiu_dict})
     for code_full, trantor_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_trantor_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['sha256']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for trantor_book_dict in trantor_book_dicts:
+            if len(trantor_book_dicts) > 10:
+                print(f"WARNING: {len(trantor_book_dicts)=} > 10 for {aarecord_id=}")
+            for trantor_book_dict in trantor_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['trantor_id'] == trantor_book_dict['trantor_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_trantor']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_trantor', 'source_record': trantor_book_dict})
     for code_full, gbooks_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_gbooks_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13', 'oclc']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for gbooks_book_dict in gbooks_book_dicts:
+            if len(gbooks_book_dicts) > 10:
+                print(f"WARNING: {len(gbooks_book_dicts)=} > 10 for {aarecord_id=}")
+            for gbooks_book_dict in gbooks_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['gbooks_id'] == gbooks_book_dict['gbooks_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_gbooks']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_gbooks', 'source_record': gbooks_book_dict})
     for code_full, goodreads_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_goodreads_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for goodreads_book_dict in goodreads_book_dicts:
+            if len(goodreads_book_dicts) > 10:
+                print(f"WARNING: {len(goodreads_book_dicts)=} > 10 for {aarecord_id=}")
+            for goodreads_book_dict in goodreads_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['goodreads_id'] == goodreads_book_dict['goodreads_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_goodreads']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_goodreads', 'source_record': goodreads_book_dict})
     for code_full, libby_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_libby_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for libby_book_dict in libby_book_dicts:
+            if len(libby_book_dicts) > 10:
+                print(f"WARNING: {len(libby_book_dicts)=} > 10 for {aarecord_id=}")
+            for libby_book_dict in libby_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['libby_id'] == libby_book_dict['libby_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_libby']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_libby', 'source_record': libby_book_dict})
     for code_full, czech_oo42hcks_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_czech_oo42hcks_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['czech_oo42hcks_filename']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for czech_oo42hcks_book_dict in czech_oo42hcks_book_dicts:
+            if len(czech_oo42hcks_book_dicts) > 10:
+                print(f"WARNING: {len(czech_oo42hcks_book_dicts)=} > 10 for {aarecord_id=}")
+            for czech_oo42hcks_book_dict in czech_oo42hcks_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['czech_oo42hcks_id'] == czech_oo42hcks_book_dict['czech_oo42hcks_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_czech_oo42hcks']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_czech_oo42hcks', 'source_record': czech_oo42hcks_book_dict})
     for code_full, cerlalc_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_cerlalc_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for cerlalc_book_dict in cerlalc_book_dicts:
+            if len(cerlalc_book_dicts) > 10:
+                print(f"WARNING: {len(cerlalc_book_dicts)=} > 10 for {aarecord_id=}")
+            for cerlalc_book_dict in cerlalc_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['cerlalc_id'] == cerlalc_book_dict['cerlalc_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_cerlalc']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_cerlalc', 'source_record': cerlalc_book_dict})
     for code_full, isbngrp_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_isbngrp_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for isbngrp_book_dict in isbngrp_book_dicts:
+            for isbngrp_book_dict in isbngrp_book_dicts[0:3]: # Limit to 3 because there are some prefixes (like 978000) which have a crazy number of publishers.
                 if any([source_record['source_record']['isbngrp_id'] == isbngrp_book_dict['isbngrp_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_isbngrp']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_isbngrp', 'source_record': isbngrp_book_dict})
     for code_full, rgb_book_dicts in get_transitive_lookup_dicts(session, "aarecords_codes_rgb_for_lookup", [code for code in transitive_codes.keys() if code[0] in ['isbn13']]).items():
         for aarecord_id in transitive_codes[code_full]:
-            for rgb_book_dict in rgb_book_dicts:
+            if len(rgb_book_dicts) > 10:
+                print(f"WARNING: {len(rgb_book_dicts)=} > 10 for {aarecord_id=}")
+            for rgb_book_dict in rgb_book_dicts[0:10]: # Just a precaution.
                 if any([source_record['source_record']['rgb_id'] == rgb_book_dict['rgb_id'] for source_record in source_records_full_by_aarecord_id[aarecord_id] if source_record['source_type'] == 'aac_rgb']):
                     continue
                 source_records_full_by_aarecord_id[aarecord_id].append({'source_type': 'aac_rgb', 'source_record': rgb_book_dict})
