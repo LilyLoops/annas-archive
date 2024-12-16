@@ -8,4 +8,5 @@ set -Eeuxo pipefail
 
 cd /temp-dir
 
-7zr e -so -bd dois-2022-02-12.7z | sed -e 's/\\u0000//g' | mariadb -h ${MARIADB_HOST:-aa-data-import--mariadb} -u root -ppassword allthethings --local-infile=1 --show-warnings -vv -e "DROP TABLE IF EXISTS scihub_dois; CREATE TABLE scihub_dois (doi VARCHAR(250) NOT NULL, PRIMARY KEY(doi)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; LOAD DATA LOCAL INFILE '/dev/stdin' INTO TABLE scihub_dois FIELDS TERMINATED BY '\t' ENCLOSED BY '' ESCAPED BY '';"
+# NOTE! Collation utf8mb4_general_ci (case insensitive) because DOIs are case insensitive.
+7zr e -so -bd dois-2022-02-12.7z | sed -e 's/\\u0000//g' | mariadb -h ${MARIADB_HOST:-aa-data-import--mariadb} -u root -ppassword allthethings --local-infile=1 --show-warnings -vv -e "DROP TABLE IF EXISTS scihub_dois; CREATE TABLE scihub_dois (doi VARCHAR(250) NOT NULL, PRIMARY KEY(doi)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci; LOAD DATA LOCAL INFILE '/dev/stdin' INTO TABLE scihub_dois FIELDS TERMINATED BY '\t' ENCLOSED BY '' ESCAPED BY '';"

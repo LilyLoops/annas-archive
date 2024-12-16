@@ -2724,7 +2724,7 @@ DROP TABLE IF EXISTS `scihub_dois`;
 CREATE TABLE `scihub_dois` (
   `doi` varchar(250) NOT NULL,
   PRIMARY KEY (`doi`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `scihub_dois` WRITE;
 /*!40000 ALTER TABLE `scihub_dois` DISABLE KEYS */;

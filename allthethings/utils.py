@@ -187,7 +187,7 @@ def scidb_info(aarecord, additional=None):
     scihub_link = None
     scihub_dois = [source_record['source_record'] for source_record in aarecord['source_records'] if source_record['source_type'] == 'scihub_doi']
     if len(scihub_dois) > 0:
-        scihub_link = f"https://sci-hub.ru/{scihub_dois[0]['doi']}"
+        scihub_link = f"https://sci-hub.ru/{scihub_dois[0]['doi'].lower()}"
 
     if (aarecord['file_unified_data']['content_type_best'] != "journal_article") and (scihub_link is None):
         return None
@@ -215,7 +215,7 @@ def scidb_info(aarecord, additional=None):
     else:
         return None
 
-    return { "priority": priority, "doi": valid_dois[0], "path_info": path_info, "scihub_link": scihub_link, "ipfs_url": ipfs_url, "nexusstc_id": nexusstc_id }
+    return { "priority": priority, "doi": valid_dois[0].lower(), "path_info": path_info, "scihub_link": scihub_link, "ipfs_url": ipfs_url, "nexusstc_id": nexusstc_id }
 
 JWT_PREFIX = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.'
 
@@ -2203,9 +2203,9 @@ def extract_doi_from_filepath(filepath):
     for index, part in reversed(list(enumerate(filepath_without_extension_split))):
         if part.startswith('10.'):
             if part == filepath_without_extension_split[-1]:
-                return part.replace('_', '/')
+                return part.replace('_', '/').lower()
             else:
-                return '/'.join(filepath_without_extension_split[index:])
+                return '/'.join(filepath_without_extension_split[index:]).lower()
     return None
 
 # Taken from https://github.com/alejandrogallo/python-doi/blob/03d51be3c1f4e362523f4912058ca3cb01b98e91/src/doi/__init__.py#L82C1-L95C15
@@ -2222,7 +2222,7 @@ def get_clean_doi(doi):
     doi = re.sub(r'\)/S/URI', ' ', doi)
     doi = re.sub(r'(/abstract)', '', doi)
     doi = re.sub(r'\)$', '', doi)
-    return doi
+    return doi.lower()
 
 # Taken from https://github.com/alejandrogallo/python-doi/blob/03d51be3c1f4e362523f4912058ca3cb01b98e91/src/doi/__init__.py#L98C1-L125C16
 def find_doi_in_text(text):
@@ -2248,7 +2248,7 @@ def find_doi_in_text(text):
         try:
             m = next(miter)
             if m:
-                doi = m.group('doi')
+                doi = m.group('doi').lower()
                 return get_clean_doi(doi)
         except StopIteration:
             pass

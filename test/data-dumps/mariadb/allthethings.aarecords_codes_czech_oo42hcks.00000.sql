@@ -45,7 +45,7 @@ INSERT INTO `aarecords_codes_czech_oo42hcks` VALUES("aacid:aacid__czech_oo42hcks
 ,("date_czech_oo42hcks_meta_scrape:2024-09-17","czech_oo42hcks:solen_papers_325")
 ,("doi:10.1135/cccc19290658","czech_oo42hcks:cccc_csv_1")
 ,("doi:10.1135/cccc19530151","czech_oo42hcks:archive_cccc_5")
-,("doi:10.17221/73/2014-JFS","czech_oo42hcks:j_forrest_sci_812")
+,("doi:10.17221/73/2014-jfs","czech_oo42hcks:j_forrest_sci_812")
 ,("lang:cs","czech_oo42hcks:solen_papers_325")
 ,("year:1929","czech_oo42hcks:cccc_csv_1")
 ,("year:1953","czech_oo42hcks:archive_cccc_5")

@@ -22,7 +22,7 @@ INSERT INTO `scihub_dois` VALUES("10.0000/aaai.org/library/aaai/1987/aaai87-067"
 ,("10.0000/aaai.org/ocs/aaai::aaai17/14758")
 ,("10.0000/aaai.org/ocs/aaai::aaai17/14773")
 ,("10.0000/aaai.org/ocs/aaai::aaai17/14806")
-,("10.1002/(sici)(1997)5:1<1::aid-nt1>3.0.co;2-8")
+,("10.1002/(SICI)(1997)5:1<1::aid-nt1>3.0.co;2-8")
 ,("10.1007/0-306-47595-2")
 ,("10.1007/b102786")
 ,("10.1036/0071438289")

@@ -635,12 +635,12 @@ def elastic_build_aarecords_job(aarecord_ids):
                 bad_isbn13_aarecord_ids = set(bad_isbn13_aarecord_ids)
 
                 # Filter out "doi:" records that already have an md5. We don't need standalone records for those.
-                dois_from_ids = [aarecord_id[4:].encode() for aarecord_id in aarecord_ids if aarecord_id.startswith('doi:')]
+                dois_from_ids = [aarecord_id[4:].lower().encode() for aarecord_id in aarecord_ids if aarecord_id.startswith('doi:')]
                 doi_codes_with_md5 = set()
                 if len(dois_from_ids) > 0:
                     cursor = allthethings.utils.get_cursor_ping(session)
                     cursor.execute('SELECT doi FROM temp_md5_with_doi_seen WHERE doi IN %(dois_from_ids)s', { "dois_from_ids": dois_from_ids })
-                    doi_codes_with_md5 = set([f"doi:{row['doi'].decode(errors='replace')}" for row in cursor.fetchall()])
+                    doi_codes_with_md5 = set([f"doi:{row['doi'].decode(errors='replace').lower()}" for row in cursor.fetchall()])
 
                 aarecord_ids = [aarecord_id for aarecord_id in aarecord_ids if (aarecord_id not in bad_isbn13_aarecord_ids) and (aarecord_id not in doi_codes_with_md5) and (aarecord_id not in allthethings.utils.SEARCH_FILTERED_BAD_AARECORD_IDS)]
                 if len(aarecord_ids) == 0:
@@ -673,7 +673,7 @@ def elastic_build_aarecords_job(aarecord_ids):
                             })),
                         })
                         for doi in aarecord['file_unified_data']['identifiers_unified'].get('doi') or []:
-                            temp_md5_with_doi_seen_insert_data.append({ "doi": doi.encode() })
+                            temp_md5_with_doi_seen_insert_data.append({ "doi": doi.lower().encode() })
                     elif aarecord_id_split[0] == 'nexusstc':
                         source_records_by_type = allthethings.utils.groupby(aarecord['source_records'], 'source_type', 'source_record')
                         for source_record in source_records_by_type['aac_nexusstc']:
@@ -1100,7 +1100,7 @@ def elastic_build_aarecords_main_internal():
         cursor.execute('CREATE TABLE temp_md5_with_doi_seen (id BIGINT NOT NULL AUTO_INCREMENT, doi VARBINARY(1000), PRIMARY KEY (id), INDEX(doi)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin')
 
     build_common('computed_all_md5s', lambda batch: [f"md5:{row['primary_id'].hex()}" for row in batch], primary_id_column='md5')
-    build_common('scihub_dois', lambda batch: [f"doi:{row['primary_id']}" for row in batch], primary_id_column='doi')
+    build_common('scihub_dois', lambda batch: [f"doi:{row['primary_id'].lower()}" for row in batch], primary_id_column='doi')
     build_common('nexusstc_cid_only', lambda batch: [f"nexusstc_download:{row['primary_id']}" for row in batch], primary_id_column='nexusstc_id')
 
     with Session(engine) as session:

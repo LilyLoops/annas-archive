@@ -5,4 +5,4 @@
 CREATE TABLE `scihub_dois` (
   `doi` varchar(250) NOT NULL,
   PRIMARY KEY (`doi`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

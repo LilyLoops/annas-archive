@@ -144,9 +144,9 @@ def normalize_doi(s):
     if not (('/' in s) and (' ' not in s)):
         return ''
     if s.startswith('doi:10.'):
-        return s[len('doi:'):]
+        return s[len('doi:'):].lower()
     if s.startswith('10.'):
-        return s
+        return s.lower()
     return ''
 
 # Example: zlib2/pilimi-zlib2-0-14679999-extra/11078831
@@ -2514,7 +2514,7 @@ def get_lgli_file_dicts(session, key, values):
             edition_dict['languageoriginal_codes'] = combine_bcp47_lang_codes(languageoriginal_codes)
 
             allthethings.utils.init_identifiers_and_classification_unified(edition_dict)
-            allthethings.utils.add_identifier_unified(edition_dict, 'doi', edition_dict['doi'])
+            allthethings.utils.add_identifier_unified(edition_dict, 'doi', edition_dict['doi'].lower())
             for key, values in edition_dict['descriptions_mapped'].items():
                 if key in allthethings.utils.LGLI_IDENTIFIERS:
                     for value in values:
@@ -2791,7 +2791,7 @@ def get_scihub_doi_dicts(session, key, values):
     try:
         session.connection().connection.ping(reconnect=True)
         cursor = session.connection().connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT doi FROM scihub_dois WHERE doi IN %(values)s', { "values": [str(value) for value in values] })
+        cursor.execute('SELECT doi FROM scihub_dois WHERE doi IN %(values)s', { "values": [str(value).lower() for value in values] })
         scihub_dois = list(cursor.fetchall())
     except Exception as err:
         print(f"Error in get_scihub_doi_dicts when querying {key}; {values}")
@@ -2802,12 +2802,12 @@ def get_scihub_doi_dicts(session, key, values):
     scihub_doi_dicts = []
     for scihub_doi in scihub_dois:
         scihub_doi_dict = {
-            "doi": scihub_doi["doi"],
+            "doi": scihub_doi["doi"].lower(),
             "file_unified_data": allthethings.utils.make_file_unified_data(),
         }
-        scihub_doi_dict["file_unified_data"]["original_filename_best"] = allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].strip()}.pdf")
+        scihub_doi_dict["file_unified_data"]["original_filename_best"] = allthethings.utils.prefix_filepath('scihub', f"{scihub_doi['doi'].lower().strip()}.pdf")
         scihub_doi_dict["file_unified_data"]["content_type_best"] = 'journal_article'
-        allthethings.utils.add_identifier_unified(scihub_doi_dict['file_unified_data'], "doi", scihub_doi_dict["doi"])
+        allthethings.utils.add_identifier_unified(scihub_doi_dict['file_unified_data'], "doi", scihub_doi_dict["doi"].lower())
         scihub_doi_dict_comments = {
             **allthethings.utils.COMMON_DICT_COMMENTS,
             "doi": ("before", ["This is a file from Sci-Hub's dois-2022-02-12.7z dataset.",
@@ -2910,7 +2910,7 @@ def get_oclc_dicts(session, key, values):
                 oclc_dict["aa_oclc_derived"]["isbn_multiple"] += (aac_metadata['record'].get('isbns') or [])
                 oclc_dict["aa_oclc_derived"]["issn_multiple"].append((aac_metadata['record'].get('sourceIssn') or ''))
                 oclc_dict["aa_oclc_derived"]["issn_multiple"] += (aac_metadata['record'].get('issns') or [])
-                oclc_dict["aa_oclc_derived"]["doi_multiple"].append((aac_metadata['record'].get('doi') or ''))
+                oclc_dict["aa_oclc_derived"]["doi_multiple"].append((aac_metadata['record'].get('doi') or '').lower())
                 oclc_dict["aa_oclc_derived"]["general_format_multiple"].append((aac_metadata['record'].get('generalFormat') or ''))
                 oclc_dict["aa_oclc_derived"]["specific_format_multiple"].append((aac_metadata['record'].get('specificFormat') or ''))
             elif aac_metadata['type'] == 'briefrecords_json':
@@ -2930,7 +2930,7 @@ def get_oclc_dicts(session, key, values):
                 # TODO: unverified:
                 oclc_dict["aa_oclc_derived"]["issn_multiple"].append((aac_metadata['record'].get('sourceIssn') or ''))
                 oclc_dict["aa_oclc_derived"]["issn_multiple"] += (aac_metadata['record'].get('issns') or [])
-                oclc_dict["aa_oclc_derived"]["doi_multiple"].append((aac_metadata['record'].get('doi') or ''))
+                oclc_dict["aa_oclc_derived"]["doi_multiple"].append((aac_metadata['record'].get('doi') or '').lower())
                 # TODO: series/volume?
             elif aac_metadata['type'] == 'providersearchrequest_json':
                 rft = urllib.parse.parse_qs((aac_metadata['record'].get('openUrlContextObject') or ''))
@@ -3039,7 +3039,7 @@ def get_oclc_dicts(session, key, values):
         for issn in oclc_dict['aa_oclc_derived']['issn_multiple']:
             allthethings.utils.add_issn_unified(oclc_dict['file_unified_data'], issn)
         for doi in oclc_dict['aa_oclc_derived']['doi_multiple']:
-            allthethings.utils.add_identifier_unified(oclc_dict['file_unified_data'], 'doi', doi)
+            allthethings.utils.add_identifier_unified(oclc_dict['file_unified_data'], 'doi', doi.lower())
         for aac_record in aac_records:
             allthethings.utils.add_identifier_unified(oclc_dict['file_unified_data'], 'aacid', aac_record['aacid'])
 
@@ -4092,7 +4092,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
         allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['file_unified_data'], 'nexusstc', aac_record['metadata']['nexus_id'])
 
         for doi in get_nexusstc_ids(aac_record['metadata']['record']['id'][0], 'dois'):
-            allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['file_unified_data'], 'doi', doi)
+            allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['file_unified_data'], 'doi', doi.lower())
         for zlibrary_id in get_nexusstc_ids(aac_record['metadata']['record']['id'][0], 'zlibrary_ids'):
             allthethings.utils.add_identifier_unified(aac_nexusstc_book_dict['file_unified_data'], 'zlib', zlibrary_id)
         for libgen_id in get_nexusstc_ids(aac_record['metadata']['record']['id'][0], 'libgen_ids'):
@@ -4339,7 +4339,7 @@ def get_aac_nexusstc_book_dicts(session, key, values):
             # Do something with link['iroh_hash']?
 
         if len(aac_record['metadata']['record']['references'] or []) > 0:
-            references = ' '.join([f"doi:{ref['doi']}" for ref in aac_record['metadata']['record']['references']])
+            references = ' '.join([f"doi:{ref['doi'].lower()}" for ref in aac_record['metadata']['record']['references']])
             aac_nexusstc_book_dict['file_unified_data']['comments_multiple'].append(f"Referenced by: {references}")
 
         aac_nexusstc_book_dict['file_unified_data']['original_filename_best'] = next(iter(aac_nexusstc_book_dict['file_unified_data']['original_filename_additional']), '')
@@ -4677,7 +4677,7 @@ def get_aac_czech_oo42hcks_book_dicts(session, key, values):
                 edition_varia_normalized.append(issue_stripped)
             if (reference_stripped := aac_record['metadata']['record']['Reference'].strip()) != '':
                 edition_varia_normalized.append(reference_stripped)
-            if (doi_stripped := aac_record['metadata']['record']['DOI'].strip()) != '':
+            if (doi_stripped := aac_record['metadata']['record']['DOI'].lower().strip()) != '':
                 edition_varia_normalized.append(doi_stripped)
             aac_czech_oo42hcks_book_dict['file_unified_data']['edition_varia_best'] = ', '.join(edition_varia_normalized)
 
